@@ -1,0 +1,156 @@
+{
+  "id": "cjf.desapropriacao-direta.correcao-monetaria",
+  "titulo": "Correção monetária — desapropriações diretas",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "desapropriacao-direta",
+  "componente": "correcao-monetaria",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.5.1.1",
+    "pagina_pdf": 66
+  },
+  "termo_inicial": "A correção monetária é contada a partir da data do laudo do perito (Súmula n. 75 do TFR).",
+  "segmentos": [
+    {
+      "inicio": "1964-01",
+      "fim": "1986-02",
+      "indexador": "ORTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "Lei n. 4.357/1964",
+      "pagina_pdf": 66,
+      "observacao": "O manual escreve 'De 1964 a fev./1986' — início sem mês. Ver pendência P8-07.",
+      "componente": "correcao-monetaria",
+      "ponta_materializada": "inicio — o manual não dá mês inicial"
+    },
+    {
+      "inicio": "1986-03",
+      "fim": "1989-01",
+      "indexador": "OTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "multiplicador_transicao": {
+        "valor": "6,17",
+        "quando": "1989-01",
+        "texto": "Os débitos anteriores a jan./1989 deverão ser multiplicados, neste mês, por 6,17."
+      },
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-01",
+      "fim": "1989-01",
+      "indexador": "IPC/IBGE",
+      "valor_fixo_pct": "42,72",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN.",
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-02",
+      "fim": "1989-02",
+      "indexador": "IPC/IBGE",
+      "valor_fixo_pct": "10,14",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN.",
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-03",
+      "fim": "1990-03",
+      "indexador": "BTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1990-03",
+      "fim": "1991-02",
+      "indexador": "IPC/IBGE",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN e ao INPC de fev./1991.",
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1991-03",
+      "fim": "1991-12",
+      "indexador": "IPC/FGV",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria",
+      "correcao_adversarial": "A primeira extração gravou INPC. O PDF (pagina_pdf 66, e a gêmea 4.6.1.1 na 73) diz IPC/FGV — outro índice, de outra instituição. Era o único segmento errado dos 78, e o único índice exclusivo de uma cadeia em todo o capítulo 4."
+    },
+    {
+      "inicio": "1992-01",
+      "fim": "2000-12",
+      "indexador": "Ufir",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2001-01",
+      "fim": "2021-11",
+      "indexador": "IPCA-E/IBGE",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2021-12",
+      "fim": "2025-08",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "engloba": [
+        "correcao-monetaria",
+        "juros-mora"
+      ],
+      "aplicacao": "mes-posterior-a-competencia",
+      "fundamento": "Art. 3º da EC n. 113/2021",
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2025-09",
+      "fim": "2026-06",
+      "indexador": "IPCA-15/IBGE",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "ARE 1.557.312/SP (Tema 1.419 do STF), Art. 389, Parágrafo Único, da Lei n. 10.406/2002",
+      "pagina_pdf": 66,
+      "componente": "correcao-monetaria",
+      "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
+    }
+  ],
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  }
+}

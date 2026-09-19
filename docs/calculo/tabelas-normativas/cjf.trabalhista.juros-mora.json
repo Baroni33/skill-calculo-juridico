@@ -1,0 +1,207 @@
+{
+  "id": "cjf.trabalhista.juros-mora",
+  "titulo": "Juros de mora — ações trabalhistas na Justiça Federal",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "acao-trabalhista",
+  "componente": "juros-mora",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.7.2",
+    "pagina_pdf": 78
+  },
+  "escopo_restrito": "Este capítulo aplica-se apenas a ações trabalhistas relativas a contratos regidos pela Consolidação das Leis do Trabalho (CLT) anteriores à promulgação da vigente Constituição Federal, nos termos do art. 27, § 10, do ADCT/1988, não se aplicando a ações relativas a servidores(as) públicos(as) sob regime estatutário.",
+  "termo_inicial": "Os juros são contados a partir da notificação inicial (Súmula n. 224 do STF), salvo determinação judicial em outro sentido",
+  "segmentos": [
+    {
+      "inicio": "1964-01",
+      "fim": "1987-02",
+      "taxa": "0,5% ao mês",
+      "capitalizacao": "simples",
+      "engloba": [
+        "juros-mora"
+      ],
+      "pagina_pdf": 78,
+      "componente": "juros-mora",
+      "ponta_materializada": "inicio — o manual não dá mês inicial"
+    },
+    {
+      "inicio": "1987-03",
+      "fim": "1991-03",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "composta",
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "Art. 3º do Decreto-Lei n. 2.322/1987",
+      "pagina_pdf": 78,
+      "ALERTA_R4": "Única capitalização COMPOSTA de juros de mora em todo o manual. A invariante R4 do projeto diz que juros de mora são sempre simples. Transcrito como está.",
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "1991-04",
+      "fim": "2001-07",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "simples",
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "Art. 39 da Lei n. 8.177/1991",
+      "pagina_pdf": 78,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2001-08",
+      "fim": "2012-04",
+      "taxa": "0,5% ao mês",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "Art. 1º-F da Lei n. 9.494/1991, incluído pela MP n. 2.180-35/2001, combinado com a Lei n. 8.177/1991",
+      "pagina_pdf": 78,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2001-08",
+      "fim": "2012-04",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "empresa-publica-ou-prestador-de-servicos"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "pagina_pdf": 78,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2012-05",
+      "fim": "2021-11",
+      "taxa": "poupança: 0,5% ao mês se a Selic anual > 8,5%; 70% da Selic ao ano, mensalizada, nos demais casos",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "pagina_pdf": 78,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2012-05",
+      "fim": "2021-11",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "empresa-publica-ou-prestador-de-servicos"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "pagina_pdf": 79,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2021-12",
+      "fim": "2025-08",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora",
+        "correcao-monetaria"
+      ],
+      "aplicacao": "mes-posterior-a-competencia",
+      "fundamento": "Art. 3º da EC n. 113/2021",
+      "pagina_pdf": 79,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2021-12",
+      "fim": "2025-08",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "empresa-publica-ou-prestador-de-servicos"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "pagina_pdf": 79,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2025-09",
+      "fim": "2026-06",
+      "indexador": "taxa-legal",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "formula": "SELIC, com dedução do IPCA-15",
+      "aplicacao": "mes-posterior-a-competencia",
+      "fundamento": "ARE 1.557.312/SP (Tema 1.419 do STF)",
+      "pagina_pdf": 79,
+      "componente": "juros-mora",
+      "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
+    },
+    {
+      "inicio": "2025-09",
+      "fim": "2026-06",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "empresa-publica-ou-prestador-de-servicos"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "pagina_pdf": 79,
+      "componente": "juros-mora",
+      "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
+    }
+  ],
+  "notas": [
+    {
+      "n": 2,
+      "texto": "Sendo devedora a Fazenda Pública, quanto às prestações devidas até dez./2021: a) o crédito será consolidado tendo por base o mês de dez./2021 [...] considerando, para esse fim, a TR de nov./2021 (0,00%) e os juros de dez./2021 (0,4412%);",
+      "pagina_pdf": 79,
+      "consolidacao_dez2021": {
+        "indice_nov2021": "0,00",
+        "indexador": "TR",
+        "juros_dez2021": "0,4412"
+      }
+    },
+    {
+      "n": 3,
+      "texto": "Na ADC n. 58 o STF declarou inadequada a aplicação da Taxa Referencial (TR) como índice de atualização dos débitos trabalhistas. À exceção das dívidas da Fazenda Pública, as quais têm regramento próprio (Tema 810 do STF), manteve a incidência dos juros, conforme previsto no art. 39 da Lei n. 8.177/1991 na fase extrajudicial; em relação à fase judicial (a partir do ajuizamento), determinou incidência da Selic.",
+      "pagina_pdf": 80,
+      "efeito": "EIXO DE FASE — extrajudicial × judicial, corte pelo ajuizamento"
+    },
+    {
+      "n": 4,
+      "texto": "Em modulação de efeitos, o STF determinou que os critérios referidos na NOTA 3 sejam aplicados apenas aos processos não transitados em julgado e, aos transitados, quando omissa a decisão exequenda quanto aos índices de correção monetária e taxas de juros.",
+      "pagina_pdf": 80,
+      "efeito": "EIXO PROCESSUAL — trânsito em julgado + omissão do título"
+    }
+  ],
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  },
+  "escopo_restrito_pagina_pdf": 77
+}

@@ -1,0 +1,100 @@
+{
+  "id": "cjf.divida-fiscal.correcao-monetaria",
+  "titulo": "Correção monetária — dívidas fiscais da Fazenda Nacional",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "divida-fiscal",
+  "componente": "correcao-monetaria",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "2.3.1.2",
+    "pagina_pdf": 23
+  },
+  "segmentos": [
+    {
+      "inicio": "1964-01",
+      "fim": "1986-02",
+      "indexador": "ORTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 23,
+      "componente": "correcao-monetaria",
+      "ponta_materializada": "inicio — o manual não dá mês inicial"
+    },
+    {
+      "inicio": "1986-03",
+      "fim": "1989-01",
+      "indexador": "OTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "multiplicador_transicao": {
+        "IR": "6,92",
+        "II": "6,17",
+        "quando": "1989-01",
+        "texto": "Os débitos anteriores a jan./1989 devem ser multiplicados, nesse mês: a) para o Imposto de Renda (IR): por 6,92; b) para o Imposto de Importação (II): por 6,17."
+      },
+      "pagina_pdf": 24,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-01",
+      "fim": "1991-01",
+      "indexador": "BTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "observacao": "O último BTN corresponde a 126,8621.",
+      "pagina_pdf": 24,
+      "SEM_EXPURGO": "Ao contrário do capítulo 4, a dívida fiscal NÃO substitui o BTN pelos expurgos de jan./1989 e fev./1989. Ver atrito N-4 do relatório.",
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1991-02",
+      "fim": "1991-12",
+      "indexador": null,
+      "engloba": [],
+      "observacao": "Não há correção monetária, somente juros de mora equivalentes à TRD (vide item 2.3.2.2).",
+      "pagina_pdf": 24,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1992-01",
+      "fim": "2026-06",
+      "indexador": "Ufir → Selic (bifurcado por fato gerador)",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "condicao": {
+        "eixo": "data-do-fato-gerador"
+      },
+      "regra_literal": "Para fatos geradores ocorridos: a) Até 31/12/1994: I. Até jan./1997: Ufir; II. A partir de jan./97: taxa Selic, até o mês anterior ao pagamento; 1% no mês do pagamento. b) A partir de jan./1995: I. De jan./95 a mar./1995: TMMCTN; II. A partir de abr./1995: taxa Selic até o mês anterior ao pagamento; 1% no mês do pagamento.",
+      "pagina_pdf": 24,
+      "componente": "correcao-monetaria",
+      "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
+    }
+  ],
+  "notas": [
+    {
+      "texto": "O mês da mudança do indexador deve ser considerado, sob pena de solução de continuidade.",
+      "item": "2.3.1.3",
+      "pagina_pdf": 25,
+      "invariante": "R2"
+    },
+    {
+      "texto": "O mês de janeiro de 1989 marca o termo final da OTN e o início da BTN. Entretanto, por serem indexadores nominais, este fato não implica duplicidade de correção monetária, pois a OTN de janeiro serve para definir a inflação de dez./1988, e a BTN de janeiro, comparada com a de fevereiro, para fixar a inflação de jan./1989.",
+      "item": "2.3.1.3",
+      "pagina_pdf": 25,
+      "invariante": "R3",
+      "efeito": "É a justificativa EXPRESSA de uma sobreposição aparente — e vale para todas as cadeias com indexador nominal."
+    }
+  ],
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  }
+}

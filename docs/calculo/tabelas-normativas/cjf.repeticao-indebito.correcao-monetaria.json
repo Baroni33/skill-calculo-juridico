@@ -1,0 +1,154 @@
+{
+  "id": "cjf.repeticao-indebito.correcao-monetaria",
+  "titulo": "Correção monetária — repetição de indébito tributário",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "repeticao-indebito-tributario",
+  "componente": "correcao-monetaria",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.4.1.1",
+    "pagina_pdf": 63
+  },
+  "segmentos": [
+    {
+      "inicio": "1964-01",
+      "fim": "1986-02",
+      "indexador": "ORTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "Lei n. 4.357/1964",
+      "pagina_pdf": 63,
+      "observacao": "O manual escreve 'De 1964 a fev./1986' — início sem mês. Ver pendência P8-07.",
+      "componente": "correcao-monetaria",
+      "ponta_materializada": "inicio — o manual não dá mês inicial"
+    },
+    {
+      "inicio": "1986-03",
+      "fim": "1989-01",
+      "indexador": "OTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "multiplicador_transicao": {
+        "valor": "6,17",
+        "quando": "1989-01",
+        "texto": "Os débitos anteriores a jan./1989 deverão ser multiplicados, neste mês, por 6,17."
+      },
+      "pagina_pdf": 63,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-01",
+      "fim": "1989-01",
+      "indexador": "IPC/IBGE",
+      "valor_fixo_pct": "42,72",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN.",
+      "pagina_pdf": 63,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-02",
+      "fim": "1989-02",
+      "indexador": "IPC/IBGE",
+      "valor_fixo_pct": "10,14",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN.",
+      "pagina_pdf": 63,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-03",
+      "fim": "1990-03",
+      "indexador": "BTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 63,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1990-03",
+      "fim": "1991-02",
+      "indexador": "IPC/IBGE",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN e ao INPC de fev./1991.",
+      "pagina_pdf": 63,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1991-03",
+      "fim": "1991-11",
+      "indexador": "INPC/IBGE",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 63,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1991-12",
+      "fim": "1991-12",
+      "indexador": "IPCA série especial",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "Art. 2º, § 2º, da Lei n. 8.383/1991",
+      "pagina_pdf": 63,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1992-01",
+      "fim": "1996-01",
+      "indexador": "Ufir",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "Lei n. 8.383/1991",
+      "pagina_pdf": 63,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1996-01",
+      "fim": "2026-06",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "engloba": [
+        "correcao-monetaria",
+        "juros-mora"
+      ],
+      "aplicacao": "a partir do mês seguinte ao recolhimento indevido até o mês anterior à repetição, e 1% no mês da repetição",
+      "fundamento": "Art. 39, § 4º, da Lei n. 9.250/1995 e art. 3ª da EC n. 113/2021",
+      "pagina_pdf": 63,
+      "observacao": "O manual escreve 'A partir de jan./1996' enquanto a linha anterior termina em 'jan./1996' — sobreposição do original, preservada.",
+      "componente": "correcao-monetaria",
+      "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
+    }
+  ],
+  "notas": [
+    {
+      "n": 4,
+      "texto": "A superveniência da EC n. 113/2021 não altera o cálculo nas repetições de indébito tributário, o qual já observa a atualização pela Selic desde jan./1996, sendo, portanto, desnecessário consolidar o crédito em relação ao período anterior a dez./2021.",
+      "pagina_pdf": 64,
+      "consolidacao_dez2021": "NAO SE APLICA"
+    }
+  ],
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  }
+}

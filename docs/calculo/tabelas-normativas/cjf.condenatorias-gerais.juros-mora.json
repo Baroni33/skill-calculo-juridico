@@ -1,0 +1,213 @@
+{
+  "id": "cjf.condenatorias-gerais.juros-mora",
+  "titulo": "Juros de mora — ações condenatórias em geral",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "condenatoria-em-geral",
+  "componente": "juros-mora",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.2.2",
+    "pagina_pdf": 54
+  },
+  "termo_inicial": "Os juros são contados a partir da citação, salvo determinação judicial em outro sentido",
+  "segmentos": [
+    {
+      "inicio": "1964-01",
+      "fim": "2002-12",
+      "taxa": "0,5% ao mês",
+      "capitalizacao": "simples",
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "Arts. 1.062, 1.063 e 1.064 do antigo Código Civil",
+      "pagina_pdf": 54,
+      "componente": "juros-mora",
+      "ponta_materializada": "inicio — o manual não dá mês inicial"
+    },
+    {
+      "inicio": "2003-01",
+      "fim": "2009-06",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "engloba": [
+        "juros-mora",
+        "correcao-monetaria"
+      ],
+      "aplicacao": "a partir do mês seguinte ao da citação ou de outro termo inicial dos juros de mora até o mês anterior ao pagamento, e 1% no mês do pagamento",
+      "fundamento": "Art. 406 da Lei n. 10.406/2002 — Código Civil",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2009-07",
+      "fim": "2012-04",
+      "taxa": "0,5% ao mês",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "Art. 1º-F da Lei n. 9.494/1997, com a redação dada pela Lei n. 11.960/2009, combinado com a Lei n. 8.177/1991",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2009-07",
+      "fim": "2012-04",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "nao-fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora",
+        "correcao-monetaria"
+      ],
+      "fundamento": "Art. 406 da Lei n. 10.406/2002 — Código Civil",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2012-05",
+      "fim": "2021-11",
+      "taxa": "poupança: 0,5% ao mês se a Selic anual > 8,5%; 70% da Selic ao ano, mensalizada, nos demais casos",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "Art. 1º-F da Lei n. 9.494/1997 [...] com alterações da MP n. 567, convertida na Lei n. 12.703/2012",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2012-05",
+      "fim": "2021-11",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "nao-fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora",
+        "correcao-monetaria"
+      ],
+      "fundamento": "Art. 406 da Lei n. 10.406/2002 — Código Civil",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2021-12",
+      "fim": "2024-08",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora",
+        "correcao-monetaria"
+      ],
+      "aplicacao": "mes-posterior-a-competencia",
+      "fundamento": "Art. 3º da EC n. 113/2021",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2021-12",
+      "fim": "2024-08",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "nao-fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora",
+        "correcao-monetaria"
+      ],
+      "fundamento": "Art. 406 da Lei n. 10.406/2002 — Código Civil",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2024-09",
+      "fim": "2025-08",
+      "indexador": "Selic",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora",
+        "correcao-monetaria"
+      ],
+      "aplicacao": "mes-posterior-a-competencia",
+      "observacao": "Selic de ago./2025 (1,16%) computada em set./2025 — item “c” da Nota 1 deste item.",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2024-09",
+      "fim": "2025-08",
+      "indexador": "taxa-legal",
+      "capitalizacao": "simples",
+      "condicao": {
+        "devedor": "nao-fazenda-publica"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "formula": "SELIC, com dedução do IPCA-15",
+      "fundamento": "Art. 406 da Lei n. 10.406/2002 (Redação dada pela Lei n. 14.905/2024) e Resolução CMN n. 5.171/2024",
+      "pagina_pdf": 54,
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "2025-09",
+      "fim": "2026-06",
+      "indexador": "taxa-legal",
+      "capitalizacao": "simples",
+      "engloba": [
+        "juros-mora"
+      ],
+      "formula": "SELIC, com dedução do IPCA-15",
+      "aplicacao": "mes-posterior-a-competencia",
+      "observacao": "Taxa legal de set./2025 (1,305984%) computada em out./2025. Devedor Fazenda Pública e devedor não enquadrado como Fazenda Pública.",
+      "fundamento": "ARE 1.557.312/SP (Tema 1.419 do STF), art. 406 da Lei n. 10.406/2002 e Resolução CMN n. 5.171/2024",
+      "pagina_pdf": 55,
+      "componente": "juros-mora",
+      "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
+    }
+  ],
+  "notas": [
+    {
+      "n": 3,
+      "texto": "Nos créditos referentes a servidores(as) e empregados(as) públicos(as), no período anterior a julho/2009, os juros serão computados à taxa de: a) 1% ao mês até jul./2001 (Decreto-Lei n. 2.322/1987; AgRg no REsp n. 1.085.995); b) 0,5% ao mês de ago./2001 a jun./2009 (MP n. 2.180-35/2001, que acrescentou o art. 1º-F da Lei n. 9.494/1997).",
+      "pagina_pdf": 55,
+      "efeito": "RAMO PARALELO — sobrepõe as duas primeiras linhas da tabela para um subconjunto de credores"
+    },
+    {
+      "n": 4,
+      "texto": "Os juros de mora à base de 70% da taxa Selic ao ano, mensalizada, quanto esta for igual ou inferior a 8,5%, incidirão independentemente da data de vencimento do principal ou do termo inicial dos juros de mora.",
+      "pagina_pdf": 55
+    },
+    {
+      "n": 7,
+      "texto": "O cálculo da taxa legal observará o disposto na Resolução CMN n. 5.171/2024 ou no ato normativo que vier a alterá-la. A taxa legal deverá ser aplicada no mês posterior ao de sua competência, de acordo com a metodologia divulgada pelo Banco Central do Brasil, por meio da ferramenta “Calculadora do Cidadão”.",
+      "pagina_pdf": 56
+    }
+  ],
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  },
+  "termo_inicial_pagina_pdf": 53
+}

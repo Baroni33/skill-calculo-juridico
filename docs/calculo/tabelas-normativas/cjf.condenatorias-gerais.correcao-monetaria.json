@@ -1,0 +1,257 @@
+{
+  "id": "cjf.condenatorias-gerais.correcao-monetaria",
+  "titulo": "Correção monetária — ações condenatórias em geral",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "condenatoria-em-geral",
+  "componente": "correcao-monetaria",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.2.1.1",
+    "pagina_pdf": 48
+  },
+  "vigencia_norma": {
+    "desde": "2026"
+  },
+  "cabecalho_literal": "Caso não haja decisão judicial em contrário, utilizar os seguintes indexadores:",
+  "segmentos": [
+    {
+      "inicio": "1964-01",
+      "fim": "1986-02",
+      "indexador": "ORTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "Lei n. 4.357/1964",
+      "pagina_pdf": 48,
+      "observacao": "O manual escreve 'De 1964 a fev./1986' — início sem mês. Ver pendência P8-07.",
+      "componente": "correcao-monetaria",
+      "ponta_materializada": "inicio — o manual não dá mês inicial"
+    },
+    {
+      "inicio": "1986-03",
+      "fim": "1989-01",
+      "indexador": "OTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "multiplicador_transicao": {
+        "valor": "6,17",
+        "quando": "1989-01",
+        "texto": "Os débitos anteriores a jan./1989 deverão ser multiplicados, neste mês, por 6,17."
+      },
+      "pagina_pdf": 48,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-01",
+      "fim": "1989-01",
+      "indexador": "IPC/IBGE",
+      "valor_fixo_pct": "42,72",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN.",
+      "pagina_pdf": 48,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-02",
+      "fim": "1989-02",
+      "indexador": "IPC/IBGE",
+      "valor_fixo_pct": "10,14",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN.",
+      "pagina_pdf": 48,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1989-03",
+      "fim": "1990-03",
+      "indexador": "BTN",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 48,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1990-03",
+      "fim": "1991-02",
+      "indexador": "IPC/IBGE",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "expurgo": true,
+      "observacao": "Expurgo, em substituição ao BTN e ao INPC de fev./1991.",
+      "pagina_pdf": 48,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1991-03",
+      "fim": "1991-11",
+      "indexador": "INPC",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 48,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1991-12",
+      "fim": "1991-12",
+      "indexador": "IPCA série especial",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "Art. 2º, § 2º, da Lei n. 8.383/1991",
+      "pagina_pdf": 48,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "1992-01",
+      "fim": "2000-12",
+      "indexador": "Ufir",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "Lei n. 8.383/1991",
+      "pagina_pdf": 48,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2001-01",
+      "fim": "2021-11",
+      "indexador": "IPCA-E/IBGE",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "RE n. 870.947 e RE n. 870.947 ED (Tema 810), REsps n. 1.492.221, n. 1.495.144 e n. 1.495.146 (Tema 905)",
+      "aplicacao": "O percentual a ser utilizado em janeiro de 2001 deverá ser o IPCA-E acumulado no período de janeiro a dezembro de 2000. A partir de janeiro de 2001, deverá ser utilizado o IPCA-E mensal (IPCA-15/IBGE).",
+      "pagina_pdf": 48,
+      "observacao": "Extinção da Ufir como indexador pelo art. 29, § 3º, da MP n. 1.973-67/2000.",
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2021-12",
+      "fim": "2024-08",
+      "indexador": "Selic",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "correcao-monetaria",
+        "juros-mora"
+      ],
+      "capitalizacao": "simples",
+      "aplicacao": "mes-posterior-a-competencia",
+      "aplicacao_literal": "sendo devedora a Fazenda Pública, a taxa Selic deve ser aplicada no mês posterior ao de sua competência, inclusive para o mês de pagamento. Ex.: a Selic de dez./2021 será computada em jan./2022, e assim sucessivamente.",
+      "fundamento": "Art. 3º da EC n. 113/2021",
+      "pagina_pdf": 50,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2021-12",
+      "fim": "2024-08",
+      "indexador": "IPCA-E/IBGE",
+      "condicao": {
+        "devedor": "nao-fazenda-publica"
+      },
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "pagina_pdf": 49,
+      "observacao": "observada a vedação de acumulação com a Selic, nos termos da Nota 2.",
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2024-09",
+      "fim": "2025-08",
+      "indexador": "Selic",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "correcao-monetaria",
+        "juros-mora"
+      ],
+      "capitalizacao": "simples",
+      "aplicacao": "mes-posterior-a-competencia",
+      "fundamento": "Art. 3º da EC n. 113/2021",
+      "pagina_pdf": 49,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2024-09",
+      "fim": "2025-08",
+      "indexador": "IPCA-15/IBGE",
+      "condicao": {
+        "devedor": "nao-fazenda-publica"
+      },
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "Art. 389, parágrafo único, da Lei n. 10.406/2002 — Código Civil (redação dada pela Lei n. 14.905/2024) e Resolução CMN n. 5.171/2024",
+      "pagina_pdf": 49,
+      "componente": "correcao-monetaria"
+    },
+    {
+      "inicio": "2025-09",
+      "fim": "2026-06",
+      "indexador": "IPCA-15/IBGE",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "fundamento": "ARE 1.557.312/SP (Tema 1.419 do STF), Art. 389, parágrafo único, da Lei n. 10.406/2002 e Resolução CMN n. 5.171/2024",
+      "pagina_pdf": 49,
+      "observacao": "Devedor Fazenda Pública e devedor não enquadrado como Fazenda Pública — os dois ramos reconvergem.",
+      "componente": "correcao-monetaria",
+      "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
+    }
+  ],
+  "notas": [
+    {
+      "n": 1,
+      "texto": "Tratando-se de dívida por ato ilícito, incide correção monetária a partir da data do efetivo prejuízo (Súmula n. 43 do STJ) e, em caso de dano moral, a correção monetária será a partir do arbitramento (Súmula n. 362 do STJ).",
+      "pagina_pdf": 49
+    },
+    {
+      "n": 2,
+      "texto": "Se os juros de mora corresponderem à taxa Selic (ver item 4.2.2, a seguir), o IPCA-E deixa de ser aplicado como indexador de correção monetária, a partir da incidência da Selic (que engloba juros e correção monetária).",
+      "pagina_pdf": 49,
+      "invariante": "R1"
+    },
+    {
+      "n": 3,
+      "texto": "Para as remunerações de servidores(as) e empregados(as) públicos(as), o termo inicial da correção monetária deve ser o mês da competência e não o mês de pagamento.",
+      "pagina_pdf": 49
+    },
+    {
+      "n": 4,
+      "texto": "A taxa Selic (Sistema Especial de Liquidação e Custódia): a) deve ser capitalizada de forma simples, vedada a sua incidência cumulada com os juros de mora e com a correção monetária; b) quando se tratar de devedor não enquadrado como “Fazenda Pública”, a taxa Selic deve ser aplicada a partir do mês seguinte ao da citação ou de outro termo inicial dos juros de mora até o mês anterior ao pagamento, e 1% no mês do pagamento; c) sendo devedora a Fazenda Pública, a taxa Selic deve ser aplicada no mês posterior ao de sua competência, inclusive para o mês de pagamento.",
+      "pagina_pdf": 50,
+      "invariante": "R1"
+    },
+    {
+      "n": 5,
+      "texto": "Sendo devedora a Fazenda Pública, quanto às prestações devidas até dez./2021: a) o crédito será consolidado tendo por base o mês de dez./2021 pelos critérios de juros e correção monetária até então aplicáveis, considerando, para esse fim, o IPCA-E de nov./2021 (1,17%) e os juros de dez./2021 (0,4412%);",
+      "pagina_pdf": 50,
+      "consolidacao_dez2021": {
+        "indice_nov2021": "1,17",
+        "indexador": "IPCA-E",
+        "juros_dez2021": "0,4412"
+      }
+    }
+  ],
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  }
+}

@@ -83,8 +83,13 @@ Fase 2 em curso.
 | 5 | Parâmetros negociáveis e camada de norma coletiva | `docs/calculo/extracao/bloco-05-relatorio.md` |
 | 6 | Presets de regime temporal | `docs/calculo/extracao/bloco-06-relatorio.md` |
 | 7 | Descontos previdenciário e fiscal, cap. 9, p. 107–208 | `docs/calculo/extracao/bloco-07-relatorio.md` |
+| 8 | Manual de Cálculos da Justiça Federal, CJF Res. 990/2026, integral | `docs/calculo/extracao/justica-federal/bloco-08-relatorio.md` |
 
-O **capítulo 6 do Manual TRT-3 está integralmente extraído**, e agora também o **capítulo 9**
+O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
+93 páginas, sete cadeias temporais em `tabelas-normativas/`, e é a única fonte do corpus cuja
+edição está vigente.
+
+Do Manual TRT-3, o **capítulo 6 está integralmente extraído**, e agora também o **capítulo 9**
 (descontos previdenciário e fiscal, p. 107–208) — o maior do manual, 102 páginas e 47 itens.
 Nenhuma skill escrita.
 
