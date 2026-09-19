@@ -273,7 +273,42 @@ Sem oráculo. Não foi inferido.
 
 ---
 
-## 10. Escopo não decidido
+## 11. A data do Manual TRT-3 está errada no corpus
+
+**Status: aberta. Decisão do usuário.**
+
+`fontes.md` e `00-base-normativa.md` § 10 registram **julho/2016**. A capa do PDF não traz
+data, e o conteúdo vai até **19/12/2016** (acórdão do IRR-849, p. 38–39), com tabelas de
+2017 e calendários até 2020. O documento é, no mínimo, de **2017**.
+
+Não é detalhe bibliográfico: muda o que se pode afirmar sobre a defasagem. **O manual não é
+anterior ao IRR-849 — ele o transcreve.** Continua anterior à Lei 13.467/2017.
+
+`fontes.md` recebeu nota com a evidência. `00-base-normativa.md` **não foi tocado**: é fonte
+de verdade do usuário. Decidir se corrige lá.
+
+---
+
+## 12. Não há base normativa contra a qual confrontar as verbas trabalhistas
+
+**Status: aberta. Bloqueia a Fase 4 do capítulo 6.**
+
+`00-base-normativa.md` cobre correção monetária, juros, Fazenda Pública, invariantes R1–R13
+e fixtures. **Não tem uma linha sobre aviso-prévio, 13º salário, férias, RSR ou horas
+extras.**
+
+A regra de extração manda marcar toda afirmação do manual que a base contradiga. No bloco 3
+não houve a quem apontar: os únicos dois pontos de contato — R8 e a regra 6 do plano —
+**confirmam** o manual em vez de conflitar.
+
+A Fase 4 do capítulo 6 precisa de um corpo normativo sobre verbas, centrado na **Lei
+13.467/2017**, que hoje não existe no repositório. Os nove pontos de impacto estão
+identificados em `extracao/trabalhista/bloco-03-verbas.md` § 8, mas o **conteúdo novo de
+cada dispositivo não foi verificado**.
+
+---
+
+## 13. Escopo não decidido
 
 - **Modelos de petição** (págs. 310–336 do manual trabalhista): decidir escopo antes de
   gastar extração (Fase 2). Podem ficar inteiramente fora.

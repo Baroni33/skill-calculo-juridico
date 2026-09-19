@@ -20,6 +20,27 @@ têm datas de corte diferentes e o trabalhista está materialmente defasado.
 A página 1 do PDF traz o rótulo impresso "1". Verificado em p.1, p.48 e p.471 —
 `pagina_pdf` e número impresso coincidem em todo o documento.
 
+### ⚠ A data declarada não se sustenta
+
+**"julho/2016" é o que consta aqui e em `00-base-normativa.md` § 10. A capa do PDF não traz
+data alguma**, e o conteúdo é posterior:
+
+| Evidência | Página |
+|---|---|
+| Acórdão do IRR-849-83.2013.5.03.0138, julgado em 21/11/2016, publicado em **19/12/2016** | 38–39 |
+| Salário mínimo de 01/01/2017 (R$ 937,00) | 381 |
+| Tabela de IRRF jan/2017 a dez/2017 | 386 |
+| Contribuição previdenciária jan/2017 a dez/2017 | 399 |
+| Calendários e tabelas de RSR até 2020 | 460–466 |
+
+O documento é, no mínimo, **de 2017**. O valor acima **não foi sobrescrito** porque
+`00-base-normativa.md` é fonte de verdade do usuário e traz a mesma data.
+
+**Consequência prática:** o manual **não é anterior ao IRR-849** — ele o transcreve e
+comenta. Continua anterior à Lei 13.467/2017 (vigência 11/11/2017).
+
+Ver `extracao/trabalhista/bloco-03-relatorio.md` § 2 e `pendencias.md` § 11.
+
 ## Manual de Orientação de Procedimentos para os Cálculos na Justiça Federal — CJF
 
 | Campo | Valor |

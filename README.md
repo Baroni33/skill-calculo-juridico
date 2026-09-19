@@ -76,5 +76,6 @@ Fase 2 em curso.
 |---|---|---|
 | 1 | Tabelas do Manual TRT-3, p. 373–471 | `docs/calculo/extracao/trabalhista/bloco-01-tabelas.md` |
 | 2 | Critérios e estrutura do cálculo, p. 9–17 | `docs/calculo/extracao/trabalhista/bloco-02-relatorio.md` |
+| 3 | Verbas trabalhistas, itens 6.1 a 6.6, p. 18–54 | `docs/calculo/extracao/trabalhista/bloco-03-relatorio.md` |
 
 Demais blocos não iniciados. Nenhuma skill escrita.
