@@ -82,8 +82,10 @@ Fase 2 em curso.
 | 4 | Verbas trabalhistas, itens 6.7 a 6.15, p. 55–82 | `docs/calculo/extracao/trabalhista/bloco-04-relatorio.md` |
 | 5 | Parâmetros negociáveis e camada de norma coletiva | `docs/calculo/extracao/bloco-05-relatorio.md` |
 | 6 | Presets de regime temporal | `docs/calculo/extracao/bloco-06-relatorio.md` |
+| 7 | Descontos previdenciário e fiscal, cap. 9, p. 107–208 | `docs/calculo/extracao/bloco-07-relatorio.md` |
 
-O **capítulo 6 do Manual TRT-3 está integralmente extraído**. Demais blocos não iniciados.
+O **capítulo 6 do Manual TRT-3 está integralmente extraído**, e agora também o **capítulo 9**
+(descontos previdenciário e fiscal, p. 107–208) — o maior do manual, 102 páginas e 47 itens.
 Nenhuma skill escrita.
 
 O **bloco 6** acrescentou a camada que decide *qual regra* vale em cada competência,
