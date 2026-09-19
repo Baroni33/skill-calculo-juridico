@@ -85,6 +85,7 @@ Fase 2 em curso.
 | 7 | Descontos previdenciário e fiscal, cap. 9, p. 107–208 | `docs/calculo/extracao/bloco-07-relatorio.md` |
 | 8 | Manual de Cálculos da Justiça Federal, CJF Res. 990/2026, integral | `docs/calculo/extracao/justica-federal/bloco-08-relatorio.md` |
 | 9 | Cadeias históricas de atualização trabalhista — TRT-3, cap. 7, p. 83–99, extração dirigida | `docs/calculo/extracao/trabalhista/bloco-09-relatorio.md` |
+| 10 | Fechamento trabalhista — cap. 7 residual, 11, 13, 15 e 17 | `docs/calculo/extracao/trabalhista/bloco-10-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 93 páginas, sete cadeias temporais em `tabelas-normativas/`, e é a única fonte do corpus cuja
@@ -94,6 +95,18 @@ O **bloco 9** acrescenta quatro cadeias históricas trabalhistas (`trt3.hist.*`)
 validador de cobertura: a exaustividade dos ramos condicionados passou a ser **declarada**
 (`dominio_condicoes`), não presumida. A primeira versão do conserto escondia lacuna real —
 ver `bloco-09-relatorio.md` § 2.
+
+**O artefato que abre a Fase 3 é [`docs/calculo/extracao/mapa-de-cobertura.md`](docs/calculo/extracao/mapa-de-cobertura.md)** —
+todo capítulo e item dos dois manuais, com o bloco que o cobriu ou a razão de não ter sido
+coberto. Conferido por script: **a cobertura real do manual do TRT-3 é 74,9%**, e **quatro
+capítulos nunca foram extraídos** — o **10 (69 pp., atualização e amortização de valor pago)**,
+o 8 (custas e honorários), o 12 (contribuição sindical) e o 14 (precatórios). O capítulo 10
+merece bloco próprio.
+
+O **bloco 10** fecha a extração trabalhista com o índice de jurisprudência
+([`docs/calculo/jurisprudencia-indice.md`](docs/calculo/jurisprudencia-indice.md), 158 verbetes,
+dos quais **a base normativa cobre 12**) e 17 regras estruturais que só existiam dentro dos
+exemplos do capítulo 11.
 
 **Achado estrutural do bloco 9:** o capítulo 7 do TRT-3 **não traz cadeia período → indexador**.
 Ele delega o encadeamento histórico à Tabela Única do CSJT. A cadeia trabalhista anterior a
