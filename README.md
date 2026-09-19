@@ -44,6 +44,7 @@ python -m unittest discover -s scripts/calculo -p "test_*.py"
 python scripts/calculo/valida_taxa_legal.py --validar
 python scripts/calculo/valida_bloco_tabelas.py     # exit 0 = sem erro de extração
 python scripts/calculo/extrai_bloco_01.py          # reextrai o bloco 1
+python scripts/calculo/valida_parametros.py --catalogo-ok
 ```
 
 | Script | Verifica |
@@ -51,6 +52,7 @@ python scripts/calculo/extrai_bloco_01.py          # reextrai o bloco 1
 | `valida_cobertura.py` | R1 (englobamento concorrente), R2 (lacuna/sobreposição) |
 | `valida_taxa_legal.py` | R6 (piso zero), R11 (razão, não subtração), R12 (decimal, truncamento) |
 | `valida_bloco_tabelas.py` | Bloco 1: contagem contra o PDF, faixas, vigências, proveniência |
+| `valida_parametros.py` | Camada de norma coletiva: R14 a R18, precedência, conflito, piso legal |
 
 `valida_bloco_tabelas.py` separa **erro de extração** de **divergência do original** e só
 sai com código não-zero no primeiro. Divergência é resultado esperado do trabalho: o
@@ -78,6 +80,10 @@ Fase 2 em curso.
 | 2 | Critérios e estrutura do cálculo, p. 9–17 | `docs/calculo/extracao/trabalhista/bloco-02-relatorio.md` |
 | 3 | Verbas trabalhistas, itens 6.1 a 6.6, p. 18–55 | `docs/calculo/extracao/trabalhista/bloco-03-relatorio.md` |
 | 4 | Verbas trabalhistas, itens 6.7 a 6.15, p. 55–82 | `docs/calculo/extracao/trabalhista/bloco-04-relatorio.md` |
+| 5 | Parâmetros negociáveis e camada de norma coletiva | `docs/calculo/extracao/bloco-05-relatorio.md` |
 
 O **capítulo 6 do Manual TRT-3 está integralmente extraído**. Demais blocos não iniciados.
 Nenhuma skill escrita.
+
+O bloco 5 saiu **parcial**: as tarefas 2 e 4 dependiam de `docs/calculo/02-base-normativa-verbas.md`,
+que não está no repositório. Ver `docs/calculo/extracao/bloco-05-relatorio.md` § 1.

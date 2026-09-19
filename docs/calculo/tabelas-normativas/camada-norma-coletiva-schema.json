@@ -1,0 +1,151 @@
+{
+  "id": "camada.norma-coletiva.schema",
+  "categoria": "A-semantica",
+  "titulo": "Camada de resolução de parâmetros negociáveis por norma coletiva",
+  "jurisdicao": "justica-do-trabalho",
+  "componente": "parametros-negociaveis",
+  "versao_schema": "1.0",
+  "fonte": {
+    "documento": "derivado da varredura dos blocos 02, 03 e 04",
+    "inventario": "docs/calculo/parametros-negociaveis.md",
+    "catalogo": "camada-norma-coletiva-catalogo.json",
+    "observacao": "Não é extração de PDF. É o contrato da camada que resolve os parâmetros identificados na varredura."
+  },
+
+  "chave_de_resolucao": {
+    "campos": ["parametro", "categoria", "competencia"],
+    "parametro": "id do catálogo, ex. pn.he.adicional",
+    "categoria": "categoria profissional do EMPREGADO na competência — ver R17",
+    "competencia": "YYYY-MM da parcela que se está calculando",
+    "por_que_estes_tres": [
+      "parametro — porque cada um tem default e piso próprios",
+      "categoria — porque o instrumento alcança pessoas, não empresas (R17)",
+      "competencia — porque instrumento tem vigência e cláusula pode ter faixa temporal própria"
+    ],
+    "o_que_NAO_entra_na_chave": {
+      "processo": "R17 — norma coletiva não é atributo do processo",
+      "empresa": "R17 — a mesma empresa tem empregados de categorias distintas",
+      "data_do_calculo": "a competência da parcela é que manda, não a data em que se calcula"
+    }
+  },
+
+  "retorno": {
+    "valor": "o valor resolvido, ou null quando não há default e não há instrumento",
+    "forma": "percentual | monetario | inteiro | variante | tabela",
+    "origem": "titulo-judicial | norma-coletiva | escolha-do-usuario | default-legal",
+    "cobertura": "com-cobertura-coletiva | sem-cobertura-coletiva | sem-default-legal | conflito",
+    "proveniencia": {
+      "instrumento": "id do instrumento, quando origem = norma-coletiva",
+      "clausula": "número da cláusula",
+      "vigencia": "intervalo de competências efetivamente aplicado",
+      "por_extensao": "true quando a categoria foi alcançada por cláusula de extensão"
+    },
+    "divergencias": "lista, quando níveis de precedência discordam — R16",
+    "conflitos": "lista de instrumentos concorrentes — nunca resolvidos por heurística"
+  },
+
+  "instrumento": {
+    "descricao": "Um acordo ou convenção coletiva, ou sentença normativa.",
+    "campos_obrigatorios": ["id", "tipo", "vigencia", "categorias_abrangidas", "clausulas"],
+    "campos": {
+      "id": "string estável, ex. act.gasmig.2025-2027",
+      "tipo": "ACT | CCT | sentenca-normativa",
+      "titulo": "nome legível",
+      "vigencia": {
+        "inicio": "YYYY-MM",
+        "fim": "YYYY-MM ou null para vigência indeterminada"
+      },
+      "partes": {
+        "patronal": ["lista de entidades"],
+        "laboral": ["lista de sindicatos signatários"]
+      },
+      "categorias_abrangidas": [
+        "categorias cujo sindicato assinou o instrumento"
+      ],
+      "categorias_por_extensao": [
+        {
+          "categoria": "categoria alcançada sem que seu sindicato tenha negociado",
+          "clausula": "cláusula que promove a extensão",
+          "observacao": "texto literal ou resumo fiel"
+        }
+      ],
+      "clausulas": [
+        {
+          "clausula": "número no instrumento",
+          "parametro": "id do catálogo",
+          "valor": "string decimal, inteiro, id de variante, ou tabela",
+          "forma": "percentual | monetario | inteiro | variante | tabela",
+          "vigencia_propria": {
+            "inicio": "YYYY-MM",
+            "fim": "YYYY-MM ou null",
+            "quando_usar": "cláusula com faixa temporal interna, menor que a vigência do instrumento"
+          },
+          "texto": "transcrição literal ou resumo fiel, para proveniência"
+        }
+      ],
+      "parcial": "true quando o instrumento foi cadastrado só em parte",
+      "observacao": "o que ficou de fora, quando parcial"
+    }
+  },
+
+  "algoritmo_de_resolucao": [
+    "1. Se houver determinação no título judicial para o parâmetro, ela prevalece. origem = titulo-judicial. Se divergir dos demais níveis, registrar a divergência (R16) — não suprimir.",
+    "2. Selecionar os instrumentos cuja vigencia contenha a competencia E que alcancem a categoria, direta ou por extensão.",
+    "3. Em cada instrumento selecionado, buscar cláusulas do parametro cuja vigencia_propria (se houver) contenha a competencia.",
+    "4. Zero candidatos: se o parâmetro tem default_legal, devolvê-lo com cobertura = sem-cobertura-coletiva (R14). Se sem_default = true, devolver valor null com cobertura = sem-default-legal.",
+    "5. Um candidato: validar contra o piso legal (R18). Devolver com proveniência completa (R15).",
+    "6. Mais de um candidato, de instrumentos distintos: cobertura = conflito. Listar todos. NÃO escolher por heurística — nem o mais recente, nem o mais favorável, nem o mais específico.",
+    "7. Mais de um candidato dentro do MESMO instrumento, com vigencia_propria sobreposta: é defeito de cadastro do instrumento, não conflito normativo. Reportar como erro de dados."
+  ],
+
+  "invariantes": {
+    "R14": {
+      "enunciado": "Ausência de norma coletiva cadastrada NÃO é erro.",
+      "efeito": "Fallback para o default legal, e a conta é marcada como 'sem cobertura coletiva' naquele parâmetro.",
+      "como_o_schema_sustenta": "campo cobertura no retorno; o resolvedor nunca lança exceção por ausência de instrumento.",
+      "excecao_prevista": "Parâmetro sem default legal (sem_default = true) devolve cobertura = sem-default-legal e valor null. Continua não sendo exceção: é dado faltante, e a conta prossegue nas demais verbas."
+    },
+    "R15": {
+      "enunciado": "Toda parcela calculada grava qual instrumento governou cada parâmetro.",
+      "como_o_schema_sustenta": "o retorno sempre traz proveniencia, inclusive quando origem = default-legal — nesse caso a proveniência aponta a fonte do default, não um instrumento."
+    },
+    "R16": {
+      "enunciado": "Precedência: título judicial > norma coletiva da competência > escolha do usuário > default legal.",
+      "como_o_schema_sustenta": "o resolvedor recebe titulo_judicial e escolha_usuario como entradas opcionais e devolve o vencedor; toda discordância entre níveis vai para divergencias.",
+      "atencao": "Divergência é registrada, não silenciada. Um título que fixe adicional de 50% quando a CCT dá 80% prevalece — e a divergência aparece na memória de cálculo."
+    },
+    "R17": {
+      "enunciado": "Norma coletiva é atributo do contrato, não do processo nem da empresa.",
+      "como_o_schema_sustenta": "a chave de resolução usa categoria e competencia; processo e empresa não entram. O mesmo empregado pode mudar de categoria ao longo do contrato, e cada competência resolve com o instrumento vigente naquela data.",
+      "consequencia": "Dois empregados da mesma empresa, no mesmo processo, podem resolver o mesmo parâmetro de formas diferentes."
+    },
+    "R18": {
+      "enunciado": "Parâmetro com piso legal rejeita valor negociado inferior.",
+      "como_o_schema_sustenta": "campos piso_legal e alteracao no catálogo; o resolvedor rejeita e reporta, não corrige silenciosamente para o piso.",
+      "por_que_nao_corrigir": "Silenciar a cláusula inválida esconde um defeito do instrumento cadastrado ou um erro de leitura. O motor precisa saber que há uma cláusula abaixo do piso.",
+      "piso_em_tabela": "Quando o parâmetro é tabela (ex. pn.aviso.proporcionalidade), a comparação é ponto a ponto: cada entrada negociada deve ser >= a legal correspondente."
+    }
+  },
+
+  "modelagem_de_abrangencia": {
+    "problema_1": "Um empregado pode ser alcançado por instrumentos de sindicatos distintos.",
+    "solucao_1": "A resolução devolve TODOS os instrumentos aplicáveis à competência e à categoria. Havendo mais de um com cláusula para o mesmo parâmetro, é conflito reportado. A escolha é decisão jurídica, não de motor.",
+    "problema_2": "Um instrumento pode estender-se a categorias cujo sindicato não participou da negociação.",
+    "solucao_2": "Campo categorias_por_extensao, com a cláusula que promove a extensão. O retorno marca por_extensao = true, porque a força vinculante de uma extensão é mais discutível que a de uma categoria signatária — e quem lê a memória de cálculo precisa saber disso.",
+    "caso_concreto": {
+      "instrumento": "ACT Gasmig 2025/2027",
+      "clausula": "2.1.1",
+      "natureza": "extensão a categorias cujo sindicato não negociou",
+      "situacao": "citado no escopo do bloco 5; o ACT não está no repositório. Ver bloco-05-relatorio.md § 2."
+    },
+    "problema_3": "Uma categoria pode ficar sem instrumento em parte do período contratual.",
+    "solucao_3": "Resolução é por competência. Um contrato de 2019 a 2026 pode ter competências com cobertura e competências sem, e a memória de cálculo mostra isso mês a mês."
+  },
+
+  "nao_faz_parte_desta_camada": [
+    "Séries de índices — manutenção separada, regra 4 de 01-plano-extracao.md",
+    "Cadeias período → indexador — são tabelas normativas de outra família",
+    "Decidir qual entre dois instrumentos conflitantes prevalece — é decisão jurídica",
+    "Corrigir cláusula abaixo do piso legal — R18 manda rejeitar e reportar"
+  ]
+}

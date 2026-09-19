@@ -56,8 +56,24 @@ forçadas no schema canônico.
 schema canônico com `tipo` discriminando as famílias, ou dois diretórios distintos.
 Definir antes que a Fase 5 leia daqui.
 
+## Terceira família: a camada de norma coletiva
+
+`camada-norma-coletiva-schema.json` e `camada-norma-coletiva-catalogo.json` não são tabelas
+de regra nem séries: são o **contrato de uma camada de resolução**. Dado
+`(parametro, categoria, competencia)`, devolvem valor mais proveniência, sustentando as
+invariantes R14 a R18.
+
+Entram aqui porque representam **regra**, não valor — o catálogo guarda defaults legais e
+pisos, não cláusulas de instrumentos. As cláusulas ficam em `tests/fixtures/calculo/` e, no
+uso real, em dados do cliente.
+
+Inventário dos parâmetros em `../parametros-negociaveis.md`. Está **parcial**: faltam os 13
+parâmetros da seção 10 de `02-base-normativa-verbas.md`, arquivo ausente do repositório.
+
 ## Validação
 
+- `scripts/calculo/valida_parametros.py` — R14 a R18, precedência, conflito e piso legal.
+  `--catalogo-ok` verifica a consistência interna do catálogo.
 - `scripts/calculo/valida_cobertura.py` — R1 e R2 sobre `segmentos`. Vale para a família
   de cadeias período → indexador; toda tabela dessa família deve passar antes de entrar.
 - `scripts/calculo/valida_bloco_tabelas.py` — contagem, faixas, vigências e proveniência
@@ -67,6 +83,9 @@ Definir antes que a Fase 5 leia daqui.
 
 Seis tabelas da família (A) do bloco 1, item 18 do Manual TRT-3. Ver
 `../extracao/trabalhista/bloco-01-tabelas.md`.
+
+Dois artefatos da camada de norma coletiva, do bloco 5. Ver
+`../extracao/bloco-05-relatorio.md`.
 
 Nenhuma tabela da família período → indexador ainda: essas vêm do capítulo 7, que é outro
 bloco e passa obrigatoriamente pela Fase 4.

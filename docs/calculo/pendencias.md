@@ -308,7 +308,28 @@ cada dispositivo não foi verificado**.
 
 ---
 
-## 13. Escopo não decidido
+## 15. Arquivo ausente do corpus: `02-base-normativa-verbas.md`
+
+**Status: aberta. Bloqueia o inventário de parâmetros negociáveis e a fixture do ACT Gasmig.**
+
+O bloco 5 mandava ler `docs/calculo/02-base-normativa-verbas.md` e depender dele em duas
+tarefas. **O arquivo não está no repositório** — procurado em todo o projeto, em
+`Downloads/Plataforma-SaaS-Jus/` e nos zips recentes.
+
+Chegou apenas `02a-adendo-lacunas-verbas.md`, que se declara complemento dele: "Fecha os
+seis pontos da seção 11 de `02-base-normativa-verbas.md`".
+
+| O que falta | O que bloqueia |
+|---|---|
+| **Seção 10** — 13 parâmetros negociáveis | A consolidação. `parametros-negociaveis.md` tem 17 da varredura própria + 3 do adendo, sem os 13 |
+| **Seção 3** — cláusulas do ACT Gasmig 2025/2027 | A fixture. Nenhum valor foi inventado; `instrumentos-act-gasmig-parcial.json` está com `status: bloqueada` e `clausulas: []` |
+
+**Um único arquivo desbloqueia as duas tarefas e o teste `test_cadeia_temporal_act_gasmig`,
+hoje pulado.** Roteiro em `extracao/bloco-05-relatorio.md` § 1.
+
+---
+
+## 16. Escopo não decidido
 
 - **Modelos de petição** (págs. 310–336 do manual trabalhista): decidir escopo antes de
   gastar extração (Fase 2). Podem ficar inteiramente fora.

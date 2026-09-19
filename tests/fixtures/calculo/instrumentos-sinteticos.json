@@ -1,0 +1,227 @@
+{
+  "id": "fixture.instrumentos.sinteticos",
+  "natureza": "SINTÉTICO — dados inventados para exercitar o resolvedor",
+  "aviso": [
+    "Nenhum destes instrumentos existe. Os nomes, cláusulas e valores foram construídos para",
+    "cobrir os caminhos do algoritmo de resolução: vigência, faixa temporal interna, extensão",
+    "de categoria, conflito entre instrumentos e cláusula abaixo do piso legal.",
+    "NÃO usar como fonte normativa. NÃO confundir com o ACT Gasmig — ver",
+    "instrumentos-act-gasmig-parcial.json, que está bloqueado por falta do documento.",
+    "alfa-producao sofre conflito Alfa×Gama entre 2025-05 e 2025-12; alfa-manutencao não."
+  ],
+  "schema": "docs/calculo/tabelas-normativas/camada-norma-coletiva-schema.json",
+  "instrumentos": [
+    {
+      "id": "sintetico.cct-alfa.2024-2026",
+      "tipo": "CCT",
+      "titulo": "CCT sintética Alfa 2024/2026",
+      "vigencia": {
+        "inicio": "2024-05",
+        "fim": "2026-04"
+      },
+      "partes": {
+        "patronal": [
+          "Sindicato Patronal Alfa"
+        ],
+        "laboral": [
+          "Sindicato dos Trabalhadores Alfa"
+        ]
+      },
+      "categorias_abrangidas": [
+        "alfa-producao",
+        "alfa-manutencao"
+      ],
+      "categorias_por_extensao": [],
+      "clausulas": [
+        {
+          "clausula": "10.1",
+          "parametro": "pn.he.adicional",
+          "valor": "60",
+          "forma": "percentual",
+          "vigencia_propria": {
+            "inicio": "2024-05",
+            "fim": "2025-04"
+          },
+          "texto": "SINTÉTICO — adicional de horas extras de 60% no primeiro ano de vigência"
+        },
+        {
+          "clausula": "10.2",
+          "parametro": "pn.he.adicional",
+          "valor": "70",
+          "forma": "percentual",
+          "vigencia_propria": {
+            "inicio": "2025-05",
+            "fim": "2025-12"
+          },
+          "texto": "SINTÉTICO — adicional de 70% na segunda faixa"
+        },
+        {
+          "clausula": "10.3",
+          "parametro": "pn.he.adicional",
+          "valor": "80",
+          "forma": "percentual",
+          "vigencia_propria": {
+            "inicio": "2026-01",
+            "fim": "2026-04"
+          },
+          "texto": "SINTÉTICO — adicional de 80% na terceira faixa"
+        },
+        {
+          "clausula": "12.4",
+          "parametro": "pn.jornada.semanal",
+          "valor": "40",
+          "forma": "inteiro",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — jornada semanal de 40 horas"
+        },
+        {
+          "clausula": "15.2",
+          "parametro": "pn.noturno.adicional",
+          "valor": "30",
+          "forma": "percentual",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — adicional noturno de 30%"
+        },
+        {
+          "clausula": "18.7",
+          "parametro": "pn.insalubridade.base",
+          "valor": "base-convencional",
+          "forma": "variante",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — base do adicional de insalubridade fixada em norma coletiva"
+        },
+        {
+          "clausula": "21.1",
+          "parametro": "pn.ajuda-alimentacao.valor",
+          "valor": "32.50",
+          "forma": "monetario",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — ajuda-alimentação de R$ 32,50 por dia trabalhado"
+        }
+      ]
+    },
+    {
+      "id": "sintetico.act-beta.2025-2027",
+      "tipo": "ACT",
+      "titulo": "ACT sintético Beta 2025/2027, com extensão de categoria",
+      "vigencia": {
+        "inicio": "2025-01",
+        "fim": "2027-12"
+      },
+      "partes": {
+        "patronal": [
+          "Empresa Beta S.A."
+        ],
+        "laboral": [
+          "Sindicato dos Trabalhadores Beta"
+        ]
+      },
+      "categorias_abrangidas": [
+        "beta-operacao"
+      ],
+      "categorias_por_extensao": [
+        {
+          "categoria": "beta-administrativo",
+          "clausula": "2.1.1",
+          "observacao": "SINTÉTICO — o instrumento estende-se a categoria cujo sindicato não participou da negociação. Espelha a estrutura declarada para a cláusula 2.1.1 do ACT Gasmig 2025/2027."
+        }
+      ],
+      "clausulas": [
+        {
+          "clausula": "9.1",
+          "parametro": "pn.he.adicional",
+          "valor": "75",
+          "forma": "percentual",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — adicional de horas extras de 75%"
+        },
+        {
+          "clausula": "9.5",
+          "parametro": "pn.rsr.dias",
+          "valor": "2",
+          "forma": "inteiro",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — ampliação do repouso semanal remunerado para dois dias (IRR-849, tese 1)"
+        },
+        {
+          "clausula": "11.3",
+          "parametro": "pn.jornada.turno-ininterrupto",
+          "valor": "enquadrado-sexta-diaria-divisor-180",
+          "forma": "variante",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — enquadramento em turno ininterrupto de revezamento"
+        }
+      ]
+    },
+    {
+      "id": "sintetico.cct-gama.2025-2026",
+      "tipo": "CCT",
+      "titulo": "CCT sintética Gama — concorrente com a Alfa só em alfa-producao, 2025-05 a 2025-12",
+      "vigencia": {
+        "inicio": "2025-05",
+        "fim": "2025-12"
+      },
+      "partes": {
+        "patronal": [
+          "Sindicato Patronal Gama"
+        ],
+        "laboral": [
+          "Sindicato dos Trabalhadores Gama"
+        ]
+      },
+      "categorias_abrangidas": [
+        "alfa-producao"
+      ],
+      "categorias_por_extensao": [],
+      "clausulas": [
+        {
+          "clausula": "7.2",
+          "parametro": "pn.he.adicional",
+          "valor": "65",
+          "forma": "percentual",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — adicional de 65%, concorrente com a cláusula 10.2 da CCT Alfa. A janela de conflito é estreita de propósito: 2025-05 a 2025-12, e só na categoria alfa-producao. A categoria alfa-manutencao fica livre de conflito, para exercitar a cadeia temporal das três faixas."
+        }
+      ]
+    },
+    {
+      "id": "sintetico.cct-delta.2025-2026",
+      "tipo": "CCT",
+      "titulo": "CCT sintética Delta — contém cláusula abaixo do piso legal",
+      "vigencia": {
+        "inicio": "2025-01",
+        "fim": "2026-12"
+      },
+      "partes": {
+        "patronal": [
+          "Sindicato Patronal Delta"
+        ],
+        "laboral": [
+          "Sindicato dos Trabalhadores Delta"
+        ]
+      },
+      "categorias_abrangidas": [
+        "delta-servicos"
+      ],
+      "categorias_por_extensao": [],
+      "clausulas": [
+        {
+          "clausula": "5.1",
+          "parametro": "pn.he.adicional",
+          "valor": "40",
+          "forma": "percentual",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — adicional de 40%, ABAIXO do piso constitucional de 50%. Existe para exercitar a R18."
+        },
+        {
+          "clausula": "5.2",
+          "parametro": "pn.noturno.adicional",
+          "valor": "15",
+          "forma": "percentual",
+          "vigencia_propria": null,
+          "texto": "SINTÉTICO — adicional noturno de 15%, ABAIXO do piso de 20%. Exercita a R18."
+        }
+      ]
+    }
+  ]
+}
