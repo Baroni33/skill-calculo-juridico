@@ -14,13 +14,37 @@ Aritmética em competências `YYYY-MM`. Nenhum float em caminho algum (R12).
 Segmentos que diferem em `condicao` vivem em universos separados: as tabelas
 normativas bifurcam por qualidade do devedor, data da sentença e data do fato
 gerador. Comparar ramos distintos produziria falso positivo de sobreposição.
+
+**Tronco e ramo.** Segmento SEM `condicao` vale para todos os ramos. As cadeias
+reais são incondicionais por décadas e só então bifurcam — a do CJF para ações
+condenatórias é comum de 1964 a nov./2021 e só aí separa Fazenda de não-Fazenda.
+Tratar o tronco como universo à parte faria cada ramo aparecer com décadas de
+lacuna. Aqui a cobertura de cada ramo é avaliada como **tronco ∪ ramo**.
+
+**Exaustividade não se presume.** A primeira versão desta correção deixava de
+cobrar o universo incondicional sempre que houvesse ramo — e com isso escondia
+lacuna real: tronco até 2000 mais um único ramo `devedor=fazenda-publica` de
+2001 em diante passava como íntegro, embora não houvesse segmento algum para o
+devedor privado depois de 2000. Trocar falso positivo por falso negativo, num
+validador de cobertura, é o pior negócio possível.
+
+O conjunto de `condicao` observado vem dos dados, não de um domínio declarado,
+e portanto não se sabe se esgota os casos. Quem sabe é a cadeia. Por isso o
+domínio de cada eixo é **declarável**, via `dominio_condicoes`:
+
+* eixo declarado — cada valor do domínio vira um universo, inclusive os que
+  nenhum segmento menciona. Valor sem ramo é avaliado só contra o tronco, e a
+  lacuna aparece;
+* eixo não declarado — o universo incondicional continua sendo cobrado, como o
+  caso "nenhuma condição se aplica". Pode gerar ruído em cadeia realmente
+  exaustiva; o remédio é declarar o domínio, não silenciar a checagem.
 """
 
 from __future__ import annotations
 
 import json
 from dataclasses import dataclass, field
-from typing import Any, Iterable, Sequence
+from typing import Any, Mapping, Iterable, Sequence
 
 __all__ = [
     "Segmento",
@@ -178,6 +202,7 @@ def valida_cobertura(
     inicio: str | None = None,
     fim: str | None = None,
     componentes: Sequence[str] | None = None,
+    dominio_condicoes: Mapping[str, Sequence[str]] | None = None,
 ) -> Relatorio:
     """Verifica R1 e R2 sobre um conjunto de segmentos.
 
@@ -201,23 +226,58 @@ def valida_cobertura(
                     achados.append(c)
         componentes = achados
 
-    # Ramos com condição distinta não concorrem entre si.
-    ramos: dict[tuple[tuple[str, str], ...], list[Segmento]] = {}
-    for s in normalizados:
-        ramos.setdefault(s.condicao, []).append(s)
+    SEM_CONDICAO: tuple[tuple[str, str], ...] = ()
 
-    for condicao, do_ramo in ramos.items():
-        condicao_txt = do_ramo[0].condicao_legivel
-        for componente in componentes:
-            provedores = [s for s in do_ramo if s.fornece(componente)]
-            if not provedores:
-                continue
+    for componente in componentes:
+        fornecem = [s for s in normalizados if s.fornece(componente)]
+        if not fornecem:
+            continue
 
+        # Universos deste componente. Ramos com condição distinta não concorrem
+        # entre si; o tronco incondicional entra em todos eles.
+        tronco = [s for s in fornecem if s.condicao == SEM_CONDICAO]
+        condicoes = []
+        for s in fornecem:
+            if s.condicao != SEM_CONDICAO and s.condicao not in condicoes:
+                condicoes.append(s.condicao)
+
+        universos = [
+            (c, tronco + [s for s in fornecem if s.condicao == c])
+            for c in condicoes
+        ]
+
+        # Valor de domínio declarado que nenhum segmento cobre é universo
+        # legítimo: só o tronco o atende, e a lacuna precisa aparecer.
+        dominios = dominio_condicoes or {}
+        eixos = {k for c in condicoes for k, _ in c}
+        declarados = {e for e in eixos if e in dominios}
+        for eixo in sorted(declarados):
+            vistos = {v for c in condicoes for k, v in c if k == eixo}
+            for valor in dominios[eixo]:
+                if valor not in vistos:
+                    universos.append((((eixo, valor),), list(tronco)))
+
+        # Exaustivo só quando TODO eixo em uso tem domínio declarado. Fora
+        # disso o caso "nenhuma condição se aplica" continua sendo cobrado.
+        exaustivo = bool(eixos) and eixos == declarados
+        if not condicoes or not exaustivo:
+            universos.insert(0, (SEM_CONDICAO, list(tronco)))
+
+        for condicao, provedores in universos:
+            condicao_txt = (
+                "(sem condição)" if condicao == SEM_CONDICAO
+                else ", ".join(f"{k}={v}" for k, v in condicao)
+            )
+
+            # A janela vem de TODOS os segmentos que fornecem o componente, não
+            # só dos deste universo: um universo pode estar vazio — é justamente
+            # o caso do ramo declarado no domínio que nenhum segmento cobre — e
+            # ainda assim precisa ser cobrado na janela dos demais.
             jan_ini = competencia_para_indice(inicio) if inicio else min(
-                competencia_para_indice(s.inicio) for s in provedores
+                competencia_para_indice(s.inicio) for s in fornecem
             )
             jan_fim = competencia_para_indice(fim) if fim else max(
-                competencia_para_indice(s.fim) for s in provedores
+                competencia_para_indice(s.fim) for s in fornecem
             )
 
             lacunas: list[int] = []
@@ -275,6 +335,22 @@ def valida_cobertura(
                             "coexiste com outro que o fornece"
                         ),
                     ))
+
+    # Colisão entre dois segmentos do TRONCO é um fato só. Como o tronco entra
+    # em todo ramo, ela reapareceria uma vez por ramo e inflaria a contagem.
+    # Aqui vira uma violação, rotulada "(tronco)".
+    _sem_cond = {s.id for s in normalizados if s.condicao == ()}
+    _vistas: set[tuple] = set()
+    _unicas = []
+    for v in relatorio.violacoes:
+        if v.segmentos and all(x in _sem_cond for x in v.segmentos):
+            chave = (v.regra, v.componente, v.inicio, v.fim, tuple(v.segmentos))
+            if chave in _vistas:
+                continue
+            _vistas.add(chave)
+            v.condicao = "(tronco)"
+        _unicas.append(v)
+    relatorio.violacoes = _unicas
 
     relatorio.violacoes.sort(key=lambda v: (v.componente, v.condicao, v.inicio, v.regra))
     return relatorio

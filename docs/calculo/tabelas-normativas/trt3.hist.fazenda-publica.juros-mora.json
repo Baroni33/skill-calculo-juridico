@@ -1,0 +1,172 @@
+{
+  "id": "trt3.hist.fazenda-publica.juros-mora",
+  "titulo": "Juros de mora da Fazenda Pública na Justiça do Trabalho — encadeamento histórico",
+  "tipo": "cadeia-temporal",
+  "jurisdicao": "justica-do-trabalho",
+  "tipo_acao": "reclamacao-trabalhista",
+  "componente": "juros-mora",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "norma": "Manual de Cálculos do TRT-3, julho/2016, capítulo 7",
+    "item": "7.6.1",
+    "pagina_pdf": 92,
+    "observacao_de_procedencia": "A primeira versão desta cadeia citava a pagina_pdf 90, onde o manual dá um RESUMO EM PROSA de três faixas. O quadro sinóptico completo, com CINCO linhas, está na pagina_pdf 92. A releitura adversarial do bloco 9 pegou a diferença."
+  },
+  "resumo_literal": "nas condenações envolvendo a Fazenda Pública, como ente principal, os juros são de 1% ao mês até 26/08/01, 0,5% ao mês de 27/08/01 até 28/06/09 e, a partir de 29/06/09, correspondem aos juros da caderneta de poupança",
+  "segmentos": [
+    {
+      "condicao": {
+        "devedor": "fazenda-publica-principal"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 92,
+      "inicio": "1942-11",
+      "fim": "1987-02",
+      "taxa": "0,5% ao mês",
+      "capitalizacao": "simples",
+      "periodo_literal": "ajuizamento da ação até 26/02/87",
+      "corte_ao_dia": "26/02/1987",
+      "fundamento": "CC, 1062 e 1063",
+      "criterio_literal": "0,5% ao mês, simples.",
+      "ponta_materializada": "inicio — o manual só dá o termo final desta linha"
+    },
+    {
+      "condicao": {
+        "devedor": "fazenda-publica-principal"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 92,
+      "inicio": "1987-03",
+      "fim": "1991-03",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "composta",
+      "periodo_literal": "Entre 27/02/87 e 03/03/91",
+      "corte_ao_dia": "27/02/1987 a 03/03/1991",
+      "fundamento": "DL 2322/87, art. 3º",
+      "criterio_literal": "1,0% ao mês, c/ taxa capitalizada. Ex.: 3 meses = 3,03%",
+      "ALERTA_R4": "Capitalização COMPOSTA, contra a invariante R4 (juros de mora sempre simples). É o que o manual diz, em quadro próprio da Fazenda, e coincide com o quadro geral da pagina_pdf 89 e com a cadeia do CJF para o mesmo período. Três registros independentes. Transcrito, não harmonizado."
+    },
+    {
+      "condicao": {
+        "devedor": "fazenda-publica-principal"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 92,
+      "inicio": "1991-04",
+      "fim": "2001-08",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "simples",
+      "periodo_literal": "Entre 04/03/91 e 26/08/01",
+      "corte_ao_dia": "04/03/1991 a 26/08/2001",
+      "fundamento": "L. 8177/91, art. 39",
+      "criterio_literal": "1,0% ao mês de forma simples, sem taxa capitalizada. Ex.: 3 meses = 3%"
+    },
+    {
+      "condicao": {
+        "devedor": "fazenda-publica-principal"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 92,
+      "inicio": "2001-09",
+      "fim": "2009-06",
+      "taxa": "0,5% ao mês",
+      "capitalizacao": "simples",
+      "limite": "6% ao ano",
+      "periodo_literal": "Entre 27/08/01 a 28/06/2009",
+      "corte_ao_dia": "27/08/2001 a 28/06/2009",
+      "fundamento": "Lei 9494/97, art. 1º F, introduzido pela MP 2180-35, de 2001",
+      "criterio_literal": "0,5% ao mês, limitado a 6% ao ano",
+      "observacao_limite": "O limite de 6% ao ano estava AUSENTE da primeira versão. Não é redundante com 0,5% ao mês: 0,5% simples por doze meses dá exatamente 6%, mas o limite passa a morder em qualquer contagem por dias que ultrapasse o ano-calendário."
+    },
+    {
+      "condicao": {
+        "devedor": "fazenda-publica-principal"
+      },
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 92,
+      "inicio": "2009-07",
+      "fim": "2016-05",
+      "taxa": "juros aplicados à caderneta de poupança, sem cumulação",
+      "capitalizacao": "simples",
+      "periodo_literal": "Entre 29/06/2009 até o pagamento",
+      "corte_ao_dia": "29/06/2009",
+      "fundamento": "Lei 9494/97, art. 1º F, com a redação dada pelo art. 5º da Lei 11960/09",
+      "criterio_literal": "Juros aplicados à caderneta de poupança sem cumulação",
+      "status_norma": "superado",
+      "substituido_por": "EC 113/2021, art. 3º — Selic única. Ver base normativa.",
+      "subcorte_04_05_2012": {
+        "corte_ao_dia": "04/05/2012",
+        "fundamento": "MP 567/12, convertida na Lei 12.703, de 07 de agosto de 2012",
+        "antes_literal": "Até 03/05/2012, os juros aplicáveis à caderneta de poupança, correspondiam a 0,5% ao mês.",
+        "depois_literal": "A partir de 04/05/12, com a publicação da MP 567/12, convertida na Lei 12.703, de 07 de agosto de 2012,  as regras de rendimento das cadernetas de poupança foram alteradas.",
+        "pagina_pdf": 91,
+        "observacao": "Subcorte, não segmento próprio: a REGRA (art. 1º-F, poupança) não muda em 04/05/12; muda a fórmula da poupança. Modelado como qualificação do segmento para não criar corte de regime onde o manual não cria."
+      }
+    }
+  ],
+  "janela_de_analise": {
+    "inicio": "1942-11",
+    "fim": "2016-05",
+    "por_que": "1942-11 é o marco mais antigo que o capítulo 7 declara (item 7.7, instituição do cruzeiro). 2016-05 é a data-base dos exemplos do próprio manual (tabela única vigente em maio/16). O manual é de 2016 e não alcança nada depois disso — por isso a janela fecha ali, e não na data de hoje.",
+    "marcador": "ponta_materializada"
+  },
+  "tabela_juros_fazenda_jun12_ago13": {
+    "natureza": "série (B) — percentuais cravados, mês a mês",
+    "pagina_pdf": 92,
+    "fundamento": "art. 12, II, alínea 'b', da Lei 8177/91, incluído pela MP 567/12",
+    "por_que_existe_literal": "Desde que houve alteração nas regras do rendimento da caderneta de poupança, a meta anual da taxa Selic apenas ficou inferior ou igual a 8,5% no período de junho/12 a agosto/13. De setembro/13 até o mês de atualização deste manual (maio/16), a meta anual da taxa Selic é superior a 8,5% e os juros correspondem a 0,5% ao mês.",
+    "pagina_pdf_por_que": 91,
+    "serie": {
+      "2012-06": "0,4828%",
+      "2012-07": "0,4828%",
+      "2012-08": "0,4551%",
+      "2012-09": "0,4273%",
+      "2012-10": "0,4273%",
+      "2012-11": "0,4134%",
+      "2012-12": "0,4134%",
+      "2013-01": "0,4134%",
+      "2013-02": "0,4134%",
+      "2013-03": "0,4134%",
+      "2013-04": "0,4134%",
+      "2013-05": "0,4273%",
+      "2013-06": "0,4551%",
+      "2013-07": "0,4551%",
+      "2013-08": "0,4828%"
+    },
+    "total_literal": "Total % de juros de jun/12 a ago/13 — 6,5760%",
+    "atalho_do_manual": {
+      "regra_literal": "Do total encontrado, deduzir o percentual de 0,9240%, que corresponde à diferença total apurada no período de jun/12 a ago/13 entre os somatórios da taxa de 0,5% ao mês e da taxa aplicada após a redução da Selic.",
+      "condicao_de_uso_literal": "quando a data da propositura da ação está situada entre 27/08/01 a 31/05/12 e a data final de atualização dos cálculos é posterior a 31/08/13",
+      "aritmetica_do_manual": "15 x 0,5% = 7,5%; 7,5% - 6,5760% = 0,9240%",
+      "CONFERIDO": "A soma dos quinze percentuais da série dá 6,5760%. Confere com o total impresso e com a diferença de 0,9240%."
+    }
+  },
+  "dominio_condicoes": {
+    "devedor": [
+      "fazenda-publica-principal",
+      "fazenda-publica-subsidiaria"
+    ]
+  },
+  "ramo_subsidiaria_NAO_COBERTO": {
+    "por_que": "O quadro da pagina_pdf 92 é expresso: vale para a Fazenda 'como reclamada principal'. A primeira versão desta cadeia usava condicao {devedor: fazenda-publica}, sem qualificar — e um motor teria aplicado 0,5% a.m. a Fazenda subsidiária.",
+    "o_que_o_manual_diz_literal": "Quando na reclamatória trabalhista, a Fazenda Pública não figura no polo passivo como devedora principal, respondendo subsidiariamente pelas obrigações devidas pela real empregadora, grande parte da jurisprudência entende que os juros de mora  são de 1%  ao mês de acordo com o art. 39 da Lei 8.177/91, visto que  fixados em decorrência da mora da  devedora principal,  nos termos da OJ 382 da SDI-1/TST.",
+    "pagina_pdf": 93,
+    "NAO_VIRA_SEGMENTO": "'grande parte da jurisprudência entende' é corrente, não regra assentada. Pela disciplina do projeto, divergência jurisprudencial não se resolve: fica como variante com fundamento. O ramo é declarado no dominio_condicoes e deliberadamente não tem segmento — o validador o reporta como lacuna, que é a leitura correta: o manual não fecha a questão.",
+    "pendencia": "P9-01"
+  }
+}

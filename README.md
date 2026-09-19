@@ -84,10 +84,20 @@ Fase 2 em curso.
 | 6 | Presets de regime temporal | `docs/calculo/extracao/bloco-06-relatorio.md` |
 | 7 | Descontos previdenciário e fiscal, cap. 9, p. 107–208 | `docs/calculo/extracao/bloco-07-relatorio.md` |
 | 8 | Manual de Cálculos da Justiça Federal, CJF Res. 990/2026, integral | `docs/calculo/extracao/justica-federal/bloco-08-relatorio.md` |
+| 9 | Cadeias históricas de atualização trabalhista — TRT-3, cap. 7, p. 83–99, extração dirigida | `docs/calculo/extracao/trabalhista/bloco-09-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 93 páginas, sete cadeias temporais em `tabelas-normativas/`, e é a única fonte do corpus cuja
 edição está vigente.
+
+O **bloco 9** acrescenta quatro cadeias históricas trabalhistas (`trt3.hist.*`) e corrige o
+validador de cobertura: a exaustividade dos ramos condicionados passou a ser **declarada**
+(`dominio_condicoes`), não presumida. A primeira versão do conserto escondia lacuna real —
+ver `bloco-09-relatorio.md` § 2.
+
+**Achado estrutural do bloco 9:** o capítulo 7 do TRT-3 **não traz cadeia período → indexador**.
+Ele delega o encadeamento histórico à Tabela Única do CSJT. A cadeia trabalhista anterior a
+março de 1991 continua sendo pendência do corpus (**P9-02**).
 
 Do Manual TRT-3, o **capítulo 6 está integralmente extraído**, e agora também o **capítulo 9**
 (descontos previdenciário e fiscal, p. 107–208) — o maior do manual, 102 páginas e 47 itens.

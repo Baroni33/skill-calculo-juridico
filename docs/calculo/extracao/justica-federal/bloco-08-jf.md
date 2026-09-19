@@ -427,4 +427,5 @@ sucessivamente (art. 85, § 5º, CPC)" (`pagina_pdf: 44`).
   defeitos do original
 - [`bloco-08-relatorio.md`](bloco-08-relatorio.md) — cruzamentos, R1/R2, fixtures, pendências
 - `../../tabelas-normativas/cjf.*.json` — as sete cadeias
-- `scripts/calculo/valida_cadeias_cjf.py` — o runner de R1 e R2 sobre elas
+- `scripts/calculo/valida_cadeias.py` — o CLI de R1 e R2 sobre elas (renomeado no bloco 9,
+  quando a lógica de tronco-e-ramo passou para `valida_cobertura.py`)

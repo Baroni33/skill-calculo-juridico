@@ -377,11 +377,22 @@ linha; N-5 é uma nota que altera a linha sem dizer como.
 
 ## 5. Contiguidade — o que a checagem de R1 e R2 encontrou
 
-Rodado por `scripts/calculo/valida_cadeias_cjf.py` sobre as sete cadeias.
+Rodado por `scripts/calculo/valida_cadeias.py` sobre as sete cadeias.
 
 ```
 7 cadeias | R1: 15 violações | R2: 0 violações
 ```
+
+> **Atualizado no bloco 9.** O runner foi absorvido pelo validador: a lógica de tronco-e-ramo
+> vive hoje em `valida_cobertura.py`, e `valida_cadeias_cjf.py` virou
+> `scripts/calculo/valida_cadeias.py`. Com a contagem corrigida — colisão tronco × tronco é
+> um fato só, não um por ramo — **as sete cadeias do CJF somam R1 = 10**, distribuídas em
+> jan./1989 (5), mar./1990 (4) e jan./1996 (1). As quinze abaixo contavam a mesma colisão
+> uma vez por universo de condição. A leitura jurídica de cada uma não mudou.
+>
+> Corrige-se também uma afirmação: R2 = 0 vale **sob o filtro de componente próprio** que
+> `valida_cadeias.py` aplica. Sem ele são 16 violações, todas nascidas do `engloba` da Selic.
+> Ver `bloco-09-relatorio.md` § 2 e § 3.
 
 **Zero lacunas.** As cadeias cobrem, sem buraco, de 1964 até a data-base. As violações de R1 são
 **sobreposições reais do manual**, sempre no mesmo padrão: o fim de um segmento e o início do

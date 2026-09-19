@@ -1,0 +1,155 @@
+{
+  "id": "trt3.hist.moedas-e-paridades",
+  "titulo": "Padrões monetários e paridades — marcos de conversão",
+  "tipo": "cadeia-temporal",
+  "jurisdicao": "justica-do-trabalho",
+  "tipo_acao": "qualquer",
+  "componente": "padrao-monetario",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "norma": "Manual de Cálculos do TRT-3, julho/2016, capítulo 7",
+    "item": "7.7",
+    "pagina_pdf": 99
+  },
+  "cabecalho_literal": "Em face das alterações da moeda brasileira (denominações e paridades), apresentamos o seguinte demonstrativo:",
+  "nota_do_manual_literal": "centavos extintos em 01/12/64 e 16/08/94",
+  "segmentos": [
+    {
+      "inicio": "1942-11",
+      "fim": "1970-02",
+      "indexador": "Cruzeiro (Cr$)",
+      "engloba": [
+        "padrao-monetario"
+      ],
+      "periodo_literal": "01/11/42 a 12/02/70",
+      "multiplicador_transicao": {
+        "proporcao": "1000/1",
+        "data": "01/11/42",
+        "raciocinio": "1.000 réis = 1 cruzeiro e 1 conto de réis = 1.000 cruzeiros"
+      },
+      "pagina_pdf": 99,
+      "DEFEITO_DO_ORIGINAL": "O período declarado termina em 12/02/70, mas a linha seguinte (cruzeiro novo) começa em 13/02/67 — TRÊS ANOS DE SOBREPOSIÇÃO. Ver bloco-09-relatorio.md § 5.",
+      "componente": "padrao-monetario"
+    },
+    {
+      "inicio": "1967-02",
+      "fim": "1970-05",
+      "indexador": "Cruzeiro novo (NCr$)",
+      "engloba": [
+        "padrao-monetario"
+      ],
+      "periodo_literal": "13/02/67 a 14/05/70",
+      "multiplicador_transicao": {
+        "proporcao": "1000/1",
+        "data": "13/02/67",
+        "raciocinio": "1.000 cruzeiros = 1,00 cruzeiro novo"
+      },
+      "pagina_pdf": 99,
+      "componente": "padrao-monetario"
+    },
+    {
+      "inicio": "1970-05",
+      "fim": "1986-02",
+      "indexador": "Cruzeiro (Cr$)",
+      "engloba": [
+        "padrao-monetario"
+      ],
+      "periodo_literal": "15/05/70 a 27/02/86",
+      "multiplicador_transicao": {
+        "proporcao": "1/1",
+        "data": "15/05/70",
+        "raciocinio": "1,00 cruzeiro novo = 1,00 cruzeiro"
+      },
+      "pagina_pdf": 99,
+      "componente": "padrao-monetario"
+    },
+    {
+      "inicio": "1986-02",
+      "fim": "1989-01",
+      "indexador": "Cruzado (Cz$)",
+      "engloba": [
+        "padrao-monetario"
+      ],
+      "periodo_literal": "28/02/86 a 15/01/89",
+      "multiplicador_transicao": {
+        "proporcao": "1000/1",
+        "data": "28/02/86",
+        "raciocinio": "1.000 = 1,00 cruzado"
+      },
+      "pagina_pdf": 99,
+      "componente": "padrao-monetario"
+    },
+    {
+      "inicio": "1989-01",
+      "fim": "1990-03",
+      "indexador": "Cruzado novo (NCz$)",
+      "engloba": [
+        "padrao-monetario"
+      ],
+      "periodo_literal": "16/01/89 a 15/03/90",
+      "multiplicador_transicao": {
+        "proporcao": "1000/1",
+        "data": "16/01/89",
+        "raciocinio": "1.000 cruzados = 1,00 cruzado novo"
+      },
+      "pagina_pdf": 99,
+      "componente": "padrao-monetario"
+    },
+    {
+      "inicio": "1990-03",
+      "fim": "1993-07",
+      "indexador": "Cruzeiro (Cr$)",
+      "engloba": [
+        "padrao-monetario"
+      ],
+      "periodo_literal": "16/03/90 a 31/07/93",
+      "multiplicador_transicao": {
+        "proporcao": "1/1",
+        "data": "16/03/90",
+        "raciocinio": "1,00 cruzado novo = 1,00 cruzeiro"
+      },
+      "pagina_pdf": 99,
+      "componente": "padrao-monetario"
+    },
+    {
+      "inicio": "1993-08",
+      "fim": "1994-06",
+      "indexador": "Cruzeiro real (CR$)",
+      "engloba": [
+        "padrao-monetario"
+      ],
+      "periodo_literal": "01/08/93 a 30/06/94",
+      "multiplicador_transicao": {
+        "proporcao": "1000/1",
+        "data": "01/08/93",
+        "raciocinio": "1.000 cruzeiros = 1,00 cruzeiro real"
+      },
+      "pagina_pdf": 99,
+      "componente": "padrao-monetario"
+    },
+    {
+      "inicio": "1994-07",
+      "fim": "2016-05",
+      "indexador": "Real (R$)",
+      "engloba": [
+        "padrao-monetario"
+      ],
+      "periodo_literal": "01/07/94 a",
+      "multiplicador_transicao": {
+        "proporcao": "2750/1",
+        "data": "01/07/94",
+        "raciocinio": "uma URV de CR$-2.750,00 = 1 real"
+      },
+      "pagina_pdf": 99,
+      "ponta_materializada": "fim — o manual deixa a linha aberta ('01/07/94 a')",
+      "remissao": "O MÉTODO de conversão da URV está no item 6.1 e as cotações no item 18.10 — ambos fora do capítulo 7. Ver bloco-02-criterios.md e serie-18.10-urv.csv.",
+      "componente": "padrao-monetario"
+    }
+  ],
+  "janela_de_analise": {
+    "inicio": "1942-11",
+    "fim": "2016-05",
+    "por_que": "1942-11 é o marco mais antigo que o capítulo 7 declara (item 7.7, instituição do cruzeiro). 2016-05 é a data-base dos exemplos do próprio manual (tabela única vigente em maio/16). O manual é de 2016 e não alcança nada depois disso — por isso a janela fecha ali, e não na data de hoje.",
+    "marcador": "ponta_materializada"
+  }
+}

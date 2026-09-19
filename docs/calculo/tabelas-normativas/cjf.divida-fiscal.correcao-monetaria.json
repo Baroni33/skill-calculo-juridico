@@ -96,5 +96,11 @@
     "fim": "2026-06",
     "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
     "marcador": "ponta_materializada"
-  }
+  },
+  "dominio_condicoes": {
+    "eixo": [
+      "data-do-fato-gerador"
+    ]
+  },
+  "dominio_condicoes_nota": "Declara que os ramos abaixo ESGOTAM o eixo. Sem esta declaração o validador cobra o universo 'nenhuma condição se aplica', porque exaustividade não se presume."
 }

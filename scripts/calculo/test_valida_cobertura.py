@@ -183,6 +183,7 @@ class TestCondicoesBifurcadas(unittest.TestCase):
             ],
             inicio="2021-12",
             fim="2024-08",
+            dominio_condicoes={"devedor": ["fazenda-publica", "privado"]},
         )
         self.assertTrue(r.ok, str(r))
 
@@ -195,11 +196,83 @@ class TestCondicoesBifurcadas(unittest.TestCase):
             ],
             inicio="2021-12",
             fim="2024-08",
+            dominio_condicoes={"devedor": ["fazenda-publica", "privado"]},
         )
         lacunas = [v for v in r.por_regra("R2") if "lacuna" in v.mensagem]
         self.assertEqual(len(lacunas), 1)
         self.assertEqual((lacunas[0].inicio, lacunas[0].fim), ("2022-07", "2022-07"))
         self.assertIn("fazenda-publica", lacunas[0].condicao)
+
+
+class TestExaustividadeNaoSePresume(unittest.TestCase):
+    """O conserto da tarefa 0 do bloco 9, na primeira versão, trocou falso
+    positivo por falso negativo: tronco + um único ramo passava como íntegro
+    mesmo sem cobrir o outro ramo. Nenhum dos 199 testes de então pegou."""
+
+    TRONCO_E_UM_RAMO = [
+        seg("1964-01", "2000-12", CM, id="ORTN"),
+        seg("2001-01", "2025-12", CM, condicao={"devedor": "fazenda-publica"}, id="SELIC"),
+    ]
+
+    def test_ramo_nao_exaustivo_sem_dominio_declarado_acusa_lacuna(self):
+        r = valida_cobertura(self.TRONCO_E_UM_RAMO, inicio="1964-01", fim="2025-12")
+        lacunas = [v for v in r.por_regra("R2") if "lacuna" in v.mensagem]
+        self.assertEqual(len(lacunas), 1, "25 anos descobertos não podem passar")
+        self.assertEqual((lacunas[0].inicio, lacunas[0].fim), ("2001-01", "2025-12"))
+
+    def test_dominio_declarado_nomeia_o_ramo_que_falta(self):
+        r = valida_cobertura(
+            self.TRONCO_E_UM_RAMO, inicio="1964-01", fim="2025-12",
+            dominio_condicoes={"devedor": ["fazenda-publica", "nao-fazenda-publica"]},
+        )
+        lacunas = [v for v in r.por_regra("R2") if "lacuna" in v.mensagem]
+        self.assertEqual(len(lacunas), 1)
+        self.assertIn("nao-fazenda-publica", lacunas[0].condicao)
+
+    def test_bifurcacao_exaustiva_declarada_passa_limpa(self):
+        """O caso do bloco 8: tronco longo, depois dois ramos que esgotam o eixo."""
+        r = valida_cobertura(
+            [
+                seg("1964-01", "2021-11", CM, id="tronco"),
+                seg("2021-12", "2025-12", CM, condicao={"devedor": "fazenda-publica"}, id="FP"),
+                seg("2021-12", "2025-12", CM, condicao={"devedor": "privado"}, id="PRIV"),
+            ],
+            inicio="1964-01", fim="2025-12",
+            dominio_condicoes={"devedor": ["fazenda-publica", "privado"]},
+        )
+        self.assertTrue(r.ok, str(r))
+
+    def test_tronco_cobre_o_ramo_sem_aparecer_como_lacuna(self):
+        """O falso positivo original da tarefa 0: o ramo herda o tronco."""
+        r = valida_cobertura(
+            [
+                seg("1964-01", "2021-11", CM, id="tronco"),
+                seg("2021-12", "2025-12", CM, condicao={"devedor": "fazenda-publica"}, id="FP"),
+                seg("2021-12", "2025-12", CM, condicao={"devedor": "privado"}, id="PRIV"),
+            ],
+            inicio="1964-01", fim="2025-12",
+            dominio_condicoes={"devedor": ["fazenda-publica", "privado"]},
+        )
+        self.assertEqual(
+            [v for v in r.por_regra("R2") if "lacuna" in v.mensagem], [],
+            "o tronco de 1964 a 2021 vale para os dois ramos",
+        )
+
+    def test_colisao_tronco_x_tronco_conta_uma_vez_so(self):
+        """Dois segmentos de tronco que se sobrepõem são UM fato, não um por ramo."""
+        r = valida_cobertura(
+            [
+                seg("1964-01", "1989-01", CM, engloba=[CM, JM], id="OTN"),
+                seg("1989-01", "2021-11", CM, id="IPC"),
+                seg("2021-12", "2025-12", CM, condicao={"devedor": "fazenda-publica"}, id="FP"),
+                seg("2021-12", "2025-12", CM, condicao={"devedor": "privado"}, id="PRIV"),
+            ],
+            inicio="1964-01", fim="2025-12",
+            dominio_condicoes={"devedor": ["fazenda-publica", "privado"]},
+        )
+        colisoes = [v for v in r.por_regra("R1") if v.inicio == "1989-01"]
+        self.assertEqual(len(colisoes), 1, "contada uma vez por ramo infla o total")
+        self.assertEqual(colisoes[0].condicao, "(tronco)")
 
 
 class TestCadeiaRealTrabalhista(unittest.TestCase):
@@ -249,7 +322,13 @@ class TestCarregamentoArquivo(unittest.TestCase):
         segmentos = carrega_segmentos(caminho)
         self.assertEqual(len(segmentos), 1)
         self.assertIn(("devedor", "fazenda-pública"), segmentos[0].condicao)
-        self.assertTrue(valida_cobertura(segmentos).ok)
+        # A tabela cobre UM ramo só. Isso agora se declara — antes era presumido,
+        # e a presunção escondia lacuna (ver TestExaustividadeNaoSePresume).
+        self.assertTrue(
+            valida_cobertura(
+                segmentos, dominio_condicoes={"devedor": ["fazenda-pública"]}
+            ).ok
+        )
 
     def test_campo_obrigatorio_ausente(self):
         with self.assertRaises(ValueError) as ctx:

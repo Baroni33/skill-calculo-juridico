@@ -1,0 +1,110 @@
+{
+  "id": "trt3.hist.trabalhista.juros-mora",
+  "titulo": "Juros de mora do débito trabalhista — encadeamento histórico",
+  "tipo": "cadeia-temporal",
+  "jurisdicao": "justica-do-trabalho",
+  "tipo_acao": "reclamacao-trabalhista",
+  "componente": "juros-mora",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "norma": "Manual de Cálculos do TRT-3, julho/2016, capítulo 7",
+    "item": "7.6",
+    "pagina_pdf": 89
+  },
+  "ESCOPO_DESTE_BLOCO": "Extraído como ENCADEAMENTO HISTÓRICO. O enunciado do bloco 9 veda extrair 'critério de juros vigente' e 'regime de capitalização como regra atual'. O que está aqui é qual taxa valia em cada período — dado que não caduca. O último segmento leva status_norma.",
+  "termo_inicial_literal": "Não incidem a partir da época própria das parcelas, como ocorre com a correção monetária dos débitos trabalhistas, mas sim desde o ajuizamento da ação (CLT, 883) e sobre o “principal corrigido”, (Súmula 200/TST), exceto quando o cálculo abranger parcelas com vencimentos posteriores à propositura da ação. Nesta hipótese, os juros observam a época própria da parcela.",
+  "termo_inicial_pagina_pdf": 88,
+  "segmentos": [
+    {
+      "inicio": "1942-11",
+      "fim": "1987-02",
+      "taxa": "0,5% ao mês",
+      "capitalizacao": "simples",
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "CC, 1062 e 1063",
+      "periodo_literal": "ajuizamento da ação até 26/02/87",
+      "corte_ao_dia": "26/02/1987",
+      "pagina_pdf": 89,
+      "ponta_materializada": "inicio — o manual escreve 'ajuizamento da ação até 26/02/87'",
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "1987-03",
+      "fim": "1991-03",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "composta",
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "DL 2322/87, art. 3º",
+      "periodo_literal": "Entre 27/02/87 e 03/03/91",
+      "criterio_literal": "1,0% ao mês, c/ taxa capitalizada. Ex.: 3 meses = 3,03%",
+      "corte_ao_dia": "27/02/1987 a 03/03/1991",
+      "pagina_pdf": 89,
+      "ALERTA_R4": "Capitalização COMPOSTA de juros de mora, contra a invariante R4 do projeto. Transcrita como está. O manual federal registra o MESMO período como composto (cjf.trabalhista.juros-mora, 'De mar./1987 a mar./1991 | 1,0% – composta', manual_de_calculos_2026.pdf pagina_pdf 78) — os dois manuais concordam, e o TRT-3 acrescenta a mecânica: 3 meses = 3,03%.",
+      "componente": "juros-mora"
+    },
+    {
+      "inicio": "1991-04",
+      "fim": "2016-05",
+      "taxa": "1,0% ao mês",
+      "capitalizacao": "simples",
+      "engloba": [
+        "juros-mora"
+      ],
+      "fundamento": "L. 8177/91, art. 39",
+      "periodo_literal": "Entre 04/03/91 até a satisfação efetiva do crédito",
+      "criterio_literal": "1,0% ao mês de forma simples, sem taxa capitalizada. Ex.: 3 meses = 3%",
+      "corte_ao_dia": "04/03/1991",
+      "pagina_pdf": 89,
+      "ponta_materializada": "fim — o manual escreve 'até a satisfação efetiva do crédito'. Materializado na data-base dos exemplos (maio/2016), porque o manual é de 2016 e não alcança o que veio depois.",
+      "status_norma": "superado",
+      "substituido_por": "ADC 58 e ADC 59 (STF, 18/12/2020); EC 113/2021, art. 3º; Lei 14.905/2024; EC 136/2025 e ARE 1.557.312/SP (Tema 1.419). Ver 00-base-normativa.md §§ 1 e 5, e as cadeias cjf.* do bloco 8.",
+      "por_que_permanece_extraido": "O encadeamento histórico não caduca: competência de 1994 corrige-se pelo índice de 1994. O que caducou é a regra de qual índice vale HOJE.",
+      "componente": "juros-mora"
+    }
+  ],
+  "situacoes_especiais": [
+    {
+      "caso": "Entidades em intervenção ou liquidação extrajudicial",
+      "regra_literal": "os juros de mora são contados desde a inicial até a data da decretação da intervenção ou liquidação",
+      "fundamento": "Súmula n. 304/TST",
+      "item": "7.6.1",
+      "pagina_pdf": 89
+    },
+    {
+      "caso": "Falência",
+      "regra_literal": "o calculista deverá limitar os juros até a data da falência, apenas se houver determinação nos autos",
+      "fundamento": "Art. 124 da Lei 11.101/05",
+      "nota": "O manual lê o art. 124 como CONDIÇÃO, não vedação: 'a lei não exime a massa falida do pagamento dos juros, mas apenas condiciona a concretização do pagamento à capacidade do ativo'. E transcreve TRÊS ementas do próprio TRT-3, das quais DUAS divergem entre si — ver bloco-09-relatorio.md § 6.",
+      "item": "7.6.1",
+      "pagina_pdf": 89
+    }
+  ],
+  "janela_de_analise": {
+    "inicio": "1942-11",
+    "fim": "2016-05",
+    "por_que": "1942-11 é o marco mais antigo que o capítulo 7 declara (item 7.7, instituição do cruzeiro). 2016-05 é a data-base dos exemplos do próprio manual (tabela única vigente em maio/16). O manual é de 2016 e não alcança nada depois disso — por isso a janela fecha ali, e não na data de hoje.",
+    "marcador": "ponta_materializada"
+  },
+  "mes_comercial_30_dias": {
+    "item": "7.6",
+    "pagina_pdf": 88,
+    "regra_literal": "incidem atualmente à razão de 1% ao mês, simples (sem cumulação) ou 0,0333% ao dia (1 / 30), exceto para os débitos da Fazenda Pública.",
+    "base": "mês comercial de 30 dias",
+    "exemplo_do_manual": {
+      "data_inicial": "11/05/00",
+      "data_final": "30/04/04",
+      "contagem_literal": "Total de meses e dias entre 11/05/00 e 30/04/04: 47 meses e 20 dias",
+      "resultado_literal": "Total de juros: 47,67% [(47 meses x 1%) + (0,03333% x 20 dias)]"
+    },
+    "DEFEITO_DO_ORIGINAL": {
+      "qual": "A regra imprime 0,0333% e o exemplo, duas linhas abaixo, imprime 0,03333%.",
+      "efeito": "Neste exemplo, nenhum: 47 + 0,0333×20 = 47,666 e 47 + 0,03333×20 = 47,6666, que arredondam ambos para 47,67%. Em contagens longas de dias a diferença aparece. O valor exato é 1/30 = 0,0333...%, dízima — e por R12 o motor deve usar Decimal com 1/30, não um truncamento impresso.",
+      "nao_corrigido": "Registrado como está. Ver bloco-09-relatorio.md."
+    },
+    "excecao_literal": "exceto para os débitos da Fazenda Pública"
+  }
+}

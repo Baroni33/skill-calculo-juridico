@@ -1,0 +1,132 @@
+{
+  "id": "trt3.hist.trabalhista.correcao-monetaria",
+  "titulo": "Correção monetária do débito trabalhista — encadeamento histórico",
+  "tipo": "cadeia-temporal",
+  "jurisdicao": "justica-do-trabalho",
+  "tipo_acao": "reclamacao-trabalhista",
+  "componente": "correcao-monetaria",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "norma": "Manual de Cálculos do TRT-3, julho/2016, capítulo 7",
+    "item": "7.2, 7.3, 7.4, 7.5.1",
+    "pagina_pdf": 83,
+    "pagina_pdf_aplicacao": 84
+  },
+  "ESCOPO_DESTE_BLOCO": "Extração DIRIGIDA: apenas o encadeamento histórico. O capítulo 7 está materialmente superado como norma vigente — ADC 58, EC 113/2021, Lei 14.905/2024 e EC 136/2025 substituíram suas regras. Nada aqui afirma o que se aplica hoje.",
+  "O_QUE_ESTE_CAPITULO_NAO_TEM": "NÃO HÁ MAPA PERÍODO → INDEXADOR no capítulo 7. O manual delega o encadeamento inteiro à Tabela Única do CSJT, e diz por quê, literal (item 7.5.1, pagina_pdf 85): 'A tabela mensal de correção está escalonada em meses e anos, já computa as conversões e paridades da moeda nacional e não contém juros.' A cadeia histórica trabalhista é uma SÉRIE (B), não uma regra (A) — e por isso não existe aqui o equivalente às tabelas 4.2.1.1 ou 4.3.1.1 do manual federal. Ver bloco-09-relatorio.md § 2.",
+  "aplicacao": "primeiro-dia-do-mes-subsequente-a-prestacao",
+  "aplicacao_literal": "a correção monetária incide a partir do primeiro dia do mês subsequente ao da prestação dos serviços",
+  "aplicacao_fonte": {
+    "sumula": "Súmula n. 381 do TST",
+    "item": "7.2",
+    "pagina_pdf": 84,
+    "conferido": "literal na pagina_pdf 84, item 7.2, parágrafo de fecho das quatro correntes"
+  },
+  "aplicacao_mecanica": "Os índices da tabela única estão 'posicionados no próprio mês da constituição do crédito' (item 7.5.1, pagina_pdf 85). Aplicar a Súmula 381 é, portanto, usar o índice do MÊS SEGUINTE ao trabalhado. O manual dá o exemplo: horas extras de junho/14 usam o índice alocado em julho/14.",
+  "segmentos": [
+    {
+      "inicio": "1942-11",
+      "fim": "2009-06",
+      "indexador": "NAO-DECLARADO-PELO-MANUAL",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "tipo_indexador": "percentual",
+      "fundamento": "Art. 39 da Lei 8.177/91 (vide OJ 300/SDI/TST)",
+      "aplicacao": "primeiro-dia-do-mes-subsequente-a-prestacao",
+      "pagina_pdf": 83,
+      "observacao": "O manual não declara segmentação anterior à TR: remete à tabela única, que 'já computa as conversões e paridades da moeda nacional'. A ponta inicial é a janela de análise, não uma afirmação do manual.",
+      "ponta_materializada": "inicio — o manual não dá termo inicial para a cadeia de correção",
+      "componente": "correcao-monetaria",
+      "indexador_ate_1991_03": {
+        "estado": "nao-declarado",
+        "por_que": "A primeira versão gravava 'TR' para 1942-11..2009-06. A TR foi criada pelo art. 39 da Lei 8.177/91, de março de 1991 — não existia no período. O capítulo 7 NÃO declara qual índice vale antes disso: delega à Tabela Única do CSJT, que é série, não regra. Afirmar TR para 49 anos em que ela não existia é exatamente a classe de erro que o bloco 8 cometeu com o IPC/FGV.",
+        "onde_buscar": "Tabela Única do CSJT (Resolução CSJT 08/2005) e cadeia do CJF, cap. 4.",
+        "pendencia": "P9-02"
+      },
+      "indexador_a_partir_de_1991_03": "TR — art. 39 da Lei 8.177/91",
+      "status_norma": "superado",
+      "substituido_por": "ADC 58 (STF), EC 113/2021 art. 3º e Lei 14.905/2024. Ver base normativa."
+    },
+    {
+      "inicio": "2009-07",
+      "fim": "2016-05",
+      "indexador": "TR",
+      "condicao": {
+        "devedor": "nao-fazenda-publica"
+      },
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "tipo_indexador": "percentual",
+      "fundamento": "Art. 39 da Lei 8.177/91",
+      "pagina_pdf": 83,
+      "componente": "correcao-monetaria",
+      "status_norma": "superado",
+      "substituido_por": "ADC 58 (STF), EC 113/2021 art. 3º e Lei 14.905/2024. Ver base normativa."
+    },
+    {
+      "inicio": "2009-07",
+      "fim": "2016-05",
+      "indexador": "remuneração básica da caderneta de poupança (TR)",
+      "condicao": {
+        "devedor": "fazenda-publica"
+      },
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "tipo_indexador": "percentual",
+      "fundamento": "Art. 1º-F da Lei 9.494/97, redação do art. 5º da Lei 11.960/09 (DOU 29/06/09)",
+      "corte_ao_dia": "29/06/2009",
+      "pagina_pdf": 85,
+      "observacao_literal": "Na prática e enquanto a remuneração básica da caderneta de poupança for a TR, o calculista poderá continuar utilizando a tabela única, visto que a mesma considera a TR do dia primeiro.",
+      "componente": "correcao-monetaria",
+      "status_norma": "superado",
+      "substituido_por": "ADC 58 (STF), EC 113/2021 art. 3º e Lei 14.905/2024. Ver base normativa."
+    }
+  ],
+  "episodio_ipca_e": {
+    "item": "7.3",
+    "pagina_pdf": 84,
+    "o_que_houve": "Em 04/08/15 o Pleno do TST definiu o IPCA-E como novo índice (ArgInc 479-60.2011.5.04.0231, DJE 14/08/15), declarando por arrastamento a inconstitucionalidade da expressão 'equivalentes à TRD' do caput do art. 39 da Lei 8.177/91. Em 14/10/15 o Min. Dias Toffoli, na Rcl 22012 MC/RS, concedeu liminar (DJE 15/10/15) SUSPENDENDO os efeitos. Resultado no manual: 'permanece válida a TR'.",
+    "por_que_importa": "É o estado em que o manual congelou, em 2016. A ADC 58, de 18/12/2020, resolveu a questão noutro sentido — e é por isso que este capítulo está superado. Registrado como história, não como norma.",
+    "status_norma": "superado"
+  },
+  "janela_de_analise": {
+    "inicio": "1942-11",
+    "fim": "2016-05",
+    "por_que": "1942-11 é o marco mais antigo que o capítulo 7 declara (item 7.7, instituição do cruzeiro). 2016-05 é a data-base dos exemplos do próprio manual (tabela única vigente em maio/16). O manual é de 2016 e não alcança nada depois disso — por isso a janela fecha ali, e não na data de hoje.",
+    "marcador": "ponta_materializada"
+  },
+  "marco_tabela_unica_csjt": {
+    "vigencia": "a partir de novembro/2005",
+    "fundamento": "Resolução nº 08/2005 do Conselho Superior da Justiça do Trabalho",
+    "literal": "A partir de novembro de 2005 (...) o Conselho Superior da Justiça do Trabalho aprovou a Tabela Única para Atualização e Conversão de Débitos Trabalhistas a viger a partir de novembro/05 (Resolução nº 08/2005) em substituição a todas as demais tabelas publicadas pelos Tribunais Regionais do Trabalho.",
+    "literal_e_parafrase": "Trecho com elipse '(...)' — recorte, não paráfrase. Texto contínuo na pagina_pdf 84.",
+    "pagina_pdf": 84,
+    "antes_literal": "Até outubro de 2005, o TRT/3ª Região publicava a tabela de correção monetária mensal",
+    "por_que_importa": "Esta cadeia apoia-se na Tabela Única, e a primeira versão não registrava o ato que a instituiu nem a data em que passou a valer."
+  },
+  "dominio_condicoes": {
+    "devedor": [
+      "fazenda-publica",
+      "nao-fazenda-publica"
+    ]
+  },
+  "defasagem_tabela_diaria": {
+    "item": "7.5.2",
+    "pagina_pdf": 87,
+    "regra_literal": "o módulo de atualização, disponível no site do CSJT, traz a variação da TR acumulada até o dia anterior à data final informada para  a atualização.",
+    "exemplo_literal": "se lançarmos a data inicial em 01/05/16 e a data final como 31/05/16, encontraremos o índice de 1,001459947, referente à variação da TR entre 01/05/16 a 30/05/16.",
+    "consequencia_literal": "Para conhecermos a TR entre 01/05/16 a 31/05/16, que corresponde ao índice cheio para maio/16, constante na tabela única do mesmo mês, teremos que lançar como data final 01/06/16.",
+    "aplicacao": "data-final-exclusiva — informar D+1 para obter o índice até D",
+    "por_que_importa": "É defasagem de UM DIA, silenciosa. Quem informa 31/05 pensando em maio cheio recebe a TR até 30/05. O manual dá a regra e o contra-exemplo na mesma página.",
+    "distincao": "Não confundir com a defasagem da Súmula 381, que é de UM MÊS e vale para a tabela mensal. São duas defasagens distintas, de granularidades distintas, e ambas incidem."
+  },
+  "pro_ratizacao_diaria": {
+    "item": "7.5.2",
+    "pagina_pdf": 87,
+    "regra_literal": "A tabela de índices diários resulta da decomposição do índice mensal da TR, pro-ratizada pelos dias úteis do mês.",
+    "observacao": "Por DIAS ÚTEIS, não por dias corridos — diverge do mês comercial de 30 dias usado nos juros. Correção e juros usam réguas diárias diferentes no mesmo manual."
+  }
+}

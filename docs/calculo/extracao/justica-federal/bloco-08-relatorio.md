@@ -19,7 +19,7 @@ Nenhuma skill escrita.
 | Cruzamento 4.7 × TRT-3 | **Feito** — e rendeu quatro divergências. Ver § 3 |
 | Verificação de notas × linhas | **Feita** — 12 atritos, 3 contradições diretas |
 | Cobertura dos capítulos 1 a 5 | **Integral** — inclusive o cap. 3 e os itens 2.5–2.9 e 4.5.4–4.6.6, que a primeira redação omitiu |
-| `valida_cobertura` sobre as cadeias | **Rodado** — R2: 0, R1: 15. Ver § 5 |
+| `valida_cobertura` sobre as cadeias | **Rodado** — R1: 15 à época; **R1 = 10** com a contagem corrigida no bloco 9. Ver § 5 |
 
 **Fase 4: não se aplica.** É a única fonte do corpus cuja edição está vigente.
 
@@ -152,11 +152,22 @@ correção monetária indicados no item 2.3.1.2 **para o Imposto de Renda**" —
 
 ## 5. R1 e R2 — o bloco que mais os exercita
 
-`scripts/calculo/valida_cadeias_cjf.py`, sobre as sete cadeias:
+`scripts/calculo/valida_cadeias.py` (à época `valida_cadeias_cjf.py`), sobre as sete cadeias:
 
 ```
 7 cadeias | R1: 15 violações | R2: 0 violações
 ```
+
+> **Atualizado no bloco 9.** O runner foi absorvido pelo validador: a lógica de tronco-e-ramo
+> vive hoje em `valida_cobertura.py`, e `valida_cadeias_cjf.py` virou
+> `scripts/calculo/valida_cadeias.py`. Com a contagem corrigida — colisão tronco × tronco é
+> um fato só, não um por ramo — **as sete cadeias do CJF somam R1 = 10**, distribuídas em
+> jan./1989 (5), mar./1990 (4) e jan./1996 (1). As quinze abaixo contavam a mesma colisão
+> uma vez por universo de condição. A leitura jurídica de cada uma não mudou.
+>
+> Corrige-se também uma afirmação: R2 = 0 vale **sob o filtro de componente próprio** que
+> `valida_cadeias.py` aplica. Sem ele são 16 violações, todas nascidas do `engloba` da Selic.
+> Ver `bloco-09-relatorio.md` § 2 e § 3.
 
 ### 5.1 Por que foi preciso um runner próprio
 
