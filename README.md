@@ -81,9 +81,16 @@ Fase 2 em curso.
 | 3 | Verbas trabalhistas, itens 6.1 a 6.6, p. 18–55 | `docs/calculo/extracao/trabalhista/bloco-03-relatorio.md` |
 | 4 | Verbas trabalhistas, itens 6.7 a 6.15, p. 55–82 | `docs/calculo/extracao/trabalhista/bloco-04-relatorio.md` |
 | 5 | Parâmetros negociáveis e camada de norma coletiva | `docs/calculo/extracao/bloco-05-relatorio.md` |
+| 6 | Presets de regime temporal | `docs/calculo/extracao/bloco-06-relatorio.md` |
 
 O **capítulo 6 do Manual TRT-3 está integralmente extraído**. Demais blocos não iniciados.
 Nenhuma skill escrita.
+
+O **bloco 6** acrescentou a camada que decide *qual regra* vale em cada competência,
+distinta da que decide *quanto vale* cada parâmetro: 26 regimes e **catorze eixos de
+corte distintos** — e apenas dois deles são de competência ou fato. Cinco regimes
+ficaram inaplicáveis porque o corpus dá a data de corte sem dizer qual data governa.
+Ver `docs/calculo/presets-regime.md` e `docs/calculo/pendencias.md` § 19.
 
 O bloco 5 está **completo em cobertura e provisório em classificação**: os 32 parâmetros
 negociáveis estão consolidados e a fixture do ACT Gasmig é real, mas **27 dos 30 incisos do

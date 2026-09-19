@@ -94,3 +94,30 @@ Dois artefatos da camada de norma coletiva, do bloco 5. Ver
 
 Nenhuma tabela da família período → indexador ainda: essas vêm do capítulo 7, que é outro
 bloco e passa obrigatoriamente pela Fase 4.
+
+---
+
+## Camada de regime temporal (bloco 6)
+
+`regimes-temporais-catalogo.json` e `camada-regime-temporal-schema.json` são de uma
+**terceira família**, que não segue o schema de segmentos acima.
+
+Enquanto as tabelas normativas dizem **como se atualiza** um valor e a camada de
+norma coletiva diz **quanto vale** um parâmetro, esta diz **qual regra de apuração**
+vale na competência — e é avaliada **antes** das outras duas (R22).
+
+**26 regimes, catorze eixos de corte distintos.** O eixo não é o mesmo entre
+regimes: a OJ 394 corta pela data da hora extra trabalhada; a multa do art. 467,
+pela data da sentença; a prescrição intercorrente, pela data da determinação
+judicial. Dos catorze, apenas dois são de competência ou fato; os outros doze são
+processuais, documentais ou contratuais, e o **conteúdo do título** comparece tanto
+quanto a competência.
+
+O campo `eixo_origem` tem quatro estados: **declarado** (13), **inferido** (5, o
+corpus sustenta o eixo para uma pergunta vizinha), **herdado** (3) e
+**não declarado** (5, inaplicáveis). Quatro regimes estão **sem default** porque o
+corpus manda não resolver. Em ambos os casos o resolvedor devolve
+`calculavel: false` com o motivo, em vez de um número plausível.
+
+Leitura humana em `../presets-regime.md`.
+

@@ -1,0 +1,125 @@
+{
+  "id": "camada.regime-temporal.schema",
+  "versao_schema": "1.1",
+  "bloco": 6,
+  "descricao": "Contrato da camada que decide QUAL REGRA se aplica a cada competência.",
+  "catalogo": "regimes-temporais-catalogo.json",
+  "validador": "scripts/calculo/valida_regimes.py",
+  "a_distincao": {
+    "regime_temporal": {
+      "pergunta": "Qual regra vale nesta competência?",
+      "natureza": "Escolha JURÍDICA do usuário, ou cadeia determinada pela data. NÃO é negociável por sindicato.",
+      "chave": "(regime, fatos do caso) — e os fatos variam por eixo",
+      "quando_e_avaliado": "ANTES da resolução de parâmetros (R22)"
+    },
+    "parametro_negociavel": {
+      "pergunta": "Quanto vale esta constante?",
+      "natureza": "Resolvido por instrumento coletivo, título ou default legal",
+      "chave": "(parametro, categoria, competencia)",
+      "quando_e_avaliado": "DEPOIS, e só se o regime permitir"
+    },
+    "por_que_separar": "O regime decide se o parâmetro é SEQUER CONSULTADO. Um contrato de 2015 sob a corrente ultrativa nunca consulta a redação nova do art. 71, § 4º — e, portanto, nunca consulta os parâmetros que só existem sob ela. Misturar as camadas faria o motor resolver parâmetros que não se aplicam e registrar consultas que não houve."
+  },
+  "registro_do_regime": {
+    "id": "pr.<slug> — obrigatório, estável",
+    "nome": "descrição humana",
+    "natureza": {
+      "cadeia-temporal": "A DATA seleciona a variante. Ninguém escolhe. Origem da resolução: 'determinada-pela-data'.",
+      "divergencia-interpretativa": "O USUÁRIO escolhe. Exige default declarado OU sem_default com justificativa."
+    },
+    "eixo": "qual data ou estado governa — ver eixos",
+    "eixo_declarado": "DERIVADO de eixo_origem. Não cadastrar.",
+    "fonte_do_eixo": "a citação literal que sustenta o eixo, ou a declaração de que ela não existe",
+    "corte": "a data de corte, na granularidade em que o corpus a dá",
+    "variantes": "lista; cada uma com id, fundamento (obrigatório), fonte, vigencia e/ou condicao, efeito",
+    "default": "id de variante; exige default_justificativa",
+    "sem_default": "true quando o corpus manda NÃO RESOLVER; exige por_que_sem_default",
+    "herda_de": "id do regime de que o eixo é herdado; exige eixo = 'herdado'",
+    "eixos_componentes": "quando eixo = 'composto'; ao menos dois",
+    "afeta_parametros": "ids pn.* alcançados, ou ['TODOS']",
+    "afeta_verbas": "verbas alcançadas",
+    "escopo": "apuracao | encargos | liquidacao-execucao",
+    "bloqueado": "true quando falta a série ou o dado que torna o regime aplicável; exige por_que_bloqueado",
+    "eixo_origem": {
+      "por_que_nao_um_booleano": "A primeira versão tinha eixo_declarado, booleano. A validação adversarial mostrou que ele forçava a escolha entre mentir e bloquear: regimes em que o corpus sustenta o eixo para uma pergunta VIZINHA apareciam como DECLARADOS sem sê-lo. Apresentar inferência como declaração é o erro que o projeto existe para não cometer.",
+      "declarado": "O corpus diz qual data governa a SELEÇÃO DA VARIANTE. 13 regimes.",
+      "inferido": "O corpus sustenta o eixo para pergunta vizinha — o piso salarial, a tabela do seguro-desemprego, o regime monetário — mas não declara a regra de seleção. Exige justificativa_da_inferencia. Resolve, e a resolução marca eixo_inferido: true. 5 regimes.",
+      "herdado": "O eixo é DELEGADO ao regime-pai. 3 regimes.",
+      "nao-declarado": "Nada. Inaplicável. 5 regimes.",
+      "eixo_declarado": "Continua existindo como propriedade DERIVADA: eixo_origem == 'declarado'."
+    },
+    "justificativa_da_inferencia": "Obrigatório quando eixo_origem = 'inferido'. Diz por que a inferência é razoável e reconhece que é inferência.",
+    "lacuna_de_data": "Quando o corpus dá a norma mas não a data ao dia. A fronteira fica grossa de propósito, e fatos que caem no vão não resolvem."
+  },
+  "eixos": {
+    "AVISO_CENTRAL": "O eixo de corte NÃO É O MESMO entre regimes. A OJ 394 corta pela data da hora extra trabalhada; a prescrição intercorrente, pela data da determinação judicial; a multa do art. 467, pela data da sentença. Modelar como se fosse um só eixo é erro — e é um erro silencioso, porque o resultado sai plausível. Dos catorze eixos, apenas DOIS são de competência ou fato.",
+    "declarados": [
+      "competencia-do-fato",
+      "data-de-admissao",
+      "conteudo-do-titulo",
+      "data-da-sentenca",
+      "data-da-dispensa",
+      "inicio-do-aviso",
+      "ciencia-da-lesao",
+      "determinacao-judicial-na-execucao",
+      "estado-processual",
+      "decisao-de-merito-no-processo",
+      "fato-gerador",
+      "data-do-calculo",
+      "efetivo-pagamento",
+      "data-base-da-categoria"
+    ],
+    "especiais": {
+      "meta": "O eixo é o próprio objeto da escolha. Só pr.intertemporal.",
+      "herdado": "Sem eixo próprio; usa o eixo efetivo do regime-pai.",
+      "composto": "Mais de um eixo simultâneo; não se resolve por data.",
+      "NAO-DECLARADO": "O corpus não diz qual data governa. Inaplicável."
+    },
+    "resolviveis_por_data": "Dos catorze declarados, dez leem uma data dos Fatos. Os outros quatro (conteudo-do-titulo, estado-processual, decisao-de-merito-no-processo, data-base-da-categoria) dependem de condição documental ou processual e caem no default com marca. Dois dos catorze não são eixo PRIMÁRIO de regime algum: efetivo-pagamento governa a aritmética da conversão URV, e data-base-da-categoria só comparece como componente."
+  },
+  "granularidade": {
+    "problema": "O corpus dá cortes ao DIA (11/11/2017, 20/03/2023, 05/09/2001) e o motor indexa por COMPETÊNCIA MENSAL. Novembro de 2017 fica dos dois lados do corte.",
+    "solucao": "A classe Data preserva a granularidade em vez de normalizá-la. Uma competência que CONTÉM o corte devolve calculavel: false com motivo 'competencia-atravessa-o-corte' e pede precisão de dia.",
+    "por_que_nao_arredondar": "Qualquer convenção — o mês inteiro entra, o mês inteiro sai — inventa metade de um mês de cálculo e não deixa rastro. A recusa é visível; a convenção, não.",
+    "origem_do_ponto": "bloco-01-tabelas.md já registrava o mesmo fenômeno nas tabelas de jun/99, jun/00 e jun/11, que mudam no meio do mês."
+  },
+  "resolucao": {
+    "ordem": [
+      "1. Regime bloqueado? → calculavel: false, motivo regime-bloqueado-por-falta-de-serie",
+      "2. Resolver o EIXO. Se herdado, resolver antes o regime-pai; se o pai não resolve, este também não.",
+      "3. Eixo NAO-DECLARADO? → calculavel: false",
+      "4. Escolha explícita do usuário? → aplica, e registra divergência se diferir do default (R21)",
+      "5. sem_default e sem escolha? → calculavel: false (R20-EXCECAO)",
+      "6. Cadeia temporal: ler a data do eixo nos Fatos; se atravessar o corte, recusar; senão, a data seleciona",
+      "7. Divergência sem escolha → default, com marca (R20)"
+    ],
+    "por_que_o_eixo_vem_primeiro": "Um regime cujo eixo não se resolve não tem como ser escolhido nem datado. Inverter a ordem produziria uma variante escolhida sobre um eixo inexistente."
+  },
+  "invariantes": {
+    "R19": "Todo cálculo grava qual preset de regime foi aplicado a CADA COMPETÊNCIA. Não basta gravar a escolha uma vez por processo: sob tempus regit actum a mesma conta usa regimes diferentes em meses diferentes. Deriva de R13 (reprodutibilidade).",
+    "R20": "Regime sem escolha explícita usa o default e MARCA a conta com origem: 'default'. A marca é o que permite a alguém revisar o que ninguém decidiu.",
+    "R20-EXCECAO": "Regime com sem_default NÃO tem default. Sem escolha, calculavel: false. São QUATRO: pr.intertemporal, pr.tema1046-validade-clausula, pr.he-adicional-cf88 e pr.sumula17-salario-profissional.",
+    "R21": "Divergência entre o preset escolhido e o default fica registrada COM JUSTIFICATIVA, do mesmo modo que a R8 trata o título. Escolher contra o default sem justificar é REJEITADO — ErroDeDados, não aviso.",
+    "R22": "Presets de regime são avaliados ANTES da resolução de parâmetros. parametro_consultavel() levanta RegimesNaoAvaliados se chamado sem uma AvaliacaoDeRegimes. É impedimento na composição, não detecção no resultado."
+  },
+  "relacao_com_as_invariantes_anteriores": {
+    "R8": "Precedência: título > escolha do usuário > default. A R21 é a mesma disciplina aplicada a regimes. E o corpus mostra que o título não é exceção rara: contado pela mesma régua que a competência — primários, componentes e alternativos —, o conteúdo do título comparece tanto quanto ela.",
+    "R13": "Reprodutibilidade — 'toda conta grava o preset aplicado'. A R19 especializa isso para regimes e acrescenta a granularidade: por competência.",
+    "R16": "Precedência da camada de norma coletiva. Independente desta: R16 ordena fontes de VALOR; R19–R22 ordenam a avaliação de REGRAS.",
+    "R1": "pr.fgts-indice-jam toca a R1 diretamente: os índices JAM já computam juros de 3% ao ano, e aplicar juros por fora sobre valor corrigido pelo JAM conta juros duas vezes."
+  },
+  "nao_confundir_com_os_presets_de_atualizacao": {
+    "familia_existente": "01-plano-extracao.md § 'Catálogo de critérios — presets': TRAB-ADC58-LEI14905, TRAB-ADC58-SEM-TRD, TRAB-FAZENDA, TRAB-TITULO, CIVEL-*, TRIB-FED-*.",
+    "o_que_respondem": "COMO SE ATUALIZA um valor já apurado — cadeias de correção monetária e juros.",
+    "o_que_esta_camada_responde": "QUAL REGRA DE APURAÇÃO vale na competência.",
+    "unico_cruzamento": "TRAB-INTERTEMP-TEMPUS e TRAB-INTERTEMP-ULTRATIVO, nomeados em 02-base-normativa-verbas.md § 1, pertencem a ESTA família. Eram os dois únicos presets do repositório sem catálogo — é a lacuna que o bloco 6 fecha."
+  },
+  "o_que_esta_camada_nao_faz": [
+    "Não resolve divergência jurisprudencial — ambas as correntes viram variante com fundamento.",
+    "Não supõe eixo. Onde o corpus não declara qual data governa, o regime é inaplicável e diz por quê.",
+    "Não inventa default onde o corpus manda não resolver.",
+    "Não escolhe um lado quando a competência atravessa o corte.",
+    "Não decide mérito. A validade de uma cláusula, a nulidade de um ajuste, a ocorrência de prescrição — tudo isso é do juízo. A camada registra o regime aplicado e a divergência.",
+    "Não inventa data ao dia. Onde o corpus dá só a lei ou só o mês, a fronteira fica grossa e fatos que caem no vão não resolvem — é o caso da Lei 12.740/2012 em pr.periculosidade-eletricitarios."
+  ]
+}

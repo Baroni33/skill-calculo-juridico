@@ -1,0 +1,224 @@
+{
+  "id": "fixture.regimes.casos",
+  "natureza": "SINTÉTICO — casos construídos para exercitar os eixos de corte",
+  "aviso": [
+    "Nenhum destes contratos existe. As datas foram escolhidas para cair de cada lado",
+    "dos cortes que o corpus declara, e para produzir o caso em que a competência",
+    "mensal ATRAVESSA um corte diário.",
+    "Os FUNDAMENTOS e as DATAS DE CORTE são reais e vêm do corpus; os fatos do caso,",
+    "não. Não usar como fonte normativa.",
+    "O ACT Gasmig tem contratos anteriores a 11/11/2017 gerando passivo — é o que",
+    "torna o caso 1 o cenário real do cliente, não um exercício."
+  ],
+  "catalogo": "docs/calculo/tabelas-normativas/regimes-temporais-catalogo.json",
+
+  "contratos": {
+    "antigo": {
+      "descricao": "Admitido em 2015, atravessa a Reforma e o Tema 9. É o perfil que a base descreve para a Gasmig.",
+      "admissao": "2015-03-02"
+    },
+    "novo": {
+      "descricao": "Admitido depois da Reforma. Sob qualquer corrente intertemporal, só conhece a regra nova.",
+      "admissao": "2019-06-01"
+    },
+    "eletricitario-antigo": {
+      "descricao": "Admitido antes da Lei 12.740/2012 — aciona a Súmula 191, II.",
+      "admissao": "2010-05-17"
+    }
+  },
+
+  "casos": [
+    {
+      "id": "c1.intertemporal-sem-escolha",
+      "titulo": "Contrato de 2015, competência de 2024, NENHUMA escolha intertemporal",
+      "o_que_prova": "R20-EXCECAO. O corpus manda não resolver; sem escolha, não há default e o regime dependente não calcula. O silêncio vira bloqueio visível, não um número plausível.",
+      "contrato": "antigo",
+      "competencia": "2024-05",
+      "escolhas": {},
+      "espera": {
+        "pr.intertemporal": {"calculavel": false, "motivo": "sem-default-e-sem-escolha"},
+        "pr.intrajornada-71-4": {"calculavel": false, "motivo": "sem-default-e-sem-escolha"}
+      }
+    },
+    {
+      "id": "c2.tempus-antes-do-corte",
+      "titulo": "Contrato de 2015, competência de 2016, corrente tempus regit actum",
+      "o_que_prova": "Sob tempus, o eixo é a competência do fato: 2016 é anterior a 11/11/2017 e usa a redação anterior.",
+      "contrato": "antigo",
+      "competencia": "2016-08",
+      "escolhas": {"pr.intertemporal": "tempus-regit-actum"},
+      "espera": {
+        "pr.intrajornada-71-4": {
+          "calculavel": true, "variante": "redacao-anterior",
+          "eixo_efetivo": "competencia-do-fato",
+          "efeito": {"extensao": "integral", "natureza": "salarial", "tem_reflexos": true}
+        }
+      }
+    },
+    {
+      "id": "c3.tempus-depois-do-corte",
+      "titulo": "MESMO contrato de 2015, competência de 2024, corrente tempus",
+      "o_que_prova": "Uma única conta, dois regimes. É a razão de a R19 exigir registro POR COMPETÊNCIA, e não uma vez por processo.",
+      "contrato": "antigo",
+      "competencia": "2024-05",
+      "escolhas": {"pr.intertemporal": "tempus-regit-actum"},
+      "espera": {
+        "pr.intrajornada-71-4": {
+          "calculavel": true, "variante": "redacao-reforma",
+          "eixo_efetivo": "competencia-do-fato",
+          "efeito": {"extensao": "periodo-suprimido", "natureza": "indenizatoria", "tem_reflexos": false}
+        }
+      }
+    },
+    {
+      "id": "c4.ultratividade-nunca-consulta-a-regra-nova",
+      "titulo": "MESMO contrato de 2015, MESMA competência de 2024, corrente ultrativa",
+      "o_que_prova": "A interação que o enunciado do bloco pediu para modelar explicitamente. Sob ultratividade o eixo vira a data de ADMISSÃO: 2015 é anterior ao corte, e a competência de 2024 resolve pela redação ANTERIOR. A regra nova nunca é consultada para este contrato.",
+      "contrato": "antigo",
+      "competencia": "2024-05",
+      "escolhas": {"pr.intertemporal": "ultratividade"},
+      "espera": {
+        "pr.intrajornada-71-4": {
+          "calculavel": true, "variante": "redacao-anterior",
+          "eixo_efetivo": "data-de-admissao",
+          "efeito": {"extensao": "integral", "natureza": "salarial", "tem_reflexos": true}
+        },
+        "pr.in-itinere": {
+          "calculavel": true, "variante": "devidas",
+          "eixo_efetivo": "data-de-admissao",
+          "efeito": {"verba_existe": true}
+        }
+      }
+    },
+    {
+      "id": "c5.contrato-novo-sob-ultratividade",
+      "titulo": "Contrato de 2019, competência de 2016 (impossível no mundo, útil no teste)",
+      "o_que_prova": "Sob ultratividade o contrato novo aplica a regra nova em qualquer competência — inclusive numa anterior à admissão, que o motor não deve inventar. A competência não governa; a admissão, sim.",
+      "contrato": "novo",
+      "competencia": "2016-08",
+      "escolhas": {"pr.intertemporal": "ultratividade"},
+      "espera": {
+        "pr.intrajornada-71-4": {
+          "calculavel": true, "variante": "redacao-reforma",
+          "eixo_efetivo": "data-de-admissao"
+        }
+      }
+    },
+    {
+      "id": "c6.competencia-atravessa-o-corte",
+      "titulo": "Competência 2017-11 sob tempus regit actum",
+      "o_que_prova": "O corte é 11/11/2017 e a competência é mensal. Novembro de 2017 fica dos DOIS lados. O resolvedor recusa em vez de escolher — e diz o que falta: precisão de dia.",
+      "contrato": "antigo",
+      "competencia": "2017-11",
+      "escolhas": {"pr.intertemporal": "tempus-regit-actum"},
+      "espera": {
+        "pr.intrajornada-71-4": {"calculavel": false, "motivo": "competencia-atravessa-o-corte"}
+      }
+    },
+    {
+      "id": "c7.he-antes-do-tema-9",
+      "titulo": "Hora extra trabalhada em fevereiro de 2023",
+      "o_que_prova": "OJ 394 na redação de 2010: o RSR majorado NÃO repercute em férias, 13º, aviso e FGTS.",
+      "contrato": "antigo",
+      "competencia": "2023-02",
+      "escolhas": {},
+      "espera": {
+        "pr.oj394-reflexo-rsr": {
+          "calculavel": true, "variante": "sem-repercussao",
+          "eixo_efetivo": "competencia-do-fato",
+          "origem": "determinada-pela-data",
+          "efeito": {"repercute_em_ferias_13_aviso_fgts": false}
+        }
+      }
+    },
+    {
+      "id": "c8.he-depois-do-tema-9",
+      "titulo": "Hora extra trabalhada em abril de 2023",
+      "o_que_prova": "Tema Repetitivo 9: o RSR majorado REPERCUTE. Note que NÃO há escolha do usuário — é cadeia temporal, a data decide, e ninguém pode escolher o contrário.",
+      "contrato": "antigo",
+      "competencia": "2023-04",
+      "escolhas": {},
+      "espera": {
+        "pr.oj394-reflexo-rsr": {
+          "calculavel": true, "variante": "com-repercussao",
+          "origem": "determinada-pela-data",
+          "efeito": {"repercute_em_ferias_13_aviso_fgts": true}
+        }
+      }
+    },
+    {
+      "id": "c9.he-atravessa-o-tema-9",
+      "titulo": "Hora extra na competência de março de 2023",
+      "o_que_prova": "O corte do Tema 9 é 20/03/2023, dia certo. Março de 2023 atravessa. Mesmo mecanismo do caso 6, corte diferente — o que mostra que o problema é da granularidade, não daquele corte específico.",
+      "contrato": "antigo",
+      "competencia": "2023-03",
+      "escolhas": {},
+      "espera": {
+        "pr.oj394-reflexo-rsr": {"calculavel": false, "motivo": "competencia-atravessa-o-corte"}
+      }
+    },
+    {
+      "id": "c10.eixos-distintos-mesma-competencia",
+      "titulo": "Competência 2015-06: quatro regimes, quatro eixos, quatro datas diferentes",
+      "o_que_prova": "O CORAÇÃO DO BLOCO. A mesma competência resolve de formas diferentes porque cada regime lê uma data diferente. Modelar um eixo só produziria quatro respostas erradas de uma vez.",
+      "contrato": "antigo",
+      "fatos_extras": {
+        "dispensa": "2015-01-20",
+        "sentenca": "2001-06-30",
+        "inicio_do_aviso": "2011-09-01",
+        "ciencia_da_lesao": "2014-11-13"
+      },
+      "competencia": "2015-06",
+      "escolhas": {},
+      "espera": {
+        "pr.seguro-desemprego-regime": {
+          "calculavel": true, "variante": "regime-simples",
+          "eixo_efetivo": "data-da-dispensa", "data_aplicada": "2015-01-20",
+          "comentario": "A DISPENSA é de janeiro/2015, anterior a 28/02/2015 — regime simples, embora a competência seja junho."
+        },
+        "pr.multa467-base": {
+          "calculavel": true, "variante": "dobro-dos-salarios",
+          "eixo_efetivo": "data-da-sentenca", "data_aplicada": "2001-06-30",
+          "comentario": "A SENTENÇA é anterior a 05/09/2001 — dobro dos salários, embora a competência seja de 2015."
+        },
+        "pr.aviso-proporcional": {
+          "calculavel": true, "variante": "trinta-dias",
+          "eixo_efetivo": "inicio-do-aviso", "data_aplicada": "2011-09-01",
+          "comentario": "O AVISO começou em 01/09/2011, antes de 13/10/2011 — a lei não retroage para alcançar aviso já iniciado."
+        },
+        "pr.fgts-prescricao": {
+          "calculavel": true, "variante": "quinquenal",
+          "eixo_efetivo": "ciencia-da-lesao", "data_aplicada": "2014-11-13",
+          "comentario": "A CIÊNCIA DA LESÃO é exatamente 13/11/2014 — a borda é inclusiva, quinquenal."
+        }
+      }
+    },
+    {
+      "id": "c11.eletricitario-eixo-admissao",
+      "titulo": "Eletricitário admitido em 2010, competência de 2024",
+      "o_que_prova": "Segundo e último eixo de admissão do corpus, fora da corrente ultrativa. A competência é de 2024 e o regime é o antigo, porque quem manda é a data de contratação.",
+      "contrato": "eletricitario-antigo",
+      "competencia": "2024-05",
+      "escolhas": {},
+      "espera": {
+        "pr.periculosidade-eletricitarios": {
+          "calculavel": true, "variante": "totalidade-das-parcelas",
+          "eixo_efetivo": "data-de-admissao"
+        }
+      }
+    },
+    {
+      "id": "c12.eixo-nao-declarado",
+      "titulo": "Competência de 2016 e o Tema 1046",
+      "o_que_prova": "O corpus dá a data (02/06/2022) e não diz qual data governa. O resolvedor devolve calculavel: false com o motivo, em vez de presumir a competência.",
+      "contrato": "antigo",
+      "competencia": "2016-08",
+      "escolhas": {},
+      "espera": {
+        "pr.tema1046-validade-clausula": {
+          "calculavel": false, "motivo": "eixo-nao-declarado-no-corpus"
+        }
+      }
+    }
+  ]
+}

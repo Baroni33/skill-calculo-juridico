@@ -321,7 +321,7 @@ cada dispositivo não foi verificado**.
 **A pendência original desta seção está FECHADA.** `docs/calculo/02-base-normativa-verbas.md`
 chegou ao repositório, foi lido integralmente, e desbloqueou as tarefas 2 e 4 do bloco 5: o
 inventário está consolidado em **32 parâmetros** e a fixture do ACT Gasmig é real. O `skip`
-do caso 6 saiu da suíte — 123 testes, nenhum pulado.
+do caso 6 saiu da suíte. Hoje são 199 testes no repositório, nenhum pulado.
 
 O que a chegada do arquivo deixou aberto:
 
@@ -398,6 +398,14 @@ preset"**:
 |---|---|---|
 | `TRAB-INTERTEMP-TEMPUS` | `tempus regit actum` | corte em 11/11/2017; o contrato se divide — regra antiga até 10/11, nova a partir de 11/11 |
 | `TRAB-INTERTEMP-ULTRATIVO` | ultratividade da lei do contrato | regra da data de admissão por toda a duração do contrato |
+
+> **FECHADA pelo bloco 6.** A camada de presets de regime temporal existe:
+> `docs/calculo/presets-regime.md`, `tabelas-normativas/regimes-temporais-catalogo.json`
+> e `scripts/calculo/valida_regimes.py`. Os dois presets são as variantes de
+> `pr.intertemporal`, cada uma com o **eixo efetivo** declarado — `tempus regit
+> actum` lê a competência; a ultratividade lê a data de admissão. O regime tem
+> `sem_default: true`, de modo que a ausência de escolha bloqueia o cálculo em vez
+> de produzir um número. Ver `pendencias.md` § 19 para o que o bloco 6 deixou aberto.
 
 **Isto não é parâmetro negociável e por isso não entrou em
 `camada-norma-coletiva-catalogo.json`.** Nenhum sindicato negocia qual corrente de direito
@@ -512,4 +520,77 @@ categoria inventado para esta extração.
 | 2 | **Mapa de categoria por sindicato** | É a chave de resolução. Enquanto faltar, `gasmig-sitramico` é rótulo desta extração (§ 15.2 d) |
 | 3 | **IP 10.5 (PCCR) e demais Instruções de Pessoal** referenciadas no ACT | Definem gratificações que integram base — provável origem da gratificação de sala de controle (§ 15.2 f) |
 | 4 | **Existência de empregados enquadrados como eletricitários** contratados antes da Lei 12.740/2012 | Aciona a variante do `pn.periculosidade.base` sustentada na Súmula 191, II (§ 7 da base). Sem saber se existem, a variante fica cadastrada e nunca usada |
+
+
+---
+
+## 19. Camada de regime temporal — lacunas do bloco 6
+
+**Status: aberta.** A camada existe (`presets-regime.md`, 26 regimes, catorze eixos
+de corte). O que falta é fundamento, não modelagem.
+
+### 19.1 Eixo de corte não declarado — a maior
+
+**Dezesseis marcas de Fase 4** — nove em `bloco-03-verbas.md` § 8, sete em
+`bloco-04-verbas2.md` § 12 — trazem a data de corte sem declarar qual data governa.
+(Uma exceção: a F6 do bloco 03, gorjetas, é da Lei 13.419/2017, não da 13.467.)
+
+Cinco regimes ficaram **inaplicáveis** por falta de eixo, e outros cinco resolvem
+com eixo **inferido** — o corpus sustenta o eixo para uma pergunta vizinha, não
+para a seleção da variante. Os cinco inaplicáveis:
+
+| Regime | Corte | O que falta |
+|---|---|---|
+| `pr.tema1046-validade-clausula` | 02/06/2022 | se cláusula anterior se julga pelo Tema 1046 ou pelos Temas 357/762 |
+| `pr.insalubridade-base-sumula228` | abril/2018 | se a cassação da Súmula 228 alcança competências pretéritas |
+| `pr.he-adicional-cf88` | 05/10/1988 | o eixo, **e** a disjunção 20% × 25% |
+| `pr.multa477-documentos` | 11/11/2017 | o eixo (presumível data da rescisão; o texto não diz) |
+| `pr.sumula17-salario-profissional` | 2003 | o eixo e o alcance da restauração |
+
+As marcas F de `bloco-03-verbas.md` § 8 e `bloco-04-verbas2.md` § 12 herdam o eixo
+de `pr.intertemporal`. **Todo o corte de 11/11/2017 está parado nesse único ponto
+de decisão jurídica.**
+
+Supor o eixo é a forma mais silenciosa de errar: o resultado sai plausível e a
+conta inteira fica no regime errado.
+
+### 19.2 Tema 1046 — governa os 32 parâmetros negociáveis
+
+`pr.tema1046-validade-clausula` tem `afeta_parametros: ["TODOS"]`. Ele decide se uma
+cláusula que limita direito **vale** — logo, governa a resolução do catálogo de
+parâmetros inteiro. Enquanto o eixo faltar, nenhum parâmetro é consultável sem que o
+bloqueio fique registrado. É a maior dependência entre as duas camadas.
+
+### 19.3 Prescrição quinquenal e bienal — ausente do corpus
+
+**Não há regra geral de prescrição trabalhista em lugar nenhum dos arquivos
+varridos.** O art. 7º, XXIX, da CF aparece só obliquamente: OJ 415 e o "período
+imprescrito", Súmula 206, Súmula 362 do FGTS, OJ 83. **Nenhum eixo de ajuizamento é
+declarado em ponto algum.**
+
+É desconfortável: o eixo mais usado na prática trabalhista — a data do ajuizamento,
+que fixa o marco quinquenal — é justamente o que o corpus não tem. Não foi suposto.
+
+### 19.4 Demais
+
+| # | Pendência | Efeito |
+|---|---|---|
+| a | Séries dos planos econômicos — IPC, URP, IRSM, FAS, FAZ, IPC-r, FRS | `pr.planos-economicos` está `bloqueado`: regime sem série. É a P19 do bloco 04 |
+| b | Contribuição sindical antes e depois da Reforma | Capítulo 12 do manual (p. 299–302), fora dos blocos 1–4. Regime real, não modelado |
+| c | Critério de arredondamento da conversão URV (P2 do bloco 02) | `pr.urv-conversao` resolve o regime, não a aritmética |
+| d | Sete dúvidas de concorrência não sustentada | `extracao/bloco-06-relatorio.md` § 6 — OJ 16 das Turmas, Memo. Circular 10/2011 × NT 184/12, Súmula 146/OJ 93, rol de feriados, Lei 8.923/94, três redações da Súmula 362, Tema Repetitivo 17 |
+
+### 19.5 A data que o corpus não tem
+
+`pr.periculosidade-eletricitarios` corta pela Lei 12.740/2012, e o corpus diz só
+isso — **sem dia e sem mês**. A data não foi suposta: o corte é `2012`, e admissão
+ocorrida em 2012 **não resolve**. Obter a data exata da lei fecha o vão.
+
+### 19.6 Um cuidado herdado do bloco 5
+
+O bloco 5 removeu a variante `salario-basico` de `pn.insalubridade.base`. Foi
+correto **como parâmetro** — não é mais opção negociável. Mas se a cassação da
+Súmula 228 não retroage, competências anteriores a abril/2018 podem segui-la, e
+então ela precisa voltar **como variante de regime**. É o que a § 19.1 impede
+decidir.
 
