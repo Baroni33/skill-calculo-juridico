@@ -204,20 +204,72 @@ com um calendário independente é trabalho da Fase 4. Até lá, não derivar di
 
 ---
 
-## 9. Método de conversão da URV — ausente do bloco de tabelas
+## 9. Método de conversão da URV
 
-**Status: aberta. Bloqueia o tratamento de parcelas entre jan/93 e jun/94.**
+**Status: parcialmente fechada no bloco 2. Resta o arredondamento.**
 
-O item 18.10 traz as cotações diárias da URV em CR$ e **nada mais**: sem procedimento,
-sem fundamento legal, sem nota. O escopo do bloco 1 pedia o método de conversão como
-regra semântica; ele não está ali, e não foi inferido.
+O item 18.10 (p. 453–455) traz as cotações diárias da URV em CR$ e nada mais. O método
+**não estava no capítulo de critérios matemáticos** (p. 9–17), como se supunha, mas no
+item 6.1, página 18:
 
-O critério — data-base da conversão, arredondamento, tratamento de dia não útil — deve
-vir do capítulo de critérios matemáticos (p. 9–17), que é outro bloco. Importa porque a
-URV é indexador nominal e a invariante R3 trata justamente da defasagem: aplicar a
-cotação do dia errado desloca o cálculo em um período.
+> "os salários dos recibos de março/94 a junho/94 estão expressos em URV, sendo necessária,
+> para o cálculo, a conversão para cruzeiros reais, multiplicando-se a expressão em URV
+> pelo valor nominal da URV **do dia do pagamento**."
 
+```
+valor_em_CR$ = valor_em_URV × URV(dia_do_pagamento)
+```
+
+**Fechado:** direção da operação e data-base.
+**Aberto:** critério de arredondamento, que o manual não declara.
+
+Não confundir com a conversão inversa, CR$ → URV, de março/1994 (MP 434/94 e Lei 8880/94),
+que se faz por divisão e média aritmética de quatro meses (p. 81).
+
+Detalhe em `extracao/trabalhista/bloco-02-criterios.md`, § 7.
 Registrado em `tabelas-normativas/trt3-18.10-urv-conversao.json`.
+
+---
+
+## 9-A. Critério de arredondamento: as duas fontes primárias divergem
+
+**Status: aberta. Bloqueia o núcleo aritmético de `calculo-judicial-core`.**
+
+O § 3 acima fixou truncamento a partir do Manual CJF, e isso continua certo **para a taxa
+legal**. O bloco 2 mostrou que o problema é maior: o Manual TRT-3 **arredonda**.
+
+| Operação (TRT-3, item 5.3, p. 17) | Exato | Publicado | Truncado |
+|---|---|---|---|
+| 25 / 60 | 0,41666… | **0,42** | 0,41 |
+| 10 / 60 | 0,16666… | **0,17** | 0,16 |
+| 5 × 4,285714 | 21,428570 | **21,43** | 21,42 |
+| 180,00 × 4,285714 | 771,428520 | **771,43** | 771,42 |
+
+Quatro exemplos, nenhum compatível com truncamento. Não é acidente de um caso.
+
+R12 exige "critério de truncamento definido e consistente por etapa". **Um critério global
+único contraria uma das duas fontes.** Decidir se o critério é atributo da jurisdição, do
+tipo de operação, ou de ambos — antes de escrever o núcleo aritmético.
+
+Detalhe em `extracao/trabalhista/bloco-02-relatorio.md`, § 4.
+
+---
+
+## 9-B. Regra do índice negativo é ambígua
+
+**Status: aberta. Interage com R5.**
+
+Manual TRT-3, item 5.3, p. 16:
+
+> "Se houver um Índice com sinal negativo em algum mês, basta dividir o total acumulado até
+> o referido mês pelo número índice que apresentou a variação negativa."
+
+A regra só produz redução se o número índice for construído com o **valor absoluto** do
+percentual (−0,23% → 1,0023, e dividir). Construído pela fórmula geral do próprio manual
+(`i = p/100 + 1`, −0,23% → 0,9977), **dividir aumentaria** o acumulado.
+
+O manual não diz qual construção usar e **não traz exemplo numérico com índice negativo**.
+Sem oráculo. Não foi inferido.
 
 ---
 

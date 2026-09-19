@@ -70,6 +70,11 @@ console, não corrupção do arquivo.
 
 Fases 0 e 1 fechadas (contrato de saída e triagem).
 
-Fase 2 em curso. Bloco 1 fechado: tabelas do Manual TRT-3, p. 373–471 — seis tabelas
-semânticas e vinte séries, relatório em
-`docs/calculo/extracao/trabalhista/bloco-01-tabelas.md`. Demais blocos não iniciados.
+Fase 2 em curso.
+
+| Bloco | Conteúdo | Relatório |
+|---|---|---|
+| 1 | Tabelas do Manual TRT-3, p. 373–471 | `docs/calculo/extracao/trabalhista/bloco-01-tabelas.md` |
+| 2 | Critérios e estrutura do cálculo, p. 9–17 | `docs/calculo/extracao/trabalhista/bloco-02-relatorio.md` |
+
+Demais blocos não iniciados. Nenhuma skill escrita.
