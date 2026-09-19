@@ -1191,3 +1191,27 @@ já extraídas no bloco 1 (itens 18.3 e 18.9).
 O capítulo **7 — Atualização monetária e juros de mora**, p. 83 em diante, é o próximo bloco
 e o que a triagem marca como **Fase 4 obrigatória**: materialmente superado pela ADC 58, pela
 EC 113/2021, pela Lei 14.905/2024 e pela EC 136/2025.
+
+
+---
+
+## Confirmações posteriores, pela base normativa (19/09/2026)
+
+**Nada abaixo altera a extração acima**, que permanece como o manual de 2016 a imprime. São
+marcas de confirmação ou correção trazidas por `docs/calculo/02-base-normativa-verbas.md`,
+posterior a este bloco. A regra do projeto manda não harmonizar — então aqui se registra, e
+não se reescreve.
+
+| Ponto deste bloco | O que a base diz | Estado |
+|---|---|---|
+| **F2** — intervalo intrajornada suprimido (6.10.1, p. 56) | A Lei 13.467/2017 fez **duas** alterações no art. 71, § 4º: a natureza passou de salarial a indenizatória, **e** a extensão passou do intervalo integral para apenas o período suprimido (§ 4 da base) | **CONFIRMADO.** Este bloco havia identificado as duas mudanças e as marcado como a conferir |
+| **6.11** — cumulação de insalubridade e periculosidade | Vedada. **TST, Tema Repetitivo 17**, IRR-239-55.2011.5.02.0319, julgado em **26/09/2019** (§ 6 da base) | **FECHADO.** O bloco 04 extraiu o silêncio do manual e registrou a pendência P15; a base a fecha |
+| **6.11** — base de cálculo da insalubridade | A **Rcl 6.275/STF foi CASSADA em abril de 2018**, definitivamente. A base volta a ser o salário mínimo (§ 5 da base) | **CORRIGIDO.** A leitura de que a SV 4 estaria "suspensa" não vale mais. Efeito direto em `pn.insalubridade.base`, cuja variante `salario-basico` foi removida do catálogo |
+| **6.11** — base da periculosidade | Salário-base, para inflamáveis (NR-16, Anexo 2). Exceção da **Súmula 191, II** para eletricitários contratados antes da Lei 12.740/2012 (§ 7 da base) | **CONFIRMADO**, com a exceção acrescentada |
+| **6.7** — horas in itinere | Revogadas pela Lei 13.467/2017; prefixação por norma coletiva é válida, e o TST assentou que não é direito absolutamente indisponível (§§ 2 e 3 da base) | **CONFIRMADO.** Virou `pn.in-itinere.prefixacao` |
+
+**Ressalva que vale para as cinco linhas:** qual regra se aplica a fatos anteriores a
+11/11/2017 depende da corrente de direito intertemporal, e **a base manda não resolver** —
+ver `pendencias.md` § 15.5. As confirmações acima são sobre o conteúdo da regra nova, não
+sobre a data a partir da qual ela alcança cada contrato.
+

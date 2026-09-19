@@ -67,8 +67,13 @@ Entram aqui porque representam **regra**, não valor — o catálogo guarda defa
 pisos, não cláusulas de instrumentos. As cláusulas ficam em `tests/fixtures/calculo/` e, no
 uso real, em dados do cliente.
 
-Inventário dos parâmetros em `../parametros-negociaveis.md`. Está **parcial**: faltam os 13
-parâmetros da seção 10 de `02-base-normativa-verbas.md`, arquivo ausente do repositório.
+Inventário dos parâmetros em `../parametros-negociaveis.md` — **32 parâmetros**, com os 13
+da § 10 de `02-base-normativa-verbas.md` já consolidados (v2.0).
+
+A classificação `apenas-elevacao` × `qualquer` ancora-se no **art. 611-B da CLT**, cujo texto
+integral não está no corpus: só os incisos VI, XVII e XVIII foram conferidos. Os parâmetros
+que nenhum deles alcança carregam `fundamento_611b: "nao-mapeado"` e
+`classificacao_provisoria: true` — 16 dos 32. Lista via `Catalogo.provisorios()`.
 
 ## Validação
 

@@ -85,5 +85,8 @@ Fase 2 em curso.
 O **capítulo 6 do Manual TRT-3 está integralmente extraído**. Demais blocos não iniciados.
 Nenhuma skill escrita.
 
-O bloco 5 saiu **parcial**: as tarefas 2 e 4 dependiam de `docs/calculo/02-base-normativa-verbas.md`,
-que não está no repositório. Ver `docs/calculo/extracao/bloco-05-relatorio.md` § 1.
+O bloco 5 está **completo em cobertura e provisório em classificação**: os 32 parâmetros
+negociáveis estão consolidados e a fixture do ACT Gasmig é real, mas **27 dos 30 incisos do
+art. 611-B da CLT não estão no corpus**, o que deixa 16 parâmetros com
+`classificacao_provisoria: true`. Ver `docs/calculo/extracao/bloco-05-relatorio.md` §§ 1-A e 7,
+e `docs/calculo/pendencias.md` § 15.

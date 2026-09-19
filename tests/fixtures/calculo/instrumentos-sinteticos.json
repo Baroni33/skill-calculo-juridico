@@ -6,7 +6,7 @@
     "cobrir os caminhos do algoritmo de resolução: vigência, faixa temporal interna, extensão",
     "de categoria, conflito entre instrumentos e cláusula abaixo do piso legal.",
     "NÃO usar como fonte normativa. NÃO confundir com o ACT Gasmig — ver",
-    "instrumentos-act-gasmig-parcial.json, que está bloqueado por falta do documento.",
+    "instrumentos-act-gasmig.json, que é real e parcial.",
     "alfa-producao sofre conflito Alfa×Gama entre 2025-05 e 2025-12; alfa-manutencao não."
   ],
   "schema": "docs/calculo/tabelas-normativas/camada-norma-coletiva-schema.json",

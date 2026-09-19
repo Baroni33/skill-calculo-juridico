@@ -4,16 +4,19 @@
   "titulo": "Camada de resolução de parâmetros negociáveis por norma coletiva",
   "jurisdicao": "justica-do-trabalho",
   "componente": "parametros-negociaveis",
-  "versao_schema": "1.0",
+  "versao_schema": "2.0",
   "fonte": {
     "documento": "derivado da varredura dos blocos 02, 03 e 04",
     "inventario": "docs/calculo/parametros-negociaveis.md",
     "catalogo": "camada-norma-coletiva-catalogo.json",
     "observacao": "Não é extração de PDF. É o contrato da camada que resolve os parâmetros identificados na varredura."
   },
-
   "chave_de_resolucao": {
-    "campos": ["parametro", "categoria", "competencia"],
+    "campos": [
+      "parametro",
+      "categoria",
+      "competencia"
+    ],
     "parametro": "id do catálogo, ex. pn.he.adicional",
     "categoria": "categoria profissional do EMPREGADO na competência — ver R17",
     "competencia": "YYYY-MM da parcela que se está calculando",
@@ -28,7 +31,6 @@
       "data_do_calculo": "a competência da parcela é que manda, não a data em que se calcula"
     }
   },
-
   "retorno": {
     "valor": "o valor resolvido, ou null quando não há default e não há instrumento",
     "forma": "percentual | monetario | inteiro | variante | tabela",
@@ -43,10 +45,15 @@
     "divergencias": "lista, quando níveis de precedência discordam — R16",
     "conflitos": "lista de instrumentos concorrentes — nunca resolvidos por heurística"
   },
-
   "instrumento": {
     "descricao": "Um acordo ou convenção coletiva, ou sentença normativa.",
-    "campos_obrigatorios": ["id", "tipo", "vigencia", "categorias_abrangidas", "clausulas"],
+    "campos_obrigatorios": [
+      "id",
+      "tipo",
+      "vigencia",
+      "categorias_abrangidas",
+      "clausulas"
+    ],
     "campos": {
       "id": "string estável, ex. act.gasmig.2025-2027",
       "tipo": "ACT | CCT | sentenca-normativa",
@@ -56,8 +63,12 @@
         "fim": "YYYY-MM ou null para vigência indeterminada"
       },
       "partes": {
-        "patronal": ["lista de entidades"],
-        "laboral": ["lista de sindicatos signatários"]
+        "patronal": [
+          "lista de entidades"
+        ],
+        "laboral": [
+          "lista de sindicatos signatários"
+        ]
       },
       "categorias_abrangidas": [
         "categorias cujo sindicato assinou o instrumento"
@@ -87,7 +98,6 @@
       "observacao": "o que ficou de fora, quando parcial"
     }
   },
-
   "algoritmo_de_resolucao": [
     "1. Se houver determinação no título judicial para o parâmetro, ela prevalece. origem = titulo-judicial. Se divergir dos demais níveis, registrar a divergência (R16) — não suprimir.",
     "2. Selecionar os instrumentos cuja vigencia contenha a competencia E que alcancem a categoria, direta ou por extensão.",
@@ -97,7 +107,6 @@
     "6. Mais de um candidato, de instrumentos distintos: cobertura = conflito. Listar todos. NÃO escolher por heurística — nem o mais recente, nem o mais favorável, nem o mais específico.",
     "7. Mais de um candidato dentro do MESMO instrumento, com vigencia_propria sobreposta: é defeito de cadastro do instrumento, não conflito normativo. Reportar como erro de dados."
   ],
-
   "invariantes": {
     "R14": {
       "enunciado": "Ausência de norma coletiva cadastrada NÃO é erro.",
@@ -126,7 +135,6 @@
       "piso_em_tabela": "Quando o parâmetro é tabela (ex. pn.aviso.proporcionalidade), a comparação é ponto a ponto: cada entrada negociada deve ser >= a legal correspondente."
     }
   },
-
   "modelagem_de_abrangencia": {
     "problema_1": "Um empregado pode ser alcançado por instrumentos de sindicatos distintos.",
     "solucao_1": "A resolução devolve TODOS os instrumentos aplicáveis à competência e à categoria. Havendo mais de um com cláusula para o mesmo parâmetro, é conflito reportado. A escolha é decisão jurídica, não de motor.",
@@ -141,11 +149,76 @@
     "problema_3": "Uma categoria pode ficar sem instrumento em parte do período contratual.",
     "solucao_3": "Resolução é por competência. Um contrato de 2019 a 2026 pode ter competências com cobertura e competências sem, e a memória de cálculo mostra isso mês a mês."
   },
-
   "nao_faz_parte_desta_camada": [
     "Séries de índices — manutenção separada, regra 4 de 01-plano-extracao.md",
     "Cadeias período → indexador — são tabelas normativas de outra família",
     "Decidir qual entre dois instrumentos conflitantes prevalece — é decisão jurídica",
     "Corrigir cláusula abaixo do piso legal — R18 manda rejeitar e reportar"
-  ]
+  ],
+  "parametros_derivados": {
+    "principio": "Todo parâmetro que decorra de outro entra como DERIVADO com a fórmula, nunca como valor cadastrável.",
+    "por_que": [
+      "Aceitar o derivado avulso permite cadastrar um par inconsistente — jornada de 44h com divisor 200 — que nenhuma validação posterior detecta.",
+      "A fórmula explícita torna a derivação auditável: quem lê a memória de cálculo vê de onde o número veio."
+    ],
+    "campos": {
+      "alteracao": "'derivado' quando o parâmetro NUNCA é negociado diretamente",
+      "derivado_de": "lista dos parâmetros de entrada",
+      "derivacao.formula": "expressão, obrigatória",
+      "derivacao.exemplo": "uma instância resolvida, para conferência",
+      "derivacao.sobrescrevivel": "true quando um instrumento PODE fixar o valor diretamente, dispensando a derivação"
+    },
+    "duas_especies": {
+      "derivado_puro": {
+        "exemplo": "pn.jornada.divisor",
+        "regra": "alteracao = 'derivado', sobrescrevivel = false. Cláusula que o fixe diretamente é defeito de cadastro.",
+        "formula": "jornada_diaria × 30 (CLT art. 64); ou (jornada_semanal / dias_úteis) × 30 (Súmula 431)"
+      },
+      "derivado_sobrescrevivel": {
+        "exemplo": "pn.he.adicional-noturna",
+        "regra": "o default vem da fórmula, mas o instrumento pode cravar um valor. Quando crava, o valor vence a derivação e a proveniência aponta a cláusula.",
+        "formula": "((1 + noturno/100) × (1 + extraordinária/100) − 1) × 100 = 80 no caso legal",
+        "caso_real": "O ACT Gasmig fixa 'percentual direto sobre hora diurna' em vez de compor os dois — 02-base-normativa-verbas.md § 10."
+      }
+    },
+    "ordem_de_avaliacao": "Derivados resolvem-se DEPOIS de suas entradas. Uma cláusula que altere pn.jornada.semanal move pn.jornada.divisor sem que exista cláusula sobre o divisor."
+  },
+  "classificacao_611b": {
+    "ancora": "Art. 611-B da CLT — rol taxativo do que não pode ser objeto de convenção ou acordo coletivo, na forma de supressão ou redução.",
+    "campo": "fundamento_611b, no catálogo",
+    "valores": {
+      "inciso-VI": "remuneração do trabalho noturno superior à do diurno → apenas-elevacao",
+      "inciso-XVII": "normas de saúde, higiene e segurança do trabalho → apenas-elevacao",
+      "inciso-XVIII": "adicional para atividades penosas, insalubres ou perigosas → apenas-elevacao",
+      "paragrafo-unico": "duração do trabalho e intervalos, que expressamente NÃO são normas de saúde, higiene e segurança para este fim → qualquer",
+      "nao-mapeado": "nenhum dos três incisos conferidos alcança; classificacao_provisoria = true",
+      "derivado-nao-se-negocia": "parâmetro derivado, fora do alcance da negociação direta"
+    },
+    "campo_companheiro": "classificacao_provisoria — obrigatoriamente true quando fundamento_611b = 'nao-mapeado', e obrigatoriamente false nos demais. Validado por Catalogo.valida().",
+    "ressalva_611b_xvii": {
+      "campo": "ressalva_611b_xvii, booleano, nos parâmetros de duração do trabalho",
+      "motivo": "Há decisão do TST aplicando o inciso XVII para invalidar cláusula sobre jornada quando a extensão configura risco à saúde, com ressalva expressa de que o parágrafo único não a salva.",
+      "efeito_no_schema": "NENHUM sobre a classificação. O motor aplica a cláusula e registra; a nulidade é do juízo. A marca serve para que a memória de cálculo sinalize o ponto."
+    },
+    "ORIGEM": "O teor dos incisos e a regra vieram de INSTRUÇÃO DO USUÁRIO, não do corpus. Ver camada-norma-coletiva-catalogo.json → classificacao_611b.ORIGEM_DESTE_BLOCO."
+  },
+  "conflito_versus_defeito_de_cadastro": {
+    "conflito_normativo": {
+      "quando": "Dois ou mais INSTRUMENTOS com cláusula aplicável à mesma tripla.",
+      "natureza": "Situação do mundo — o empregado é alcançado por instrumentos de sindicatos distintos.",
+      "tratamento": "cobertura = 'conflito', com a lista completa dos candidatos. NENHUMA heurística: nem o mais recente, nem o mais favorável, nem o mais específico. A escolha é decisão jurídica.",
+      "resultado": "valor = null, calculavel = false"
+    },
+    "defeito_de_cadastro": {
+      "quando": "Duas ou mais cláusulas do MESMO instrumento com vigência sobreposta para o mesmo parâmetro.",
+      "natureza": "Erro de quem cadastrou, ou de quem leu o instrumento.",
+      "tratamento": "ErroDeDados — quebra. Silenciar esconderia o defeito.",
+      "resultado": "exceção"
+    },
+    "por_que_a_distincao_importa": "Tratar defeito de cadastro como conflito faria o motor devolver 'conflito' para um instrumento mal digitado, e alguém passaria o dia procurando o segundo sindicato que não existe."
+  },
+  "decisoes_de_comportamento_aprovadas": {
+    "R18_rejeita_sem_corrigir": "Cláusula abaixo do piso é rejeitada e registrada; o resolvedor devolve o default com cobertura 'sem-cobertura-coletiva'. Corrigir silenciosamente para o piso esconderia defeito do instrumento cadastrado ou erro de leitura.",
+    "titulo_judicial_nao_e_barrado_pelo_piso": "R16 põe o título acima de tudo. Título que fixe adicional abaixo do piso é aplicado, com a divergência registrada. Aplicar a lei contra o título é competência do juízo, não do motor."
+  }
 }

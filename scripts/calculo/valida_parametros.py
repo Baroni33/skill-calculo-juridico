@@ -102,9 +102,17 @@ def _le_json(caminho: str | Path) -> dict:
 # Catálogo
 # --------------------------------------------------------------------------
 
-_FORMAS = {"percentual", "monetario", "inteiro", "variante", "tabela"}
+_FORMAS = {"percentual", "monetario", "inteiro", "variante", "tabela", "fracao"}
 _TIPOS = {"substituicao-de-valor", "alteracao-de-composicao", "chave-de-variante"}
 _ALTERACOES = {"apenas-elevacao", "qualquer", "derivado"}
+_FUNDAMENTOS_611B = {
+    "inciso-VI",
+    "inciso-XVII",
+    "inciso-XVIII",
+    "paragrafo-unico",
+    "nao-mapeado",
+    "derivado-nao-se-negocia",
+}
 
 
 @dataclass(frozen=True)
@@ -121,7 +129,24 @@ class Parametro:
     variantes: tuple[str, ...] = ()
     sem_default: bool = False
     derivado_de: tuple[str, ...] = ()
+    derivacao: dict = field(default_factory=dict)
+    fundamento_611b: str = "nao-mapeado"
+    classificacao_provisoria: bool = True
     bruto: dict = field(default_factory=dict, repr=False)
+
+    @property
+    def derivado(self) -> bool:
+        return self.alteracao == "derivado"
+
+    @property
+    def sobrescrevivel(self) -> bool:
+        """Derivado que um instrumento pode fixar diretamente.
+
+        É o caso do adicional de HE noturna: o default sai da composição
+        `noturno × extraordinária`, mas o ACT pode cravar um percentual direto
+        sobre a hora diurna.
+        """
+        return bool(self.derivacao.get("sobrescrevivel"))
 
     @property
     def comparavel(self) -> bool:
@@ -147,6 +172,9 @@ class Catalogo:
                 variantes=tuple(p.get("variantes", ())),
                 sem_default=bool(p.get("sem_default", False)),
                 derivado_de=tuple(p.get("derivado_de", ())),
+                derivacao=p.get("derivacao") or {},
+                fundamento_611b=p.get("fundamento_611b", "nao-mapeado"),
+                classificacao_provisoria=bool(p.get("classificacao_provisoria", True)),
                 bruto=p,
             )
 
@@ -182,9 +210,36 @@ class Catalogo:
                     )
             if p.alteracao == "apenas-elevacao" and p.piso_legal is None:
                 problemas.append(f"{p.id}: apenas-elevacao sem piso_legal (R18)")
-            if p.derivado_de and p.alteracao != "derivado":
-                problemas.append(f"{p.id}: derivado_de sem alteracao=derivado")
+            if p.derivado_de and not (p.derivado or p.sobrescrevivel):
+                problemas.append(
+                    f"{p.id}: derivado_de exige alteracao=derivado ou "
+                    f"derivacao.sobrescrevivel"
+                )
+            if p.derivado_de and not p.derivacao.get("formula"):
+                problemas.append(f"{p.id}: derivado sem fórmula em derivacao.formula")
+            if p.fundamento_611b not in _FUNDAMENTOS_611B:
+                problemas.append(
+                    f"{p.id}: fundamento_611b inválido {p.fundamento_611b!r}"
+                )
+            # Classificação apoiada em inciso conferido não é provisória; a que
+            # depende dos 27 incisos não lidos, é.
+            if p.fundamento_611b == "nao-mapeado" and not p.classificacao_provisoria:
+                problemas.append(
+                    f"{p.id}: fundamento_611b nao-mapeado exige "
+                    f"classificacao_provisoria=true"
+                )
+            if p.fundamento_611b != "nao-mapeado" and p.classificacao_provisoria:
+                problemas.append(
+                    f"{p.id}: fundamento_611b conferido não deve ser provisório"
+                )
         return problemas
+
+    def provisorios(self) -> list[Parametro]:
+        """Parâmetros cuja classificação pode mudar quando o art. 611-B for lido."""
+        return [p for p in self.parametros.values() if p.classificacao_provisoria]
+
+    def por_fundamento_611b(self, fundamento: str) -> list[Parametro]:
+        return [p for p in self.parametros.values() if p.fundamento_611b == fundamento]
 
 
 # --------------------------------------------------------------------------
@@ -513,6 +568,11 @@ def main(argv: list[str] | None = None) -> int:
         cat = Catalogo.de_arquivo()
         problemas = cat.valida()
         print(f"catálogo: {len(cat.parametros)} parâmetros")
+        for fundamento in sorted(_FUNDAMENTOS_611B):
+            quantos = len(cat.por_fundamento_611b(fundamento))
+            if quantos:
+                print(f"  611-B {fundamento}: {quantos}")
+        print(f"  classificação provisória: {len(cat.provisorios())}")
         for p in problemas:
             print(f"  PROBLEMA: {p}")
         if not problemas:

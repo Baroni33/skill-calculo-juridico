@@ -1,9 +1,13 @@
 """Testes da camada de resolução de parâmetros negociáveis.
 
-Cobre os seis casos pedidos no bloco 5, mais a consistência do catálogo e as
-invariantes R14 a R18. O sexto caso — cadeia temporal do ACT Gasmig — está
-declarado e **pulado**, porque o documento-fonte não está no repositório: ver
-`test_cadeia_temporal_act_gasmig_PENDENTE`.
+Cobre os seis casos pedidos no bloco 5, a consistência do catálogo consolidado, as
+invariantes R14 a R18 e a classificação pelo art. 611-B da CLT.
+
+O caso 6 — cadeia temporal do adicional de HE — é exercitado em duas frentes: o
+mecanismo, com a fixture sintética de três faixas; e o ACT Gasmig, com os valores
+reais que `02-base-normativa-verbas.md` traz. Os intervalos de competência das três
+faixas do ACT não constam do documento, e o teste correspondente afirma essa lacuna
+em vez de escondê-la.
 """
 
 from __future__ import annotations
@@ -34,7 +38,11 @@ from valida_parametros import (
 RAIZ = Path(__file__).resolve().parents[2]
 FIXTURES = RAIZ / "tests" / "fixtures" / "calculo"
 SINTETICO = FIXTURES / "instrumentos-sinteticos.json"
-GASMIG = FIXTURES / "instrumentos-act-gasmig-parcial.json"
+GASMIG = FIXTURES / "instrumentos-act-gasmig.json"
+
+
+def gasmig() -> Instrumentos:
+    return Instrumentos.de_arquivos(GASMIG)
 
 
 def catalogo() -> Catalogo:
@@ -493,29 +501,240 @@ class TestCadeiaTemporal(unittest.TestCase):
                 f"lacuna ou sobreposição entre {anterior} e {seguinte}",
             )
 
-    def test_cadeia_temporal_act_gasmig_PENDENTE(self):
-        """O caso 6 do escopo, com os dados reais. BLOQUEADO.
+    def test_act_gasmig_resolve_os_parametros_cadastrados(self):
+        """Caso 6 com dados reais: o que a base normativa traz, resolve."""
+        casos = [
+            ("pn.jornada.semanal", "40"),
+            ("pn.he.adicional-domingos-feriados", "100"),
+            ("pn.jornada.turno-ininterrupto", "enquadrado"),
+            ("pn.turno.setima-e-oitava-horas", "normais"),
+            ("pn.ferias.particao", "3"),
+            ("pn.he.banco-de-horas", "banco-convencional"),
+        ]
+        for parametro, esperado in casos:
+            with self.subTest(parametro=parametro):
+                r = resolve(parametro, "gasmig-sitramico", "2026-03",
+                            instrumentos=gasmig(), catalogo=catalogo())
+                self.assertEqual(r.valor, esperado)
+                self.assertEqual(r.cobertura, COBERTURA_COM)
+                self.assertEqual(r.proveniencia["instrumento"], "act.gasmig.2025-2027")
 
-        O escopo mandava resolver a mesma competência nas três faixas do ACT Gasmig
-        2025/2027 e conferir os percentuais. Os percentuais estão na seção 3 de
-        `docs/calculo/02-base-normativa-verbas.md`, que **não está no repositório**.
+    def test_act_gasmig_jornada_de_40h_implica_divisor_200(self):
+        """O divisor é derivado, não cadastrado: 40/6 × 30 = 200 (Súmula 431)."""
+        jornada = resolve("pn.jornada.semanal", "gasmig-sitramico", "2026-03",
+                          instrumentos=gasmig(), catalogo=catalogo())
+        self.assertEqual(jornada.valor, "40")
 
-        Este teste falha de propósito enquanto a fixture estiver vazia, para que a
-        lacuna apareça na saída em vez de desaparecer.
+        divisor = catalogo()["pn.jornada.divisor"]
+        self.assertEqual(divisor.alteracao, "derivado")
+        self.assertFalse(divisor.sobrescrevivel)
+        self.assertEqual(
+            (Decimal(jornada.valor) / 6 * 30).to_integral_value(), Decimal(200)
+        )
+
+        # E não está cadastrado como cláusula: derivado nunca é valor cadastrável.
+        cadastrados = {
+            c["parametro"]
+            for i in json.loads(GASMIG.read_text(encoding="utf-8"))["instrumentos"]
+            for c in i["clausulas"]
+        }
+        self.assertNotIn("pn.jornada.divisor", cadastrados)
+
+    def test_act_gasmig_setima_e_oitava_horas_e_o_ponto_de_litigio(self):
+        """A cláusula é aplicada; a nulidade é do juízo, não do motor."""
+        r = resolve("pn.turno.setima-e-oitava-horas", "gasmig-sitramico", "2026-03",
+                    instrumentos=gasmig(), catalogo=catalogo())
+        self.assertEqual(r.valor, "normais")
+        self.assertEqual(catalogo()["pn.turno.setima-e-oitava-horas"].default_legal,
+                         "extras")
+        # Divergência com o default é registrada, não silenciada (R16).
+        self.assertTrue(any(d["nivel_divergente"] == ORIGEM_DEFAULT
+                            for d in r.divergencias))
+
+    def test_act_gasmig_tres_faixas_de_he_declaradas_sem_datas(self):
+        """A lacuna que resta do caso 6, afirmada em vez de escondida.
+
+        `02-base-normativa-verbas.md` § 10 dá os três percentuais — 80, 75 e 60 —
+        e a palavra "por período", sem os intervalos. Cadastrar três cláusulas do
+        mesmo parâmetro sem `vigencia_propria` produziria sobreposição, que o
+        resolvedor trata como defeito de cadastro. Supor as datas seria pior.
         """
         dados = json.loads(GASMIG.read_text(encoding="utf-8"))
-        inst = dados["instrumentos"][0]
-        self.assertEqual(inst["id"], "act.gasmig.2025-2027")
-        if not inst["clausulas"]:
-            self.skipTest(
-                "ACT Gasmig sem cláusulas cadastradas: falta "
-                "docs/calculo/02-base-normativa-verbas.md, seção 3. "
-                "Ver tests/fixtures/calculo/instrumentos-act-gasmig-parcial.json"
-            )
-        self.fail(
-            "Fixture do ACT Gasmig foi preenchida: reescrever este teste com as três "
-            "faixas reais, conforme o caso 6 do bloco 5."
+        pendentes = {
+            d["parametro"]: d for d in dados["parametros_declarados_sem_valor_completo"]
+        }
+        he = pendentes["pn.he.adicional"]
+        self.assertEqual(he["valores_conhecidos"], ["80", "75", "60"])
+
+        cadastrados = {c["parametro"] for i in dados["instrumentos"]
+                       for c in i["clausulas"]}
+        self.assertNotIn("pn.he.adicional", cadastrados)
+
+        # Consequência prática: cai no default legal, muito abaixo do real.
+        r = resolve("pn.he.adicional", "gasmig-sitramico", "2026-03",
+                    instrumentos=gasmig(), catalogo=catalogo())
+        self.assertEqual(r.valor, "50")
+        self.assertEqual(r.cobertura, COBERTURA_SEM)
+
+    def test_act_gasmig_he_noturna_e_derivado_sobrescrevivel(self):
+        """O ACT fixa percentual direto; o default compõe 1,20 × 1,50 = 80."""
+        p = catalogo()["pn.he.adicional-noturna"]
+        self.assertTrue(p.sobrescrevivel)
+        self.assertEqual(p.default_legal, "80")
+        self.assertEqual(
+            ((Decimal("1.20") * Decimal("1.50") - 1) * 100).to_integral_value(),
+            Decimal(80),
         )
+        # Valor do ACT desconhecido: não cadastrado, resolve pelo derivado.
+        r = resolve("pn.he.adicional-noturna", "gasmig-sitramico", "2026-03",
+                    instrumentos=gasmig(), catalogo=catalogo())
+        self.assertEqual(r.valor, "80")
+        self.assertEqual(r.cobertura, COBERTURA_SEM)
+
+
+# --------------------------------------------------------------------------
+# Classificação pelo art. 611-B da CLT
+# --------------------------------------------------------------------------
+
+class TestClassificacao611B(unittest.TestCase):
+    def test_inciso_XVIII_torna_insalubridade_e_periculosidade_apenas_elevacao(self):
+        """A âncora é a vedação de redução, não a redação 'no mínimo'."""
+        for pid in ("pn.insalubridade.base", "pn.insalubridade.percentual",
+                    "pn.periculosidade.base", "pn.periculosidade.percentual"):
+            with self.subTest(parametro=pid):
+                p = catalogo()[pid]
+                self.assertEqual(p.fundamento_611b, "inciso-XVIII")
+                self.assertEqual(p.alteracao, "apenas-elevacao")
+                self.assertFalse(p.classificacao_provisoria)
+
+    def test_periculosidade_entrou_apesar_de_nao_ter_no_minimo_no_texto(self):
+        """Dúvida 1 do bloco 5, resolvida pelo inciso XVIII."""
+        p = catalogo()["pn.periculosidade.percentual"]
+        self.assertEqual(p.default_legal, "30")
+        self.assertEqual(p.piso_legal, "30")
+        self.assertIn("dúvida 1", p.bruto["duvida_resolvida"].lower())
+
+    def test_inciso_VI_alcanca_o_trabalho_noturno(self):
+        for pid in ("pn.noturno.adicional", "pn.he.adicional-noturna"):
+            with self.subTest(parametro=pid):
+                p = catalogo()[pid]
+                self.assertEqual(p.fundamento_611b, "inciso-VI")
+                self.assertEqual(p.alteracao, "apenas-elevacao")
+
+    def test_paragrafo_unico_libera_duracao_do_trabalho_e_intervalos(self):
+        """Duração e intervalos NÃO são normas de saúde para este fim."""
+        for pid in ("pn.jornada.semanal", "pn.he.regime-de-compensacao",
+                    "pn.he.banco-de-horas", "pn.jornada.turno-ininterrupto",
+                    "pn.turno.setima-e-oitava-horas", "pn.sobreaviso.fator",
+                    "pn.prontidao.fator"):
+            with self.subTest(parametro=pid):
+                p = catalogo()[pid]
+                self.assertEqual(p.fundamento_611b, "paragrafo-unico")
+                self.assertEqual(p.alteracao, "qualquer")
+
+    def test_sobreaviso_e_prontidao_sao_duracao_do_trabalho(self):
+        """Dúvida 2 do bloco 5, resolvida pelo parágrafo único."""
+        self.assertEqual(catalogo()["pn.sobreaviso.fator"].default_legal, "1/3")
+        self.assertEqual(catalogo()["pn.prontidao.fator"].default_legal, "2/3")
+
+    def test_ressalva_do_inciso_XVII_nao_muda_o_calculo(self):
+        """O corte não é absoluto, mas a nulidade é do juízo."""
+        cat = catalogo()
+        com_ressalva = [p for p in cat.parametros.values()
+                        if p.bruto.get("ressalva_611b_xvii")]
+        self.assertTrue(com_ressalva, "a ressalva precisa estar marcada em algum lugar")
+        for p in com_ressalva:
+            self.assertEqual(
+                p.alteracao, "qualquer",
+                "a ressalva não muda a classificação — só alerta para o mérito",
+            )
+        ressalva = cat.dados["classificacao_611b"]["ressalva_do_paragrafo_unico"]
+        self.assertIn("NENHUM", ressalva["efeito_no_motor"])
+
+    def test_os_27_incisos_nao_lidos_estao_declarados_como_lacuna(self):
+        lacuna = catalogo().dados["classificacao_611b"]["LACUNA"]
+        self.assertIn("trinta incisos", lacuna["descricao"])
+        self.assertIn("NÃO ESTÁ NO CORPUS", lacuna["descricao"])
+
+    def test_a_origem_da_classificacao_611b_e_declarada(self):
+        """O fundamento veio de instrução, não do corpus. Dizer isso não é opcional.
+
+        Quem auditar o catálogo contra o corpus não vai achar o art. 611-B. Se o
+        catálogo dissesse "conferido", a auditoria concluiria que foi inventado —
+        e estaria certa quanto à forma.
+        """
+        c = catalogo().dados["classificacao_611b"]
+        origem = c["ORIGEM_DESTE_BLOCO"]
+        self.assertIn("INSTRUÇÃO DIRETA DO USUÁRIO", origem["de_onde_vem"])
+        self.assertIn("SEM transcrição", origem["o_que_o_corpus_tem"])
+        # A chave não pode voltar a chamar-se "conferidos".
+        self.assertNotIn("incisos_conferidos", c)
+        self.assertEqual(
+            set(c["incisos_fornecidos_por_instrucao"]), {"VI", "XVII", "XVIII"}
+        )
+        # A ressalva do TST também é instrução, e sem referência.
+        self.assertIn(
+            "INSTRUÇÃO DO USUÁRIO",
+            c["ressalva_do_paragrafo_unico"]["origem"],
+        )
+
+    def test_nao_mapeado_implica_classificacao_provisoria(self):
+        cat = catalogo()
+        for p in cat.por_fundamento_611b("nao-mapeado"):
+            self.assertTrue(
+                p.classificacao_provisoria,
+                f"{p.id}: sem inciso conferido, a classificação é provisória",
+            )
+        self.assertEqual(len(cat.provisorios()), len(cat.por_fundamento_611b("nao-mapeado")))
+
+
+# --------------------------------------------------------------------------
+# Parâmetros derivados
+# --------------------------------------------------------------------------
+
+class TestDerivados(unittest.TestCase):
+    def test_nenhuma_variante_embute_um_derivado(self):
+        """Divisor dentro do nome de uma variante contradiz a derivação.
+
+        A variante do turno chamava-se 'enquadrado-sexta-diaria-divisor-180' e
+        afirmava, para a Gasmig, um divisor que o próprio corpus contradiz: 40h
+        semanais dão 200 pela Súmula 431.
+        """
+        derivados = {p.id.rsplit(".", 1)[-1] for p in catalogo().parametros.values()
+                     if p.derivado}
+        for p in catalogo().parametros.values():
+            for v in p.bruto.get("variantes", ()):
+                for nome in derivados:
+                    self.assertNotIn(
+                        nome, v, f"{p.id}: variante {v!r} embute o derivado {nome!r}"
+                    )
+
+    def test_todo_derivado_tem_formula(self):
+        for p in catalogo().parametros.values():
+            if p.derivado_de:
+                self.assertTrue(
+                    p.derivacao.get("formula"),
+                    f"{p.id}: derivado sem fórmula — nunca como valor cadastrável",
+                )
+
+    def test_divisor_nao_e_sobrescrevivel(self):
+        p = catalogo()["pn.jornada.divisor"]
+        self.assertFalse(p.sobrescrevivel)
+        self.assertEqual(p.fundamento_611b, "derivado-nao-se-negocia")
+
+    def test_he_noturna_e_o_unico_derivado_sobrescrevivel(self):
+        sobrescreviveis = [p.id for p in catalogo().parametros.values()
+                           if p.sobrescrevivel]
+        self.assertEqual(sobrescreviveis, ["pn.he.adicional-noturna"])
+
+    def test_consolidacao_nao_duplicou_parametros(self):
+        cat = catalogo()
+        self.assertEqual(len(cat.parametros), len(set(cat.parametros)))
+        origens = {
+            o for p in cat.parametros.values()
+            for o in p.bruto.get("origem_consolidacao", [])
+        }
+        self.assertTrue({"varredura", "secao-10", "adendo-secao-18"} <= origens)
 
 
 # --------------------------------------------------------------------------
@@ -557,14 +776,57 @@ class TestFixtures(unittest.TestCase):
         dados = json.loads(SINTETICO.read_text(encoding="utf-8"))
         self.assertIn("SINTÉTICO", dados["natureza"])
 
-    def test_fixture_gasmig_declara_bloqueio_e_nao_inventa_clausula(self):
+    def test_fixture_gasmig_e_real_e_parcial(self):
         dados = json.loads(GASMIG.read_text(encoding="utf-8"))
-        self.assertEqual(dados["status"], "bloqueada")
-        for inst in dados["instrumentos"]:
-            self.assertEqual(
-                inst["clausulas"], [],
-                "a fixture do Gasmig não pode ter cláusula sem o documento-fonte",
-            )
+        self.assertEqual(dados["status"], "parcial")
+        self.assertIn("REAL", dados["natureza"])
+        inst = dados["instrumentos"][0]
+        self.assertTrue(inst["clausulas"], "a fixture real precisa ter cláusulas")
+        self.assertTrue(inst["parcial"])
+        self.assertTrue(dados["parametros_declarados_sem_valor_completo"])
+
+    def test_fixture_gasmig_marca_o_que_e_rotulo_desta_extracao(self):
+        """A categoria é um provisório declarado, não um dado do documento."""
+        dados = json.loads(GASMIG.read_text(encoding="utf-8"))
+        inst = dados["instrumentos"][0]
+        self.assertEqual(inst["categorias_abrangidas"], ["gasmig-sitramico"])
+        self.assertIn("RÓTULO DESTA EXTRAÇÃO", inst["categorias_fonte"])
+
+    def test_fixture_gasmig_registra_a_divergencia_de_referencia(self):
+        """O enunciado apontou a seção 3; os valores estão nas seções 7 a 10."""
+        dados = json.loads(GASMIG.read_text(encoding="utf-8"))
+        div = dados["divergencia_de_referencia"]
+        self.assertIn("seção 3", div["o_que_o_enunciado_disse"])
+        self.assertIn("Horas in itinere", div["o_que_o_arquivo_tem"])
+
+    def test_fixture_gasmig_preserva_os_achados_que_nao_viraram_clausula(self):
+        """Dado concreto do ACT que não cabe no catálogo não pode evaporar.
+
+        A contribuição negocial é desconto, e não há camada de descontos. O
+        sábado a base manda expressamente registrar como ponto a confirmar, não
+        como conclusão. Nenhum dos dois vira cláusula; ambos ficam declarados.
+        """
+        dados = json.loads(GASMIG.read_text(encoding="utf-8"))
+        declarados = dados["parametros_declarados_sem_valor_completo"]
+        blob = json.dumps(declarados, ensure_ascii=False)
+        self.assertIn("contribuição negocial", blob)
+        self.assertIn("ponto a confirmar", blob)
+
+        cadastrados = {c["parametro"] for i in dados["instrumentos"]
+                       for c in i["clausulas"]}
+        self.assertNotIn("pn.jornada.sabado-como-rsr", cadastrados)
+
+        # Sem cláusula, resolve pelo default — mas a cobertura diz a verdade.
+        r = resolve("pn.jornada.sabado-como-rsr", "gasmig-sitramico", "2026-03",
+                    instrumentos=gasmig(), catalogo=catalogo())
+        self.assertEqual(r.valor, "sabado-nao-e-rsr")
+        self.assertEqual(r.cobertura, COBERTURA_SEM)
+
+    def test_fixture_gasmig_nao_inventa_vigencia_nem_extensao(self):
+        inst = json.loads(GASMIG.read_text(encoding="utf-8"))["instrumentos"][0]
+        self.assertIsNone(inst["vigencia"]["inicio"])
+        self.assertIsNone(inst["vigencia"]["fim"])
+        self.assertIsNone(inst["categorias_por_extensao"][0]["categoria"])
 
 
 if __name__ == "__main__":

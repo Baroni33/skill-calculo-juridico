@@ -1,131 +1,429 @@
 {
   "id": "camada.norma-coletiva.catalogo",
   "categoria": "A-semantica",
-  "titulo": "Catálogo de parâmetros negociáveis",
-  "versao_schema": "1.0",
+  "titulo": "Catálogo consolidado de parâmetros negociáveis",
+  "versao_schema": "2.0",
   "fonte": {
     "inventario": "docs/calculo/parametros-negociaveis.md",
     "schema": "camada-norma-coletiva-schema.json",
-    "varredura": [
-      "extracao/trabalhista/bloco-02-criterios.md",
-      "extracao/trabalhista/bloco-03-verbas.md",
-      "extracao/trabalhista/bloco-04-verbas2.md",
-      "02a-adendo-lacunas-verbas.md (seção 18)"
+    "origens": [
+      "varredura própria dos blocos 02, 03 e 04 da extração",
+      "02-base-normativa-verbas.md, seção 10 (13 parâmetros)",
+      "02a-adendo-lacunas-verbas.md, seção 18 (3 parâmetros)"
     ]
   },
   "completude": {
-    "parcial": true,
-    "faltando": "Os 13 parâmetros da seção 10 de 02-base-normativa-verbas.md. O arquivo não está no repositório.",
-    "consequencia": "Este catálogo não é a lista unificada pedida na Tarefa 2 do bloco 5. É a varredura própria mais os três do adendo.",
-    "ver": "extracao/bloco-05-relatorio.md § 1"
+    "parcial": false,
+    "observacao": "As três origens foram consolidadas sem duplicar. O que resta parcial é o mapeamento do art. 611-B — ver classificacao_611b."
   },
-
+  "classificacao_611b": {
+    "ancora": "Art. 611-B da CLT lista taxativamente o que não pode ser objeto de convenção ou acordo coletivo, na forma de SUPRESSÃO OU REDUÇÃO. É a âncora da classificação, não a presença da expressão 'no mínimo' no texto de cada artigo.",
+    "regra": {
+      "alcancado-por-inciso": "apenas-elevacao",
+      "paragrafo-unico": "qualquer — duração do trabalho e intervalos NÃO são normas de saúde, higiene e segurança para este fim",
+      "demais": "qualquer, sob o Tema 1046 do STF (ARE 1.121.633/GO, Pleno, 02/06/2022)"
+    },
+    "LACUNA": {
+      "descricao": "O art. 611-B tem trinta incisos — número FORNECIDO POR INSTRUÇÃO, não lido. Apenas o teor de três deles foi fornecido. O TEXTO INTEGRAL NÃO ESTÁ NO CORPUS: o art. 611-B é citado em 02-base-normativa-verbas.md § 2 sem transcrição, e não aparece em nenhum dos dois manuais em PDF. Ver ORIGEM_DESTE_BLOCO.",
+      "consequencia": "Parâmetros marcados fundamento_611b = 'nao-mapeado' mantêm a classificação anterior EM CARÁTER PROVISÓRIO. Algum dos 27 incisos não lidos pode alcançá-los e mudá-los para apenas-elevacao.",
+      "por_que_nao_foi_suposto": "A regra do bloco é explícita: não pesquisar norma na web; faltando fundamento, é pendência. Recitar trinta incisos de memória e apresentá-los como conferidos seria exatamente o tipo de invenção que o inventário existe para evitar. Os três que estão aqui vieram de instrução, e o catálogo diz isso."
+    },
+    "ressalva_do_paragrafo_unico": {
+      "conteudo": "Há decisão do TST aplicando o inciso XVII para invalidar cláusula sobre jornada quando a extensão configura risco à saúde, com ressalva expressa de que o parágrafo único não a salva.",
+      "efeito_no_motor": "NENHUM. O corte não é absoluto, mas a nulidade é matéria de mérito, não de cálculo. O motor aplica a cláusula e registra a proveniência; declarar a nulidade é do juízo.",
+      "onde_aparece": "campo ressalva_611b_xvii nos parâmetros de duração do trabalho",
+      "origem": "INSTRUÇÃO DO USUÁRIO. Não há no corpus órgão, processo nem data, e não foram pesquisados. Registrado como recebido, não como verificado.",
+      "pendencia": "Obter a referência da decisão. Sem ela, a marca ressalva_611b_xvii sinaliza um risco cuja fonte não se pode citar numa memória de cálculo."
+    },
+    "ORIGEM_DESTE_BLOCO": {
+      "de_onde_vem": "INSTRUÇÃO DIRETA DO USUÁRIO, não do corpus.",
+      "o_que_o_corpus_tem": "Apenas a citação do art. 611-B em 02-base-normativa-verbas.md § 2, SEM transcrição de inciso algum. O texto integral não está em nenhum arquivo do repositório nem nos PDFs.",
+      "o_que_o_usuario_forneceu": [
+        "a regra de classificação (inciso → apenas-elevacao; parágrafo único → qualquer; demais → qualquer sob o Tema 1046)",
+        "o teor dos incisos VI, XVII e XVIII",
+        "que o artigo tem trinta incisos",
+        "a existência de decisão do TST aplicando o inciso XVII a cláusula de jornada"
+      ],
+      "por_que_isso_importa": "É a âncora da classificação de todo o inventário. Quem auditar este catálogo contra o corpus NÃO vai encontrar o fundamento — vai encontrar esta declaração. Apresentar como 'conferido no corpus' seria falso.",
+      "o_que_fecha_a_lacuna": "O texto integral do art. 611-B no repositório, e a referência da decisão do TST (órgão, processo, data)."
+    },
+    "incisos_fornecidos_por_instrucao": {
+      "VI": "remuneração do trabalho noturno superior à do diurno",
+      "XVII": "normas de saúde, higiene e segurança do trabalho",
+      "XVIII": "adicional de remuneração para atividades penosas, insalubres ou perigosas"
+    }
+  },
   "parametros": [
     {
       "id": "pn.he.adicional",
-      "nome": "Adicional de horas extras",
-      "verbas": ["horas-extras", "intervalo-intrajornada-suprimido", "intervalo-interjornada", "intervalos-especiais", "horas-in-itinere"],
+      "nome": "Adicional de horas extras — diurnas",
+      "verbas": [
+        "horas-extras",
+        "intervalo-intrajornada-suprimido",
+        "intervalo-interjornada",
+        "intervalos-especiais",
+        "horas-in-itinere"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "percentual",
       "alteracao": "apenas-elevacao",
       "default_legal": "50",
       "piso_legal": "50",
-      "fonte_default": "CF art. 7º; CLT art. 444",
-      "sustentacao": "Adicional superior a 50% se houver norma infralegal mais favorável ao empregado — CLT art. 444 (manual 6.6.4, p. 39)",
+      "fonte_default": "CF art. 7º, XVI",
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "Adicional superior a 50% se houver norma infralegal mais favorável ao empregado — CLT art. 444 (manual 6.6.4, p. 39); CF art. 7º, XVI (02-base-normativa-verbas.md § 10)",
       "valor_pode_ser_escalonado": true,
-      "observacao": "A CCT pode prever dois ou mais adicionais por posição na jornada. Médias físicas por adicional distinto não podem ser fundidas."
+      "observacao": "A CCT pode prever dois ou mais adicionais por posição na jornada. Médias físicas por adicional distinto não podem ser fundidas.",
+      "origem_consolidacao": [
+        "varredura",
+        "secao-10"
+      ]
+    },
+    {
+      "id": "pn.he.adicional-domingos-feriados",
+      "nome": "Adicional de horas extras em domingos e feriados",
+      "verbas": [
+        "horas-extras-domingo",
+        "horas-extras-feriado"
+      ],
+      "tipo": "substituicao-de-valor",
+      "forma": "percentual",
+      "alteracao": "apenas-elevacao",
+      "default_legal": "50",
+      "piso_legal": "50",
+      "fonte_default": "CF art. 7º, XVI",
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "02-base-normativa-verbas.md § 10 — linha própria, distinta do adicional diurno",
+      "observacao": "Parâmetro autônomo: a mesma norma pode elevar o adicional de domingo sem tocar no diurno.",
+      "origem_consolidacao": [
+        "secao-10"
+      ]
+    },
+    {
+      "id": "pn.he.adicional-noturna",
+      "nome": "Adicional de hora extra noturna",
+      "verbas": [
+        "horas-extras-noturnas"
+      ],
+      "tipo": "substituicao-de-valor",
+      "forma": "percentual",
+      "alteracao": "apenas-elevacao",
+      "default_legal": "80",
+      "piso_legal": "80",
+      "fonte_default": "CLT art. 73 combinado com CF art. 7º, XVI",
+      "fundamento_611b": "inciso-VI",
+      "classificacao_provisoria": false,
+      "derivado_de": [
+        "pn.he.adicional",
+        "pn.noturno.adicional"
+      ],
+      "derivacao": {
+        "formula": "((1 + pn.noturno.adicional/100) * (1 + pn.he.adicional/100) - 1) * 100",
+        "exemplo": "(1,20 × 1,50 − 1) × 100 = 80",
+        "sobrescrevivel": true,
+        "quando_sobrescrever": "Quando o instrumento fixa o adicional noturno de HE DIRETAMENTE sobre a hora diurna, em vez de compor os dois. É o caso do ACT Gasmig — 02-base-normativa-verbas.md § 10, 'percentual direto sobre hora diurna'."
+      },
+      "sustentacao": "bloco-03-verbas.md: linha de tabela 'Hora extra noturna | 80% — 1,20 × 1,50 = 1,80', e o texto corrido 'A HEN recebe 80% em face da incidência na base do adicional noturno: não é um adicional autônomo, é o produto do adicional noturno de 20% pelo adicional de HE de 50%.'",
+      "observacao": "Único parâmetro derivado que admite sobrescrita. O piso é o próprio valor derivado: uma cláusula que fixe menos que a composição dos dois pisos reduz remuneração noturna (inciso VI).",
+      "origem_consolidacao": [
+        "varredura",
+        "secao-10"
+      ]
     },
     {
       "id": "pn.he.regime-de-compensacao",
       "nome": "Regime de compensação de jornada",
-      "verbas": ["horas-extras"],
+      "verbas": [
+        "horas-extras"
+      ],
       "tipo": "chave-de-variante",
       "forma": "variante",
       "alteracao": "qualquer",
-      "variantes": ["sem-compensacao-limite-diario", "com-compensacao-limite-semanal"],
+      "variantes": [
+        "sem-compensacao-limite-diario",
+        "com-compensacao-limite-semanal"
+      ],
       "default_legal": "sem-compensacao-limite-diario",
       "piso_legal": null,
       "fonte_default": "CF art. 7º, XIII",
-      "sustentacao": "Havendo compensação de horários mediante acordo ou CCT, serão HE aquelas laboradas além da 44ª semanal (manual 6.6.5, p. 40)"
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "ressalva_611b_xvii": true,
+      "sustentacao": "Havendo compensação de horários mediante acordo ou CCT, serão HE aquelas laboradas além da 44ª semanal (manual 6.6.5, p. 40)",
+      "origem_consolidacao": [
+        "varredura"
+      ]
+    },
+    {
+      "id": "pn.he.banco-de-horas",
+      "nome": "Banco de horas — período de compensação e quitação",
+      "verbas": [
+        "horas-extras"
+      ],
+      "tipo": "chave-de-variante",
+      "forma": "variante",
+      "alteracao": "qualquer",
+      "variantes": [
+        "sem-banco",
+        "banco-semestral",
+        "banco-anual",
+        "banco-convencional"
+      ],
+      "default_legal": "sem-banco",
+      "piso_legal": null,
+      "fonte_default": "CLT art. 59",
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "ressalva_611b_xvii": true,
+      "sustentacao": "02-base-normativa-verbas.md § 10, linha 'Banco de horas / compensação'. NOTA: nessa linha o corpus traz 'CLT art. 59' na coluna Default legal e deixa a coluna Fonte vazia — desalinhamento da tabela original. Aqui o art. 59 foi lido como FONTE, e o default 'sem-banco' é inferência da ausência de previsão, não texto literal. Gasmig: quitação trimestral (coluna Observação).",
+      "origem_consolidacao": [
+        "secao-10"
+      ]
     },
     {
       "id": "pn.jornada.semanal",
       "nome": "Duração semanal do trabalho",
-      "verbas": ["horas-extras", "adicional-noturno", "todas-as-que-usam-divisor"],
+      "verbas": [
+        "horas-extras",
+        "adicional-noturno",
+        "todas-as-que-usam-divisor"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "inteiro",
       "alteracao": "qualquer",
       "default_legal": "44",
       "piso_legal": null,
       "fonte_default": "CF art. 7º, XIII",
-      "sustentacao": "Jornada de 8 horas diárias e 44 semanais (manual 6.6.3, p. 37)",
-      "deriva": ["pn.jornada.divisor"]
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "ressalva_611b_xvii": true,
+      "sustentacao": "CF art. 7º, XIII (02-base-normativa-verbas.md § 10); manual 6.6.3, p. 37",
+      "deriva": [
+        "pn.jornada.divisor"
+      ],
+      "origem_consolidacao": [
+        "varredura",
+        "secao-10"
+      ]
     },
     {
       "id": "pn.jornada.divisor",
       "nome": "Divisor do salário-hora",
-      "verbas": ["horas-extras", "adicional-noturno", "intervalos"],
+      "verbas": [
+        "horas-extras",
+        "adicional-noturno",
+        "intervalos"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "inteiro",
       "alteracao": "derivado",
-      "derivado_de": ["pn.jornada.semanal", "jornada-diaria"],
       "default_legal": "220",
       "piso_legal": null,
-      "fonte_default": "CLT art. 64; Súmula 431/TST; IRR-849 teses 3, 5 e 6",
-      "sustentacao": "O divisor sai da regra geral do art. 64 da CLT — jornada normal × 30 (IRR-849, tese 3)",
-      "nao_negociavel_diretamente": true,
-      "observacao": "Aceitar divisor avulso permite par (jornada, divisor) inconsistente. O divisor 210 da jornada 12×36 é exceção: vem da OJ 23 das Turmas do TRT-3, atribuído ao regime, não derivado da fórmula."
+      "fonte_default": "CLT art. 64; Súmula 431/TST; IRR-849 teses 2, 4 e 5 (02-base-normativa-verbas.md § 8)",
+      "fundamento_611b": "derivado-nao-se-negocia",
+      "classificacao_provisoria": false,
+      "derivado_de": [
+        "pn.jornada.semanal",
+        "jornada-diaria"
+      ],
+      "derivacao": {
+        "formula": "jornada_diaria * 30                                  (regra geral, CLT art. 64)",
+        "formula_reducao": "(jornada_semanal / dias_uteis_na_semana) * 30    (Súmula 431, quando há redução da duração semanal)",
+        "exemplo": "44h semanais / 6 dias úteis × 30 = 220; 40h / 6 × 30 = 200",
+        "sobrescrevivel": false,
+        "constante": "O número de semanas do mês é 4,2857 (30/7). NÃO é válida, para definir o divisor, a multiplicação da duração semanal por 5 — IRR-849, tese 4."
+      },
+      "excecao": "O divisor 210 da jornada 12×36 vem da OJ 23 das Turmas do TRT-3, atribuído ao regime e não derivado da fórmula.",
+      "observacao": "Aceitar divisor avulso permite o par (jornada 44h, divisor 200) — inconsistente e indetectável. 02-base-normativa-verbas.md § 10 confirma: 'Decorre da jornada'.",
+      "origem_consolidacao": [
+        "varredura",
+        "secao-10"
+      ]
     },
     {
       "id": "pn.jornada.sabado-como-rsr",
       "nome": "Sábado como dia de repouso remunerado (bancário)",
-      "verbas": ["horas-extras-bancario"],
+      "verbas": [
+        "horas-extras-bancario"
+      ],
       "tipo": "chave-de-variante",
       "forma": "variante",
       "alteracao": "qualquer",
-      "variantes": ["sabado-nao-e-rsr", "sabado-e-rsr-sumula-124", "sabado-e-rsr-irr-849"],
+      "variantes": [
+        "sabado-nao-e-rsr",
+        "sabado-e-rsr"
+      ],
       "default_legal": "sabado-nao-e-rsr",
       "piso_legal": null,
-      "fonte_default": "Súmula 124, I/TST",
-      "sustentacao": "se houver ajuste individual expresso ou coletivo no sentido de considerar o sábado como dia de descanso remunerado (Súmula 124, I)",
-      "divergencia_registrada": {
-        "sabado-e-rsr-sumula-124": "altera o divisor para 150 (6h) ou 200 (8h)",
-        "sabado-e-rsr-irr-849": "tese 4 — a inclusão do sábado como RSR NÃO altera o divisor",
-        "observacao": "O IRR-849 é de observância obrigatória e esvazia na prática os divisores 150 e 200. A Súmula 124 não foi revista dentro do manual. Ver bloco 03, P12."
-      }
+      "fonte_default": "IRR-849-83.2013.5.03.0138 (SDI-1, 21/11/2016), tese sobre o sábado; Súmula 124/TST em redação ANTERIOR à Res. 219/2017",
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "sustentacao": "IRR-849, tese 3: a inclusão do sábado como RSR não altera o divisor quando não há redução do número de horas semanais (02-base-normativa-verbas.md § 8)",
+      "divergencia_encerrada": {
+        "o_que_mudou": "A revisão que o manual antecipava OCORREU. Tribunal Pleno, 26/06/2017, Res. 219/2017. A Súmula 124, I passou a fixar 180 (jornada de 6h) e 220 (jornada de 8h). Os divisores 150 e 200 saíram do verbete.",
+        "modulacao": "Súmula 124, II — ressalvadas decisões de mérito de Turma do TST ou da SDI-1 entre 27/09/2012 e 21/11/2016, e alcançadas as sentenças transitadas em julgado ainda em liquidação, desde que SILENTES quanto ao divisor.",
+        "importa_ao_modulo": "Sentença transitada em julgado, silente quanto ao divisor, em liquidação, entra na modulação. É o caso de uso de conferência de cálculo."
+      },
+      "origem_consolidacao": [
+        "varredura"
+      ],
+      "nota_de_fonte": "A Súmula 124 na redação vigente (Res. 219/2017, em 02-base-normativa-verbas.md § 8) trata apenas dos divisores 180/220 por jornada e NÃO menciona o sábado. Quem trata do sábado é a tese do IRR-849 e a redação anterior da súmula (bloco-03-verbas.md). A v2 apontava a redação nova — corrigido."
     },
     {
       "id": "pn.jornada.turno-ininterrupto",
       "nome": "Enquadramento em turno ininterrupto de revezamento",
-      "verbas": ["horas-extras"],
+      "verbas": [
+        "horas-extras"
+      ],
       "tipo": "chave-de-variante",
       "forma": "variante",
       "alteracao": "qualquer",
-      "variantes": ["nao-enquadrado", "enquadrado-sexta-diaria-divisor-180"],
+      "variantes": [
+        "nao-enquadrado",
+        "enquadrado"
+      ],
       "default_legal": "nao-enquadrado",
       "piso_legal": null,
-      "fonte_default": "OJ 396/SDI-I/TST; Súmulas 2 e 38 do TRT-3",
-      "sustentacao": "horas trabalhadas além da sexta diária pagas pelo divisor 180 (manual 6.6.3, p. 37)",
-      "lacuna": "O corpus estabelece o efeito do enquadramento, mas não contém a autorização constitucional para elevação da jornada do turno por negociação (CF art. 7º, XIV). Pendência D1."
+      "fonte_default": "CF art. 7º, XIV; Súmula 423/TST; OJ 396/SDI-I; Súmulas 2 e 38 do TRT-3",
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "ressalva_611b_xvii": true,
+      "sustentacao": "manual 6.6.3 — divisor 180 para horas além da sexta diária, quando a jornada é de 6 horas; 02-base-normativa-verbas.md § 9, regime de turno do ACT Gasmig",
+      "lacuna_fechada": "A pendência D1 do bloco 5 — ausência da autorização constitucional para elevação da jornada do turno por negociação — está fechada: CF art. 7º, XIV, com Súmula 423/TST e, após 2022, Tema 1046.",
+      "origem_consolidacao": [
+        "varredura",
+        "secao-10"
+      ],
+      "correcao_da_v2": "A variante chamava-se 'enquadrado-sexta-diaria-divisor-180'. O nome embutia uma consequência de divisor que (a) é PARÂMETRO DERIVADO e não pode viver dentro de uma variante, e (b) contradiz o corpus no caso concreto: 02-base-normativa-verbas.md § 8 diz que 40 horas semanais implicam divisor 200 pela Súmula 431, e a Gasmig tem 40h. O divisor 180 do manual 6.6.3 vale para a jornada de 6 horas, não para todo turno enquadrado. A variante virou 'enquadrado'; o divisor resolve-se pela derivação."
+    },
+    {
+      "id": "pn.turno.setima-e-oitava-horas",
+      "nome": "Natureza da 7ª e 8ª horas em turno de revezamento",
+      "verbas": [
+        "horas-extras"
+      ],
+      "tipo": "chave-de-variante",
+      "forma": "variante",
+      "alteracao": "qualquer",
+      "variantes": [
+        "extras",
+        "normais"
+      ],
+      "default_legal": "extras",
+      "piso_legal": null,
+      "fonte_default": "CF art. 7º, XIV; Súmula 423/TST",
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "ressalva_611b_xvii": true,
+      "sustentacao": "02-base-normativa-verbas.md § 10, linha '7ª e 8ª horas em turno de revezamento — extras'",
+      "observacao": "Distinto de pn.jornada.turno-ininterrupto: aquele responde SE o empregado está em revezamento; este responde, dado o turno de 8h, se as duas últimas horas são extras. O ACT Gasmig tem previsão expressa de que não são — e a seção 9 registra que é o ponto de maior litígio do instrumento.",
+      "origem_consolidacao": [
+        "secao-10"
+      ]
     },
     {
       "id": "pn.bancario.enquadramento-224",
       "nome": "Gratificação de função do bancário igual ou superior a 1/3 do salário",
-      "verbas": ["horas-extras-bancario"],
+      "verbas": [
+        "horas-extras-bancario"
+      ],
       "tipo": "chave-de-variante",
       "forma": "variante",
       "alteracao": "qualquer",
-      "variantes": ["sem-gratificacao-7a-e-8a-sao-extras", "com-gratificacao-224-p2-ja-remuneradas", "caixa-gratificacao-nao-remunera-as-horas"],
+      "variantes": [
+        "sem-gratificacao-7a-e-8a-sao-extras",
+        "com-gratificacao-224-p2-ja-remuneradas",
+        "caixa-gratificacao-nao-remunera-as-horas"
+      ],
       "default_legal": "sem-gratificacao-7a-e-8a-sao-extras",
       "piso_legal": null,
       "fonte_default": "Súmula 102, II, III, IV, VI e VII/TST",
-      "sustentacao": "A gratificação de função de bancários, incluída no § 2º do art. 224, não inferior a 1/3 do salário já remunera a 7ª e 8ª horas (índice do item 6.6.1)",
-      "sustentacao_fraca": "A regra aparece apenas na linha de índice do item 6.6.1; o manual não a desenvolve. Verbete ◆ da pendência P13 do bloco 3."
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "sustentacao": "índice do item 6.6.1 do manual",
+      "sustentacao_fraca": "A regra aparece apenas na linha de índice do item 6.6.1; o manual não a desenvolve. Verbete ◆ da pendência P13 do bloco 3.",
+      "origem_consolidacao": [
+        "varredura"
+      ]
+    },
+    {
+      "id": "pn.sobreaviso.fator",
+      "nome": "Fator de remuneração do sobreaviso",
+      "verbas": [
+        "horas-de-sobreaviso"
+      ],
+      "tipo": "substituicao-de-valor",
+      "forma": "fracao",
+      "alteracao": "qualquer",
+      "default_legal": "1/3",
+      "piso_legal": null,
+      "fonte_default": "CLT art. 244, § 2º; Súmula 229/TST (eletricitários, por analogia)",
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "ressalva_611b_xvii": true,
+      "sustentacao": "manual 6.8, p. 55 — 'as horas de sobreaviso, para todos os efeitos, serão contados à razão de 1/3 do salário normal'",
+      "duvida_resolvida": "Era dúvida da varredura, junto com a prontidão. Mesmo fundamento: duração do trabalho.",
+      "origem_consolidacao": [
+        "varredura-duvida-resolvida"
+      ]
+    },
+    {
+      "id": "pn.prontidao.fator",
+      "nome": "Fator de remuneração da prontidão",
+      "verbas": [
+        "horas-de-prontidao"
+      ],
+      "tipo": "substituicao-de-valor",
+      "forma": "fracao",
+      "alteracao": "qualquer",
+      "default_legal": "2/3",
+      "piso_legal": null,
+      "fonte_default": "CLT art. 244, § 3º",
+      "fundamento_611b": "paragrafo-unico",
+      "classificacao_provisoria": false,
+      "ressalva_611b_xvii": true,
+      "sustentacao": "manual 6.9, em bloco-04-verbas2.md: 'a lei fixa a razão de 2/3 do salário hora normal'; fórmula `valor_prontidão = salário_hora_normal × 2/3 × horas_de_prontidão`.",
+      "duvida_resolvida": "Era dúvida da varredura, junto com o sobreaviso. Mesmo fundamento: duração do trabalho.",
+      "origem_consolidacao": [
+        "varredura-duvida-resolvida"
+      ]
+    },
+    {
+      "id": "pn.in-itinere.prefixacao",
+      "nome": "Prefixação de horas in itinere",
+      "verbas": [
+        "horas-in-itinere"
+      ],
+      "tipo": "chave-de-variante",
+      "forma": "variante",
+      "alteracao": "qualquer",
+      "variantes": [
+        "apuracao-real",
+        "prefixado-por-norma-coletiva"
+      ],
+      "default_legal": "apuracao-real",
+      "piso_legal": null,
+      "fonte_default": "CLT art. 58, § 2º (revogado pela Lei 13.467/2017, com efeito de 11/11/2017)",
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "02-base-normativa-verbas.md §§ 2 e 3 — 'Prefixação de horas in itinere por norma coletiva é válida; o TST já assentou que não se amolda a direito absolutamente indisponível' (Tema 1046)",
+      "observacao": "Quando prefixado, o valor da cláusula PREVALECE sobre a apuração real. Só faz sentido para fatos anteriores a 11/11/2017 — depois disso a verba não existe. Contratos pré-Reforma da Gasmig continuam gerando passivo.",
+      "valor_acompanha_variante": "Escolhida a variante prefixado-por-norma-coletiva, a quantidade de horas vem da própria cláusula.",
+      "origem_consolidacao": [
+        "secao-10"
+      ]
     },
     {
       "id": "pn.rsr.dias",
       "nome": "Número de dias de repouso semanal remunerado",
-      "verbas": ["rsr", "reflexo-he-rsr", "reflexo-adicional-noturno-rsr", "reflexo-comissoes-rsr"],
+      "verbas": [
+        "rsr",
+        "reflexo-he-rsr",
+        "reflexo-adicional-noturno-rsr",
+        "reflexo-comissoes-rsr"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "inteiro",
       "alteracao": "apenas-elevacao",
@@ -133,135 +431,277 @@
       "piso_legal": "1",
       "unidade": "dias por semana",
       "fonte_default": "CLT art. 67; Lei 605/49",
-      "sustentacao": "O número de dias de repouso semanal remunerado pode ser ampliado por convenção ou acordo coletivo de trabalho, como decorrência do exercício da autonomia sindical (IRR-849, tese 1, unânime)",
-      "observacao": "Ampliar o número de dias de RSR é possível (tese 1), mas fazê-lo não altera o divisor (tese 4). Duas consequências separadas do mesmo fato negocial."
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "IRR-849, tese 1 (unânime), em bloco-03-verbas.md: 'O número de dias de RSR pode ser AMPLIADO por convenção ou acordo coletivo'. A v2 do relatório citava essa tese com uma oração final ('como decorrência do exercício da autonomia sindical') que NÃO existe no corpus — removida.",
+      "observacao": "A tese fala em ampliação, o que sustenta apenas-elevacao independentemente do art. 611-B. Ampliar o RSR não altera o divisor (IRR-849, tese 3) — duas consequências separadas do mesmo fato negocial.",
+      "origem_consolidacao": [
+        "varredura"
+      ]
     },
     {
       "id": "pn.rsr.feriados-no-reflexo",
       "nome": "Inclusão dos feriados no reflexo de HE sobre o RSR",
-      "verbas": ["reflexo-he-rsr"],
+      "verbas": [
+        "reflexo-he-rsr"
+      ],
       "tipo": "alteracao-de-composicao",
       "forma": "variante",
       "alteracao": "apenas-elevacao",
-      "variantes": ["apenas-rsr", "rsr-mais-feriados"],
+      "variantes": [
+        "apenas-rsr",
+        "rsr-mais-feriados"
+      ],
       "default_legal": "apenas-rsr",
       "piso_legal": "apenas-rsr",
       "fonte_default": "manual 6.6.6.1, p. 43",
-      "sustentacao": "Os feriados apenas serão incluídos quando a sentença determinar ou existir disposição em norma coletiva que favoreça o empregado, visto que RSR não se confunde com feriados"
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "Os feriados apenas serão incluídos quando a sentença determinar ou existir disposição em norma coletiva QUE FAVOREÇA O EMPREGADO",
+      "observacao": "O 'que favoreça' é do próprio manual e sustenta apenas-elevacao sem depender do art. 611-B.",
+      "origem_consolidacao": [
+        "varredura"
+      ]
     },
     {
       "id": "pn.feriado-12x36.criterio",
       "nome": "Critério de cálculo do feriado laborado em jornada 12×36",
-      "verbas": ["feriado-trabalhado"],
+      "verbas": [
+        "feriado-trabalhado"
+      ],
       "tipo": "chave-de-variante",
       "forma": "variante",
       "alteracao": "qualquer",
-      "variantes": ["salario-dia-dobrado", "salario-hora-com-100"],
+      "variantes": [
+        "salario-dia-dobrado",
+        "salario-hora-com-100"
+      ],
       "default_legal": null,
       "sem_default": true,
       "piso_legal": null,
       "fonte_default": "não há — divergência jurisprudencial não resolvida",
-      "sustentacao": "na ausência de parâmetros no comando sentencial, analisar o pedido inicial, como a reclamada pagava feriados durante o contrato, previsão em instrumento coletivo (manual 6.5, p. 34)",
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "manual 6.5, p. 34 — 'previsão em instrumento coletivo' entre os elementos a analisar",
       "divergencia_registrada": {
         "salario-dia-dobrado": "remuneração mensal / 30 × 2 — TRT-3, 9ª Turma, AP 0001138-58.2012.5.03.0103",
         "salario-hora-com-100": "salário-hora × horas laboradas × 2 — TRT-3, 3ª Turma, AP 0001215-11.2012.5.03.0057"
-      }
+      },
+      "origem_consolidacao": [
+        "varredura"
+      ]
     },
     {
       "id": "pn.insalubridade.base",
       "nome": "Base de cálculo do adicional de insalubridade",
-      "verbas": ["adicional-insalubridade", "reflexos-adicional-insalubridade"],
+      "verbas": [
+        "adicional-insalubridade",
+        "reflexos-adicional-insalubridade"
+      ],
       "tipo": "chave-de-variante",
       "forma": "variante",
       "alteracao": "apenas-elevacao",
-      "variantes": ["salario-minimo", "salario-basico", "piso-nacional-de-salarios", "salario-profissional", "base-convencional"],
+      "variantes": [
+        "salario-minimo",
+        "piso-nacional-de-salarios",
+        "salario-profissional",
+        "base-convencional"
+      ],
       "default_legal": "salario-minimo",
       "piso_legal": "salario-minimo",
-      "fonte_default": "Súmula 46 do TRT-3 (RA 224/2015); CLT art. 192",
-      "sustentacao": "A base de cálculo do adicional de insalubridade é o salário mínimo, enquanto não sobrevier lei dispondo de forma diversa, salvo critério mais vantajoso para o trabalhador estabelecido em norma coletiva, condição mais benéfica ou em outra norma autônoma aplicável",
-      "observacao": "O manual exige disposição mais benéfica ESPECÍFICA em instrumento coletivo — cláusula genérica de melhoria não basta.",
-      "divergencia_registrada": {
-        "salario-basico": "Súmula 228/TST, Res. 148/2008 — eficácia SUSPENSA por liminar do STF na Rcl 6266",
-        "piso-nacional-de-salarios": "DL 2351/87 — apenas de 09/87 a 07/89",
-        "salario-profissional": "Súmula 17/TST, restaurada pela Res. 121/03"
-      }
+      "fonte_default": "CLT art. 192; SV 4/STF; Rcl 6.275/STF",
+      "fundamento_611b": "inciso-XVIII",
+      "classificacao_provisoria": false,
+      "sustentacao": "02-base-normativa-verbas.md § 5 — 'a base do adicional de insalubridade é parâmetro negociável. Norma coletiva pode fixar base mais vantajosa, e é o único caminho legítimo para afastar o salário mínimo'",
+      "cronologia": {
+        "2008-SV4": "SV 4/STF: o salário mínimo não pode ser indexador de base de cálculo nem ser substituído por decisão judicial",
+        "2008-Res148": "TST altera a Súmula 228: base passaria a ser o salário básico, salvo critério mais vantajoso em instrumento coletivo",
+        "2008-Rcl6266": "Liminar do Min. Gilmar Mendes SUSPENDE a Súmula 228 na parte do salário básico",
+        "2018-04-Rcl6275": "Min. Ricardo Lewandowski CASSA DEFINITIVAMENTE a parte da Súmula 228 que fixava o salário básico. Mesmo sentido nas Rcl 6.277 e 8.436"
+      },
+      "correcao_do_catalogo_anterior": "A versão 1.0 registrava a Súmula 228 como 'eficácia suspensa por liminar'. Isso deixou de ser exato em abril de 2018: foi cassada. A variante 'salario-basico' foi REMOVIDA da lista.",
+      "observacao": "O manual TRT-3 é de 2016/2017 e registra a suspensão, não a cassação — item de Fase 4. O Judiciário não pode fixar base diversa, sob pena de atuar como legislador positivo: só lei ou norma coletiva.",
+      "origem_consolidacao": [
+        "varredura",
+        "secao-10"
+      ]
     },
     {
       "id": "pn.insalubridade.percentual",
       "nome": "Percentual do adicional de insalubridade",
-      "verbas": ["adicional-insalubridade", "reflexos-adicional-insalubridade"],
-      "tipo": "substituicao-de-valor",
-      "forma": "percentual",
-      "alteracao": "apenas-elevacao",
-      "default_legal": "20",
-      "piso_legal_por_grau": {"leve": "10", "medio": "20", "maximo": "40"},
-      "piso_legal": "10",
-      "fonte_default": "CLT art. 192",
-      "sustentacao": "É apurado à razão de 10, 20, 40% ou outro percentual previsto em norma infralegal mais favorável ao empregado (manual 6.11.1, p. 59)",
-      "observacao": "O grau decorre de perícia e não se negocia. O que a norma pode elevar é o percentual associado ao grau. O default listado é o do grau médio; o piso efetivo depende do grau apurado."
-    },
-    {
-      "id": "pn.noturno.adicional",
-      "nome": "Adicional noturno",
-      "verbas": ["adicional-noturno", "hora-extra-noturna", "reflexos-adicional-noturno"],
+      "verbas": [
+        "adicional-insalubridade",
+        "reflexos-adicional-insalubridade"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "percentual",
       "alteracao": "apenas-elevacao",
       "default_legal": "20",
       "piso_legal": "20",
-      "piso_legal_por_categoria": {"urbano": "20", "rural": "25"},
+      "fonte_default": "CLT art. 192",
+      "fundamento_611b": "inciso-XVIII",
+      "classificacao_provisoria": false,
+      "sustentacao": "CLT art. 192. O único percentual de insalubridade que aparece no corpus é o grau médio, 20% (bloco-04-verbas2-detalhe.md, 'planilha completa — grau médio (20%)').",
+      "observacao": "O grau decorre de perícia e não se negocia. O piso efetivo é o do grau apurado; o default listado é o do grau médio.",
+      "origem_consolidacao": [
+        "varredura"
+      ],
+      "pendencia_de_lastro": "A tabela por grau (leve 10 / médio 20 / máximo 40) FOI REMOVIDA desta entrada: os percentuais de grau leve e máximo não estão em lugar nenhum do corpus, e a citação que os sustentava ('manual 6.11.1, p. 59') não corresponde a nenhum texto real — o item 6.11.1 trata de base de cálculo e reflexos. Reintroduzir só com a fonte."
+    },
+    {
+      "id": "pn.periculosidade.percentual",
+      "nome": "Percentual do adicional de periculosidade",
+      "verbas": [
+        "adicional-periculosidade",
+        "reflexos-adicional-periculosidade"
+      ],
+      "tipo": "substituicao-de-valor",
+      "forma": "percentual",
+      "alteracao": "apenas-elevacao",
+      "default_legal": "30",
+      "piso_legal": "30",
+      "fonte_default": "CLT art. 193",
+      "fundamento_611b": "inciso-XVIII",
+      "classificacao_provisoria": false,
+      "sustentacao": "manual 6.11.2, p. 60 — 'devido na base de 30% sobre o salário simples' (Súmula 191/TST)",
+      "duvida_resolvida": "Era a dúvida 1 do bloco 5. O manual escreve 'devido na base de 30%', sem 'no mínimo', e por isso o parâmetro ficara fora do inventário. A âncora correta é o inciso XVIII do art. 611-B: adicional para atividade perigosa não admite supressão nem redução. A ausência de 'no mínimo' no texto é irrelevante.",
+      "origem_consolidacao": [
+        "varredura-duvida-resolvida",
+        "secao-10"
+      ]
+    },
+    {
+      "id": "pn.periculosidade.base",
+      "nome": "Base de cálculo do adicional de periculosidade",
+      "verbas": [
+        "adicional-periculosidade",
+        "reflexos-adicional-periculosidade"
+      ],
+      "tipo": "chave-de-variante",
+      "forma": "variante",
+      "alteracao": "apenas-elevacao",
+      "variantes": [
+        "salario-base",
+        "totalidade-das-parcelas-salariais",
+        "base-convencional"
+      ],
+      "default_legal": "salario-base",
+      "piso_legal": "salario-base",
+      "fonte_default": "CLT art. 193; Súmula 191/TST",
+      "fundamento_611b": "inciso-XVIII",
+      "classificacao_provisoria": false,
+      "sustentacao": "02-base-normativa-verbas.md § 7 — base é o salário-base para periculosidade por inflamáveis (NR-16, Anexo 2), hipótese aplicável à distribuição de gás canalizado",
+      "variante_eletricitarios": {
+        "quando": "Eletricitários contratados ANTES da Lei 12.740/2012",
+        "efeito": "Súmula 191, II/TST — adicional calculado sobre a totalidade das parcelas de natureza salarial, não só sobre o salário-base",
+        "impacto": "Aumenta substancialmente o valor",
+        "pendencia_de_dado": "Verificar se a Gasmig, controlada pela Cemig, tem empregados nessa condição — 02-base-normativa-verbas.md §§ 7 e 12, pendência 4"
+      },
+      "observacao": "Reduzir a base reduz o adicional. Por isso o inciso XVIII alcança a base, não só o percentual.",
+      "origem_consolidacao": [
+        "secao-10"
+      ]
+    },
+    {
+      "id": "pn.noturno.adicional",
+      "nome": "Adicional noturno",
+      "verbas": [
+        "adicional-noturno",
+        "reflexos-adicional-noturno"
+      ],
+      "tipo": "substituicao-de-valor",
+      "forma": "percentual",
+      "alteracao": "apenas-elevacao",
+      "default_legal": "20",
+      "piso_legal": "20",
+      "piso_legal_por_categoria": {
+        "urbano": "20",
+        "rural": "25"
+      },
       "fonte_default": "CLT art. 73; CF art. 7º, IX",
-      "sustentacao": "acréscimo de no mínimo 20% sobre o valor da hora diurna (manual 6.11.4, p. 61); rural acrescida de 25% no mínimo (6.11.4.3, p. 63)",
-      "observacao": "A hora extra noturna de 80% NÃO é valor deste parâmetro: é o produto 1,20 × 1,50, derivado deste e de pn.he.adicional. A ficção legal da hora noturna é regra de contagem, não parâmetro."
+      "fundamento_611b": "inciso-VI",
+      "classificacao_provisoria": false,
+      "sustentacao": "bloco-03-verbas.md, tabela 'Período / hipótese | Adicional mínimo' — 20% para o adicional noturno urbano; o rural aparece como 25% no mínimo (6.11.4.3). PARÁFRASE: a expressão 'sobre o valor da hora diurna', que a v2 punha entre aspas, não ocorre no corpus.",
+      "observacao": "Inciso VI do art. 611-B — remuneração do trabalho noturno superior à do diurno — veda supressão ou redução. Cumulável com insalubridade ou periculosidade: finalidade distinta (02-base-normativa-verbas.md § 6). A ficção legal da hora noturna é regra de contagem, não parâmetro.",
+      "origem_consolidacao": [
+        "varredura",
+        "secao-10"
+      ]
     },
     {
       "id": "pn.transferencia.adicional",
       "nome": "Adicional de transferência",
-      "verbas": ["adicional-transferencia", "reflexos-adicional-transferencia"],
+      "verbas": [
+        "adicional-transferencia",
+        "reflexos-adicional-transferencia"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "percentual",
       "alteracao": "apenas-elevacao",
       "default_legal": "25",
       "piso_legal": "25",
       "fonte_default": "CLT art. 469, § 3º",
-      "sustentacao": "pagamento suplementar nunca inferior a 25% dos salários que o empregado percebia naquela localidade, enquanto durar essa situação",
-      "origem_no_inventario": "seção 18 de 02a-adendo-lacunas-verbas.md; confirmado na lista do MTE reproduzida no manual 6.13.4, p. 70",
-      "observacao": "Salário-condição: devido enquanto durar a transferência, não se projeta após o retorno."
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "pagamento suplementar 'nunca inferior a 25% dos salários que o empregado percebia naquela localidade, enquanto durar essa situação'",
+      "observacao": "O 'nunca inferior' do próprio dispositivo sustenta apenas-elevacao sem depender do art. 611-B. Salário-condição: não se projeta após o retorno.",
+      "origem_consolidacao": [
+        "adendo-secao-18"
+      ]
     },
     {
       "id": "pn.transferencia.base",
       "nome": "Base de cálculo do adicional de transferência",
-      "verbas": ["adicional-transferencia"],
+      "verbas": [
+        "adicional-transferencia"
+      ],
       "tipo": "chave-de-variante",
       "forma": "variante",
       "alteracao": "qualquer",
-      "variantes": ["salario-base", "remuneracao"],
+      "variantes": [
+        "salario-base",
+        "remuneracao"
+      ],
       "default_legal": null,
       "sem_default": true,
       "piso_legal": null,
       "fonte_default": "CLT art. 469, § 3º — 'salários que o empregado percebia naquela localidade'",
-      "sustentacao": "Há decisões calculando sobre o salário-base e decisões calculando sobre a remuneração, incluindo o TRT-3 (adendo 02a, § 17)",
-      "origem_no_inventario": "seção 18 de 02a-adendo-lacunas-verbas.md",
-      "observacao": "Divergência registrada, não resolvida. Sem default pacificado."
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "adendo 02a, § 17 — decisões calculando sobre salário-base e sobre remuneração, incluindo o TRT-3",
+      "origem_consolidacao": [
+        "adendo-secao-18"
+      ]
     },
     {
       "id": "pn.comissionista.adicional-he",
       "nome": "Adicional de hora extra do comissionista",
-      "verbas": ["horas-extras-comissionista"],
+      "verbas": [
+        "horas-extras-comissionista"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "percentual",
       "alteracao": "apenas-elevacao",
       "default_legal": "50",
       "piso_legal": "50",
       "fonte_default": "Súmula 340/TST",
-      "sustentacao": "tem direito ao adicional de, no mínimo, 50% pelo trabalho em horas extras, calculado sobre o valor-hora das comissões recebidas no mês, considerando-se como divisor o número de horas efetivamente trabalhadas",
-      "origem_no_inventario": "seção 18 de 02a-adendo-lacunas-verbas.md",
-      "observacao": "Distinto de pn.he.adicional: incide sobre base e divisor diferentes. Uma CCT pode elevar um e não o outro."
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "Súmula 340 — 'adicional de, no mínimo, 50% […] calculado sobre o valor-hora das comissões recebidas no mês, considerando-se como divisor o número de horas efetivamente trabalhadas'",
+      "observacao": "Distinto de pn.he.adicional: incide sobre base e divisor diferentes. Uma CCT pode elevar um e não o outro.",
+      "origem_consolidacao": [
+        "adendo-secao-18"
+      ]
     },
     {
       "id": "pn.comissoes.periodo-da-media",
       "nome": "Período de apuração da média de comissões",
-      "verbas": ["reflexo-comissoes-ferias", "reflexo-comissoes-13o", "reflexo-comissoes-aviso", "verbas-rescisorias"],
+      "verbas": [
+        "reflexo-comissoes-ferias",
+        "reflexo-comissoes-13o",
+        "reflexo-comissoes-aviso",
+        "verbas-rescisorias"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "inteiro",
       "alteracao": "qualquer",
@@ -269,26 +709,97 @@
       "piso_legal": null,
       "unidade": "meses",
       "fonte_default": "CLT art. 142, § 3º; OJ 181/SDI-I/TST",
-      "sustentacao": "alguns instrumentos normativos estabelecem um intervalo menor para a apuração da média (manual 6.2 p. 23; 6.4 p. 29; 6.12 p. 67)",
-      "observacao": "Classificado como 'qualquer' e não 'apenas-elevacao' deliberadamente: prazo menor não é necessariamente mais favorável — depende de as comissões estarem subindo ou caindo."
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "manual 6.2 p. 23; 6.4 p. 29; 6.12 p. 67 — 'estabelecem prazo inferior para apuração da média'",
+      "observacao": "Classificado como 'qualquer' deliberadamente: prazo menor não é necessariamente mais favorável — depende de as comissões estarem subindo ou caindo.",
+      "origem_consolidacao": [
+        "varredura"
+      ]
     },
     {
       "id": "pn.comissoes.forma-de-correcao",
       "nome": "Forma de correção monetária das comissões para a média",
-      "verbas": ["reflexo-comissoes-ferias", "reflexo-comissoes-13o", "reflexo-comissoes-aviso"],
+      "verbas": [
+        "reflexo-comissoes-ferias",
+        "reflexo-comissoes-13o",
+        "reflexo-comissoes-aviso"
+      ],
       "tipo": "chave-de-variante",
       "forma": "variante",
       "alteracao": "qualquer",
-      "variantes": ["indices-debitos-trabalhistas", "forma-convencional"],
+      "variantes": [
+        "indices-debitos-trabalhistas",
+        "forma-convencional"
+      ],
       "default_legal": "indices-debitos-trabalhistas",
       "piso_legal": null,
       "fonte_default": "OJ 181/SDI-I/TST",
-      "sustentacao": "alguns documentos coletivos de trabalho fixam a forma de correção das comissões (manual 6.2, p. 23; 6.12, p. 67)"
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "manual 6.2, p. 23; 6.12, p. 67 — 'fixam a forma de correção das comissões'",
+      "origem_consolidacao": [
+        "varredura"
+      ]
+    },
+    {
+      "id": "pn.composicao.natureza-de-verba",
+      "nome": "Natureza da verba — integra ou não a base de cálculo",
+      "verbas": [
+        "todas"
+      ],
+      "tipo": "alteracao-de-composicao",
+      "forma": "variante",
+      "alteracao": "qualquer",
+      "variantes": [
+        "natureza-legal",
+        "nao-integra-por-clausula",
+        "integra-por-clausula"
+      ],
+      "default_legal": "natureza-legal",
+      "piso_legal": null,
+      "fonte_default": "CLT arts. 457 e 458",
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "02-base-normativa-verbas.md § 10 — 'Natureza de verba (integra ou não a base). Cláusula de não integração é frequente'",
+      "parametrizado_por_verba": true,
+      "observacao": "É o parâmetro genérico de composição. Instanciado por verba: a ajuda-alimentação é o caso mais comum, e o manual a faz depender de reconhecimento judicial (6.13.7, p. 75) — a cláusula de não integração é a via convencional do mesmo ponto.",
+      "duvida_resolvida": "Era a dúvida 4 do bloco 5 — natureza da ajuda-alimentação. A seção 10 a enquadra como instância de um parâmetro geral, e não como dúvida.",
+      "origem_consolidacao": [
+        "secao-10",
+        "varredura-duvida-resolvida"
+      ]
+    },
+    {
+      "id": "pn.ferias.particao",
+      "nome": "Número de períodos de fracionamento das férias",
+      "verbas": [
+        "ferias"
+      ],
+      "tipo": "substituicao-de-valor",
+      "forma": "inteiro",
+      "alteracao": "qualquer",
+      "default_legal": "2",
+      "piso_legal": null,
+      "unidade": "períodos",
+      "fonte_default": "CLT art. 134",
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "02-base-normativa-verbas.md § 10 — 'Partição de férias, 2 períodos, CLT art. 134. Gasmig: 3 períodos'",
+      "observacao": "Afeta a contagem de períodos aquisitivos e concessivos, não o valor da verba diretamente.",
+      "origem_consolidacao": [
+        "secao-10"
+      ]
     },
     {
       "id": "pn.aviso.proporcionalidade",
       "nome": "Tabela de proporcionalidade do aviso-prévio",
-      "verbas": ["aviso-previo", "projecao-doze-avos-ferias", "projecao-doze-avos-13o", "reflexos-no-aviso"],
+      "verbas": [
+        "aviso-previo",
+        "projecao-doze-avos-ferias",
+        "projecao-doze-avos-13o",
+        "reflexos-no-aviso"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "tabela",
       "alteracao": "apenas-elevacao",
@@ -296,13 +807,21 @@
       "piso_legal": "tabela-lei-12506",
       "piso_por_ponto": true,
       "fonte_default": "Lei 12.506/11; Nota Técnica 184/12/CGRT/SRT/MTE",
-      "sustentacao": "As cláusulas pactuadas em acordos ou convenções coletivas acerca de aviso prévio proporcional continuam válidas, desde que respeitada a proporcionalidade mínima prevista na Lei 12.506/11 (Nota Técnica 184/12, item 7)",
-      "observacao": "Alto alavancamento: um dia a mais de projeção pode valer 1/12 inteiro de férias e de 13º. O piso é uma tabela inteira — cada ponto negociado deve ser >= o legal correspondente."
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "bloco-03-verbas.md, linha 'Nota Técnica 184/12, item 7': cláusula coletiva sobre aviso proporcional vale, desde que respeitado o mínimo legal. PARÁFRASE do corpus — a v2 apresentava como citação literal uma frase que não é a de lá.",
+      "observacao": "Alto alavancamento: um dia a mais de projeção pode valer 1/12 inteiro de férias e de 13º. O piso é uma tabela — cada ponto negociado deve ser >= o legal correspondente.",
+      "origem_consolidacao": [
+        "varredura"
+      ]
     },
     {
       "id": "pn.ajuda-alimentacao.valor",
       "nome": "Valor unitário da ajuda-alimentação",
-      "verbas": ["ajuda-alimentacao", "indenizacao-substitutiva-ajuda-alimentacao"],
+      "verbas": [
+        "ajuda-alimentacao",
+        "indenizacao-substitutiva-ajuda-alimentacao"
+      ],
       "tipo": "substituicao-de-valor",
       "forma": "monetario",
       "alteracao": "qualquer",
@@ -310,8 +829,41 @@
       "sem_default": true,
       "piso_legal": null,
       "fonte_default": "não há — parcela exclusivamente convencional",
-      "sustentacao": "a coluna do exemplo do manual é rotulada 'Vr. Unitário ajuda alimentação, conforme CCT' (manual 6.13.7, p. 75)",
-      "observacao": "Quebra o padrão da R14: sem instrumento não há default para onde cair, e a verba fica incalculável — não calculável-com-marcação. Resolve para cobertura = sem-default-legal."
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "manual 6.13.7, p. 75 — a coluna do exemplo é rotulada 'Vr. Unitário ajuda alimentação, conforme CCT'",
+      "observacao": "Quebra o padrão da R14: sem instrumento não há default para onde cair, e a verba fica incalculável. Resolve para cobertura = sem-default-legal. A natureza (integra ou não a base) é governada por pn.composicao.natureza-de-verba.",
+      "origem_consolidacao": [
+        "varredura"
+      ]
+    },
+    {
+      "id": "pn.vale-transporte.deducao-6pct",
+      "nome": "Dedução dos 6% do salário no vale-transporte",
+      "verbas": [
+        "vale-transporte",
+        "indenizacao-substitutiva-vale-transporte"
+      ],
+      "tipo": "chave-de-variante",
+      "forma": "variante",
+      "alteracao": "qualquer",
+      "variantes": [
+        "com-deducao-6pct",
+        "sem-deducao"
+      ],
+      "default_legal": "com-deducao-6pct",
+      "piso_legal": null,
+      "fonte_default": "Dec. 95.247/87, arts. 9º e 12",
+      "fundamento_611b": "nao-mapeado",
+      "classificacao_provisoria": true,
+      "sustentacao": "manual 6.13.6, p. 74 — o empregador arca apenas com a despesa que exceder a 6% do salário básico",
+      "sustentacao_fraca": "O corpus registra divergência sobre a dedução em INDENIZAÇÃO JUDICIAL — 'há entendimento de que a dedução não é aplicável, visto que na época o empregado arcou com a despesa de forma integral' — e manda olhar o COMANDO EXEQUENDO, não a norma coletiva. Nenhuma cláusula coletiva sobre o ponto aparece no corpus.",
+      "duvida_resolvida": "Era a dúvida 3 do bloco 5. Sob o Tema 1046, o que não está no art. 611-B é negociável, e nada impede cláusula que dispense a dedução. Entra no inventário — mas a variante que o manual discute é governada pelo TÍTULO (R16, nível 1), não pela camada coletiva. Os dois caminhos coexistem.",
+      "observacao": "No exemplo do manual os dois cenários dão R$ 416,45 e R$ 242,21 — diferença de 42% sobre a mesma situação de fato.",
+      "origem_consolidacao": [
+        "varredura-duvida-resolvida"
+      ]
     }
-  ]
+  ],
+  "nota_sobre_o_irr_849": "Duas numerações de teses circulam no repositório: bloco-03-verbas.md enumera SEIS teses; 02-base-normativa-verbas.md § 8 enumera CINCO itens. Este catálogo usa a numeração de CINCO da base normativa (divisor: teses 2, 4 e 5; sábado: tese 3). O bloco-05-relatorio.md usa a de SEIS, por citar o bloco 03. Não há 'tese 6' na numeração de cinco. Conferir sempre contra a fonte citada na mesma frase."
 }
