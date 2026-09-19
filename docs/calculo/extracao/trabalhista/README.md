@@ -42,8 +42,9 @@ A regra da triagem continua valendo: um bloco por sessão, contexto limpo entre 
 |---|---|---|---|
 | 1 — Tabelas (item 18) | 373–471 | Tabular | **Fechado.** `bloco-01-tabelas.md` |
 | 2 — Critérios e estrutura (itens 1, 3, 4, 5) | 9–17 (+6.1, p. 18) | Prosa | **Fechado.** `bloco-02-relatorio.md` |
-| 3 — Verbas trabalhistas (itens 6.1 a 6.6) | 18–54 | Prosa | **Fechado.** `bloco-03-relatorio.md` |
-| demais | 55–372 | Misto | Não iniciados |
+| 3 — Verbas trabalhistas (itens 6.1 a 6.6) | 18–55 | Prosa | **Fechado.** `bloco-03-relatorio.md` |
+| 4 — Verbas trabalhistas (itens 6.7 a 6.15) | 55–82 | Prosa | **Fechado.** `bloco-04-relatorio.md` |
+| demais | 83–372 | Misto | Não iniciados |
 
 Do bloco 1: 20 CSV de série aqui, 6 JSON semânticos em `../../tabelas-normativas/`.
 Validação determinística: `python scripts/calculo/valida_bloco_tabelas.py`.
@@ -52,5 +53,6 @@ Dos blocos 2 e 3: espinha, detalhe e relatório cada um. Validação adversarial
 revisores independentes, um caçando omissões e outro afirmações sem respaldo; resultado e
 achados aceitos/rejeitados nos relatórios.
 
-O bloco 3 cobre os itens **6.1 a 6.6**; o capítulo 6 vai até 6.15 (p. 82). O inventário do
-que resta está em `bloco-03-verbas.md` § 0.
+Os blocos 3 e 4 cobrem o **capítulo 6 inteiro**, itens 6.1 a 6.15. O próximo bloco é o
+capítulo 7 — atualização monetária e juros, p. 83 em diante —, marcado pela triagem como
+**Fase 4 obrigatória**.

@@ -324,3 +324,28 @@ cada dispositivo não foi verificado**.
 - **Dois quadros sem numeração 18.x** foram encontrados e extraídos em arquivos próprios:
   MOEDAS/PARIDADES (p. 381) e alíquotas por código FPAS, Anexo I da IN/RFB 1238/2012
   (p. 449). Decidir se entram no escopo do módulo.
+
+---
+
+## 14. Correção de registro: a pendência P7 do bloco 3 era um erro de extração
+
+**Status: fechada. Registrada porque o erro foi meu, não do manual.**
+
+O relatório do bloco 3 abriu a pendência **P7** afirmando que "não existe item 6.12 na
+numeração impressa — salta de 6.11 (p. 59) para 6.13 (p. 67)".
+
+**O item 6.12 existe: `6.12. Comissões`, páginas 65 a 67.** O levantamento de títulos usava
+um padrão que exigia espaço logo após o número (`6.12 `), e o original imprime o ponto
+(`6.12.`). O item escapou da varredura, e o bloco 3 parou na p. 54, de modo que nenhuma
+leitura posterior o recuperou.
+
+Não era detalhe de inventário: o 6.12 é o **"tópico comissões"** para o qual os itens 6.4
+(p. 29) e 6.6.2 (p. 37) remetem, e que o bloco 3 declarou estar fora do recorte — duas
+vezes. Traz a regra mais desenvolvida do capítulo sobre base de cálculo de horas extras.
+
+Extraído em `extracao/trabalhista/bloco-04-verbas2.md` § 6. Ver também
+`bloco-04-relatorio.md` § 1.
+
+**Segunda correção:** os itens 6.1 a 6.6 terminam na **p. 55**, não na 54 — os passos finais
+do exemplo de supressão de horas extras (6.6.8) ficam na página seguinte. O fecho está em
+`bloco-04-verbas2-detalhe.md` § 1.
