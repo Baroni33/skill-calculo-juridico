@@ -42,12 +42,19 @@ pipeline. Nenhuma contém conteúdo normativo ainda.
 ```
 python -m unittest discover -s scripts/calculo -p "test_*.py"
 python scripts/calculo/valida_taxa_legal.py --validar
+python scripts/calculo/valida_bloco_tabelas.py     # exit 0 = sem erro de extração
+python scripts/calculo/extrai_bloco_01.py          # reextrai o bloco 1
 ```
 
-| Script | Invariantes |
+| Script | Verifica |
 |---|---|
 | `valida_cobertura.py` | R1 (englobamento concorrente), R2 (lacuna/sobreposição) |
 | `valida_taxa_legal.py` | R6 (piso zero), R11 (razão, não subtração), R12 (decimal, truncamento) |
+| `valida_bloco_tabelas.py` | Bloco 1: contagem contra o PDF, faixas, vigências, proveniência |
+
+`valida_bloco_tabelas.py` separa **erro de extração** de **divergência do original** e só
+sai com código não-zero no primeiro. Divergência é resultado esperado do trabalho: o
+manual tem erros de digitação e calendários com dias faltando, e eles ficam registrados.
 
 ## Duas regras que economizam retrabalho
 
@@ -61,4 +68,8 @@ console, não corrupção do arquivo.
 
 ## Estado
 
-Fases 0 e 1 fechadas (contrato de saída e triagem). Fase 2 não iniciada.
+Fases 0 e 1 fechadas (contrato de saída e triagem).
+
+Fase 2 em curso. Bloco 1 fechado: tabelas do Manual TRT-3, p. 373–471 — seis tabelas
+semânticas e vinte séries, relatório em
+`docs/calculo/extracao/trabalhista/bloco-01-tabelas.md`. Demais blocos não iniciados.

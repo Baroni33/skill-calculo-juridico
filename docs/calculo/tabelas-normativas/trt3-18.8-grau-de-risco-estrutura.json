@@ -1,0 +1,123 @@
+{
+  "id": "trt3.trabalhista.gilrat.grau-de-risco",
+  "categoria": "A-semantica",
+  "titulo": "GILRAT/SAT — grau de risco por atividade preponderante",
+  "jurisdicao": "justica-do-trabalho",
+  "componente": "encargo-previdenciario-patronal",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "emissor": "TRT-3, Secretaria de Cálculos Judiciais, julho/2016",
+    "item": "18.8",
+    "paginas_pdf": [
+      400,
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      431,
+      432,
+      433,
+      434,
+      435,
+      436,
+      437,
+      438,
+      439,
+      440,
+      441,
+      442,
+      443,
+      444,
+      445,
+      446,
+      447,
+      448,
+      449
+    ],
+    "offset_paginacao": 0
+  },
+  "regra": {
+    "criterio_de_enquadramento": "atividade econômica preponderante da empresa",
+    "periodicidade": "mensal (IN/RFB 1027/10, pagina_pdf 418)",
+    "graus": [
+      {
+        "grau": 1,
+        "risco": "leve",
+        "aliquota_pct": "1,00"
+      },
+      {
+        "grau": 2,
+        "risco": "médio",
+        "aliquota_pct": "2,00"
+      },
+      {
+        "grau": 3,
+        "risco": "grave",
+        "aliquota_pct": "3,00"
+      }
+    ],
+    "fundamento": "art. 22, II, da Lei 8.212/1991; RPS (Dec. 3048/99), Anexo V"
+  },
+  "duas_versoes_normativas": {
+    "sao_a_mesma_tabela": false,
+    "verificacao": "Confrontadas antes de extrair, como pedido. 18.8.1 usa CNAE 1.0 (formato NN.NN-N) e dá o grau de risco como dígito 1/2/3. 18.8.2, que é o Anexo I da IN/RFB 1027/10, usa CNAE 2.0 (formato NNNN-N/NN) e dá a alíquota GILRAT em percentual, mais o código FPAS. Chave diferente, colunas diferentes, vigências que não se sobrepõem: são normas sucessivas, não duas impressões do mesmo arquivo. As duas foram extraídas, em arquivos separados.",
+    "versoes": [
+      {
+        "item": "18.8.1",
+        "vigencia": "até 31/05/2007",
+        "codificacao": "CNAE 1.0",
+        "fundamento": "RPS (Dec. 3048/99), Anexo V",
+        "paginas_pdf": [
+          400,
+          417
+        ],
+        "serie": "docs/calculo/extracao/trabalhista/serie-18.8.1-grau-risco-cnae-ate-2007-05.csv"
+      },
+      {
+        "item": "18.8.2",
+        "vigencia": "a partir de 01/06/2007",
+        "codificacao": "CNAE 2.0",
+        "fundamento": "RPS, Anexo V, alterado pelo Dec. 6.042/2007 (efeitos de 01/06/2007) e pelo Dec. 6.957/2009 (efeitos de 01/01/2010); Anexo I da IN/RFB 1027/10",
+        "paginas_pdf": [
+          418,
+          449
+        ],
+        "serie": "docs/calculo/extracao/trabalhista/serie-18.8.2-grau-risco-cnae-desde-2007-06.csv"
+      }
+    ]
+  },
+  "corte_por_fato_gerador": {
+    "descricao": "Dentro de 18.8.2 a alíquota GILRAT se divide em duas colunas pelo momento do fato gerador: até 31/12/2009 e a partir de 01/01/2010. O marco é o art. 4º do Dec. 6.957/2009.",
+    "atencao": "É o fato gerador que manda, não a data do cálculo nem a do ajuizamento. Confundir os três produz alíquota errada em toda a competência.",
+    "pagina_pdf": 448
+  },
+  "tabela_2_quando_se_aplica": "Se o código CNAE não for encontrado na Tabela 1, ou se a descrição atribuída não corresponder ao objeto social, o enquadramento é feito pela Tabela 2 (IN/RFB 1027/10, pagina_pdf 418).",
+  "substituicao_de_aliquota": "Marca (*) no FPAS: contribuinte sujeito à contribuição substitutiva dos arts. 22-A e 25 da Lei 8.212/91 ou art. 25 da Lei 8.870/94 tem a alíquota GILRAT substituída por 0,1% sobre a receita da comercialização da produção (pagina_pdf 449).",
+  "nao_consta_deste_bloco": "O FAP (Fator Acidentário de Prevenção), que multiplica a alíquota GILRAT entre 0,5 e 2,0, não aparece em nenhuma tabela deste bloco."
+}

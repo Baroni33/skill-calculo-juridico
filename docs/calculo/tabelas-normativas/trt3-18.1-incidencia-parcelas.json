@@ -1,0 +1,1152 @@
+{
+  "id": "trt3.trabalhista.incidencia.parcelas",
+  "categoria": "A-semantica",
+  "titulo": "Incidência de INSS, FGTS e IRRF por parcela",
+  "jurisdicao": "justica-do-trabalho",
+  "componente": "descontos-e-encargos",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "emissor": "TRT-3, Secretaria de Cálculos Judiciais, julho/2016",
+    "item": "18.1",
+    "paginas_pdf": [
+      373,
+      374,
+      375,
+      376,
+      377,
+      378,
+      379,
+      380
+    ],
+    "offset_paginacao": 0
+  },
+  "colunas": {
+    "inss": "Contribuição previdenciária — integra o salário de contribuição?",
+    "fgts": "FGTS — integra a base de incidência do depósito?",
+    "irrf": "Imposto de renda retido na fonte — é rendimento tributável?"
+  },
+  "notas_de_leitura": [
+    "O fundamento legal é parte do dado, não anotação: a mesma parcela muda de tratamento conforme a norma invocada e a data.",
+    "Quando a coluna traz mais de um valor, a parcela tem alíneas no original e a lista preserva a ordem das alíneas.",
+    "Manual de 2016: anterior à Lei 13.467/2017. Toda incidência aqui é hipótese a confrontar na Fase 4, não norma vigente."
+  ],
+  "estatisticas": {
+    "parcelas": 44,
+    "linhas_cabecalho_descartadas": 8,
+    "linhas_de_continuacao_reunidas": 5
+  },
+  "continuacoes_de_pagina": [
+    {
+      "pagina_pdf": 375,
+      "parcela_continuada": "13º salário, inclusive o proporcional da rescisão",
+      "fragmentos": {
+        "inss": "6o",
+        "fgts": "23.08.12, art. 8º, inciso XIII",
+        "irrf": "1500/14, art. 13"
+      }
+    },
+    {
+      "pagina_pdf": 377,
+      "parcela_continuada": "Honorários advocatícios assistenciais",
+      "fragmentos": {
+        "inss": "e IN/RFB 971/09, art. 57, § e 14",
+        "fgts": "e 2º"
+      }
+    },
+    {
+      "pagina_pdf": 378,
+      "parcela_continuada": "Indenização prevista nos art. 496 e 497 da CLT",
+      "fragmentos": {
+        "inss": "9o, inciso V, alínea h.",
+        "fgts": "INSS no 637/98 e Resol. 19/00, DOU 20/03/00",
+        "irrf": "3000/99), art. 39, inciso XX e IN/RFB 1500/14, art. 7º, inciso III."
+      }
+    },
+    {
+      "pagina_pdf": 379,
+      "parcela_continuada": "Multa de 40% do FGTS",
+      "fragmentos": {
+        "inss": "3048/99), parág. 9o, inciso V, alínea a."
+      }
+    },
+    {
+      "pagina_pdf": 380,
+      "parcela_continuada": "Salário in natura (utilidades - CLT, 458)",
+      "fragmentos": {
+        "parcela": "2ª- Não são considerados como salário os vestuários, equipamentos e outros acessórios fornecidos ao empregado e utilizados no local de trabalho, para a prestação dos respectivos serviços (CLT, 458, p. 2º, e lei 8212/91, art.28, parágrafo 9º, alínea r, na redação da Lei 9528/97 e lei 8036/90, art. 15, parágrafo 6o); 3ª- Não integram o salário de contribuição os valores correspondentes a transporte, alimentação e habitação fornecidos pela empresa ao empregado contratado para trabalhar em localidade distante de sua residência, em canteiro de obras ou local que, por força da atividade, exija deslocamento ou estada. (Lei 8212/91, art. 28, parágrafo 9º, alínea m, na redação da Lei 9528/97; 4ª- O IRRF não incide sobre a alimentação, o transporte e os uniformes ou vestimentas especiais de trabalho, fornecidos gratuitamente pelo empregador a seus empregados ou mediante cobrança de preço inferior ao valor de mercado (art. 39, inciso IV, do RIR/99) 5º - De acordo com o art. 5 da IN/RFB 1500/14 são isentos ou não se sujeitam ao imposto sobre a renda, os seguintes rendimentos originários do trabalho e assemelhados: I - alimentação, inclusive in natura, transporte, vale- transporte e uniformes ou vestimentas especiais de trabalho, fornecidos gratuitamente pelo empregador a seus empregados, ou a diferença entre o preço cobrado e o valor de mercado"
+      }
+    }
+  ],
+  "parcelas": [
+    {
+      "parcela": "Abono pecuniário de férias (CLT, 143 e 144)",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        373
+      ],
+      "parcela_texto_bruto": "Abono pecuniário de férias (CLT, 143 e 144)",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28 parág. 9o, alínea e, item 6, redação dada pela Lei 9711/98 e RPS (Dec. 3048/99), art. 214, parág. 9o, alinea i."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Art. 144, CLT e Lei 8036/90 art.15, parág. 6o. , acrescentado pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Ato Declaratório Interpretativo RFB nº 28, 16/01/09, Instrução Normativa RFB, nº 936, 05/05/09 e Instrução Normativa/RFB, 1500/14 art. 62, inciso IX"
+      }
+    },
+    {
+      "parcela": "Abonos salariais",
+      "detalhamento": "a) abonos salariais vinculados ao salário b) expressamente desvinculados dos salários",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        373
+      ],
+      "parcela_texto_bruto": "Abonos salariais | a) abonos salariais vinculados ao salário | b) expressamente desvinculados dos salários",
+      "inss": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Lei 8212/91 art. 28, inciso I e RPS (Dec. 3048/99, art. 214, inciso I)"
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea e, item 7, com a redação dada pela Lei 9711/98 e RPS (Dec. 3048/99), art. 214, parágrafo 9o, inciso V, alínea j, com a redação dada pela Dec. 3.265/99"
+        }
+      ],
+      "fgts": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Lei 8036/90, art. 15, caput."
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+        }
+      ],
+      "irrf": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Lei 7713/88, art. 3º, §§ 1º e 4º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 22, caput"
+        },
+        {
+          "ordem": 2,
+          "incide": "sim",
+          "fundamento": "Lei 7713/88, art. 3º, §§ 1º e 4º e art. 7º. , RIR/99 (Dec. 3000/99) art. 43, inciso I e IN/RFB 1500/14, art. 22, caput"
+        }
+      ]
+    },
+    {
+      "parcela": "Adicionais de insalubridade, periculosidade, noturno, transferência e de função",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        373
+      ],
+      "parcela_texto_bruto": "Adicionais de insalubridade, periculosidade, noturno, | transferência e de função",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I e RPS (Dec. 3048/99), art. 214, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15, caput."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 22, caput"
+      }
+    },
+    {
+      "parcela": "Ajuda de custo Para efeito de INSS e FGTS não integram: “as ajudas de custo e o adicional mensal recebidos pelo aeronauta nos termos da Lei 5.929, de 30 de outubro de 1973” (Lei 8212/91, art. 28, parág. 9, alínea b e Dec. 3048/99, art. 214, parágrafo 9o, inciso II) “a ajuda de custo, em parcela única, recebida exclusivamente em decorrência de mudança de local de trabalho do empregado no forma do art. 470 da CLT.” (Lei 8212/91, art. 28, parág. 9, alínea g e Dec. 3048/99, art. 214, inciso VII) Para efeito de incidência de IR não integra: “a ajuda de custo destinada atender às despesas com transporte, frete e locomoção do beneficiado e seus familiares, em caso de remoção de um município para outro, sujeita à comprovação posterior pelo contribuinte” (Dec. 3000/99, art. 39, inciso I)",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        373
+      ],
+      "parcela_texto_bruto": "Ajuda de custo | Para efeito de INSS e FGTS não integram: | “as ajudas de custo e o adicional mensal recebidos pelo aeronauta | nos termos da Lei 5.929, de 30 de outubro de 1973” (Lei 8212/91, art. | 28, parág. 9, alínea b e Dec. 3048/99, art. 214, parágrafo 9o, inciso II) | “a ajuda de custo, em parcela única, recebida exclusivamente em | decorrência de mudança de local de trabalho do empregado no forma | do art. 470 da CLT.” (Lei 8212/91, art. 28, parág. 9, alínea g e Dec. | 3048/99, art. 214, inciso VII) | Para efeito de incidência de IR não integra: | “a ajuda de custo destinada atender às despesas com transporte, | frete e locomoção do beneficiado e seus familiares, em caso de | remoção de um município para outro, sujeita à comprovação | posterior pelo contribuinte” (Dec. 3000/99, art. 39, inciso I)",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28 parág. 9o, alíneas “b” e “g” e RPS (Dec. 3048/99), art. 214, inciso II e VII."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei 7713/88, art. 6º, inciso XX, RIR/99 (Dec. 3000/99), art. 39, inciso I e IN/RFB 1500/14, art. 5º, inciso VIII"
+      }
+    },
+    {
+      "parcela": "Auxílio-doença",
+      "detalhamento": "a) 15 primeiros dias pagos pela empresa ( * ) b) complementação salarial, desde que extensiva a totalidade dos empregados da empresa c) benefício pago pela Previdência da União, DF e Municípios (**) Obs.: ( * )O empregado doméstico tem direito ao auxílio-doença desde o início da incapacidade, conforme art. 60, Lei 8213/91, sendo considerado como licenciado no período de gozo do auxílio-doença. (**) O depósito do FGTS continua obrigatório durante todo o período de afastamento tanto pela empresa como pelo empregador doméstico, se a licença for decorrente de acidente de trabalho (Lei 8036/90, art. 15, § 5º)",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        374
+      ],
+      "parcela_texto_bruto": "Auxílio-doença | a) 15 primeiros dias pagos pela empresa ( * ) | b) complementação salarial, desde que extensiva a | totalidade dos empregados da empresa | c) benefício pago pela Previdência da União, DF e | Municípios (**) | Obs.: | ( * )O empregado doméstico tem direito ao auxílio-doença desde o | início da incapacidade, conforme art. 60, Lei 8213/91, sendo | considerado como licenciado no período de gozo do auxílio-doença. | (**) O depósito do FGTS continua obrigatório durante todo o período | de afastamento tanto pela empresa como pelo empregador | doméstico, se a licença for decorrente de acidente de trabalho (Lei | 8036/90, art. 15, § 5º)",
+      "inss": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Lei 8212/91, art. 28, inciso I, RPS (Dec. 3048/99), art. 75 e art. 60 da Lei 8213/91"
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "Lei 8212/91, art. 28, parág. 9o, alínea n, acrescida pela Lei 9528/97 e RPS (Dec. 3048/99), art. 214, parág. 9o, inciso XIII"
+        },
+        {
+          "ordem": 3,
+          "incide": "nao",
+          "fundamento": "Lei 8212/91, art. 28, parág. 9o, alínea a, com a redação dada pela Lei 9528/97 e RPS (Dec. 3048/99), art. 214, parág. 9o, inciso I."
+        }
+      ],
+      "fgts": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Dec. 99684/90, art. 28"
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "Lei 8036/90, art. 15, parág. 6o, acrescentado pela Lei 9711/98."
+        },
+        {
+          "ordem": 3,
+          "incide": "nao",
+          "fundamento": "Lei 8036/90, art. 15, parág. 6o, acrescido pela Lei 9711/98"
+        }
+      ],
+      "irrf": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "RIR/99 (Dec. 3000/99), art. 39, inciso XLII e art. 43, caput e inciso I."
+        },
+        {
+          "ordem": 2,
+          "incide": "sim",
+          "fundamento": "RIR/99 (Dec. 3000/99), art. 43, inciso I"
+        },
+        {
+          "ordem": 3,
+          "incide": "nao",
+          "fundamento": "RIR/99 (Dec. 3000/99), art. 39, inciso XLII e IN/RFB 1500/14 (art. 6º, inciso XI"
+        }
+      ]
+    },
+    {
+      "parcela": "Aviso prévio trabalhado",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        374
+      ],
+      "parcela_texto_bruto": "Aviso prévio trabalhado",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I e RPS (Dec. 3048/99), art. 214, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15, caput."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 22, caput"
+      }
+    },
+    {
+      "parcela": "Aviso prévio indenizado Observação: A partir de janeiro/09, com a revogação da alínea f do art. 214, Dec. 3048/99 pelo Dec. 6727, de 13/01/09, não há dispositivo legal que exclua expressamente o aviso prévio indenizado da base de cálculo da contribuição previdenciária.",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        374
+      ],
+      "parcela_texto_bruto": "Aviso prévio indenizado | Observação: A partir de janeiro/09, com a revogação da alínea f do art. | 214, Dec. 3048/99 pelo Dec. 6727, de 13/01/09, não há dispositivo legal | que exclua expressamente o aviso prévio indenizado da base de cálculo | da contribuição previdenciária.",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "RPS (Dec. 3048/99), art.214, parágrafo 9, inciso V, alínea f e Súmula 50 do TRT-3ª Região"
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Súmula 305/TST e IN da Secretaria de Inspeção do Trabalho, SIT, n. 99, de 23.08.12, art. 8º, inciso XIX"
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei, 7713/88, art. 6º, inciso V, RIR/99 (Dec. 3000/99), art. 39, inciso XX e IN/RFB 1500/14, art. 7º, inciso III"
+      }
+    },
+    {
+      "parcela": "13º salário, inclusive o proporcional da rescisão",
+      "detalhamento": "Observações: 1 - O 13º salário passou a integrar o salário de contribuição a partir de set/89",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        374,
+        375
+      ],
+      "parcela_texto_bruto": "13º salário, inclusive o proporcional da rescisão | Observações: | 1 - O 13º salário passou a integrar o salário de contribuição a partir | de set/89",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, parágrafo 7o e RPS ( Dec. 3048/99), art. 214, parág. 6o"
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15 IN da Secretaria de Inspeção do Trabalho, SIT, n. 99, de 23.08.12, art. 8º, inciso XIII"
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 26, Lei 8134/90, art. 16 RIR/99 (Dec. 3000/99), art. 43, caput e art. 638 e IN/RFB 1500/14, art. 13"
+      },
+      "observacao": "Linha dividida pela quebra de página: fundamento continua na p.375."
+    },
+    {
+      "parcela": "Comissões",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        375
+      ],
+      "parcela_texto_bruto": "Comissões",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 8, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15"
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º, RIR/99 (Dec. 3000/99), art. 43, inciso V IN/RFB 1500/14, art. 22, caput"
+      }
+    },
+    {
+      "parcela": "Complementação de aposentadoria",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        375
+      ],
+      "parcela_texto_bruto": "Complementação de aposentadoria",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, inciso I."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15"
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "RIR/99 (Dec. 3000/99) e IN/RFB 1500/14, art. 22, inciso II"
+      }
+    },
+    {
+      "parcela": "Diárias para viagem",
+      "detalhamento": "a) até 50% da remuneração b) superiores a 50% da remuneração Notas: Para fins previdenciários, ver Lei 8212/91 e Dec. 3048/99, que fixam o limite de 50% em função da remuneração e não do salário. Para fins de incidência de IR, não há limite desde que destinadas, exclusivamente, ao pagamento de despesas de alimentação e pousada, por serviço eventual realizado em município diferente do da sede de trabalho (Solução de Consulta Cosit n. 73, de 31 de dezembro de 2013). Os adiantamentos de recursos para atender às despesas de viagens e estadas, quando sujeitos a posterior prestação de contas, não se enquadram como diárias, entretanto, não compõem o rendimento, desde que devidamente comprovados, o deslocamento e as despesas efetuadas, conforme acima exposto (PN CST no 10/92, IN SRF no 74/98 e RIR/99, art. 39, inciso XIII)",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        375
+      ],
+      "parcela_texto_bruto": "Diárias para viagem | a) até 50% da remuneração | b) superiores a 50% da remuneração | Notas: | Para fins previdenciários, ver Lei 8212/91 e Dec. 3048/99, que fixam o | limite de 50% em função da remuneração e não do salário. | Para fins de incidência de IR, não há limite desde que destinadas, | exclusivamente, ao pagamento de despesas de alimentação e pousada, | por serviço eventual realizado em município diferente do da sede de | trabalho (Solução de Consulta Cosit n. 73, de 31 de dezembro de 2013). | Os adiantamentos de recursos para atender às despesas de viagens e | estadas, quando sujeitos a posterior prestação de contas, não se | enquadram como diárias, entretanto, não compõem o rendimento, desde | que devidamente comprovados, o deslocamento e as despesas efetuadas, | conforme acima exposto (PN CST no 10/92, IN SRF no 74/98 e RIR/99, | art. 39, inciso XIII)",
+      "inss": [
+        {
+          "ordem": 1,
+          "incide": "nao",
+          "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea h."
+        },
+        {
+          "ordem": 2,
+          "incide": "sim",
+          "fundamento": "Lei 8212/91, art. 28, parágrafo 8o, alínea a"
+        }
+      ],
+      "fgts": [
+        {
+          "ordem": 1,
+          "incide": "nao",
+          "fundamento": "Lei 8036/90, art. 15, parág. 6o, acrescido pela Lei 9711/98."
+        },
+        {
+          "ordem": 2,
+          "incide": "sim",
+          "fundamento": "Inst. Normativa SEFIT no 03 de 26/96/96, item 1, letra j."
+        }
+      ],
+      "irrf": [
+        {
+          "ordem": 1,
+          "incide": "nao",
+          "fundamento": "Dec. 3000/99, art. 39, inciso XIII."
+        },
+        {
+          "ordem": 2,
+          "incide": "sim",
+          "fundamento": "Vide RIR/99, art. 39, inciso XIII e art. 43, inciso I."
+        }
+      ]
+    },
+    {
+      "parcela": "Dobra de feriados",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        375
+      ],
+      "parcela_texto_bruto": "Dobra de feriados",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, §§ 1º e 4º e art. 7º. , RIR/99 (Dec. 3000/99) art. 43, inciso I e IN/RFB 1500/14, art. 22 caput"
+      }
+    },
+    {
+      "parcela": "Férias normais gozadas na vigência do contrato e o terço legal",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        375
+      ],
+      "parcela_texto_bruto": "Férias normais gozadas na vigência do contrato e o | terço legal",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 43, inciso II e IN/RFB 1500/14, art. 29."
+      }
+    },
+    {
+      "parcela": "Férias em dobro na vigência do contrato (CLT, 137) Valor das férias gozadas - remuneração + 1/3 Valor da dobra, art. 137, CLT",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        375
+      ],
+      "parcela_texto_bruto": "Férias em dobro na vigência do contrato (CLT, 137) | Valor das férias gozadas - remuneração + 1/3 | Valor da dobra, art. 137, CLT",
+      "inss": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Lei 8212/91, art. 28, inciso I."
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea d, com a redação dada pela Lei 9.528/97"
+        }
+      ],
+      "fgts": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Lei 8036/90, art. 15."
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "Lei 8036/90, art. 15, parág. 6, acrescido pela Lei 9711/98 e IN/SEFIT 99/12, art. 9º, inciso IV"
+        }
+      ],
+      "irrf": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "RIR/99 (Dec. 3000/99), art. 43, inciso II."
+        },
+        {
+          "ordem": 2,
+          "incide": "sim",
+          "fundamento": "RIR/99 (Dec. 3000/99), art. 43, inciso II."
+        }
+      ]
+    },
+    {
+      "parcela": "Férias + 1/3 indenizadas na rescisão contratual, aposentadoria ou exoneração (simples, proporcionais e em dobro)",
+      "detalhamento": "( * ) De acordo com as Súmulas 125 e 136 do STJ, o pagamento de férias e licença prêmio não gozadas por necessidade de serviço não está sujeito à incidência do imposto de renda. A Secretaria da Receita Federal ratificou tal posicionamento através dos Atos Declaratórios Interpretativos nº 05 e 14 de 2005, porém, apenas no que concerne às férias integrais e licença prêmio pagas por ocasião da rescisão, aposentadoria e exoneração. Ato Declaratório Interpretativo SRF nº 5, de 27 de abril de 2005 .................................................................................................................. Art. 1º Os Delegados e Inspetores da Receita Federal deverão rever de ofício os lançamentos referentes ao Imposto sobre a Renda incidente sobre os valores pagos (em pecúnia) a título de licença-prêmio e férias não gozadas, por necessidade do serviço, a trabalhadores em geral ou a servidor público, desde que inexista qualquer outro fundamento relevante, para fins de alterar, total ou parcialmente, o respectivo crédito tributário. Art. 2º A autoridade julgadora, nas Delegacias da Receita Federal de Julgamento, subtrairá a matéria de que trata o art. 1º na hipótese de crédito tributário já constituído cujo processo esteja pendente de julgamento. Art. 3º Fica formalmente revogado, sem a interrupção de sua força normativa, o Ato Declaratório Interpretativo SRF nº 23, de 25 de agosto de 2004. Ato Declaratório Interpretativo SRF nº 14, de 1º de dezembro de 2005 DOU de 2.12.2005 ............................................................................................................. Art. 1º O Ato Declaratório Interpretativo SRF nº 5, de 27 de abril de 2005, editado em decorrência do Parecer PGFN/CRJ/Nº 1905/2004, de 29 de novembro de 2004, tratou da não incidência do imposto de renda somente nas hipóteses de pagamento de valores a título de férias integrais e de licença-prêmio não gozadas por necessidade do serviço quando da aposentadoria, rescisão de contrato de trabalho ou exoneração, previstas nas Súmulas nos 125 e 136 do Superior Tribunal de Justiça (STJ), a trabalhadores em geral ou a servidores públicos. Art. 2º Sofrem a incidência do imposto de renda, prevista no art. 3º, §§ 1º e 4º, da Lei nº 7.713, de 1988, e no art. 43, inciso III, do Decreto nº 3.000, de 26 de março de 1999 - Regulamento do Imposto de Renda (RIR/1999), as demais formas de pagamento em pecúnia a título de férias e de licença- prêmio não gozadas.",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        376
+      ],
+      "parcela_texto_bruto": "Férias + 1/3 indenizadas na rescisão contratual, | aposentadoria ou exoneração (simples, proporcionais | e em dobro) | ( * ) De acordo com as Súmulas 125 e 136 do STJ, o pagamento de | férias e licença prêmio não gozadas por necessidade de serviço não | está sujeito à incidência do imposto de renda. | A Secretaria da Receita Federal ratificou tal posicionamento através | dos Atos Declaratórios Interpretativos nº 05 e 14 de 2005, porém, | apenas no que concerne às férias integrais e licença prêmio pagas | por ocasião da rescisão, aposentadoria e exoneração. | Ato Declaratório Interpretativo SRF nº 5, de 27 de abril de 2005 | .................................................................................................................. | Art. 1º Os Delegados e Inspetores da Receita Federal deverão rever de | ofício os lançamentos referentes ao Imposto sobre a Renda incidente | sobre os valores pagos (em pecúnia) a título de licença-prêmio e férias | não gozadas, por necessidade do serviço, a trabalhadores em geral ou a | servidor público, desde que inexista qualquer outro fundamento relevante, | para fins de alterar, total ou parcialmente, o respectivo crédito tributário. | Art. 2º A autoridade julgadora, nas Delegacias da Receita Federal de | Julgamento, subtrairá a matéria de que trata o art. 1º na hipótese de | crédito tributário já constituído cujo processo esteja pendente de | julgamento. | Art. 3º Fica formalmente revogado, sem a interrupção de sua força | normativa, o Ato Declaratório Interpretativo SRF nº 23, de 25 de agosto de | 2004. | Ato Declaratório Interpretativo SRF nº 14, de 1º de dezembro de 2005 | DOU de 2.12.2005 | ............................................................................................................. | Art. 1º O Ato Declaratório Interpretativo SRF nº 5, de 27 de abril de 2005, | editado em decorrência do Parecer PGFN/CRJ/Nº 1905/2004, de 29 de | novembro de 2004, tratou da não incidência do imposto de renda somente | nas hipóteses de pagamento de valores a título de férias integrais e de | licença-prêmio não gozadas por necessidade do serviço quando da | aposentadoria, rescisão de contrato de trabalho ou exoneração, previstas | nas Súmulas nos 125 e 136 do Superior Tribunal de Justiça (STJ), a | trabalhadores em geral ou a servidores públicos. | Art. 2º Sofrem a incidência do imposto de renda, prevista no art. 3º, §§ 1º e | 4º, da Lei nº 7.713, de 1988, e no art. 43, inciso III, do Decreto nº 3.000, de | 26 de março de 1999 - Regulamento do Imposto de Renda (RIR/1999), as | demais formas de pagamento em pecúnia a título de férias e de licença- | prêmio não gozadas.",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea d, com a redação dada pela Lei 9528/97"
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parág. 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Solução de divergência nº 01 de 02 de janeiro de 2009 e IN/RFB 1500/14,art. 62 incisos VII, VIII, X e XI e § 1º"
+      }
+    },
+    {
+      "parcela": "FGTS",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        376
+      ],
+      "parcela_texto_bruto": "FGTS",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, inciso I e OJ nº 4/Turmas do TRT/3ª Região"
+      },
+      "fgts": {
+        "incide": null,
+        "fundamento": null
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 28, Lei 7713/88, art. 6º, inciso V e RIR/99 (Dec. 3000/99), art. 39, inciso XX e IN/RFB 1500/14, art. 7º, inciso III"
+      },
+      "observacao": "Lacuna do original: coluna(s) FGTS sem valor. Não preenchida."
+    },
+    {
+      "parcela": "Gorjetas (espontâneas ou compulsórias)",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        376
+      ],
+      "parcela_texto_bruto": "Gorjetas (espontâneas ou compulsórias)",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I, e RPS (Dec. 3048/99, art. 214, inciso I)"
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 22, caput"
+      }
+    },
+    {
+      "parcela": "Gratificações ajustadas ou contratuais",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        376
+      ],
+      "parcela_texto_bruto": "Gratificações ajustadas ou contratuais",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I e RPS (Dec. 3048/99), art. 214, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 22, caput."
+      }
+    },
+    {
+      "parcela": "Honorários advocatícios assistenciais",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        376,
+        377
+      ],
+      "parcela_texto_bruto": "Honorários advocatícios assistenciais",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, incisos I e III e IN/RFB 971/09, art. 57, § e 14"
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafos 1º e 2º"
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei 10.833/03, art. 28, § 3º, inciso III"
+      },
+      "observacao": "Linha dividida pela quebra de página: fundamento continua na p.377."
+    },
+    {
+      "parcela": "Honorários advocatícios sucumbenciais",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        377
+      ],
+      "parcela_texto_bruto": "Honorários advocatícios sucumbenciais",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, incisos I e III e IN/RFB 971/09, art. 57, § 15"
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafos 1º e 2º"
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "RIR/99 (Dec. 3000/99), arts. 38, 45, 620, 628 e 718."
+      }
+    },
+    {
+      "parcela": "Honorários periciais",
+      "detalhamento": "( * ) o perito como contribuinte individual recolhe na forma prevista no art. 30, inciso II da Lei 8212/91",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        377
+      ],
+      "parcela_texto_bruto": "Honorários periciais | ( * ) o perito como contribuinte individual recolhe na forma prevista no | art. 30, inciso II da Lei 8212/91",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, incisos I e III ( * ) e IN//RB 971/09, art. 57 § 13 e art. 106"
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafos 1º e 2º"
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "art. 46 da Lei 8541/92, art. 45, inciso VIII e 718 do Dec. 3000/99, bem como o art. 26 da IN/RFB 1500/14"
+      }
+    },
+    {
+      "parcela": "Horas extraordinárias, de “sobreaviso” e in itinere",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        377
+      ],
+      "parcela_texto_bruto": "Horas extraordinárias, de “sobreaviso” e in itinere",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I e RPS (Dec. 3048/99), art. 214, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 22, caput."
+      }
+    },
+    {
+      "parcela": "Indenização adicional (Lei 7238/84, art. 9º)",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        377
+      ],
+      "parcela_texto_bruto": "Indenização adicional (Lei 7238/84, art. 9º)",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea e, item 9, acrescido pela Lei 9711/98 e RPS (Dec. 3048/99), parág. 9o, inciso V, alínea g."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parág. 6o acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei, 7713/88, art. 6º, inciso V, RIR/99 (Dec. 3000/99), art. 39, inciso XX e IN/RFB 1500/14, art. 7º, inciso III."
+      }
+    },
+    {
+      "parcela": "Indenização por tempo de serviço (anterior a 05/10/88, empregado não optante pelo FGTS)",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        377
+      ],
+      "parcela_texto_bruto": "Indenização por tempo de serviço (anterior a 05/10/88, | empregado não optante pelo FGTS)",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parág, 9o, alínea e, item 2 e RPS (Dec. 3048/99), parág. 9o, inciso V, alínea b."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": null
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei, 7713/88, art. 6º, inciso V, RIR/99 (Dec. 3000/99), art. 39, inciso XX e IN/RFB 1500/14, art. 7º, inciso III.."
+      }
+    },
+    {
+      "parcela": "Indenização do art. 479/CLT (metade da remuneração devida até o término da do contrato a prazo determinado, rescindido antecipadamente)",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        377
+      ],
+      "parcela_texto_bruto": "Indenização do art. 479/CLT (metade da remuneração devida | até o término da do contrato a prazo determinado, rescindido | antecipadamente)",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea e , item 3 e RPS (Dec. 3048/99), parág. 9o, inciso V, alínea c."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei, 7713/88, art. 6º, inciso V, RIR/99 (Dec. 3000/99), art. 39, inciso XX e IN/RFB 1500/14, art. 7º, inciso III.."
+      }
+    },
+    {
+      "parcela": "Indenização acidente de trabalho",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        377
+      ],
+      "parcela_texto_bruto": "Indenização acidente de trabalho",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "RPS (Dec. 3048/99), art. 214, parág. 9o, inciso V, alínea m."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, caput"
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei, 7713/88, art. 6º, inciso IV, RIR/99 (Dec. 3000/99), art. 39, inciso XVII e IN/RFB 1500/14, art. 7º, inciso I"
+      }
+    },
+    {
+      "parcela": "Indenização prevista nos art. 496 e 497 da CLT",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        377,
+        378
+      ],
+      "parcela_texto_bruto": "Indenização prevista nos art. 496 e 497 da CLT",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "RPS (Dec. 3048/99), art. 214, parág. 9o, inciso V, alínea h."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15 e resolução INSS no 637/98 e Resol. 19/00, DOU 20/03/00"
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei, 7713/88, art. 6º, inciso V, RIR/99 (Dec. 3000/99), art. 39, inciso XX e IN/RFB 1500/14, art. 7º, inciso III."
+      },
+      "observacao": "Linha dividida pela quebra de página: fundamento continua na p.378."
+    },
+    {
+      "parcela": "Indenização por danos morais",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        378
+      ],
+      "parcela_texto_bruto": "Indenização por danos morais",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "RPS (Dec. 3048/99), art. 214, parág. 9o, inciso V, alínea m."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, caput."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Ato Declaratório PGFN nº 09/2011."
+      }
+    },
+    {
+      "parcela": "Indenização art. 14 da Lei 5889/73 (contrato de safra)",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        378
+      ],
+      "parcela_texto_bruto": "Indenização art. 14 da Lei 5889/73 (contrato de safra)",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parág. 9o, alínea e, item 4 e RPS (Dec. 3048/99), art. 214, parág. 9o, inciso V, alínea d."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 39, inciso XX"
+      }
+    },
+    {
+      "parcela": "Incentivo à demissão ou indenização paga a título de PDV Observação: Não são considerados valores recebidos a título de incentivo à adesão de Planos de Demissão Voluntária - PDV, estando sujeitos à tributação: - verbas rescisórias previstas na legislação trabalhista ou dissídio coletivo e convenções trabalhistas homologados pela Justiça do Trabalho, tais como 13o salário, saldo de salário, salário vencido, férias proporcionais, férias vencidas, bem como os valores recebidos em função de direitos adquiridos, anteriormente à adesão do PDV, em decorrência de vínculo empregatício. (Esclarecimentos prestados pela SRF no link: http://idg.receita.fazenda.gov.br/interface/cidadao/irpf/2016/perguntao.",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        378
+      ],
+      "parcela_texto_bruto": "Incentivo à demissão ou indenização paga a título de | PDV | Observação: Não são considerados valores recebidos a título de incentivo | à adesão de Planos de Demissão Voluntária - PDV, estando sujeitos à | tributação: | - verbas rescisórias previstas na legislação trabalhista ou dissídio | coletivo e convenções trabalhistas homologados pela Justiça do Trabalho, | tais como 13o salário, saldo de salário, salário vencido, férias | proporcionais, férias vencidas, bem como os valores recebidos em função | de direitos adquiridos, anteriormente à adesão do PDV, em decorrência de | vínculo empregatício. (Esclarecimentos prestados pela SRF no link: | http://idg.receita.fazenda.gov.br/interface/cidadao/irpf/2016/perguntao.",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea e, item 5 e RPS (Dec. 3048/99), art. 214, parág. 9o, inciso V, alínea e."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 39, inciso XIX e parágrafo 9o e OJ/TST/SDI-I n.207"
+      }
+    },
+    {
+      "parcela": "Juros de mora",
+      "detalhamento": "Notas 1 - Os juros de mora previstos no art. 39 da lei 8177/91 incidem sobre o FGTS, quando o mesmo for corrigido com os índices próprios de correção do débito trabalhista 2 – A OJ 400-SDI/TST exclui os juros da base de cálculo do IR. O art. 62, § 3º, inciso II, alíneas a e b da IN/RFB 1500/14 excluem da base de cálculo do imposto de renda os juros incidentes sobre verbas trabalhistas pagas no contexto da rescisão contratual ou sobre verbas isentas. Para maiores esclarecimento, vide tópico tributação dos juros de mora deste manual",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        378
+      ],
+      "parcela_texto_bruto": "Juros de mora | Notas | 1 - Os juros de mora previstos no art. 39 da lei 8177/91 incidem sobre o | FGTS, quando o mesmo for corrigido com os índices próprios de correção | do débito trabalhista | 2 – A OJ 400-SDI/TST exclui os juros da base de cálculo do IR. | O art. 62, § 3º, inciso II, alíneas a e b da IN/RFB 1500/14 excluem da | base de cálculo do imposto de renda os juros incidentes sobre verbas | trabalhistas pagas no contexto da rescisão contratual ou sobre verbas | isentas. | Para maiores esclarecimento, vide tópico tributação dos juros de mora | deste manual",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, inciso I"
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "( * )"
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3o e 6o e RIR/99 (Dec. 3000/99), art. 55, inciso XIV e art. 56 (vide nota 2), IN/RFB 1500/14, art. 36, § 2º, e art. 62, § 5º, inciso I"
+      }
+    },
+    {
+      "parcela": "Licença-paternidade (CF/88, art. 7º, XIX)",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        378
+      ],
+      "parcela_texto_bruto": "Licença-paternidade (CF/88, art. 7º, XIX)",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Dec. 99684/90, art. 28, inciso V e IN no 03/96 SEFIT, item 1.2., letra d."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 43, inciso I."
+      }
+    },
+    {
+      "parcela": "Licença prêmio indenizada não gozadas por necessidade de serviço e pagas em pecúnia",
+      "detalhamento": "( * ) A respeito de licença prêmio não gozada por necessidade de serviço, vide observações no tópico férias indenizadas.",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        378
+      ],
+      "parcela_texto_bruto": "Licença prêmio indenizada não gozadas por | necessidade de serviço e pagas em pecúnia | ( * ) A respeito de licença prêmio não gozada por necessidade de serviço, | vide observações no tópico férias indenizadas.",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea e, item 8, acrescido pela Lei 9711/98 e RPS (Dec. 3048/99), art. 214, parág. 9o, inciso V, alínea l."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 43, inciso III e IN/RFB 1500/14, art. 62, incisos VI e VII"
+      }
+    },
+    {
+      "parcela": "Multa de 40% do FGTS",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        378,
+        379
+      ],
+      "parcela_texto_bruto": "Multa de 40% do FGTS",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, § 9o, alínea e, acrescida pela Lei 9528/97, item 1 e RPS (Dec. 3048/99), parág. 9o, inciso V, alínea a."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": null
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 39, inciso XX."
+      },
+      "observacao": "Linha dividida pela quebra de página: fundamento continua na p.379."
+    },
+    {
+      "parcela": "Multa do art.477, parág. 6º c/c 8º (um salário)",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        379
+      ],
+      "parcela_texto_bruto": "Multa do art.477, parág. 6º c/c 8º (um salário)",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea x, acrescida pela Lei 9528/97 e RPS (Dec. 3048/99), art. 214, inciso XXII."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei, 7713/88, art. 6º, inciso V, RIR/99 (Dec. 3000/99), art. 39, inciso XX e IN/RFB 1500/14, art. 7º, inciso III e Manual E-Social do Empregador Doméstico versão 1.5 maio/16"
+      }
+    },
+    {
+      "parcela": "Multa do art. 467/CLT",
+      "detalhamento": "( * ) O imposto de renda incide apenas sobre a parcela da multa apurada em relação às parcelas tributáveis, adotando a regra de que o acessório segue o principal",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        379
+      ],
+      "parcela_texto_bruto": "Multa do art. 467/CLT | ( * ) O imposto de renda incide apenas sobre a parcela da multa apurada | em relação às parcelas tributáveis, adotando a regra de que o acessório | segue o principal",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, inciso I e RPS (Dec. 3048/99), art.214, inciso I."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 39, inciso XX e art. 55, incisos VIII e IX) (* )"
+      }
+    },
+    {
+      "parcela": "Participação nos lucros, quando paga ou creditada de acordo com lei específica",
+      "detalhamento": null,
+      "heuristica_nome": "celula-inteira-multilinha",
+      "paginas_pdf": [
+        379
+      ],
+      "parcela_texto_bruto": "Participação nos lucros, quando paga ou creditada de | acordo com lei específica",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parágrafo 9o, alínea j e RPS (Dec. 3048/99), parág. 9o, inciso X."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei nº 10.101, de 19/12/00, art. 3º, § 5º, com redação dada pela Lei nº 12.832, de 20/06/13 RIR/99 (Dec. 3000/99), art. 43, inciso IV e IN/RFB 1500/14, art. 17"
+      }
+    },
+    {
+      "parcela": "Prêmios",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        379
+      ],
+      "parcela_texto_bruto": "Prêmios",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15, caput."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 22, caput"
+      }
+    },
+    {
+      "parcela": "Quebra de caixa",
+      "detalhamento": "Nota: A súmula 247/TST dispõe: “A parcela paga aos bancários sob a denominação quebra de caixa possui natureza salarial, integrando o salário do prestador dos serviços, para todos os efeitos legais.”",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        379
+      ],
+      "parcela_texto_bruto": "Quebra de caixa | Nota: A súmula 247/TST dispõe: “A parcela paga aos bancários sob a | denominação quebra de caixa possui natureza salarial, integrando o | salário do prestador dos serviços, para todos os efeitos legais.”",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8212/91, art. 28, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15, caput."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 22, caput"
+      }
+    },
+    {
+      "parcela": "Salário-família, sem ultrapassar o valor legal",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        379
+      ],
+      "parcela_texto_bruto": "Salário-família, sem ultrapassar o valor legal",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8212/91, art. 28, parág. 9o, alínea a, com a redação dada pela Lei 9528/97 e RPS (Dec. 3048/99), art. 214, parág. 9o, inciso I."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parágrafo 6o, acrescido pela Lei 9711/98."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 39, inciso XLI, IN/RFB 1500/14, art. 5º, inciso VII"
+      }
+    },
+    {
+      "parcela": "Salário in natura (utilidades - CLT, 458)",
+      "detalhamento": "*Observações 1ª- Não há INSS, FGTS e Imposto de renda sobre parcela in natura recebida de acordo com o programa de alimentação (PAT), nos termos da Lei 6.321/76 (Lei 8212/91, art. 28, parágrafo 9º, alínea c, lei 8036/90, art. 15, parágrafo 6o, acrescido pela lei 9711/98 e RIR/99, art. 39, parágrafo 8o). 2ª- Não são considerados como salário os vestuários, equipamentos e outros acessórios fornecidos ao empregado e utilizados no local de trabalho, para a prestação dos respectivos serviços (CLT, 458, p. 2º, e lei 8212/91, art.28, parágrafo 9º, alínea r, na redação da Lei 9528/97 e lei 8036/90, art. 15, parágrafo 6o); 3ª- Não integram o salário de contribuição os valores correspondentes a transporte, alimentação e habitação fornecidos pela empresa ao empregado contratado para trabalhar em localidade distante de sua residência, em canteiro de obras ou local que, por força da atividade, exija deslocamento ou estada. (Lei 8212/91, art. 28, parágrafo 9º, alínea m, na redação da Lei 9528/97; 4ª- O IRRF não incide sobre a alimentação, o transporte e os uniformes ou vestimentas especiais de trabalho, fornecidos gratuitamente pelo empregador a seus empregados ou mediante cobrança de preço inferior ao valor de mercado (art. 39, inciso IV, do RIR/99) 5º - De acordo com o art. 5 da IN/RFB 1500/14 são isentos ou não se sujeitam ao imposto sobre a renda, os seguintes rendimentos originários do trabalho e assemelhados: I - alimentação, inclusive in natura, transporte, vale- transporte e uniformes ou vestimentas especiais de trabalho, fornecidos gratuitamente pelo empregador a seus empregados, ou a diferença entre o preço cobrado e o valor de mercado",
+      "heuristica_nome": "ate-marcador",
+      "paginas_pdf": [
+        379,
+        380
+      ],
+      "parcela_texto_bruto": "Salário in natura (utilidades - CLT, 458) | *Observações | 1ª- Não há INSS, FGTS e Imposto de renda sobre parcela in natura | recebida de acordo com o programa de alimentação (PAT), nos termos da | Lei 6.321/76 (Lei 8212/91, art. 28, parágrafo 9º, alínea c, lei 8036/90, art. | 15, parágrafo 6o, acrescido pela lei 9711/98 e RIR/99, art. 39, parágrafo | 8o).",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "(vide obs. 1a a 3a)"
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "(vide obs. 1a a 3a)"
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "(vide obs. 1a 4ª e 5ª )"
+      },
+      "observacao": "Linha dividida pela quebra de página: fundamento continua na p.380."
+    },
+    {
+      "parcela": "a) Salário-maternidade",
+      "detalhamento": "b) O valor pago à empregada gestante, inclusive, à doméstica, em função da dispensa arbitrária ou sem justa causa, quando resultado da conversão estabilidade gestante em indenização prevista nos art. 496 e 497 da CLT “o valor pago à empregada gestante, inclusive à doméstica, em função do disposto na alínea b do inciso II do art. 10 do Ato das Disposições Constitucionais Transitórias da Constituição Federal integra o salário de contribuição, excluídos os casos de conversão em indenização previstos nos art. 496 e 497 da Consolidação das Leis do Trabalho.”",
+      "heuristica_nome": "sem-nome-marcador-na-linha-1",
+      "paginas_pdf": [
+        380
+      ],
+      "parcela_texto_bruto": "a) Salário-maternidade | b) O valor pago à empregada gestante, inclusive, à | doméstica, em função da dispensa arbitrária ou sem | justa causa, quando resultado da conversão | estabilidade gestante em indenização prevista nos art. | 496 e 497 da CLT | “o valor pago à empregada gestante, inclusive à doméstica, em | função do disposto na alínea b do inciso II do art. 10 do Ato das | Disposições Constitucionais Transitórias da Constituição Federal | integra o salário de contribuição, excluídos os casos de conversão | em indenização previstos nos art. 496 e 497 da Consolidação das | Leis do Trabalho.”",
+      "inss": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Lei 8212/91, art. 28, parágrafo 2o e 9o, alínea a e RPS (Dec. 3048/99), art. 214, parágrafo 2o."
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "RPS, aprovado pelo Dec. 3048/99, art. 214, parág. 9o, inciso V, alínea h e parágrafo 12o."
+        }
+      ],
+      "fgts": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "Lei 8036/90, caput e Dec. 99684/90, art. 28."
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "Resolução INSS nº 637/98 e nº 19/00, DOU 20/03/00"
+        }
+      ],
+      "irrf": [
+        {
+          "ordem": 1,
+          "incide": "sim",
+          "fundamento": "RIR/99 (Dec. 3000/99, art. 43, inciso I)."
+        },
+        {
+          "ordem": 2,
+          "incide": "nao",
+          "fundamento": "RIR/99, art. 39, inciso XX."
+        }
+      ]
+    },
+    {
+      "parcela": "Saldo de Salário e salários atrasados",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        380
+      ],
+      "parcela_texto_bruto": "Saldo de Salário e salários atrasados",
+      "inss": {
+        "incide": "sim",
+        "fundamento": "Lei 8.212/91, art. 28, inciso I e RPS (Dec. 3048/99), art. 214, inciso I."
+      },
+      "fgts": {
+        "incide": "sim",
+        "fundamento": "Lei 8036/90, art. 15, caput."
+      },
+      "irrf": {
+        "incide": "sim",
+        "fundamento": "RIR/99 (Dec. 3000/99), art. 43, inciso I."
+      }
+    },
+    {
+      "parcela": "Vale-transporte",
+      "detalhamento": null,
+      "heuristica_nome": "linha-unica",
+      "paginas_pdf": [
+        380
+      ],
+      "parcela_texto_bruto": "Vale-transporte",
+      "inss": {
+        "incide": "nao",
+        "fundamento": "Lei 8.212/91, art. 28 parágrafo 9, alínea f, RPS, art. 214, parág. 9, inciso VI e Lei 7418/85, art. 2o, alínea b."
+      },
+      "fgts": {
+        "incide": "nao",
+        "fundamento": "Lei 8036/90, art. 15, parág. 6, Lei 7418/85, art. 2o, alínea b e IN SEFIT no 03/96, item II, letra n."
+      },
+      "irrf": {
+        "incide": "nao",
+        "fundamento": "Lei 7713/88, art. 3º, § 1º e art. 7º. RIR/99 (Dec. 3000/99, art. 43, inciso I e IN/RFB 1500/14, art. 5º, inciso I"
+      }
+    }
+  ]
+}

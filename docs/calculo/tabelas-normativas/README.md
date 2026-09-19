@@ -31,11 +31,42 @@ e `segmentos`. Campos que não podem faltar, e por quê:
   tabela mantida à parte (regra 4 do plano).
 - Regra sem proveniência (regra 3 do plano).
 
+## Conflito aberto: uma segunda família de tabelas não cabe neste schema
+
+O schema acima descreve **cadeia período → indexador**: linha do tempo partida em
+`segmentos`, cada um com um indexador e o que ele engloba.
+
+A extração do bloco 1 (tabelas do Manual TRT-3) produziu regras de outra natureza, que
+não têm linha do tempo de indexador nenhuma:
+
+| Arquivo | Forma |
+|---|---|
+| `trt3-18.1-incidencia-parcelas.json` | matriz parcela × tributo, com fundamento por célula |
+| `trt3-18.4-18.6-irrf-estrutura.json` | estrutura de faixa progressiva com parcela a deduzir |
+| `trt3-18.7-contribuicao-estrutura.json` | estrutura de faixa com teto, sem parcela a deduzir |
+| `trt3-18.8-grau-de-risco-estrutura.json` | enquadramento por atividade → alíquota |
+| `trt3-18.10-urv-conversao.json` | conteúdo e lacuna de uma tabela de cotação |
+| `trt3-18.13-rsr-criterios.json` | critérios de contagem, quatro variantes |
+
+Não têm `segmentos`, `engloba` nem `aplicacao`, e `valida_cobertura.py` não as alcança.
+Foram gravadas com um shape próprio, declarado em `categoria: "A-semantica"`, em vez de
+forçadas no schema canônico.
+
+**É conflito a resolver na Fase 3, não decisão tomada.** As duas saídas aparentes: um
+schema canônico com `tipo` discriminando as famílias, ou dois diretórios distintos.
+Definir antes que a Fase 5 leia daqui.
+
 ## Validação
 
-`scripts/calculo/valida_cobertura.py` verifica R1 e R2 sobre os `segmentos`.
-Toda tabela deve passar antes de entrar.
+- `scripts/calculo/valida_cobertura.py` — R1 e R2 sobre `segmentos`. Vale para a família
+  de cadeias período → indexador; toda tabela dessa família deve passar antes de entrar.
+- `scripts/calculo/valida_bloco_tabelas.py` — contagem, faixas, vigências e proveniência
+  do bloco 1.
 
 ## Estado
 
-Vazio. Sem conteúdo até a Fase 2.
+Seis tabelas da família (A) do bloco 1, item 18 do Manual TRT-3. Ver
+`../extracao/trabalhista/bloco-01-tabelas.md`.
+
+Nenhuma tabela da família período → indexador ainda: essas vêm do capítulo 7, que é outro
+bloco e passa obrigatoriamente pela Fase 4.

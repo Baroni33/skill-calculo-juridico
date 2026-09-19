@@ -1,0 +1,48 @@
+# OUT_OF_SCOPE — série de valores, não entra na skill.
+# Manutenção separada (regra 4 de 01-plano-extracao.md). Aqui só como
+# evidência de conferência contra a tabela mantida à parte.
+# documento=manual-de-calculo-trabalhista_2016-1.pdf emissor=TRT-3, Secretaria de Cálculos Judiciais, julho/2016 offset_paginacao=0
+# BTN: 'serie' = ano, 'chave' = mês. OTN e MVR: só o último valor consta
+# do original. '-' é do original: mês sem valor publicado.
+# Indexadores nominais — ver invariante R3 em 00-base-normativa.md.
+pagina_pdf,item,serie,chave,valor
+455,18.11,BTN 1989,jan,-
+455,18.11,BTN 1990,jan,"10,9518"
+455,18.11,BTN 1991,jan,"105,5337"
+455,18.11,BTN 1989,fev,"1,0000"
+455,18.11,BTN 1990,fev,"17,0968"
+455,18.11,BTN 1991,fev,"126,8621"
+455,18.11,BTN 1989,mar,"1,0360"
+455,18.11,BTN 1990,mar,"29,5399"
+455,18.11,BTN 1991,mar,-
+455,18.11,BTN 1989,abr,"1,0991"
+455,18.11,BTN 1990,abr,"41,7340"
+455,18.11,BTN 1991,abr,-
+455,18.11,BTN 1989,maio,"1,1794"
+455,18.11,BTN 1990,maio,"41,7340"
+455,18.11,BTN 1991,maio,-
+455,18.11,BTN 1989,jun,"1,2966"
+455,18.11,BTN 1990,jun,"43,9793"
+455,18.11,BTN 1991,jun,-
+455,18.11,BTN 1989,jul,"1,6186"
+455,18.11,BTN 1990,jul,"48,2057"
+455,18.11,BTN 1991,jul,-
+455,18.11,BTN 1989,ago,"2,0842"
+455,18.11,BTN 1990,ago,"53,4071"
+455,18.11,BTN 1991,ago,-
+455,18.11,BTN 1989,set,"2,6956"
+455,18.11,BTN 1990,set,"59,0576"
+455,18.11,BTN 1991,set,-
+455,18.11,BTN 1989,out,"3,6647"
+455,18.11,BTN 1990,out,"66,6485"
+455,18.11,BTN 1991,out,-
+455,18.11,BTN 1989,nov,"5,0434"
+455,18.11,BTN 1990,nov,"75,7837"
+455,18.11,BTN 1991,nov,-
+455,18.11,BTN 1989,dez,"7,1324"
+455,18.11,BTN 1990,dez,"88,3941"
+455,18.11,BTN 1991,dez,-
+455,18.11,BTN 1991,Último valor OTN em 01/89,"6.170,19"
+455,18.11,BTN 1991,Último valor MVR em 03/91,"2.266,17"
+455,18.11,OTN,01/89,"6.170,19"
+455,18.11,MVR,03/91,"2.266,17"

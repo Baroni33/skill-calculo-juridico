@@ -1,0 +1,24 @@
+# OUT_OF_SCOPE — série de valores, não entra na skill.
+# Manutenção separada (regra 4 de 01-plano-extracao.md). Aqui só como
+# evidência de conferência contra a tabela mantida à parte.
+# documento=manual-de-calculo-trabalhista_2016-1.pdf emissor=TRT-3, Secretaria de Cálculos Judiciais, julho/2016 offset_paginacao=0
+# Dois quadros sem numeração própria no original, impressos na margem
+# direita da tabela 18.2: MOEDAS (período/nomenclatura) e PARIDADES
+# (proporção/data). Fora do escopo declarado do bloco — ver relatório.
+pagina_pdf,item,ordem,campo_1,campo_2
+381,18.2,1,01/11/42 a 12/02/67,Cruzeiro Cr$
+381,18.2,2,13/02/67 a 14/05/70,Cruzeiro novo NCr$
+381,18.2,3,15/05/70 a 27/02/86,Cruzeiro Cr$
+381,18.2,4,28/02/86 a 15/01/89,Cruzado Cz$
+381,18.2,5,16/01/89 a 15/03/90,Cruzado novo NCz$
+381,18.2,6,16/03/90 a 31/07/93,Cruzeiro Cr$
+381,18.2,7,01/08/93 a 30/06/94,Cruzeiro real CR$
+381,18.2,8,01/07/94 a,Real R$
+381,18.2,1,1000/1,01/11/42
+381,18.2,2,1000/1,13/02/67
+381,18.2,3,1/1,15/05/70
+381,18.2,4,1000/1,28/02/86
+381,18.2,5,1000/1,16/01/89
+381,18.2,6,1/1,16/03/90
+381,18.2,7,1000/1,01/08/93
+381,18.2,8,2750/1,01/07/94

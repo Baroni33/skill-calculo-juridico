@@ -1,0 +1,51 @@
+# OUT_OF_SCOPE — série de valores, não entra na skill.
+# Manutenção separada (regra 4 de 01-plano-extracao.md). Aqui só como
+# evidência de conferência contra a tabela mantida à parte.
+# documento=manual-de-calculo-trabalhista_2016-1.pdf emissor=TRT-3, Secretaria de Cálculos Judiciais, julho/2016 offset_paginacao=0
+# A tabela 'abril/11 a dezembro/11' está partida entre p385 e p386;
+# as duas partes ficam como vigências homônimas, sem junção.
+pagina_pdf,item,vigencia_original,ordem,base_calculo,aliquota_pct,parcela_deduzir,deducao_por_dependente
+385,18.4,Tabela imposto de renda de fevereiro/2006 a dezembro/2006,1,"Até 1.257,12",-,-,"dependente: 126,36"
+385,18.4,Tabela imposto de renda de fevereiro/2006 a dezembro/2006,2,"Acima de 1.257,12 até 2.512,08",15,"188,57","dependente: 126,36"
+385,18.4,Tabela imposto de renda de fevereiro/2006 a dezembro/2006,3,"Acima de 2.512,08","27,5","502,58","dependente: 126,36"
+385,18.4,Tabela imposto de renda janeiro/2007 a dezembro/2007,1,"Até 1.313,69",-,-,"Dependente: 132,05"
+385,18.4,Tabela imposto de renda janeiro/2007 a dezembro/2007,2,"Acima de 1.313,69 até 2.625,12",15,"197,05","Dependente: 132,05"
+385,18.4,Tabela imposto de renda janeiro/2007 a dezembro/2007,3,"Acima de 2.625,12","27,5","525,19","Dependente: 132,05"
+385,18.4,Tabela imposto de renda janeiro/2008 a dezembro/2008,1,"Até 1.372,81",-,-,"Dependente: 137,99"
+385,18.4,Tabela imposto de renda janeiro/2008 a dezembro/2008,2,"Acima de 1.372,82 até 2.743,25",15,"205,92","Dependente: 137,99"
+385,18.4,Tabela imposto de renda janeiro/2008 a dezembro/2008,3,"Acima de 2.743,25","27,5","548,82","Dependente: 137,99"
+385,18.4,Tabela imposto de renda janeiro/2009 a dezembro/2009,1,"Até 1.434,59",-,-,"Dependente: 144,20"
+385,18.4,Tabela imposto de renda janeiro/2009 a dezembro/2009,2,"De 1.434,60 até 2.150,00","7,5","107,59","Dependente: 144,20"
+385,18.4,Tabela imposto de renda janeiro/2009 a dezembro/2009,3,"De 2.150,01 até 2.866,70",15,"268,84","Dependente: 144,20"
+385,18.4,Tabela imposto de renda janeiro/2009 a dezembro/2009,4,"De 2.866,71 até 3.582,00","22,5","483,84","Dependente: 144,20"
+385,18.4,Tabela imposto de renda janeiro/2009 a dezembro/2009,5,"Acima de 3.582,00","27,5","662,94","Dependente: 144,20"
+385,18.4,Tabela imposto de renda janeiro/2010 a março/11,1,"Até 1.499,15",-,-,"dependente: 150,69"
+385,18.4,Tabela imposto de renda janeiro/2010 a março/11,2,"De 1.499,16 até 2.246,75","7,5","112,43","dependente: 150,69"
+385,18.4,Tabela imposto de renda janeiro/2010 a março/11,3,"De 2.246,76 até 2.995,70","15,0","280,94","dependente: 150,69"
+385,18.4,Tabela imposto de renda janeiro/2010 a março/11,4,"De 2.995,71 até 3.743,19","22,5","505,62","dependente: 150,69"
+385,18.4,Tabela imposto de renda janeiro/2010 a março/11,5,"Acima de 3.743,19","27,5","692,78","dependente: 150,69"
+385,18.4,Tabela imposto de renda abril/11 a dezembro/11,1,"Até 1.566,61",-,-,
+385,18.4,Tabela imposto de renda abril/11 a dezembro/11,2,"De 1.566,62 até 2.347,85","7,5","117,49",
+385,18.4,Tabela imposto de renda abril/11 a dezembro/11,3,"De 2.2347,86 até 3.130,51","15,0","293,58",
+385,18.4,Tabela imposto de renda abril/11 a dezembro/11,4,"De 3.130,52 até 3.911,63","22,5","528,37",
+386,18.4,Tabela imposto de renda abril/11 a dezembro/11,1,"Acima de 3.911,63","27,5","723,95","dependente: 157,47"
+386,18.4,Tabela imposto de renda janeiro/2012 a dezembro/12,1,"Até 1.637,11",-,-,"dependente: 164,56"
+386,18.4,Tabela imposto de renda janeiro/2012 a dezembro/12,2,"De 1.637,12 até 2.453,50","7,5","122,78","dependente: 164,56"
+386,18.4,Tabela imposto de renda janeiro/2012 a dezembro/12,3,"De 2.453,51 até 3.271,38","15,0","306,80","dependente: 164,56"
+386,18.4,Tabela imposto de renda janeiro/2012 a dezembro/12,4,"De 3.271,39 até 4.087,65","22,5","552,15","dependente: 164,56"
+386,18.4,Tabela imposto de renda janeiro/2012 a dezembro/12,5,"Acima de 4.087,65","27,5","756,53","dependente: 164,56"
+386,18.4,Tabela imposto de renda janeiro/2013 a dezembro/2013,1,"Até 1.1710,78",-,-,"Dependente: 171,97"
+386,18.4,Tabela imposto de renda janeiro/2013 a dezembro/2013,2,"De 1710,79 até 2.563,91","7,5","128,31","Dependente: 171,97"
+386,18.4,Tabela imposto de renda janeiro/2013 a dezembro/2013,3,"De 2.563,92 até 3.418,59","15,0","320,60","Dependente: 171,97"
+386,18.4,Tabela imposto de renda janeiro/2013 a dezembro/2013,4,"De 3.418,60 até 4.271,59","22,5","577,00","Dependente: 171,97"
+386,18.4,Tabela imposto de renda janeiro/2013 a dezembro/2013,5,"Acima de 4.271,59","27,5","790,58","Dependente: 171,97"
+386,18.4,Tabela imposto de renda janeiro/2014 a mar/15,1,"Até 1.787,77",-,-,"dependente: 179,71"
+386,18.4,Tabela imposto de renda janeiro/2014 a mar/15,2,"De 1.787,78 até 2.679,29","7,5","134,08","dependente: 179,71"
+386,18.4,Tabela imposto de renda janeiro/2014 a mar/15,3,"De 2.679,30 até 3.572,43","15,0","335,03","dependente: 179,71"
+386,18.4,Tabela imposto de renda janeiro/2014 a mar/15,4,"De 3.572,44 até 4.463,81","22,5","602,96","dependente: 179,71"
+386,18.4,Tabela imposto de renda janeiro/2014 a mar/15,5,"Acima de 4.463,81","27,5","826,15","dependente: 179,71"
+386,18.4,Tabela imposto de renda abril/15 a .......,1,"Até 1.903,98",-,-,"dependente: 189,59"
+386,18.4,Tabela imposto de renda abril/15 a .......,2,"De 1.903,99 até 2.826,65","7,5","142,80","dependente: 189,59"
+386,18.4,Tabela imposto de renda abril/15 a .......,3,"De 2.826,66 até 3.751,05","15,0","354,80","dependente: 189,59"
+386,18.4,Tabela imposto de renda abril/15 a .......,4,"De 3.751,06 até 4.664,68","22,5","636,13","dependente: 189,59"
+386,18.4,Tabela imposto de renda abril/15 a .......,5,"Acima de 4.664,68","27,5","869,36","dependente: 189,59"

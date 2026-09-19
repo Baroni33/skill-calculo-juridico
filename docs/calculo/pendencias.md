@@ -164,7 +164,64 @@ fixture (R$ 5.218,28, método resumido) não depende disso.
 
 ---
 
-## 7. Escopo não decidido
+## 7. Schema das tabelas normativas — duas famílias, um diretório
+
+**Status: aberta. Bloqueia a Fase 3.**
+
+O schema canônico de `01-plano-extracao.md` descreve cadeia período → indexador, com
+`segmentos`, `engloba` e `aplicacao`. O bloco 1 produziu seis tabelas de outra natureza
+— matriz de incidência, estrutura de faixa, enquadramento por atividade, critério de
+contagem — que não têm linha do tempo de indexador e que `valida_cobertura.py` não
+alcança.
+
+Foram gravadas com shape próprio, marcado `categoria: "A-semantica"`, **sem forçar o
+schema canônico**. Duas saídas aparentes: um campo `tipo` discriminando as famílias
+dentro do mesmo schema, ou dois diretórios. Decidir antes que a Fase 5 leia daqui.
+
+Detalhe em `tabelas-normativas/README.md`.
+
+---
+
+## 8. Calendários do Manual TRT-3 são defeituosos
+
+**Status: fechada como constatação; abre trabalho na Fase 4.**
+
+O item 18.14 (p. 460–466) imprime treze meses com menos dias do que têm. Conferido na
+imagem da página, não só na camada de texto:
+
+- **Setembro de 2009**: a célula de sábado da primeira semana traz **7** onde deveria
+  estar **5**; o dia 5 não aparece em lugar nenhum.
+- **Março de 2017**: a coluna inteira de segunda-feira está vazia — faltam 6, 13, 20 e
+  27 — e os demais dias aparecem deslocados uma coluna à direita.
+
+Outros onze meses perdem um ou dois dias. A extração é fiel ao impresso: `dia_da_semana`
+reproduz a coluna do original e por isso diverge do calendário real em 42 dias.
+
+**Consequência:** o calendário do manual não serve para contar dias úteis nem feriados.
+As contagens de RSR do item 18.13 dependem de calendário e de feriados; confrontá-las
+com um calendário independente é trabalho da Fase 4. Até lá, não derivar dias úteis de
+`serie-18.14-calendarios.csv`.
+
+---
+
+## 9. Método de conversão da URV — ausente do bloco de tabelas
+
+**Status: aberta. Bloqueia o tratamento de parcelas entre jan/93 e jun/94.**
+
+O item 18.10 traz as cotações diárias da URV em CR$ e **nada mais**: sem procedimento,
+sem fundamento legal, sem nota. O escopo do bloco 1 pedia o método de conversão como
+regra semântica; ele não está ali, e não foi inferido.
+
+O critério — data-base da conversão, arredondamento, tratamento de dia não útil — deve
+vir do capítulo de critérios matemáticos (p. 9–17), que é outro bloco. Importa porque a
+URV é indexador nominal e a invariante R3 trata justamente da defasagem: aplicar a
+cotação do dia errado desloca o cálculo em um período.
+
+Registrado em `tabelas-normativas/trt3-18.10-urv-conversao.json`.
+
+---
+
+## 10. Escopo não decidido
 
 - **Modelos de petição** (págs. 310–336 do manual trabalhista): decidir escopo antes de
   gastar extração (Fase 2). Podem ficar inteiramente fora.
@@ -174,4 +231,9 @@ fixture (R$ 5.218,28, método resumido) não depende disso.
 - **Triagem das págs. 46–471 do manual trabalhista**: as págs. 1–45 foram lidas
   integralmente; o restante vem do índice e de amostragem das aberturas. Tratar como
   hipótese a confirmar na extração. As fronteiras de 83 e 373 foram verificadas e
-  conferem.
+  conferem. **As págs. 373–471 foram confirmadas na extração do bloco 1**, com quatro
+  desvios de paginação em relação ao índice do escopo — ver
+  `extracao/trabalhista/bloco-01-tabelas.md`, seção 2.
+- **Dois quadros sem numeração 18.x** foram encontrados e extraídos em arquivos próprios:
+  MOEDAS/PARIDADES (p. 381) e alíquotas por código FPAS, Anexo I da IN/RFB 1238/2012
+  (p. 449). Decidir se entram no escopo do módulo.

@@ -1,0 +1,38 @@
+# OUT_OF_SCOPE — série de valores, não entra na skill.
+# Manutenção separada (regra 4 de 01-plano-extracao.md). Aqui só como
+# evidência de conferência contra a tabela mantida à parte.
+# documento=manual-de-calculo-trabalhista_2016-1.pdf emissor=TRT-3, Secretaria de Cálculos Judiciais, julho/2016 offset_paginacao=0
+# NM = número de meses a que se refere o pagamento acumulado
+# (legenda do original, p388). Os limites e a parcela a deduzir são
+# multiplicados por NM — o multiplicador é variável, não fixo em 12.
+pagina_pdf,item,vigencia_original,ordem,base_calculo,aliquota_pct,parcela_deduzir,deducao_por_dependente
+387,18.5,Tabela imposto de renda - RRA de janeiro/10 até março/11,1,"Até (1.499,15 x NM)",-,-,
+387,18.5,Tabela imposto de renda - RRA de janeiro/10 até março/11,2,"Acima de (1.499,15 x NM) até (2.246,75 x NM)","7,5","112,43625 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/10 até março/11,3,"Acima de (2.246,75 x NM) até (2.995,70 x NM)",15,"280,94250 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/10 até março/11,4,"Acima de (2.995,70 x NM) até (3.743,19 x NM)","22,5","505,62000 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/10 até março/11,5,"Acima de (3.743,19 x NM)","27,5","692,77950 x NM",
+387,18.5,Tabela imposto de renda - RRA de abril/11 a dezembro/11,1,"Até (1.566,61 x NM)",-,-,
+387,18.5,Tabela imposto de renda - RRA de abril/11 a dezembro/11,2,"Acima de (1.566,61 x NM) até (2.347,85 x NM)","7,5","117,49575 x NM",
+387,18.5,Tabela imposto de renda - RRA de abril/11 a dezembro/11,3,"Acima de (2.347,85 x NM) até (3.130,51 x NM)",15,"293,58450 x NM",
+387,18.5,Tabela imposto de renda - RRA de abril/11 a dezembro/11,4,"Acima de (3.130,51 x NM) até (3.911,63 x NM)","22,5","528,37275 x NM",
+387,18.5,Tabela imposto de renda - RRA de abril/11 a dezembro/11,5,"Acima de (3.911,63 x NM)","27,5","723,95425 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/12 a dezembro/12,1,"Até (1.637,11 x NM)",-,-,
+387,18.5,Tabela imposto de renda - RRA de janeiro/12 a dezembro/12,2,"Acima de (1.637,11 x NM) até (2.453,50 x NM)","7,5","122,78325 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/12 a dezembro/12,3,"Acima de (2.453,50 x NM) até (3.271,38 x NM)",15,"306,79575 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/12 a dezembro/12,4,"Acima de (3.271,38 x NM) até (4.087,65 x NM)","22,5","552,14925 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/12 a dezembro/12,5,"Acima de (4.087,65 x NM)","27,5","756,53175 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/13 a dezembro/13,1,"Até (1.710,78 x NM)",-,-,
+387,18.5,Tabela imposto de renda - RRA de janeiro/13 a dezembro/13,2,"Acima de (1.710,78 x NM) até (2.563,91 x NM)","7,5","128,30850 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/13 a dezembro/13,3,"Acima de (2.563,91 x NM) até (3.418,59 x NM)",15,"320,60175 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/13 a dezembro/13,4,"Acima de (3.418,59 x NM) até (4.271,59 x NM)","22,5","576,99600 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/13 a dezembro/13,5,"Acima de (4.271,59 x NM)","27,5","790,57550 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/14 a março/15,1,"Até (1.787,77 x NM)",-,-,
+387,18.5,Tabela imposto de renda - RRA de janeiro/14 a março/15,2,"Acima de (1.787,77 x NM) até (2.679,29 x NM)","7,5","134,08275 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/14 a março/15,3,"Acima de (2.679,29 x NM) até (3.572,43 x NM)",15,"335,02950 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/14 a março/15,4,"Acima de (3.572,43 x NM) até (4.463,81 x NM)","22,5","602,96175 x NM",
+387,18.5,Tabela imposto de renda - RRA de janeiro/14 a março/15,5,"Acima de (4.463,81 x NM)","27,5","826,15225 x NM",
+388,18.5,Tabela imposto de renda - RRA de abril/15 a ........,1,"Até (1.903,98 x NM)",-,-,
+388,18.5,Tabela imposto de renda - RRA de abril/15 a ........,2,"Acima de (1.903,98 x NM) até (2.826,65 x NM)","7,5","142,79850 x NM",
+388,18.5,Tabela imposto de renda - RRA de abril/15 a ........,3,"Acima de (2.826,65 x NM) até (3.751,05 x NM)",15,"354,79725 x NM",
+388,18.5,Tabela imposto de renda - RRA de abril/15 a ........,4,"Acima de (3.751,05 x NM) até (4.664,68 x NM)","22,5","636,1260 x NM",
+388,18.5,Tabela imposto de renda - RRA de abril/15 a ........,5,"Acima de (4.664,68 x NM)","27,5","869,36000 x NM",

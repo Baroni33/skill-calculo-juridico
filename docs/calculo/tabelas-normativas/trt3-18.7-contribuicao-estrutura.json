@@ -1,0 +1,66 @@
+{
+  "id": "trt3.trabalhista.contribuicao-previdenciaria.estrutura",
+  "categoria": "A-semantica",
+  "titulo": "Contribuição previdenciária do segurado — estrutura das tabelas",
+  "jurisdicao": "justica-do-trabalho",
+  "componente": "desconto-previdenciario",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "emissor": "TRT-3, Secretaria de Cálculos Judiciais, julho/2016",
+    "item": "18.7",
+    "paginas_pdf": [
+      390,
+      391,
+      392,
+      393,
+      394,
+      395,
+      396,
+      397,
+      398,
+      399
+    ],
+    "offset_paginacao": 0
+  },
+  "formatos_encontrados": [
+    {
+      "quadro": "jan/82 a dez/91",
+      "paginas_pdf": [
+        390,
+        391
+      ],
+      "forma": "matriz competência × alíquota, com o limite de cada alíquota",
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.7-contribuicao-matriz-1982-1991.csv"
+    },
+    {
+      "quadro": "jan/92 em diante",
+      "paginas_pdf": [
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399
+      ],
+      "forma": "faixas de salário de contribuição × alíquota, com teto por vigência",
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.7-contribuicao-faixas.csv"
+    }
+  ],
+  "estrutura_da_faixa": {
+    "campos": [
+      "salario_contribuicao",
+      "aliquota_pct",
+      "teto_maximo"
+    ],
+    "atencao": "Não há parcela a deduzir: a alíquota da faixa incide sobre o salário de contribuição inteiro, e o desconto é limitado pelo teto da vigência. Estrutura diferente da do IRRF (18.4) — não são intercambiáveis."
+  },
+  "sobreposicao_registrada": {
+    "competencia": "jan/10 a jun/10",
+    "descricao": "O original traz dois quadros vigentes para o mesmo período: o da Portaria Interministerial MPS/MF 350/09, revogada, e o da 333/10. Mantidos ambos, sem escolha — a seleção depende da data do cálculo.",
+    "pagina_pdf": 398
+  },
+  "observacao": "As vigências do original são rótulos em português, não intervalos normalizados. A conversão para competências exige leitura caso a caso e não foi feita aqui: normalizar seria interpretar."
+}

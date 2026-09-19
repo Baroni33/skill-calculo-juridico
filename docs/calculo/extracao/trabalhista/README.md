@@ -28,6 +28,20 @@ Nomenclatura: `NNN-NNN-assunto.md`, onde `NNN` é índice de PDF.
 
 Offset **0**. `pagina_pdf` = número impresso. Ver `../../fontes.md`.
 
+## Nomenclatura
+
+- `bloco-NN-assunto.md` — relatório do bloco: o que saiu, contagens, divergências.
+- `serie-18.X-assunto.csv` — série de valores, cabeçalho `OUT_OF_SCOPE`. Não é
+  conteúdo de skill; fica como evidência de conferência contra a tabela mantida à parte.
+
+A regra da triagem continua valendo: um bloco por sessão, contexto limpo entre blocos.
+
 ## Estado
 
-Vazio. Sem conteúdo até a Fase 2. Um bloco por sessão, contexto limpo entre blocos.
+| Bloco | Páginas | Situação |
+|---|---|---|
+| 1 — Tabelas (item 18) | 373–471 | **Fechado.** Ver `bloco-01-tabelas.md` |
+| demais | 1–372 | Não iniciados |
+
+Do bloco 1: 20 CSV de série aqui, 6 JSON semânticos em `../../tabelas-normativas/`.
+Validação: `python scripts/calculo/valida_bloco_tabelas.py`.

@@ -1,0 +1,26 @@
+{
+  "id": "trt3.trabalhista.urv.conversao",
+  "categoria": "A-semantica",
+  "titulo": "URV — o que o bloco de tabelas contém e o que não contém",
+  "jurisdicao": "justica-do-trabalho",
+  "componente": "conversao-monetaria",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "emissor": "TRT-3, Secretaria de Cálculos Judiciais, julho/2016",
+    "item": "18.10",
+    "paginas_pdf": [
+      453,
+      454
+    ],
+    "offset_paginacao": 0
+  },
+  "conteudo_da_tabela": {
+    "unidade": "CR$ por URV",
+    "granularidade": "diária",
+    "abrangencia": "jan/1993 a jun/1994",
+    "serie": "docs/calculo/extracao/trabalhista/serie-18.10-urv.csv"
+  },
+  "metodo_de_conversao": null,
+  "lacuna_registrada": "O método de conversão NÃO está neste bloco. As páginas 453 a 455 trazem apenas o título '18.10 Tabela URV' e as cotações. Sem texto de procedimento, sem fundamento legal, sem nota de rodapé. Não foi inferido: o critério (data-base da conversão, arredondamento, tratamento de dia não útil) precisa vir do capítulo de critérios matemáticos, p9-17.",
+  "por_que_importa": "URV é indexador nominal do período de transição para o Real. A invariante R3 de 00-base-normativa.md trata da defasagem entre nominal e percentual; aplicar a cotação do dia errado desloca o cálculo."
+}

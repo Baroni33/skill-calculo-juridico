@@ -1,0 +1,48 @@
+{
+  "id": "trt3.trabalhista.rsr.criterios-de-contagem",
+  "categoria": "A-semantica",
+  "titulo": "RSR sobre dias úteis — critérios de contagem",
+  "jurisdicao": "justica-do-trabalho",
+  "componente": "repouso-semanal-remunerado",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "emissor": "TRT-3, Secretaria de Cálculos Judiciais, julho/2016",
+    "item": "18.13",
+    "paginas_pdf": [
+      456,
+      457,
+      458,
+      459
+    ],
+    "offset_paginacao": 0
+  },
+  "o_que_muda_entre_as_variantes": "O que varia é o conjunto de dias contados como repouso e, por consequência, o divisor de dias úteis. O percentual é RSR ÷ dias úteis.",
+  "variantes": [
+    {
+      "pagina_pdf": 456,
+      "criterio": "Tabela de RSR, considerando apenas os domingos como RSR, não abrangendo os feriados",
+      "competencias_tabeladas": 192,
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.13-rsr-contagens.csv"
+    },
+    {
+      "pagina_pdf": 457,
+      "criterio": "Tabela de RSR, considerando os domingos e os feriados nacionais",
+      "competencias_tabeladas": 192,
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.13-rsr-contagens.csv"
+    },
+    {
+      "pagina_pdf": 458,
+      "criterio": "Tabela de RSR, incluindo os sábados e domingos como RSR",
+      "competencias_tabeladas": 192,
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.13-rsr-contagens.csv"
+    },
+    {
+      "pagina_pdf": 459,
+      "criterio": "Tabela de RSR, incluindo os sábados, domingos e feriados como RSR",
+      "competencias_tabeladas": 192,
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.13-rsr-contagens.csv"
+    }
+  ],
+  "armadilha_registrada": "OJ 394 da SDI-I: o reflexo de horas extras no RSR não repercute em férias, 13º, aviso prévio e FGTS. Regra de propagação, não de contagem; não está neste bloco e precisa vir do capítulo de verbas.",
+  "observacao": "O original não declara qual variante é a default nem em que hipótese cada uma se aplica. A escolha depende da norma coletiva e da jornada — não foi inferida aqui."
+}

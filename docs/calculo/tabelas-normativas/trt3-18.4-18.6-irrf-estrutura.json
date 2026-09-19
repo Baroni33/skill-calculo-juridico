@@ -1,0 +1,57 @@
+{
+  "id": "trt3.trabalhista.irrf.estrutura-das-tabelas",
+  "categoria": "A-semantica",
+  "titulo": "IRRF — estrutura das tabelas progressivas e regimes especiais",
+  "jurisdicao": "justica-do-trabalho",
+  "componente": "desconto-fiscal",
+  "fonte": {
+    "documento": "manual-de-calculo-trabalhista_2016-1.pdf",
+    "emissor": "TRT-3, Secretaria de Cálculos Judiciais, julho/2016",
+    "item": "18.4 a 18.6",
+    "paginas_pdf": [
+      385,
+      386,
+      387,
+      388,
+      389
+    ],
+    "offset_paginacao": 0
+  },
+  "estrutura_da_faixa": {
+    "campos": [
+      "base_calculo",
+      "aliquota_pct",
+      "parcela_deduzir"
+    ],
+    "descricao": "Tabela progressiva com parcela a deduzir: a alíquota da faixa incide sobre a base inteira e a parcela a deduzir devolve o excesso das faixas inferiores. Só é equivalente à progressividade por faixas se a parcela vier da mesma vigência.",
+    "deducao_por_dependente": "Valor por dependente vem impresso no rodapé de cada tabela mensal (18.4) e está gravado em cada linha da série correspondente.",
+    "nao_consta_deste_bloco": "A fórmula de aplicação, o tratamento das deduções (INSS, pensão, dependentes) e o momento da retenção não estão nas tabelas. Vêm do capítulo de descontos fiscais, p107-208 — outro bloco."
+  },
+  "regimes": [
+    {
+      "item": "18.4",
+      "nome": "Tabela progressiva mensal",
+      "base": "rendimento do mês",
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.4-irrf-tabela-progressiva-mensal.csv"
+    },
+    {
+      "item": "18.5",
+      "nome": "Rendimentos recebidos acumuladamente (RRA)",
+      "base": "total acumulado",
+      "multiplicador": "NM",
+      "definicao_do_multiplicador": "NM = número de meses a que se refere o pagamento acumulado (legenda do original, pagina_pdf 388). Limites de faixa e parcela a deduzir são multiplicados por NM.",
+      "atencao": "NM é variável, igual ao número de meses do pagamento. O original NÃO fixa doze avos: qualquer implementação que grave 12 como constante diverge da fonte.",
+      "fundamento_no_original": "IN/RFB 1500/14 (rodapé da pagina_pdf 388)",
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.5-irrf-rra.csv"
+    },
+    {
+      "item": "18.6",
+      "nome": "Participação nos lucros ou resultados (PLR)",
+      "base": "valor do PLR anual",
+      "tabela_propria": true,
+      "atencao": "Tabela anual e exclusiva: a tributação do PLR é separada da do salário, não se soma à base mensal. Primeira faixa com alíquota zero.",
+      "serie": "docs/calculo/extracao/trabalhista/serie-18.6-irrf-plr.csv"
+    }
+  ],
+  "observacao": "Manual de 2016. As faixas das três séries param em 2015/2017 e estão superadas. Só a estrutura entra na skill; os valores têm manutenção separada (regra 4 de 01-plano-extracao.md)."
+}

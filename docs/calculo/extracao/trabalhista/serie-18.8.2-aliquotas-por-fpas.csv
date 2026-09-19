@@ -1,0 +1,42 @@
+# OUT_OF_SCOPE — série de valores, não entra na skill.
+# Manutenção separada (regra 4 de 01-plano-extracao.md). Aqui só como
+# evidência de conferência contra a tabela mantida à parte.
+# documento=manual-de-calculo-trabalhista_2016-1.pdf emissor=TRT-3, Secretaria de Cálculos Judiciais, julho/2016 offset_paginacao=0
+# Anexo I da IN/RFB 1238/2012, impresso ao final da p449 sem numeração
+# 18.x própria. Fora do escopo declarado do bloco — ver relatório.
+pagina_pdf,item,codigo_fpas,aliquota_previdencia_social_pct,aliquota_gilrat
+449,18.8.2-anexo-fpas,507,20,Variável
+449,18.8.2-anexo-fpas,507 Cooperativa,20,Variável
+449,18.8.2-anexo-fpas,515,20,Variável
+449,18.8.2-anexo-fpas,515 Cooperativa,20,Variável
+449,18.8.2-anexo-fpas,523,20,Variável
+449,18.8.2-anexo-fpas,531,20,Variável
+449,18.8.2-anexo-fpas,540,20,Variável
+449,18.8.2-anexo-fpas,558,20,Variável
+449,18.8.2-anexo-fpas,566,20,Variável
+449,18.8.2-anexo-fpas,566 Cooperativa,20,Variável
+449,18.8.2-anexo-fpas,574,20,Variável
+449,18.8.2-anexo-fpas,574 Cooperativa,20,Variável
+449,18.8.2-anexo-fpas,582,20,Variável
+449,18.8.2-anexo-fpas,590,20,Variável
+449,18.8.2-anexo-fpas,604,---,---
+449,18.8.2-anexo-fpas,612,20,Variável
+449,18.8.2-anexo-fpas,612 Cooperativa,20,Variável
+449,18.8.2-anexo-fpas,620,20,---
+449,18.8.2-anexo-fpas,639,---,---
+449,18.8.2-anexo-fpas,647,---,---
+449,18.8.2-anexo-fpas,655,20,Variável
+449,18.8.2-anexo-fpas,680,20,Variável
+449,18.8.2-anexo-fpas,736,"22,5",Variável
+449,18.8.2-anexo-fpas,736 Cooperativa(1),"22,5",Variável
+449,18.8.2-anexo-fpas,744 Seg. Especial,2,"0,1"
+449,18.8.2-anexo-fpas,744 Pessoa Física,2,"0,1"
+449,18.8.2-anexo-fpas,744 Pes. Jurídica,"2,5","0,1"
+449,18.8.2-anexo-fpas,744 Agroindústria,"2,5","0,1"
+449,18.8.2-anexo-fpas,779,5,---
+449,18.8.2-anexo-fpas,787,20,Variável
+449,18.8.2-anexo-fpas,787Cooperativa(1),20,Variável
+449,18.8.2-anexo-fpas,795 Cooperativa,20,Variável
+449,18.8.2-anexo-fpas,825,---,---
+449,18.8.2-anexo-fpas,833,---,---
+449,18.8.2-anexo-fpas,876,20,Variável
