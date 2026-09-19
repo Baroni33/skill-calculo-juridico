@@ -1,0 +1,47 @@
+{
+  "id": "cjf-4.2.1.1-nota6-ex1-jun2022",
+  "descricao": "Condenatória em geral, devedor enquadrado como Fazenda Pública, data-base jun/2022",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.2.1.1, NOTA 6, exemplo 1, 1º Exemplo",
+    "pagina_pdf": 51,
+    "numero_impresso": 50,
+    "observacao_paginacao": "offset 1; metodo resumido do mesmo caso na pagina_pdf 52"
+  },
+  "entradas": {
+    "devedor": "fazenda-publica",
+    "ramo": "condenatorias-em-geral",
+    "data_base": "2022-06",
+    "termo_inicial_juros": "2021-01",
+    "termo_inicial_juros_descricao": "data da citação",
+    "parcelas": [
+      { "competencia": "2020-01", "valor": "1000.00" },
+      { "competencia": "2020-02", "valor": "1000.00" },
+      { "competencia": "2022-02", "valor": "1000.00" }
+    ],
+    "consolidacao_dez_2021": {
+      "aplicavel": true,
+      "ipca_e_nov_2021_pct": "1.17",
+      "juros_dez_2021_pct": "0.4412",
+      "fundamento": "Res. CNJ 303/2019, art. 22, § 1º, red. art. 6º da Res. CNJ 448/2022"
+    }
+  },
+  "esperado": {
+    "total": "3484.95",
+    "principal_corrigido": "3275.96",
+    "juros_ate_12_2021": "55.75",
+    "juros_selic": "153.24",
+    "juros_soma": "208.99",
+    "valor_consolidado_dez_2021": "2331.71",
+    "metodo_detalhado": { "total": "3484.95", "pagina_pdf": 51 },
+    "metodo_resumido": { "total": "3484.95", "pagina_pdf": 52 }
+  },
+  "tolerancia": {
+    "valor": "0.00",
+    "unidade": "BRL",
+    "razao": "os dois métodos convergem neste caso; o manual não registra divergência"
+  },
+  "invariantes_exercidas": ["R2", "R4", "R12"],
+  "observacao": "Exercita a consolidação em dez/2021: o crédito é consolidado pelos critérios até então aplicáveis (IPCA-E de nov/2021 e juros de dez/2021), e sobre o valor consolidado, sem exclusão de qualquer parcela, incide a SELIC a partir de jan/2022. O resultado da SELIC sobre o consolidado ('Juros Selic', R$ 153,24) soma-se integralmente à parcela 'Juros até 12/2021'. A parcela de 02/2022 é posterior à consolidação e entra sem correção anterior."
+}

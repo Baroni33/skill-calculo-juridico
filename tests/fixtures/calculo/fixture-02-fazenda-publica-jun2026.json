@@ -1,0 +1,60 @@
+{
+  "id": "cjf-4.2.1.1-nota6-ex1-jun2026",
+  "descricao": "Mesmo caso da fixture 01, data-base jun/2026 — atravessa a virada de set/2025",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.2.1.1, NOTA 6, exemplo 1, 2º Exemplo",
+    "pagina_pdf": 52,
+    "numero_impresso": 51,
+    "observacao_paginacao": "offset 1; método detalhado na pagina_pdf 52, resumido na 53"
+  },
+  "entradas": {
+    "devedor": "fazenda-publica",
+    "ramo": "condenatorias-em-geral",
+    "data_base": "2026-06",
+    "termo_inicial_juros": "2021-01",
+    "termo_inicial_juros_descricao": "data da citação",
+    "parcelas": [
+      { "competencia": "2020-01", "valor": "1000.00" },
+      { "competencia": "2020-02", "valor": "1000.00" },
+      { "competencia": "2022-02", "valor": "1000.00" }
+    ],
+    "consolidacao_dez_2021": {
+      "aplicavel": true,
+      "ipca_e_nov_2021_pct": "1.17",
+      "juros_dez_2021_pct": "0.4412"
+    },
+    "virada_set_2025": {
+      "ate_ago_2025": "SELIC (engloba correção e juros)",
+      "a_partir_de_set_2025": "IPCA-15 para correção; taxa legal para juros",
+      "fundamento": "EC 136/2025; CJF Res. 990/2026"
+    }
+  },
+  "esperado": {
+    "total": "5218.28",
+    "principal_corrigido": "3412.64",
+    "juros": "1805.64",
+    "valor_em_set_2025": "4778.98",
+    "metodo_resumido": {
+      "total": "5218.28",
+      "principal_corrigido": "3412.64",
+      "juros": "1805.64",
+      "pagina_pdf": 53
+    },
+    "metodo_detalhado": {
+      "total": "5218.27",
+      "principal_corrigido": "3412.64",
+      "juros": "1805.63",
+      "pagina_pdf": 52
+    }
+  },
+  "tolerancia": {
+    "valor": "0.01",
+    "unidade": "BRL",
+    "razao": "divergência esperada entre método resumido e detalhado, inerente ao truncamento por etapa",
+    "divergencia_e_assercao": true
+  },
+  "invariantes_exercidas": ["R2", "R4", "R12"],
+  "observacao": "A diferença de R$ 0,01 entre os dois métodos é ASSERÇÃO DO TESTE, não erro a corrigir. O manual declara, na pagina_pdf 53: 'Eventuais diferenças de centavos — como a de R$ 0,01 verificada neste exemplo — não decorrem de erro, mas são inerentes ao critério de truncamento de casas decimais aplicado em cada etapa do cálculo'. Um motor que faz os dois métodos convergirem está arredondando errado. ATENÇÃO à transcrição do total detalhado: a camada de texto do PDF trunca o valor em 'R$ 5.218,2'; o dígito final foi derivado por aritmética (3.412,64 + 1.805,63 = 5.218,27) e é consistente com a divergência de R$ 0,01 declarada pelo manual. Confirmar visualmente na pagina_pdf 52 antes de tratar como literal."
+}

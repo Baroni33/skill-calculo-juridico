@@ -1,0 +1,79 @@
+{
+  "id": "cjf-5.2.1-precatorio-complementar-maio2020",
+  "descricao": "Resíduo de precatório complementar — TOTAL DA CONTA em maio/2020, com honorários de 10%",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "5.2.1 — resumido em 5.2.1.1, detalhado em 5.2.1.2",
+    "pagina_pdf": 91,
+    "numero_impresso": 90,
+    "observacao_paginacao": "offset 1; enunciado na pagina_pdf 90, resumido na 91, detalhado na 92"
+  },
+  "entradas": {
+    "natureza": "precatorio-complementar",
+    "valor_devido_em": "2016-01",
+    "principal": "20000.00",
+    "juros": "3000.00",
+    "honorarios_advocaticios_pct": "10",
+    "correcao_monetaria": "INPC",
+    "juros_mora_criterio": "mesmo percentual da caderneta de poupança, capitalizados de forma simples: 0,5% ao mês se a Selic anual > 8,5%; senão 70% da Selic anual, mensalizada",
+    "pagamento": {
+      "competencia": "2018-08",
+      "principal": "21000.00",
+      "juros": "3150.00",
+      "dentro_do_prazo_constitucional": true,
+      "precatorio_apresentado_em": "2017-07-01"
+    },
+    "data_atualizacao": "2020-05",
+    "cadeia_correcao": [
+      { "de": "2016-01", "ate": "2017-06", "indexador": "INPC", "fase": "até a apresentação do precatório" },
+      { "de": "2017-07", "ate": "2018-12", "indexador": "IPCA-E", "fase": "prazo constitucional" },
+      { "de": "2019-01", "ate": "2020-05", "indexador": "INPC", "fase": "posterior ao prazo constitucional" }
+    ],
+    "cadeia_juros": [
+      { "ate": "2017-07", "regra": "percentual devido", "fase": "até a apresentação do precatório" },
+      { "de": "2017-08", "ate": "2019-01", "regra": "sem juros", "fase": "prazo constitucional" },
+      { "de": "2019-02", "ate": "2020-05", "regra": "percentual devido", "fase": "posterior ao prazo constitucional" }
+    ]
+  },
+  "esperado": {
+    "metodo_resumido": {
+      "pagina_pdf": 91,
+      "subtotal_principal": "1575.38",
+      "subtotal_juros": "2456.51",
+      "subtotal": "4031.89",
+      "honorarios_principal": "157.53",
+      "honorarios_juros": "245.65",
+      "honorarios_total": "403.18",
+      "total_da_conta_principal": "1732.91",
+      "total_da_conta_juros": "2702.16",
+      "total_da_conta": "4435.07"
+    },
+    "metodo_detalhado": {
+      "pagina_pdf": 92,
+      "subtotal_principal": "1575.36",
+      "subtotal_juros": "2456.50",
+      "subtotal": "4031.86",
+      "honorarios_principal": "157.53",
+      "honorarios_juros": "245.65",
+      "honorarios_total": "403.18",
+      "total_da_conta_principal": "1732.89",
+      "total_da_conta_juros": "2702.15",
+      "total_da_conta": "4435.04",
+      "passos": [
+        { "passo": 1, "ate": "2017-07", "indexador": "INPC", "principal": "21555.46", "juros": "5173.31", "total": "26728.77" },
+        { "passo": 2, "ate": "2019-01", "indexador": "IPCA-E", "abate_pagamento": "2018-08", "principal": "1503.14", "juros": "2266.47", "total": "3769.61" },
+        { "passo": 3, "ate": "2020-05", "indexador": "INPC", "principal": "1575.36", "juros": "2456.50", "total": "4031.86" }
+      ]
+    },
+    "divergencia_entre_metodos": "0.03"
+  },
+  "tolerancia": {
+    "valor": "0.03",
+    "unidade": "BRL",
+    "razao": "divergência esperada e documentada entre método resumido e detalhado",
+    "divergencia_e_assercao": true
+  },
+  "invariantes_exercidas": ["R2", "R3", "R4", "R10", "R12"],
+  "observacao": "MELHOR TESTE DE ARREDONDAMENTO DO CONJUNTO. A divergência de R$ 0,03 entre R$ 4.435,07 (resumido) e R$ 4.435,04 (detalhado) é ASSERÇÃO DO TESTE, não erro a corrigir. O manual declara, na pagina_pdf 92: 'Os métodos devem levar à obtenção de valores iguais, podendo ocorrer pequenas variações, como no caso anteriormente descrito (de R$ 0,03 de diferença), o que não é proveniente de erro, mas de arredondamento de casas decimais no decorrer do cálculo'. Um motor que faz os dois métodos convergirem está com o critério de truncamento inconsistente entre etapas. O caso exercita também R10 (abatimento de pagamento parcial), R3 (troca INPC → IPCA-E → INPC, todos percentuais, sem ajuste de defasagem) e a regra do item 5.2.1.1 de que o resumido não aplica juros sobre juros. Honorários de 10% incidem sobre principal e juros separadamente e são idênticos nos dois métodos (R$ 403,18), o que isola a divergência na atualização."
+}

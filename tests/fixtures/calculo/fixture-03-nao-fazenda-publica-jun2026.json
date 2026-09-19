@@ -1,0 +1,60 @@
+{
+  "id": "cjf-4.2.1.1-nota6-ex2-jun2026",
+  "descricao": "Condenatória em geral, devedor NÃO enquadrado como Fazenda Pública, data-base jun/2026",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.2.1.1, NOTA 6, exemplo 2",
+    "pagina_pdf": 53,
+    "numero_impresso": 52,
+    "observacao_paginacao": "offset 1"
+  },
+  "entradas": {
+    "devedor": "nao-fazenda-publica",
+    "ramo": "condenatorias-em-geral",
+    "data_base": "2026-06",
+    "termo_inicial_juros": "2005-01",
+    "termo_inicial_juros_descricao": "data da citação",
+    "parcelas": [
+      { "competencia": "2002-01", "valor": "1000.00" },
+      { "competencia": "2024-08", "valor": "1000.00" }
+    ],
+    "consolidacao_dez_2021": {
+      "aplicavel": false,
+      "razao": "a consolidação em dez/2021 é regra do ramo Fazenda Pública"
+    },
+    "regra_selic_nao_fazenda": "SELIC aplicada do mês seguinte ao da citação até o mês anterior ao pagamento, mais 1% no mês do pagamento"
+  },
+  "esperado": {
+    "total": "5772.95",
+    "principal_corrigido": "2554.45",
+    "juros": "3218.50",
+    "detalhe_por_parcela": [
+      {
+        "competencia": "2002-01",
+        "valor": "1000.00",
+        "coeficiente_correcao": "1.4590697197",
+        "principal_corrigido": "1459.06",
+        "percentual_juros": "209.65",
+        "juros": "3058.91",
+        "total": "4517.97"
+      },
+      {
+        "competencia": "2024-08",
+        "valor": "1000.00",
+        "coeficiente_correcao": "1.0953927279",
+        "principal_corrigido": "1095.39",
+        "percentual_juros": "14.57",
+        "juros": "159.59",
+        "total": "1254.98"
+      }
+    ]
+  },
+  "tolerancia": {
+    "valor": "0.00",
+    "unidade": "BRL",
+    "razao": "o manual apresenta um único método para este caso; não há divergência declarada"
+  },
+  "invariantes_exercidas": ["R1", "R2", "R4", "R7", "R12"],
+  "observacao": "O percentual de juros da coluna é 'SELIC + taxa legal' acumulado — exercita R1: a SELIC engloba correção e juros no seu período, e a taxa legal engloba juros no dela; nenhum índice inflacionário adicional pode ser cumulado. A parcela de 01/2002 atravessa a virada de 30/08/2024 (SELIC → IPCA + taxa legal); a de 08/2024 nasce praticamente na virada. Termo inicial dos juros é a citação (R7, regra cível/federal), diferente do trabalhista, que usa o ajuizamento."
+}
