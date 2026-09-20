@@ -23,7 +23,7 @@ impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
 | 7 | Atualização monetária e juros de mora | 83–99 | 17 | 9 e 10 | coberto |
 | **8** | **Encargos e despesas processuais** | **100–106** | **7** | **—** | **NÃO COBERTO** |
 | 9 | Descontos legais: previdenciário e fiscal | 107–208 | 102 | 7 | coberto |
-| **10** | **Atualização de débitos trabalhistas** | **209–277** | **69** | **—** | **NÃO COBERTO** |
+| 10 | Atualização de débitos trabalhistas | 209–277 | 69 | **11A** (parcial) | **15 pp. cobertas**, 54 com decisão registrada — ver § 2.1 |
 | 11 | Exemplo de cálculos, acordos e atualizações | 278–298 | 21 | 10 | coberto |
 | **12** | **Contribuição sindical** | **299–302** | **4** | **—** | **NÃO COBERTO** |
 | 13 | Atualização de créditos da dívida ativa da União | 303 | 1 | 10 | coberto |
@@ -33,18 +33,37 @@ impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
 | 17 | Súmulas, OJs e TJPs — TST e TRT-3 | 337–372 | 36 | 10 | coberto |
 | 18 | Tabelas | 373–471 | 99 | 1 | coberto |
 
-**Conferido em script**, não estimado:
+**Conferido em script**, não estimado. Atualizado no bloco 11A.
+
+Página não coberta exige decisão registrada, e o mapa separa os dois casos:
 
 | | Páginas |
 |---|---|
-| Cobertas | **353** |
-| Lacuna real (caps. 8, 10, 12, 14) | **83** |
-| Fora de escopo (cap. 16) | 27 |
+| **Cobertas** | **368** |
+| Não cobertas **com decisão registrada** | **81** |
+| Não cobertas **sem decisão** | **14** |
 | Soma dos capítulos | 463 |
 | Pré-textuais (capa e sumário, pp. 1–8) | 8 |
 | **Total do PDF** | **471** |
 
-**Cobertura: 74,9% do PDF, 76,2% das páginas de capítulo.**
+**Cobertura: 78,1% do PDF, 79,5% das páginas de capítulo.**
+
+### Não coberto COM decisão registrada — 81 pp.
+
+| Onde | Págs | Decisão |
+|---|---|---|
+| Cap. 10, segmentos B, C e D (pp. 223–277) | 54 | **Blocos 11B a 11D.** Divisão por operação definida no bloco 11A; 11B vai ao segmento C (imputação), invertendo a ordem documental |
+| Cap. 16 (pp. 310–336) | 27 | `fora-de-escopo-com-ressalva-confirmada` — varredura dirigida a 16.4.3–16.4.7 e 16.4.9–16.4.12. Pendência **P10-C16** |
+
+### Não coberto SEM decisão — 14 pp.
+
+| Cap. | Título | Págs |
+|---|---|---|
+| 8 | Encargos e despesas processuais | 7 |
+| 12 | Contribuição sindical | 4 |
+| 14 | Precatórios | 3 |
+
+**São estes três que continuam sem destino atribuído.** Ver § 2.2 a 2.4.
 
 ### 1.1 Detalhamento do capítulo 6 (blocos 3 e 4)
 
@@ -67,17 +86,38 @@ capítulo 16" não é o capítulo 15: entre eles estão os capítulos 7 a 14 int
 
 ---
 
-## 2. Os quatro capítulos não cobertos
+## 2. Os capítulos não cobertos, e o que está em curso
 
-**A busca que sustenta esta afirmação**, conforme a regra de afirmação negativa: varredura
-por `grep -rn` em `docs/calculo/extracao/` pelos termos `capítulo 8`, `capítulo 10`,
-`capítulo 12`, `capítulo 14`, `capítulo 16` e pelas faixas de página `100`–`106` e
-`209`–`277`. Nenhuma ocorrência que indique extração. As únicas menções às faixas são
-`p.208` e `p.223`, ambas em contexto de fronteira do bloco 7, não de conteúdo.
+**A busca que sustentou a afirmação original** (bloco 10), conforme a regra de afirmação
+negativa: varredura por `grep -rn` em `docs/calculo/extracao/` pelos termos `capítulo 8`,
+`capítulo 10`, `capítulo 12`, `capítulo 14`, `capítulo 16` e pelas faixas de página
+`100`–`106` e `209`–`277`. Nenhuma ocorrência que indicasse extração.
 
-### 2.1 Capítulo 10 — a lacuna que mais pesa
+**Atualização do bloco 11A:** o capítulo 10 deixou de ser lacuna integral — 15 páginas estão
+cobertas e as 54 restantes têm bloco atribuído. Restam **três capítulos sem decisão**: 8, 12
+e 14.
 
-**69 páginas, 38 subitens.** Título: *Atualização de débitos trabalhistas*.
+### 2.1 Capítulo 10 — em extração, dividido por operação
+
+**69 páginas.** O bloco 11A fez a varredura estrutural e extraiu o primeiro segmento.
+
+A numeração impressa **para em 10.3.2.1, na p. 239** — e o capítulo segue por mais 38 páginas
+estruturadas apenas por `Exemplo 1` a `Exemplo 6`. Dividir pela numeração perderia 55% do
+capítulo. A divisão real, medida por script:
+
+| Seg. | Item | Operação | pp. | Caracteres | Bloco |
+|---|---|---|---|---|---|
+| **A** | 10.1 | Atualização **sem** amortização | 209–223 (parcial) | 41.471 | **11A — feito** |
+| **B** | 10.2 | Descontos proporcionais | 223–236 | 41.228 | 11C |
+| **C** | 10.3 | Amortização — **RRA, art. 12-A** (Ex. 1–4) | 237–265 | 89.290 | **11B** |
+| **D** | 10.3 | Amortização — **art. 12-B** (Ex. 5–6) | 266–277 | 33.694 | 11D |
+
+**A fronteira A/B não é quebra de página:** o título `10.2` está no offset 2.658 da p. 223.
+
+**O segmento C é o que o produto precisa** — é onde vive a regra de imputação e a resposta
+para a invariante R10. Por isso o 11B vai a C, não a B.
+
+Estrutura original, para referência:
 
 | Item | Assunto |
 |---|---|
@@ -98,9 +138,9 @@ Isto é **núcleo de motor de cálculo**, não acessório:
   há sobreposição a conferir, e possivelmente divergência de critério entre os dois
   capítulos do mesmo manual.
 
-**Recomendação: bloco próprio.** Não cabe em fechamento — é maior que o capítulo 7 e o 11
-somados, e tem a mesma natureza mista de conceito e exemplo que tornou o capítulo 9 o maior
-bloco do projeto.
+**Recomendação cumprida:** o capítulo ganhou bloco próprio, e a série 11A–11D o cobre por
+operação. O bloco 11A confirmou a natureza mista de conceito e exemplo — em 41.471 caracteres
+de 10.1 há **doze regras estruturais que só existem dentro de exemplo numérico**.
 
 ### 2.2 Capítulo 8 — encargos e despesas processuais
 
@@ -224,7 +264,7 @@ Sete cadeias estão em `docs/calculo/tabelas-normativas/cjf.*.json`; estas treze
 
 | # | O que falta | Tamanho | Por que pesa |
 |---|---|---|---|
-| **L1** | **Capítulo 10 do TRT-3** — atualização, amortização de valor pago, descontos proporcionais | 69 pp | Núcleo do motor. Ordem de imputação de pagamento parcial. Bloco próprio |
+| **L1** | **Capítulo 10, segmentos C, B e D** — amortização de valor pago e descontos proporcionais | 54 pp | Núcleo do motor. **Em curso: 11A feito, 11B vai ao segmento C** |
 | **L2** | **Capítulo 8 do TRT-3** — custas, honorários periciais e advocatícios | 7 pp | O lado federal já está extraído; a comparação está pela metade |
 | **L3** | **Dez cadeias de juros e três de correção** do cap. 4 do CJF | — | Lidas e conferidas, não codificadas |
 | **L4** | **Capítulo 14 do TRT-3** — precatórios | 3 pp | Cruza com o cap. 5 do CJF, já extraído |
