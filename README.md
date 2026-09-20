@@ -87,6 +87,7 @@ Fase 2 em curso.
 | 9 | Cadeias históricas de atualização trabalhista — TRT-3, cap. 7, p. 83–99, extração dirigida | `docs/calculo/extracao/trabalhista/bloco-09-relatorio.md` |
 | 10 | Fechamento trabalhista — cap. 7 residual, 11, 13, 15 e 17 | `docs/calculo/extracao/trabalhista/bloco-10-relatorio.md` |
 | 11A | Capítulo 10 — varredura estrutural e item 10.1 (atualização sem amortização) | `docs/calculo/extracao/trabalhista/bloco-11a-relatorio.md` |
+| 11B | Capítulo 10, segmento C — amortização de valor pago (art. 12-A) | `docs/calculo/extracao/trabalhista/bloco-11b-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 93 páginas, sete cadeias temporais em `tabelas-normativas/`, e é a única fonte do corpus cuja
@@ -99,14 +100,21 @@ ver `bloco-09-relatorio.md` § 2.
 
 **O artefato que abre a Fase 3 é [`docs/calculo/extracao/mapa-de-cobertura.md`](docs/calculo/extracao/mapa-de-cobertura.md)** —
 todo capítulo e item dos dois manuais, com o bloco que o cobriu ou a razão de não ter sido
-coberto. Conferido por script: **cobertura de 78,1%**, separando **não coberto com decisão
-registrada** (81 pp.) de **não coberto sem decisão** (14 pp. — capítulos 8, 12 e 14).
+coberto. Conferido por script: **cobertura de 84,5%**, separando **não coberto com decisão
+registrada** (51 pp.) de **não coberto sem decisão** (14 pp. — capítulos 8, 12 e 14).
 
-O **capítulo 10** está em extração pela série 11A–11D, dividida **por operação**: a numeração
-impressa para em 10.3.2.1 na p. 239 e as 38 páginas seguintes — 55% do capítulo — só têm
-`Exemplo 1` a `Exemplo 6`. O **bloco 11A** fez a varredura e extraiu o item 10.1; **o 11B vai
-ao segmento C (amortização de valor pago)**, onde vive a regra de imputação e a resposta para
-a invariante **R10**.
+O **capítulo 10** está em extração pela série 11A–11D, dividida **por operação** — 45 das 69
+páginas cobertas. O **bloco 11B** respondeu a invariante **R10**:
+
+> A imputação de pagamento parcial no trabalhista é **proporcional** — o pagamento abate
+> principal e juros na razão em que compõem o bruto (item 10.3.1, letra F, p. 237). **E não
+> tem fundamento normativo declarado:** `art. 354` não ocorre em nenhuma das 471 páginas,
+> enquanto `proporcional` ocorre 101 vezes só no segmento. R10 fica fundamentada por razão
+> mais forte que a suposta — não são duas normas concorrentes, mas **uma norma (art. 354 do
+> CC) contra um costume de liquidação sem base declarada**.
+
+A escolha da ordem de imputação move o saldo em até **23,83%** (juros primeiro: +10,58%;
+principal primeiro: −13,25%) — **a decisão mais cara já medida no corpus**.
 
 O **bloco 10** fecha a extração trabalhista com o índice de jurisprudência
 ([`docs/calculo/jurisprudencia-indice.md`](docs/calculo/jurisprudencia-indice.md), 158 verbetes,

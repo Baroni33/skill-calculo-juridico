@@ -23,7 +23,7 @@ impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
 | 7 | Atualização monetária e juros de mora | 83–99 | 17 | 9 e 10 | coberto |
 | **8** | **Encargos e despesas processuais** | **100–106** | **7** | **—** | **NÃO COBERTO** |
 | 9 | Descontos legais: previdenciário e fiscal | 107–208 | 102 | 7 | coberto |
-| 10 | Atualização de débitos trabalhistas | 209–277 | 69 | **11A** (parcial) | **15 pp. cobertas**, 54 com decisão registrada — ver § 2.1 |
+| 10 | Atualização de débitos trabalhistas | 209–277 | 69 | **11A e 11B** | **45 pp. cobertas**, 24 com decisão registrada — ver § 2.1 |
 | 11 | Exemplo de cálculos, acordos e atualizações | 278–298 | 21 | 10 | coberto |
 | **12** | **Contribuição sindical** | **299–302** | **4** | **—** | **NÃO COBERTO** |
 | 13 | Atualização de créditos da dívida ativa da União | 303 | 1 | 10 | coberto |
@@ -33,26 +33,27 @@ impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
 | 17 | Súmulas, OJs e TJPs — TST e TRT-3 | 337–372 | 36 | 10 | coberto |
 | 18 | Tabelas | 373–471 | 99 | 1 | coberto |
 
-**Conferido em script**, não estimado. Atualizado no bloco 11A.
+**Conferido em script**, não estimado. Atualizado no bloco 11B.
 
 Página não coberta exige decisão registrada, e o mapa separa os dois casos:
 
 | | Páginas |
 |---|---|
-| **Cobertas** | **368** |
-| Não cobertas **com decisão registrada** | **81** |
+| **Cobertas** | **398** |
+| Não cobertas **com decisão registrada** | **51** |
 | Não cobertas **sem decisão** | **14** |
 | Soma dos capítulos | 463 |
 | Pré-textuais (capa e sumário, pp. 1–8) | 8 |
 | **Total do PDF** | **471** |
 
-**Cobertura: 78,1% do PDF, 79,5% das páginas de capítulo.**
+**Cobertura: 84,5% do PDF, 86,0% das páginas de capítulo.**
 
-### Não coberto COM decisão registrada — 81 pp.
+### Não coberto COM decisão registrada — 51 pp.
 
 | Onde | Págs | Decisão |
 |---|---|---|
-| Cap. 10, segmentos B, C e D (pp. 223–277) | 54 | **Blocos 11B a 11D.** Divisão por operação definida no bloco 11A; 11B vai ao segmento C (imputação), invertendo a ordem documental |
+| Cap. 10, segmento **B** (pp. 224–236) | 13 | **Bloco 11C** — descontos proporcionais, art. 12-A e 12-B |
+| Cap. 10, segmento **D** (pp. 267–277) | 11 | **Bloco 11D** — amortização sob o art. 12-B. **Atenção:** o bloco 11B mostrou que o corte C/D parte a hipótese dos juros vincendos, que a moldura declara obrigatória e que só os Exemplos 5 e 6 exercitam. Pendência **P11B-08** |
 | Cap. 16 (pp. 310–336) | 27 | `fora-de-escopo-com-ressalva-confirmada` — varredura dirigida a 16.4.3–16.4.7 e 16.4.9–16.4.12. Pendência **P10-C16** |
 
 ### Não coberto SEM decisão — 14 pp.
@@ -93,13 +94,13 @@ negativa: varredura por `grep -rn` em `docs/calculo/extracao/` pelos termos `cap
 `capítulo 10`, `capítulo 12`, `capítulo 14`, `capítulo 16` e pelas faixas de página
 `100`–`106` e `209`–`277`. Nenhuma ocorrência que indicasse extração.
 
-**Atualização do bloco 11A:** o capítulo 10 deixou de ser lacuna integral — 15 páginas estão
-cobertas e as 54 restantes têm bloco atribuído. Restam **três capítulos sem decisão**: 8, 12
-e 14.
+**Atualização do bloco 11B:** o capítulo 10 tem **45 das 69 páginas cobertas** (segmentos A e
+C); as 24 restantes têm bloco atribuído. Restam **três capítulos sem decisão**: 8, 12 e 14.
 
 ### 2.1 Capítulo 10 — em extração, dividido por operação
 
-**69 páginas.** O bloco 11A fez a varredura estrutural e extraiu o primeiro segmento.
+**69 páginas, 45 cobertas.** O bloco 11A fez a varredura estrutural e extraiu o segmento A;
+o bloco 11B extraiu o segmento **C**, que é onde vive a regra de imputação.
 
 A numeração impressa **para em 10.3.2.1, na p. 239** — e o capítulo segue por mais 38 páginas
 estruturadas apenas por `Exemplo 1` a `Exemplo 6`. Dividir pela numeração perderia 55% do
@@ -109,8 +110,15 @@ capítulo. A divisão real, medida por script:
 |---|---|---|---|---|---|
 | **A** | 10.1 | Atualização **sem** amortização | 209–223 (parcial) | 41.471 | **11A — feito** |
 | **B** | 10.2 | Descontos proporcionais | 223–236 | 41.228 | 11C |
-| **C** | 10.3 | Amortização — **RRA, art. 12-A** (Ex. 1–4) | 237–265 | 89.290 | **11B** |
+| **C** | 10.3 | Amortização — **RRA, art. 12-A** | 237 (off. 681)–266 (off. 2141) | 89.290 | **11B — feito** |
 | **D** | 10.3 | Amortização — **art. 12-B** (Ex. 5–6) | 266–277 | 33.694 | 11D |
+
+**Nenhuma das fronteiras internas do capítulo 10 é quebra de página** — todas caem no meio de
+uma folha, e foram localizadas por offset. O capítulo termina na p. 277; o cap. 11 abre na 278.
+
+**A numeração impressa não volta depois de `10.3.2.1` (p. 239).** Varredura de
+`^1[01]\.\d[\.\d]*` nas pp. 240–300: uma única ocorrência, e é uma remissão a "10.2" no meio
+do texto da p. 249, não um título. Os Exemplos 1 a 6 ficam todos pendurados no mesmo subitem.
 
 **A fronteira A/B não é quebra de página:** o título `10.2` está no offset 2.658 da p. 223.
 
@@ -130,9 +138,9 @@ Estrutura original, para referência:
 
 Isto é **núcleo de motor de cálculo**, não acessório:
 
-- **amortização de valor pago** — a ordem em que um pagamento parcial se imputa entre
-  principal, correção e juros determina o saldo. É a operação mais sensível a ordem de
-  cálculo de todo o manual, e não está extraída;
+- **amortização de valor pago** — extraída no bloco 11B. A regra é **proporcional** (letra F
+  de 10.3.1), e a escolha da ordem move o saldo em até **23,83%**. Sem fundamento normativo
+  declarado em nenhuma das 471 páginas;
 - **descontos proporcionais** — o capítulo 9 (bloco 7) extraiu os critérios de IR e INSS,
   mas a **proporcionalização** na atualização está aqui. O art. 12-A já apareceu no bloco 7:
   há sobreposição a conferir, e possivelmente divergência de critério entre os dois
