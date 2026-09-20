@@ -45,17 +45,35 @@ domínio de cada eixo é **declarável**, via `dominio_condicoes`:
   exaustiva; o remédio é declarar o domínio, não silenciar a checagem.
 
 **R3 — o tipo do indexador na virada.** Cada segmento declara `tipo_indexador`,
-com os cinco valores do catálogo `docs/calculo/tabelas-normativas/
+com os valores do catálogo `docs/calculo/tabelas-normativas/
 indexadores-tipo-catalogo.json`:
 
 * `nominal` e `percentual` — as duas letras do item 4.1.2.4. Medem meses
   diferentes: a virada entre elas exige ajuste de defasagem;
-* `englobante` — SELIC e taxa legal. **Não entram em R3.** O item 4.1.2.4 fala
-  em "refletir a inflação", e `bloco-08-jf-detalhe.md` (D8-C22) é literal: *"Selic
-  não é índice de inflação"*. Quem governa a convivência delas é R1, não R3;
+* `janela-deslocada` — **bloco 19.** A janela de coleta não coincide com o mês
+  calendário: cai **metade em M−1 e metade em M**. É o caso do IPCA-15 e do
+  IPCA-E, cujo período de coleta vai do dia 16 do mês anterior ao dia 15 do mês
+  de referência. Não é `nominal` (não reflete M−1 inteiro) nem `percentual`
+  (não reflete M inteiro), e por isso a virada contra qualquer das duas
+  desloca o cálculo tanto quanto a virada entre elas;
+* `englobante` — **RETIRADO no bloco 19.** Era o valor de SELIC e taxa legal.
+  Punha um fato de R1 — o englobamento, que o campo `engloba` já grava — dentro
+  do campo de R3, e com isso deixava a SELIC **cega para R3** embora ela tenha
+  defasagem. O valor segue no domínio só para que dado antigo não estoure na
+  leitura; **nenhum segmento o usa**, e `test_valida_cobertura.py` prova que
+  nenhum voltou a usá-lo;
 * `nao-indexador` — padrão monetário, conversão de moeda, juros em percentual
   legal. Sem índice não há defasagem a alinhar;
-* `indeterminado` — o conceito se aplica e **nenhuma fonte o classifica**.
+* `indeterminado` — o conceito se aplica e **não há classe atribuível**. Duas
+  razões distintas, e elas se fecham de formas diferentes: *sem fonte* (fecha
+  quando a fonte chegar) e *fonte diz que não cabe* (não fecha esperando
+  fonte — é o caso da TR). Ver `tipo_indexador_razao`, abaixo.
+
+**As três classes com defasagem.** `nominal`, `percentual` e `janela-deslocada`
+medem janelas diferentes. São **três pares** de virada, não um: `nominal ×
+percentual`, `nominal × janela-deslocada` e `percentual × janela-deslocada`.
+A regra não enumera pares — exige que os dois lados estejam em
+`TIPOS_COM_DEFASAGEM` e sejam diferentes.
 
 **Virada com ponta `indeterminado` BLOQUEIA** — vira violação, sob a regra
 `R3-INDETERMINADO`. Não é a mesma coisa que uma virada confirmada, e por isso
@@ -71,6 +89,15 @@ Ausente o campo, não há ajuste declarado — e declarar é o requisito.
 
 Segmentos consecutivos com o **mesmo `indexador`** não são virada e não são
 examinados: trocar o fundamento ou a condição não muda a régua de defasagem.
+
+**`tipo_indexador_razao` — razão NÃO é pendência.** Campo novo do bloco 19,
+exclusivo de `indeterminado` e mutuamente excludente com
+`tipo_indexador_pendencia`. Pendência diz *"não há fonte"* e fecha quando a
+fonte chegar. Razão diz *"há fonte, e ela diz que o índice não cabe em mês
+calendário"* — a da TR é *"período entre datas de aniversário e prefixação"* —
+e **não se fecha esperando fonte**. Os dois continuam bloqueando a virada sob
+`R3-INDETERMINADO`, porque o efeito sobre o cálculo é o mesmo; o que muda é a
+mensagem, e é ela que diz a quem audita se vale a pena esperar.
 """
 
 from __future__ import annotations
@@ -84,6 +111,7 @@ __all__ = [
     "Violacao",
     "TIPOS_DE_INDEXADOR",
     "TIPOS_COM_DEFASAGEM",
+    "TIPOS_RETIRADOS",
     "competencia_para_indice",
     "indice_para_competencia",
     "valida_cobertura",
@@ -97,11 +125,27 @@ __all__ = [
 # Domínio fechado, espelho de `valores_de_tipo` em
 # docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json.
 TIPOS_DE_INDEXADOR: frozenset[str] = frozenset(
-    {"nominal", "percentual", "englobante", "nao-indexador", "indeterminado"}
+    {
+        "nominal",
+        "percentual",
+        "janela-deslocada",
+        "englobante",
+        "nao-indexador",
+        "indeterminado",
+    }
 )
 
-#: Os dois tipos cuja troca move a defasagem em um mês — item 4.1.2.4, letras a e b.
-TIPOS_COM_DEFASAGEM: frozenset[str] = frozenset({"nominal", "percentual"})
+#: Valor RETIRADO no bloco 19. Segue legível, para que dado antigo não estoure;
+#: nenhum segmento o usa, e há teste que o cobra.
+TIPOS_RETIRADOS: frozenset[str] = frozenset({"englobante"})
+
+#: As TRÊS classes que medem janelas diferentes e cuja troca move a defasagem.
+#: `nominal` e `percentual` vêm do item 4.1.2.4, letras a e b; `janela-deslocada`
+#: vem da definição do período de coleta do IPCA-15 (FONTE EXTERNA AO CORPUS —
+#: IBGE; ver o catálogo). Três valores produzem TRÊS pares de virada.
+TIPOS_COM_DEFASAGEM: frozenset[str] = frozenset(
+    {"nominal", "percentual", "janela-deslocada"}
+)
 
 
 # --------------------------------------------------------------------------
@@ -146,6 +190,9 @@ class Segmento:
     indexador: str = ""
     tipo_indexador: str = ""
     aplicacao: str = ""
+    #: Só faz sentido com `tipo_indexador == "indeterminado"`. Ver docstring do
+    #: módulo: razão declarada em fonte ("não cabe") ≠ pendência ("não há fonte").
+    tipo_indexador_razao: str = ""
 
     @staticmethod
     def de_dict(d: dict[str, Any], indice: int = 0) -> "Segmento":
@@ -161,6 +208,19 @@ class Segmento:
                 f"segmento #{indice}: 'tipo_indexador' inválido {tipo!r} — "
                 f"valores do catálogo: {', '.join(sorted(TIPOS_DE_INDEXADOR))}"
             )
+        razao = str(d.get("tipo_indexador_razao") or "").strip()
+        if razao and tipo != "indeterminado":
+            raise ValueError(
+                f"segmento #{indice}: 'tipo_indexador_razao' só cabe em "
+                f"'indeterminado', veio com tipo {tipo!r}"
+            )
+        if razao and d.get("tipo_indexador_pendencia"):
+            raise ValueError(
+                f"segmento #{indice}: 'tipo_indexador_razao' e "
+                f"'tipo_indexador_pendencia' são mutuamente excludentes — "
+                f"pendência diz 'não há fonte' e fecha quando a fonte chegar; "
+                f"razão diz 'a fonte diz que não cabe' e não fecha assim"
+            )
         seg = Segmento(
             inicio=d["inicio"],
             fim=d["fim"],
@@ -171,6 +231,7 @@ class Segmento:
             indexador=str(d.get("indexador") or ""),
             tipo_indexador=tipo,
             aplicacao=str(d.get("aplicacao") or "").strip(),
+            tipo_indexador_razao=razao,
         )
         if competencia_para_indice(seg.inicio) > competencia_para_indice(seg.fim):
             raise ValueError(f"{seg.id}: início {seg.inicio} posterior ao fim {seg.fim}")
@@ -295,6 +356,21 @@ def _valida_r3(
         janela = (seguinte.inicio, seguinte.fim)
 
         if "indeterminado" in (ta, tb):
+            # Razão declarada em fonte ("não cabe") não é pendência ("não há
+            # fonte"): as duas bloqueiam, mas só a segunda fecha esperando.
+            razoes = [
+                f"{s.id}: {s.tipo_indexador_razao}"
+                for s in (anterior, seguinte)
+                if s.tipo_indexador == "indeterminado" and s.tipo_indexador_razao
+            ]
+            if razoes:
+                cauda = (
+                    "a fonte existe e diz que o índice NÃO CABE na tricotomia — "
+                    + "; ".join(razoes)
+                    + " — e por isso esta pendência NÃO se fecha esperando fonte"
+                )
+            else:
+                cauda = "classificação sem fonte é pendência, não aprovação"
             violacoes.append(Violacao(
                 regra="R3-INDETERMINADO",
                 componente=componente,
@@ -305,11 +381,14 @@ def _valida_r3(
                 mensagem=(
                     f"virada de indexador com tipo indeterminado em uma das pontas "
                     f"({anterior.id}={ta} → {seguinte.id}={tb}) — R3 NÃO PODE SER "
-                    f"VERIFICADA; classificação sem fonte é pendência, não aprovação"
+                    f"VERIFICADA; {cauda}"
                 ),
             ))
             continue
 
+        # TRÊS classes medem janelas diferentes — `nominal` (M−1),
+        # `percentual` (M) e `janela-deslocada` (metade de M−1, metade de M).
+        # A regra não enumera pares: qualquer troca entre duas delas é virada.
         if ta in TIPOS_COM_DEFASAGEM and tb in TIPOS_COM_DEFASAGEM and ta != tb:
             if seguinte.aplicacao:
                 continue

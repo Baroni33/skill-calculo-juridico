@@ -206,8 +206,8 @@
       "inicio": "2021-12",
       "fim": "2025-08",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "capitalizacao": "simples",
       "engloba": [
         "correcao-monetaria",

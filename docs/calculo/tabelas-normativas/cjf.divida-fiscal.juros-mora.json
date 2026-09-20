@@ -1,0 +1,177 @@
+{
+  "id": "cjf.divida-fiscal.juros-mora",
+  "titulo": "Juros de mora — dívidas fiscais da Fazenda Nacional",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "divida-fiscal",
+  "componente": "juros-mora",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "2.3.2.2",
+    "pagina_pdf": 26
+  },
+  "DECISAO_4_BASE_INCIDENCIA": "O CAMPO É NOVO E O SCHEMA O ACOMODA SEM ALTERAÇÃO DE CÓDIGO. 'base_incidencia' é campo de SEGMENTO e diz sobre QUE VALOR a taxa incide — originário × corrigido ('cor/mon.') —, dimensão ortogonal a período, indexador e englobamento. `Segmento.de_dict` lê uma lista fechada de campos e ignora os demais, de modo que R1, R2 e R3 seguem exatas e o dado fica gravado para quem calcula. NÃO se criou campo no validador: R1/R2/R3 não têm o que fazer com a base, e acrescentá-lo ao dataclass sem regra que o consuma seria cerimônia. D8-C5: a base alterna QUATRO vezes — trimestral cor/mon. → originário → cor/mon. → originário → cor/mon. — e SÓ a dívida fiscal a exercita.",
+  "D8_C7_COR_MON_NUNCA_DEFINIDA": "A abreviação 'cor/mon.' aparece TREZE vezes no manual (pagina_pdf 26, 32, 33, 91 e 92) e NUNCA é definida. Transcrita como está; a leitura 'valor corrigido monetariamente' é a óbvia e NÃO foi gravada como se fosse do manual.",
+  "N_2_ASSIMETRIA": "O item 2.4.2.2.2 (juros da contribuição previdenciária) traz, no mesmo período e com o mesmo fundamento, a ressalva '(sem a incidência de qualquer outro fator de correção monetária)' (pagina_pdf 33); esta tabela NÃO a traz (pagina_pdf 25–26). Duas tabelas irmãs, um cuidado só numa delas. Registrado.",
+  "aplicacao": {
+    "formula": "D4",
+    "literal": "devem ser aplicadas a partir do mês seguinte ao da competência da parcela devida até o mês anterior ao pagamento, e 1% no mês do pagamento",
+    "pagina_pdf": 27
+  },
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-07",
+    "fim": "2026-06",
+    "por_que": "A tabela 2.3.2.2 abre com 'De jul./1964' — mês DECLARADO, ao contrário das cadeias de correção, que abrem com 'De 1964' sem mês — e fecha com 'A partir de fev./1992'. 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  },
+  "SEM_CONDICAO_E_SEM_DOMINIO_CONDICOES": "Esta cadeia NÃO usa 'condicao' nem 'dominio_condicoes', ao contrário da gêmea de correção (2.3.1.2). O eixo 'data-do-fato-gerador' aparece DENTRO de uma única linha — 'A partir de fev./1992: 1%, bifurcado por fato gerador (Selic/TMMCTN)' — e a tabela de 2.3.2.2 não a desdobra. Marcar o segmento com 'condicao' criaria um ramo sem gêmeo e abriria lacuna de R2 no universo incondicional; declarar 'dominio_condicoes' para fechá-la seria afirmar exaustividade de um domínio que esta tabela não enumera. O eixo fica em 'eixo_declarado', campo de registro, que não muda a aritmética de cobertura.",
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
+  "segmentos": [
+    {
+      "inicio": "1964-07",
+      "fim": "1968-04",
+      "taxa": "1%",
+      "capitalizacao": "simples",
+      "base_incidencia": "valor-base trimestral do débito cor/mon.",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. Sem índice, R3 não tem o que verificar.",
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 26,
+      "base_literal": "Juros simples, incidentes sobre o valor-base trimestral do débito cor/mon.",
+      "observacao": "O manual escreve 'De jul./1964 a abr./1968'.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "1968-05",
+      "fim": "1979-09",
+      "taxa": "1%",
+      "capitalizacao": "simples",
+      "base_incidencia": "valor originário",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. Sem índice, R3 não tem o que verificar.",
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 26,
+      "base_literal": "Juros simples, incidentes sobre o valor originário do débito.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "1979-10",
+      "fim": "1979-12",
+      "taxa": "1%",
+      "capitalizacao": "simples",
+      "base_incidencia": "valor do débito cor/mon.",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. Sem índice, R3 não tem o que verificar.",
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 26,
+      "base_literal": "Juros simples, incidentes sobre o valor do débito cor/mon.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "1980-01",
+      "fim": "1982-12",
+      "taxa": "1%",
+      "capitalizacao": "simples",
+      "base_incidencia": "valor originário",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. Sem índice, R3 não tem o que verificar.",
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 26,
+      "base_literal": "Juros simples, incidentes sobre o valor originário do débito, contados do dia seguinte ao do vencimento.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "1983-01",
+      "fim": "1991-01",
+      "taxa": "1%",
+      "capitalizacao": "simples",
+      "base_incidencia": "valor do débito cor/mon.",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. Sem índice, R3 não tem o que verificar.",
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 26,
+      "base_literal": "Juros simples, incidentes sobre o valor do débito cor/mon.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "1991-02",
+      "fim": "1992-01",
+      "taxa": "Equivalente à TRD.",
+      "capitalizacao": "simples",
+      "base_incidencia": null,
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. Sem índice, R3 não tem o que verificar.",
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 26,
+      "fundamento": "Art. 30 da Lei n. 8.218/1991.",
+      "observacao": "O manual escreve 'De fev./1991 a 2/1/1992'. O fim é DIA 2 de janeiro de 1992; o schema indexa por competência, e 1992-01 entra inteiro.",
+      "CORTE_INTRAMENSAL": "A fronteira do manual é 2/1/1992 ÷ 3/1/1992, DENTRO de 1992-01. O segmento seguinte também abre em 1992-01. A sobreposição de um mês que o validador vai acusar é do CORTE POR DIA numa modelagem por mês — registrada, não harmonizada.",
+      "N_1": "ATRITO. A tabela de correção de 2.3.1.2 fecha a janela sem correção em dez./1991 e remete 'vide item 2.3.2.2'; esta tabela estende a TRD até 2/1/1992. Para 1º e 2 de janeiro de 1992 a correção já iniciou a Ufir e os juros ainda aplicam a TRD. CONTRADIZ. Não harmonizado."
+    },
+    {
+      "inicio": "1992-01",
+      "fim": "1992-01",
+      "taxa": null,
+      "capitalizacao": "simples",
+      "base_incidencia": null,
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. Sem índice, R3 não tem o que verificar.",
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 26,
+      "observacao": "De 3/1/1992 a 31/1/1992: 'Não há aplicação de juros de mora, por falta de previsão legal.'",
+      "D8_C6": "UM MÊS SEM JUROS POR FALTA DE LEI — 3 a 31 de janeiro de 1992. DECLARADO pelo manual, não inferido. 'taxa: null' aqui NÃO é dado faltante: é a regra.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "1992-02",
+      "fim": "2026-06",
+      "taxa": "1%, bifurcado por fato gerador (Selic/TMMCTN)",
+      "capitalizacao": "simples",
+      "base_incidencia": "valor do débito cor/mon.",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. Sem índice, R3 não tem o que verificar.",
+      "engloba": [
+        "juros-mora"
+      ],
+      "componente": "juros-mora",
+      "pagina_pdf": 26,
+      "base_literal": "Juros simples, incidentes sobre o valor do débito cor/mon.",
+      "eixo_declarado": "data-do-fato-gerador",
+      "POR_QUE_NAO_E_CONDICAO": "A bifurcação Selic/TMMCTN por data do fato gerador está DENTRO desta linha, e a tabela de 2.3.2.2 NÃO a desdobra em linhas próprias — quem a desdobra é a tabela de CORREÇÃO, 2.3.1.2, e é lá que o campo 'condicao' e o 'dominio_condicoes' vivem. Gravar 'condicao' aqui criaria um ramo sem gêmeo e abriria lacuna no universo incondicional; declarar 'dominio_condicoes' para fechá-la seria afirmar exaustividade de um domínio que ESTA tabela não enumera. O eixo fica nomeado em campo próprio.",
+      "regra_literal": "A partir de fev./1992: 1%, bifurcado por fato gerador (Selic/TMMCTN). Juros simples, incidentes sobre o valor do débito cor/mon.",
+      "aplicacao": "a partir do mês seguinte ao da competência da parcela devida até o mês anterior ao pagamento, e 1% no mês do pagamento",
+      "aplicacao_formula": "D4",
+      "ponta_materializada": "fim — o manual escreve 'A partir de fev./1992'",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    }
+  ]
+}

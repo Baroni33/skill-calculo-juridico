@@ -146,12 +146,16 @@ bruta**, como os oito anteriores.
 |---|---|
 | **`N-5` / `D8-C13`** | os expurgos do FGTS (**42,72% em jan/1989 e 44,80% em abr/1990**) **não dizem se substituem ou acrescem**. Os percentuais **não viraram segmento**: gravá-los exigiria escolher. `fgts.md` § 8 |
 | **`P18-01`** | sete rótulos (`JAM`, `UPC`, `LBC`, `LBC – 0,5%`, `LFT – 0,5%`, `TRD`, **`IPC` nu**) **sem classificação em fonte alguma** → `indeterminado`. **19 `R3-INDETERMINADO`** |
-| **`P18-02`** | **oito cadeias tabuladas do manual sem JSON** — 4.5.2, 4.5.3, 4.6.1.1, 4.6.2, 4.6.3, 2.3.2.2, 2.4.2.2.2 e **2.4.4.1** (o **FGTS fiscal**, critério `JCM`, que **não é** a cadeia de 4.8) |
+| **`P18-02`** | eram **oito** cadeias tabuladas sem JSON; **são TRÊS** — **4.5.2**, **4.6.2** e **2.4.2.2.2**. As outras cinco foram geradas no **bloco 19, tarefa 3**: 4.5.3, 4.6.1.1, 4.6.3, 2.3.2.2 e **2.4.4.1** (o **FGTS fiscal**, critério `JCM`, que **não é** a cadeia de 4.8). As três que restam estão bloqueadas por **falta de fonte** — a tabela delas **nunca foi extraída linha a linha** —, não por schema. `02-atualizacao-detalhe.md` § 5.3.6 |
+| **`P19-02`** | **`BTNF` sem classificação em fonte alguma** → `indeterminado`. O item 4.1.2.4 nomeia o **BTN**, não o BTNF; herdar do quase-homônimo é a dedução proibida |
 | **duas `R3` cheias** | `1986-03` e `1990-04` na poupança, **sem `aplicacao`**. **São do manual — transcritas, não harmonizadas.** `poupanca.md` § 4.2 |
 
 > **`4.7.1` parecia lacuna e não é:** o manual **não tem** tabela de correção trabalhista — ele
-> **delega ao TST**. Afirmá-la ausente seria afirmar ausência de algo que a fonte nunca prometeu.
-> `02-atualizacao-detalhe.md` § 5.0.
+> **delega ao TST** (NOTA 2, `pagina_pdf` 77: *"utilizar a tabela de coeficientes trabalhistas
+> expedida pelo Tribunal Superior do Trabalho"*). **O que se registra é a DELEGAÇÃO, não a
+> ausência**: afirmá-la ausente seria afirmar ausência de algo que a fonte nunca prometeu. A cadeia
+> vive numa **série**, não numa regra — desenho do `P9-02`. **Não entra em `P18-02`.**
+> `02-atualizacao-detalhe.md` §§ 5.0 e 5.3.6.
 
 ## Estado
 

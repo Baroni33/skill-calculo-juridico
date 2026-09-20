@@ -16,22 +16,44 @@ DEST = Path(__file__).resolve().parents[2] / "docs" / "calculo" / "tabelas-norma
 
 CAT = ("tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; "
        "sem fonte, indeterminado (bloco 17, tarefa 1)")
-NAO_IND = ("segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., "
-           "TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem "
-           "o que verificar.")
+NAO_IND = ("segmentos cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, "
+           "poupança) ou percentual de juros compensatórios, e não índice. Sem índice, "
+           "R3 não tem o que verificar.")
 NOM = "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos"
 PCT_IPC = ("D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: "
            "'O IPC/IBGE é índice percentual'")
-SELIC_F = ("D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de "
-           "inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de "
-           "correção e juros")
-LEGAL_F = ("R1 (00-base-normativa.md § 7) — taxa legal engloba correção e juros. R11: é "
-           "DERIVADA por razão entre fatores, não índice de preços publicado. O item 4.1.2.4 "
-           "não a alcança: ela é posterior ao manual que o contém e não reflete inflação de "
-           "mês algum.")
-TR_PQ = ("Rebaixada no bloco 17 (P17-02): nenhum dos dois manuais a classifica, e o critério "
-         "material do item 4.1.2.4 — 'refletem a inflação do próprio mês' — não alcança taxa "
-         "apurada prospectivamente (art. 12, I, da Lei n. 8.177/1991).")
+# BLOCO 19. A Selic deixa de ser "englobante": englobamento é fato de R1 e vive
+# no campo `engloba`, que NÃO mudou. Gravá-lo também em `tipo_indexador` deixava
+# a Selic cega para R3, embora ela tenha defasagem.
+SELIC_F = ("FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — "
+           "'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de "
+           "competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — "
+           "englobamento é fato de R1 e quem o grava é o campo 'engloba', que não "
+           "mudou. O efeito do erro era deixar a SELIC cega para R3.")
+# BLOCO 19. A taxa legal NÃO está na tabela externa. `percentual` por analogia com
+# a Selic seria a dedução proibida; sem fonte que a alcance, é indeterminado.
+LEGAL_PQ = ("A tabela externa do bloco 19 NÃO alcança a taxa legal: ela nomeia 'SELIC "
+            "acumulada' e mais nada do gênero. Classificá-la 'percentual' por analogia "
+            "com a SELIC é a dedução proibida — e a analogia é frágil por fonte, "
+            "porque R11 registra a taxa legal como DERIVADA por razão entre fatores "
+            "(TL = Fator_Selic / Fator_Deflator − 1), não índice publicado. No corpus, "
+            "nenhuma linha lhe atribui tipo com citação de item e pagina_pdf (ver "
+            "ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_19). Perdeu 'englobante' porque "
+            "'englobante' era fato de R1 no campo de R3; o englobamento em si segue "
+            "intacto no campo 'engloba'.")
+# BLOCO 19. A TR segue `indeterminado`, mas por RAZÃO REGISTRADA, não por ausência
+# de fonte: agora HÁ fonte, e ela diz que o índice não cabe em mês calendário.
+TR_FONTE = ("FONTE EXTERNA AO CORPUS (BCB, verificada fora do agente) — TBF, Redutor-R "
+            "e TR são divulgados para PERÍODO ENTRE DATAS DE ANIVERSÁRIO, não para mês "
+            "calendário (17/02 a 17/03, 03/05 a 03/06, 05/10 a 05/11); e a TR é "
+            "PREFIXADA, com variação divulgada para o mês seguinte.")
+TR_RAZAO = "período entre datas de aniversário e prefixação"
+TR_FECHAMENTO = ("NÃO se fecha esperando fonte. A fonte chegou, e o que ela diz é que a TR "
+                 "não cabe em mês calendário — logo não há classe a atribuir. Fecharia só "
+                 "se a modelagem ganhar classe para período entre datas de aniversário, ou "
+                 "se a cadeia declarar a conversão para competência em 'aplicacao'. Era "
+                 "'tipo_indexador_pendencia: P17-02', que afirmava 'não há fonte' e passou "
+                 "a ser falso.")
 
 IND = {
     "UPC": (
@@ -53,9 +75,12 @@ IND = {
         "a classifica. O rótulo embute uma dedução de 0,5% não explicada pela tabela."
     ),
     "TRD": (
-        "Taxa Referencial Diária. Segue a TR, rebaixada a 'indeterminado' no bloco 17 (P17-02): "
-        "taxa apurada prospectivamente, fora do critério material do item 4.1.2.4. Nenhuma fonte "
-        "do corpus classifica a TRD por si."
+        "Taxa Referencial Diária. A fonte externa do bloco 19 nomeia TBF, Redutor-R e TR — e "
+        "NÃO nomeia a TRD. Estender a razão da TR à TRD por semelhança de nome é a dedução "
+        "proibida, e aqui não há o parêntese do manual que sustenta a costura da 'remuneração "
+        "básica da caderneta de poupança (TR)'. Continua SEM FONTE. As únicas ocorrências de "
+        "'TRD' com vocabulário de tipo no corpus são o texto 'nao-indexador' dos segmentos de "
+        "JUROS DE MORA, que não a classifica como indexador de correção."
     ),
     "IPC": (
         "Rótulo NU, sem emissor, nas linhas de mar./1986–jan./1987 e maio/1989–mar./1990 de "
@@ -74,10 +99,22 @@ def seg(inicio, fim, **kw):
     return d
 
 
-def ind_seg(inicio, fim, indexador, tipo, fonte, **kw):
-    """Segmento de correção monetária, com a regra do tipo_indexador do bloco 17."""
+def ind_seg(inicio, fim, indexador, tipo, fonte, razao=None, fechamento=None, **kw):
+    """Segmento de correção monetária, com a regra do tipo_indexador.
+
+    BLOCO 19 — `indeterminado` tem DUAS razões, e elas se fecham de formas
+    diferentes. Sem `razao`, vale a pendência: *não há fonte*, e fecha quando a
+    fonte chegar. Com `razao`, vale o contrário: *há fonte, e ela diz que o
+    índice não cabe em mês calendário* — e isso NÃO fecha esperando fonte. Os
+    dois campos são mutuamente excludentes, e `Segmento.de_dict` os rejeita
+    juntos.
+    """
     d = {"inicio": inicio, "fim": fim, "indexador": indexador, "tipo_indexador": tipo}
-    if tipo == "indeterminado":
+    if tipo == "indeterminado" and razao:
+        d["tipo_indexador_fonte"] = fonte
+        d["tipo_indexador_razao"] = razao
+        d["tipo_indexador_fechamento"] = fechamento
+    elif tipo == "indeterminado":
         d["tipo_indexador_fonte"] = None
         d["tipo_indexador_por_que"] = fonte
         d["tipo_indexador_pendencia"] = "P18-01"
@@ -215,7 +252,8 @@ fgts_cm = {
                 expurgo_pendente=("A NOTA 2 manda incluir 44,80% em abr./1990 SOBRE esta linha. "
                                   "Substitui ou acresce? Não declarado — N-5, aberta.")),
         ind_seg("1991-02", "1993-04", "TRD", "indeterminado", IND["TRD"], pagina_pdf=82),
-        ind_seg("1993-05", "2026-06", "TR", "indeterminado", TR_PQ, pagina_pdf=82,
+        ind_seg("1993-05", "2026-06", "TR", "indeterminado", TR_FONTE,
+                razao=TR_RAZAO, fechamento=TR_FECHAMENTO, pagina_pdf=82,
                 ponta_materializada="fim — o manual escreve 'A partir de maio/1993'"),
     ],
     "jurisdicao": "justica-federal",
@@ -307,15 +345,16 @@ def cadeia_juros(ident, titulo, tipo_acao, item, pag_tabela, notas_extra, janela
                 pagina_pdf=pag_tabela, componente="juros-mora",
                 ponta_materializada="inicio — o manual escreve 'Até dez./2002', sem data inicial",
                 tipo_indexador="nao-indexador", tipo_indexador_fonte=NAO_IND),
-            seg("2003-01", "2024-08", indexador="Selic", tipo_indexador="englobante",
+            seg("2003-01", "2024-08", indexador="Selic", tipo_indexador="percentual",
                 tipo_indexador_fonte=SELIC_F, capitalizacao="simples",
                 engloba=["correcao-monetaria", "juros-mora"],
                 aplicacao=("a partir do mês seguinte ao de competência da parcela devida até o mês "
                            "anterior ao pagamento, e 1% no mês do pagamento"),
                 fundamento="Art. 406 da Lei n. 10.406/2002 – Código Civil.",
                 pagina_pdf=pag_tabela, componente="juros-mora"),
-            seg("2024-09", "2026-06", indexador="taxa-legal", tipo_indexador="englobante",
-                tipo_indexador_fonte=LEGAL_F, capitalizacao="simples",
+            seg("2024-09", "2026-06", indexador="taxa-legal", tipo_indexador="indeterminado",
+                tipo_indexador_fonte=None, tipo_indexador_por_que=LEGAL_PQ,
+                tipo_indexador_pendencia="P19-01", capitalizacao="simples",
                 engloba=["correcao-monetaria", "juros-mora"],
                 formula="SELIC, com dedução do IPCA-15",
                 aplicacao="mes-posterior-a-competencia",
@@ -483,7 +522,8 @@ poup_cm = {
                 observacao=("Abr./1993: TRD desde o último crédito efetuado até 2/5/1993 + TR pro "
                             "rata de 3/5/1993 até a data do crédito (§ 2º do art. 7º da Lei n. "
                             "8.660/1993 – conv. MP n. 319/1993).")),
-        ind_seg("1993-05", "2026-06", "TR", "indeterminado", TR_PQ, pagina_pdf=85,
+        ind_seg("1993-05", "2026-06", "TR", "indeterminado", TR_FONTE,
+                razao=TR_RAZAO, fechamento=TR_FECHAMENTO, pagina_pdf=85,
                 ponta_materializada="fim — o manual escreve 'A partir de maio/1993'",
                 observacao=("Jun./1994: TR pro rata desde o último crédito efetuado até 30/6/1994 "
                             "+ TR pro rata de 1º/7/1994 até a data do crédito (§§ 1º e 2º do art. "

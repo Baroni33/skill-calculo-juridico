@@ -146,9 +146,8 @@
       "inicio": "2001-01",
       "fim": "2021-11",
       "indexador": "IPCA-E/IBGE",
-      "tipo_indexador": "indeterminado",
-      "tipo_indexador_fonte": "NÃO está na lista do item 4.1.2.4. Classificá-lo como percentual 'porque IPCA é percentual' é dedução a partir do nome — e o item sequer nomeia 'IPCA': nomeia INPC, IGP-DI e IGP-M. Busca no corpus (ver ESCOPO_DA_BUSCA_DE_AUSENCIA) não achou fonte.",
-      "tipo_indexador_pendencia": "P17-01",
+      "tipo_indexador": "janela-deslocada",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (IBGE, verificada fora do agente) — o IPCA-E mensal das tabelas judiciais É o IPCA-15, cujo período de coleta vai do dia 16 do mês anterior ao dia 15 do mês de referência: metade da janela em M−1, metade em M. Identificação declarada pela própria fonte, não por semelhança de nome.",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -162,8 +161,8 @@
       "inicio": "2021-12",
       "fim": "2024-08",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "condicao": {
         "devedor": "fazenda-publica"
       },
@@ -182,9 +181,8 @@
       "inicio": "2021-12",
       "fim": "2024-08",
       "indexador": "IPCA-E/IBGE",
-      "tipo_indexador": "indeterminado",
-      "tipo_indexador_fonte": "NÃO está na lista do item 4.1.2.4. Classificá-lo como percentual 'porque IPCA é percentual' é dedução a partir do nome — e o item sequer nomeia 'IPCA': nomeia INPC, IGP-DI e IGP-M. Busca no corpus (ver ESCOPO_DA_BUSCA_DE_AUSENCIA) não achou fonte.",
-      "tipo_indexador_pendencia": "P17-01",
+      "tipo_indexador": "janela-deslocada",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (IBGE, verificada fora do agente) — o IPCA-E mensal das tabelas judiciais É o IPCA-15, cujo período de coleta vai do dia 16 do mês anterior ao dia 15 do mês de referência: metade da janela em M−1, metade em M. Identificação declarada pela própria fonte, não por semelhança de nome.",
       "condicao": {
         "devedor": "nao-fazenda-publica"
       },
@@ -199,8 +197,8 @@
       "inicio": "2024-09",
       "fim": "2025-08",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "condicao": {
         "devedor": "fazenda-publica"
       },
@@ -218,9 +216,8 @@
       "inicio": "2024-09",
       "fim": "2025-08",
       "indexador": "IPCA-15/IBGE",
-      "tipo_indexador": "indeterminado",
-      "tipo_indexador_fonte": "Mesma razão do IPCA-E, agravada: é a prévia de 15 dias, índice distinto dos dois. Sem fonte no corpus.",
-      "tipo_indexador_pendencia": "P17-01",
+      "tipo_indexador": "janela-deslocada",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (IBGE, verificada fora do agente) — o IPCA-15 difere do IPCA apenas no PERÍODO DE COLETA, do dia 16 do mês anterior ao dia 15 do mês de referência, e na abrangência geográfica.",
       "condicao": {
         "devedor": "nao-fazenda-publica"
       },
@@ -235,9 +232,8 @@
       "inicio": "2025-09",
       "fim": "2026-06",
       "indexador": "IPCA-15/IBGE",
-      "tipo_indexador": "indeterminado",
-      "tipo_indexador_fonte": "Mesma razão do IPCA-E, agravada: é a prévia de 15 dias, índice distinto dos dois. Sem fonte no corpus.",
-      "tipo_indexador_pendencia": "P17-01",
+      "tipo_indexador": "janela-deslocada",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (IBGE, verificada fora do agente) — o IPCA-15 difere do IPCA apenas no PERÍODO DE COLETA, do dia 16 do mês anterior ao dia 15 do mês de referência, e na abrangência geográfica.",
       "engloba": [
         "correcao-monetaria"
       ],

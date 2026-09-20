@@ -14,7 +14,7 @@ A skill não é o entregável. O código que um agente constrói lendo a skill �
 | `docs/calculo/01-plano-extracao.md` | Arquitetura das skills, schemas, triagem do corpus, pipeline |
 | `docs/calculo/fontes.md` | Localização dos PDFs e offsets de paginação |
 | `docs/calculo/pendencias.md` | O que está em aberto e o que bloqueia |
-| `docs/calculo/consolidado/` | **Fase 4, fechada.** Treze arquivos, um por assunto: espinha do que o motor precisa, detalhe de onde está a evidência. **É daqui que a skill se escreve.** |
+| `docs/calculo/consolidado/` | **Fase 4, fechada.** Catorze arquivos, um por assunto: espinha do que o motor precisa, detalhe de onde está a evidência. **É daqui que a skill se escreve.** |
 | `docs/calculo/consolidado/00-calendario-de-cortes.md` | **Chave primária da consolidação.** Um par `(data, eixo)` por corte |
 
 Os dois manuais em PDF **não são versionados aqui** — ver `docs/calculo/fontes.md`.
@@ -131,8 +131,8 @@ nacional e marca a conta `sem cobertura regional`. Chave: `(regra, tribunal, com
 [`docs/calculo/extracao/bloco-17-relatorio.md`](docs/calculo/extracao/bloco-17-relatorio.md).
 
 **R3 deixou de ser letra morta.** O campo `tipo_indexador` não existia em série nenhuma; passou
-a estar em **todos os segmentos de todas as cadeias** — eram 97 no bloco 17, são **126** desde o
-18 —, e o validador bloqueia a virada entre tipos sem ajuste de defasagem. **Dez dos vinte e oito indexadores ficaram `indeterminado`** — a fonte nomeia sete, e
+a estar em **todos os segmentos de todas as cadeias** — 97 no bloco 17, **156** hoje —, e o
+validador bloqueia a virada entre tipos sem ajuste de defasagem. **Dez dos vinte e oito indexadores ficaram `indeterminado`** — a fonte nomeia sete, e
 estender por semelhança de nome era a dedução proibida. **A TR foi rebaixada:** era `percentual`
 por inferência formal, e **inferência declarada não é fonte**.
 
@@ -164,6 +164,25 @@ porque cadeia a mais é crescimento e **cadeia a menos é regressão**. E entrou
 `test_ponteiros.py`, com *ledger* que distingue ponteiro morto de narrativa histórica pelo par
 `(alvo, arquivo)`.
 
+**Bloco 19 — classificação de índices** — ver
+[`docs/calculo/extracao/bloco-19-relatorio.md`](docs/calculo/extracao/bloco-19-relatorio.md).
+
+**A dicotomia nominal/percentual do manual é insuficiente, e os dois índices mais usados hoje
+ficam fora dela.** R3 ganhou **`janela-deslocada`** — IPCA-15 e IPCA-E refletem **metade de M−1 e
+metade de M**, porque o período de coleta vai do dia 16 do mês anterior ao 15 do mês de
+referência. E **`englobante` foi retirado**: era um fato de R1 dentro do campo de R3, e deixava a
+SELIC **cega para defasagem**. O englobamento não se perdeu — mudou para o campo `engloba`, que já
+existia.
+
+**20 cadeias, 156 segmentos, 311 testes.** Dos 36 rótulos de indexador, **32 segmentos seguem
+`indeterminado`** — e a distinção que o bloco introduziu é entre *"sem fonte"* e *"a fonte diz que
+não cabe"*: **a TR é divulgada para período entre datas de aniversário, não para mês calendário**.
+Essa **não se fecha esperando fonte**.
+
+> **`indeterminado` continua sendo a resposta correta onde falta fonte, e continua bloqueando.**
+> Foi o que impediu `BTNF` de herdar do `BTN`, a taxa legal de herdar da SELIC, e o `IPC` nu de
+> herdar do irmão.
+
 | Bloco | Conteúdo | Relatório |
 |---|---|---|
 | 1 | Tabelas do Manual TRT-3, p. 373–471 | `docs/calculo/extracao/trabalhista/bloco-01-tabelas.md` |
@@ -186,6 +205,7 @@ porque cadeia a mais é crescimento e **cadeia a menos é regressão**. E entrou
 | 16 | **Fase 5 — build das skills.** Quatro skills, `references/` nacional × regional, R24 | `docs/calculo/extracao/bloco-16-relatorio.md` |
 | 17 | **Correções estruturais.** Campo `tipo` e R3 no validador; ids neutros; ordem de cálculo | `docs/calculo/extracao/bloco-17-relatorio.md` |
 | 18 | **Lacunas de consolidação.** FGTS e poupança; manifesto de cadeias; teste de ponteiros | `docs/calculo/extracao/bloco-18-relatorio.md` |
+| 19 | **Classificação de índices.** Terceira classe de R3; 36 rótulos mapeados; 5 cadeias novas | `docs/calculo/extracao/bloco-19-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 **80 páginas de capítulo** mais a Apresentação e a Resolução, sete cadeias temporais em

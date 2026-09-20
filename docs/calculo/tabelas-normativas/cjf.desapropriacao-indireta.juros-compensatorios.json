@@ -1,0 +1,119 @@
+{
+  "id": "cjf.desapropriacao-indireta.juros-compensatorios",
+  "titulo": "Juros compensatórios — desapropriações indiretas",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "desapropriacao-indireta",
+  "componente": "juros-compensatorios",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.6.3",
+    "pagina_pdf": 76
+  },
+  "termo_inicial": "Os juros compensatórios são contados a partir da data da EFETIVA OCUPAÇÃO do imóvel (Súmula n. 69 do STJ).",
+  "D8_C10_TERMO_INICIAL_BIFURCA_POR_MODALIDADE": "MESMA SÚMULA, DOIS MARCOS. Direta: imissão da posse, certificada no mandado. Indireta: efetiva ocupação do imóvel. Ambos por Súmula n. 69 do STJ. NÃO é defeito — não há imissão na desapropriação indireta —, mas é bifurcação, e o eixo é a MODALIDADE, não uma data. Sem o atributo modalidade não há termo inicial. É por isso que são duas cadeias, e não uma com dois escopos: ver DECISAO_1 em cjf.desapropriacao-indireta.correcao-monetaria.json.",
+  "TERCEIRA_CADEIA_AUTONOMA": "Os juros compensatórios são cadeia PRÓPRIA, além da correção (4.5.1.1/4.6.1.1) e dos juros de mora (4.5.2/4.6.2). Quem tratar a desapropriação só pela linha de correção monetária perde esta inteira — foi o que aconteceu no bloco 15.",
+  "DECISAO_2_O_CORTE_DE_AGO_2017_NAO_E_TABULAVEL": {
+    "veredito": "NÃO É TABULÁVEL. Não virou segmento, e a razão está gravada aqui.",
+    "onde_vive": "item 4.5.4 (TDAs complementares), pagina_pdf 70",
+    "literal": "A conversão em TDAs complementares deverá ser efetuada com base na data da respectiva conta de atualização. A conta de atualização deverá abranger a correção monetária com base nos índices referidos no item 4.5.1, desde a data do laudo, além de juros de mora [...] e de juros compensatórios [...] até julho de 2017, e, a partir agosto de 2017, em percentual correspondente ao fixado para os TDAs depositados como oferta inicial (art. 5, § 9º, da Lei n. 8.629/1993, com alterações da Lei n. 13.465/2017).",
+    "por_que_nao_e_segmento": "A taxa deste regime é 'o percentual fixado para os TDAs depositados como OFERTA INICIAL' — um valor fixado NO PROCESSO, caso a caso, no ato de oferta. Não é índice publicado, não é série, não é percentual legal: é PARÂMETRO DO CASO. Gravá-lo como segmento exigiria um valor que não existe em fonte alguma, para nenhum caso em geral; e gravá-lo com 'taxa: null' sobre o intervalo 2017-08..2021-11 SOBRESCREVERIA a linha 'De 11/6/1997 a nov./2021' que a tabela declara — trocando um fato do manual por uma regra de outro item. O corte fica em campo de cadeia, com o literal, e quem calcula PERGUNTA o percentual (R21) e REGISTRA a resposta (R19).",
+    "D8_C25": "O corte de ago./2017 vive SÓ no item 4.5.4 e NENHUMA TABELA O MOSTRA. É o padrão do § 1 de 07-leitura-do-corpus.md — regra que vive fora da tabela — aplicado a uma cadeia inteira.",
+    "NOTA_1_do_4_5_4": "Havendo imissão prévia, os compensatórios incidem 'sobre a diferença entre o valor fixado na sentença e o preço ofertado em juízo'. É regra de BASE, não de taxa — e por isso também não é segmento.",
+    "D8_D21": "'art. 5, § 9º' sem ordinal na pagina_pdf 70; a nota logo abaixo grafa 'art. 5º, § 9º'.",
+    "D8_D22": "'a partir agosto de 2017' — falta a preposição. Transcrito como está.",
+    "ORIGEM": "HERDADO DA DIRETA — não tem fonte própria extraída na 4.6.3. Ver DERIVADA_DE.RESSALVA_DE_ORIGEM nesta cadeia. O 'onde_vive' — item 4.5.4, pagina_pdf 70 — é item da DIRETA. Nenhum item equivalente do capítulo 4.6 foi extraído. Que o regime de TDAs complementares alcance a indireta é INFERÊNCIA."
+  },
+  "DECISAO_3_N_6_A_CONTRADICAO_DE_UM_MES": {
+    "veredito": "GRAVADO O QUE A TABELA DIZ: o regime autônomo encerra em NOV./2021. A contradição fica registrada; NÃO se escolhe lado.",
+    "texto_do_manual": "'Até dez. 2021, os juros compensatórios incidem:' (pagina_pdf 69)",
+    "tabela_do_manual": "encerra o regime autônomo em nov./2021",
+    "por_que_a_tabela": "Esta é uma CADEIA, e cadeia é a tabela: os segmentos transcrevem linhas. O texto de abertura é enunciado da seção, não linha. Gravar 'dez./2021' criaria sobreposição com a linha seguinte que o manual NÃO tem, e seria resolver N-6 por escolha. A leitura alternativa fica aqui, legível, e a conta que atravesse dez./2021 grava qual aplicou (R19).",
+    "consequencia": "DEZ./2021 FICA SEM REGIME COERENTE — e é justamente o mês da consolidação da EC 113/2021. Fundamento idêntico nas duas cadeias gêmeas.",
+    "pendencia": "P8-09 — aberta, NÃO harmonizada.",
+    "D8_D23": "'Até dez. 2021' está fora do padrão 'dez./2021' do manual E em conflito com a linha de nov./2021.",
+    "ORIGEM": "HERDADO DA DIRETA — não tem fonte própria extraída na 4.6.3. Ver DERIVADA_DE.RESSALVA_DE_ORIGEM nesta cadeia. O N-6 é atribuído pela extração SÓ à 4.5.3 e a pagina_pdf 69 é da DIRETA (bloco-08-jf-detalhe.md:365). Que a 4.6.3 traga o mesmo texto de abertura — e portanto que o 'Fundamento idêntico nas duas cadeias gêmeas' da 'consequencia' valha aqui — é INFERÊNCIA, não transcrição."
+  },
+  "VEDACAO_DE_JUROS_COMPOSTOS": {
+    "literal": "vedado o cálculo de juros compostos",
+    "fundamento": "art. 5º, § 9º, da Lei n. 8.629/1993",
+    "pagina_pdf": 71,
+    "contraste": "O MESMO manual PRESCREVE capitalização composta em cjf.trabalhista.juros-mora — 'De mar./1987 a mar./1991 | 1,0% – composta', art. 3º do DL n. 2.322/1987 (pagina_pdf 78, D8-C18, a R4-EXCEÇÃO do projeto). Proíbe num item e prescreve no outro. AQUI VALE A VEDAÇÃO.",
+    "ORIGEM": "HERDADO DA DIRETA — não tem fonte própria extraída na 4.6.3. Ver DERIVADA_DE.RESSALVA_DE_ORIGEM nesta cadeia. A pagina_pdf 71 é do capítulo 4.5. A vedação do art. 5º, § 9º, da Lei n. 8.629/1993 é de direito material e não se limita à modalidade — mas o LUGAR de onde ela foi lida é o capítulo da direta, e é isso que fica declarado."
+  },
+  "R_08_19_PRECATORIO_COMPLEMENTAR": "NÃO cabem juros compensatórios em precatório complementar — NOTA 7 do item 5.2, pagina_pdf 90: 'a compensação pela perda da posse se resolve com a consolidação do montante devido ao expropriado'. Mas 'devem ser incluídos os juros vencidos antes da apresentação da requisição, e não computados no montante requisitado'.",
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "A tabela abre com 'Até 10/6/1997' e NÃO declara início — os compensatórios correm da imissão da posse / efetiva ocupação, que é fato do caso, não data do manual. 1964-01 é materialização de janela, alinhada à cadeia de correção gêmea, e NÃO afirmação da fonte. 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  },
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
+  "segmentos": [
+    {
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmento de JUROS COMPENSATÓRIOS: a regra do manual é percentual de juros, não índice de correção. Sem índice, R3 não tem o que verificar. O que falta neste segmento é o VALOR da taxa, e falta de valor não é falta de classe — ver 'taxa_nao_extraida'.",
+      "capitalizacao": "simples",
+      "componente": "juros-compensatorios",
+      "pagina_pdf": 76,
+      "inicio": "1964-01",
+      "fim": "1997-06",
+      "taxa": null,
+      "taxa_nao_extraida": "A TAXA DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. O corpus registra desta tabela os PERÍODOS ('Até 10/6/1997' e 'De 11/6/1997 a nov./2021'), o FUNDAMENTO (MP n. 1.577/1997 e sucessivas, com a ADI n. 2332 nas observações) e os TRÊS CORTES — e NÃO registra o percentual de cada linha. Gravar um número aqui seria inventar dado. O segmento entra com o que a fonte dá e o buraco fica VISÍVEL AO VALIDADOR, que é a razão de existir desta tarefa: prosa não é lida pelo validador, e 'taxa: null' é.",
+      "engloba": [
+        "juros-compensatorios"
+      ],
+      "observacao": "O manual escreve 'Até 10/6/1997'.",
+      "ponta_materializada": "inicio — o manual não dá início; a ponta é materialização de janela para permitir a checagem de R1/R2, não afirmação da fonte (mesmo desenho de P8-07)",
+      "CORTE_INTRAMENSAL": "A fronteira do manual é 10/6/1997 ÷ 11/6/1997, DENTRO de 1997-06. O schema indexa por competência, e 1997-06 entra nos dois segmentos. A sobreposição que o validador acusa é do CORTE POR DIA numa modelagem por mês — registrada, não harmonizada. Escolher um dos dois meses seria harmonizar.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmento de JUROS COMPENSATÓRIOS: a regra do manual é percentual de juros, não índice de correção. Sem índice, R3 não tem o que verificar. O que falta neste segmento é o VALOR da taxa, e falta de valor não é falta de classe — ver 'taxa_nao_extraida'.",
+      "capitalizacao": "simples",
+      "componente": "juros-compensatorios",
+      "pagina_pdf": 76,
+      "inicio": "1997-06",
+      "fim": "2021-11",
+      "taxa": null,
+      "taxa_nao_extraida": "A TAXA DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. O corpus registra desta tabela os PERÍODOS ('Até 10/6/1997' e 'De 11/6/1997 a nov./2021'), o FUNDAMENTO (MP n. 1.577/1997 e sucessivas, com a ADI n. 2332 nas observações) e os TRÊS CORTES — e NÃO registra o percentual de cada linha. Gravar um número aqui seria inventar dado. O segmento entra com o que a fonte dá e o buraco fica VISÍVEL AO VALIDADOR, que é a razão de existir desta tarefa: prosa não é lida pelo validador, e 'taxa: null' é.",
+      "engloba": [
+        "juros-compensatorios"
+      ],
+      "fundamento": "MP n. 1.577/1997 e sucessivas; ADI n. 2332 citada nas observações da tabela.",
+      "observacao": "O manual escreve 'De 11/6/1997 a nov./2021'.",
+      "CORTE_INTRAMENSAL": "A fronteira do manual é 10/6/1997 ÷ 11/6/1997, DENTRO de 1997-06. O schema indexa por competência, e 1997-06 entra nos dois segmentos. A sobreposição que o validador acusa é do CORTE POR DIA numa modelagem por mês — registrada, não harmonizada. Escolher um dos dois meses seria harmonizar.",
+      "D8_D17": "'(ADI n. 2332)' sem ponto de milhar nesta página; a pagina_pdf 70 grafa 'ADI n. 2.332'. Transcrito como está."
+    },
+    {
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmento de JUROS COMPENSATÓRIOS: a regra do manual é percentual de juros, não índice de correção. Sem índice, R3 não tem o que verificar. O que falta neste segmento é o VALOR da taxa, e falta de valor não é falta de classe — ver 'taxa_nao_extraida'.",
+      "capitalizacao": "simples",
+      "componente": "juros-compensatorios",
+      "pagina_pdf": 76,
+      "inicio": "2021-12",
+      "fim": "2026-06",
+      "taxa": null,
+      "engloba": [],
+      "regra_literal": "Já incluídos na SELIC aplicada aos juros de mora (item 4.5.2).",
+      "fundamento": "Art. 3º da EC n. 113/2021, por via dos juros de mora.",
+      "absorvido_por": "cjf.desapropriacao-indireta.juros-mora",
+      "absorvido_por_nota": "A cadeia de juros de mora de 4.5.2/4.6.2 NÃO EXISTE no repositório — segue em P18-02, e o porquê está em 'BLOQUEADAS' de scripts/calculo/gera_cadeias_bloco19.py. O ponteiro nomeia o destino, não afirma que o arquivo existe.",
+      "D8_C11": "A PARTIR DE DEZ./2021 O REGIME AUTÔNOMO ACABA. Não há taxa adicional: os compensatórios estão 'já incluídos na SELIC aplicada aos juros de mora'. 'taxa: null' aqui NÃO é dado faltante — é a regra. Somar compensatórios à Selic depois de dez./2021 é dupla contagem, R1 aplicada a esta cadeia.",
+      "LINHAS_DEZ_2021_EM_DIANTE": "A extração registra que o manual traz DUAS linhas de dez./2021 em diante ('nas duas linhas', N-10 e D8-C11) com a MESMA observação, e NÃO transcreve onde uma termina e a outra começa. Gravadas como UM segmento porque o conteúdo das duas é idêntico; arbitrar a fronteira — set./2025 é o palpite óbvio, e palpite óbvio é palpite — seria inventar dado. Por isso esta cadeia tem TRÊS segmentos, e a varredura do bloco 18 contou QUATRO LINHAS.",
+      "ponta_materializada": "fim — o manual escreve 'De dez./2021' em diante",
+      "observacao": "N-7: a NOTA 1, 'a', do item 4.2.2 — 'vedada sua incidência cumulada com os juros de mora' — é boilerplate copiado da seção de correção e repete-se em 4.6.2. Registrado."
+    }
+  ],
+  "N_10_REMISSAO_ERRADA": "As linhas de dez./2021 em diante de 4.6.3 remetem ao 'item 4.5.2' — que é a desapropriação DIRETA (pagina_pdf 76, DUAS ocorrências, D8-D15). A remissão foi TRANSCRITA COMO ESTÁ no campo 'regra_literal' do terceiro segmento; o campo 'absorvido_por' nomeia 4.6.2, que é o item de juros de mora desta própria cadeia. LEITURA DECLARADA, não correção do original: o defeito fica catalogado e o texto não se altera.",
+  "D8_D16": "'este ponto reconhecida a constitucionalidade' — falta o 'n'; o gêmeo 4.5.3 grafa 'neste ponto' (pagina_pdf 76). Transcrito como está.",
+  "SOBREPOSICAO_DE_DEZ_2021_NA_INDIRETA": "Achado que NÃO é desta cadeia, e fica o ponteiro: nos JUROS DE MORA da indireta (4.6.2) a linha da poupança fecha em 'dez./2021' e a da Selic abre em 'De dez./2021' (pagina_pdf 74–75), enquanto a gêmea direta (4.5.2) fecha em 'nov./2021' com fundamento idêntico. A checagem automática não a pega porque as linhas estão em tabelas diferentes — e porque nenhuma das duas tabelas virou cadeia (P18-02).",
+  "DERIVADA_DE": {
+    "arquivo": "cjf.desapropriacao-direta.juros-compensatorios.json",
+    "como": "Esta cadeia e a da direta saem da MESMA função geradora (_cadeia_compensatorios de scripts/calculo/gera_cadeias_bloco19.py), pela mesma razão de DERIVADA_DE em cjf.desapropriacao-indireta.correcao-monetaria.json: conteúdo idêntico duplicado à mão diverge; conteúdo idêntico DERIVADO não tem como divergir sem que o gerador seja reexecutado. O que NÃO é derivado, e por isso está gravado à parte, é o termo inicial (D8-C10), o N-10, o D8-D16 e a sobreposição de dez./2021.",
+    "RESSALVA_DE_ORIGEM": "TRÊS BLOCOS DESTA CADEIA SÃO HERDADOS DA DIRETA E NÃO TÊM FONTE PRÓPRIA NA 4.6.3. A extração não os atribui à indireta, e que a 4.6.3 tenha o mesmo enunciado é INFERÊNCIA DO GERADOR, não transcrição. O conteúdo fica — é a melhor leitura disponível —, mas fica DECLARADO como herdado: (1) DECISAO_3_N_6_A_CONTRADICAO_DE_UM_MES — a extração atribui o N-6 SÓ à 4.5.3, e a pagina_pdf 69 citada no 'texto_do_manual' é da DIRETA (bloco-08-jf-detalhe.md:365). Não se verificou que a 4.6.3 traga o mesmo texto de abertura; 'Fundamento idêntico nas duas cadeias gêmeas' é inferência. (2) DECISAO_2_O_CORTE_DE_AGO_2017_NAO_E_TABULAVEL — o item 4.5.4 e a pagina_pdf 70 são da DIRETA; não há item equivalente extraído no capítulo 4.6. (3) VEDACAO_DE_JUROS_COMPOSTOS — a pagina_pdf 71 é do capítulo 4.5. ESTE MESMO ARQUIVO declara o N-10 e a SOBREPOSICAO_DE_DEZ_2021_NA_INDIRETA, isto é, REGISTRA QUE DIRETA E INDIRETA DIVERGEM EM DATAS — razão a mais para não importar os três blocos em silêncio. Fechar esta ressalva exige extrair 4.6.3 e 4.6.4 linha a linha."
+  }
+}

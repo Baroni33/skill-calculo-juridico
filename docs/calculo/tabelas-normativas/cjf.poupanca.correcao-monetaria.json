@@ -178,7 +178,7 @@
       "indexador": "TRD",
       "tipo_indexador": "indeterminado",
       "tipo_indexador_fonte": null,
-      "tipo_indexador_por_que": "Taxa Referencial Diária. Segue a TR, rebaixada a 'indeterminado' no bloco 17 (P17-02): taxa apurada prospectivamente, fora do critério material do item 4.1.2.4. Nenhuma fonte do corpus classifica a TRD por si.",
+      "tipo_indexador_por_que": "Taxa Referencial Diária. A fonte externa do bloco 19 nomeia TBF, Redutor-R e TR — e NÃO nomeia a TRD. Estender a razão da TR à TRD por semelhança de nome é a dedução proibida, e aqui não há o parêntese do manual que sustenta a costura da 'remuneração básica da caderneta de poupança (TR)'. Continua SEM FONTE. As únicas ocorrências de 'TRD' com vocabulário de tipo no corpus são o texto 'nao-indexador' dos segmentos de JUROS DE MORA, que não a classifica como indexador de correção.",
       "tipo_indexador_pendencia": "P18-01",
       "engloba": [
         "correcao-monetaria"
@@ -192,9 +192,9 @@
       "fim": "2026-06",
       "indexador": "TR",
       "tipo_indexador": "indeterminado",
-      "tipo_indexador_fonte": null,
-      "tipo_indexador_por_que": "Rebaixada no bloco 17 (P17-02): nenhum dos dois manuais a classifica, e o critério material do item 4.1.2.4 — 'refletem a inflação do próprio mês' — não alcança taxa apurada prospectivamente (art. 12, I, da Lei n. 8.177/1991).",
-      "tipo_indexador_pendencia": "P18-01",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (BCB, verificada fora do agente) — TBF, Redutor-R e TR são divulgados para PERÍODO ENTRE DATAS DE ANIVERSÁRIO, não para mês calendário (17/02 a 17/03, 03/05 a 03/06, 05/10 a 05/11); e a TR é PREFIXADA, com variação divulgada para o mês seguinte.",
+      "tipo_indexador_razao": "período entre datas de aniversário e prefixação",
+      "tipo_indexador_fechamento": "NÃO se fecha esperando fonte. A fonte chegou, e o que ela diz é que a TR não cabe em mês calendário — logo não há classe a atribuir. Fecharia só se a modelagem ganhar classe para período entre datas de aniversário, ou se a cadeia declarar a conversão para competência em 'aplicacao'. Era 'tipo_indexador_pendencia: P17-02', que afirmava 'não há fonte' e passou a ser falso.",
       "engloba": [
         "correcao-monetaria"
       ],

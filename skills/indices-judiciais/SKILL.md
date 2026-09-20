@@ -58,8 +58,8 @@ conferência**, não como fonte de consulta.
 |---|---|
 | **série (B)** | sequência `competência → valor`, mantida fora da skill. **Dado externo, não regra** |
 | **indexador** | o identificador do que a série mede — `IPCA-E`, `Ufir`, `INPC` |
-| **`tipo` (nominal · percentual)** | **o campo que não pode faltar** — R3. Decide a defasagem |
-| **englobante** | índice que **cobre correção e juros** — SELIC e taxa legal (R1) |
+| **`tipo` (nominal · percentual · janela-deslocada)** | **o campo que não pode faltar** — R3. Decide a defasagem. **Três classes desde o bloco 19** |
+| **englobante** | índice que **cobre correção e juros** — SELIC e taxa legal. **Isso é R1, e vive no campo `engloba`**; como valor de `tipo_indexador` foi **RETIRADO no bloco 19** |
 | **derivado** | índice que **não é publicado**: resulta de operação sobre outras séries — a taxa legal (R11) |
 | **fator** | número multiplicativo acumulado, **6 decimais, truncamento** (R12) |
 | **`aplicacao`** | a defasagem — **vive na cadeia (A), não na série (B)** |
@@ -180,17 +180,27 @@ identificador ambíguo é mais barato que descobrir a troca no total. Da classif
 decisões: **a defasagem** (R3), **se pode conviver com uma linha de juros** (R1) e **se o valor é
 publicado ou derivado** (R11).
 
-**São cinco classes, não três**, e a quarta é a que mais governa o motor:
+**São cinco classes em uso**, e três delas medem janelas diferentes:
 
 | Classe | O que afirma |
 |---|---|
 | `nominal` · `percentual` | reflete o mês **anterior** · o **próprio** mês |
-| `englobante` | cobre correção **e** juros (R1) — **neutro em R3** |
-| **`indeterminado`** | **o conceito se aplica, e não há fonte.** A virada **bloqueia** sob `R3-INDETERMINADO` |
+| **`janela-deslocada`** | **bloco 19** — coleta do dia **16 de M−1** ao dia **15 de M**: metade em cada. **IPCA-15 e IPCA-E** |
+| **`indeterminado`** | **o conceito se aplica, e não há classe atribuível.** A virada **bloqueia** sob `R3-INDETERMINADO` |
 | `nao-indexador` | **verificado, e o conceito não se aplica** — moeda, paridade, conversão |
+| ~~`englobante`~~ | **RETIRADO no bloco 19** — era fato de **R1** no campo de **R3**, e deixava a SELIC **cega** para a defasagem |
 
 > **`indeterminado` e `nao-indexador` afirmam coisas diferentes:** *"não se sabe"* × *"não se
 > pergunta"*. **Ausência do campo não é nenhum dos dois** — é indistinguível de esquecimento.
+
+> **`indeterminado` tem DUAS razões, e elas se fecham diferente.** *Sem fonte*
+> (`tipo_indexador_pendencia`) **fecha quando a fonte chegar**. *A fonte diz que não cabe*
+> (`tipo_indexador_razao`) **não fecha esperando fonte** — é a **TR**, cujo período é **entre
+> datas de aniversário**, não o mês calendário. Campos **mutuamente excludentes**.
+
+> **Três classes com defasagem = TRÊS pares de virada.** `nominal × percentual`,
+> `nominal × janela-deslocada` e `percentual × janela-deslocada`. O validador **não enumera
+> pares**: exige que os dois lados estejam em `TIPOS_COM_DEFASAGEM` e sejam diferentes.
 
 ### Passo 3 — validar a série recebida, nesta ordem
 
@@ -262,14 +272,20 @@ classificação — em [`references/catalogo-de-indices.md`](references/catalogo
 A classificação normativa é `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`,
 **que é o que o validador lê**.
 
-**Quatro classes, e a terceira é a que este bloco tornou visível:**
+**Os 36 rótulos das 20 cadeias, mapeados um a um (bloco 19, tarefa 3):**
 
 | Classe | Quais | Fonte |
 |---|---|---|
-| **nominal** — inflação do mês **anterior** | **ORTN, OTN, BTN, Ufir** | item 4.1.2.4, letra a, `pagina_pdf` 42 — **nomeados literalmente** |
-| **percentual** — inflação do **próprio** mês | **INPC, IGP-DI** (item 4.1.2.4, letra b) e **IPC/IBGE** (por **D8-C21**) | idem |
-| **indeterminado** — o conceito se aplica, **e não há fonte** | IPCA, IPCA-E, IPCA-15, IPCA série especial, IPC/FGV, IPC-R, IRSM, MVR, **TR** e remuneração básica da poupança | **nenhuma** — `P17-01`, `P17-02` |
-| **englobante** — cobre correção **e** juros (R1) | **SELIC**, **taxa legal** | D8-C22: *"Selic não é índice de inflação"* |
+| **nominal** (4) — inflação do mês **anterior** | **ORTN, OTN, BTN, Ufir** | item 4.1.2.4, letra a, `pagina_pdf` 42 — **nomeados literalmente** |
+| **percentual** (5) — inflação do **próprio** mês | **INPC, INPC/IBGE, IGP-DI** (item 4.1.2.4, letra b), **IPC/IBGE** (por **D8-C21**) e **SELIC** | idem; a SELIC por **fonte externa ao corpus** |
+| **janela-deslocada** (2) — metade de M−1, metade de M | **IPCA-E/IBGE, IPCA-15/IBGE** | **FONTE EXTERNA AO CORPUS** (IBGE), declarada como externa |
+| **nao-indexador** (8) | as 6 moedas, a conversão em URV, `(segmento sem indexador)` | componente `padrao-monetario` |
+| **indeterminado** (17) | IPCA série especial, IPC/FGV, IPC-R, IRSM, IPC nu, UPC, LBC, LBC – 0,5%, LFT – 0,5%, TRD, **taxa legal**, **`BTNF`** (`P19-02`, tarefa 3 — **fonte alguma o alcança; herdar do BTN pelo nome é a dedução proibida**), NAO-DECLARADO-PELO-MANUAL — **13 sem fonte** (`P17-01`, `P18-01`, `P19-01`, `P19-02`, `P9-02`); **2 segmentos compostos** (`P17-03`): `Ufir → Selic` e **`UPC → índices básicos de atualização dos saldos da poupança`** (tarefa 3); e **TR** e **remuneração básica da poupança**, **2 com RAZÃO** | ver `indexadores-tipo-catalogo.json` |
+| ~~englobante~~ (0) | — | **retirado** |
+
+> **`IGP-DI` divergiu, e a fonte extraída prevaleceu.** A tabela externa não o nomeia; o item
+> 4.1.2.4, letra b, o nomeia **literalmente**. Permanece `percentual`. A linha `IPCA` da tabela
+> externa **não tem destinatário**: nenhum segmento tem rótulo `IPCA` nu.
 
 > **As listas do item 4.1.2.4 são exemplificativas — e isso NÃO autoriza estendê-las por
 > semelhança de nome.** Classificar o IPCA-E como percentual *"porque IPCA soa percentual"* é a
@@ -282,12 +298,11 @@ como **`nao-indexador`** — que afirma *verificado, e o conceito não se aplica
 
 ### Divulgação e oráculos
 
-**Bacen** divulga mensalmente a **taxa legal**, o **Fator Selic_m** e o **Fator IPCA_m**; no
-**SGS**, a **série 29541** é o *Fator da Taxa Selic mensal para cálculo da Taxa Legal*. Primeira
-taxa legal em **30/08/2024** (aplicável aos dias 30 e 31/08); a partir de set/2024, **primeiro
-dia útil** de cada mês. A **Calculadora do Cidadão** do BCB tem módulo de taxa legal e serve como
-**oráculo de teste**. **IBGE** para INPC, IPCA, IPCA-E e IPCA-15.
-Fonte: `docs/calculo/00-base-normativa.md` § 4, "Divulgação".
+**Bacen** divulga a **taxa legal**, o **Fator Selic_m** e o **Fator IPCA_m**; no **SGS**, a
+**série 29541** é o *Fator da Taxa Selic mensal para cálculo da Taxa Legal*. Primeira taxa legal
+em **30/08/2024** (aplicável aos dias 30 e 31/08); a partir de set/2024, **primeiro dia útil** de
+cada mês. A **Calculadora do Cidadão** do BCB serve como **oráculo de teste**. **IBGE** para
+INPC, IPCA, IPCA-E e IPCA-15. Fonte: `00-base-normativa.md` § 4, "Divulgação".
 
 ---
 
@@ -428,42 +443,29 @@ histórica de normas coletivas também é externa:** o catálogo do repositório
 legais e pisos, não cláusulas de instrumentos** — as cláusulas ficam em `tests/fixtures/calculo/`
 e, no uso real, **em dados do cliente** (`tabelas-normativas/README.md`, "Terceira família").
 
-### 5. O que as "31 divergências" significam (e o que foram os "10 erros")
+### 5. As "31 divergências" não são falha, e os "10 erros" acabaram
 
-**O script separa erro de extração de divergência do original. Divergência é RESULTADO
-ESPERADO.** Não apresentar como falha da skill.
+`valida_bloco_tabelas.py` **separa erro de extração de divergência do original** e sai com
+código não-zero **só no primeiro**. **Divergência é resultado esperado do trabalho:** o manual
+tem erros de digitação e calendários com dias faltando, e eles ficam registrados.
 
-**As 31 divergências são o original:** 13 calendários com dias faltando, 9 limites de faixa com
-erro de digitação, sobreposições reais de vigência (jan/10 tem **dois quadros vigentes**;
-jun/99, jun/00 e jun/11 mudam de tabela **no meio do mês**, e a checagem trabalha em competência
-mensal), rótulos com nota de rodapé colada, e a contagem de 18.1 que **não deve** fechar.
-
-**Os 10 erros eram de ESCOPO, não de dado, e estão corrigidos (bloco 17, tarefa 4).** Todos
-apontavam para o mesmo arquivo — `serie-9.2.11-ufir-juros-ate-dez79.csv`, linhas 2 a 11,
-*"página 178"*. O validador conferia a proveniência contra `PAGINAS_DO_BLOCO =
-range(373, 472)`, constante do bloco 1, enquanto varria `DIR_SERIE.glob("serie-*.csv")` —
-**todos** os CSV do diretório. Uma série de bloco posterior caiu no mesmo lugar e foi acusada
-de estar fora de 373–471. **`bloco-01-tabelas.md` registra "0 erros de extração"**, e o
-registro estava certo **para o escopo dele**. **O dado nunca regrediu; o escopo do validador é
-que estava estreito.**
-
-**A constante não existe mais.** A faixa se resolve **por arquivo**, em duas origens: o
-`pagina_pdf=` declarado no cabeçalho do próprio CSV, ou o item da linha resolvido no contrato
-de páginas do bloco. Arquivo sem nenhuma das duas sai como **não verificável**, nunca como erro
-e nunca em silêncio. Saída atual: **15 ok, 31 divergências, 1 não verificado, 0 erros.**
-**Consequência para o contrato:** proveniência **exige o intervalo de páginas declarado junto
-com a série** — validador com intervalo fixo global não escala para múltiplos blocos.
+**Estado: `15 ok, 31 divergências, 1 não verificados, 0 erros`, exit 0.** Os **dez erros eram de
+ESCOPO do validador, não de dado** — `range` de páginas do bloco 1 aplicado a CSV de outro bloco,
+**corrigido no bloco 17**. As 31 uma a uma em
+[`references/divergencias-e-erros.md`](references/divergencias-e-erros.md).
 
 ### 6. Pontos que repousam em fonte secundária ou em inferência
 
-- **A TR foi REBAIXADA a `indeterminado` no bloco 17.** Era `percentual` pelo critério
-  **formal** do item 4.1.2.4 — não é unidade monetária, logo é percentual —, mas o critério
-  **material** daquele item (*"refletem a inflação do próprio mês"*) **não a alcança**: é taxa
-  apurada **prospectivamente** (art. 12, I, da Lei 8.177/91). **Nenhum dos dois manuais a
-  classifica.** **Inferência declarada não é fonte** — `P17-02`;
-- **Nove índices seguem sem classificação em fonte alguma** (`P17-01`): IPCA, IPCA-E, IPCA-15,
-  IPCA série especial, IPC/FGV, IPC-R, IRSM, MVR, e a remuneração básica da poupança. **Não se
-  fecha relendo os PDFs** — exige o ato de instituição de cada índice, ou decisão de estender a
+- **A TR é `indeterminado` COM RAZÃO REGISTRADA desde o bloco 19** — *"período entre datas de
+  aniversário e prefixação"*, por **fonte externa ao corpus** (BCB). **Não é o mesmo que "sem
+  fonte":** deixou de carregar `P17-02`, que afirmava *"não há fonte"*, e **não se fecha
+  esperando fonte**. O bloco 17 já a rebaixara de `percentual` — critério **formal** — porque o
+  critério **material** do item 4.1.2.4 não alcança taxa apurada **prospectivamente** (art. 12,
+  I, da Lei 8.177/91). O bloco 19 confirma a classe e **corrige a razão**;
+- **`IPCA-E` e `IPCA-15` saíram de `P17-01` no bloco 19** e são `janela-deslocada`, por fonte
+  **externa**. Seguem sem classificação em fonte alguma: **IPCA série especial**, **IPC/FGV**,
+  **IPC-R**, **IRSM**, **MVR** (`P17-01`), mais os seis do `P18-01` e a **taxa legal**
+  (`P19-01`). **Não se fecha relendo os PDFs** — exige o ato de instituição de cada índice, ou decisão de estender a
   lista do item 4.1.2.4. Até lá, **o validador bloqueia a virada em vez de aprová-la**;
 - **a variante IPCA-15 da taxa legal — a regra geral e a de maior uso — está implementada mas SEM
   verificação contra valor publicado.** Os dois pares validados são do caso **INPC**; a
@@ -477,9 +479,7 @@ com a série** — validador com intervalo fixo global não escala para múltipl
 
 ### 7. O que esta skill NÃO resolve
 
-Cinco pendências abertas, **todas viradas limitação, nenhuma virada regra**: `P9-02` (item 1),
-**A2 e A3** (item 2), `pendencias.md` § 5 (item 3), `P8-F4-02` (item 4) e `pendencias.md` § 2
-(item 6). **Nenhuma se resolve inventando dado.**
+Cinco pendências abertas — `P9-02`, **A2 e A3**, `pendencias.md` §§ 5 e 2, `P8-F4-02` —, **todas viradas limitação, nenhuma virada regra. Nenhuma se resolve inventando dado.**
 
 ---
 

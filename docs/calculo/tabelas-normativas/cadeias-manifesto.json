@@ -24,8 +24,33 @@
       "componente": "correcao-monetaria",
       "segmentos": 11
     },
+    "cjf.desapropriacao-direta.juros-compensatorios": {
+      "arquivo": "cjf.desapropriacao-direta.juros-compensatorios.json",
+      "componente": "juros-compensatorios",
+      "segmentos": 3
+    },
+    "cjf.desapropriacao-indireta.correcao-monetaria": {
+      "arquivo": "cjf.desapropriacao-indireta.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 11
+    },
+    "cjf.desapropriacao-indireta.juros-compensatorios": {
+      "arquivo": "cjf.desapropriacao-indireta.juros-compensatorios.json",
+      "componente": "juros-compensatorios",
+      "segmentos": 3
+    },
     "cjf.divida-fiscal.correcao-monetaria": {
       "arquivo": "cjf.divida-fiscal.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 5
+    },
+    "cjf.divida-fiscal.juros-mora": {
+      "arquivo": "cjf.divida-fiscal.juros-mora.json",
+      "componente": "juros-mora",
+      "segmentos": 8
+    },
+    "cjf.fgts-divida-fiscal.correcao-monetaria": {
+      "arquivo": "cjf.fgts-divida-fiscal.correcao-monetaria.json",
       "componente": "correcao-monetaria",
       "segmentos": 5
     },

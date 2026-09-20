@@ -25,14 +25,14 @@
       "componente": "juros-mora",
       "ponta_materializada": "inicio — o manual não dá mês inicial",
       "tipo_indexador": "nao-indexador",
-      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
+      "tipo_indexador_fonte": "segmentos cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) ou percentual de juros compensatórios, e não índice. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2003-01",
       "fim": "2009-06",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "capitalizacao": "simples",
       "engloba": [
         "juros-mora",
@@ -58,14 +58,14 @@
       "pagina_pdf": 54,
       "componente": "juros-mora",
       "tipo_indexador": "nao-indexador",
-      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
+      "tipo_indexador_fonte": "segmentos cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) ou percentual de juros compensatórios, e não índice. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2009-07",
       "fim": "2012-04",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "nao-fazenda-publica"
@@ -93,14 +93,14 @@
       "pagina_pdf": 54,
       "componente": "juros-mora",
       "tipo_indexador": "nao-indexador",
-      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
+      "tipo_indexador_fonte": "segmentos cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) ou percentual de juros compensatórios, e não índice. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2012-05",
       "fim": "2021-11",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "nao-fazenda-publica"
@@ -117,8 +117,8 @@
       "inicio": "2021-12",
       "fim": "2024-08",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "fazenda-publica"
@@ -136,8 +136,8 @@
       "inicio": "2021-12",
       "fim": "2024-08",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "nao-fazenda-publica"
@@ -154,8 +154,8 @@
       "inicio": "2024-09",
       "fim": "2025-08",
       "indexador": "Selic",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`: reflete M, o próprio mês de competência. Era 'englobante', e 'englobante' era ERRO DE CATEGORIA — englobamento é fato de R1 e quem o grava é o campo 'engloba', que não mudou. O efeito do erro era deixar a SELIC cega para R3.",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "fazenda-publica"
@@ -173,8 +173,10 @@
       "inicio": "2024-09",
       "fim": "2025-08",
       "indexador": "taxa-legal",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "R1 (00-base-normativa.md § 7) — taxa legal engloba correção e juros. R11: é DERIVADA por razão entre fatores, não índice de preços publicado. O item 4.1.2.4 não a alcança: ela é posterior ao manual que o contém e não reflete inflação de mês algum.",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "A tabela externa do bloco 19 NÃO alcança a taxa legal: ela nomeia 'SELIC acumulada' e mais nada do gênero. Classificá-la 'percentual' por analogia com a SELIC é a dedução proibida — e a analogia é frágil por fonte, porque R11 registra a taxa legal como DERIVADA por razão entre fatores (TL = Fator_Selic / Fator_Deflator − 1), não índice publicado. No corpus, nenhuma linha lhe atribui tipo com citação de item e pagina_pdf (ver ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_19). Perdeu 'englobante' porque 'englobante' era fato de R1 no campo de R3; o englobamento em si segue intacto no campo 'engloba'.",
+      "tipo_indexador_pendencia": "P19-01",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "nao-fazenda-publica"
@@ -191,8 +193,10 @@
       "inicio": "2025-09",
       "fim": "2026-06",
       "indexador": "taxa-legal",
-      "tipo_indexador": "englobante",
-      "tipo_indexador_fonte": "R1 (00-base-normativa.md § 7) — taxa legal engloba correção e juros. R11: é DERIVADA por razão entre fatores, não índice de preços publicado. O item 4.1.2.4 não a alcança: ela é posterior ao manual que o contém e não reflete inflação de mês algum.",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "A tabela externa do bloco 19 NÃO alcança a taxa legal: ela nomeia 'SELIC acumulada' e mais nada do gênero. Classificá-la 'percentual' por analogia com a SELIC é a dedução proibida — e a analogia é frágil por fonte, porque R11 registra a taxa legal como DERIVADA por razão entre fatores (TL = Fator_Selic / Fator_Deflator − 1), não índice publicado. No corpus, nenhuma linha lhe atribui tipo com citação de item e pagina_pdf (ver ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_19). Perdeu 'englobante' porque 'englobante' era fato de R1 no campo de R3; o englobamento em si segue intacto no campo 'engloba'.",
+      "tipo_indexador_pendencia": "P19-01",
       "capitalizacao": "simples",
       "engloba": [
         "juros-mora"

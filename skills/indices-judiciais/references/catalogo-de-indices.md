@@ -30,6 +30,17 @@ Fontes: `02-atualizacao.md` §§ 5, 10 e 11; `02-atualizacao-detalhe.md` §§ 5.
 | **INPC** | IBGE, população de renda baixa | é o **deflator da variante previdenciária** da taxa legal |
 | **IGP-DI** | FGV | cadeia previdenciária |
 | **IPC/IBGE** | expurgos | **42,72%** (jan/89) e **10,14%** (fev/89) — valores fixos, **o expurgo SUBSTITUI, não soma**. Fonte: **D8-C21**, não o item 4.1.2.4 |
+| **SELIC** | Bacen | **BLOCO 19** — deixou de ser `englobante`. Englobamento é fato de **R1** e vive no campo **`engloba`**, que não mudou; pô-lo em `tipo_indexador` deixava a SELIC **cega para R3**. Fonte: **externa ao corpus** (tabela do bloco 19) |
+
+**JANELA-DESLOCADA — o período de coleta cai METADE em M−1 e METADE em M (R3, bloco 19):**
+
+| Índice | O que é | Fonte |
+|---|---|---|
+| **IPCA-15/IBGE** | difere do IPCA **só** no período de coleta — do dia **16 de M−1** ao dia **15 de M** — e na abrangência geográfica | **FONTE EXTERNA AO CORPUS** (IBGE), declarada como externa no catálogo |
+| **IPCA-E/IBGE** | criado em dez/1991, trimestral desde jan/1995; **o IPCA-E mensal das tabelas judiciais É o IPCA-15** | idem. A identificação é **da fonte**, não de semelhança de nome |
+
+> **Não é `nominal` nem `percentual`.** Não reflete M−1 inteiro nem M inteiro. Com três classes
+> há **três pares** de virada, e `IPCA-E → IPCA-15` **deixou de ser virada**: mesma classe.
 
 **INDETERMINADOS — o conceito se aplica, e NÃO HÁ FONTE que os classifique:**
 
@@ -40,23 +51,34 @@ Fontes: `02-atualizacao.md` §§ 5, 10 e 11; `02-atualizacao-detalhe.md` §§ 5.
 
 | Índice | O que é | Por que indeterminado |
 |---|---|---|
-| **IPCA** · **IPCA-E** · **IPCA-15** · **IPCA série especial** | IBGE — **três índices diferentes**, mais um segmento próprio do manual | o item 4.1.2.4 **não nomeia sequer "IPCA"**. `IPCA-15` é o deflator da taxa legal do mês `m−1`; `IPCA-E` **não é o IPCA** — ver "Armadilhas" |
+| **IPCA série especial** | segmento **próprio** do manual, dez/1991 | **BLOCO 19** — a fonte externa alcança IPCA-15 e IPCA-E e **NÃO diz** que a série especial seja um ou outro. O manual a grava à parte; identificá-la por semelhança de nome é a dedução proibida. `IPCA-E` e `IPCA-15` **saíram daqui** e são `janela-deslocada` |
+| **taxa legal** | **DERIVADA** (R11), razão entre fatores | **BLOCO 19, `P19-01`** — perdeu o rótulo `englobante`, que era fato de R1 no campo de R3. A fonte externa **não a alcança**, e `percentual` por analogia com a SELIC seria a dedução proibida |
+| **IPC** (nu) · **UPC** · **LBC** · **LBC – 0,5%** · **LFT – 0,5%** · **TRD** | FGTS (4.8.1.1) e poupança (4.9.1.1) | `P18-01`, sem fonte. O **`IPC` nu** tem **ambiguidade registrada**: o manual usa **dois** IPC, de emissores distintos, e `D8-C21` sustenta **só o **IPC/IBGE**. A **TRD** NÃO herda a razão da TR — a fonte do BCB nomeia TBF, Redutor-R e TR, e não a TRD |
 | **IPC/FGV** | mar–dez/1991, **exclusivo da desapropriação direta** | sem classificação em fonte |
 | **IPC-R** · **IRSM** | fase URV · Índice de Reajuste do Salário Mínimo — cadeia previdenciária | sem classificação em fonte |
-| **TR** · **remuneração básica da poupança** | art. 39 da Lei 8.177/91 · art. 1º-F da Lei 9.494/97 (**a fórmula muda em 04/05/2012**; até lá, 0,5% a.m.) | **rebaixadas no bloco 17.** Eram `percentual` por critério **formal** — *"não é unidade monetária, logo é percentual"* —, e **inferência declarada não é fonte**. `bloco-09-relatorio.md` § 5.3: *"nenhum dos dois manuais classifica a TR"* |
+| **TR** · **remuneração básica da poupança** | art. 39 da Lei 8.177/91 · art. 1º-F da Lei 9.494/97 (**a fórmula muda em 04/05/2012**; até lá, 0,5% a.m.) | **BLOCO 19 — indeterminado COM RAZÃO REGISTRADA, não por ausência de fonte:** *"período entre datas de aniversário e prefixação"* (BCB, **fonte externa ao corpus**). **NÃO se fecha esperando fonte** — deixou de carregar `P17-02`, que afirmava *"não há fonte"* e passou a ser falso |
 
 **Consequência operacional:** virada em que uma das pontas é `indeterminado` **bloqueia** no
 validador, sob `R3-INDETERMINADO`. Passar converteria *"não se sabe"* em *"está certo"* — e num
 validador cuja razão de existir é que o erro de R3 **não tem sintoma**, o silêncio é o pior
-resultado. Pendências **P17-01** e **P17-02**. Catálogo:
+resultado. Pendências **P17-01**, **P18-01** e **P19-01**. Catálogo:
 `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`.
 
-**ENGLOBANTES — cobrem correção E juros (R1). Não são séries de correção:**
+> **Duas razões de `indeterminado`, e elas se fecham diferente (bloco 19).** *Sem fonte*, campo
+> `tipo_indexador_pendencia`, **fecha quando a fonte chegar**. *A fonte diz que não cabe*, campo
+> `tipo_indexador_razao`, **não fecha esperando fonte** — é o caso da **TR**. Os campos são
+> **mutuamente excludentes**, e as duas situações **bloqueiam** a virada.
+
+**ENGLOBAM correção E juros (R1) — e isso vive no campo `engloba`, NÃO em `tipo_indexador`:**
 
 | Índice | Natureza | Nota |
 |---|---|---|
-| **SELIC** | publicada (Bacen) | **nunca conviver com índice inflacionário no mesmo intervalo** |
-| **taxa legal** | **DERIVADA**, não publicada | razão entre fatores (R11); **6 decimais, truncamento**; piso zero (R6) |
+| **SELIC** | publicada (Bacen) | **nunca conviver com índice inflacionário no mesmo intervalo**. Em R3 é **`percentual`** (bloco 19) |
+| **taxa legal** | **DERIVADA**, não publicada | razão entre fatores (R11); **6 decimais, truncamento**; piso zero (R6). Em R3 é **`indeterminado`** (`P19-01`) |
+
+> **O valor `englobante` de `tipo_indexador` foi RETIRADO no bloco 19** — era um fato de R1
+> dentro do campo de R3, e deixava a SELIC cega para a comparação de defasagem. **`engloba` não
+> mudou**, e R1 segue lendo exatamente o que lia.
 
 **Não são índices, mas o contrato as trata como série:** **URV** (cotações diárias em CR$; **o
 método de conversão não está no bloco** e não foi inferido), **moedas e paridades**

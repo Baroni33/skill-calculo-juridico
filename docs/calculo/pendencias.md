@@ -875,7 +875,7 @@ passa a aparecer no validador, como `R3-INDETERMINADO`, em vez de passar limpa.
 
 `cjf.divida-fiscal.correcao-monetaria.json`, `1992-01..2026-06`, grava um **único** segmento
 com `indexador: "Ufir → Selic (bifurcado por fato gerador)"`. São **dois** indexadores, de
-tipos diferentes — Ufir é `nominal`, Selic é `englobante` — num registro só. Nenhum rótulo
+tipos diferentes — Ufir é `nominal`, Selic é `percentual` — num registro só. Nenhum rótulo
 único os representa, e escolher um deles seria inventar.
 
 **A correção é partir o segmento pelo eixo `data-do-fato-gerador`**, não classificá-lo. Isso
@@ -958,7 +958,15 @@ classificatórias.**
 modelagem — são esta pendência tornada visível. Classificar por dedução as faria sumir, **e a dedução
 passaria limpa**.
 
-### 24.3 `P18-02` — oito cadeias tabuladas do manual sem JSON
+### 24.3 `P18-02` — eram oito cadeias tabuladas sem JSON; **são TRÊS**
+
+> **ATUALIZADO NA TAREFA 3 DO BLOCO 19.** Das oito, **cinco foram geradas**: 4.5.3 e 4.6.3
+> (`cjf.desapropriacao-{direta,indireta}.juros-compensatorios`, 3 segmentos cada), **4.6.1.1**
+> (`cjf.desapropriacao-indireta.correcao-monetaria`, 11, **derivada** da direta), **2.3.2.2**
+> (`cjf.divida-fiscal.juros-mora`, 8, **com `base_incidencia`**) e **2.4.4.1**
+> (`cjf.fgts-divida-fiscal.correcao-monetaria`, 5, critério **`JCM`**). **Seguem ausentes 4.5.2,
+> 4.6.2 e 2.4.2.2.2**, e por **falta de fonte extraída**, não de schema — `02-atualizacao-detalhe.md`
+> § 5.3.6. **O quadro abaixo é o do bloco 18 e fica como registro do estado anterior.**
 
 A varredura `item × JSON × consolidado` dos caps. 2 e 4 (detalhe § 5.0) mostrou que FGTS e poupança
 **não eram as únicas**:
@@ -976,6 +984,22 @@ A varredura `item × JSON × consolidado` dos caps. 2 e 4 (detalhe § 5.0) mostr
 
 **Não geradas neste bloco**, por escopo e porque três delas exigem decisão de modelagem que não cabe
 tomar de passagem. **Registradas, não silenciadas.**
+
+**O que a tarefa 3 do bloco 19 decidiu sobre cada bloqueio herdado:**
+
+| Bloqueio do bloco 18 | Veredito da tarefa 3 |
+|---|---|
+| *"2.3.2.2 e 2.4.2.2.2 precisam do campo `base_incidencia`"* | **RESOLVIDO para 2.3.2.2.** O campo é de **segmento**, é **ortogonal** a período/indexador/englobamento, e `Segmento.de_dict` ignora campos que não conhece — **R1, R2 e R3 seguem exatas e o validador não mudou**. 2.4.2.2.2 continua bloqueada, mas **por fonte** |
+| *"2.4.4.1 é lista, não tabela, com o `D8-C8` em aberto"* | **GERADA assim mesmo.** Lista com períodos datados **é** cadeia; o `D8-C8` entrou como **sobreposição real de 2000-05**, que o validador agora acusa — era exatamente o que o bloco 8 dizia que a checagem *"não pega, porque estão em tabelas diferentes"* |
+| 4.5.2, 4.6.2 e 2.4.2.2.2 | **BLOQUEADAS, com escopo declarado.** A tabela das três **nunca foi extraída linha a linha**. Gerar exigiria **reconstruir a estrutura** — pior do que inventar um valor. Razão gravada em `BLOQUEADAS`, de `scripts/calculo/gera_cadeias_bloco19.py`, e conferida por teste |
+
+**`P19-02` — um rótulo novo sem classificação em fonte alguma.** **`BTNF`**, trazido pela cadeia do
+FGTS fiscal (item 2.4.4.1, `pagina_pdf` 35). O item 4.1.2.4 nomeia o **BTN**, não o BTNF; herdar
+*"nominal"* do quase-homônimo é a dedução que o bloco 17 proibiu, e é a mesma classe de erro de
+`IPC` × `IPC/IBGE`. Entrou no catálogo como **`indeterminado`, sem fonte**. Entrou junto o rótulo
+**composto** `UPC → índices básicos de atualização dos saldos da poupança`, que **não é rótulo novo
+de índice**: é **segmento composto** (`P17-03`), porque o manual lista os dois indexadores e **não
+data a fronteira** entre eles. **A cura é partir o segmento, não classificá-lo.**
 
 **E uma que parecia lacuna e não é: `4.7.1`.** O manual **não tem** tabela de correção monetária
 trabalhista — só lista de leis, e a NOTA 2 **delega**: *"utilizar a tabela de coeficientes
@@ -1001,3 +1025,175 @@ fim e início nunca caem no mesmo mês, ao contrário do tronco comum do capítu
 **As 2 `R3` cheias são do manual**, ambas em `cjf.poupanca.correcao-monetaria`: `1986-03` ORTN
 (nominal) → IPC/IBGE (percentual) e `1990-04` IPC/IBGE (percentual) → BTN (nominal), **sem `aplicacao`
 declarada**. Mesmo padrão já registrado em § 23.4. **Não harmonizadas.**
+
+---
+
+## 25. Bloco 19 — a terceira classe de indexador, e o erro de categoria do `englobante`
+
+**Fonte externa ao corpus, declarada como tal.** A classificação que abre este bloco **não foi
+extraída** do material deste repositório: veio do enunciado, verificada fora do agente, e está
+gravada em `indexadores-tipo-catalogo.json` sob a chave `FONTE_EXTERNA_AO_CORPUS`. Duas
+afirmações a compõem — do **IBGE**, que o **IPCA-15** difere do IPCA apenas no **período de
+coleta** (do dia 16 de M−1 ao dia 15 de M) e que **o IPCA-E mensal das tabelas judiciais é o
+IPCA-15**; e do **BCB**, que **TBF, Redutor-R e TR** são divulgados para **período entre datas
+de aniversário**, não para mês calendário, e que **a TR é prefixada**. **Nenhuma busca na web
+foi feita.** A § 7 de `00-base-normativa.md` **não foi alterada**.
+
+### 25.1 `janela-deslocada` — a terceira classe COM DEFASAGEM
+
+`nominal` reflete **M−1**, `percentual` reflete **M**, e **`janela-deslocada` reflete metade de
+M−1 e metade de M**. São **três pares** de virada, não um, e a regra em `valida_cobertura.py`
+**não os enumera**: exige que os dois lados estejam em `TIPOS_COM_DEFASAGEM` e sejam diferentes.
+
+**Recebem a classe nova: `IPCA-E/IBGE` e `IPCA-15/IBGE`** — e **só** eles. A identificação entre
+os dois é **da própria fonte externa**, não de semelhança de nome, e está declarada no catálogo.
+
+### 25.2 `englobante` era um fato de R1 dentro do campo de R3 — RETIRADO
+
+Os segmentos **sempre tiveram `engloba`**, e é ele que R1 lê. Marcar a SELIC como `englobante`
+em `tipo_indexador` **a deixava cega para R3**: ela saltava toda comparação de defasagem, por
+desvio explícito no validador, embora tenha defasagem. **`engloba` não foi tocado.**
+
+| Índice | Era | É | Por quê |
+|---|---|---|---|
+| **SELIC** | `englobante` | **`percentual`** | A tabela externa classifica a *SELIC acumulada* como percentual. `D8-C22` (*"Selic não é índice de inflação"*) segue verdadeiro — mas *"não é índice de inflação"* **não é** *"não tem defasagem"*, e era essa a confusão |
+| **taxa legal** | `englobante` | **`indeterminado`** (`P19-01`) | **A fonte externa não a alcança.** `percentual` por analogia com a SELIC é a dedução proibida, e a analogia é frágil por fonte: R11 registra a taxa legal como **derivada** por razão entre fatores, não índice publicado |
+
+> **`P19-01` — a taxa legal não tem classificação de tipo em fonte alguma.** Escopo da busca de
+> ausência em `ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_19`. Fecha quando chegar fonte que a alcance.
+
+**Achado colateral, registrado e NÃO harmonizado:** dos cinco segmentos de taxa legal, **dois**
+declaram `engloba: ["correcao-monetaria", "juros-mora"]` e **três** declaram só
+`["juros-mora"]`. O rótulo `englobante` encobria a assimetria, porque dizia *"engloba"* onde o
+`engloba` não englobava. Harmonizar exige fonte que diga qual gravação está certa, e ela não foi
+localizada. Há teste que trava a contagem em três.
+
+### 25.3 `tipo_indexador_razao` — razão NÃO é pendência
+
+**A TR fica `indeterminado` com RAZÃO REGISTRADA** — *"período entre datas de aniversário e
+prefixação"* —, **não por ausência de fonte**. Carregava `tipo_indexador_pendencia: "P17-02"`,
+que afirma *"não há fonte"*; **agora há fonte, e ela diz que a TR não cabe em mês calendário**.
+Manter `P17-02` passou a ser afirmação falsa sobre o estado do conhecimento.
+
+| | campo | afirma | como fecha |
+|---|---|---|---|
+| **sem fonte** | `tipo_indexador_pendencia` | nenhuma fonte classifica | **quando a fonte chegar** — `P17-01`, `P18-01`, `P19-01` |
+| **fonte diz que não cabe** | `tipo_indexador_razao` | há fonte, e ela diz que não cabe | **NÃO se fecha esperando fonte** |
+
+Os dois são **mutuamente excludentes** — `Segmento.de_dict` rejeita o par —, e **os dois
+bloqueiam** a virada sob `R3-INDETERMINADO`, porque o efeito sobre o cálculo é o mesmo. O que
+muda é a mensagem, e é ela que diz a quem audita se vale a pena esperar. Recebem razão: **`TR`**
+e **`remuneração básica da caderneta de poupança (TR)`** — esta por **rotulagem do próprio
+manual**, que já escreve `(TR)` no rótulo, e não por semelhança de nome. **`TRD` NÃO recebe**: a
+fonte do BCB nomeia TBF, Redutor-R e TR, e **não** a TRD; segue `P18-01`.
+
+### 25.4 O mapeamento um a um — 36 rótulos nas 20 cadeias
+
+Levantados **do repositório** (campo `indexador` de todo arquivo com
+`tipo == "cadeia-temporal"` — **156 segmentos em 20 cadeias**), não da tabela. Tabela completa,
+com fonte e razão de cada um, em `indexadores-tipo-catalogo.json`; contagens recomputadas por
+`test_valida_cobertura.py::TestMapeamentoBloco19`.
+
+> **Eram 34 rótulos em 15 cadeias na tarefa 2; são 36 em 20 desde a tarefa 3.** Os dois rótulos
+> novos são **`BTNF`** e **`UPC → índices básicos de atualização dos saldos da poupança`**, ambos
+> **`indeterminado`**, ambos de `cjf.fgts-divida-fiscal.correcao-monetaria`.
+
+| classe | quantos | quais |
+|---|---|---|
+| `nominal` | **4** | ORTN, OTN, BTN, Ufir |
+| `percentual` | **5** | INPC, INPC/IBGE, IGP-DI, IPC/IBGE, **Selic** |
+| **`janela-deslocada`** | **2** | **IPCA-E/IBGE, IPCA-15/IBGE** |
+| `nao-indexador` | **8** | as 6 moedas, a conversão em URV e `(segmento sem indexador)` |
+| `indeterminado` | **17** | abaixo |
+| `englobante` | **0** | retirado |
+
+**Os 17 `indeterminado`, por razão:** **13 sem fonte** — `P17-01` (IPCA série especial, IPC/FGV,
+IPC-R, IRSM), `P18-01` (IPC, UPC, LBC, LBC – 0,5%, LFT – 0,5%, TRD), `P19-01` (taxa-legal),
+**`P19-02` (BTNF)**, `P9-02` (NAO-DECLARADO-PELO-MANUAL); **2 com razão** (TR e remuneração
+básica da poupança); **2 segmentos compostos**, `P17-03` (`Ufir → Selic (bifurcado por fato
+gerador)` e **`UPC → índices básicos de atualização dos saldos da poupança`**), **não
+classificados** — e a reclassificação da SELIC **agrava** o defeito do primeiro, porque agora os
+dois índices embutidos são de classes **com defasagem**, isto é, o registro esconde uma virada
+dentro de si.
+
+> **`BTNF` é o rótulo em que a herança por nome seria mais tentadora — e por isso ele está aqui
+> nomeado.** `BTN` é `nominal` por nomeação literal do item 4.1.2.4, letra a; **`BTNF` não é
+> nomeado por fonte alguma**, nem pelo manual nem pela tabela externa. Classificá-lo como
+> `nominal` *"porque é BTN Fiscal"* é exatamente a dedução por nome parecido que o bloco 17
+> proibiu. Segue `indeterminado`, sob `P19-02`.
+
+**Decisões explícitas, uma a uma:**
+
+- **`IPCA série especial`** — **permanece `indeterminado`**. A fonte externa alcança IPCA-15 e
+  IPCA-E e **não** diz que a série especial seja um ou outro; **o manual a grava como segmento
+  próprio**, e identificá-la por semelhança de nome é a dedução proibida;
+- **`INPC` × `INPC/IBGE`** — **mesmo índice**, e a costura já estava declarada desde o bloco 17
+  (`identificacao_declarada`): é **rotulagem**, porque **não existe INPC de outro emissor**;
+- **o `IPC` nu** — **permanece `indeterminado`, com a ambiguidade registrada** no campo. O
+  manual usa **dois** IPC, de emissores distintos, e `D8-C21` sustenta **só o IPC/IBGE**;
+- **`Ufir → Selic (bifurcado por fato gerador)`** — **não classificado**, segue `P17-03`;
+- **`NAO-DECLARADO-PELO-MANUAL`** — segue `P9-02`;
+- **`TRD`, `LBC – 0,5%`, `LFT – 0,5%`, `UPC`, `IPC-R`, `IRSM`, `IPC/FGV`** — **nenhum é
+  alcançado pela fonte externa**; seguem `indeterminado` **sem fonte**, como estavam.
+
+> **Divergência entre a tabela do enunciado e a fonte extraída — `IGP-DI`.** A tabela externa
+> **não o nomeia**; o **item 4.1.2.4, letra b, o nomeia LITERALMENTE** (*"Ex.: INPC, IGP-DI,
+> IGP-M"*), e a transcrição está em `bloco-08-jf.md`. **Prevalece a fonte extraída: permanece
+> `percentual`.** Mesmo desenho para o **`IPC/IBGE`**, que a tabela externa não alcança e
+> `D8-C21` sustenta. Na direção oposta, a linha **`IPCA` → percentual** da tabela externa
+> **não tem destinatário**: nenhum segmento tem rótulo `IPCA` nu. **Registradas, não
+> harmonizadas.**
+
+**`IGP-M`, `TDA` e `JCM` não são rótulos de indexador de segmento algum** — ocorrem no corpus
+como transcrição do item 4.1.2.4, como objeto de direito material (item 4.5.4) e como nome do
+critério do FGTS fiscal (item 2.4.4.1, cadeia ausente, `P18-02`). Escopo da busca declarado no
+catálogo. **Nada a mapear.**
+
+### 25.5 Efeito sobre os validadores
+
+| | antes do bloco | depois da Tarefa 2 | **depois da Tarefa 3 — FINAL** |
+|---|---|---|---|
+| **cadeias** | 15 | 15 | **20** (+5 cadeias novas) |
+| **R1** | 15 | 15 — *inalterado* | **21** (+6, todas do MANUAL) |
+| **R2** | 1 | 1 — *inalterado* | **1** — *inalterado* |
+| **R3** | 46 | 51 (+5 líquido: **8 novas**, **3 fechadas**) | **62** (+11) |
+
+> **A história inteira, não só o número final.** `R3` foi de **46 para 51 na Tarefa 2** e de
+> **51 para 62 na Tarefa 3**; `R1` ficou em 15 na Tarefa 2 e foi a **21 na Tarefa 3**. As duas
+> etapas têm causas distintas — reclassificação de índice numa, cadeias novas na outra — e
+> guardar só o total impediria auditar qualquer das duas.
+
+**As 8 novas da Tarefa 2 são ACHADO, não regressão** — nenhuma cadeia mudou de conteúdo; o campo
+que as descrevia é que parou de esconder o fato:
+
+| origem | quantas | quais |
+|---|---|---|
+| SELIC deixou de saltar R3 | **2** `R3` | `cjf.condenatorias-gerais.correcao-monetaria` (devedor=fazenda-publica, 2025-09) e `cjf.desapropriacao-direta.correcao-monetaria` (2025-09), ambas `Selic → IPCA-15/IBGE` |
+| taxa legal deixou de saltar R3 e não tem classe | **5** `R3-INDETERMINADO` | `cjf.condenatorias-gerais.juros-mora` (2024-09 e 2025-09), `cjf.fgts.juros-mora`, `cjf.poupanca.juros-mora`, `cjf.trabalhista.juros-mora` — todas `Selic → taxa-legal` |
+| IPCA-E ganhou classe | **1** `R3` | `cjf.desapropriacao-direta.correcao-monetaria`, 2001-01, `Ufir → IPCA-E/IBGE` **sem `aplicacao`** — era indeterminada, virou **confirmada** |
+
+**As 3 fechadas:** `cjf.condenatorias-gerais.correcao-monetaria` 2001-01 `Ufir → IPCA-E`, salva
+porque o segmento que **entra** declara `aplicacao` e agora o tipo é conhecido — `indeterminado`
+bloqueia mesmo com `aplicacao`, pois sem saber o tipo não se sabe se a defasagem declarada é a
+certa; a de desapropriação, que **reabriu como confirmada** e portanto não é fechamento líquido;
+e `IPCA-E → IPCA-15` em 2024-09, que **deixou de ser virada** porque os dois são a **mesma
+classe** — efeito direto da identificação declarada pela fonte externa.
+
+**As 6 novas de R1 da Tarefa 3 são do MANUAL**, transcritas como estão, e nenhuma vem do
+gerador:
+
+| origem | quantas | quais |
+|---|---|---|
+| herdadas do tronco na indireta | **2** | `cjf.desapropriacao-indireta.correcao-monetaria`, 1989-01 (`IPC/IBGE × OTN`) e 1990-03 (`BTN × IPC/IBGE`) — idênticas às da direta, porque o tronco é o mesmo |
+| **cortes intramensais** — o mês da fronteira cai nos dois segmentos | **3** | `cjf.desapropriacao-indireta.juros-compensatorios` 1997-06 (*"até 10/6/1997"* ÷ *"de 11/6/1997"*); `cjf.divida-fiscal.juros-mora` 1992-01 (*"a 2/1/1992"* ÷ *"de 3/1/1992"*); `cjf.divida-fiscal.correcao-monetaria` 1989-01 (OTN ÷ BTN) |
+| `D8-C8` de maio/2000 | **1** | `cjf.fgts-divida-fiscal.correcao-monetaria`, 2000-05 (`TRD × TR`) — maio/2000 está nos dois, como o D8-C8 registra |
+
+**`R2` seguiu em 1** nas duas tarefas.
+
+**Testes: 311** — eram **310** ao fim da Tarefa 3, **299** depois da Tarefa 2 e **267** antes do
+bloco. O 311º é
+`TestMapeamentoBloco19::test_a_contagem_de_segmentos_sem_indexador_bate_com_o_repositorio`, que
+guarda a única contagem que sobrou em prosa no catálogo (`(segmento sem indexador)` →
+`quantos`), agora que ela saiu do texto replicado para dentro dos segmentos.
+`valida_cadeias.py` fecha em `20 cadeias | R1: 21 | R2: 1 | R3: 62`;
+`valida_bloco_tabelas.py` segue em `15 ok, 31 divergências, 1 não verificados, 0 erros`, exit 0.

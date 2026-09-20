@@ -20,11 +20,11 @@ sumário de itens numerados (regex `^[2-5](\.\d+){1,4}\s`), e **integralmente** 
 | Item | O que é | JSON | Consolidado | Veredito |
 |---|---|---|---|---|
 | 2.3.1.2 | correção — dívida fiscal | **sim** | sim | ok |
-| **2.3.2.2** | **juros — dívida fiscal**, 8 linhas, com `base_incidencia` | **não** | detalhe § 2.2 do bloco 8 | **cadeia AUSENTE** — `P18-02` |
+| **2.3.2.2** | **juros — dívida fiscal**, 8 linhas, com `base_incidencia` | **sim, bloco 19 T3** | § 5.3.6 (agora) | **era lacuna; GERADA** — 8 segmentos |
 | 2.3.3.2 · 2.4.2.3 · 2.4.4.2 · 2.4.5.2/.3 | multas por período | não | parcial | **não é atualização** — fora do componente |
 | 2.4.2.1.2 | correção — contribuição previdenciária | não | detalhe § 2.3 | **remissão + janela própria**: *"mesmos critérios do IR, item 2.3.1.2"*, mais o vácuo fev–mar/1997. Cadeia derivada |
-| **2.4.2.2.2** | **juros — contribuição previdenciária** | **não** | detalhe § 2.3 | **cadeia AUSENTE** — `P18-02` |
-| **2.4.4.1** | **FGTS fiscal (`JCM`)** | **não** | § 5.3.2 (agora) | **cadeia AUSENTE, e é OUTRA que a de 4.8** |
+| **2.4.2.2.2** | **juros — contribuição previdenciária** | **não** | detalhe § 2.3 | **SEGUE AUSENTE** — `P18-02`. A fonte extraída tem do item **uma frase só** (o `N-2`); a tabela nunca foi transcrita. § 5.3.6 |
+| **2.4.4.1** | **FGTS fiscal (`JCM`)** | **sim, bloco 19 T3** | §§ 5.3.2 e 5.3.6 | **era lacuna; GERADA** — 5 segmentos, e **é OUTRA que a de 4.8** |
 | 2.4.5.1 | juros — Incra | não | — | **remissão** a 2.3.2.2 a partir de maio/1990; só a linha "até abr/1990" é própria |
 | 2.6 · 2.7.1.1 · 2.8.5 | conselhos, foro/laudêmio, multas adm. | não | detalhe § 2.5 | **remissão** a 2.3.1.2 — não é lacuna |
 | 2.9 | falência | não | detalhe § 2.6 | **não é cadeia** — `D8-C23`, segmento condicional a evento futuro |
@@ -32,13 +32,13 @@ sumário de itens numerados (regex `^[2-5](\.\d+){1,4}\s`), e **integralmente** 
 | 4.3.1.1 | previdenciário | **sim** | § 5.2 | ok |
 | 4.4.1.1 | repetição de indébito | **sim** | § 5.2 | ok |
 | 4.5.1.1 | correção — desapropriação **direta** | **sim** | § 5.2 | ok |
-| **4.5.2** | **juros de mora — desapropriação direta**, 5 linhas | **não** | § 5.3.1 (em prosa) | **cadeia AUSENTE** — `P18-02` |
-| **4.5.3** | **juros compensatórios — direta**, 4 linhas | **não** | § 5.3.1 (bloco 15) | **cadeia AUSENTE, recuperada em prosa e ainda sem JSON** |
+| **4.5.2** | **juros de mora — desapropriação direta**, 5 linhas | **não** | § 5.3.1 (em prosa) | **SEGUE AUSENTE** — `P18-02`. A tabela **nunca foi extraída linha a linha**, e o corpus o declara com escopo. § 5.3.6 |
+| **4.5.3** | **juros compensatórios — direta**, 4 linhas | **sim, bloco 19 T3** | §§ 5.3.1 e 5.3.6 | **era lacuna; GERADA** — **3** segmentos, e a diferença para as 4 linhas está declarada. As **taxas** das duas primeiras linhas **não estão na fonte** e ficam `null` |
 | 4.5.4–4.5.9 | TDAs, honorários, custas | não | § 5.3.1 | **não são cadeia** — `D8-C25` vive só em 4.5.4 |
-| **4.6.1.1** | correção — desapropriação **indireta** | **não** | § 5.2 (só a direta) | **cadeia AUSENTE — e é IDÊNTICA à de 4.5.1.1**, inclusive no IPC/FGV |
-| **4.6.2** | **juros de mora — indireta** | **não** | § 5.3.1 | **cadeia AUSENTE.** Fecha em **dez/2021**, e a gêmea 4.5.2 em **nov/2021** |
-| **4.6.3** | **juros compensatórios — indireta** | **não** | § 5.3.1 | **cadeia AUSENTE.** Carrega o `N-10` (remete a *"item 4.5.2"*, da direta) |
-| **4.7.1** | correção — ações trabalhistas | **não** | § 6 | **NÃO É LACUNA — não existe tabela.** Só lista de leis, e a NOTA 2 **delega**: *"utilizar a tabela de coeficientes trabalhistas expedida pelo TST"*. Mesmo desenho do `P9-02`. A cadeia vive numa **série**, não numa regra |
+| **4.6.1.1** | correção — desapropriação **indireta** | **sim, bloco 19 T3** | §§ 5.2 e 5.3.6 | **era lacuna; GERADA** — 11 segmentos, **DERIVADA** da de 4.5.1.1, que lhe é idêntica, inclusive no IPC/FGV |
+| **4.6.2** | **juros de mora — indireta** | **não** | § 5.3.1 | **SEGUE AUSENTE** — `P18-02`, pela mesma razão de 4.5.2. Fecha em **dez/2021**, e a gêmea 4.5.2 em **nov/2021** |
+| **4.6.3** | **juros compensatórios — indireta** | **sim, bloco 19 T3** | §§ 5.3.1 e 5.3.6 | **era lacuna; GERADA** — 3 segmentos. Carrega o `N-10` (remete a *"item 4.5.2"*, da direta), **transcrito, não corrigido** |
+| **4.7.1** | correção — ações trabalhistas | **não, e não deve haver** | §§ 6 e 5.3.6 | **NÃO É LACUNA — não existe tabela.** **Registra-se a DELEGAÇÃO, não a ausência.** Só lista de leis, e a NOTA 2 **delega**: *"utilizar a tabela de coeficientes trabalhistas expedida pelo TST"*. Mesmo desenho do `P9-02`. A cadeia vive numa **série**, não numa regra |
 | 4.7.2 | juros — trabalhista | **sim** | § 5.2 | ok |
 | **4.8.1.1** | **correção — FGTS (`JAM`)** | **sim, bloco 18** | **§ 5.3.2 (agora)** | **era lacuna; consolidada** |
 | 4.8.2 | juros remuneratórios — FGTS | não | § 5.3.2 | **não é cadeia temporal** — eixo = conta existente em 22/9/1971 |
@@ -52,7 +52,12 @@ sumário de itens numerados (regex `^[2-5](\.\d+){1,4}\s`), e **integralmente** 
 **Não eram só duas.** Além de FGTS e poupança, a varredura encontrou **oito cadeias tabuladas sem
 JSON**: 4.5.2, 4.5.3, **4.6.1.1, 4.6.2, 4.6.3** (a desapropriação **indireta inteira**), **2.3.2.2**,
 **2.4.2.2.2** e **2.4.4.1**. Todas têm tabela período × taxa/índice no manual; nenhuma está em
-`tabelas-normativas/`. **Registradas como `P18-02`, não geradas neste bloco** — ver § 5.3.5.
+`tabelas-normativas/`. **Registradas como `P18-02`, não geradas no bloco 18** — ver § 5.3.5.
+
+> **Atualizado na tarefa 3 do bloco 19.** Das oito, **cinco foram geradas** — 4.5.3, 4.6.1.1, 4.6.3,
+> 2.3.2.2 e 2.4.4.1 — e **três seguem ausentes**: **4.5.2**, **4.6.2** e **2.4.2.2.2**, e por uma
+> razão só, que não é de modelagem: **a tabela dessas três nunca foi extraída linha a linha.**
+> `P18-02` **encolhe de oito para três**. Ver **§ 5.3.6**, que traz as cinco decisões e o que faltou.
 
 **E uma que parecia lacuna e não é: 4.7.1.** O manual **não tem** tabela de correção trabalhista; ele
 delega ao TST. Afirmá-la ausente seria afirmar ausência de algo que a fonte nunca prometeu.
@@ -94,6 +99,43 @@ NÃO tem este tronco.**
   empresa pública/prestador segue em **1,0% a.m.** até jun/2026.
 
 **R-08-08 — a bifurcação por devedor não é universal.** Três cadeias nunca bifurcam.
+
+### 5.2-A Servidores e empregados públicos — o recorte que não é Fazenda × não-Fazenda
+
+**Achado `L1`/`L2` de [`10-literais-na-extracao.md`](10-literais-na-extracao.md), e é o único
+`BLOQUEIA` da varredura.** As condenatórias em geral têm **um terceiro recorte** que nem a tabela
+de 4.2.2 nem a bifurcação de jul/2009 exibem: **a qualidade do crédito**. Sem ele, quem lê a
+cadeia acima aplica **Selic** onde o manual manda **0,5% ao mês**, por até oito anos de
+competências.
+
+**Juros — item 4.2.2, NOTA 3, `pagina_pdf` 55, literal:**
+
+> *"Nos créditos referentes a **servidores(as) e empregados(as) públicos(as)**, no período
+> **anterior a julho/2009**, os juros serão computados à taxa de: a) **1% ao mês até jul./2001**
+> (Decreto-Lei n. 2.322/1987; AgRg no REsp n. 1.085.995); b) **0,5% ao mês de ago./2001 a
+> jun./2009** (MP n. 2.180-35/2001, que acrescentou o art. 1º-F da Lei n. 9.494/1997)."*
+
+**Correção — item 4.2.1.1, NOTA 3, `pagina_pdf` 49, literal:**
+
+> *"Para as **remunerações** de servidores(as) e empregados(as) públicos(as), o **termo inicial da
+> correção monetária** deve ser o **mês da competência e não o mês de pagamento**."*
+
+**Três consequências, e nenhuma é dedutível da tabela:**
+
+1. **O recorte é do CRÉDITO, não do devedor.** *"Créditos referentes a servidores e empregados
+   públicos"* não é o mesmo universo de `condicao.devedor: fazenda-publica`, e o manual não os
+   equipara. **Não harmonizado** — os dois recortes convivem no mesmo item;
+2. **A janela de ago/2001 a jun/2009 contradiz a linha da tabela**, que dá **Selic** desde
+   jan/2003. A nota **restringe** a tabela, como o `N-11` faz na poupança. **É a nota que
+   prevalece para esses créditos**, porque é ela que os nomeia;
+3. **O eixo da correção muda**: mês de competência, não de pagamento. Alinha-se ao da NOTA 1 do
+   previdenciário (4.3.1.1), que diz o mesmo para benefícios.
+
+> **Por que não virou segmento nem ramo.** O eixo é a **qualidade do crédito**, não a competência
+> nem o devedor, e `dominio_condicoes` das duas cadeias declara **`devedor: [fazenda-publica,
+> nao-fazenda-publica]`** como exaustivo. Abrir um terceiro valor ali afirmaria uma
+> ortogonalidade que a fonte não declara. **Fica como nota de aplicação, com item e página** — o
+> mesmo tratamento de 4.8.2, 4.9.2 e da NOTA 3 de 4.9.1.1.
 
 ### 5.3 As quatro fórmulas de `aplicacao` do CJF
 
@@ -352,6 +394,8 @@ não cabe decidir de passagem — **2.3.2.2 e 2.4.2.2.2 precisam do campo `base_
 a base alterna quatro vezes entre originário e corrigido) e **2.4.4.1 é lista, não tabela**, com o
 `D8-C8` em aberto. **A ausência está registrada, não silenciada.**
 
+> **Superado em parte na tarefa 3 do bloco 19 — § 5.3.6.** Cinco das oito foram geradas; **três seguem ausentes** (4.5.2, 4.6.2, 2.4.2.2.2), e por falta de **fonte**, não de schema: o campo `base_incidencia` **existe e está em uso**.
+
 **Os novos baselines dos validadores** — `scripts/calculo/valida_cadeias.py`, que descobre cadeia por
 `tipo == "cadeia-temporal"` e portanto absorveu os quatro arquivos sem alteração de código:
 
@@ -388,8 +432,173 @@ justifica o argumento dos índices nominais do item 2.3.1.3.**
   e só porque o `IPC` nu é `indeterminado`: **classificá-lo criaria duas R3 a mais, não menos**.
 
 **`P18-01`** — sete rótulos sem classificação em fonte alguma (`JAM`, `UPC`, `LBC`, `LBC – 0,5%`,
-`LFT – 0,5%`, `TRD`, `IPC`). **`P18-02`** — oito cadeias tabuladas do manual sem JSON. **`N-5`** e
+`LFT – 0,5%`, `TRD`, `IPC`). **`P18-02`** — oito cadeias tabuladas do manual sem JSON, **hoje três**
+(§ 5.3.6). **`N-5`** e
 **`D8-C13`** continuam **abertas**: nada aqui as resolve.
+
+### 5.3.6 `P18-02` — **cinco geradas, três bloqueadas**, e as cinco decisões
+
+**Bloco 19, tarefa 3.** Gerador: `scripts/calculo/gera_cadeias_bloco19.py` (sem `float`;
+`encoding='utf-8'` explícito). As oito cadeias de `P18-02` foram reexaminadas uma a uma contra a
+**fonte extraída**, e o critério foi um só: **segmento sai da fonte, com `fundamento` e
+`pagina_pdf`; onde a fonte não trouxe, o campo fica `null` com a razão** — não se inventa valor, e
+não se reconstrói estrutura.
+
+> **O critério valia para `taxa` e não valia para `fundamento` — corrigido.** `pagina_pdf` está em
+> 100% dos segmentos e `taxa` foi tratada com o rigor prometido (`taxa: null` + `taxa_nao_extraida`),
+> mas `fundamento` simplesmente **sumia do segmento**: ausência **sem razão**, indistinguível de
+> esquecimento. Nas **cadeias novas deste bloco** o campo passa a sair como **`fundamento: null` +
+> `fundamento_nao_extraido`** — **13 segmentos**: 7 de 8 em `cjf.divida-fiscal.juros-mora`, 4 de 5 em
+> `cjf.fgts-divida-fiscal.correcao-monetaria` e 1 de 3 em **cada** cadeia de
+> `juros-compensatorios`. Quem faz isso é `declara_fundamento_ausente`, em
+> `gera_cadeias_bloco19.py`.
+>
+> **Os 8 de `cjf.desapropriacao-indireta.correcao-monetaria` NÃO foram consertados, e a razão é
+> declarada:** eles são **derivados** de `cjf.desapropriacao-direta.correcao-monetaria.json`, onde já
+> estavam assim desde o **bloco 8** — são **pré-existentes, não deste bloco**. Convertê-los aqui
+> seria assumir defeito alheio como próprio **e** fazer o derivado **divergir da origem**, que é
+> exatamente o que `DERIVADA_DE` existe para impedir. Fica registrado no próprio campo
+> (`DERIVADA_DE.FUNDAMENTO_AUSENTE_E_PRE_EXISTENTE`) e **fecha junto com a direta**, num bloco que a
+> revisite. **A ausência é mais larga que estas duas cadeias** — no repositório inteiro são **77
+> segmentos sem `fundamento`, em 11 cadeias**, quase todos anteriores ao bloco 19; este bloco
+> responde **pelos seus 13**.
+
+| Cadeia gerada | Item | Segmentos |
+|---|---|---|
+| `cjf.desapropriacao-indireta.correcao-monetaria` | 4.6.1.1 | **11** |
+| `cjf.divida-fiscal.juros-mora` | 2.3.2.2 | **8** |
+| `cjf.fgts-divida-fiscal.correcao-monetaria` | 2.4.4.1 | **5** |
+| `cjf.desapropriacao-direta.juros-compensatorios` | 4.5.3 | **3** |
+| `cjf.desapropriacao-indireta.juros-compensatorios` | 4.6.3 | **3** |
+
+**As três que ficaram de fora, e por quê:**
+
+- **4.5.2 e 4.6.2 — juros de mora das desapropriações.** A tabela **nunca foi extraída linha a
+  linha**, e o corpus o declara **com escopo**, duas vezes (`references/desapropriacao.md` §§ 3 e
+  10: *"Não infiro os segmentos ausentes"*). O que existe são **quatro marcas soltas** — o eixo
+  26/9/1999 ÷ 27/9/1999 (que é **condição por data da sentença**, não fronteira de período), a
+  fórmula da poupança de maio/2012 **por competência**, a Selic de dez/2021 e a taxa legal de
+  set/2025 — mais a informação de que a tabela tem **cinco linhas**. **Nenhuma taxa anterior a
+  maio/2012 está registrada**, e mapear cinco linhas sobre quatro marcas é **reconstruir a
+  estrutura**, que é pior do que inventar um valor;
+- **2.4.2.2.2 — juros da contribuição previdenciária.** Do item, a fonte extraída tem **uma frase**:
+  a ressalva do `N-2`, `pagina_pdf` 33. Sem períodos, sem taxas, sem bases. Copiar 2.3.2.2 porque
+  *"é quase igual à do IR"* seria **herança por analogia** — e a analogia é frágil **pela própria
+  fonte**, porque o `N-2` existe justamente para registrar que **as duas tabelas irmãs não são
+  idênticas**.
+
+> **O campo `base_incidencia` deixou de ser o bloqueio.** `P18-02` dizia que 2.3.2.2 e 2.4.2.2.2
+> *"exigem `base_incidencia`"*. **Exigiam, e o campo existe e está em uso** (decisão 4). O que
+> bloqueia 2.4.2.2.2 é **fonte**, não schema.
+
+**E 4.7.1 não entra: registra-se a DELEGAÇÃO, não a ausência.** O manual não tem tabela de correção
+trabalhista; a NOTA 2 manda *"utilizar a tabela de coeficientes trabalhistas expedida pelo Tribunal
+Superior do Trabalho"* (`pagina_pdf` 77). A cadeia vive numa **série**, não numa regra — desenho do
+`P9-02`. **Não há nada a extrair, e dizer que falta seria afirmar ausência do que a fonte nunca
+prometeu.**
+
+#### As cinco decisões
+
+**1. Desapropriação indireta — DUAS cadeias, não uma com dois escopos.** O eixo que separa direta de
+indireta é a **modalidade**, e modalidade **não é eixo da linha do tempo**: o que ela muda é o
+**termo inicial**, campo de *cadeia*, enquanto `condicao` e `dominio_condicoes` são campos de
+*segmento*. Carregar modalidade em `condicao` obrigaria a repeti-la nos 11 segmentos para dizer que
+não muda nenhum deles — **e ainda assim não alcançaria o termo inicial, que é onde a diferença
+mora** (`D8-C10`). Somem-se as divergências fora da correção (juros fechando em nov/2021 ×
+dez/2021, o `N-10` de 4.6.3) e a regra do bloco 17 — o identificador identifica, e
+`cjf.desapropriacao-direta.*` já existe, com o manifesto tratando perda de `id` como regressão.
+**O único argumento contrário era a duplicação, e ele foi pago:** os 11 segmentos da indireta são
+**derivados em tempo de geração** do arquivo da direta (campo `DERIVADA_DE`) — **conteúdo idêntico
+derivado não diverge**.
+
+**2. Os compensatórios e o corte de ago/2017 — NÃO É TABULÁVEL, e é isso que fica escrito.** A taxa
+do regime é *"o percentual fixado para os TDAs depositados como oferta inicial"*: **valor do caso**,
+fixado no ato de oferta — não índice publicado, não série, não percentual legal. Gravá-lo como
+segmento exigiria um número que **não existe em fonte alguma para caso nenhum**; e gravá-lo com
+`taxa: null` sobre 2017-08..2021-11 **sobrescreveria a linha *"De 11/6/1997 a nov./2021"* que a
+tabela declara** — trocando um fato do manual por uma regra de outro item (`D8-C25`: o corte vive só
+em 4.5.4). Fica em **campo de cadeia**, com o literal; quem calcula **pergunta** o percentual (R21) e
+**registra** a resposta (R19).
+
+**3. `N-6` — grava-se a TABELA, e a contradição fica legível.** O texto de 4.5.3 diz *"Até dez.
+2021"*; a tabela encerra em **nov/2021**. **Os segmentos são a tabela**, e o texto de abertura é
+enunciado de seção, não linha: gravar dez/2021 criaria uma sobreposição que **o manual não tem** e
+resolveria `N-6` por escolha. **Não se escolhe lado.** As duas leituras ficam no JSON e a conta que
+atravesse dez/2021 grava qual aplicou. **`P8-09` segue aberta.**
+
+**4. `base_incidencia` — campo novo, e o schema o acomoda sem tocar no validador.** É campo de
+*segmento* e diz **sobre que valor a taxa incide** — originário × corrigido (*"cor/mon."*) —,
+dimensão **ortogonal** a período, indexador e englobamento. `Segmento.de_dict` lê uma lista fechada
+de campos e ignora os demais, de modo que **R1, R2 e R3 seguem exatas** e o dado fica gravado para
+quem calcula. **Não se acrescentou campo ao validador**: R1/R2/R3 não têm o que fazer com a base, e
+pôr no dataclass um campo sem regra que o consuma é cerimônia. `D8-C5` está inteiro no JSON: a base
+alterna **quatro vezes**, e **só a dívida fiscal a exercita**.
+
+**5. O FGTS fiscal é outra cadeia, e o `id` o diz.** `cjf.fgts-divida-fiscal.correcao-monetaria` ×
+`cjf.fgts.correcao-monetaria`. **Sujeito distinto** (o Fundo é credor aqui; o titular da conta, lá),
+**capítulo distinto**, **critério distinto** e até o **corte da ORTN distinto** — set/1983 aqui,
+fev/1986 em 4.8.1.1, jun/1983 na poupança. Regra do bloco 17 aplicada nas duas pontas: **o
+identificador identifica** — `fgts-divida-fiscal` diz qual cadeia é — e **o escopo se declara em
+campo**: `criterio: "JCM"`, `tipo_acao`, `ESCOPO`. **A sigla do critério não entrou no `id`**, porque
+sigla é rótulo e rótulo muda. **O corte de maio/2000 (`D8-C8`) é dele e está gravado nele; a cadeia
+de 4.8 não tem corte em maio/2000, e o JSON diz isso com todas as letras.**
+
+#### `tipo_indexador` — dois rótulos novos, os dois `indeterminado`
+
+**Nenhum foi classificado por semelhança de nome nem por herança**, e os dois entraram no catálogo:
+
+| Rótulo | Onde | Por quê |
+|---|---|---|
+| **`BTNF`** | FGTS fiscal, 1989-11..1991-01 | **não está** no item 4.1.2.4 — que nomeia o **BTN**, não o BTNF — e nada no corpus o classifica. Herdar *"nominal"* do BTN é a mesma classe de erro de `IPC` × `IPC/IBGE`. **Sem fonte: `P19-02`** |
+| **`UPC → índices básicos de atualização dos saldos da poupança`** | FGTS fiscal, 1983-10..1989-10 | **segmento composto**: o item 2.4.4.1 lista os dois indexadores e **não data a fronteira**. A cura é **partir o segmento** quando a fonte der a data, não classificá-lo. **`P17-03`**, como `Ufir → Selic` |
+
+**`JCM` e `TDA` continuam fora do catálogo de indexadores, e agora com a razão fechada:** `JCM` é
+**nome de critério** e vive no campo `criterio` da cadeia — que **deixou de ser ausente**; `TDA` é
+**objeto de direito material**, e o corte de ago/2017 que o invoca **não é tabulável** (decisão 2).
+Escopo da busca de ausência declarado no catálogo, chave
+`ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_19_TAREFA_3`.
+
+#### Os baselines — e por que cada um se moveu
+
+| | antes (bloco 19, T2) | **depois (T3)** |
+|---|---|---|
+| cadeias | 15 | **20** |
+| **R1** | **15** | **21** (+6) |
+| **R2** | **1** | **1** — *inalterado* |
+| **R3** | **51** | **62** (+11: **5** `R3` cheia + **6** `R3-INDETERMINADO`) |
+
+**As 6 violações novas de R1, uma a uma — e nenhuma é modelagem:**
+
+| Cadeia | Mês | O que é |
+|---|---|---|
+| `cjf.desapropriacao-indireta.correcao-monetaria` | **1989-01** e **1990-03** | as **mesmas duas** da gêmea direta, e pelo mesmo motivo: OTN × IPC/IBGE e BTN × IPC/IBGE. A de jan/1989 o manual explica (`R-08-04`); a de mar/1990 **não** (`D8-C21`) |
+| `cjf.desapropriacao-direta.juros-compensatorios` · `...-indireta...` | **1997-06** (×2) | **corte intramensal**: a fronteira do manual é **10/6/1997 ÷ 11/6/1997**, e o schema indexa por **mês**. Escolher um dos dois meses seria harmonizar |
+| `cjf.divida-fiscal.juros-mora` | **1992-01** | **corte intramensal**: *"a 2/1/1992"* × *"de 3/1/1992"*. É o `D8-C6`, o mês sem juros por falta de lei, encostando na TRD |
+| `cjf.fgts-divida-fiscal.correcao-monetaria` | **2000-05** | **`D8-C8`** — *"De fev./1991 a maio/2000"* × *"A partir de maio/2000"*, **sem regra de desempate**. O bloco 8 já a listava como sobreposição que a checagem não pegava **porque a cadeia não existia**. Agora existe, e a checagem pega |
+
+> **Três das seis são cortes por DIA numa modelagem por MÊS.** Não são defeito do manual nem erro da
+> extração: são a **granularidade do schema** encontrando a granularidade da fonte. Registradas no
+> campo `CORTE_INTRAMENSAL` de cada segmento.
+
+**R2 não se moveu, e isso foi decidido.** A tabela de 2.3.2.2 traz a bifurcação Selic/TMMCTN
+**dentro de uma única linha** — quem a desdobra é a de correção, 2.3.1.2. Marcar o segmento com
+`condicao` criaria um ramo sem gêmeo e **abriria lacuna** no universo incondicional; declarar
+`dominio_condicoes` para fechá-la seria **afirmar exaustividade de um domínio que esta tabela não
+enumera**. O eixo ficou em `eixo_declarado`, campo de registro.
+
+**As 11 de R3:** **5 cheias**, todas na indireta de correção e **todas herdadas da direta** —
+jan/1989, mar/1989, mar/1990, 2001-01 (Ufir → IPCA-E, `nominal × janela-deslocada`) e 2025-09
+(Selic → IPCA-15); **6 `R3-INDETERMINADO`**, sendo 2 na indireta (as pontas do IPC/FGV) e **4 no
+FGTS fiscal**, que é uma cadeia de **quatro rótulos indeterminados em cinco segmentos**. **As quatro
+do FGTS fiscal são `P18-01`, `P19-02` e `P17-03` tornadas visíveis** — classificá-los por dedução as
+faria sumir, e a dedução passaria limpa.
+
+**As duas cadeias de compensatórios não produzem R3 alguma**, e isso é resultado: **não têm
+indexador**. A regra do manual ali é percentual de juros, não índice — `nao-indexador`. **O que
+falta nelas não é classe, é o VALOR da taxa**, e ele está gravado como ausente.
+
+> **`P18-02` encolhe de oito para três.** `P18-01`, `N-5`, `D8-C8`, `D8-C13`, `D8-C25`, `N-6` e
+> `N-10` continuam **abertas**: nada aqui as resolve, e **nenhuma foi harmonizada**.
 
 ### 5.4 `C14-01` — `SUPERADO`, com a refutação registrada
 

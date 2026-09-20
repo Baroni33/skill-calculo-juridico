@@ -9,7 +9,10 @@ para os Cálculos na Justiça Federal, CJF, Res. 990/2026**.
 `docs/calculo/extracao/justica-federal/bloco-08-jf.md` §§ 4, 5, 6 e 7 e
 `bloco-08-jf-detalhe.md` §§ 3.1, 3.1.1, 4, 5 e 6;
 `docs/calculo/consolidado/06-encargos.md` § 8.1;
-`docs/calculo/tabelas-normativas/cjf.desapropriacao-direta.correcao-monetaria.json` (11 segmentos).
+`docs/calculo/tabelas-normativas/cjf.desapropriacao-direta.correcao-monetaria.json` (11 segmentos),
+`cjf.desapropriacao-indireta.correcao-monetaria.json` (11), `cjf.desapropriacao-direta.juros-compensatorios.json` (3)
+e `cjf.desapropriacao-indireta.juros-compensatorios.json` (3) — as três últimas **geradas no bloco 19,
+tarefa 3**; ver `consolidado/02-atualizacao-detalhe.md` **§ 5.3.6**.
 
 ---
 
@@ -137,7 +140,15 @@ remetem ao desaparecer (§ 4.3).
 
 ## 4. Terceira cadeia — JUROS COMPENSATÓRIOS (itens 4.5.3 e 4.6.3)
 
-**É cadeia autônoma, além da correção e dos juros de mora.**
+**É cadeia autônoma, além da correção e dos juros de mora — e desde o bloco 19, tarefa 3, tem JSON:**
+`cjf.desapropriacao-direta.juros-compensatorios.json` e `...-indireta...` (3 segmentos cada).
+
+> **ESCOPO DECLARADO DO JSON.** Os **períodos**, os **fundamentos** e os **três cortes** vieram da
+> fonte. **As TAXAS das duas primeiras linhas NÃO estão na fonte extraída** e ficaram `taxa: null`,
+> com o campo `taxa_nao_extraida` dizendo por quê. **Nenhum número foi inventado**, e o buraco está
+> num arquivo que o validador lê — prosa não é lida pelo validador. Os **quatro** da tabela viraram
+> **três** segmentos: as duas linhas de dez/2021 em diante têm a **mesma** observação e a extração
+> **não transcreve onde uma termina e a outra começa**; arbitrar a fronteira seria inventar.
 
 ### 4.1 `D8-C10` — mesma súmula, DOIS termos iniciais
 
@@ -372,10 +383,14 @@ Fonte: `bloco-08-jf-detalhe.md` § 6 (trinta e três defeitos no total).
 4. **A cadeia de juros de mora (4.5.2 / 4.6.2) não foi extraída segmento a segmento** para
    `tabelas-normativas/`. O que o corpus registra dela está no § 3, com o escopo declarado ali.
    **Os segmentos ausentes não foram inferidos**;
-5. **A cadeia de correção da INDIRETA (4.6.1.1) não tem JSON próprio.** Existe
-   `cjf.desapropriacao-direta.correcao-monetaria.json`; a extração afirma que as duas tabelas são
-   **idênticas** (`bloco-08-jf-detalhe.md` § 3.1) — **a identidade é afirmação da extração, e é
-   dela que esta seção depende**;
+5. **A cadeia de correção da INDIRETA (4.6.1.1) TEM JSON próprio desde o bloco 19, tarefa 3** —
+   `cjf.desapropriacao-indireta.correcao-monetaria.json`, **11 segmentos DERIVADOS em tempo de
+   geração** do arquivo da direta (campo `DERIVADA_DE`). **São duas cadeias, e não uma com dois
+   escopos**, porque a modalidade muda o **termo inicial** — campo de cadeia — e não a linha do
+   tempo; a justificativa inteira está no campo
+   `DECISAO_1_DUAS_CADEIAS_E_NAO_UMA_COM_DOIS_ESCOPOS` do JSON. **A identidade das duas tabelas
+   segue sendo afirmação da extração** (`bloco-08-jf-detalhe.md` § 3.1), e é dela que a derivação
+   depende;
 6. **Sem preset nomeado no corpus.** O catálogo de `01-plano-extracao.md` não tem ID para esta
    matéria. **Entra como cadeia, não como preset.** Registrado, **não inventado**;
 7. **`P8-07` — `ponta_materializada` no início:** o manual abre com *"De 1964"*, **sem mês**;
@@ -391,6 +406,9 @@ Fonte: `bloco-08-jf-detalhe.md` § 6 (trinta e três defeitos no total).
 ## 11. Ponteiros
 
 - `docs/calculo/tabelas-normativas/cjf.desapropriacao-direta.correcao-monetaria.json` — 11 segmentos
+- `docs/calculo/tabelas-normativas/cjf.desapropriacao-indireta.correcao-monetaria.json` — 11 segmentos
+- `docs/calculo/tabelas-normativas/cjf.desapropriacao-direta.juros-compensatorios.json` — 3 segmentos
+- `docs/calculo/tabelas-normativas/cjf.desapropriacao-indireta.juros-compensatorios.json` — 3 segmentos
 - `docs/calculo/consolidado/02-atualizacao-detalhe.md` **§ 5.3.1** — os compensatórios como cadeia
   própria, os três cortes, `N-6` e `N-10`
 - `docs/calculo/extracao/justica-federal/bloco-08-jf-detalhe.md` §§ 3.1, 3.1.1 — direta × indireta

@@ -11,6 +11,10 @@ o comparador precisa: **onde**, **o que está impresso**, **o que seria correto*
 **Offset de paginação zero** — número impresso = página do PDF. Fonte:
 `manual-de-calculo-trabalhista_2016-1.pdf`, julho/2016.
 
+> **Exceção de fonte: `A16`.** Vem do `manual_de_calculos_2026.pdf` (CJF), **não** do TRT-3, e
+> **não é defeito do manual** — é armadilha de implementação. Toda `pagina_pdf` citada em A16
+> refere-se a esse outro documento.
+
 **Nada aqui foi corrigido no corpus.** Os defeitos ficam registrados como são; este arquivo é
 índice, não errata aplicada.
 
@@ -208,6 +212,66 @@ técnico é **mais completa** que a da minuta. A p. 77 ainda acrescenta duas reg
 p. 330: a correção começa **um dia após** o teto ser atingido, e *"A incidência de juros sobre
 a multa é controversa."*
 
+### A16 — FGTS e poupança têm calendário próprio: aplicar aqui o das condenatórias gerais erra por um ano
+
+| | |
+|---|---|
+| **Fonte** | **outro documento** — `manual_de_calculos_2026.pdf` (CJF, Res. 990/2026), itens **4.8.3** (`pagina_pdf` **83**) e **4.9.3** (`pagina_pdf` **86**) |
+| **Impresso** | Selic de jan./2003 a **ago./2024**; **taxa legal a partir de set./2024** |
+| **Não é defeito do manual** | é **armadilha de implementação**: o manual está coerente; erra quem importa o calendário das condenatórias gerais |
+| **Bloco** | 18 (achado) / 19 (registro) |
+
+**Esta é a primeira entrada vinda do manual do CJF, e não do TRT-3.** Todas as anteriores (A1–A15)
+são defeitos do manual trabalhista. Aqui **nada está errado na fonte**; o que se registra é a
+divergência de calendário que o comparador vai encontrar.
+
+**O que muda.** As cadeias de **FGTS** e de **caderneta de poupança** **não têm** o corte de
+**dez/2021** (EC 113/2021) nem o de **set/2025** (EC 136/2025). Vão de **Selic direto a taxa legal
+em set/2024** — **um ano antes** de todas as demais —, com fundamento só na Lei 14.905/2024 e na
+Res. CMN 5.171/2024, **sem citar o ARE 1.557.312/SP**. E a **correção** dessas duas cadeias é **TR
+de maio/1993 até a data-base, sem corte nenhum**. Detalhe e eixos em
+[`consolidado/00-calendario-de-cortes.md`](consolidado/00-calendario-de-cortes.md) § 2-A.
+
+**O delta em reais NÃO é mensurável com o que está extraído. Declarado, não inventado.**
+A conta exigiria a série mensal de **Selic** e de **taxa legal** de set/2024 a ago/2025, e ela é
+**dado (B)**, fora deste repositório: a **única** tabela de taxa legal mês a mês do manual é a
+**previdenciária**, de **set/2025 a jun/2026** (`pagina_pdf` 61) — período errado **e** deflator
+errado (**INPC**, não IPCA-15). **Escopo da busca:** `manual_de_calculos_2026.pdf` conforme
+extraído em `extracao/justica-federal/` e os **32 arquivos `.json`** de `tabelas-normativas/`
+(o diretório tem 32 `.json` mais o `README.md`). Nenhum valor mensal de taxa legal anterior a
+set/2025 existe no corpus.
+
+> **A unidade era outra.** Dizia-se aqui *"os 36 JSON"*: **36 é a contagem de rótulos de
+> indexador** — 35 distintos mais `(segmento sem indexador)` —, não de arquivos. **Arquivo** e
+> **rótulo** são unidades diferentes, e trocar uma pela outra produziu um universo que nunca
+> existiu: nem antes do bloco 19 (eram 27 arquivos), nem depois (32). **A conclusão da varredura
+> foi reconferida e está certa; o universo declarado é que estava errado** — e escopo declarado
+> errado é pior que escopo não declarado, porque parece auditado.
+
+**Assinatura detectável — estrutural, e é ela que serve ao comparador:**
+
+1. **A janela de divergência tem exatamente doze meses: `2024-09` a `2025-08`.** Antes dela os dois
+   calendários concordam (Selic); depois dela também (taxa legal). **Divergência que abre em
+   set/2024, fecha em ago/2025 e é zero dos dois lados é esta armadilha** — e praticamente só ela;
+2. **O sinal é determinado, ainda que a magnitude não seja.** `taxa legal = Selic − IPCA-15`, com
+   piso zero (**R6**). Logo `taxa legal ≤ Selic`: quem aplicar o ramo **Fazenda Pública** das
+   condenatórias a um crédito de FGTS ou poupança **superestima** os juros nesses doze meses, e o
+   excesso é o **IPCA-15 acumulado do período** sobre a base de juros, descontados os meses em que
+   a taxa legal bateu no piso;
+3. **Consolidação fantasma em dez/2021.** Se o demonstrativo de FGTS ou de poupança trouxer a
+   consolidação do art. 3º da EC 113/2021 — os juros de **`0,4412%`** —, o calendário errado foi
+   aplicado. `0,4412` ocorre nas `pagina_pdf` **50, 59, 67, 74 e 79**; **nenhuma é 83 nem 86**;
+4. **Pelo lado da correção, o tell é mais barato ainda.** Qualquer índice que não seja **TR** depois
+   de maio/1993 nestas duas cadeias denuncia a importação: **IPCA-15 em set/2024** ou **Selic em
+   dez/2021** só existem no calendário geral;
+5. **E o rastro documental:** um cálculo de FGTS ou poupança que **cite o ARE 1.557.312/SP (Tema
+   1.419)** está citando fundamento que **4.8.3 e 4.9.3 não invocam**.
+
+> **O erro ainda tem uma forma que NÃO dispara pelo item 1.** Quem importar o ramo **não-Fazenda**
+> das condenatórias acerta o *indexador* dos juros em set/2024 por coincidência — lá o ramo
+> não-Fazenda também vai à taxa legal nessa data. A divergência aparece então **só na correção**
+> (IPCA-15 contra TR), e é o item 4 que a pega. **Os dois testes são necessários.**
+
 ### A5 — Índice de dez/10 com monotonicidade quebrada
 
 | | |
@@ -375,6 +439,13 @@ o centavo.**
 | 296–298 | A1 — FGTS em dobro (linha na 297) |
 | 330 | A15 — OJ 54 truncada |
 
+**Índice à parte — o manual do CJF.** A16 é a única entrada que **não** é do TRT-3, e por isso não
+entra na tabela acima: a paginação é de outro documento.
+
+| `pagina_pdf` (CJF 2026) | Armadilha |
+|---|---|
+| 83 (4.8.3) e 86 (4.9.3) | **A16 — calendário próprio de FGTS e poupança** |
+
 ---
 
 ## 6. Proveniência
@@ -390,6 +461,7 @@ o centavo.**
 | § 3.2 | `bloco-11b-relatorio.md` § 3 e `bloco-11c-relatorio.md` § 4 |
 | § 3.3 | `bloco-11c-vincendos.md` § 6 |
 | § 4 | `bloco-10-fechamento.md` § 4.1 e `bloco-11a-imputacao.md` §§ 4.1 e 5.4 |
+| **A16** | `extracao/bloco-18-relatorio.md` § 4 (achado) e os JSON `cjf.fgts.juros-mora.json` / `cjf.poupanca.juros-mora.json`, campo `ACHADO_O_CALENDARIO_E_OUTRO` |
 
 Todos os valores foram reproduzidos em `decimal.Decimal` no bloco de origem, e os quatro de
 maior impacto **foram reconferidos contra o PDF na consolidação**, com este resultado:

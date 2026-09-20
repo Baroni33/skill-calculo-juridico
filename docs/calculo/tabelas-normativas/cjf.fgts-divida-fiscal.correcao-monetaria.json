@@ -1,0 +1,125 @@
+{
+  "id": "cjf.fgts-divida-fiscal.correcao-monetaria",
+  "titulo": "Correção monetária — FGTS como DÍVIDA FISCAL (débito do empregador para com o Fundo), critério JCM",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "fgts-divida-fiscal",
+  "componente": "correcao-monetaria",
+  "criterio": "JCM",
+  "criterio_literal": "coeficiente da remuneração das contas vinculadas (JCM). Como 'JAM', 'JCM' é NOME DE CRITÉRIO, não rótulo de indexador: os indexadores são os dos segmentos. Por isso ele vive neste campo e NÃO no campo 'indexador' de segmento algum.",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "2.4.4.1",
+    "pagina_pdf": 35
+  },
+  "DECISAO_5_NAO_E_A_CADEIA_DO_ITEM_4_8": "SÃO CADEIAS DISTINTAS, e o id precisa dizê-lo sem depender de quem o lê: 'cjf.fgts-divida-fiscal.correcao-monetaria' × 'cjf.fgts.correcao-monetaria'. Sujeito distinto (o FUNDO é credor aqui; o TITULAR DA CONTA é credor lá), capítulo distinto (2 × 4), critério distinto (JCM × JAM) e até o corte da ORTN distinto (set./1983 × fev./1986; e jun./1983 na poupança). Regra do bloco 17 aplicada: o IDENTIFICADOR IDENTIFICA — 'fgts-divida-fiscal' diz QUAL cadeia é — e O ESCOPO SE DECLARA EM CAMPO — 'criterio: JCM', 'tipo_acao' e 'ESCOPO'. A sigla do critério NÃO entrou no id: sigla é rótulo, e rótulo muda.",
+  "ESCOPO": "Débito do EMPREGADOR para com o FGTS, cobrado como dívida fiscal (capítulo 2). NÃO alcança o crédito do trabalhador contra o Fundo, que é o item 4.8 e a cadeia 'cjf.fgts.correcao-monetaria'.",
+  "O_CORTE_DE_MAIO_2000_E_DESTA_CADEIA": "D8-C8 é DESTE item e NÃO ALCANÇA o item 4.8. A cadeia de 4.8.1.1 não tem corte em maio/2000: ela vai de TRD (fev./1991–abr./1993) para TR (maio/1993 em diante) e não volta a cortar.",
+  "REGRA_TRIMESTRAL": {
+    "literal": "índices mensais de correção de forma trimestral, multiplicados pela taxa de juros pro rata para o trimestre (1,0075, ou seja, a taxa mínima, aplicada para a capitalização de 3% ao ano)",
+    "pagina_pdf": 35,
+    "efeito": "Regra de APLICAÇÃO da cadeia inteira, não de um segmento: os índices mensais dos segmentos acima são aplicados TRIMESTRALMENTE, com o fator 1,0075 por trimestre. Gravada em campo de cadeia porque não corta a linha do tempo."
+  },
+  "SERIE_EXTERNA": "'tabelas de atualização mensalmente publicadas pela Caixa Econômica Federal' (pagina_pdf 35) — dado (B), fora do escopo das cadeias. Ver bloco-08-jf-detalhe.md § 8, chave 'fiscal.tabelas_fgts_cef'.",
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "O item 2.4.4.1 é LISTA, não tabela, e NÃO declara início: a primeira regra datada é 'ORTN até set./1983'. 1964-01 é materialização de janela para permitir a checagem de R1/R2, no mesmo desenho de P8-07, e NÃO afirmação do manual. 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  },
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
+  "segmentos": [
+    {
+      "inicio": "1964-01",
+      "fim": "1983-09",
+      "indexador": "ORTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 35,
+      "ponta_materializada": "inicio — o manual não dá início; a ponta é materialização de janela para permitir a checagem de R1/R2, não afirmação da fonte (mesmo desenho de P8-07)",
+      "observacao": "O item 2.4.4.1 dá a ORTN 'até set./1983' e NÃO dá início. D8-C8-bis: o corte da ORTN difere nos TRÊS lugares em que ela abre cadeia — set./1983 aqui, fev./1986 em 4.8.1.1 (FGTS fundiário) e jun./1983 na poupança (4.9.1.1).",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "1983-10",
+      "fim": "1989-10",
+      "indexador": "UPC → índices básicos de atualização dos saldos da poupança",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "SEGMENTO COMPOSTO: um único registro guarda DOIS indexadores — a UPC e 'os índices básicos de atualização dos saldos da poupança' —, e o item 2.4.4.1 NÃO DATA a fronteira entre eles. Um rótulo só não os representa, e escolher um dos dois, ou arbitrar a data de virada, seria inventar. A correção é partir o segmento quando a fonte der a data, não classificá-lo. Mesmo desenho de 'Ufir → Selic (bifurcado por fato gerador)' (P17-03).",
+      "tipo_indexador_pendencia": "P17-03",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 35,
+      "regra_literal": "Unidade Padrão de Capital (UPC) e os índices básicos de atualização dos saldos da poupança.",
+      "observacao": "O item lista os dois indexadores em sequência e NÃO DATA a fronteira entre eles. O fim 1989-10 vem da linha seguinte ('conversão em BTNF em 1º/11/1989'), não deste segmento.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "1989-11",
+      "fim": "1991-01",
+      "indexador": "BTNF",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Bônus do Tesouro Nacional Fiscal. RÓTULO NOVO no repositório, trazido pelo item 2.4.4.1 (pagina_pdf 35) e pela NOTA 3 do item 4.9.1.1 (pagina_pdf 85). NÃO está na lista do item 4.1.2.4 — que nomeia o BTN, não o BTNF — e nenhuma fonte do corpus o classifica. Herdar 'nominal' do BTN 'porque o nome é quase o mesmo' é exatamente a dedução que o bloco 17 proibiu, e é a mesma classe de erro de 'IPC' × 'IPC/IBGE' e de 'IPC/IBGE' × 'IPC/FGV'. SEM FONTE, logo pendência.",
+      "tipo_indexador_pendencia": "P19-02",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 35,
+      "fundamento": "Item 2.4.4.1 do Manual CJF, Res. 990/2026.",
+      "regra_literal": "O valor do débito deve ser convertido em BTNF, em 1º/11/1989, aplicando-se juros mensais de 1% simples e multa de 20%.",
+      "multiplicador_transicao": {
+        "valor": "126,8621",
+        "quando": "1991-02",
+        "texto": "Os valores convertidos em BTN deverão ser convertidos em cruzeiros, em 1º/2/1991, com a multiplicação por 126,8621."
+      }
+    },
+    {
+      "inicio": "1991-02",
+      "fim": "2000-05",
+      "indexador": "TRD",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Taxa Referencial Diária. A fonte externa do bloco 19 nomeia TBF, Redutor-R e TR — e NÃO nomeia a TRD. Estender a razão da TR à TRD por semelhança de nome é a dedução proibida. Continua SEM FONTE, logo P18-01.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 35,
+      "observacao": "O manual escreve 'De fev./1991 a maio/2000'.",
+      "D8_C8": "MAIO/2000 PERTENCE A DOIS INTERVALOS. 'De fev./1991 a maio/2000' e 'A partir de maio/2000', SEM REGRA DE DESEMPATE. E o item 2.4.4.2 usa fronteira DIFERENTE para o mesmo tema — 'Nov./1989 a abr./2000' e 'A partir de maio/2000'. A sobreposição de 2000-05 que o validador acusa É DO MANUAL. Não harmonizada — P8-08.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    },
+    {
+      "inicio": "2000-05",
+      "fim": "2026-06",
+      "indexador": "TR",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "FONTE EXTERNA AO CORPUS (BCB, verificada fora do agente) — TBF, Redutor-R e TR são divulgados para PERÍODO ENTRE DATAS DE ANIVERSÁRIO, não para mês calendário (17/02 a 17/03, 03/05 a 03/06, 05/10 a 05/11); e a TR é PREFIXADA, com variação divulgada para o mês seguinte.",
+      "tipo_indexador_razao": "período entre datas de aniversário e prefixação",
+      "tipo_indexador_fechamento": "NÃO se fecha esperando fonte. A fonte chegou, e o que ela diz é que a TR não cabe em mês calendário — logo não há classe a atribuir. Fecharia só se a modelagem ganhar classe para período entre datas de aniversário, ou se a cadeia declarar a conversão para competência em 'aplicacao'.",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 35,
+      "ponta_materializada": "fim — o manual escreve 'A partir de maio/2000'",
+      "observacao": "Ver D8-C8 no segmento anterior: maio/2000 está nos dois.",
+      "fundamento": null,
+      "fundamento_nao_extraido": "O FUNDAMENTO DESTA LINHA NÃO ESTÁ NA FONTE EXTRAÍDA. A tabela do manual traz o período e o critério; a coluna de fundamento legal, quando existe, não foi transcrita linha a linha para esta linha em particular. 'fundamento: null' aqui é AUSÊNCIA DECLARADA, não campo esquecido — mesmo desenho de 'taxa' + 'taxa_nao_extraida'. Herdar o fundamento da linha vizinha seria dedução por proximidade. Fecha quando a linha for extraída com a sua coluna de fundamento."
+    }
+  ]
+}

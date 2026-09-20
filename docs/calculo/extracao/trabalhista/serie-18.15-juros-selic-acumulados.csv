@@ -6,7 +6,12 @@
 #   taxa-selic-mensal            — taxa do mês, tributos federais
 #   selic-acumulada-ate-maio-2016 — acumulado da competência à vigência
 # Zeros em meses posteriores à edição (maio/2016) são do original.
-# tipo do indexador (R3): Selic=englobante (engloba correcao e juros, R1).
+# tipo do indexador (R3): Selic=percentual — reclassificada no BLOCO 19, que
+#   RETIROU o valor 'englobante' do vocabulário de tipo_indexador.
+#   A Selic ENGLOBA correção e juros: isso segue VERDADEIRO, é FATO DE R1 e
+#   vive no campo 'engloba' das cadeias, que não mudou. O que mudou foi só a
+#   CLASSE DE R3 — 'englobante' ali era erro de categoria e deixava a Selic
+#   cega para a comparação de defasagem, embora ela tenha defasagem.
 # Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
 pagina_pdf,item,serie,chave,valor,quadro
 468,18.15,1995,Janeiro,"0,00%",taxa-selic-mensal

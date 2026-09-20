@@ -204,6 +204,110 @@ seguem por GPS **ainda que pagas depois**. O eixo é o trânsito, não o pagamen
 
 ---
 
+## 2-A. Um calendário DISTINTO: FGTS e caderneta de poupança
+
+**Esta seção não é uma exceção em nota, e não é o décimo segundo par.** É um **segundo eixo de
+calendário**: duas cadeias do manual do CJF que **não compartilham as datas de corte das demais**.
+Quem implementar por § 2 e tratar FGTS e poupança como caso de borda do calendário geral **erra por
+um ano inteiro** — ver [`../armadilhas-comparador.md`](../armadilhas-comparador.md) **A16**.
+
+### 2-A.1 Por que seção própria, e não linhas na tabela de pares
+
+O desenho de § 2 é um **índice positivo**: cada linha afirma *"nesta data, por este eixo, mudam
+estes pontos"*. **O achado de FGTS e poupança é, em sua maior parte, um conjunto de AUSÊNCIAS** —
+**não há** corte de `2021-12` e **não há** corte de `2025-09` nestas duas cadeias. **Ausência de
+corte não tem par `(data, eixo)`**: não existe a linha que se escreveria. O par que *existe* —
+`2024-09` — entra abaixo, mas sozinho ele **esconde** o achado, porque o que importa é o que **não**
+acompanha. Daí a seção.
+
+**A contagem de § 2 não muda:** continuam **onze pares**. Esta seção acrescenta **um eixo**, não um
+par.
+
+### 2-A.2 As duas cadeias, inteiras
+
+Itens **4.8.3** (FGTS, `pagina_pdf` 83) e **4.9.3** (poupança, `pagina_pdf` 86) — **a mesma tabela,
+palavra por palavra** — e os itens de correção **4.8.1.1** e **4.9.1.1**.
+
+| Componente | Cadeia | Cortes depois de 1993 |
+|---|---|---|
+| **Correção monetária** | **TR de maio/1993 até a data-base (jun/2026)** | **nenhum** |
+| **Juros de mora** | 0,5% simples até dez/2002 → **Selic** (jan/2003–ago/2024) → **taxa legal** | **um só: `2024-09`** |
+
+**Fundamento do corte de `2024-09`:** art. 406 do CC na redação da **Lei 14.905/2024** e **Res. CMN
+5.171/2024** — **e nada mais**. **Não citam o ARE 1.557.312/SP (Tema 1.419)**, que todas as demais
+cadeias citam. Transcrito como está, **não harmonizado**.
+
+**Verificação da ausência de `2021-12`, com escopo declarado:** o valor `0,4412` — os juros de
+dez/2021 com que as cadeias consolidam — ocorre nas `pagina_pdf` **50, 59, 67, 74 e 79**, e
+**nenhuma é 83 nem 86**. FGTS e poupança **não estão entre os cinco lugares que consolidam**.
+Detalhe em [`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md) § 5.3.4.
+
+### 2-A.3 O eixo de `2024-09` — mesma data, eixo diferente
+
+**É o padrão de 11/11/2017 outra vez, e é por isso que a data sozinha não serve de chave.**
+
+| Cadeia | Eixo de `2024-09` | O que a data faz |
+|---|---|---|
+| **FGTS (4.8.3) e poupança (4.9.3)** | **competência da parcela**, pura — o segmento **não tem condição** | **move todo mundo**: Selic → taxa legal |
+| **Condenatórias em geral (4.2.1.1 e 4.2.2)** | **competência da parcela ⊕ natureza do devedor** | **move só o ramo não-Fazenda** (→ IPCA-15 e taxa legal); o ramo **Fazenda Pública continua em Selic** até `2025-09` |
+
+**A consequência é aguda.** Em `2024-09` o devedor Fazenda Pública das condenatórias **não muda de
+regime**; o titular de conta de FGTS ou de poupança **muda**. Duas parcelas da mesma competência,
+tratadas pelo mesmo manual, **recebem respostas opostas nessa data** — e a diferença não está na
+data, está no eixo.
+
+> **Escopo da varredura que sustenta o quadro:** busca por `2024-09` nos **32 arquivos `.json`**
+> de `../tabelas-normativas/` (o diretório tem 32 `.json` mais o `README.md`). **A unidade aqui é
+> ARQUIVO.** Dizia-se *"os 36 JSON"*, e **36 é a contagem de rótulos de indexador** — 35 distintos
+> mais `(segmento sem indexador)` —, unidade diferente; a troca de uma pela outra declarava um
+> universo que não existiu nem antes (27 arquivos) nem depois (32) do bloco 19. **A conclusão foi
+> reconferida e não muda.** Ocorre em **quatro cadeias** —
+> `cjf.condenatorias-gerais.correcao-monetaria`, `cjf.condenatorias-gerais.juros-mora`,
+> `cjf.fgts.juros-mora`, `cjf.poupanca.juros-mora` — e no catálogo de tipos. **Nenhuma outra cadeia
+> do repositório tem corte em set/2024.** Os dois primeiros trazem `condicao.devedor`; os dois
+> últimos **não trazem condição alguma**.
+
+### 2-A.4 E os eixos que só existem nestas duas cadeias
+
+Não são cortes de calendário, e por isso ficam aqui e não em § 2.10 — **mas são eixos**, e quem
+implementar por competência os perde:
+
+| Eixo | Onde | Item |
+|---|---|---|
+| **saque integral da conta** | FGTS | 4.8, NOTA 2 (`D8-C12`) |
+| **data de abertura da conta** | poupança, juros remuneratórios | 4.9.2, NOTA 2 (`D8-C16`/`N-11`) — **4.5.2 e 4.6.2 aplicam a mesma fórmula por competência** |
+| **aniversário da conta** | poupança, correção | 4.9.1.1, NOTA 2 — *"em cada aniversário, os índices relativos à data-base da conta"* |
+| **bloqueio e conversão** (Plano Collor) | poupança, cruzados novos bloqueados | 4.9.1.1, NOTA 3 — **cadeia paralela não tabulada**, ver § 2-A.5 |
+
+### 2-A.5 A NOTA 3 de 4.9.1.1 — por que NÃO virou cadeia
+
+`pagina_pdf` 85, literal: *"Para correção de cruzados novos bloqueados na forma da Lei n. 8.024/1990
+— Plano Collor (conversão da MP n. 168/1990), aplicam-se os seguintes índices **até a data da
+conversão**: **BTNF desde o bloqueio** até jan./1991; e **TRD**, de fev./1991 em diante."*
+
+**Não foi gerada como cadeia temporal na tarefa 3 do bloco 19** — as cinco geradas foram 4.5.3,
+4.6.1.1, 4.6.3, 2.3.2.2 e 2.4.4.1. **E não deve ser**, por três razões, nesta ordem de força:
+
+1. **As duas pontas não são datas de calendário.** O início é **o bloqueio** e o fim é **a data da
+   conversão** — eventos **da conta individual**, não competências. O schema `cadeia-temporal`
+   indexa por competência e **não expressa este eixo**. É o mesmo motivo pelo qual 4.8.2 e 4.9.2
+   não viraram cadeia;
+2. **É regime ALTERNATIVO, não trecho da linha do tempo.** Vale para um **subconjunto de saldos** e
+   **convive** com a tabela de 4.9.1.1 nos mesmos meses. Gravá-la como segmento violaria **R2** —
+   passaria a haver dois indexadores para a mesma competência sem ramo declarado;
+3. **O `BTNF` é `P19-02`.** A tarefa 3 deste bloco o classificou **`indeterminado`** — o item 4.1.2.4
+   nomeia o **BTN**, não o BTNF, e nenhuma fonte do corpus lhe atribui tipo. Uma cadeia nova
+   reabriria a pendência num segundo lugar sem resolver nada. **Razão de apoio, não decisiva**: a
+   cadeia do FGTS fiscal já carrega `BTNF` com a pendência declarada.
+
+**Onde ela vive, então:** no campo `notas` de
+[`../tabelas-normativas/cjf.poupanca.correcao-monetaria.json`](../tabelas-normativas/cjf.poupanca.correcao-monetaria.json),
+com `pagina_pdf` e com o `efeito` que registra por que não virou segmento; e em
+[`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md) § 5.3.3. **Está tratada, não perdida** — é a
+mesma ressalva de cobertura que § 1 faz para `CH-01`–`CH-05`.
+
+---
+
 ## 3. O corte de 2023-03-20 — e a armadilha da fonte oficial
 
 **OJ 394 da SDI-1.** O item I passou a admitir a repercussão do RSR majorado em férias, 13º,

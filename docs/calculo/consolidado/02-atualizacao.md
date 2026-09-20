@@ -248,14 +248,25 @@ dez/2002 → Selic → **taxa legal em set/2024**, sem dez/2021 nem set/2025; **
 5.107/**1986**"*, que é de 1966), `D8-D19`, `D8-D24`, `D8-D25`. **A varredura dos caps. 2 e 4
 (detalhe § 5.0) achou mais oito cadeias tabuladas sem JSON** — 4.5.2, 4.5.3, **4.6.1.1, 4.6.2,
 4.6.3** (indireta inteira), 2.3.2.2, 2.4.2.2.2 e **2.4.4.1** (FGTS **fiscal**, critério **`JCM`**,
-que **não é** a de 4.8): **`P18-02`**. **`4.7.1` não é lacuna** — não há tabela de correção
-trabalhista no manual; ele delega ao TST.
+que **não é** a de 4.8): **`P18-02`**. **Na tarefa 3 do bloco 19 cinco delas foram geradas** — 4.5.3,
+4.6.1.1, 4.6.3, 2.3.2.2 e 2.4.4.1 — e **`P18-02` encolheu para três**: **4.5.2**, **4.6.2** e
+**2.4.2.2.2**, cujas tabelas **nunca foram extraídas linha a linha** (detalhe § 5.3.6).
+**`4.7.1` não é lacuna** — não há tabela de correção trabalhista no manual; ele **delega ao TST**, e
+**é a delegação que se registra, não a ausência**.
 
 **Juros, cadeias autônomas:** `cjf.condenatorias-gerais.juros-mora` bifurca em **jul/2009** e
 reconverge em **set/2025** (taxa legal); `cjf.trabalhista.juros-mora` bifurca em **ago/2001** e
 **nunca reconverge** — o ramo empresa pública/prestador segue em **1,0% a.m.**, e traz a
 **R4-EXCEÇÃO** (1,0% **composta**, mar/87–mar/91). **R-08-08 — a bifurcação por devedor não é
 universal:** três cadeias nunca bifurcam.
+
+**E há um TERCEIRO recorte nas condenatórias, que não é Fazenda × não-Fazenda: a qualidade do
+crédito.** Para **créditos de servidores(as) e empregados(as) públicos(as)** os juros do período
+**anterior a jul/2009** são **1% a.m. até jul/2001** e **0,5% a.m. de ago/2001 a jun/2009**
+(4.2.2, NOTA 3, `pagina_pdf` 55) — **onde a tabela dá Selic desde jan/2003** —, e a correção das
+**remunerações** desses mesmos credores tem termo inicial no **mês da competência, não no de
+pagamento** (4.2.1.1, NOTA 3, `pagina_pdf` 49). **A nota restringe a tabela.** Literais e o porquê
+de não virar ramo em [`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md) § 5.2-A.
 
 **Quatro fórmulas de `aplicacao`, e D1 ≠ D2 sobre a mesma série:** **D1** — Selic no mês posterior
 ao de sua competência, **inclusive no mês de pagamento** (Fazenda, desde dez/2021; a taxa legal segue
@@ -456,7 +467,8 @@ superveniente de legislação sobre o indexador passa por cima do título), **R9
 | **Base 4** | ADI 7873 | base § 9 | aguarda julgamento |
 | **`N-5`/`D8-C13`** | expurgos do FGTS — **substituem ou acrescem?** | `pagina_pdf` 82 | **aberta, e não se resolve** — os percentuais **não viraram segmento** |
 | **P18-01** | `JAM`, `UPC`, `LBC`, `LBC – 0,5%`, `LFT – 0,5%`, `TRD`, `IPC` **sem classificação em fonte** | item 4.1.2.4 não os nomeia | `indeterminado` — **19 `R3-INDETERMINADO`** no validador |
-| **P18-02** | **oito cadeias tabuladas do manual sem JSON** — 4.5.2, 4.5.3, 4.6.1.1, 4.6.2, 4.6.3, 2.3.2.2, 2.4.2.2.2, 2.4.4.1 | detalhe § 5.0 | aberta — 2.3.2.2 e 2.4.2.2.2 exigem `base_incidencia` (`D8-C5`) |
+| **P18-02** | eram **oito** cadeias tabuladas sem JSON; **são TRÊS** — **4.5.2**, **4.6.2** e **2.4.2.2.2** | detalhe §§ 5.0 e **5.3.6** | **aberta, e por falta de FONTE**: as três tabelas nunca foram extraídas linha a linha. **`base_incidencia` deixou de bloquear** — o campo existe e está em uso em `cjf.divida-fiscal.juros-mora` |
+| **P19-02** | **`BTNF` sem classificação em fonte** | item 4.1.2.4 nomeia o **BTN**, não o BTNF | `indeterminado` — herdar do BTN seria dedução por nome |
 
 **Defeitos do original que atravessam a cadeia** — não corrigidos, catalogados em
 `../armadilhas-comparador.md`: **A5** (índice de dez/10, `pagina_pdf` 96, monotonicidade quebrada — o

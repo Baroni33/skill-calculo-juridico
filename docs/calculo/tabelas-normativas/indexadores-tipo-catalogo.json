@@ -1,6 +1,6 @@
 {
   "id": "indexadores-tipo-catalogo",
-  "titulo": "Tipo do indexador — nominal × percentual × englobante. Catálogo único da invariante R3",
+  "titulo": "Tipo do indexador — nominal × percentual × janela-deslocada. Catálogo único da invariante R3",
   "tipo": "catalogo",
   "categoria": "A-semantica",
   "componente": "tipo-do-indexador",
@@ -39,15 +39,98 @@
       "sustenta": [
         "Selic",
         "taxa-legal"
+      ],
+      "NOTA_DO_BLOCO_19": "Isto é FATO DE R1, e o campo que o guarda é 'engloba'. Gravá-lo TAMBÉM em 'tipo_indexador', sob o valor 'englobante', era ERRO DE CATEGORIA: punha um fato de R1 dentro do campo de R3 e, com isso, deixava a SELIC CEGA PARA R3 — ela nunca entrava em comparação de defasagem, embora tenha defasagem. A § 7 de 00-base-normativa.md NÃO foi alterada; o que mudou foi o campo onde o fato dela mora. 'engloba' continua exatamente como estava."
+    }
+  },
+  "FONTE_EXTERNA_AO_CORPUS": {
+    "DECLARACAO": "O que segue NÃO foi extraído do corpus deste repositório. É fonte EXTERNA, trazida no enunciado do bloco 19 e verificada fora do agente. Declarada aqui, e marcada em cada classificação que dela depende, porque a disciplina do projeto é que afirmação sem lastro no material extraído apareça como tal. Nenhuma busca na web foi feita.",
+    "IBGE": {
+      "o_que_diz": "O IPCA-15 difere do IPCA apenas no PERÍODO DE COLETA, que abrange do dia 16 do mês anterior ao dia 15 do mês de referência, e na abrangência geográfica. O IPCA-E foi criado em dezembro de 1991 e passou a ser divulgado trimestralmente a partir de janeiro de 1995; o IPCA-E mensal das tabelas judiciais é o IPCA-15.",
+      "sustenta": [
+        "IPCA-15/IBGE",
+        "IPCA-E/IBGE"
+      ],
+      "efeito": "Período de coleta a cavaleiro de dois meses calendário — metade em M−1, metade em M. Não é 'nominal' (M−1 inteiro) nem 'percentual' (M inteiro): é a classe 'janela-deslocada'."
+    },
+    "BCB": {
+      "o_que_diz": "TBF, Redutor-R e TR são divulgados para PERÍODO ENTRE DATAS DE ANIVERSÁRIO, não para mês calendário (17/02 a 17/03, 03/05 a 03/06, 05/10 a 05/11). E a TR é PREFIXADA, com variação divulgada para o mês seguinte.",
+      "sustenta": [
+        "TR",
+        "remuneração básica da caderneta de poupança (TR)"
+      ],
+      "NAO_sustenta": [
+        "TRD",
+        "TBF e Redutor-R — nomeados pela fonte, mas ausentes das 15 cadeias; nada a classificar"
+      ],
+      "efeito": "A TR não tem competência mensal a alinhar: o período não é o mês, e a taxa é prospectiva. NÃO é 'sem fonte' — a fonte existe e diz que o índice NÃO CABE na tricotomia. Ver 'razoes_de_indeterminado'."
+    },
+    "classificacao_trazida": {
+      "nominal (reflete M−1)": [
+        "Ufir",
+        "BTN",
+        "OTN",
+        "ORTN"
+      ],
+      "percentual (reflete M)": [
+        "IPCA",
+        "INPC",
+        "SELIC acumulada"
+      ],
+      "janela-deslocada (metade de M−1, metade de M)": [
+        "IPCA-15",
+        "IPCA-E"
+      ],
+      "indeterminado (sem regra de conversão declarada)": [
+        "TR",
+        "e o que restar"
+      ],
+      "COMO_FOI_USADA": "Mapeamento UM A UM contra os 34 rótulos efetivamente presentes nas 15 cadeias — nunca por semelhança de nome. Rótulo que a tabela não alcança permanece 'indeterminado'. Ver 'MAPEAMENTO_BLOCO_19'.",
+      "DIVERGENCIAS": "IGP-DI — a tabela externa não o nomeia; o item 4.1.2.4, letra b, o nomeia LITERALMENTE. Prevalece a FONTE EXTRAÍDA: segue 'percentual'. 'IPCA' nu — a tabela o nomeia, e NENHUMA cadeia tem rótulo 'IPCA' nu; não há o que classificar, e 'IPCA série especial' NÃO é ele (segmento próprio do manual). 'taxa-legal' — a tabela externa NÃO a alcança, e por isso ela cai em 'indeterminado', não em 'percentual' por analogia com a SELIC."
+    }
+  },
+  "razoes_de_indeterminado": {
+    "POR_QUE_DUAS": "'indeterminado' vinha significando uma coisa só — 'nenhuma fonte classifica' — e carregava sempre 'tipo_indexador_pendencia'. O bloco 19 separa duas situações que se FECHAM DE FORMAS DIFERENTES, e a distinção precisa aparecer no campo, não na prosa.",
+    "sem-fonte": {
+      "campo": "tipo_indexador_pendencia",
+      "o_que_afirma": "o conceito se aplica e NENHUMA fonte o classifica",
+      "como_fecha": "quando a fonte chegar — P17-01, P18-01, P19-01",
+      "exemplos": [
+        "IPC",
+        "IPC/FGV",
+        "IPC-R",
+        "IRSM",
+        "UPC",
+        "LBC",
+        "TRD",
+        "taxa-legal"
+      ]
+    },
+    "fonte-diz-que-nao-cabe": {
+      "campo": "tipo_indexador_razao",
+      "o_que_afirma": "HÁ fonte, e ela diz que o índice não cabe em mês calendário — logo não há classe a atribuir",
+      "como_fecha": "NÃO se fecha esperando fonte. Só se fecha se a modelagem passar a ter classe para período entre datas de aniversário, ou se o cálculo declarar a conversão.",
+      "exemplos": [
+        "TR",
+        "remuneração básica da caderneta de poupança (TR)"
+      ],
+      "REGRA": "'tipo_indexador_razao' e 'tipo_indexador_pendencia' são MUTUAMENTE EXCLUDENTES. Segmento.de_dict rejeita os dois juntos, e rejeita razão em tipo que não seja 'indeterminado'."
+    },
+    "fora-das-duas": {
+      "o_que_e": "rótulo que não é índice: segmento composto (P17-03) e índice não declarado pelo manual (P9-02). Não há o que classificar, e por isso não há razão material a registrar — o que há é um defeito de modelagem ou de fonte, já pendente.",
+      "exemplos": [
+        "Ufir → Selic (bifurcado por fato gerador)",
+        "NAO-DECLARADO-PELO-MANUAL"
       ]
     }
   },
   "valores_de_tipo": {
     "nominal": "fixado em valores nominais na moeda corrente da época; reflete a inflação do mês (ou dia) ANTERIOR. Item 4.1.2.4, letra a.",
     "percentual": "fixado em valores percentuais; reflete a inflação do PRÓPRIO mês de competência. Item 4.1.2.4, letra b.",
-    "englobante": "cobre correção monetária E juros no mesmo fator (R1). NÃO é índice de inflação — D8-C22 é literal quanto à Selic — e por isso a dicotomia do item 4.1.2.4, que fala em 'refletir a inflação', não lhe é aplicável. Forçá-la em nominal ou percentual seria dedução, e dedução materialmente errada.",
+    "janela-deslocada": "BLOCO 19. O período de COLETA não coincide com o mês calendário: cai metade em M−1 e metade em M — do dia 16 do mês anterior ao dia 15 do mês de referência. Não reflete M−1 inteiro (não é 'nominal') nem M inteiro (não é 'percentual'), e a virada contra qualquer das duas desloca o cálculo tanto quanto a virada entre elas. Sustentado em FONTE EXTERNA AO CORPUS (IBGE), declarada acima.",
+    "englobante": "VALOR RETIRADO NO BLOCO 19, e nenhum segmento o usa. Era o valor de Selic e taxa legal. ERRO DE CATEGORIA: englobamento é fato de R1, e o campo que o guarda é 'engloba' — que os segmentos SEMPRE tiveram e que não mudou. Gravá-lo também em 'tipo_indexador' deixava a SELIC CEGA PARA R3: ela nunca entrava em comparação de defasagem, embora tenha defasagem. Segue no domínio apenas para que dado antigo não estoure na leitura; test_valida_cobertura.py prova que nenhuma cadeia voltou a usá-lo.",
     "nao-indexador": "o segmento não referencia índice algum: padrão monetário, operação de conversão, ou juros fixados em percentual legal. Valor PRÓPRIO, e não ausência do campo, porque ausência é indistinguível de 'esquecemos de classificar' — que é exatamente a falha que este catálogo existe para curar. 'nao-indexador' afirma: verificado, e o conceito não se aplica.",
-    "indeterminado": "o conceito se aplica, mas NENHUMA fonte do corpus o classifica. Não é o mesmo que 'nao-indexador'. Toda ocorrência é pendência aberta."
+    "indeterminado": "o conceito se aplica e NÃO HÁ CLASSE ATRIBUÍVEL. Não é o mesmo que 'nao-indexador'. Duas razões, que se fecham de formas diferentes — ver 'razoes_de_indeterminado': (1) SEM FONTE, campo 'tipo_indexador_pendencia', fecha quando a fonte chegar; (2) A FONTE DIZ QUE NÃO CABE, campo 'tipo_indexador_razao', não fecha esperando fonte."
   },
   "ESCOPO_DA_BUSCA_DE_AUSENCIA": {
     "por_que": "Afirmação de ausência exige escopo declarado (regra do bloco 17).",
@@ -93,6 +176,107 @@
     "fonte_primaria_relida": "PDF manual_de_calculos_2026.pdf, pagina_pdf 81–87 (itens 4.8 e 4.9) e 35–36 (item 2.4.4.1), integrais.",
     "resultado": "ZERO ocorrências classificatórias para UPC, LBC, LFT, JAM e 'remuneração básica'. Para TRD as únicas ocorrências são o texto padrão 'nao-indexador' dos segmentos de juros-mora — que diz que ALI a TRD é regra de juros, não índice de correção, e portanto NÃO classifica a TRD como indexador. Para 'IPC' as ocorrências classificatórias são todas do 'IPC/IBGE' (D8-C21), rótulo distinto do 'IPC' nu de 4.8.1.1. O item 2.4.4.1 (pagina_pdf 35) apenas expande a sigla — 'Unidade Padrão de Capital (UPC)' —, o que é rotulagem e não classificação. CONCLUSÃO: todos indeterminados, pendência P18-01."
   },
+  "ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_19": {
+    "por_que": "Afirmação de ausência exige busca com escopo declarado (regra do bloco 17). Duas ausências novas precisam de prova: a da 'taxa-legal' (que perdeu o valor 'englobante' e precisa mostrar que NADA no corpus a classifica) e a dos rótulos que a tabela externa nomeia mas que podem não existir nas cadeias.",
+    "arvores_varridas": [
+      "docs/",
+      "skills/",
+      "scripts/",
+      "tests/",
+      "README.md"
+    ],
+    "extensoes": [
+      ".md",
+      ".json",
+      ".csv",
+      ".py"
+    ],
+    "criterio": "toda linha que contenha o termo (case-insensitive) e, na mesma linha, qualquer de 'nominal', 'nominais', 'percentual', 'percentuais', 'janela'",
+    "termos": [
+      "taxa legal",
+      "taxa-legal",
+      "IGP-M",
+      "TDA",
+      "JCM",
+      "IPCA"
+    ],
+    "resultado": {
+      "taxa-legal": "ZERO ocorrências que ATRIBUAM tipo com citação de item e pagina_pdf. As únicas linhas que a acompanham de vocabulário de tipo são as que este bloco reescreve e a própria § 7 de 00-base-normativa.md, que fala de ENGLOBAMENTO (R1), não de defasagem (R3). valida_taxa_legal.py a trata como DERIVADA (TL = Fator_Selic / Fator_Deflator − 1), o que confirma que não é índice publicado — mas 'é derivada' não atribui classe. CONCLUSÃO: sem fonte, P19-01.",
+      "IGP-M": "Ocorre no corpus SÓ dentro do literal do item 4.1.2.4 e nas transcrições dele. NÃO é rótulo de indexador de segmento algum nas 15 cadeias — verificado varrendo o campo 'indexador' dos 126 segmentos. Nada a mapear.",
+      "TDA": "Ocorre como objeto de direito material (títulos da dívida agrária, item 4.5.4, corte de ago./2017), nunca como rótulo de indexador de segmento. Nada a mapear.",
+      "JCM": "É o NOME DO CRITÉRIO do FGTS fiscal (item 2.4.4.1), cadeia AUSENTE do repositório (P18-02). Não é rótulo de indexador de segmento algum. Nada a mapear. Mesmo desenho do JAM, que já constava.",
+      "IPCA (nu)": "NENHUM segmento das 15 cadeias tem 'IPCA' como rótulo. Os rótulos existentes são 'IPCA-E/IBGE', 'IPCA-15/IBGE' e 'IPCA série especial'. A linha 'IPCA → percentual' da tabela externa, portanto, NÃO TEM DESTINATÁRIO no repositório, e não pode ser derramada sobre os três rótulos que existem."
+    },
+    "COMO_FOI_LEVANTADA_A_LISTA": "Do repositório, não da tabela: varredura do campo 'indexador' de todos os segmentos de todo arquivo com tipo == 'cadeia-temporal' em docs/calculo/tabelas-normativas/. 126 segmentos, 34 rótulos distintos (contando '(segmento sem indexador)' como um). É a lista de MAPEAMENTO_BLOCO_19."
+  },
+  "MAPEAMENTO_BLOCO_19": {
+    "o_que_e": "Os rótulos de indexador efetivamente presentes nas cadeias, mapeados UM A UM contra a tabela externa. Eram 34 em 15 cadeias na tarefa 2; são 36 em 20 cadeias depois da tarefa 3, que gerou cinco cadeias de P18-02 e trouxe DOIS rótulos novos, ambos 'indeterminado': 'BTNF' (sem fonte, P19-02) e 'UPC → índices básicos de atualização dos saldos da poupança' (segmento composto, P17-03). Cada entrada de 'indexadores' traz a fonte; aqui fica o resumo auditável e a contagem.",
+    "totais": {
+      "rotulos": 36,
+      "nominal": 4,
+      "percentual": 5,
+      "janela-deslocada": 2,
+      "nao-indexador": 8,
+      "indeterminado": 17,
+      "englobante": 0,
+      "CONFERIDO_POR": "test_valida_cobertura.py::TestMapeamentoBloco19 recomputa estes números do próprio catálogo e das cadeias. Contagem cravada em prosa envelhece; esta falha quando envelhecer."
+    },
+    "indeterminado_por_razao": {
+      "sem-fonte (fecha quando a fonte chegar)": {
+        "quantos": 13,
+        "quais": {
+          "P17-01": [
+            "IPCA série especial",
+            "IPC/FGV",
+            "IPC-R",
+            "IRSM"
+          ],
+          "P18-01": [
+            "IPC",
+            "UPC",
+            "LBC",
+            "LBC – 0,5%",
+            "LFT – 0,5%",
+            "TRD"
+          ],
+          "P19-01": [
+            "taxa-legal"
+          ],
+          "P9-02": [
+            "NAO-DECLARADO-PELO-MANUAL"
+          ],
+          "P19-02": [
+            "BTNF"
+          ]
+        },
+        "ressalva": "'NAO-DECLARADO-PELO-MANUAL' não é índice: é índice NÃO DECLARADO pela fonte (P9-02). Conta como indeterminado porque é o que o campo grava, mas a cura é de fonte, não de classificação."
+      },
+      "fonte-diz-que-nao-cabe (NÃO fecha esperando fonte)": {
+        "quantos": 2,
+        "quais": [
+          "TR",
+          "remuneração básica da caderneta de poupança (TR)"
+        ],
+        "razao": "período entre datas de aniversário e prefixação",
+        "fonte": "FONTE EXTERNA AO CORPUS (BCB)"
+      },
+      "segmento-composto (P17-03)": {
+        "quantos": 2,
+        "quais": [
+          "Ufir → Selic (bifurcado por fato gerador)",
+          "UPC → índices básicos de atualização dos saldos da poupança"
+        ],
+        "nota": "Terceira situação, à parte das duas: não é 'sem fonte' nem 'a fonte diz que não cabe' — é um registro que guarda DOIS índices e que nenhum rótulo único representa. A cura é partir o segmento. Eram um; são dois desde a tarefa 3 do bloco 19. 13 + 2 + 2 = 17."
+      }
+    },
+    "violacoes_r3_novas": "Ver 'R3_NOVAS_DO_BLOCO_19'.",
+    "divergencias_tabela_x_fonte_extraida": [
+      "IGP-DI — a tabela externa não o nomeia; o item 4.1.2.4, letra b, o nomeia LITERALMENTE. Prevalece a fonte extraída: 'percentual'.",
+      "IPCA — a tabela externa o nomeia 'percentual'; nenhuma cadeia tem rótulo 'IPCA' nu. Linha sem destinatário.",
+      "IPC/IBGE — a tabela externa não o nomeia; D8-C21 o sustenta como 'percentual'. Prevalece a fonte extraída.",
+      "taxa-legal — nem a tabela externa nem o corpus a alcançam. Perdeu 'englobante' e caiu em 'indeterminado' (P19-01), NÃO em 'percentual' por analogia com a SELIC."
+    ]
+  },
   "indexadores": {
     "ORTN": {
       "tipo": "nominal",
@@ -121,36 +305,44 @@
     },
     "IGP-DI": {
       "tipo": "percentual",
-      "fonte": "item 4.1.2.4, letra b, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos"
+      "fonte": "item 4.1.2.4, letra b, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "CONFERIDO_NO_BLOCO_19": "A tabela externa do enunciado NÃO nomeia o IGP-DI. A fonte EXTRAÍDA o nomeia literalmente: o `literal` do item 4.1.2.4 transcrito no topo deste arquivo lê 'b) Percentuais (ou reais) [...] Ex.: INPC, IGP-DI, IGP-M', e bloco-08-jf.md linha 61 traz a mesma transcrição. A regra é 'salvo se a fonte extraída disser o contrário' — e aqui ela diz. PERMANECE 'percentual'. Divergência registrada, não harmonizada."
     },
     "IPC/IBGE": {
       "tipo": "percentual",
       "fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'"
     },
     "Selic": {
-      "tipo": "englobante",
-      "fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros"
+      "tipo": "percentual",
+      "fonte": "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — 'SELIC acumulada' é classe `percentual`, reflete M. Ver FONTE_EXTERNA_AO_CORPUS.classificacao_trazida.",
+      "identificacao_declarada": "A FONTE EXTERNA CLASSIFICA 'SELIC ACUMULADA'; O RÓTULO DO REPOSITÓRIO É 'Selic', NU. A costura entre os dois nomes é declarada aqui, e não suposta. NÃO É COSTURA SOLTA: o CORPUS a corrobora de forma INDEPENDENTE da fonte externa — bloco-08-jf.md linha 202, fórmula D1, literal 'a taxa Selic deve ser aplicada no mês posterior ao de sua competência, inclusive para o mês de pagamento. Ex.: a Selic de dez./2021 será computada em jan./2022'. Isso é, palavra por palavra, a DEFINIÇÃO DE 'percentual' do item 4.1.2.4: o índice do mês M reflete M e se aplica em M+1. A classificação, portanto, não depende de se aceitar que 'Selic' e 'SELIC acumulada' sejam o mesmo rótulo — mas a identificação fica declarada de todo modo, porque a disciplina do bloco é declarar a costura.",
+      "ERA_ENGLOBANTE_ATE_O_BLOCO_19": "'englobante' em 'tipo_indexador' era ERRO DE CATEGORIA: englobamento é fato de R1, e quem o grava é o campo 'engloba' — ['correcao-monetaria', 'juros-mora'] —, que NÃO mudou e segue sendo o que R1 lê. O efeito do erro era que a SELIC ficava CEGA PARA R3: nunca entrava em comparação de defasagem, embora tenha defasagem. D8-C22 ('Selic não é índice de inflação') continua verdadeiro e continua sendo a razão de a SELIC não ser tratada como índice de PREÇOS — mas 'não é índice de inflação' não é o mesmo que 'não tem defasagem', e era essa a confusão.",
+      "o_que_isto_muda": "A SELIC passa a ser comparável em R3, e viradas antes invisíveis aparecem. São ACHADO, não regressão — ver MAPEAMENTO_BLOCO_19.violacoes_r3_novas."
     },
     "taxa-legal": {
-      "tipo": "englobante",
-      "fonte": "R1 (00-base-normativa.md § 7) — taxa legal engloba correção e juros. R11: é DERIVADA por razão entre fatores, não índice de preços publicado. O item 4.1.2.4 não a alcança: ela é posterior ao manual que o contém e não reflete inflação de mês algum."
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "NÃO está na tabela externa do bloco 19, que nomeia 'SELIC acumulada' e mais nada do gênero. Classificá-la 'percentual' por analogia com a SELIC é EXATAMENTE a dedução proibida — e a analogia é frágil por fonte: R11 registra que a taxa legal é DERIVADA por razão entre fatores (TL = Fator_Selic / Fator_Deflator − 1), não índice publicado, o que a torna outro objeto. No corpus, o item 4.1.2.4 não a nomeia e nenhuma outra linha a classifica (ver ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_19). Sem fonte que a alcance, é 'indeterminado'.",
+      "pendencia": "P19-01",
+      "nota": "O englobamento da taxa legal (R1, § 7 de 00-base-normativa.md) permanece intacto no campo 'engloba'. O que se retirou foi o fato de R1 gravado no campo de R3."
     },
     "IPCA-E/IBGE": {
-      "tipo": "indeterminado",
-      "fonte": null,
-      "por_que": "NÃO está na lista do item 4.1.2.4. Classificá-lo como percentual 'porque IPCA é percentual' é dedução a partir do nome — e o item sequer nomeia 'IPCA': nomeia INPC, IGP-DI e IGP-M. Busca no corpus (ver ESCOPO_DA_BUSCA_DE_AUSENCIA) não achou fonte.",
-      "pendencia": "P17-01"
+      "tipo": "janela-deslocada",
+      "fonte": "FONTE EXTERNA AO CORPUS (IBGE, verificada fora do agente) — o IPCA-E mensal das tabelas judiciais É o IPCA-15, cujo período de coleta vai do dia 16 do mês anterior ao dia 15 do mês de referência. Metade da janela em M−1, metade em M.",
+      "identificacao_declarada": "A identificação IPCA-E mensal = IPCA-15 vem da própria fonte externa, NÃO de semelhança de nome. Declarada aqui para que quem auditar veja a costura em vez de supô-la. A fonte acrescenta que o IPCA-E foi criado em dez./1991 e passou a ser divulgado trimestralmente a partir de jan./1995 — o que explica por que as tabelas judiciais usam a série mensal.",
+      "SUPERA": "P17-01, que o mantinha 'indeterminado' por ausência de fonte no corpus. A ausência no corpus permanece verdadeira; o que chegou foi fonte EXTERNA, e ela está declarada como tal."
     },
     "IPCA-15/IBGE": {
-      "tipo": "indeterminado",
-      "fonte": null,
-      "por_que": "Mesma razão do IPCA-E, agravada: é a prévia de 15 dias, índice distinto dos dois. Sem fonte no corpus.",
-      "pendencia": "P17-01"
+      "tipo": "janela-deslocada",
+      "fonte": "FONTE EXTERNA AO CORPUS (IBGE, verificada fora do agente) — o IPCA-15 difere do IPCA apenas no PERÍODO DE COLETA, do dia 16 do mês anterior ao dia 15 do mês de referência, e na abrangência geográfica.",
+      "identificacao_declarada": "A FONTE EXTERNA NOMEIA 'IPCA-15'; O RÓTULO DO REPOSITÓRIO É 'IPCA-15/IBGE', COM O EMISSOR COLADO. A costura é de ROTULAGEM — o IBGE é o emissor do IPCA-15 e não existe IPCA-15 de outro emissor —, mesmo desenho do 'INPC/IBGE', e NÃO semelhança de nome. Declarada aqui para que quem auditar veja a costura em vez de supô-la: sem ela, a classificação viria de uma fonte que fala de 'IPCA-15' e se aplicaria a um rótulo que a fonte não escreve.",
+      "SUPERA": "P17-01."
     },
     "IPCA série especial": {
       "tipo": "indeterminado",
       "fonte": null,
-      "por_que": "Segmento próprio do manual para dez/1991. Zero ocorrências no corpus em janela de classificação.",
+      "por_que": "Segmento PRÓPRIO do manual para dez./1991, com rótulo próprio. Zero ocorrências no corpus em janela de classificação. A fonte externa do bloco 19 alcança 'IPCA-15' e 'IPCA-E' — e NÃO diz que a 'série especial' seja um ou outro. Dizer que é seria dedução a partir do nome, e é a dedução que este catálogo existe para impedir: o manual a grava como segmento à parte JUSTAMENTE porque ela não é o índice corrente. Permanece indeterminado.",
+      "DECISAO_DO_BLOCO_19": "Pergunta feita e respondida: não se identifica 'IPCA série especial' com o IPCA-E nem com o IPCA-15 sem fonte que o diga.",
       "pendencia": "P17-01"
     },
     "IPC/FGV": {
@@ -173,15 +365,18 @@
     },
     "TR": {
       "tipo": "indeterminado",
-      "fonte": null,
-      "REBAIXAMENTO": "Estava gravado como 'percentual' em trab.hist.correcao-monetaria.json, por critério FORMAL ('não é unidade monetária, logo é percentual') e com a inferência declarada. O bloco 17 REBAIXA para 'indeterminado': o próprio bloco 9 registra que 'nenhum dos dois manuais classifica a TR' (bloco-09-relatorio.md § 5.3) e que o critério MATERIAL do item 4.1.2.4 — 'refletem a inflação do próprio mês' — não se aplica a uma taxa apurada prospectivamente (art. 12, I, da Lei 8.177/91). Inferência declarada não é fonte, e a regra deste bloco é que sem fonte o valor é 'indeterminado'. O que se perde é um rótulo que nunca teve lastro; o que se ganha é que a virada para a TR passa a ser vista pelo validador em vez de passar limpa.",
-      "pendencia": "P17-02"
+      "fonte": "FONTE EXTERNA AO CORPUS (BCB, verificada fora do agente) — TBF, Redutor-R e TR são divulgados para PERÍODO ENTRE DATAS DE ANIVERSÁRIO, não para mês calendário (17/02 a 17/03, 03/05 a 03/06, 05/10 a 05/11); e a TR é PREFIXADA, com variação divulgada para o mês seguinte.",
+      "razao": "período entre datas de aniversário e prefixação",
+      "SEM_FONTE_x_FONTE_DIZ_QUE_NAO_CABE": "A TR deixa de ser 'indeterminado POR AUSÊNCIA DE FONTE' (P17-02) e passa a ser 'indeterminado COM RAZÃO REGISTRADA'. São coisas diferentes e se fecham de formas diferentes: pendência fecha quando a fonte chegar; RAZÃO NÃO FECHA ESPERANDO FONTE — a fonte já chegou, e o que ela diz é que a TR não cabe em mês calendário, logo não há classe a atribuir na tricotomia nominal/percentual/janela-deslocada. Por isso o campo é 'razao', e NÃO 'pendencia': carregar 'P17-02' passou a ser afirmação FALSA sobre o estado do conhecimento.",
+      "fechamento": "Não se fecha por chegada de fonte. Só se fecharia (a) se a modelagem ganhar classe para período entre datas de aniversário, ou (b) se a cadeia declarar a conversão para competência mensal em 'aplicacao'.",
+      "historico": "Estava gravado como 'percentual' em trab.hist.correcao-monetaria.json, por critério FORMAL ('não é unidade monetária, logo é percentual'). O bloco 17 rebaixou a 'indeterminado' por ausência de fonte (P17-02), amparado em bloco-09-relatorio.md § 5.3 ('nenhum dos dois manuais classifica a TR') e no critério MATERIAL do item 4.1.2.4, que não alcança taxa apurada prospectivamente (art. 12, I, da Lei 8.177/91). O bloco 19 confirma a CLASSE e corrige a RAZÃO."
     },
     "remuneração básica da caderneta de poupança (TR)": {
       "tipo": "indeterminado",
-      "fonte": null,
-      "por_que": "Segue a TR. Mesmo rebaixamento.",
-      "pendencia": "P17-02"
+      "fonte": "FONTE EXTERNA AO CORPUS (BCB, verificada fora do agente) — mesma da TR.",
+      "razao": "período entre datas de aniversário e prefixação",
+      "identificacao_declarada": "O rótulo é do PRÓPRIO manual e já traz '(TR)' entre parênteses: a identificação é ROTULAGEM DA FONTE, não semelhança de nome — mesmo desenho da costura declarada em 'INPC/IBGE'. Sem esse parêntese do manual, a razão da TR não seria estendida a este rótulo.",
+      "fechamento": "Idem TR. Não se fecha esperando fonte."
     },
     "JAM": {
       "tipo": "indeterminado",
@@ -216,13 +411,16 @@
     "TRD": {
       "tipo": "indeterminado",
       "fonte": null,
-      "por_que": "Taxa Referencial Diária. Segue a TR, rebaixada no bloco 17: taxa apurada prospectivamente, fora do critério material do item 4.1.2.4 ('refletem a inflação do próprio mês'). As únicas ocorrências de 'TRD' com vocabulário de tipo no corpus são o texto padrão 'nao-indexador' dos segmentos de JUROS DE MORA — que afirma que ali a TRD é regra de juros, e não classifica a TRD como indexador de correção. Ocorre como INDEXADOR DE CORREÇÃO em FGTS e poupança, 1991-02..1993-04.",
+      "por_que": "Taxa Referencial Diária. A fonte externa do bloco 19 nomeia TBF, Redutor-R e TR — e NÃO nomeia a TRD. Estender a razão da TR à TRD 'porque o nome é parecido' é a dedução proibida, e aqui não há o parêntese do manual que sustenta a costura da 'remuneração básica da caderneta de poupança (TR)'. Continua SEM FONTE, logo P18-01, e NÃO recebe 'tipo_indexador_razao'. No corpus, as únicas ocorrências de 'TRD' com vocabulário de tipo são o texto padrão 'nao-indexador' dos segmentos de JUROS DE MORA — que afirma que ali a TRD é regra de juros, e não classifica a TRD como indexador de correção. Ocorre como INDEXADOR DE CORREÇÃO em FGTS e poupança, 1991-02..1993-04.",
+      "MUDANCA_DO_BLOCO_19": "Só a prosa. A classe não mudou, e a pendência não mudou. O que se corrigiu foi o 'segue a TR' do bloco 18, que era herança por nome parecido — exatamente o que a regra proíbe.",
       "pendencia": "P18-01"
     },
     "IPC": {
       "tipo": "indeterminado",
       "fonte": null,
       "por_que": "Rótulo NU, sem emissor, nas linhas de mar./1986–jan./1987 e maio/1989–mar./1990 do item 4.8.1.1 (FGTS). D8-C21 sustenta o 'IPC/IBGE', não o 'IPC' sem qualificação — e o próprio manual usa DOIS IPC de emissores distintos: IPC/IBGE no tronco comum do capítulo 4 e IPC/FGV no item 4.5.1.1. A tabela gêmea da poupança (4.9.1.1) escreve 'IPC/IBGE' nos MESMOS meses; identificar os dois rótulos é exatamente a dedução proibida, e é a mesma classe de erro que o bloco 8 registrou ao trocar IPC/FGV por IPC/IBGE entre 78 segmentos. NÃO se aplica aqui a 'identificacao_declarada' do INPC/IBGE, cujo fundamento era 'não existe INPC de outro emissor' — para o IPC o pressuposto é FALSO.",
+      "CONFERIDO_NO_BLOCO_19": "A tabela externa não alcança o 'IPC' nu, e D8-C21 sustenta SÓ o IPC/IBGE. Classificar por herança do irmão é a dedução proibida. PERMANECE indeterminado, com a AMBIGUIDADE REGISTRADA: o manual usa DOIS IPC — IPC/IBGE no tronco do capítulo 4 e IPC/FGV no item 4.5.1.1 — e o rótulo nu de 4.8.1.1 não diz qual.",
+      "ambiguidade": "dois emissores possíveis (IBGE e FGV), ambos em uso no mesmo manual; o rótulo nu não resolve",
       "pendencia": "P18-01"
     },
     "NAO-DECLARADO-PELO-MANUAL": {
@@ -234,7 +432,8 @@
     "Ufir → Selic (bifurcado por fato gerador)": {
       "tipo": "indeterminado",
       "fonte": null,
-      "por_que": "SEGMENTO COMPOSTO: um único registro guarda dois indexadores de tipos diferentes — Ufir (nominal) e Selic (englobante) —, bifurcados pela data do fato gerador. Um rótulo só não os representa, e escolher um dos dois seria inventar. A correção é partir o segmento, não classificá-lo.",
+      "por_que": "SEGMENTO COMPOSTO: um único registro guarda dois indexadores de tipos diferentes — Ufir (nominal) e Selic (agora percentual) —, bifurcados pela data do fato gerador. Um rótulo só não os representa, e escolher um dos dois seria inventar. A correção é partir o segmento, não classificá-lo.",
+      "CONFERIDO_NO_BLOCO_19": "NÃO CLASSIFICADO, por decisão expressa: não é índice, é segmento composto. Confirmado que segue registrado como tal, com a pendência P17-03 intacta. O bloco 19 só atualiza a menção à Selic, que deixou de ser 'englobante' — e note que a reclassificação AGRAVA o defeito: agora os dois indexadores embutidos são de classes COM DEFASAGEM (nominal e percentual), isto é, o registro composto esconde uma virada de R3 dentro de si.",
       "pendencia": "P17-03"
     },
     "Cruzeiro (Cr$)": {
@@ -268,7 +467,21 @@
     },
     "(segmento sem indexador)": {
       "tipo": "nao-indexador",
-      "fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
+      "fonte": "segmentos cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) ou percentual de juros compensatórios, e não índice. Sem índice, R3 não tem o que verificar.",
+      "quantos": "37 segmentos, em 10 cadeias.",
+      "POR_QUE_A_CONTAGEM_SAIU_DO_TEXTO": "O texto de 'fonte' é COPIADO LITERALMENTE para dentro de cada segmento, no campo 'tipo_indexador_fonte' — inclusive pelos geradores. Enquanto a contagem morava dentro dele, um número que envelhece ficava replicado dezenas de vezes nos JSON que o validador lê: dizia '21 segmentos, em 6 cadeias' quando já eram 37 em 10, e cada cópia repetia a mentira. A REGRA QUE FICOU: em 'fonte' só entra o que NÃO envelhece — por que a classe é 'nao-indexador' —, e a contagem, que envelhece, fica AQUI, em campo próprio, num lugar só. Conferida contra o repositório por test_valida_cobertura.py::TestMapeamentoBloco19::test_a_contagem_de_segmentos_sem_indexador_bate_com_o_repositorio, que falha quando ela envelhecer."
+    },
+    "BTNF": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Bônus do Tesouro Nacional Fiscal. RÓTULO NOVO no repositório, trazido pelo bloco 19 com a cadeia do FGTS fiscal (item 2.4.4.1, pagina_pdf 35: 'o valor do débito deve ser convertido em BTNF, em 1º/11/1989'). Também ocorre na NOTA 3 do item 4.9.1.1 (pagina_pdf 85), que não o classifica. NÃO está na lista do item 4.1.2.4 — que nomeia o BTN, não o BTNF — e nenhuma fonte do corpus lhe atribui tipo com citação de item e pagina_pdf. Herdar 'nominal' do BTN 'porque o nome é quase o mesmo' é a dedução proibida, e é a mesma classe de erro de 'IPC' × 'IPC/IBGE' e de 'IPC/IBGE' × 'IPC/FGV'. SEM FONTE.",
+      "pendencia": "P19-02"
+    },
+    "UPC → índices básicos de atualização dos saldos da poupança": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "SEGMENTO COMPOSTO: um único registro guarda DOIS indexadores — a UPC e 'os índices básicos de atualização dos saldos da poupança' —, e o item 2.4.4.1 (pagina_pdf 35) NÃO DATA a fronteira entre eles. Um rótulo só não os representa; escolher um dos dois, ou arbitrar a data de virada, seria inventar. A cura é PARTIR O SEGMENTO quando a fonte der a data, não classificá-lo. Mesmo desenho de 'Ufir → Selic (bifurcado por fato gerador)'. Note que a UPC SOZINHA já está no catálogo, indeterminada por ausência de fonte (P18-01): o composto não a reclassifica.",
+      "pendencia": "P17-03"
     }
   },
   "series_csv": {
@@ -290,11 +503,11 @@
     },
     "serie-18.15-juros-selic-acumulados.csv": {
       "chave": "arquivo inteiro (quadros 'taxa-selic-mensal' e 'selic-acumulada-ate-maio-2016')",
-      "Selic": "englobante"
+      "Selic": "percentual — reclassificada no bloco 19. Era 'englobante', que é fato de R1 e vive no campo 'engloba'."
     },
     "serie-18.15-tabela-unica-trabalhista.csv": {
       "chave": "arquivo inteiro",
-      "TR": "indeterminado — a tabela única do CSJT tem base TR, e a TR foi rebaixada a 'indeterminado'. Pendência P17-02."
+      "TR": "indeterminado — a tabela única do CSJT tem base TR. Bloco 19: indeterminado COM RAZÃO REGISTRADA ('período entre datas de aniversário e prefixação'), não por ausência de fonte. NÃO se fecha esperando fonte; a antiga pendência P17-02 não descreve mais o estado do conhecimento."
     },
     "serie-18.10-urv.csv": {
       "chave": "arquivo inteiro",
@@ -325,5 +538,65 @@
       "ressalva": "serie-18.15-tabela-pratica-contribuicoes-em-atraso.csv consome acréscimos legais que dependem de Selic; o quadro extraído, porém, traz coeficientes prontos e não nomeia indexador. Não classificado — não se inventa o que o quadro não diz."
     }
   },
-  "ONDE_ISTO_E_CONSUMIDO": "scripts/calculo/valida_cobertura.py — campo 'tipo_indexador' do Segmento e invariante R3. Cadeias em cjf.*.json e trab.hist.*.json gravam 'tipo_indexador' e 'tipo_indexador_fonte' por segmento."
+  "ONDE_ISTO_E_CONSUMIDO": "scripts/calculo/valida_cobertura.py — campo 'tipo_indexador' do Segmento e invariante R3. Cadeias em cjf.*.json e trab.hist.*.json gravam 'tipo_indexador', 'tipo_indexador_fonte' e, quando indeterminado, OU 'tipo_indexador_pendencia' OU 'tipo_indexador_razao' — nunca os dois.",
+  "R3_NOVAS_DO_BLOCO_19": {
+    "por_que_aparecem": "A SELIC era 'englobante' e por isso SALTAVA R3 — o validador tinha um desvio explícito para ela. Reclassificada a 'percentual', ela passa a ser comparável, e as viradas contra ela, que sempre existiram no manual, ficam VISÍVEIS. São ACHADO, não regressão: nenhuma cadeia mudou de conteúdo, só o campo que as descrevia parou de esconder o fato. O mesmo vale, em sentido oposto, para a taxa legal: rebaixada a 'indeterminado', ela passa a produzir R3-INDETERMINADO onde antes saltava.",
+    "contagem": "NESTA TAREFA (a 2), o total de R3 vai de 46 para 51: são OITO violações NOVAS e TRÊS que FECHARAM, líquido +5. Aqui R1 (15) e R2 (1) NÃO se movem — nenhuma cadeia mudou de conteúdo, só o campo que as descrevia parou de esconder o fato. As listas 'novas' e 'fechadas' abaixo são desta tarefa.",
+    "contagem_FINAL_DO_BLOCO": "O número publicado como resultado do bloco 19 é o da TAREFA 3, não o desta tarefa: 20 cadeias | R1: 21 | R2: 1 | R3: 62. A TAREFA 3 acrescentou CINCO cadeias (desapropriacao-indireta.correcao-monetaria, desapropriacao-indireta.juros-compensatorios, divida-fiscal.correcao-monetaria, divida-fiscal.juros-mora, fgts-divida-fiscal.correcao-monetaria) e com elas +11 de R3 (51 -> 62) e +6 de R1 (15 -> 21). R2 seguiu em 1. AS 6 NOVAS DE R1 SÃO DO MANUAL: 2 herdadas do tronco na indireta (1989-01 IPC/IBGE x OTN e 1990-03 BTN x IPC/IBGE, idênticas às da direta); 3 CORTES INTRAMENSAIS, em que o mês da fronteira cai nos dois segmentos — indireta.juros-compensatorios 1997-06 ('até 10/6/1997' / 'de 11/6/1997'), divida-fiscal.juros-mora 1992-01 ('a 2/1/1992' / 'de 3/1/1992') e divida-fiscal.correcao-monetaria 1989-01 (OTN / BTN); e 1 que é o D8-C8 de maio/2000, fgts-divida-fiscal.correcao-monetaria TRD x TR. A história fica em duas linhas de propósito: 'R3 foi de 46 para 51 na Tarefa 2 e de 51 para 62 na Tarefa 3' permite auditar de novo; só o total final, não.",
+    "novas": {
+      "por_reclassificacao_da_SELIC (englobante -> percentual), 2 confirmadas": [
+        "cjf.condenatorias-gerais.correcao-monetaria | R3 | devedor=fazenda-publica | 2025-09..2026-06 | Selic -> IPCA-15/IBGE",
+        "cjf.desapropriacao-direta.correcao-monetaria | R3 | (tronco) | 2025-09..2026-06 | Selic -> IPCA-15/IBGE"
+      ],
+      "por_rebaixamento_da_TAXA_LEGAL (englobante -> indeterminado), 5 indeterminadas": [
+        "cjf.condenatorias-gerais.juros-mora | (tronco) | 2024-09..2025-08 | Selic -> taxa-legal",
+        "cjf.condenatorias-gerais.juros-mora | (tronco) | 2025-09..2026-06 | Selic -> taxa-legal",
+        "cjf.fgts.juros-mora | (tronco) | 2024-09..2026-06 | Selic -> taxa-legal",
+        "cjf.poupanca.juros-mora | (tronco) | 2024-09..2026-06 | Selic -> taxa-legal",
+        "cjf.trabalhista.juros-mora | devedor=fazenda-publica | 2025-09..2026-06 | Selic -> taxa-legal"
+      ],
+      "por_o_IPCA-E_ganhar_classe (indeterminado -> janela-deslocada), 1 confirmada": [
+        "cjf.desapropriacao-direta.correcao-monetaria | R3 | (tronco) | 2001-01..2021-11 | Ufir (nominal) -> IPCA-E/IBGE (janela-deslocada), sem 'aplicacao' — era R3-INDETERMINADO e vira virada CONFIRMADA"
+      ]
+    },
+    "fechadas": {
+      "quantas": 3,
+      "quais": [
+        "cjf.condenatorias-gerais.correcao-monetaria | (tronco) | 2001-01..2021-11 | Ufir -> IPCA-E/IBGE — o segmento que ENTRA declara 'aplicacao' ('o IPCA-E mensal (IPCA-15/IBGE)'), e agora que o tipo é conhecido a declaração salva a virada. Antes não salvava porque 'indeterminado' bloqueia mesmo com 'aplicacao': sem saber o tipo, não se sabe se a defasagem declarada é a certa.",
+        "cjf.desapropriacao-direta.correcao-monetaria | (tronco) | 2001-01..2021-11 | Ufir -> IPCA-E/IBGE — deixou de ser R3-INDETERMINADO, mas REABRIU como R3 confirmada (linha acima). Não é fechamento líquido.",
+        "cjf.condenatorias-gerais.correcao-monetaria | (tronco) | 2024-09..2025-08 | IPCA-E/IBGE -> IPCA-15/IBGE — os dois são 'janela-deslocada', MESMA classe, logo não há virada. É o efeito direto da identificação declarada pela fonte externa: o IPCA-E mensal das tabelas judiciais É o IPCA-15."
+      ]
+    }
+  },
+  "ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_19_TAREFA_3": {
+    "por_que": "A tarefa 3 gerou cinco cadeias de P18-02 e com elas entraram rótulos novos. Afirmação de ausência exige escopo declarado (regra do bloco 17), e rótulo novo que a fonte não classifique é 'indeterminado' COM A RAZÃO REGISTRADA — nunca por semelhança de nome nem por herança.",
+    "arvores_varridas": [
+      "docs/",
+      "skills/",
+      "scripts/",
+      "tests/",
+      "README.md"
+    ],
+    "extensoes": [
+      ".md",
+      ".json",
+      ".csv",
+      ".py"
+    ],
+    "criterio": "toda linha que contenha o termo (case-insensitive) e, na mesma linha, qualquer de 'nominal', 'nominais', 'percentual', 'percentuais', 'janela'",
+    "termos": [
+      "BTNF",
+      "JCM",
+      "TDA",
+      "UPC",
+      "índices básicos de atualização dos saldos da poupança"
+    ],
+    "resultado": {
+      "BTNF": "ZERO ocorrências que lhe atribuam tipo. As únicas linhas que contêm 'BTNF' são a NOTA 3 de 4.9.1.1 (cruzados novos bloqueados), a observação de mar./1990 da poupança e a lista do item 2.4.4.1 — todas de APLICAÇÃO, nenhuma de classificação. O item 4.1.2.4 nomeia o BTN e não o BTNF. CONCLUSÃO: sem fonte, P19-02.",
+      "JCM": "Segue sendo NOME DE CRITÉRIO, não rótulo de indexador. Mudou o estado de uma coisa só: a cadeia do item 2.4.4.1 DEIXOU DE SER AUSENTE — é 'cjf.fgts-divida-fiscal.correcao-monetaria', gerada na tarefa 3 — e nela o JCM está gravado no campo 'criterio' da CADEIA, não no campo 'indexador' de segmento algum. Mesmo desenho do JAM. Nada a mapear, e agora com a cadeia à vista.",
+      "TDA": "Continua sendo objeto de direito material (títulos da dívida agrária, item 4.5.4), nunca rótulo de indexador. A tarefa 3 examinou o corte de ago./2017 e concluiu que ele NÃO É TABULÁVEL: a taxa é 'o percentual fixado para os TDAs depositados como oferta inicial', valor do CASO, fixado no ato de oferta — não índice publicado, não série, não percentual legal. Por isso não virou segmento e NÃO entra neste catálogo. Ver DECISAO_2 em cjf.desapropriacao-direta.juros-compensatorios.json.",
+      "UPC": "Inalterada: indeterminada sem fonte, P18-01, na cadeia da poupança. O rótulo COMPOSTO do FGTS fiscal é entrada distinta e NÃO a reclassifica.",
+      "índices básicos de atualização dos saldos da poupança": "Não ocorre como rótulo isolado: o item 2.4.4.1 o escreve colado à UPC, sem datar a fronteira. Por isso vive dentro do rótulo composto, e não como entrada própria."
+    }
+  }
 }

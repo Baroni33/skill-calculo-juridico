@@ -61,7 +61,7 @@
       "fim": "1991-12",
       "indexador": null,
       "tipo_indexador": "nao-indexador",
-      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar.",
+      "tipo_indexador_fonte": "segmentos cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) ou percentual de juros compensatórios, e não índice. Sem índice, R3 não tem o que verificar.",
       "engloba": [],
       "observacao": "Não há correção monetária, somente juros de mora equivalentes à TRD (vide item 2.3.2.2).",
       "pagina_pdf": 24,
@@ -72,7 +72,7 @@
       "fim": "2026-06",
       "indexador": "Ufir → Selic (bifurcado por fato gerador)",
       "tipo_indexador": "indeterminado",
-      "tipo_indexador_fonte": "SEGMENTO COMPOSTO: um único registro guarda dois indexadores de tipos diferentes — Ufir (nominal) e Selic (englobante) —, bifurcados pela data do fato gerador. Um rótulo só não os representa, e escolher um dos dois seria inventar. A correção é partir o segmento, não classificá-lo.",
+      "tipo_indexador_fonte": "SEGMENTO COMPOSTO: um único registro guarda dois indexadores de tipos diferentes — Ufir (nominal) e Selic (percentual) —, bifurcados pela data do fato gerador. Um rótulo só não os representa, e escolher um dos dois seria inventar. A correção é partir o segmento, não classificá-lo. NOTA DO BLOCO 19: a Selic era 'englobante', valor RETIRADO do vocabulário neste bloco — englobamento é fato de R1 e vive no campo 'engloba'. A reclassificação AGRAVA o defeito deste registro: os dois indexadores embutidos passam a ser de classes COM DEFASAGEM (nominal e percentual), isto é, o composto esconde uma virada de R3 dentro de si.",
       "tipo_indexador_pendencia": "P17-03",
       "engloba": [
         "correcao-monetaria"

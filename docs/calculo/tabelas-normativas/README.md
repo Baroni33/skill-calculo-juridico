@@ -23,13 +23,26 @@ e `segmentos`. Campos que não podem faltar, e por quê:
 | `multiplicador_transicao` | conversões de moeda e indexador |
 | `valor_fixo_pct` | expurgos com percentual cravado |
 | `base_incidencia` | só para juros — valor originário vs. corrigido |
-| `tipo_indexador` | **R3.** Cinco valores: `nominal`, `percentual`, `englobante`, `nao-indexador`, `indeterminado`. Acompanha `tipo_indexador_fonte`, e `tipo_indexador_pendencia` quando indeterminado |
+| `tipo_indexador` | **R3.** Seis valores: `nominal`, `percentual`, **`janela-deslocada`**, `nao-indexador`, `indeterminado` — e `englobante`, **RETIRADO no bloco 19**, sem nenhum uso. Acompanha `tipo_indexador_fonte` e, quando indeterminado, **`tipo_indexador_pendencia` OU `tipo_indexador_razao`, nunca os dois** |
+| `tipo_indexador_razao` | **bloco 19.** *A fonte existe e diz que o índice NÃO CABE em mês calendário* — a da TR é *"período entre datas de aniversário e prefixação"*. **Não é pendência:** pendência diz *"não há fonte"* e fecha quando a fonte chegar; razão **não se fecha esperando fonte** |
 
 > **`tipo_indexador` tem catálogo próprio: `indexadores-tipo-catalogo.json`.** O nome do
 > campo **não** é `tipo` porque `tipo` já é chave de topo em toda cadeia, com valor
 > `"cadeia-temporal"`. O valor **sai da fonte** (item 4.1.2.4 do Manual CJF, `pagina_pdf`
 > 42, e o apoio de `bloco-08-jf-detalhe.md`); **sem fonte é `indeterminado` e vira
 > pendência** — `pendencias.md` § 23 —, **nunca classificado por dedução a partir do nome**.
+
+> **Bloco 19 — `janela-deslocada` é a terceira classe COM DEFASAGEM.** O período de coleta
+> não coincide com o mês calendário: cai **metade em M−1 e metade em M** (do dia 16 do mês
+> anterior ao dia 15 do mês de referência). É a classe do **IPCA-15** e do **IPCA-E**, e a
+> fonte que a sustenta é **externa ao corpus** (IBGE), declarada como tal no catálogo.
+> Com três classes há **três pares** de virada, não um. Pendências em `pendencias.md` § 25.
+
+> **`englobante` saiu porque era erro de categoria.** Englobamento é fato de **R1**, e quem
+> o grava é **`engloba`** — que **não mudou**. Gravá-lo também em `tipo_indexador` deixava a
+> **SELIC cega para R3**: ela nunca entrava em comparação de defasagem, embora tenha
+> defasagem. A SELIC é **`percentual`**; a **taxa legal**, que a fonte não alcança, é
+> **`indeterminado`** (`P19-01`) — e **não** `percentual` por analogia com a SELIC.
 
 ## O que não entra
 
