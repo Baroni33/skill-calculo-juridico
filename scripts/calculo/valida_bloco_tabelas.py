@@ -519,7 +519,14 @@ def valida_proveniencia(rel: Relatorio) -> None:
     total = 0
     sem_faixa: list[str] = []
     origens: dict[str, int] = {}
-    for caminho in sorted(DIR_SERIE.glob("serie-*.csv")):
+    # `glob("*.csv")`, e não `glob("serie-*.csv")`: o prefixo era a última
+    # descoberta por convenção de NOME que sobrava no repositório, e tinha o
+    # defeito do bloco 17 — renomear `serie-18.3-x.csv` para `18.3-serie.csv`
+    # tirava o arquivo da conferência de proveniência EM SILÊNCIO, e o resumo
+    # seguia dizendo "0 erros". Todo CSV deste diretório é série; o que decide
+    # se é conferível é o cabeçalho declarado (`faixa_declarada`), que é
+    # CONTEÚDO, e o que não for conferível sai em "NÃO VERIFICÁVEL" — visível.
+    for caminho in sorted(DIR_SERIE.glob("*.csv")):
         linhas = le_csv(caminho.name)
         resolvida = faixa_declarada(caminho, linhas)
         if resolvida is None:

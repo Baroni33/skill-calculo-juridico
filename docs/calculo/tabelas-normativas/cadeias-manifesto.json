@@ -1,0 +1,88 @@
+{
+  "id": "cadeias-manifesto",
+  "titulo": "Manifesto das cadeias temporais — PISO de inventário, não retrato",
+  "tipo": "manifesto",
+  "REGRA_DESTE_MANIFESTO": "PISO, NÃO RETRATO. O validador falha se encontrar MENOS cadeias do que este arquivo declara, ou cadeia com MENOS segmentos do que ele registra. Cadeia a mais é crescimento normal e é GRAVADA AQUI AUTOMATICAMENTE por valida_cadeias.py — manifesto que precisa de edição manual a cada cadeia nova envelhece igual à constante que ele veio substituir. Remover um id ou baixar uma contagem é EDIÇÃO MANUAL DELIBERADA, e o porquê vai no commit. A chave é o campo 'id' da cadeia, nunca o nome do arquivo: a renomeação trt3.hist.* -> trab.hist.* do bloco 17 derrubou a descoberta de 11 para 7 em silêncio, e o id é o que sobrevive a renomeação.",
+  "MANTIDO_POR": "scripts/calculo/valida_cadeias.py (cresce sozinho; nunca encolhe sozinho)",
+  "CONSUMIDO_POR": [
+    "scripts/calculo/valida_cadeias.py — aborta com exit 1 em regressão",
+    "scripts/calculo/test_valida_cobertura.py — guardas de tipo_indexador"
+  ],
+  "cadeias": {
+    "cjf.condenatorias-gerais.correcao-monetaria": {
+      "arquivo": "cjf.condenatorias-gerais.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 15
+    },
+    "cjf.condenatorias-gerais.juros-mora": {
+      "arquivo": "cjf.condenatorias-gerais.juros-mora.json",
+      "componente": "juros-mora",
+      "segmentos": 11
+    },
+    "cjf.desapropriacao-direta.correcao-monetaria": {
+      "arquivo": "cjf.desapropriacao-direta.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 11
+    },
+    "cjf.divida-fiscal.correcao-monetaria": {
+      "arquivo": "cjf.divida-fiscal.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 5
+    },
+    "cjf.fgts.correcao-monetaria": {
+      "arquivo": "cjf.fgts.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 11
+    },
+    "cjf.fgts.juros-mora": {
+      "arquivo": "cjf.fgts.juros-mora.json",
+      "componente": "juros-mora",
+      "segmentos": 3
+    },
+    "cjf.poupanca.correcao-monetaria": {
+      "arquivo": "cjf.poupanca.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 12
+    },
+    "cjf.poupanca.juros-mora": {
+      "arquivo": "cjf.poupanca.juros-mora.json",
+      "componente": "juros-mora",
+      "segmentos": 3
+    },
+    "cjf.previdenciario.correcao-monetaria": {
+      "arquivo": "cjf.previdenciario.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 15
+    },
+    "cjf.repeticao-indebito.correcao-monetaria": {
+      "arquivo": "cjf.repeticao-indebito.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 10
+    },
+    "cjf.trabalhista.juros-mora": {
+      "arquivo": "cjf.trabalhista.juros-mora.json",
+      "componente": "juros-mora",
+      "segmentos": 11
+    },
+    "trab.hist.correcao-monetaria": {
+      "arquivo": "trab.hist.correcao-monetaria.json",
+      "componente": "correcao-monetaria",
+      "segmentos": 3
+    },
+    "trab.hist.fazenda-publica.juros-mora": {
+      "arquivo": "trab.hist.fazenda-publica.juros-mora.json",
+      "componente": "juros-mora",
+      "segmentos": 5
+    },
+    "trab.hist.juros-mora": {
+      "arquivo": "trab.hist.juros-mora.json",
+      "componente": "juros-mora",
+      "segmentos": 3
+    },
+    "trab.hist.moedas-e-paridades": {
+      "arquivo": "trab.hist.moedas-e-paridades.json",
+      "componente": "padrao-monetario",
+      "segmentos": 8
+    }
+  }
+}

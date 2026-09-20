@@ -444,7 +444,7 @@ Material bruto das três frentes do último bloco de extração. Gerado por scri
 
 - **fonte trt3:** manual-de-calculo-trabalhista_2016-1.pdf, cap. 8, pp. 100-106 (offset 0)
 - **fonte cjf:** docs/calculo/extracao/justica-federal/bloco-08-jf-detalhe.md secao 1 - Capitulo 1 do Manual CJF Res. 990/2026, pagina_pdf CJF 14-21 (offset +1)
-- **ressalva de localizacao:** O enunciado apontou bloco-08-jf.md; o cap. 1 do CJF esta em bloco-08-jf-DETALHE.md. bloco-08-jf.md tem 1 ocorrencia de 'custas' (na tabela de series OUT_OF_SCOPE).
+- **ressalva de localizacao:** O enunciado apontou bloco-08-jf.md; o cap. 1 do CJF esta em `bloco-08-jf-detalhe.md`. bloco-08-jf.md tem 1 ocorrencia de 'custas' (na tabela de series OUT_OF_SCOPE).
 - **nao harmonizado:** True
 **diferencas**
 

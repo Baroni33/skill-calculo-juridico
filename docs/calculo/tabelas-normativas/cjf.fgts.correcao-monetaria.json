@@ -1,0 +1,221 @@
+{
+  "id": "cjf.fgts.correcao-monetaria",
+  "titulo": "Correção monetária — FGTS (critérios das contas fundiárias, JAM)",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "fgts",
+  "componente": "correcao-monetaria",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.8.1.1",
+    "pagina_pdf": 82
+  },
+  "criterio_declarado": {
+    "literal": "Se não houver decisão judicial em contrário, os valores apurados deverão ser corrigidos com base nos critérios adotados para as contas fundiárias (Juros e Atualização Monetária — JAM), com os indexadores seguintes.",
+    "item": "4.8",
+    "pagina_pdf": 81,
+    "sigla": "JAM — Juros e Atualização Monetária",
+    "NOTA_DO_EXTRATOR": "JAM é o NOME DO CRITÉRIO, não um indexador de segmento: os indexadores são os da tabela 4.8.1.1. Não confundir com a tabela JAM da CEF do item 6.14 do Manual TRT-3 (regime pr.fgts-indice-jam), que é outro manual, outra fonte e outro eixo — lá o eixo é o conteúdo do título, e a tabela 'já computa juros de 3% ao ano'."
+  },
+  "escapes_declarados": [
+    {
+      "n": 1,
+      "texto": "Se o título judicial determinar a aplicação de juros e a correção dos valores devidos como dívida comum (ex.: REsp. n. 630.372) e não havendo previsão de índice na sentença, aplicam-se os indexadores previstos para condenações em geral (Seção 4.2 deste capítulo).",
+      "pagina_pdf": 81,
+      "efeito": "EIXO DE CONTEÚDO DO TÍTULO — o título manda para cjf.condenatorias-gerais.*, e esta cadeia inteira deixa de valer."
+    },
+    {
+      "n": 2,
+      "texto": "Se o título judicial determinar a correção e juros pelos critérios fundiários somente até a data do saque integral (ex.: REsp n. 694.365; AgRg no REsp n. 622.298), devem ser aplicados, a contar do saque integral e se não houver previsão de índice na sentença, os indexadores previstos para condenações em geral (Seção 4.2 deste capítulo).",
+      "pagina_pdf": 81,
+      "efeito": "EIXO DE CORTE POR SAQUE INTEGRAL — D8-C12. NÃO é competência nem data de sentença: é um fato do contrato de trabalho. Nenhuma outra cadeia do manual usa este eixo, e nenhuma tabela o mostra."
+    }
+  ],
+  "notas": [
+    {
+      "n": 1,
+      "texto": "Expurgos inflacionários. Para ações de FGTS que discutem os expurgos inflacionários, somente incluir os períodos definidos pelo julgado.",
+      "pagina_pdf": 82
+    },
+    {
+      "n": 2,
+      "texto": "Expurgos inflacionários. Se a ação de revisão dos saldos do FGTS não discutir os expurgos inflacionários (ex.: juros progressivos), a liquidação deve incluir os expurgos inflacionários reconhecidos pelo STJ em casos de FGTS: 42,72% em jan./1989 e 44,80% em abr./1990.",
+      "pagina_pdf": 82,
+      "PENDENCIA_ABERTA": "N-5 / D8-C13 — SUBSTITUI OU ACRESCE? O manual não diz. No capítulo 4 geral a operação é declarada ('Expurgo, em substituição ao BTN', e o item 4.1.2.1 manda 'descontando o BTN ou outro índice utilizado, evitando bis in idem'). Aqui a nota apenas manda INCLUIR os percentuais sobre linhas que já trazem indexador — 'LFT – 0,5%' em jan./1989 e 'BTN' em abr./1990 —, e a tabela não menciona expurgo algum. NÃO RESOLVIDA: os percentuais NÃO foram gravados como segmento, porque gravá-los exigiria escolher entre substituir e somar.",
+      "bifurcacao_contraintuitiva": "D8-C14 — a NOTA 1 RESTRINGE quem DISCUTE expurgos aos períodos definidos pelo julgado; a NOTA 2 dá os dois expurgos POR PADRÃO a quem NÃO discute. Quem discute pode receber menos do que quem não discute. Não é erro formal; é o que está escrito.",
+      "contraste_com_o_capitulo_4_geral": {
+        "1989-01": "42,72% nos dois — mesmo percentual",
+        "1989-02": "10,14% no capítulo 4 geral; o FGTS NÃO o tem",
+        "1990-04": "44,80% só no FGTS; o capítulo 4 geral não o tem"
+      }
+    }
+  ],
+  "segmentos": [
+    {
+      "inicio": "1967-01",
+      "fim": "1986-02",
+      "indexador": "ORTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82
+    },
+    {
+      "inicio": "1986-03",
+      "fim": "1987-01",
+      "indexador": "IPC",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Rótulo NU, sem emissor, nas linhas de mar./1986–jan./1987 e maio/1989–mar./1990 de 4.8.1.1. D8-C21 sustenta o 'IPC/IBGE', não o 'IPC' sem qualificação — e o próprio manual usa DOIS IPC de emissores distintos (IPC/IBGE no tronco comum e IPC/FGV no item 4.5.1.1). A tabela gêmea da poupança (4.9.1.1) escreve 'IPC/IBGE' nos MESMOS meses; identificar os dois rótulos seria a dedução proibida, e é a mesma classe de erro que o bloco 8 registrou ao trocar IPC/FGV por IPC/IBGE.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82,
+      "divergencia_de_rotulo": "4.9.1.1 escreve 'IPC/IBGE' nos mesmos meses; 4.8.1.1 escreve 'IPC'. Registrado, não harmonizado."
+    },
+    {
+      "inicio": "1987-02",
+      "fim": "1987-02",
+      "indexador": "LBC",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Letra do Banco Central. NÃO está na lista do item 4.1.2.4; nenhuma fonte do corpus a classifica. Aparece só nas cadeias de FGTS e poupança.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82,
+      "observacao": "Segmento de UM MÊS. A poupança funde fev./1987 no bloco fev./1987–jun./1987."
+    },
+    {
+      "inicio": "1987-03",
+      "fim": "1987-06",
+      "indexador": "OTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82,
+      "DIVERGENCIA_FGTS_x_POUPANCA": "D8-C15 — nestes quatro meses o FGTS usa OTN e a poupança usa LBC (4.9.1.1, pagina_pdf 85). NENHUMA DAS DUAS TABELAS TRAZ FUNDAMENTO LEGAL PARA A DIVERGÊNCIA, e o manual não a explica. NÃO HARMONIZADO."
+    },
+    {
+      "inicio": "1987-07",
+      "fim": "1987-09",
+      "indexador": "LBC – 0,5%",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Mesma razão da LBC, e o rótulo do manual já embute uma dedução de 0,5% cuja natureza (juros descontados? desconto do índice?) a tabela não declara.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82
+    },
+    {
+      "inicio": "1987-10",
+      "fim": "1988-12",
+      "indexador": "OTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82
+    },
+    {
+      "inicio": "1989-01",
+      "fim": "1989-04",
+      "indexador": "LFT – 0,5%",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Letra Financeira do Tesouro. NÃO está na lista do item 4.1.2.4; nenhuma fonte do corpus a classifica. O rótulo embute uma dedução de 0,5% não explicada pela tabela.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82,
+      "expurgo_pendente": "A NOTA 2 manda incluir 42,72% em jan./1989 SOBRE esta linha. Substitui ou acresce? Não declarado — N-5, aberta."
+    },
+    {
+      "inicio": "1989-05",
+      "fim": "1990-03",
+      "indexador": "IPC",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Rótulo NU, sem emissor, nas linhas de mar./1986–jan./1987 e maio/1989–mar./1990 de 4.8.1.1. D8-C21 sustenta o 'IPC/IBGE', não o 'IPC' sem qualificação — e o próprio manual usa DOIS IPC de emissores distintos (IPC/IBGE no tronco comum e IPC/FGV no item 4.5.1.1). A tabela gêmea da poupança (4.9.1.1) escreve 'IPC/IBGE' nos MESMOS meses; identificar os dois rótulos seria a dedução proibida, e é a mesma classe de erro que o bloco 8 registrou ao trocar IPC/FGV por IPC/IBGE.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82
+    },
+    {
+      "inicio": "1990-04",
+      "fim": "1991-01",
+      "indexador": "BTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82,
+      "expurgo_pendente": "A NOTA 2 manda incluir 44,80% em abr./1990 SOBRE esta linha. Substitui ou acresce? Não declarado — N-5, aberta."
+    },
+    {
+      "inicio": "1991-02",
+      "fim": "1993-04",
+      "indexador": "TRD",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Taxa Referencial Diária. Segue a TR, rebaixada a 'indeterminado' no bloco 17 (P17-02): taxa apurada prospectivamente, fora do critério material do item 4.1.2.4. Nenhuma fonte do corpus classifica a TRD por si.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82
+    },
+    {
+      "inicio": "1993-05",
+      "fim": "2026-06",
+      "indexador": "TR",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Rebaixada no bloco 17 (P17-02): nenhum dos dois manuais a classifica, e o critério material do item 4.1.2.4 — 'refletem a inflação do próprio mês' — não alcança taxa apurada prospectivamente (art. 12, I, da Lei n. 8.177/1991).",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 82,
+      "ponta_materializada": "fim — o manual escreve 'A partir de maio/1993'"
+    }
+  ],
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1967-01",
+    "fim": "2026-06",
+    "por_que": "A primeira linha da tabela 4.8.1.1 é 'De jan./1967 a fev./1986' — início DECLARADO, sem materialização, ao contrário das demais cadeias do capítulo 4. A última é 'A partir de maio/1993'; o fim 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  },
+  "DIVERGENCIAS_COM_A_POUPANCA": {
+    "D8-C15": "Dezesseis anos e quatro meses de divergência. (a) maio/1967 a jun./1983: FGTS ORTN × poupança UPC; (b) mar. a jun./1987: FGTS OTN × poupança LBC. NENHUMA DAS DUAS TABELAS TRAZ FUNDAMENTO LEGAL PARA A DIVERGÊNCIA — a de 4.8.1.1 sequer tem coluna de observações — e o manual não a explica. Não harmonizada.",
+    "rotulo_do_IPC": "mar./1986–jan./1987 e maio/1989–mar./1990: o FGTS escreve 'IPC'; a poupança escreve 'IPC/IBGE'. Mesmos meses, rótulos diferentes.",
+    "fev_1987": "O FGTS abre um segmento de UM mês (fev./1987, LBC); a poupança o funde no bloco fev./1987–jun./1987. É o único mês em que as duas concordam entre fev. e jun./1987."
+  },
+  "NAO_E_A_CADEIA_DO_ITEM_2_4_4_1": "O item 2.4.4.1 (pagina_pdf 35–36) trata do FGTS como DÍVIDA FISCAL — o débito do empregador PARA COM o Fundo — e usa outro critério: o 'coeficiente da remuneração das contas vinculadas (JCM)', com ORTN até set./1983, depois UPC e 'os índices básicos de atualização dos saldos da poupança'; conversão em BTNF em 1º/11/1989; multiplicação por 126,8621 em 1º/2/1991; TRD de fev./1991 a maio/2000; TR a partir de maio/2000. SÃO CADEIAS DISTINTAS: sujeito distinto (Fundo credor × titular da conta credor), sigla distinta (JCM × JAM), capítulo distinto, e até o corte da ORTN difere — set./1983 em 2.4.4.1, fev./1986 em 4.8.1.1, jun./1983 na poupança. O corte de maio/2000 (D8-C8: 'De fev./1991 a maio/2000' × 'A partir de maio/2000', sem regra de desempate) é do item 2.4.4.1 e NÃO alcança esta cadeia.",
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+}

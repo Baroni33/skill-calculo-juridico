@@ -81,8 +81,25 @@ integral não está no corpus: só os incisos VI, XVII e XVIII foram conferidos.
 que nenhum deles alcança carregam `fundamento_611b: "nao-mapeado"` e
 `classificacao_provisoria: true` — 16 dos 32. Lista via `Catalogo.provisorios()`.
 
+## Manifesto: `cadeias-manifesto.json`
+
+Inventário **desta pasta**, e não conteúdo normativo — mora aqui pela mesma razão que
+`indexadores-tipo-catalogo.json`: um sidecar que descreve o diretório vive com o diretório,
+e os dois consumidores (`valida_cadeias.py` e `test_valida_cobertura.py`) leem UMA fonte.
+
+É **piso, não retrato**: declara o conjunto mínimo de cadeias, por `id`, e o mínimo de
+segmentos de cada uma. Cadeia a menos, ou cadeia que encolhe, é **regressão** e derruba o
+validador; cadeia a mais é crescimento e é **gravada automaticamente** por
+`valida_cadeias.py`. **Arquivo mantido por script — não o edite à mão para fazê-lo crescer.**
+Edição manual só para *baixar* um número ou remover um `id`, e o porquê vai no commit.
+
+A chave é o `id`, nunca o nome do arquivo: foi a renomeação `trt3.hist.*` → `trab.hist.*`
+que derrubou a descoberta de 11 cadeias para 7 em silêncio, no bloco 17.
+
 ## Validação
 
+- `scripts/calculo/valida_cadeias.py` — R1/R2/R3 sobre todas as cadeias e a conferência
+  contra `cadeias-manifesto.json`.
 - `scripts/calculo/valida_parametros.py` — R14 a R18, precedência, conflito e piso legal.
   `--catalogo-ok` verifica a consistência interna do catálogo.
 - `scripts/calculo/valida_cobertura.py` — R1 e R2 sobre `segmentos`. Vale para a família

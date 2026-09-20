@@ -1,0 +1,219 @@
+{
+  "id": "cjf.poupanca.correcao-monetaria",
+  "titulo": "Correção monetária (remuneração básica) — cadernetas de poupança",
+  "tipo": "cadeia-temporal",
+  "tipo_acao": "caderneta-de-poupanca",
+  "componente": "correcao-monetaria",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.9.1.1",
+    "pagina_pdf": 84
+  },
+  "condicao_de_incidencia": {
+    "literal": "Havendo decisão judicial determinando a correção monetária dos valores apurados com base nos critérios adotados para as contas de poupança, aplicam-se os seguintes indexadores.",
+    "pagina_pdf": 84,
+    "escape": "Não determinando a decisão judicial a aplicação dos critérios próprios da caderneta de poupança, os cálculos seguirão, quanto à correção monetária e juros moratórios, as orientações constantes do item 4.2 (Ações condenatórias em geral) (REsp n. 1.075.627; Resp n. 754.013; REsp. n. 1.314.478; EDcl no REsp n. 1.355.333), considerando-se como termo inicial o mês em que o crédito deveria ter sido efetivado na conta.",
+    "escape_pagina_pdf": 84,
+    "escopo": "Referem-se, ainda, à chamada poupança 'livre', a mais encontrada. Para modalidades específicas de cadernetas de poupança (v.g. vinculada, programada, a prazo fixo, de rendimentos crescentes etc.), raramente encontradas, deve-se consultar o juízo sobre a utilização."
+  },
+  "termo_inicial": "NOTA 2: O termo inicial de correção pelos critérios da caderneta de poupança é o dia em que o crédito deveria ter sido efetivado, aplicando-se, em cada aniversário, os índices relativos à DATA-BASE DA CONTA.",
+  "notas": [
+    {
+      "n": 1,
+      "texto": "Se a sentença determinar a aplicação dos índices próprios da poupança a partir de quando era devido o crédito, sem fixar o termo final, o cômputo deve-se dar até o efetivo pagamento.",
+      "pagina_pdf": 85
+    },
+    {
+      "n": 2,
+      "texto": "O termo inicial de correção pelos critérios da caderneta de poupança é o dia em que o crédito deveria ter sido efetivado, aplicando-se, em cada aniversário, os índices relativos à data-base da conta.",
+      "pagina_pdf": 85,
+      "efeito": "EIXO DE ANIVERSÁRIO — a competência não é o mês civil, é a DATA-BASE DA CONTA. Nenhuma outra cadeia de correção do manual tem este eixo, e o schema cadeia-temporal não o expressa: os segmentos abaixo são o mapa período → indexador, e a aplicação ao caso passa pelo aniversário da conta."
+    },
+    {
+      "n": 3,
+      "texto": "Para correção de cruzados novos bloqueados na forma da Lei n. 8.024/1990 — Plano Collor (conversão da MP n. 168/1990), aplicam-se os seguintes índices até a data da conversão: BTNF desde o bloqueio até jan./1991; e TRD, de fev./1991 em diante.",
+      "pagina_pdf": 85,
+      "efeito": "CADEIA PARALELA NÃO TABULADA, para um subconjunto de saldos (cruzados novos bloqueados). Dois trechos — BTNF e TRD — que a tabela de 4.9.1.1 não mostra. NÃO gravados como segmentos: são regime alternativo, não trecho desta linha do tempo. Mesmo padrão do N-8 (ramo paralelo que só vive em nota)."
+    }
+  ],
+  "segmentos": [
+    {
+      "inicio": "1964-01",
+      "fim": "1967-04",
+      "indexador": "ORTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 84,
+      "ponta_materializada": "inicio — o manual escreve 'Até abr./1967', sem data inicial"
+    },
+    {
+      "inicio": "1967-05",
+      "fim": "1983-06",
+      "indexador": "UPC",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Unidade Padrão de Capital. NÃO está na lista do item 4.1.2.4 e nenhuma outra fonte do corpus a classifica. O item 2.4.4.1 (pagina_pdf 35) apenas EXPANDE A SIGLA — 'Unidade Padrão de Capital (UPC)' —, o que é rotulagem e não classificação. Aparece só na cadeia da poupança.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85,
+      "DIVERGENCIA_FGTS_x_POUPANCA": "D8-C15 — nestes dezesseis anos e dois meses o FGTS usa ORTN (4.8.1.1, pagina_pdf 82) e a poupança usa UPC. Nenhuma das duas tabelas traz fundamento legal para a divergência. NÃO HARMONIZADO."
+    },
+    {
+      "inicio": "1983-07",
+      "fim": "1986-02",
+      "indexador": "ORTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85,
+      "observacao": "Fev./1986: ORTN pro rata até 28/2/1986 (art. 4º, parágrafo único, do DL n. 2.284/1986 e art. 1º, inciso I, 'a', do Decreto n. 92.492/1986)."
+    },
+    {
+      "inicio": "1986-03",
+      "fim": "1987-01",
+      "indexador": "IPC/IBGE",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85
+    },
+    {
+      "inicio": "1987-02",
+      "fim": "1987-06",
+      "indexador": "LBC",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Letra do Banco Central. NÃO está na lista do item 4.1.2.4; nenhuma fonte do corpus a classifica. Aparece só nas cadeias de FGTS e poupança.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85,
+      "DIVERGENCIA_FGTS_x_POUPANCA": "D8-C15 — de mar. a jun./1987 o FGTS usa OTN e a poupança usa LBC. Fev./1987 coincide: o FGTS abre um segmento de um mês só com LBC. NÃO HARMONIZADO."
+    },
+    {
+      "inicio": "1987-07",
+      "fim": "1987-09",
+      "indexador": "LBC – 0,5%",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Mesma razão da LBC, e o rótulo do manual já embute uma dedução de 0,5% cuja natureza (juros descontados? desconto do índice?) a tabela não declara.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85
+    },
+    {
+      "inicio": "1987-10",
+      "fim": "1988-12",
+      "indexador": "OTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85
+    },
+    {
+      "inicio": "1989-01",
+      "fim": "1989-04",
+      "indexador": "LFT – 0,5%",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Letra Financeira do Tesouro. NÃO está na lista do item 4.1.2.4; nenhuma fonte do corpus a classifica. O rótulo embute uma dedução de 0,5% não explicada pela tabela.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85
+    },
+    {
+      "inicio": "1989-05",
+      "fim": "1990-03",
+      "indexador": "IPC/IBGE",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85,
+      "observacao": "Mar./1990: contas com data-base e depósitos efetuados entre 19 e 28/3 – BTNF (art. 6º da Lei n. 8.024/1990 – conv. MP n. 168/1990)."
+    },
+    {
+      "inicio": "1990-04",
+      "fim": "1991-01",
+      "indexador": "BTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85,
+      "observacao": "Jan./1991: BTNF desde o último crédito efetuado até 31/1/1991 + TRD de 1º/2/1991 até a data do crédito (parágrafo único do art. 13 da Lei n. 8.177/1991 – conv. MP n. 294/1991)."
+    },
+    {
+      "inicio": "1991-02",
+      "fim": "1993-04",
+      "indexador": "TRD",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Taxa Referencial Diária. Segue a TR, rebaixada a 'indeterminado' no bloco 17 (P17-02): taxa apurada prospectivamente, fora do critério material do item 4.1.2.4. Nenhuma fonte do corpus classifica a TRD por si.",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85,
+      "observacao": "Abr./1993: TRD desde o último crédito efetuado até 2/5/1993 + TR pro rata de 3/5/1993 até a data do crédito (§ 2º do art. 7º da Lei n. 8.660/1993 – conv. MP n. 319/1993)."
+    },
+    {
+      "inicio": "1993-05",
+      "fim": "2026-06",
+      "indexador": "TR",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": null,
+      "tipo_indexador_por_que": "Rebaixada no bloco 17 (P17-02): nenhum dos dois manuais a classifica, e o critério material do item 4.1.2.4 — 'refletem a inflação do próprio mês' — não alcança taxa apurada prospectivamente (art. 12, I, da Lei n. 8.177/1991).",
+      "tipo_indexador_pendencia": "P18-01",
+      "engloba": [
+        "correcao-monetaria"
+      ],
+      "componente": "correcao-monetaria",
+      "pagina_pdf": 85,
+      "ponta_materializada": "fim — o manual escreve 'A partir de maio/1993'",
+      "observacao": "Jun./1994: TR pro rata desde o último crédito efetuado até 30/6/1994 + TR pro rata de 1º/7/1994 até a data do crédito (§§ 1º e 2º do art. 16 da Lei n. 9.069/1995 – conv. MP n. 542/1994)."
+    }
+  ],
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "A primeira linha é 'Até abr./1967', sem início. 1964-01 MATERIALIZA a ponta pelo ano da Lei n. 4.380/1964, primeira norma da lista do item 4.9.1 (pagina_pdf 84) — é materialização declarada, não afirmação do manual. O fim 2026-06 é a data-base dos exemplos do manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  },
+  "DEFEITOS_DO_ORIGINAL_TRANSCRITOS": {
+    "D8-D24": "'de 31de outubro de 1990' — falta o espaço. Item 4.9.1, pagina_pdf 84. Transcrito como está.",
+    "D8-D25": "'REsp n. 1.075.627; Resp n. 754.013; REsp. n. 1.314.478' — três grafias da mesma abreviatura na mesma linha. Item 4.9, pagina_pdf 84 (e 'REsp.' em 4.8, pagina_pdf 81). Transcrito como está."
+  },
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+}

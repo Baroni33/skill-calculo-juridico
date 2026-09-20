@@ -79,6 +79,8 @@ Fonte: `docs/calculo/consolidado/01-dominio-e-invariantes.md` § 1.1.
 | 6 | Federal | benefício previdenciário | `references/previdenciario.md` |
 | 7 | Federal | **condenatórias em geral** | `references/civel-federal.md` — correção (§ 2) e **juros autônomos** (§ 3) |
 | 8 | Federal | **desapropriação** direta e indireta | `references/desapropriacao.md` — **três cadeias**: correção (§ 2), juros de mora (§ 3) e **juros compensatórios** (§ 4) |
+| 9 | Federal | **FGTS** (item 4.8, critério **`JAM`**) | `references/fgts.md` — **tronco próprio**, corte por **saque integral** (`D8-C12`) e **calendário de juros próprio**. **Não é** o FGTS fiscal de 2.4.4.1 (`JCM`) |
+| 10 | Federal | **caderneta de poupança** (item 4.9) | `references/poupanca.md` — só incide **se o título mandar**; corte por **data de abertura da conta** (`D8-C16`); **UPC** e **LBC** |
 
 ### A jurisdição trabalhista é NACIONAL
 
@@ -430,11 +432,13 @@ esperado da fixture (método resumido) **não depende disso**.
 
 8. **A varredura do bloco 17 encontrou lacunas que NÃO foram preenchidas** — o enunciado autorizou
    dois arquivos, e elas ficam **listadas, com a razão**, em `references/README.md`:
-   - **FGTS (item 4.8, índice JAM) e poupança (item 4.9, 12 segmentos) do cap. 4 do CJF têm cadeia
-     própria e eixos que nenhuma outra cadeia usa** — `D8-C12` (corte por **saque integral**),
-     `D8-C13` (os expurgos do FGTS **não dizem se substituem ou acrescem**), `D8-C14`, `D8-C15`,
-     `D8-C16`. **Não estão no consolidado nem foram extraídos como cadeia**: vivem só em
-     `bloco-08-jf-detalhe.md` §§ 3.2 e 3.3. **Consolidar vem antes de escrever `reference`**;
+   - **FGTS (item 4.8, índice JAM) e poupança (item 4.9, 12 segmentos) — FECHADO NO BLOCO 18.**
+     Consolidados em `02-atualizacao-detalhe.md` §§ 5.3.2–5.3.5, com quatro cadeias novas, e só
+     **então** escritos: `references/fgts.md` e `references/poupanca.md`. **Seguem abertas**
+     `N-5`/`D8-C13` (os expurgos do FGTS **não dizem se substituem ou acrescem** — os percentuais
+     **não viraram segmento**), **`P18-01`** (sete rótulos `indeterminado`, entre eles o **`IPC`
+     nu**) e **`P18-02`** (oito cadeias tabuladas sem JSON, inclusive o **FGTS fiscal de 2.4.4.1**,
+     critério `JCM`, que **não é** a cadeia de 4.8);
    - **precatórios/requisitórios** não são cadeia por jurisdição, e sim **regime de fase**
      transversal — ficam em `tributario-federal.md` §§ 6 e 7, referenciados pelos demais;
    - **planos econômicos** são **regime temporal bloqueado por falta de série** (P19), não matéria
@@ -470,9 +474,17 @@ civel-cc-nacional.md           Tema 1368, Lei 14.905, taxa legal, termos iniciai
 civel-regional-tjmg.md         tabela CGJ/TJMG, histórico pré-2003, as três hipóteses de sobrevida
 civel-federal.md               condenatórias em geral do CJF: correção + juros autônomos, D1/D2
 desapropriacao.md              as TRÊS cadeias: correção, juros de mora e juros compensatórios
+fgts.md                        critério JAM, corte por SAQUE INTEGRAL, expurgos (N-5, aberta)
+poupanca.md                    corte por ABERTURA DA CONTA, UPC e LBC, as duas R3 do manual
 tributario-federal.md          repetição, dívida fiscal, aplicacao, ECs 113/136, precatório
 previdenciario.md              INPC, e a taxa legal com deflator INPC
 ```
+
+> **FGTS e poupança têm CALENDÁRIO DE JUROS PRÓPRIO:** vão de Selic **direto à taxa legal em
+> set/2024**, **sem corte de dez/2021 nem de set/2025** e **sem citar o ARE 1.557.312**. **Quem
+> aplicar nelas o calendário das condenatórias gerais erra.** Elas também **não estão** entre os
+> cinco lugares que consolidam em dez/2021, e **usam a fórmula `D4`** — que o bloco 8 dava só à
+> dívida fiscal. `02-atualizacao-detalhe.md` § 5.3.4.
 
 > **Um arquivo por cadeia, não por capítulo do manual.** `civel-federal.md` e `desapropriacao.md`
 > nasceram no bloco 17 porque **condenatórias em geral e desapropriação têm cadeia própria** e

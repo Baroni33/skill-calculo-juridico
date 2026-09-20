@@ -176,9 +176,21 @@ infraestrutura não existe.
 ### Passos 1 e 2 — identificar pelo nome **exato**, depois classificar
 
 `IPCA`, `IPCA-E` e `IPCA-15` são **três índices diferentes** (ver "Catálogo"). Recusar o
-identificador ambíguo é mais barato que descobrir a troca no total. Da classificação —
-**nominal, percentual ou englobante** — saem três decisões: **a defasagem** (R3), **se pode
-conviver com uma linha de juros** (R1) e **se o valor é publicado ou derivado** (R11).
+identificador ambíguo é mais barato que descobrir a troca no total. Da classificação saem três
+decisões: **a defasagem** (R3), **se pode conviver com uma linha de juros** (R1) e **se o valor é
+publicado ou derivado** (R11).
+
+**São cinco classes, não três**, e a quarta é a que mais governa o motor:
+
+| Classe | O que afirma |
+|---|---|
+| `nominal` · `percentual` | reflete o mês **anterior** · o **próprio** mês |
+| `englobante` | cobre correção **e** juros (R1) — **neutro em R3** |
+| **`indeterminado`** | **o conceito se aplica, e não há fonte.** A virada **bloqueia** sob `R3-INDETERMINADO` |
+| `nao-indexador` | **verificado, e o conceito não se aplica** — moeda, paridade, conversão |
+
+> **`indeterminado` e `nao-indexador` afirmam coisas diferentes:** *"não se sabe"* × *"não se
+> pergunta"*. **Ausência do campo não é nenhum dos dois** — é indistinguível de esquecimento.
 
 ### Passo 3 — validar a série recebida, nesta ordem
 
@@ -267,7 +279,6 @@ A classificação normativa é `docs/calculo/tabelas-normativas/indexadores-tipo
 **Moeda não é indexador.** Cruzado, cruzeiro, cruzeiro real, real e a conversão em URV entram
 como **`nao-indexador`** — que afirma *verificado, e o conceito não se aplica*, fato diferente de
 `indeterminado` (*aplica-se, sem fonte*). **Ausência de campo seria indistinguível de esquecimento.**
-
 
 ### Divulgação e oráculos
 

@@ -8,6 +8,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from valida_cadeias import confere_manifesto, descobre_cadeias, le_manifesto
 from valida_cobertura import (
     TIPOS_DE_INDEXADOR,
     Segmento,
@@ -682,26 +683,35 @@ class TestCatalogoDeTipos(unittest.TestCase):
         17 renomeou os quatro `trt3.hist.*` para `trab.hist.*`, ela passou a
         achar 7 de 11 — e as guardas de `tipo_indexador` teriam dado OK sem
         inspecionar quatro cadeias. O teste falhou, e estava certo.
+
+        A contagem NÃO é mais constante. `assertEqual(len(nomes), 11)` estava
+        certa quando quebrou com as quatro cadeias do bloco 18 — mas trocar 11
+        por 15 reintroduz o defeito daqui a quatro meses. O piso vem do
+        manifesto, que cresce sozinho e só encolhe por edição deliberada.
         """
-        nomes = []
-        for p in sorted(TABELAS.glob("*.json")):
-            with open(p, "r", encoding="utf-8") as fh:
-                dados = json.load(fh)
-            if dados.get("tipo") == "cadeia-temporal" and isinstance(
-                dados.get("segmentos"), list
-            ):
-                nomes.append(p.name)
-        self.assertEqual(len(nomes), 11, "11 cadeias no bloco 17")
-        return nomes
+        achadas = descobre_cadeias(TABELAS)
+        regressoes, _ = confere_manifesto(achadas)
+        self.assertEqual(regressoes, [], "regressão contra cadeias-manifesto.json")
+        return [c["arquivo"] for c in achadas.values()]
 
     def test_todo_segmento_de_toda_cadeia_tem_tipo(self):
-        total = 0
+        """Cada cadeia tem de trazer PELO MENOS os segmentos que o manifesto
+        registra. `assertEqual(total, 97)` tinha o mesmo defeito da contagem de
+        cadeias: cravava um número que o crescimento normal invalida, e ainda
+        agregava tudo num só total, onde uma cadeia que encolhe some por
+        compensação com outra que cresce. O manifesto guarda POR CADEIA."""
+        declarado = le_manifesto().get("cadeias", {})
+        achadas = descobre_cadeias(TABELAS)
         for nome in self.cadeias():
             _, segmentos = carrega_cadeia(nome)
             for s in segmentos:
                 self.assertIn(s.tipo_indexador, TIPOS_DE_INDEXADOR, f"{nome}: {s.id}")
-                total += 1
-        self.assertEqual(total, 97, "97 segmentos carimbados")
+        for ident, piso in declarado.items():
+            self.assertIn(ident, achadas, f"cadeia '{ident}' sumiu")
+            self.assertGreaterEqual(
+                achadas[ident]["segmentos"], piso["segmentos"],
+                f"{ident}: encolheu de {piso['segmentos']} segmentos",
+            )
 
     def test_todo_indexador_esta_no_catalogo_com_o_mesmo_tipo(self):
         idx = self.catalogo()["indexadores"]
@@ -753,6 +763,85 @@ class TestCatalogoDeTipos(unittest.TestCase):
         for chave in ("INPC", "IGP-DI"):
             self.assertEqual(idx[chave]["tipo"], "percentual", chave)
             self.assertIn("4.1.2.4", idx[chave]["fonte"])
+
+
+class TestManifestoDeCadeias(unittest.TestCase):
+    """O manifesto tem de PEGAR a cadeia que some. Sem esta prova, ele é
+    apenas um arquivo que concorda com o repositório."""
+
+    def manifesto(self, **cadeias):
+        return {"cadeias": cadeias}
+
+    def test_cadeia_que_some_e_regressao(self):
+        regressoes, _ = confere_manifesto(
+            {"cjf.a": {"arquivo": "a.json", "componente": "cm", "segmentos": 3}},
+            self.manifesto(
+                **{
+                    "cjf.a": {"arquivo": "a.json", "segmentos": 3},
+                    "cjf.b": {"arquivo": "b.json", "segmentos": 4},
+                }
+            ),
+        )
+        self.assertEqual(len(regressoes), 1)
+        self.assertIn("cjf.b", regressoes[0])
+        self.assertIn("SUMIU", regressoes[0])
+
+    def test_cadeia_a_mais_e_crescimento_nao_regressao(self):
+        regressoes, novas = confere_manifesto(
+            {
+                "cjf.a": {"arquivo": "a.json", "componente": "cm", "segmentos": 3},
+                "cjf.b": {"arquivo": "b.json", "componente": "jm", "segmentos": 4},
+            },
+            self.manifesto(**{"cjf.a": {"arquivo": "a.json", "segmentos": 3}}),
+        )
+        self.assertEqual(regressoes, [])
+        self.assertEqual(novas, ["cjf.b"])
+
+    def test_cadeia_que_encolhe_e_regressao(self):
+        regressoes, _ = confere_manifesto(
+            {"cjf.a": {"arquivo": "a.json", "componente": "cm", "segmentos": 2}},
+            self.manifesto(**{"cjf.a": {"arquivo": "a.json", "segmentos": 5}}),
+        )
+        self.assertEqual(len(regressoes), 1)
+        self.assertIn("ENCOLHEU", regressoes[0])
+
+    def test_renomear_o_arquivo_nao_e_regressao(self):
+        """A chave é o `id`. Foi renomeação que derrubou o bloco 17 de 11 para
+        7; um manifesto indexado por nome de arquivo repetiria o erro com o
+        sinal trocado — acusaria regressão onde houve só troca de rótulo."""
+        regressoes, novas = confere_manifesto(
+            {"trab.hist.juros-mora": {
+                "arquivo": "OUTRO-NOME.json", "componente": "jm", "segmentos": 4}},
+            self.manifesto(
+                **{"trab.hist.juros-mora": {
+                    "arquivo": "trt3.hist.juros-mora.json", "segmentos": 4}}
+            ),
+        )
+        self.assertEqual(regressoes, [])
+        self.assertEqual(novas, [])
+
+    def test_manifesto_real_cobre_todas_as_cadeias_do_repositorio(self):
+        achadas = descobre_cadeias(TABELAS)
+        declarado = le_manifesto()["cadeias"]
+        self.assertEqual(sorted(declarado), sorted(achadas),
+                         "rode valida_cadeias.py para gravar o crescimento")
+
+    def test_grava_manifesto_nunca_reduz(self):
+        import tempfile
+        from valida_cadeias import grava_manifesto
+        with tempfile.TemporaryDirectory() as d:
+            alvo = Path(d) / "m.json"
+            grava_manifesto(
+                {"cjf.a": {"arquivo": "a.json", "componente": "cm", "segmentos": 9}},
+                alvo,
+            )
+            grava_manifesto(
+                {"cjf.a": {"arquivo": "a.json", "componente": "cm", "segmentos": 2}},
+                alvo,
+            )
+            with open(alvo, "r", encoding="utf-8") as fh:
+                d2 = json.load(fh)
+            self.assertEqual(d2["cadeias"]["cjf.a"]["segmentos"], 9)
 
 
 if __name__ == "__main__":

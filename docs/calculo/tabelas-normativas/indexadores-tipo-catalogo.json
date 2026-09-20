@@ -66,6 +66,33 @@
     "criterio": "toda linha que contenha o nome do índice e, na janela de ±3 linhas, qualquer de 'nominal', 'nominais', 'percentual', 'percentuais'",
     "resultado": "Para IPCA-E, IPCA-15, IPCA serie especial, IPC/FGV, IPC-R, IRSM, TR, MVR e URV, NENHUMA ocorrencia atribui tipo com citacao de fonte primaria. As linhas que classificavam IRSM e IPC-R eram documentos DERIVADOS, sem citacao de item ou pagina_pdf — deducao por nome propagada rio abaixo, nao fonte. CORRIGIDAS na validacao adversarial do bloco 17. Permanece divergente a § 7 de 00-base-normativa.md, que e fonte de verdade do usuario e nao foi alterada."
   },
+  "ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_18": {
+    "por_que": "Os índices que entram com as cadeias de FGTS (item 4.8.1.1) e poupança (item 4.9.1.1) precisam da mesma prova de ausência.",
+    "termos": [
+      "UPC",
+      "LBC",
+      "LFT",
+      "TRD",
+      "JAM",
+      "IPC",
+      "remuneração básica"
+    ],
+    "arvores_varridas": [
+      "docs/",
+      "skills/",
+      "scripts/",
+      "tests/"
+    ],
+    "extensoes": [
+      ".md",
+      ".json",
+      ".csv",
+      ".py"
+    ],
+    "criterio": "linha com o termo (case-insensitive) que contenha também 'nominal', 'nominais', 'percentual' ou 'percentuais', excluídos os arquivos gerados por este bloco",
+    "fonte_primaria_relida": "PDF manual_de_calculos_2026.pdf, pagina_pdf 81–87 (itens 4.8 e 4.9) e 35–36 (item 2.4.4.1), integrais.",
+    "resultado": "ZERO ocorrências classificatórias para UPC, LBC, LFT, JAM e 'remuneração básica'. Para TRD as únicas ocorrências são o texto padrão 'nao-indexador' dos segmentos de juros-mora — que diz que ALI a TRD é regra de juros, não índice de correção, e portanto NÃO classifica a TRD como indexador. Para 'IPC' as ocorrências classificatórias são todas do 'IPC/IBGE' (D8-C21), rótulo distinto do 'IPC' nu de 4.8.1.1. O item 2.4.4.1 (pagina_pdf 35) apenas expande a sigla — 'Unidade Padrão de Capital (UPC)' —, o que é rotulagem e não classificação. CONCLUSÃO: todos indeterminados, pendência P18-01."
+  },
   "indexadores": {
     "ORTN": {
       "tipo": "nominal",
@@ -155,6 +182,48 @@
       "fonte": null,
       "por_que": "Segue a TR. Mesmo rebaixamento.",
       "pendencia": "P17-02"
+    },
+    "JAM": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "NÃO É UM INDEXADOR: é o NOME DO CRITÉRIO das contas fundiárias — 'Juros e Atualização Monetária' (item 4.8, pagina_pdf 81). Os indexadores estão na tabela 4.8.1.1. Registrado aqui porque o rótulo circula no corpus como se fosse índice (pr.fgts-indice-jam, do Manual TRT-3 item 6.14, que é OUTRA fonte). Nenhum dos dois manuais o classifica, e 'englobante' seria dedução — embora o TRT-3 diga que a tabela JAM da CEF 'já computa juros de 3% ao ano', isso é afirmação sobre a TABELA DA CEF, não sobre o critério do CJF. Bloco 18.",
+      "pendencia": "P18-01"
+    },
+    "UPC": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Unidade Padrão de Capital. NÃO está na lista do item 4.1.2.4 e nenhuma fonte do corpus a classifica. O item 2.4.4.1 (pagina_pdf 35) apenas EXPANDE A SIGLA — 'Unidade Padrão de Capital (UPC)' —, o que é rotulagem, não classificação. Classificá-la como nominal 'porque é unidade de capital' é dedução a partir do nome. Só ocorre na cadeia da poupança, 1967-05..1983-06 (item 4.9.1.1, pagina_pdf 85).",
+      "pendencia": "P18-01"
+    },
+    "LBC": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Letra do Banco Central. NÃO está na lista do item 4.1.2.4; nenhuma fonte do corpus a classifica. Ocorre só em FGTS (1987-02, item 4.8.1.1) e poupança (1987-02..1987-06, item 4.9.1.1) — e é justamente onde as duas cadeias divergem (D8-C15).",
+      "pendencia": "P18-01"
+    },
+    "LBC – 0,5%": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Mesma razão da LBC, agravada: o rótulo do manual embute uma dedução de 0,5% cuja natureza (juros descontados? redutor do índice?) a tabela não declara. Ocorre em FGTS e poupança, 1987-07..1987-09.",
+      "pendencia": "P18-01"
+    },
+    "LFT – 0,5%": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Letra Financeira do Tesouro. NÃO está na lista do item 4.1.2.4; nenhuma fonte do corpus a classifica. O rótulo embute a mesma dedução de 0,5% não explicada. Ocorre em FGTS e poupança, 1989-01..1989-04 — e é a linha sobre a qual a NOTA 2 de 4.8.1.1 manda incluir o expurgo de 42,72% sem dizer se substitui ou acresce (N-5, aberta).",
+      "pendencia": "P18-01"
+    },
+    "TRD": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Taxa Referencial Diária. Segue a TR, rebaixada no bloco 17: taxa apurada prospectivamente, fora do critério material do item 4.1.2.4 ('refletem a inflação do próprio mês'). As únicas ocorrências de 'TRD' com vocabulário de tipo no corpus são o texto padrão 'nao-indexador' dos segmentos de JUROS DE MORA — que afirma que ali a TRD é regra de juros, e não classifica a TRD como indexador de correção. Ocorre como INDEXADOR DE CORREÇÃO em FGTS e poupança, 1991-02..1993-04.",
+      "pendencia": "P18-01"
+    },
+    "IPC": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Rótulo NU, sem emissor, nas linhas de mar./1986–jan./1987 e maio/1989–mar./1990 do item 4.8.1.1 (FGTS). D8-C21 sustenta o 'IPC/IBGE', não o 'IPC' sem qualificação — e o próprio manual usa DOIS IPC de emissores distintos: IPC/IBGE no tronco comum do capítulo 4 e IPC/FGV no item 4.5.1.1. A tabela gêmea da poupança (4.9.1.1) escreve 'IPC/IBGE' nos MESMOS meses; identificar os dois rótulos é exatamente a dedução proibida, e é a mesma classe de erro que o bloco 8 registrou ao trocar IPC/FGV por IPC/IBGE entre 78 segmentos. NÃO se aplica aqui a 'identificacao_declarada' do INPC/IBGE, cujo fundamento era 'não existe INPC de outro emissor' — para o IPC o pressuposto é FALSO.",
+      "pendencia": "P18-01"
     },
     "NAO-DECLARADO-PELO-MANUAL": {
       "tipo": "indeterminado",

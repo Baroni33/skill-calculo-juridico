@@ -14,7 +14,7 @@ A skill não é o entregável. O código que um agente constrói lendo a skill �
 | `docs/calculo/01-plano-extracao.md` | Arquitetura das skills, schemas, triagem do corpus, pipeline |
 | `docs/calculo/fontes.md` | Localização dos PDFs e offsets de paginação |
 | `docs/calculo/pendencias.md` | O que está em aberto e o que bloqueia |
-| `docs/calculo/consolidado/` | **Fase 4, fechada.** Onze arquivos, um por assunto: espinha do que o motor precisa, detalhe de onde está a evidência. **É daqui que a skill se escreve.** |
+| `docs/calculo/consolidado/` | **Fase 4, fechada.** Treze arquivos, um por assunto: espinha do que o motor precisa, detalhe de onde está a evidência. **É daqui que a skill se escreve.** |
 | `docs/calculo/consolidado/00-calendario-de-cortes.md` | **Chave primária da consolidação.** Um par `(data, eixo)` por corte |
 
 Os dois manuais em PDF **não são versionados aqui** — ver `docs/calculo/fontes.md`.
@@ -56,6 +56,7 @@ python scripts/calculo/valida_parametros.py --catalogo-ok
 | `valida_taxa_legal.py` | R6 (piso zero), R11 (razão, não subtração), R12 (decimal, truncamento) |
 | `valida_bloco_tabelas.py` | Bloco 1: contagem contra o PDF, faixas, vigências, proveniência |
 | `valida_parametros.py` | Camada de norma coletiva: R14 a R18, precedência, conflito, piso legal |
+| `test_ponteiros.py` | **Ponteiro morto** — link ou nome de arquivo sem alvo, com ledger para narrativa histórica |
 
 `valida_bloco_tabelas.py` separa **erro de extração** de **divergência do original** e só
 sai com código não-zero no primeiro. Divergência é resultado esperado do trabalho: o
@@ -129,9 +130,9 @@ nacional e marca a conta `sem cobertura regional`. Chave: `(regra, tribunal, com
 **Bloco 17 — correções estruturais antes da aceitação** — ver
 [`docs/calculo/extracao/bloco-17-relatorio.md`](docs/calculo/extracao/bloco-17-relatorio.md).
 
-**R3 deixou de ser letra morta.** O campo `tipo_indexador` não existia em série nenhuma; agora
-está em **97 de 97 segmentos**, e o validador bloqueia a virada entre tipos sem ajuste de
-defasagem. **Dez dos vinte e oito indexadores ficaram `indeterminado`** — a fonte nomeia sete, e
+**R3 deixou de ser letra morta.** O campo `tipo_indexador` não existia em série nenhuma; passou
+a estar em **todos os segmentos de todas as cadeias** — eram 97 no bloco 17, são **126** desde o
+18 —, e o validador bloqueia a virada entre tipos sem ajuste de defasagem. **Dez dos vinte e oito indexadores ficaram `indeterminado`** — a fonte nomeia sete, e
 estender por semelhança de nome era a dedução proibida. **A TR foi rebaixada:** era `percentual`
 por inferência formal, e **inferência declarada não é fonte**.
 
@@ -144,6 +145,24 @@ encadeia**; a ordem é composição deste projeto, e agora é contestável em ve
 > pelo prefixo do id nem pelo nome do arquivo. As cadeias `trt3.hist.*` viraram `trab.hist.*` — e
 > a descoberta por prefixo em `valida_cadeias.py`, que fazia o validador cair de 11 cadeias para
 > 7 **em silêncio**, passou a ser por conteúdo.
+
+**Bloco 18 — lacunas de consolidação** — ver
+[`docs/calculo/extracao/bloco-18-relatorio.md`](docs/calculo/extracao/bloco-18-relatorio.md).
+
+**FGTS e poupança tinham cadeia própria no cap. 4 do CJF e nunca haviam sido consolidados.** A
+varredura que o precedia mostrou que **não eram duas: são dez** — inclusive **a desapropriação
+indireta inteira** e um **segundo FGTS**, o fiscal do item 2.4.4.1, com critério `JCM` em vez de
+`JAM`. As oito restantes ficam registradas como `P18-02`.
+
+> **E uma que parecia lacuna e não é:** a correção trabalhista do 4.7.1 **não tem tabela** — o
+> manual delega ao TST. **Afirmá-la ausente seria afirmar ausência de algo que a fonte nunca
+> prometeu.**
+
+**15 cadeias, 267 testes.** A contagem deixou de ser constante e passou a ser **manifesto
+assimétrico**: cresce sozinho quando aparece cadeia nova, e **só encolhe por edição deliberada** —
+porque cadeia a mais é crescimento e **cadeia a menos é regressão**. E entrou
+`test_ponteiros.py`, com *ledger* que distingue ponteiro morto de narrativa histórica pelo par
+`(alvo, arquivo)`.
 
 | Bloco | Conteúdo | Relatório |
 |---|---|---|
@@ -166,6 +185,7 @@ encadeia**; a ordem é composição deste projeto, e agora é contestável em ve
 | 15 | **Fase 4 — consolidação.** Onze arquivos em espinha e detalhe; os 33 casos difíceis como aceite | `docs/calculo/extracao/bloco-15-relatorio.md` |
 | 16 | **Fase 5 — build das skills.** Quatro skills, `references/` nacional × regional, R24 | `docs/calculo/extracao/bloco-16-relatorio.md` |
 | 17 | **Correções estruturais.** Campo `tipo` e R3 no validador; ids neutros; ordem de cálculo | `docs/calculo/extracao/bloco-17-relatorio.md` |
+| 18 | **Lacunas de consolidação.** FGTS e poupança; manifesto de cadeias; teste de ponteiros | `docs/calculo/extracao/bloco-18-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 **80 páginas de capítulo** mais a Apresentação e a Resolução, sete cadeias temporais em

@@ -908,3 +908,96 @@ não ajuste, o manual não diz; ele nem sequer as reconhece como viradas de tipo
 em série CSV), ficaram `indeterminado`. A
 proporção não é defeito da extração: é o tamanho real da lacuna que R3 vinha escondendo por
 não ter campo onde aparecer.
+
+---
+
+## 24. Bloco 18 — FGTS (item 4.8) e poupança (item 4.9) do Manual CJF
+
+Consolidados em `consolidado/02-atualizacao.md` § 5 e `02-atualizacao-detalhe.md` §§ 5.0 e
+5.3.2–5.3.5. Quatro JSON novos em `tabelas-normativas/`: `cjf.fgts.correcao-monetaria` (11
+segmentos), `cjf.fgts.juros-mora` (3), `cjf.poupanca.correcao-monetaria` (12) e
+`cjf.poupanca.juros-mora` (3). Gerador: `scripts/calculo/gera_cadeias_bloco18.py`.
+
+### 24.1 `N-5` / `D8-C13` — continua ABERTA, e não se resolve aqui
+
+Item 4.8.1.1, NOTA 2, `pagina_pdf` 82: *"a liquidação deve incluir os expurgos inflacionários
+reconhecidos pelo STJ em casos de FGTS: **42,72% em jan./1989 e 44,80% em abr./1990**"*.
+
+**Substitui ou acresce? O manual não diz.** No capítulo 4 geral a operação é declarada — *"Expurgo,
+em substituição ao BTN"*, e o item 4.1.2.1 manda *"descontando o BTN ou outro índice utilizado,
+evitando bis in idem"*. No FGTS a nota apenas manda **incluir**, sobre linhas que **já trazem
+indexador** (`LFT – 0,5%` em jan/1989; `BTN` em abr/1990), e a tabela **não menciona expurgo algum**.
+
+**Consequência de modelagem:** os dois percentuais **não foram gravados como segmento**. Gravá-los
+exigiria escolher entre substituir e somar — o que é resolver a pendência por dedução.
+
+E o conjunto do FGTS **não é o do capítulo 4**: lá são 42,72% (jan/1989) e **10,14%** (fev/1989);
+aqui, 42,72% (jan/1989) e **44,80%** (abr/1990). **`D8-C14`** acrescenta a bifurcação contraintuitiva:
+quem **discute** expurgos só recebe *"os períodos definidos pelo julgado"* (NOTA 1); quem **não
+discute** recebe os dois por padrão (NOTA 2).
+
+### 24.2 `P18-01` — sete rótulos de indexador sem classificação em fonte alguma
+
+| Rótulo | Onde | Por que `indeterminado` |
+|---|---|---|
+| **`JAM`** | 4.8, `pagina_pdf` 81 | **não é indexador** — é o nome do critério (*"Juros e Atualização Monetária"*). Registrado porque circula como se fosse |
+| **`UPC`** | poupança, 1967-05..1983-06 | não está no item 4.1.2.4. O item 2.4.4.1 só **expande a sigla** — rotulagem, não classificação |
+| **`LBC`** | FGTS 1987-02; poupança 1987-02..1987-06 | não está no item 4.1.2.4; nada no corpus |
+| **`LBC – 0,5%`** | ambas, 1987-07..1987-09 | idem, e o rótulo embute um redutor de 0,5% não explicado |
+| **`LFT – 0,5%`** | ambas, 1989-01..1989-04 | idem. É a linha do expurgo de 42,72% (`N-5`) |
+| **`TRD`** | ambas, 1991-02..1993-04 | segue a TR (P17-02). As únicas ocorrências no corpus são o texto `nao-indexador` de segmentos de **juros**, que não classifica a TRD como índice de correção |
+| **`IPC`** (nu) | FGTS, duas janelas | `D8-C21` sustenta o **`IPC/IBGE`**, não o `IPC` sem emissor — e o manual usa **dois** IPC (IBGE e FGV, item 4.5.1.1). A poupança escreve `IPC/IBGE` nos **mesmos meses** |
+
+**Escopo da busca de ausência declarado** em `tabelas-normativas/indexadores-tipo-catalogo.json`,
+chave `ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_18`: árvores `docs/`, `skills/`, `scripts/`, `tests/`;
+extensões `.md`, `.json`, `.csv`, `.py`; critério = linha com o termo **e** vocabulário de tipo.
+Mais a releitura integral do PDF nas `pagina_pdf` **81–87** e **35–36**. **Zero ocorrências
+classificatórias.**
+
+**Efeito medido:** **19 violações `R3-INDETERMINADO`** novas. Não são defeito do manual nem da
+modelagem — são esta pendência tornada visível. Classificar por dedução as faria sumir, **e a dedução
+passaria limpa**.
+
+### 24.3 `P18-02` — oito cadeias tabuladas do manual sem JSON
+
+A varredura `item × JSON × consolidado` dos caps. 2 e 4 (detalhe § 5.0) mostrou que FGTS e poupança
+**não eram as únicas**:
+
+| Item | Cadeia | Observação |
+|---|---|---|
+| **4.5.2** | juros de mora — desapropriação **direta** | 5 linhas; em prosa no detalhe § 5.3.1 |
+| **4.5.3** | juros **compensatórios** — direta | recuperada em prosa pelo bloco 15; **segue sem JSON** |
+| **4.6.1.1** | correção — desapropriação **indireta** | **idêntica à de 4.5.1.1**, inclusive no IPC/FGV |
+| **4.6.2** | juros de mora — indireta | fecha em **dez/2021**; a gêmea 4.5.2 fecha em **nov/2021** |
+| **4.6.3** | juros compensatórios — indireta | carrega o `N-10` (remete a *"item 4.5.2"*, da direta) |
+| **2.3.2.2** | juros — dívida fiscal | exige `base_incidencia` — `D8-C5`: a base alterna **quatro vezes** |
+| **2.4.2.2.2** | juros — contribuição previdenciária | idem |
+| **2.4.4.1** | **FGTS fiscal**, critério **`JCM`** | **não é** a cadeia de 4.8: outro sujeito, outra sigla, outro capítulo. Lista, não tabela. `D8-C8` em aberto |
+
+**Não geradas neste bloco**, por escopo e porque três delas exigem decisão de modelagem que não cabe
+tomar de passagem. **Registradas, não silenciadas.**
+
+**E uma que parecia lacuna e não é: `4.7.1`.** O manual **não tem** tabela de correção monetária
+trabalhista — só lista de leis, e a NOTA 2 **delega**: *"utilizar a tabela de coeficientes
+trabalhistas expedida pelo Tribunal Superior do Trabalho"*. Mesmo desenho do `P9-02`: a cadeia vive
+numa **série**, não numa regra. Afirmá-la ausente seria afirmar ausência do que a fonte nunca
+prometeu.
+
+### 24.4 Baselines dos validadores, atualizados
+
+`scripts/calculo/valida_cadeias.py` descobre cadeia por `tipo == "cadeia-temporal"`; os quatro
+arquivos entraram sem alteração de código.
+
+| | antes (bloco 17) | **depois (bloco 18)** |
+|---|---|---|
+| cadeias | 11 | **15** |
+| **R1** | **15** | **15** — *inalterado* |
+| **R2** | **1** | **1** — *inalterado* |
+| **R3** | 25 | **46** (+21: **19** `R3-INDETERMINADO` + **2** `R3` cheia) |
+
+**R1 e R2 não se moveram porque as duas cadeias novas de correção são perfeitamente contíguas** —
+fim e início nunca caem no mesmo mês, ao contrário do tronco comum do capítulo 4 (jan/1989, mar/1990).
+
+**As 2 `R3` cheias são do manual**, ambas em `cjf.poupanca.correcao-monetaria`: `1986-03` ORTN
+(nominal) → IPC/IBGE (percentual) e `1990-04` IPC/IBGE (percentual) → BTN (nominal), **sem `aplicacao`
+declarada**. Mesmo padrão já registrado em § 23.4. **Não harmonizadas.**

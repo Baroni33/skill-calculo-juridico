@@ -47,10 +47,12 @@ Fonte da classificação: `docs/calculo/consolidado/08-nacional-e-regional.md`;
 
 ---
 
-## Os oito arquivos
+## Os dez arquivos
 
 **Eram seis até o bloco 16. O bloco 17 acrescentou dois**, e a razão está na § "Limitação da
-própria divisão", abaixo.
+própria divisão", abaixo. **O bloco 18 acrescentou outros dois** — `fgts.md` e `poupanca.md` —,
+que eram a **primeira linha** da tabela "o que a varredura achou e não foi criado" e só puderam
+ser escritos **depois de consolidados** (§ "O que o bloco 18 fechou").
 
 | Arquivo | Cobre |
 |---|---|
@@ -60,6 +62,8 @@ própria divisão", abaixo.
 | **`civel-regional-tjmg.md`** | tabela da **CGJ/TJMG** — períodos pré-2003 e as **três hipóteses de sobrevida**; o que acontece fora de MG |
 | **`civel-federal.md`** ⟨bloco 17⟩ | **condenatórias em geral** do CJF (item 4.2) — tronco comum, correção (15 segmentos, bifurca em **dez/2021**), **cadeia autônoma de juros** (11 segmentos, bifurca em **jul/2009**), as duas reconvergências em **set/2025**, o ramo paralelo `N-8`, as fórmulas **D1 e D2**, as **fixtures 1 a 3** |
 | **`desapropriacao.md`** ⟨bloco 17⟩ | **três cadeias autônomas** — correção (com o **IPC/FGV** exclusivo), juros de mora (eixo na **data da sentença**) e **juros compensatórios** (`D8-C10`, os três cortes, `N-6`, `N-10`, `R-08-19`, honorários de perito) |
+| **`fgts.md`** ⟨bloco 18⟩ | **FGTS do cap. 4 do CJF** (item 4.8) — critério **`JAM`**, correção (11 segmentos) e juros de mora (3); **`D8-C12`**, o corte por **saque integral**; **`D8-C13`/`N-5`**, os expurgos que **não dizem se substituem ou acrescem** (**aberta**); `D8-C14`, `D8-C15`, `D8-D18`; e o **FGTS fiscal de 2.4.4.1 (`JCM`), que é OUTRA cadeia** e segue em `P18-02` |
+| **`poupanca.md`** ⟨bloco 18⟩ | **cadernetas de poupança** (item 4.9) — correção (12 segmentos) e juros de mora (3); **`D8-C16`/`N-11`**, o corte por **data de abertura da conta**; **UPC** e **LBC**, que só aparecem aqui; a **cadeia paralela da NOTA 3** (cruzados novos bloqueados); as **duas `R3` cheias do manual**; `D8-D19`, `D8-D24`, `D8-D25` |
 | **`tributario-federal.md`** | repetição de indébito e dívida fiscal; **e as seções transversais** a todas as cadeias federais: as quatro fórmulas de `aplicacao`, ECs 113/136, precatório e a consolidação de dez/2021 nos cinco lugares |
 | **`previdenciario.md`** | cadeia de benefícios do CJF (15 segmentos) e a **taxa legal com deflator INPC** |
 
@@ -117,7 +121,7 @@ O enunciado autorizou **dois** arquivos. As demais lacunas ficam **listadas, nã
 
 | Matéria | Cadeia própria? | Por que não virou `reference` |
 |---|---|---|
-| **FGTS do cap. 4 do CJF** (item 4.8, índice **JAM**) e **poupança** (item 4.9, **12 segmentos**) | **sim** — `D8-C12` (eixo por **saque integral**), `D8-C13`, `D8-C14`, `D8-C15`, `D8-C16` | **Não estão no consolidado.** Vivem só em `extracao/justica-federal/bloco-08-jf-detalhe.md` §§ 3.2 e 3.3, e **não foram extraídos como cadeia** para `tabelas-normativas/` (são sete cadeias, e nenhuma é FGTS ou poupança). Escrever `reference` exigiria consolidar antes |
+| **FGTS do cap. 4 do CJF** (item 4.8, índice **JAM**) e **poupança** (item 4.9, **12 segmentos**) | **sim** — `D8-C12` (eixo por **saque integral**), `D8-C13`, `D8-C14`, `D8-C15`, `D8-C16` | **À época: não estavam no consolidado.** Viviam só em `extracao/justica-federal/bloco-08-jf-detalhe.md` §§ 3.2 e 3.3, e **não haviam sido extraídos como cadeia** para `tabelas-normativas/`. Escrever `reference` exigiria consolidar antes — **e foi o que o bloco 18 fez. FECHADO:** `fgts.md` e `poupanca.md` |
 | **Dívida fiscal** | **sim** — bifurca por `data-do-fato-gerador`, **não tem o tronco comum**, tem janela **sem correção** e base de juros que **alterna quatro vezes** | **Tem casa e o nome a cobre:** é tributária. `tributario-federal.md` § 3. **Não é lacuna** |
 | **Repetição de indébito** | **sim** — `D3`, termo inicial no **trânsito em julgado**, **não consolida** em dez/2021 | idem — `tributario-federal.md` § 2. **Não é lacuna** |
 | **Precatórios / requisitórios** (ECs 113 e 136, `C14-02`, `R-08-17`) | **não é cadeia por jurisdição** — é **regime de fase**, transversal a todas elas | Ficaria duplicado em cada arquivo. **Fica em `tributario-federal.md` §§ 6 e 7 como seção transversal**, referenciada pelos demais |
@@ -128,7 +132,29 @@ O enunciado autorizou **dois** arquivos. As demais lacunas ficam **listadas, nã
 `presets-regime.md`, `pendencias.md` e os dois arquivos do bloco 08, buscando `JAM`, `poupan`,
 `FGTS`, `planos econ`, `planos-economicos`, `4.8` e `4.9`. **Fora deste escopo não há afirmação.**
 
+## O que o bloco 18 fechou — **"depois de consolidadas, e não antes"**
+
+A **tarefa 1 do bloco 18** consolidou FGTS e poupança em
+`docs/calculo/consolidado/02-atualizacao-detalhe.md` **§§ 5.3.2 a 5.3.5**, gerou as **quatro
+cadeias** (`cjf.fgts.*` e `cjf.poupanca.*`) e registrou a **varredura item × JSON × consolidado**
+do § 5.0. **A tarefa 2 escreveu as duas `references/` a partir do consolidado — não da extração
+bruta**, como os oito anteriores.
+
+**O que continua ABERTO, e não foi resolvido por estes dois arquivos:**
+
+| Pendência | O que é |
+|---|---|
+| **`N-5` / `D8-C13`** | os expurgos do FGTS (**42,72% em jan/1989 e 44,80% em abr/1990**) **não dizem se substituem ou acrescem**. Os percentuais **não viraram segmento**: gravá-los exigiria escolher. `fgts.md` § 8 |
+| **`P18-01`** | sete rótulos (`JAM`, `UPC`, `LBC`, `LBC – 0,5%`, `LFT – 0,5%`, `TRD`, **`IPC` nu**) **sem classificação em fonte alguma** → `indeterminado`. **19 `R3-INDETERMINADO`** |
+| **`P18-02`** | **oito cadeias tabuladas do manual sem JSON** — 4.5.2, 4.5.3, 4.6.1.1, 4.6.2, 4.6.3, 2.3.2.2, 2.4.2.2.2 e **2.4.4.1** (o **FGTS fiscal**, critério `JCM`, que **não é** a cadeia de 4.8) |
+| **duas `R3` cheias** | `1986-03` e `1990-04` na poupança, **sem `aplicacao`**. **São do manual — transcritas, não harmonizadas.** `poupanca.md` § 4.2 |
+
+> **`4.7.1` parecia lacuna e não é:** o manual **não tem** tabela de correção trabalhista — ele
+> **delega ao TST**. Afirmá-la ausente seria afirmar ausência de algo que a fonte nunca prometeu.
+> `02-atualizacao-detalhe.md` § 5.0.
+
 ## Estado
 
-**Os oito arquivos estão escritos.** Os seis primeiros no bloco 16; `civel-federal.md` e
-`desapropriacao.md` no **bloco 17**, com `SKILL.md` e este README atualizados no mesmo bloco.
+**Os dez arquivos estão escritos.** Os seis primeiros no bloco 16; `civel-federal.md` e
+`desapropriacao.md` no **bloco 17**; **`fgts.md` e `poupanca.md` no bloco 18** — com `SKILL.md` e
+este README atualizados em cada bloco.

@@ -29,14 +29,13 @@ base normativa, **aplicando os vereditos** de `../confronto-normativo/01-veredit
 | 2 | Trabalhista | Fazenda Pública | § 3.1 | § 3.2 (`trab.hist.fazenda-publica.juros-mora`) |
 | 3 | Trabalhista | Fazenda **subsidiária** | **ramo vazio, por decisão** — § 3.3 | — |
 | 4 | Cível | qualquer | § 4 | § 4 (tabela CGJ/TJMG) |
-| 5 | Federal | cinco ramos do CJF | § 5 | § 5 (o tronco comum 1964–fev/1991) |
+| 5 | Federal | sete ramos do CJF | § 5 | § 5 (o tronco comum 1964–fev/1991) |
 
-**Escopo declarado da afirmação "cinco ramos do CJF":** o Manual CJF (Res. 990/2026) tem
-**sete cadeias** extraídas em `../tabelas-normativas/cjf.*.json` (78 segmentos). São **cinco
-ramos de correção monetária** — condenatórias gerais, previdenciário, repetição de indébito,
-desapropriação direta, dívida fiscal — e **duas cadeias de juros** autônomas (condenatórias
-gerais e trabalhista-JF). Fonte: `../extracao/justica-federal/bloco-08-jf.md` § 4,
-`pagina_pdf` 48, 54, 57, 63, 66, 78 e 23.
+**Escopo declarado:** o Manual CJF (Res. 990/2026) tem **11 cadeias** em
+`../tabelas-normativas/cjf.*.json` (107 segmentos) — **7 de correção** (condenatórias, previdenciário,
+repetição, desapropriação direta, dívida fiscal, **FGTS**, **poupança**) e **4 de juros**
+(condenatórias, trabalhista-JF, **FGTS**, **poupança**). **Oito outras cadeias tabuladas do manual
+ainda não têm JSON** — `P18-02`, detalhe § 5.0.
 
 ---
 
@@ -213,11 +212,11 @@ julgado sob o regime anterior (R8: título > escolha > default).
 **Termos iniciais** (R7): regra geral, citação; extracontratual, evento danoso (Súmula 54/STJ);
 ato ilícito, efetivo prejuízo (Súmula 43/STJ); dano moral, arbitramento (Súmula 362/STJ).
 
-## 5. Justiça Federal — as cinco cadeias do CJF
+## 5. Justiça Federal — as cadeias do CJF
 
 Manual CJF, Res. 990/2026 (`../extracao/justica-federal/bloco-08-jf.md`); JSON em
-`../tabelas-normativas/cjf.*.json`. **Única fonte do corpus cuja edição está vigente.**
-**Segmento a segmento no detalhe § 5.**
+`../tabelas-normativas/cjf.*.json` — **11 cadeias** (7 do bloco 8 + **4 do bloco 18**).
+**Única fonte do corpus cuja edição está vigente. Segmento a segmento no detalhe § 5.**
 
 **Tronco comum de 1964 a fev/1991**, idêntico palavra por palavra em quatro cadeias de correção
 (condenatórias, previdenciário, repetição, desapropriação): ORTN (1964–fev/86) → OTN
@@ -233,6 +232,24 @@ tronco.**
 | **Repetição de indébito** | INPC → IPCA esp. → Ufir (92–jan/96) → **Selic desde jan/1996** | **nunca** |
 | **Desapropriação direta** | **IPC/FGV (mar–dez/1991)** — índice exclusivo desta cadeia → Ufir → IPCA-E → Selic → IPCA-15 | **nunca** |
 | **Dívida fiscal** | BTN (jan/89–jan/91) → janela 1991-02..1991-12 → **Ufir → Selic, bifurcado pelo `data-do-fato-gerador`** | por fato gerador |
+| **FGTS** (4.8.1.1, **`JAM`**) | **tronco próprio, não o comum:** ORTN (jan/67–fev/86) → IPC → LBC → **OTN (mar–jun/87)** → LBC–0,5% → OTN → LFT–0,5% → IPC → BTN → TRD → **TR (maio/93→)** | **nunca** |
+| **Poupança** (4.9.1.1) | **idem, salvo:** **UPC (maio/67–jun/83)** e **LBC (fev–jun/87)** onde o FGTS usa ORTN e OTN | **nunca** |
+
+**FGTS e poupança — cadeia própria, consolidadas no bloco 18; detalhe § 5.0 e §§ 5.3.2–5.3.5.** Três eixos
+exclusivos: **`D8-C12`**, o FGTS corta por **SAQUE INTEGRAL** (4.8, NOTA 2) — **não é competência nem
+sentença**; **`D8-C16`/`N-11`**, a poupança corta por **DATA DE ABERTURA DA CONTA**, enquanto **4.5.2
+e 4.6.2 aplicam a mesma fórmula por competência**; e o **aniversário da conta** como termo inicial.
+**`D8-C15`: divergem em dezesseis anos e quatro meses, e nenhuma das duas tabelas traz fundamento
+legal para isso.** **`D8-C13`/`N-5` fica ABERTA** — os expurgos do FGTS (*"42,72% em jan./1989 e 44,80%
+em abr./1990"*) **não dizem se substituem ou acrescem**, ao contrário do capítulo 4 geral (*"em
+substituição ao BTN"*), e por isso **não viraram segmento**. **Calendário próprio:** 0,5% até
+dez/2002 → Selic → **taxa legal em set/2024**, sem dez/2021 nem set/2025; **não consolidam**
+(`0,4412` só nas `pagina_pdf` 50, 59, 67, 74, 79). Defeitos transcritos: `D8-D18` (*"Lei
+5.107/**1986**"*, que é de 1966), `D8-D19`, `D8-D24`, `D8-D25`. **A varredura dos caps. 2 e 4
+(detalhe § 5.0) achou mais oito cadeias tabuladas sem JSON** — 4.5.2, 4.5.3, **4.6.1.1, 4.6.2,
+4.6.3** (indireta inteira), 2.3.2.2, 2.4.2.2.2 e **2.4.4.1** (FGTS **fiscal**, critério **`JCM`**,
+que **não é** a de 4.8): **`P18-02`**. **`4.7.1` não é lacuna** — não há tabela de correção
+trabalhista no manual; ele delega ao TST.
 
 **Juros, cadeias autônomas:** `cjf.condenatorias-gerais.juros-mora` bifurca em **jul/2009** e
 reconverge em **set/2025** (taxa legal); `cjf.trabalhista.juros-mora` bifurca em **ago/2001** e
@@ -241,10 +258,10 @@ reconverge em **set/2025** (taxa legal); `cjf.trabalhista.juros-mora` bifurca em
 universal:** três cadeias nunca bifurcam.
 
 **Quatro fórmulas de `aplicacao`, e D1 ≠ D2 sobre a mesma série:** **D1** — Selic no mês posterior
-ao de sua competência, **inclusive no mês de pagamento** (Fazenda, desde dez/2021; a taxa legal
-segue D1); **D2** — do mês seguinte ao termo inicial dos juros até o mês anterior ao pagamento, **e
-1% no mês do pagamento** (não-Fazenda; Fazenda jan/03–jun/09); **D3** — eixo no **recolhimento
-indevido** (repetição); **D4** — competência da parcela (dívida fiscal).
+ao de sua competência, **inclusive no mês de pagamento** (Fazenda, desde dez/2021; a taxa legal segue
+D1); **D2** — do mês seguinte ao termo inicial dos juros até o mês anterior ao pagamento, **e 1% no
+mês do pagamento** (não-Fazenda; Fazenda jan/03–jun/09); **D3** — eixo no **recolhimento indevido**
+(repetição); **D4** — competência da parcela — **dívida fiscal, e também FGTS e poupança**.
 
 **`C14-01` — `SUPERADO`.** A EC 136/2025 reescreveu o art. 3º da EC 113/2021: requisitórios da
 Fazenda **federal**, da expedição ao pagamento, **IPCA** + **juros simples de 2% a.a.**, com
@@ -268,8 +285,6 @@ devedora como Fazenda Pública — **Pendência 1**, *"pergunta ao jurídico do 
 C14-02 são condicionais a ela.** Busca declarada do bloco 13C: `economia mista` tem **zero
 ocorrências nas 471 páginas**; a única equiparação nominada é a ECT, e só *"para efeito de execução
 e do DL 779/1969"*.
-
----
 
 ---
 
@@ -439,13 +454,15 @@ superveniente de legislação sobre o indexador passa por cima do título), **R9
 | **Base 2** | Tabela Única do CSJT — contrato de integração | base § 9 | **bloqueia o motor trabalhista** |
 | **Base 3** | Efeito da EC 136/2025 na Justiça do Trabalho | base § 9 | aguarda TST/CSJT |
 | **Base 4** | ADI 7873 | base § 9 | aguarda julgamento |
+| **`N-5`/`D8-C13`** | expurgos do FGTS — **substituem ou acrescem?** | `pagina_pdf` 82 | **aberta, e não se resolve** — os percentuais **não viraram segmento** |
+| **P18-01** | `JAM`, `UPC`, `LBC`, `LBC – 0,5%`, `LFT – 0,5%`, `TRD`, `IPC` **sem classificação em fonte** | item 4.1.2.4 não os nomeia | `indeterminado` — **19 `R3-INDETERMINADO`** no validador |
+| **P18-02** | **oito cadeias tabuladas do manual sem JSON** — 4.5.2, 4.5.3, 4.6.1.1, 4.6.2, 4.6.3, 2.3.2.2, 2.4.2.2.2, 2.4.4.1 | detalhe § 5.0 | aberta — 2.3.2.2 e 2.4.2.2.2 exigem `base_incidencia` (`D8-C5`) |
 
 **Defeitos do original que atravessam a cadeia** — não corrigidos, catalogados em
-`../armadilhas-comparador.md`: **A5** (índice de dez/10, `pagina_pdf` 96, monotonicidade
-quebrada — o erro está no índice publicado e o valor está certo) e o
-**`DEFEITO_DO_ORIGINAL` das moedas** (`trab.hist.moedas-e-paridades`, `pagina_pdf` 99): a
-primeira linha termina em **12/02/70** e a segunda começa em **13/02/67** — três anos de
-sobreposição; quase certamente era **12/02/67**. **Registrado, não corrigido.**
+`../armadilhas-comparador.md`: **A5** (índice de dez/10, `pagina_pdf` 96, monotonicidade quebrada — o
+erro está no índice publicado e o valor está certo) e o **`DEFEITO_DO_ORIGINAL` das moedas**
+(`trab.hist.moedas-e-paridades`, `pagina_pdf` 99): a primeira linha termina em **12/02/70** e a
+segunda começa em **13/02/67** — três anos de sobreposição; era quase certamente **12/02/67**.
 
 ---
 
@@ -467,21 +484,17 @@ sobreposição; quase certamente era **12/02/67**. **Registrado, não corrigido.
 - `../extracao/trabalhista/bloco-09-cadeias-historicas.md` — cadeias trabalhistas, as três
   defasagens, a anomalia da capitalização, moedas e paridades
 - `../extracao/justica-federal/bloco-08-jf.md` e `bloco-08-jf-detalhe.md` — as sete cadeias do
-  CJF linha a linha, notas × linhas, defeitos do original
-- `../tabelas-normativas/cjf.*.json` e `trab.hist.*.json` — as cadeias em schema
-  `cadeia-temporal`, com `status_norma`, `ALERTA_R4` e `ponta_materializada`
-- `../00-base-normativa.md` §§ 1, 1.1, 2, 4, 5, 6, 7 — regimes vigentes e invariantes
-- `00-calendario-de-cortes.md` — o par `(data, eixo)`
-- `../confronto-normativo/01-vereditos.md` — F7-04, C14-01, C14-02, C14-03, CH-01..CH-05,
-  AM-01, AM-03, JR-05
-- `../armadilhas-comparador.md` — A5, e o índice por página
+  bloco 8 linha a linha, notas × linhas, defeitos do original
+- `../tabelas-normativas/cjf.*.json` (11) e `trab.hist.*.json` — schema `cadeia-temporal`, com
+  `status_norma`, `ALERTA_R4` e `ponta_materializada`; validador `scripts/calculo/valida_cadeias.py`
+- `../00-base-normativa.md` §§ 1, 1.1, 2, 4, 5, 6, 7 — regimes vigentes e invariantes;
+  `00-calendario-de-cortes.md` — o par `(data, eixo)`
+- `../confronto-normativo/01-vereditos.md` — F7-04, C14-01..C14-03, CH-01..CH-05, AM-01, AM-03, JR-05; `../armadilhas-comparador.md` — A5, e o índice por página
 
 ## Detalhe
 
-As seções **5** e **10** estão aqui em forma condensada. O desenvolvimento — as cadeias do CJF
-**segmento a segmento**, as quatro fórmulas de `aplicacao` com as citações literais, e a
-consolidação de dez/2021 nos cinco lugares com o texto integral — vive em
-**[`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md)**, para manter a espinha abaixo de
-500 linhas.
-
-**A espinha é o que o motor precisa para calcular. O detalhe é onde está a evidência.**
+As seções **5** e **10** estão aqui condensadas. O desenvolvimento — a **varredura item × JSON ×
+consolidado** dos caps. 2 e 4 (§ 5.0), as cadeias **segmento a segmento**, **FGTS e poupança**
+(§§ 5.3.2–5.3.5) e a consolidação de dez/2021 com texto integral — vive em
+**[`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md)**, para manter a espinha abaixo de 500
+linhas. **A espinha é o que o motor precisa para calcular; o detalhe é onde está a evidência.**

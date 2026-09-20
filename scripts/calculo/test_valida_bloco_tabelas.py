@@ -170,6 +170,21 @@ class TestFaixaNaoDeclarada(BaseProveniencia):
         self.assertIn("sem faixa de páginas declarada", rel.nao_verificado[0])
 
 
+class TestDescobertaNaoDependeDoPrefixo(BaseProveniencia):
+    """A varredura de proveniência filtrava por `serie-*.csv`. Era a mesma
+    classe de defeito do bloco 17: renomear o arquivo tirava-o da conferência
+    EM SILÊNCIO, com o resumo ainda dizendo '0 erros'."""
+
+    def test_csv_sem_o_prefixo_serie_continua_sendo_conferido(self):
+        self.escreve(
+            "18.6-irrf-plr-SEM-PREFIXO.csv", CABECALHO_BLOCO_1,
+            ["389,18.6,1", "455,18.6,2"],
+        )
+        rel = self.roda()
+        self.assertEqual(len(rel.erros), 1, "o arquivo renomeado saiu da varredura")
+        self.assertIn("18.6-irrf-plr-SEM-PREFIXO.csv:3", rel.erros[0])
+
+
 class TestContratoDePaginas(unittest.TestCase):
     """Garantias sobre o contrato, lidas do módulo real."""
 
