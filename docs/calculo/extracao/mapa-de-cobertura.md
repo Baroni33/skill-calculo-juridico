@@ -346,7 +346,7 @@ Sete cadeias estão em `docs/calculo/tabelas-normativas/cjf.*.json`; estas treze
 | Parâmetros negociáveis e norma coletiva (R14–R18) | 5 | `valida_parametros.py` |
 | Presets de regime temporal (R19–R22) | 6 | `valida_regimes.py`, `regimes-temporais-catalogo.json` |
 | Cobertura temporal (R1, R2) | 8 e 9 | `valida_cobertura.py`, `valida_cadeias.py` |
-| Cadeias históricas trabalhistas | 9 | `trt3.hist.*.json` |
+| Cadeias históricas trabalhistas | 9 | `trab.hist.*.json` |
 | Índice de jurisprudência | 10 | `jurisprudencia-indice.md` |
 
 ---

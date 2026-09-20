@@ -10,7 +10,8 @@ description: >-
   "precatório", "juros compensatórios de desapropriação", "TR até quando", "índice da
   Fazenda Pública", "repetição de indébito", "dívida ativa", "benefício previdenciário
   atrasado". Cobre trabalhista (nacional e verbetes regionais), cível (CC, Tema 1368,
-  tabela CGJ/TJMG), tributário federal e previdenciário. NÃO use para apurar verbas
+  tabela CGJ/TJMG), condenatórias em geral da Justiça Federal, desapropriação (direta e
+  indireta, com os juros compensatórios), tributário federal e previdenciário. NÃO use para apurar verbas
   (horas extras, 13º, férias) nem para obter o valor mensal de um índice.
 ---
 
@@ -76,7 +77,8 @@ Fonte: `docs/calculo/consolidado/01-dominio-e-invariantes.md` § 1.1.
 | 4 | Cível | qualquer | `references/civel-cc-nacional.md` |
 | 5 | Federal | repetição · dívida fiscal | `references/tributario-federal.md` |
 | 6 | Federal | benefício previdenciário | `references/previdenciario.md` |
-| 7 | Federal | condenatórias gerais · desapropriação | `references/tributario-federal.md` § 5 — **alojadas ali por falta de arquivo próprio**, ver "Limitações declaradas" |
+| 7 | Federal | **condenatórias em geral** | `references/civel-federal.md` — correção (§ 2) e **juros autônomos** (§ 3) |
+| 8 | Federal | **desapropriação** direta e indireta | `references/desapropriacao.md` — **três cadeias**: correção (§ 2), juros de mora (§ 3) e **juros compensatórios** (§ 4) |
 
 ### A jurisdição trabalhista é NACIONAL
 
@@ -97,7 +99,7 @@ cálculo de toda a Justiça do Trabalho.
 2. **A Tabela Única do CSJT é fonte nacional** e é **a dependência que torna o motor nacional**.
    Deixou de ser "integração desejável": sem ela não há correção trabalhista em **nenhum** TRT —
    diretriz (e);
-3. **As cadeias `trt3.hist.*` são NACIONAIS com nome enganoso.** Fundamentos declarados nos
+3. **As cadeias `trab.hist.*` são NACIONAIS com nome enganoso.** Fundamentos declarados nos
    próprios JSON: **CC arts. 1.062–1.063**, **Lei 8.177/91 art. 39**, **Súmulas 200 e 381 do
    TST**, e a correção **delega à Tabela Única do CSJT**. O prefixo é do **arquivo de origem**,
    não da norma. **Um motor que resolva cadeia por prefixo de tribunal não acha cadeia nenhuma
@@ -118,9 +120,9 @@ resolução, não erro.
 
 | ID | Onde morde |
 |---|---|
-| **R1** — exclusividade de englobamento | **SELIC e taxa legal englobam correção e juros.** Cumular com índice inflacionário é **erro material**, não escolha de critério: conta a inflação duas vezes. Vale em `trabalhista-nacional` §§ 2–3, `civel-cc-nacional`, `tributario-federal`, `previdenciario` |
+| **R1** — exclusividade de englobamento | **SELIC e taxa legal englobam correção e juros.** Cumular com índice inflacionário é **erro material**, não escolha de critério: conta a inflação duas vezes. Vale em `trabalhista-nacional` §§ 2–3, `civel-cc-nacional`, `civel-federal`, `desapropriacao`, `tributario-federal`, `previdenciario` |
 | **R2** — cobertura sem lacuna nem sobreposição | a ponta `1942-11` das cadeias históricas é **janela de análise** (`ponta_materializada`), não afirmação do manual. Em cadeia de índices **nominais**, fim e início no mesmo mês (OTN/BTN em jan/1989) **não é dupla contagem** — R-08-04, e o manual o diz expressamente |
-| **R3** — tipo do indexador na virada | nominal (ORTN, OTN, BTN, Ufir) reflete a inflação do mês **anterior**; percentual (INPC, IPCA, IGP) a do **próprio** mês. **Trocar entre tipos sem ajustar a defasagem desloca o cálculo em um mês** |
+| **R3** — tipo do indexador na virada | nominal (ORTN, OTN, BTN, Ufir) reflete a inflação do mês **anterior**; percentual (INPC, IGP-DI) a do **próprio** mês. **Trocar entre tipos sem ajustar a defasagem desloca o cálculo em um mês** |
 | **R4** — juros sempre simples | **com a `R4-EXCEÇÃO`**: ver abaixo |
 | **R5** — piso nominal | índice negativo **entra** no cálculo, mas o piso é **por parcela**, não sobre o total |
 | **R7** — termo inicial não é intercambiável | trabalhista = **ajuizamento**; cível = citação (salvo Súmulas 54, 43 e 362/STJ); repetição = **trânsito em julgado** |
@@ -179,13 +181,13 @@ competência, recebem respostas diferentes conforme o eixo.* Fonte:
 
 | # | Data | **Eixo** | O que muda | Onde |
 |---|---|---|---|---|
-| 1 | **27/02/1987** e **03/03/1991** | competência da parcela | entra e sai a capitalização **composta** — `R4-EXCEÇÃO` | trab. nacional § 4; `tributario-federal` § 5.3 |
+| 1 | **27/02/1987** e **03/03/1991** | competência da parcela | entra e sai a capitalização **composta** — `R4-EXCEÇÃO` | trab. nacional §§ 4 e 6; `tributario-federal` § 5.1 |
 | 2 | **04/03/1991** | competência da parcela | Lei 8.177/91 art. 39 — 1,0% a.m. simples; e a **TR** passa a existir | trab. nacional §§ 2.2, 4 |
 | 3 | **nov/2005** | competência da parcela | tabela própria do TRT-3 → **Tabela Única do CSJT** (Res. 8/2005) | trab. nacional § 5; regional-trt3 `R15` |
 | 4 | **27/08/2001** | competência da parcela | Fazenda trabalhista: 0,5% a.m. **limitado a 6% a.a.** (MP 2.180-35) | trab. nacional § 3.2 |
 | 5 | **ago/2001** | competência ⊕ **devedor** | `cjf.trabalhista.juros-mora` **bifurca e nunca reconverge** | trab. nacional § 6 |
 | 6 | **29/06/2009** | competência da parcela | Lei 11.960/09 — poupança, sem cumulação | trab. nacional § 3.2 |
-| 7 | **jul/2009** | competência ⊕ **devedor** | `cjf.condenatorias-gerais.juros-mora` bifurca | `tributario-federal` § 5.2 |
+| 7 | **jul/2009** | competência ⊕ **devedor** | `cjf.condenatorias-gerais.juros-mora` bifurca | `civel-federal` § 3 |
 | 8 | **04/05/2012** | competência da parcela | **qualificação** do segmento da poupança, **não segmento novo** — muda a fórmula, não a regra | trab. nacional § 3.2 |
 | 9 | **jan/2003** | competência da parcela | cível: tabela CGJ/TJMG → **SELIC** | `civel-cc-nacional` § 2 |
 | 10 | **18/12/2020** | **data do julgamento** | ADC 58/59, ADI 5867/6021 — governa o **alcance da declaração** | trab. nacional § 2.3 |
@@ -210,7 +212,7 @@ BIFURCADO  →  as duas versões entram, com fronteira declarada.
               Competência anterior ao corte USA A ANTIGA.
 ```
 
-**O `status_norma: "superado"` gravado nos JSON `trt3.hist.*` está certo quanto ao futuro e
+**O `status_norma: "superado"` gravado nos JSON `trab.hist.*` está certo quanto ao futuro e
 incompleto quanto ao passado.** Ler como **fronteira superior do segmento**, jamais como
 invalidade. Não apagar, não substituir. `consolidado/02-atualizacao.md` § 9.
 
@@ -278,8 +280,8 @@ de critérios".
 | `TRIB-FED-DIVIDA-ATIVA` | empresa como devedora | `tributario-federal.md` § 3 |
 
 **Sem preset nomeado no corpus, e por isso listados como cadeia e não como preset:**
-previdenciário do CJF (`previdenciario.md`), condenatórias gerais do CJF e desapropriação
-direta/indireta (`tributario-federal.md` § 5).
+previdenciário do CJF (`previdenciario.md`), **condenatórias em geral** do CJF
+(`civel-federal.md`) e **desapropriação direta/indireta** (`desapropriacao.md`).
 
 **Presets de regime temporal são outra família** e não pertencem a este catálogo — respondem
 *"qual regra de apuração vale"*, não *"como se atualiza"*. `docs/calculo/presets-regime.md` § 1.
@@ -316,12 +318,13 @@ registrada, e a fonte do erro é **interna**: `bloco-13c-sindical-precatorios.md
 **8 — os juros compensatórios da desapropriação são CADEIA AUTÔNOMA**, além da correção e dos
 juros de mora. **O corte de ago./2017 não aparece em tabela nenhuma** — vive só no item 4.5.4,
 sobre TDAs complementares. Quem tratar a desapropriação só pela linha de correção monetária
-**perde a cadeia inteira**. `02-atualizacao-detalhe.md` § 5.3.1.
+**perde a cadeia inteira**. `references/desapropriacao.md` § 4; `02-atualizacao-detalhe.md`
+§ 5.3.1.
 
 **9 — `A5`, defeito do original:** índice de dez/10 (`pagina_pdf` 96) **quebra a monotonicidade**
 da série. **O erro está no índice publicado; o valor está certo** — o inverso do caso usual.
 
-**10 — `DEFEITO_DO_ORIGINAL` das moedas:** em `trt3.hist.moedas-e-paridades`, a primeira linha
+**10 — `DEFEITO_DO_ORIGINAL` das moedas:** em `trab.hist.moedas-e-paridades`, a primeira linha
 termina em **12/02/70** e a segunda começa em **13/02/67** — três anos de sobreposição. Quase
 certamente era 12/02/67. **Registrado, não corrigido.**
 
@@ -418,11 +421,26 @@ esperado da fixture (método resumido) **não depende disso**.
    falência** (três ementas do TRT-3, **duas divergentes entre si**); **TJ-SP** mantendo a SELIC
    fora da fase de precatório contra a Res. CJF 990/2026 e o STJ.
 
-7. **A divisão em seis arquivos não cobre duas cadeias federais.** Condenatórias gerais e
-   desapropriação (direta e indireta, **com os compensatórios**) não são tributárias nem
-   previdenciárias, e não há arquivo próprio para elas na lista fixada pelo bloco 16. Ficam em
-   `tributario-federal.md` § 5, **sinalizadas**. Candidato a sétimo arquivo:
-   `federal-condenatorias-desapropriacao.md`.
+7. **A divisão em seis arquivos não cobria duas cadeias federais — fechado no bloco 17.**
+   Condenatórias em geral e desapropriação (direta e indireta, **com os compensatórios**) não são
+   tributárias nem previdenciárias e não tinham arquivo na lista do bloco 16. **Passaram a ter:**
+   `references/civel-federal.md` e `references/desapropriacao.md`. **O conteúdo mudou de lugar, não
+   de teor**, e as pendências que ele carregava (`N-8`, `P8-09`, `N-10`, honorários de perito de
+   4.5.6) **seguem abertas** nos arquivos que as receberam.
+
+8. **A varredura do bloco 17 encontrou lacunas que NÃO foram preenchidas** — o enunciado autorizou
+   dois arquivos, e elas ficam **listadas, com a razão**, em `references/README.md`:
+   - **FGTS (item 4.8, índice JAM) e poupança (item 4.9, 12 segmentos) do cap. 4 do CJF têm cadeia
+     própria e eixos que nenhuma outra cadeia usa** — `D8-C12` (corte por **saque integral**),
+     `D8-C13` (os expurgos do FGTS **não dizem se substituem ou acrescem**), `D8-C14`, `D8-C15`,
+     `D8-C16`. **Não estão no consolidado nem foram extraídos como cadeia**: vivem só em
+     `bloco-08-jf-detalhe.md` §§ 3.2 e 3.3. **Consolidar vem antes de escrever `reference`**;
+   - **precatórios/requisitórios** não são cadeia por jurisdição, e sim **regime de fase**
+     transversal — ficam em `tributario-federal.md` §§ 6 e 7, referenciados pelos demais;
+   - **planos econômicos** são **regime temporal bloqueado por falta de série** (P19), não matéria
+     de `reference`;
+   - **dívida fiscal** e **repetição de indébito** **não são lacuna**: o nome
+     `tributario-federal.md` as cobre.
 
 ---
 
@@ -439,7 +457,7 @@ esperado da fixture (método resumido) **não depende disso**.
 | **Defeitos do original** | `docs/calculo/armadilhas-comparador.md` |
 | **Pendências** | `docs/calculo/pendencias.md` |
 | **Presets de regime temporal** (outra família) | `docs/calculo/presets-regime.md` |
-| **Cadeias em schema** | `docs/calculo/tabelas-normativas/cjf.*.json`, `trt3.hist.*.json` |
+| **Cadeias em schema** | `docs/calculo/tabelas-normativas/cjf.*.json`, `trab.hist.*.json` |
 | **Séries mensais** (contrato) | `skills/indices-judiciais/` |
 | **Invariantes e aritmética** | `skills/calculo-judicial-core/` |
 
@@ -450,9 +468,16 @@ trabalhista-nacional.md        cadeia nacional, Tabela Única CSJT, R4-EXCEÇÃO
 trabalhista-regional-trt3.md   os verbetes regionais que o manual invoca, e o fallback nacional
 civel-cc-nacional.md           Tema 1368, Lei 14.905, taxa legal, termos iniciais
 civel-regional-tjmg.md         tabela CGJ/TJMG, histórico pré-2003, as três hipóteses de sobrevida
-tributario-federal.md          repetição, dívida fiscal + condenatórias gerais e desapropriação
+civel-federal.md               condenatórias em geral do CJF: correção + juros autônomos, D1/D2
+desapropriacao.md              as TRÊS cadeias: correção, juros de mora e juros compensatórios
+tributario-federal.md          repetição, dívida fiscal, aplicacao, ECs 113/136, precatório
 previdenciario.md              INPC, e a taxa legal com deflator INPC
 ```
+
+> **Um arquivo por cadeia, não por capítulo do manual.** `civel-federal.md` e `desapropriacao.md`
+> nasceram no bloco 17 porque **condenatórias em geral e desapropriação têm cadeia própria** e
+> estavam hospedadas em `tributario-federal.md` por falta de lugar, não por classificação.
+> **Índice completo, com o que a varredura achou e não foi criado:** `references/README.md`.
 
 > **A separação nacional/regional nos nomes não é estética.** É o que permite **cadastrar outra
 > região sem tocar no motor**: o arquivo regional é entrada de catálogo; o nacional é o default.

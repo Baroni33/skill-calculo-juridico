@@ -108,9 +108,13 @@ intervalo**.
 
 ### R3 — Tipo do indexador na virada
 
-Nominal (Ufir, BTN, OTN, ORTN) reflete a inflação do mês **anterior**; percentual (INPC, IPCA,
-IGP) reflete a do **próprio** mês. **Trocar entre tipos sem ajustar desloca o cálculo em um
-mês.**
+Nominal (Ufir, BTN, OTN, ORTN) reflete a inflação do mês **anterior**; percentual (INPC, IGP-DI)
+reflete a do **próprio** mês. **Trocar entre tipos sem ajustar desloca o cálculo em um mês.**
+
+> **Só estes sete estão classificados em fonte** (item 4.1.2.4, `pagina_pdf` 42), mais o IPC/IBGE
+> por D8-C21. **Dez indexadores em uso são `indeterminado`** — entre eles IPCA-E, IPCA-15, IPC-R,
+> IRSM e a TR. **Não os presuma percentuais por semelhança de nome**; o validador bloqueia a
+> virada sob `R3-INDETERMINADO`. Catálogo em `tabelas-normativas/indexadores-tipo-catalogo.json`.
 
 ### R4 — Capitalização: juros sempre simples
 
@@ -297,17 +301,34 @@ verbete regional **mesmo dentro da região que o editou**.
 
 ## Procedimento
 
+**A ordem ponta a ponta — dezenove passos, cada um com a fonte da sua posição e o custo medido
+de errá-la — está em `docs/calculo/consolidado/09-ordem-de-calculo.md`. Não repetida aqui.**
+
+> **Por que ela mora lá e não aqui.** **O corpus não enuncia a ordem de cálculo do começo ao
+> fim** — só a ordem *dentro* de cada operação. A sequência abaixo é **composição declarada**,
+> e as marcações `FONTE` / `DERIVADO` / `COMPOSIÇÃO`, o raciocínio de posição e a busca que
+> sustenta a negativa ficam naquele arquivo. **Discordar da ordem é legítimo: o ponto exato da
+> discordância e o que ele custa estão lá.**
+
+O mínimo operacional desta skill:
+
 ```
 0. CLASSIFICAR    jurisdição, e se a devedora é Fazenda Pública (R9)
 1. REGIME         para cada competência, qual preset vale? (R19-R22)
                   -> sem default: NÃO arbitre. Pergunte ou bloqueie (R20-EXCEÇÃO)
+                  -> pr.adc58-item-i ANTES de pr.imputacao: em i.1 nada se rateia
 2. PARÂMETRO      resolver (parâmetro, categoria, competência) (R14-R18)
                   -> e (regra, tribunal, competência) para o regional (R24)
 3. APURAR         a conta, em Decimal, precisão plena (R12)
 4. ATUALIZAR      cadeia período->regra, sem lacuna (R1-R3)
                   -> se houve pagamento parcial, descarregar ANTES (R23)
+                  -> a amortização PARTE a linha do tempo: tudo é trazido até o
+                     levantamento, RATEADO ali, e só então levado ao marco final
 5. REGISTRAR      preset, overrides com justificativa, versões (R13)
 ```
+
+**Encargos (honorários, custas de execução) não estão nesta sequência por escopo** — entram nos
+passos 17 e 18 da ordem completa, e a skill que os apura é `calculo-trabalhista-liquidacao`.
 
 ### Passo 1 é o que mais se erra
 

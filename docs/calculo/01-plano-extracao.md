@@ -8,6 +8,41 @@ A skill não é o entregável. O código que um agente constrói lendo a skill �
 
 ---
 
+## Regra de projeto — identificador não carrega semântica que o campo já expressa
+
+**Estabelecida no bloco 17, depois de a ambiguidade de etiqueta morder o projeto três vezes.**
+
+| Quando | O quê | O que custou |
+|---|---|---|
+| bloco 15 | `F1`–`F9` do bloco 03 × `F1`–`F7` do bloco 04 | remissões cruzadas apontando para o ponto errado |
+| bloco 15 | a renumeração `B03-`/`B04-` foi **cega** | reescreveu *"mesma raiz do F1 **do bloco 3**"* como `B04-F1` — **alvo errado, com rótulo bem-formado** |
+| bloco 16 | `RG1`–`RG15` (regionais) × `R1`–`R24` (invariantes) | a **invariante R8** virou a **Súmula 48 do TRT-3**, cancelada e sobre prazo rescisório |
+
+**A regra:**
+
+> **O identificador identifica. O escopo se declara em campo.** A aplicação é decidida por
+> `jurisdicao`, `tribunal`, `competencia` — **nunca pelo prefixo do id nem pelo nome do arquivo**.
+
+**Três corolários, cada um com um caso real:**
+
+1. **Prefixo de tribunal num id de regra nacional é defeito.** As cadeias `trt3.hist.*` têm
+   fundamento em CC arts. 1.062–1.063, Lei 8.177/91 e Súmulas 200 e 381 do TST, com a correção
+   delegada à Tabela Única do CSJT. Renomeadas para **`trab.hist.*`** no bloco 17, junto com
+   sete `trt3.trabalhista.*` que são **IRRF, INSS, GILRAT, URV e RSR** — lei federal;
+2. **Descoberta por nome de arquivo é a mesma falha, do lado do código.** `valida_cadeias.py`
+   filtrava por `("cjf.", "trt3.hist.")`; a renomeação fez o validador cair de **11 cadeias para
+   7 em silêncio**, seguindo a imprimir "OK" sobre as sete restantes. Passou a reconhecer cadeia
+   por `tipo == "cadeia-temporal"`. Mesma espécie em `valida_bloco_tabelas.py`, que resolvia
+   proveniência por `range` de páginas **constante**, acusando dez falsos erros permanentes;
+3. **Namespaces distintos não compartilham letra.** `RG` para regra regional, `R` para
+   invariante. **Se dois rótulos podem ser lidos um pelo outro, um dos dois está errado.**
+
+**E toda renomeação é verificada:** listar as referências **antes**, aplicar por **mapa
+explícito** — nunca regex cego —, e conferir que **nenhuma remissão mudou de sentido**. A do
+bloco 17 fechou em **zero resíduos e zero remissões alteradas**, sobre 67 ocorrências.
+
+---
+
 ## Arquitetura das skills
 
 Fronteira por **eixo de mudança**, não por documento de origem. Documentos são fontes; o TRT-3 e o TJMG mudam pelos mesmos eventos legislativos e têm a mesma forma de regra.
@@ -64,7 +99,7 @@ Artefato central. Representa **regra**, não série de valores.
 
 ```json
 {
-  "id": "trt3.trabalhista.correcao-monetaria.privado",
+  "id": "trab.correcao-monetaria.privado",
   "jurisdicao": "justica-do-trabalho",
   "tipo_acao": "reclamacao-trabalhista",
   "componente": "correcao-monetaria",

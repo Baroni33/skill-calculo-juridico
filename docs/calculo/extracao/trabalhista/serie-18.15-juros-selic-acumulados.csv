@@ -6,6 +6,8 @@
 #   taxa-selic-mensal            — taxa do mês, tributos federais
 #   selic-acumulada-ate-maio-2016 — acumulado da competência à vigência
 # Zeros em meses posteriores à edição (maio/2016) são do original.
+# tipo do indexador (R3): Selic=englobante (engloba correcao e juros, R1).
+# Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
 pagina_pdf,item,serie,chave,valor,quadro
 468,18.15,1995,Janeiro,"0,00%",taxa-selic-mensal
 468,18.15,1996,Janeiro,"2,58%",taxa-selic-mensal

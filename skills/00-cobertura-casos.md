@@ -106,8 +106,8 @@ Abreviações: **core** = `calculo-judicial-core`; **atu** = `calculo-judicial-a
 | **C17** | Intertemporal, Tema 23 | **atu** (+ liq) | atu `## Limitações declaradas` item 4 (Tema 23, modulação negada, ultratividade vencida); liq `references/cortes-e-bifurcacoes.md`, linha `pr.intertemporal` — **`R20-EXCEÇÃO` cai de cinco para quatro** | **COBERTO** |
 | **C18** | Eixos não intercambiáveis | **liq** (+ core, atu Passo 0) | `### Passo 0` (tabela de eixos por preset) e `## Catálogo de critérios` → `references/cortes-e-bifurcacoes.md` (**28 regimes, catorze eixos**; a espinha ainda diz 26 — ver Nota de atualização); os três exemplos do caso: multa 467 → data da sentença, divisor bancário → estado processual, OJ 394 → data da HE | **COBERTO** |
 | **C19** | Súmula 124, modulação | **liq** | `references/cortes-e-bifurcacoes.md`, bloco *"A Súmula 124 SOBREVIVEU"* (`JR-01`, `VIGENTE`) — alcança **sentenças transitadas ainda em liquidação, desde que silentes quanto ao divisor**, *"exatamente o caso de uso de conferência"* | **COBERTO** |
-| **C20** | Consolidação de dez/2021 | **atu** (+ idx armadilha 4) | `references/tributario-federal.md § 6` — tabela dos **cinco** ramos (IPCA-E 1,17% · INPC 0,84% · TR 0,00%, juros 0,4412% nos cinco); `references/previdenciario.md` repete o ramo INPC | **COBERTO** |
-| **C21** | Desapropriação | **atu** | `references/tributario-federal.md § 5.5`, linha **dez./2021** da tabela de cortes: *"Já incluídos na SELIC aplicada aos juros de mora"* — **sem taxa adicional** (`D8-C11`); mais o corte de **ago./2017** e a contradição `N-6` | **COBERTO** |
+| **C20** | Consolidação de dez/2021 | **atu** (+ idx armadilha 4) | `references/tributario-federal.md § 8` — tabela dos **cinco** ramos (IPCA-E 1,17% · INPC 0,84% · TR 0,00%, juros 0,4412% nos cinco); `references/previdenciario.md` repete o ramo INPC | **COBERTO** |
+| **C21** | Desapropriação | **atu** | `references/desapropriacao.md § 4`, linha **dez./2021** da tabela de cortes: *"Já incluídos na SELIC aplicada aos juros de mora"* — **sem taxa adicional** (`D8-C11`); mais o corte de **ago./2017** e a contradição `N-6` | **COBERTO** |
 
 > **C21 era o caso que passou por rótulo no bloco 15.** Desta vez a afirmação foi lida na linha
 > da tabela, não no título da seção. **Está lá, literal** — reconferido na 2ª passagem (§ Amostragem).
@@ -174,7 +174,7 @@ afirmação. **Nenhum foi rebaixado.**
 |---|---|---|---|
 | **C16** | o **default** entre i.1 e i.2, e a **ordem de avaliação** | `imputacao-e-amortizacao.md § 5`: *"Tem default — i.1, que é a regra; i.2 é declarada exceção"* e *"Ordem de avaliação, por R22: `pr.adc58-item-i` **antes** de `pr.imputacao`"*. **Alcance da proteção** tem subtítulo próprio | **confirmado** |
 | **C19** | se a **modulação** está, e não só a súmula | `cortes-e-bifurcacoes.md`: *"alcança sentenças transitadas ainda em liquidação, desde que silentes quanto ao divisor, que é exatamente o caso de uso"* — com `JR-01`, `VIGENTE`, conferido por script | **confirmado** |
-| **C21** | a frase da linha dez./2021, **literal** | `tributario-federal.md § 5.5`: *"o regime autônomo acaba — literal: 'Já incluídos na SELIC aplicada aos juros de mora'. **Sem taxa adicional**"*, `D8-C11` | **confirmado** |
+| **C21** | a frase da linha dez./2021, **literal** | `desapropriacao.md § 4.2`: *"o regime autônomo acaba — literal: 'Já incluídos na SELIC aplicada aos juros de mora'. **Sem taxa adicional**"*, `D8-C11` | **confirmado** |
 | **C27** | as **quatro contagens por capítulo**, não um total agregado | liq `## Como este corpus se lê` § 1: **cap. 9 → 7; cap. 10.1 → 12; cap. 11 → 17; cap. 16 → 6**, com as três regras estruturais nomeadas | **confirmado** |
 | **C32** | os **dois testes incompatíveis**, e que a skill **não escolhe** | liq `## Limitações` 6 dá os dois textos (cap. 8 × cap. 14) e fecha com *"Não harmonizo"*; core `### R9` remete ao jurídico | **confirmado** |
 
@@ -236,7 +236,7 @@ Buscas em `docs/` **não** foram feitas — nenhuma afirmação abaixo alcança 
 | `RG14` | *não buscado* | **4** | o verbete SEE/TRT-4 (RSR sobre comissões) existe nos dois `references/` regionais. C10 |
 | `economia mista` | 6 | **6** | estável. C32 |
 | `dia 20` · `vencimento do IR` | 0 | **0** | **ressalva menor mantida em C27**: dos dois casos estruturais do enunciado, só o 13º como base autônoma foi transposto |
-| `0,4412` · `1,17` · `0,84` | 13, em atu e idx | *não rebuscado* | C20 — **afirmação positiva**, verificada por leitura da tabela de `tributario-federal.md § 6` |
+| `0,4412` · `1,17` · `0,84` | 13, em atu e idx | *não rebuscado* | C20 — **afirmação positiva**, verificada por leitura da tabela de `tributario-federal.md § 8` |
 | `compensat` · `Súmula 124` · `IRR-849` · `23,83` · `art. 354` · `Súmula 121` | presentes | *não rebuscadas* | C5, C9, C14, C19, C21 — **positivas**, confirmadas por leitura da seção |
 
 > **Só as negativas exigem recontagem.** Uma afirmação positiva se confirma abrindo a seção, e foi

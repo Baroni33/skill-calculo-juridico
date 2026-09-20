@@ -140,7 +140,7 @@ expressamente aquele critério; processos com **trânsito em julgado** sob o reg
 | Reconstrução do bruto antes do rateio; **`R23` descarregar** | **regra de conta, sem veículo regional**; fundamento no cap. 10 e no 16 |
 | Termo inicial dos juros = ajuizamento · `aplicacao` = 1º dia do mês subsequente | CLT art. 883; **Súmulas 200 e 381/TST** |
 
-**Armadilha de nome — as cadeias `trt3.hist.*` são NACIONAIS.** Os quatro JSON de
+**Armadilha de nome — as cadeias `trab.hist.*` são NACIONAIS.** Os quatro JSON de
 `tabelas-normativas/` com esse prefixo têm **conteúdo inteiramente nacional**: CC arts.
 1.062–1.063, Lei 8.177/91 art. 39, Súmulas 200 e 381 do TST, paridades da moeda, e a correção
 **delega à Tabela Única do CSJT**. **O prefixo é do arquivo de origem, não da norma.** Um motor
@@ -169,6 +169,6 @@ TRT-15**. Mesmo vício de nome nos `trt3-18.*.json`, cujo conteúdo é **IN RFB,
 
 **Não altera os arquivos do consolidado.** **Não resolve pendência aberta** — `P9-02`, `P9-04`,
 `P8`, `P13`, `P8-F4-03` e a vigência da Súmula 46 seguem abertas. **Não renomeia** os JSON
-`trt3.hist.*` — só registra o achado. **Não classifica** `tabelas-normativas/trt3-18.*.json` nem
+`trab.hist.*` — só registra o achado. **Não classifica** `tabelas-normativas/trt3-18.*.json` nem
 os 158 verbetes do `jurisprudencia-indice.md`: **lidos para conferência, não classificados item a
 item.** **Não confirma** a premissa da § 1 — ela é externa, e assim está declarada.

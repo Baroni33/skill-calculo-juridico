@@ -23,7 +23,13 @@ e `segmentos`. Campos que não podem faltar, e por quê:
 | `multiplicador_transicao` | conversões de moeda e indexador |
 | `valor_fixo_pct` | expurgos com percentual cravado |
 | `base_incidencia` | só para juros — valor originário vs. corrigido |
-| `tipo: nominal \| percentual` | só para o catálogo de índices; ver R3 |
+| `tipo_indexador` | **R3.** Cinco valores: `nominal`, `percentual`, `englobante`, `nao-indexador`, `indeterminado`. Acompanha `tipo_indexador_fonte`, e `tipo_indexador_pendencia` quando indeterminado |
+
+> **`tipo_indexador` tem catálogo próprio: `indexadores-tipo-catalogo.json`.** O nome do
+> campo **não** é `tipo` porque `tipo` já é chave de topo em toda cadeia, com valor
+> `"cadeia-temporal"`. O valor **sai da fonte** (item 4.1.2.4 do Manual CJF, `pagina_pdf`
+> 42, e o apoio de `bloco-08-jf-detalhe.md`); **sem fonte é `indeterminado` e vira
+> pendência** — `pendencias.md` § 23 —, **nunca classificado por dedução a partir do nome**.
 
 ## O que não entra
 

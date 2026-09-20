@@ -5,6 +5,11 @@
 # BTN: 'serie' = ano, 'chave' = mês. OTN e MVR: só o último valor consta
 # do original. '-' é do original: mês sem valor publicado.
 # Indexadores nominais — ver invariante R3 em 00-base-normativa.md.
+# PRECISA a linha acima (bloco 17): o tipo e POR SERIE, nao por arquivo.
+# OTN=nominal e BTN=nominal -- o item 4.1.2.4 do CJF os nomeia. MVR=INDETERMINADO:
+# a fonte nao o nomeia e nenhuma cadeia do repositorio o consome. Chamar os tres
+# de "nominais" era deducao pelo vizinho de tabela.
+# Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
 pagina_pdf,item,serie,chave,valor
 455,18.11,BTN 1989,jan,-
 455,18.11,BTN 1990,jan,"10,9518"

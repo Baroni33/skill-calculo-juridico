@@ -41,10 +41,15 @@ palavra em quatro cadeias — ver `tributario-federal.md` § 1. **O expurgo SUBS
 **PARÁFRASE, não citação** — o manual enumera os quatro percentuais um a um (`pagina_pdf` 58), e
 os valores literais ficaram em campo próprio do JSON.
 
-**`R3` morde aqui mais do que em qualquer outra cadeia:** ORTN, OTN, BTN são **nominais**
-(refletem a inflação do mês **anterior**); INPC, IRSM, IPC-R, IGP-DI são **percentuais**
-(refletem a do **próprio** mês). **São oito viradas entre tipos.** Trocar sem ajustar a defasagem
-**desloca o cálculo em um mês** a cada uma.
+**`R3` morde aqui mais do que em qualquer outra cadeia** — e **metade das pontas não está
+classificada**. ORTN, OTN e BTN são **nominais** e INPC e IGP-DI são **percentuais**, ambos
+**nomeados na fonte** (item 4.1.2.4, `pagina_pdf` 42). Mas **IRSM e IPC-R são `indeterminado`**:
+nenhuma fonte os classifica, e chamá-los percentuais por semelhança de nome é a dedução que o
+bloco 17 removeu (**P17-01**).
+
+**Trocar entre tipos sem ajustar a defasagem desloca o cálculo em um mês** a cada virada — e onde
+a ponta é indeterminada **não se sabe sequer se há virada**. O validador bloqueia sob
+`R3-INDETERMINADO`, em vez de aprovar por omissão.
 
 ---
 
@@ -142,7 +147,7 @@ correção monetária deve ser o mês de competência, e não o mês de pagament
 **(b) Benefício ASSISTENCIAL não segue esta cadeia.** Literal: *"Nas condenações relativas a
 benefícios de natureza assistencial, aplica-se a correção monetária das ações condenatórias em
 geral (item 4.2.1.1 deste manual)."* — e **aquela cadeia BIFURCA por devedor em dez/2021**,
-enquanto esta **nunca bifurca**. `tributario-federal.md` § 5.1.
+enquanto esta **nunca bifurca**. `references/civel-federal.md` §§ 2 e 6.
 
 > **É bifurcação por NATUREZA DO BENEFÍCIO, eixo não temporal.** Previdenciário × assistencial
 > decide qual cadeia inteira se usa, não qual segmento.
@@ -176,6 +181,7 @@ enquanto esta **nunca bifurca**. `tributario-federal.md` § 5.1.
 - `docs/calculo/consolidado/02-atualizacao-detalhe.md` §§ 5.1, 5.2 e 10
 - `docs/calculo/00-base-normativa.md` § 4 — taxa legal, metodologia completa
 - `docs/calculo/pendencias.md` § 2 — o par de validação IPCA-15 ausente
-- `references/tributario-federal.md` §§ 1, 5.1 e 8 — tronco comum, condenatórias gerais
-  (para o benefício **assistencial**) e a consolidação nos cinco lugares
+- `references/civel-federal.md` §§ 1, 2 e 6 — tronco comum e a cadeia de **condenatórias gerais**,
+  que é a do benefício **assistencial**
+- `references/tributario-federal.md` §§ 1 e 8 — tronco comum e a consolidação nos cinco lugares
 - `references/civel-cc-nacional.md` § 4 — a taxa legal na regra geral, com deflator IPCA-15

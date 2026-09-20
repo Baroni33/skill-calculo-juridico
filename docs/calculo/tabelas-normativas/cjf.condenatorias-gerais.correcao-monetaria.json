@@ -19,6 +19,8 @@
       "inicio": "1964-01",
       "fim": "1986-02",
       "indexador": "ORTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -32,6 +34,8 @@
       "inicio": "1986-03",
       "fim": "1989-01",
       "indexador": "OTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -47,6 +51,8 @@
       "inicio": "1989-01",
       "fim": "1989-01",
       "indexador": "IPC/IBGE",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'",
       "valor_fixo_pct": "42,72",
       "engloba": [
         "correcao-monetaria"
@@ -60,6 +66,8 @@
       "inicio": "1989-02",
       "fim": "1989-02",
       "indexador": "IPC/IBGE",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'",
       "valor_fixo_pct": "10,14",
       "engloba": [
         "correcao-monetaria"
@@ -73,6 +81,8 @@
       "inicio": "1989-03",
       "fim": "1990-03",
       "indexador": "BTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -83,6 +93,8 @@
       "inicio": "1990-03",
       "fim": "1991-02",
       "indexador": "IPC/IBGE",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -95,6 +107,8 @@
       "inicio": "1991-03",
       "fim": "1991-11",
       "indexador": "INPC",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra b, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -105,6 +119,9 @@
       "inicio": "1991-12",
       "fim": "1991-12",
       "indexador": "IPCA série especial",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "Segmento próprio do manual para dez/1991. Zero ocorrências no corpus em janela de classificação.",
+      "tipo_indexador_pendencia": "P17-01",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -116,6 +133,8 @@
       "inicio": "1992-01",
       "fim": "2000-12",
       "indexador": "Ufir",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE; corroborado por D8-C22 ('Ufir é nominal')",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -127,6 +146,9 @@
       "inicio": "2001-01",
       "fim": "2021-11",
       "indexador": "IPCA-E/IBGE",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "NÃO está na lista do item 4.1.2.4. Classificá-lo como percentual 'porque IPCA é percentual' é dedução a partir do nome — e o item sequer nomeia 'IPCA': nomeia INPC, IGP-DI e IGP-M. Busca no corpus (ver ESCOPO_DA_BUSCA_DE_AUSENCIA) não achou fonte.",
+      "tipo_indexador_pendencia": "P17-01",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -140,6 +162,8 @@
       "inicio": "2021-12",
       "fim": "2024-08",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "condicao": {
         "devedor": "fazenda-publica"
       },
@@ -158,6 +182,9 @@
       "inicio": "2021-12",
       "fim": "2024-08",
       "indexador": "IPCA-E/IBGE",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "NÃO está na lista do item 4.1.2.4. Classificá-lo como percentual 'porque IPCA é percentual' é dedução a partir do nome — e o item sequer nomeia 'IPCA': nomeia INPC, IGP-DI e IGP-M. Busca no corpus (ver ESCOPO_DA_BUSCA_DE_AUSENCIA) não achou fonte.",
+      "tipo_indexador_pendencia": "P17-01",
       "condicao": {
         "devedor": "nao-fazenda-publica"
       },
@@ -172,6 +199,8 @@
       "inicio": "2024-09",
       "fim": "2025-08",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "condicao": {
         "devedor": "fazenda-publica"
       },
@@ -189,6 +218,9 @@
       "inicio": "2024-09",
       "fim": "2025-08",
       "indexador": "IPCA-15/IBGE",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "Mesma razão do IPCA-E, agravada: é a prévia de 15 dias, índice distinto dos dois. Sem fonte no corpus.",
+      "tipo_indexador_pendencia": "P17-01",
       "condicao": {
         "devedor": "nao-fazenda-publica"
       },
@@ -203,6 +235,9 @@
       "inicio": "2025-09",
       "fim": "2026-06",
       "indexador": "IPCA-15/IBGE",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "Mesma razão do IPCA-E, agravada: é a prévia de 15 dias, índice distinto dos dois. Sem fonte no corpus.",
+      "tipo_indexador_pendencia": "P17-01",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -260,5 +295,6 @@
       "nao-fazenda-publica"
     ]
   },
-  "dominio_condicoes_nota": "Declara que os ramos abaixo ESGOTAM o eixo. Sem esta declaração o validador cobra o universo 'nenhuma condição se aplica', porque exaustividade não se presume."
+  "dominio_condicoes_nota": "Declara que os ramos abaixo ESGOTAM o eixo. Sem esta declaração o validador cobra o universo 'nenhuma condição se aplica', porque exaustividade não se presume.",
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

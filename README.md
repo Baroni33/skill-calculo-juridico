@@ -52,7 +52,7 @@ python scripts/calculo/valida_parametros.py --catalogo-ok
 
 | Script | Verifica |
 |---|---|
-| `valida_cobertura.py` | R1 (englobamento concorrente), R2 (lacuna/sobreposição) |
+| `valida_cobertura.py` | R1 (englobamento concorrente), R2 (lacuna/sobreposição), **R3 (virada entre tipos de indexador)** |
 | `valida_taxa_legal.py` | R6 (piso zero), R11 (razão, não subtração), R12 (decimal, truncamento) |
 | `valida_bloco_tabelas.py` | Bloco 1: contagem contra o PDF, faixas, vigências, proveniência |
 | `valida_parametros.py` | Camada de norma coletiva: R14 a R18, precedência, conflito, piso legal |
@@ -118,15 +118,32 @@ toda a Justiça do Trabalho). **O manual do TRT-3 é fonte procedimental de uma 
 norma nacional — sua aritmética não é prática regional divergente.** Regional são os verbetes que
 ele invoca, e **são quinze, de três tribunais** (TRT-3, TRT-4, TJMG), não três.
 
-> **As cadeias `trt3.hist.*` são NACIONAIS com nome enganoso.** Um motor que resolva cadeia por
-> prefixo de tribunal **não acha cadeia nenhuma para TRT-1, TRT-2 ou TRT-15**.
+> **As cadeias históricas trabalhistas são NACIONAIS, e o prefixo dizia o contrário.** Chamavam-se
+> `trt3.hist.*`, e um motor que resolvesse cadeia por prefixo de tribunal **não acharia cadeia
+> nenhuma para TRT-1, TRT-2 ou TRT-15**. **Renomeadas para `trab.hist.*` no bloco 17**, junto com
+> sete `trt3.trabalhista.*` que são IRRF, INSS, GILRAT, URV e RSR — lei federal.
 
 Daí a invariante nova: **R24 — ausência de súmula regional não é erro.** Resolve pela regra
 nacional e marca a conta `sem cobertura regional`. Chave: `(regra, tribunal, competência)`.
 
-**A lacuna que o bloco 17 precisa fechar:** a **ordem de cálculo ponta a ponta não é enunciada em
-lugar nenhum do corpus**. O Procedimento das skills é composição declarada — e está marcado como
-tal.
+**Bloco 17 — correções estruturais antes da aceitação** — ver
+[`docs/calculo/extracao/bloco-17-relatorio.md`](docs/calculo/extracao/bloco-17-relatorio.md).
+
+**R3 deixou de ser letra morta.** O campo `tipo_indexador` não existia em série nenhuma; agora
+está em **97 de 97 segmentos**, e o validador bloqueia a virada entre tipos sem ajuste de
+defasagem. **Dez dos vinte e oito indexadores ficaram `indeterminado`** — a fonte nomeia sete, e
+estender por semelhança de nome era a dedução proibida. **A TR foi rebaixada:** era `percentual`
+por inferência formal, e **inferência declarada não é fonte**.
+
+**A ordem de cálculo ponta a ponta virou artefato próprio** —
+[`09-ordem-de-calculo.md`](docs/calculo/consolidado/09-ordem-de-calculo.md), **19 passos com
+`FONTE` / `DERIVADO` / `COMPOSIÇÃO` declarados**. O corpus ensina cada operação e **nunca as
+encadeia**; a ordem é composição deste projeto, e agora é contestável em vez de diluída.
+
+> **Regra de projeto nova:** o identificador identifica; **o escopo se declara em campo**. Nunca
+> pelo prefixo do id nem pelo nome do arquivo. As cadeias `trt3.hist.*` viraram `trab.hist.*` — e
+> a descoberta por prefixo em `valida_cadeias.py`, que fazia o validador cair de 11 cadeias para
+> 7 **em silêncio**, passou a ser por conteúdo.
 
 | Bloco | Conteúdo | Relatório |
 |---|---|---|
@@ -148,6 +165,7 @@ tal.
 | 14 | **Fase 3 — confronto normativo.** 50 vereditos, 19 suspeitas sobre a base | `docs/calculo/extracao/bloco-14-relatorio.md` |
 | 15 | **Fase 4 — consolidação.** Onze arquivos em espinha e detalhe; os 33 casos difíceis como aceite | `docs/calculo/extracao/bloco-15-relatorio.md` |
 | 16 | **Fase 5 — build das skills.** Quatro skills, `references/` nacional × regional, R24 | `docs/calculo/extracao/bloco-16-relatorio.md` |
+| 17 | **Correções estruturais.** Campo `tipo` e R3 no validador; ids neutros; ordem de cálculo | `docs/calculo/extracao/bloco-17-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 **80 páginas de capítulo** mais a Apresentação e a Resolução, sete cadeias temporais em
@@ -155,7 +173,7 @@ O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralm
 "93 páginas integrais", usada até o bloco 12, superestimava: 13 das 93 são pré-textuais, e as
 3 com conteúdo normativo estão cobertas. Corrigido no bloco 13.)*
 
-O **bloco 9** acrescenta quatro cadeias históricas trabalhistas (`trt3.hist.*`) e corrige o
+O **bloco 9** acrescenta quatro cadeias históricas trabalhistas (`trab.hist.*`) e corrige o
 validador de cobertura: a exaustividade dos ramos condicionados passou a ser **declarada**
 (`dominio_condicoes`), não presumida. A primeira versão do conserto escondia lacuna real —
 ver `bloco-09-relatorio.md` § 2.

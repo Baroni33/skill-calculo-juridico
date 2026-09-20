@@ -9,18 +9,17 @@
 `extracao/justica-federal/bloco-08-jf.md` e `bloco-08-jf-detalhe.md`;
 JSON em `docs/calculo/tabelas-normativas/cjf.*.json`.
 
-> **AVISO DE ESCOPO — leia antes de usar.** Este arquivo cobre **mais do que o nome diz**. As
-> §§ 2 e 3 são tributárias (repetição de indébito e dívida fiscal). As **§§ 5 e 7** trazem as
-> cadeias de **condenatórias gerais** e de **desapropriação** (direta e indireta, **com os juros
-> compensatórios**) e o regime de **precatório** — que **não são tributárias**, e para as quais a
-> divisão em seis arquivos fixada pelo bloco 16 **não tem arquivo próprio**. Ficam aqui
-> **sinalizadas**. Candidato a sétimo arquivo: `federal-condenatorias-desapropriacao.md`.
+**Escopo deste arquivo:** **repetição de indébito** (§ 2) e **dívida fiscal** (§ 3) — as duas
+cadeias **tributárias** do Manual. Mais **três seções transversais** a todas as cadeias federais,
+que vivem aqui porque não pertencem a nenhuma delas em particular: as **quatro fórmulas de
+`aplicacao`** (§ 4), as **ECs 113/2021 e 136/2025** (§ 6), o **precatório** (§ 7) e a
+**consolidação de dez/2021 nos cinco lugares** (§ 8).
 
 **Escopo declarado de "cinco ramos do CJF":** o Manual tem **sete cadeias** extraídas (78
 segmentos) — **cinco de correção monetária** (condenatórias gerais, previdenciário, repetição de
 indébito, desapropriação direta, dívida fiscal) e **duas de juros** autônomas (condenatórias
 gerais e trabalhista-JF). Fonte: `bloco-08-jf.md` § 4, `pagina_pdf` 48, 54, 57, 63, 66, 78 e 23.
-O **previdenciário** tem arquivo próprio: `references/previdenciario.md`.
+**Cada um dos demais ramos tem arquivo próprio** — ver o quadro da § 5.
 
 ---
 
@@ -166,40 +165,25 @@ inferido.**
 
 ---
 
-## 5. Cadeias sem arquivo próprio — condenatórias gerais e desapropriação
+## 5. As demais cadeias do CJF — **cada uma tem arquivo próprio**
 
-**Alojadas aqui por falta de arquivo na divisão de seis.** Ver o aviso do topo.
+**Migradas no bloco 17.** As cadeias de **condenatórias gerais** e de **desapropriação** estavam
+alojadas aqui por falta de arquivo na divisão de seis fixada pelo bloco 16. **A lacuna foi
+fechada** — `bloco-16-relatorio.md` § 6. **Não há mais conteúdo normativo dessas matérias neste
+arquivo.**
 
-### 5.1 Condenatórias gerais — correção (item 4.2.1.1)
-
-| Período | Fazenda Pública | Não Fazenda Pública |
+| Cadeia | Item do Manual | Onde está agora |
 |---|---|---|
-| 1964-01 .. 1991-02 | **tronco comum** (§ 1) | idem |
-| .. 1991-12 | INPC → **IPCA série especial** (dez/91) | idem |
-| 1992 .. 2000 | **Ufir** | idem |
-| jan/2001 .. **nov/2021** | **IPCA-E** | **IPCA-E** |
-| **dez/2021** .. ago/2024 | **SELIC** | **IPCA-E** |
-| set/2024 .. ago/2025 | **SELIC** | **IPCA-15** |
-| **a partir de set/2025** | **IPCA-15** | **IPCA-15** |
+| **Condenatórias em geral** — correção (15 segmentos) e **juros autônomos** (11 segmentos); tronco comum; bifurca em **dez/2021** (correção) e **jul/2009** (juros), **reconverge em set/2025** nos dois; o **ramo paralelo `N-8`** dos servidores e empregados públicos | 4.2.1.1 · 4.2.2 | **`references/civel-federal.md`** §§ 2 e 3 |
+| **Desapropriação** direta e indireta — **três cadeias autônomas**: correção (com o **IPC/FGV** exclusivo), juros de mora (eixo na **data da sentença**) e **juros compensatórios** (`D8-C10`, os três cortes, `N-6`, `N-10`, `R-08-19`) | 4.5 · 4.6 | **`references/desapropriacao.md`** §§ 2, 3 e 4 |
+| **Benefícios previdenciários** — 15 segmentos, **nunca bifurca**, taxa legal com deflator **INPC** | 4.3 | `references/previdenciario.md` |
+| **Trabalhista da Justiça Federal** — `cjf.trabalhista.juros-mora`, com a **`R4-EXCEÇÃO`** | 4.7.2 | `references/trabalhista-nacional.md` § 6, e § 5.1 abaixo |
 
-**Bifurca em dez/2021 por devedor — e RECONVERGE em set/2025.**
+> **O benefício ASSISTENCIAL não segue a cadeia previdenciária:** segue a das **condenatórias em
+> geral** (item 4.2.1.1) — e **aquela bifurca por devedor**, enquanto a previdenciária não.
+> `previdenciario.md` § 5; `civel-federal.md` § 6.
 
-### 5.2 Condenatórias gerais — juros (`cjf.condenatorias-gerais.juros-mora`, item 4.2.2)
-
-| Período | Fazenda Pública | Não Fazenda |
-|---|---|---|
-| 1964-01 .. dez/2002 | 0,5% a.m. | 0,5% a.m. |
-| jan/2003 .. jun/2009 | Selic | Selic |
-| **jul/2009** .. abr/2012 | **0,5% a.m.** | **Selic** |
-| mai/2012 .. nov/2021 | poupança: 0,5% a.m. se a Selic anual > 8,5%; senão **70% da Selic a.a., mensalizada** | Selic |
-| dez/2021 .. ago/2024 | Selic | Selic |
-| set/2024 .. ago/2025 | Selic *(a Selic de ago./2025, 1,16%, é computada em set./2025)* | **taxa legal** |
-| **set/2025** → | **taxa legal** | **taxa legal** |
-
-**Bifurca em jul/2009 e reconverge em set/2025.** A taxa legal de set./2025 (**1,305984%**) é
-computada em **out./2025** — **D1**.
-
-### 5.3 A cadeia trabalhista **da Justiça Federal**
+### 5.1 A cadeia trabalhista **da Justiça Federal**
 
 `cjf.trabalhista.juros-mora` (item 4.7.2) **bifurca em ago/2001 e NUNCA reconverge** — o ramo
 **empresa pública / prestador de serviços** segue em **1,0% a.m.** até o fim da janela. Traz a
@@ -207,57 +191,8 @@ computada em **out./2025** — **D1**.
 `references/trabalhista-nacional.md` § 6.
 
 **`R-08-08` — a bifurcação por devedor NÃO é universal:** **três cadeias nunca bifurcam** —
-previdenciário, repetição de indébito e desapropriação direta.
-
-### 5.4 Desapropriação — correção (item 4.5 direta · 4.6 indireta)
-
-**IPC/FGV (mar–dez/1991)** — **índice exclusivo desta cadeia**, que não aparece em nenhuma outra
-→ Ufir → IPCA-E → Selic (dez/21–ago/25) → IPCA-15.
-
-### 5.5 Desapropriação — **os juros compensatórios são CADEIA AUTÔNOMA**
-
-**Terceira cadeia, além da correção e dos juros de mora.** Itens **4.5.3** (direta) e **4.6.3**
-(indireta).
-
-> **Quem tratar a desapropriação só pela linha de correção monetária perde esta cadeia
-> inteira.**
-
-**Termo inicial — mesma súmula, dois marcos (`D8-C10`):**
-
-| | Direta (4.5) | Indireta (4.6) |
-|---|---|---|
-| **Correção** | data do **laudo do perito** — Súmula 75 do TFR | data do **laudo de avaliação** |
-| **Compensatórios** | data da **imissão da posse**, certificada no mandado | data da **efetiva ocupação** do imóvel |
-
-Ambos por **Súmula 69 do STJ**. **Não é defeito**: não há imissão na desapropriação indireta.
-**Mas é bifurcação — o eixo é a MODALIDADE da desapropriação, não uma data — e o schema precisa
-registrá-la.**
-
-**Três cortes no tempo, e dois deles não aparecem em tabela nenhuma:**
-
-| Corte | O que muda | Fundamento |
-|---|---|---|
-| **10/6/1997 ÷ 11/6/1997** | a tabela vai *"Até 10/6/1997"* e *"De 11/6/1997 a nov./2021"* | MP 1.577/1997 e sucessivas; **ADI 2332** citada nas observações |
-| **ago./2017** | os compensatórios **deixam de seguir 4.5.3** e passam ao **percentual fixado para os TDAs depositados como oferta inicial** | art. 5º, § 9º, da Lei 8.629/1993, na redação da **Lei 13.465/2017** — item **4.5.4**, `pagina_pdf` 70 |
-| **dez./2021** | **o regime autônomo acaba** — literal: *"Já incluídos na SELIC aplicada aos juros de mora"*. **Sem taxa adicional** | `D8-C11` |
-
-> **O corte de ago./2017 vive SÓ no item 4.5.4, sobre TDAs complementares. NENHUMA TABELA O
-> MOSTRA.** É o padrão de `07-leitura-do-corpus.md` § 1 aplicado a uma cadeia inteira. **`D8-C25`.**
-
-**Dois defeitos que o motor precisa conhecer:**
-
-- **`N-6` — contradição de um mês.** O texto de 4.5.3 diz *"Até dez. 2021, os juros
-  compensatórios incidem:"* (`pagina_pdf` 69) e **a tabela encerra o regime autônomo em
-  nov./2021**. Fundamento idêntico nas duas cadeias gêmeas. **Dez./2021 fica sem regime
-  coerente** — e é justamente o mês da consolidação da EC 113/2021. **Não harmonizado: `P8-09`**;
-- **`N-10` — remissão errada.** Em **4.6.3** (indireta), as duas linhas remetem ao *"item
-  4.5.2"*, que é da desapropriação **direta**.
-
-**`R-08-19` — não cabem compensatórios em precatório complementar.**
-
-**Pendência aberta:** os **honorários de perito** de 4.5.6 têm **três termos iniciais
-alternativos** — decisão que os fixou, desembolso da parte, entrega do laudo — **sem critério de
-escolha** (`pagina_pdf` 71).
+previdenciário, repetição de indébito e **desapropriação direta**. **A dívida fiscal bifurca, mas
+por `data-do-fato-gerador`, não por devedor** (§ 3.2) — e é a única assim.
 
 ---
 
@@ -402,20 +337,25 @@ corrigido **R$ 2.275,96** e juros **R$ 55,75** — **ambas recebendo 5,05% de Se
 
 ## 10. Limitações declaradas
 
-1. **As cadeias de condenatórias gerais e de desapropriação não têm arquivo próprio** e estão
-   aqui por acomodação, não por classificação. Ver o aviso do topo;
-2. **`P8-09`** — **dez/2021 dos juros compensatórios fica sem regime coerente** (texto × tabela).
-   **Não harmonizado**;
-3. **`N-10`** — remissão errada em 4.6.3. **Registrada, não corrigida**;
-4. **Honorários de perito na desapropriação** (4.5.6): **três termos iniciais alternativos sem
-   critério de escolha**;
-5. **`D8-C7`** — *"cor/mon."* nunca definida, treze ocorrências;
-6. **Fazenda estadual e municipal pós-EC 136/2025** — **lacuna normativa**, não de pesquisa;
-7. **ADI 7873** pendente; **divergência do TJ-SP** registrada e **não arbitrada**;
-8. **A classificação da devedora como Fazenda Pública é pergunta ao jurídico do usuário do
+1. **`D8-C7`** — *"cor/mon."* nunca definida, **treze ocorrências** (`pagina_pdf` 26, 32, 33, 91
+   e 92);
+2. **`D8-C6`** — **um mês sem juros por falta de lei**: 3 a 31 de janeiro de 1992. **Declarado,
+   não inferido**;
+3. **`D8-C8`** — no FGTS da dívida fiscal, **maio/2000 pertence a dois intervalos** (*"De
+   fev./1991 a maio/2000"* × *"A partir de maio/2000"*), **sem regra de desempate**, e o item
+   2.4.4.2 usa fronteira diferente para o mesmo tema;
+4. **`D8-D03`/`N-3`** — os rótulos **ORTN/OTN estão invertidos** nos itens 2.3.1.1 e 4.4.1 em
+   relação às tabelas. **Registrado, não corrigido**;
+5. **Fazenda estadual e municipal pós-EC 136/2025** — **lacuna normativa**, não de pesquisa;
+6. **ADI 7873** pendente; **divergência do TJ-SP** registrada e **não arbitrada**;
+7. **A classificação da devedora como Fazenda Pública é pergunta ao jurídico do usuário do
    módulo.** Se a resposta for negativa, **somem do escopo** o ramo FP das três jurisdições, o
    precatório, as ECs 113/136 e a consolidação de dez/2021;
-9. **As séries (Ufir, BTN, OTN, ORTN, IPC/FGV, IPCA-E, IPCA-15, TMMCTN) não estão aqui.** São
+8. **As pendências das cadeias migradas seguem abertas nos arquivos que as receberam** — `N-8`
+   (ramo paralelo dos servidores) em `civel-federal.md` § 11; **`P8-09`** (dez/2021 dos juros
+   compensatórios), **`N-10`** (remissão errada em 4.6.3) e os **honorários de perito de 4.5.6**
+   em `desapropriacao.md` § 10. **Migraram de lugar, não de estado: continuam pendências**;
+9. **As séries (Ufir, BTN, OTN, ORTN, IPCA-E, IPCA-15, TMMCTN) não estão aqui.** São
    dado (B) — `skills/indices-judiciais/`. A única tabela numérica que o manual **reproduz** é o
    quadro da **taxa legal previdenciária** de set./2025 a jun./2026 (`pagina_pdf` 61), e **não foi
    extraída como série** porque é **ilustração de metodologia**, não a série em si.
@@ -428,5 +368,9 @@ corrigido **R$ 2.275,96** e juros **R$ 55,75** — **ambas recebendo 5,05% de Se
 - `docs/calculo/extracao/justica-federal/bloco-08-jf.md` e `bloco-08-jf-detalhe.md` — as sete
   cadeias linha a linha, notas × linhas, defeitos do original
 - `docs/calculo/tabelas-normativas/cjf.*.json` — as cadeias em schema `cadeia-temporal`
-- `references/previdenciario.md` — o sexto ramo, com arquivo próprio
+- **`references/civel-federal.md`** — **condenatórias em geral** (correção e juros autônomos),
+  migrada no bloco 17
+- **`references/desapropriacao.md`** — **desapropriação direta e indireta**, com as **três
+  cadeias** e os **juros compensatórios**, migrada no bloco 17
+- `references/previdenciario.md` — benefícios previdenciários
 - `references/trabalhista-nacional.md` § 6 — `cjf.trabalhista.juros-mora`

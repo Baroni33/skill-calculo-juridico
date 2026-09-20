@@ -795,3 +795,116 @@ posterior.
 **E um alerta:** **as fichas de tema do TST não servem como fonte.** A do **Tema 9** omite a
 modulação; a do **Tema 23** está com "Tese Firmada" em branco e situação "Afetado", cache
 anterior ao julgamento. Usar os **acórdãos publicados**.
+
+---
+
+## 23. Bloco 17 — o tipo do indexador (R3) sem fonte
+
+**Status: aberta.** O campo passou a existir: `tipo_indexador` em **97 segmentos** de **11
+cadeias**, catálogo único em `tabelas-normativas/indexadores-tipo-catalogo.json`, invariante
+R3 cobrada por `scripts/calculo/valida_cobertura.py`. O que não existe é **fonte para metade
+do catálogo**.
+
+**A fonte é estreita e exemplificativa.** O item 4.1.2.4 do Manual CJF (`pagina_pdf` 42)
+nomeia **quatro** nominais — Ufir, BTN, OTN, ORTN — e **três** percentuais — INPC, IGP-DI,
+IGP-M — todos sob "Ex.:". Lista exemplificativa **não autoriza extensão por semelhança de
+nome**: `tipo` sai da fonte, nunca de dedução. O que falta fica `indeterminado`.
+
+### 23.1 P17-01 — nove índices sem classificação em fonte alguma
+
+| Índice | Onde aparece | Por que não foi classificado |
+|---|---|---|
+| **IPCA-E/IBGE** | condenatórias, desapropriação direta (2001-01..2021-11) | **Não está na lista.** O item 4.1.2.4 **não nomeia sequer "IPCA"**. Chamá-lo percentual "porque IPCA é percentual" é a dedução proibida — duas vezes |
+| **IPCA-15/IBGE** | condenatórias (2024-09..), desapropriação (2025-09..) | Mesma razão. É a **prévia de 15 dias**, índice distinto dos outros dois |
+| **IPCA série especial** | condenatórias e repetição, dez/1991 | Zero ocorrências do nome em janela de classificação, em todo o corpus |
+| **IPC/FGV** | desapropriação direta, mar–dez/1991 | **D8-C21 sustenta o IPC/IBGE, não o IPC/FGV.** Emissor distinto, índice distinto. Herdar do homônimo é a mesma classe de erro que o bloco 8 cometeu ao trocar um pelo outro em 78 segmentos |
+| **IPC-R** | previdenciário, 1994-07..1995-06 | Não está na lista |
+| **IRSM** | previdenciário, 1993-01..1994-02 | Não está na lista |
+| **MVR** | `serie-18.11-otn-btn-mvr.csv` | Não está na lista, e **nenhuma cadeia do repositório o consome** |
+| **`Ufir → Selic (bifurcado por fato gerador)`** | dívida fiscal, 1992-01..2026-06 | **P17-03**, abaixo — é segmento composto, não índice |
+| **`NAO-DECLARADO-PELO-MANUAL`** | correção trabalhista, 1942-11..2009-06 | O índice em si não é declarado. É a **P9-02**, não novidade deste bloco |
+
+**IPC-R e IRSM tinham quase-fonte, e ela não servia.** `previdenciario.md` escrevia *"INPC,
+IRSM, IPC-R, IGP-DI são percentuais"* — **sem item, sem `pagina_pdf`, sem nada**. Documento
+derivado, e o que ele derivava era exatamente a dedução por nome. **Não foi usada como fonte.**
+
+> **Corrigido ainda no bloco 17**, junto com as demais propagações que a validação adversarial
+> achou: `indices-judiciais/SKILL.md`, `calculo-judicial-atualizacao/SKILL.md`,
+> `calculo-judicial-core/SKILL.md`, `civel-federal.md`, `consolidado/01-dominio-e-invariantes.md`
+> e `consolidado/02-atualizacao.md` afirmavam *"percentual (INPC, **IPCA**, IGP)"* **citando o
+> item 4.1.2.4 — que não nomeia IPCA**.
+>
+> **Permanece divergente, e não foi corrigida:** a **§ 7 de `00-base-normativa.md`** enuncia R3
+> com a mesma lista. **É fonte de verdade do usuário**, e este bloco não altera conteúdo
+> normativo. Mesmo caso em `03-casos-dificeis.md`.
+
+**Escopo da busca, declarado:** varredura de `docs/`, `skills/`, `scripts/` e `tests/` em
+`.md`, `.json`, `.csv` e `.py`, tomando toda linha que contenha o nome do índice e, na janela
+de ±3 linhas, qualquer de *nominal*, *nominais*, *percentual*, *percentuais*. Nenhuma
+ocorrência atribui tipo com citação de fonte primária.
+
+**Como fechar:** o item 4.1.2.4 é a única regra do gênero nos dois manuais. Fecha-se com o
+ato de instituição de cada índice — ou com decisão do usuário de que a extensão da lista é
+admissível e sob que critério. **Não se fecha lendo os PDFs de novo.**
+
+### 23.2 P17-02 — a TR foi REBAIXADA de `percentual` para `indeterminado`
+
+`trab.hist.correcao-monetaria.json` gravava `tipo_indexador: "percentual"` para a
+TR e para a "remuneração básica da caderneta de poupança (TR)", **com a inferência declarada
+no próprio JSON** e detalhada em `bloco-09-cadeias-historicas.md` § 3.3 e
+`bloco-09-relatorio.md` § 5.3. O critério era **formal**: *"a TR não é unidade monetária, logo
+é percentual"*.
+
+**O bloco 17 rebaixa para `indeterminado`,** e o fundamento do rebaixamento está nos próprios
+textos que criaram o rótulo:
+
+- *"**Nenhum dos dois manuais classifica a TR**"* — `bloco-09-relatorio.md` § 5.3, literal;
+- o critério **material** do item 4.1.2.4 — *"refletem a inflação do próprio mês"* — **não se
+  aplica**: a TR não é índice de preços, é taxa apurada **prospectivamente** (art. 12, I, da
+  Lei 8.177/91);
+- **inferência declarada não é fonte.** A regra deste bloco não admite exceção por honestidade
+  da inferência: *"índice cuja classificação não esteja sustentada em fonte fica como
+  `tipo: indeterminado`"*.
+
+**O que se perde:** um rótulo que nunca teve lastro. **O que se ganha:** a virada para a TR
+passa a aparecer no validador, como `R3-INDETERMINADO`, em vez de passar limpa.
+
+**Alcança também** `serie-18.15-tabela-unica-trabalhista.csv`, cuja base é a TR.
+
+### 23.3 P17-03 — segmento composto na dívida fiscal
+
+`cjf.divida-fiscal.correcao-monetaria.json`, `1992-01..2026-06`, grava um **único** segmento
+com `indexador: "Ufir → Selic (bifurcado por fato gerador)"`. São **dois** indexadores, de
+tipos diferentes — Ufir é `nominal`, Selic é `englobante` — num registro só. Nenhum rótulo
+único os representa, e escolher um deles seria inventar.
+
+**A correção é partir o segmento pelo eixo `data-do-fato-gerador`**, não classificá-lo. Isso
+é mudança de modelagem da cadeia, e não foi feita aqui: este bloco corrige o campo `tipo`, não
+o recorte dos segmentos. Enquanto isso, fica `indeterminado` — e, como a dívida fiscal não
+tem outra virada, o validador não acusa nada ali.
+
+### 23.4 O que o validador passou a ver — 25 achados, todos do manual
+
+`python scripts/calculo/valida_cadeias.py` sobre as 11 cadeias:
+
+| Regra | Achados | O que são |
+|---|---|---|
+| **R3** (virada confirmada, sem `aplicacao`) | **12** | Três viradas × quatro cadeias do CJF: `OTN→IPC/IBGE` (jan/1989), `IPC/IBGE→BTN` (mar/1989), `BTN→IPC/IBGE` (mar/1990) |
+| **R3-INDETERMINADO** | **13** | Viradas com ponta sem classificação — P17-01 e P17-02 |
+
+**As 12 confirmadas corroboram D8-C21.** O manual explica a colisão de **jan/1989** pelo
+argumento dos nominais (item 2.3.1.3, R-08-04) — mas OTN→IPC/IBGE **não é** nominal→nominal, é
+nominal→**percentual**, e o argumento não a alcança. É exatamente o que D8-C21 já dizia sobre
+mar/1990, agora medido por script e estendido a jan/1989. **Nenhuma foi harmonizada**: são do
+manual, e a regra do projeto é registrar.
+
+**A defasagem do expurgo não está declarada em lugar nenhum.** Se as três viradas exigem ou
+não ajuste, o manual não diz; ele nem sequer as reconhece como viradas de tipo. Enquanto
+`aplicacao` não for preenchido com fundamento, elas permanecem acusadas — e devem permanecer.
+
+### 23.5 Onde a fonte não bastou, em uma linha
+
+**15 dos 97 segmentos**, e **10 dos 27 indexadores nomeados** (mais o **MVR**, que só existe
+em série CSV), ficaram `indeterminado`. A
+proporção não é defeito da extração: é o tamanho real da lacuna que R3 vinha escondendo por
+não ter campo onde aparecer.

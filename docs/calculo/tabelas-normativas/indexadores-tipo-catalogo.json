@@ -1,0 +1,260 @@
+{
+  "id": "indexadores-tipo-catalogo",
+  "titulo": "Tipo do indexador — nominal × percentual × englobante. Catálogo único da invariante R3",
+  "tipo": "catalogo",
+  "categoria": "A-semantica",
+  "componente": "tipo-do-indexador",
+  "jurisdicao": "todas",
+  "REGRA_DESTE_CATALOGO": "O valor SAI DA FONTE. Índice cuja classificação não esteja sustentada em fonte fica como 'indeterminado' e vira pendência (pendencias.md § 23), NUNCA classificado por dedução a partir do nome. As listas do item 4.1.2.4 são exemplificativas ('Ex.:') — isso NÃO autoriza estendê-las por semelhança de nome.",
+  "fonte": {
+    "documento": "manual_de_calculos_2026.pdf",
+    "norma": "Resolução CJF n. 990/2026",
+    "item": "4.1.2.4",
+    "pagina_pdf": 42,
+    "extraido_em": "docs/calculo/extracao/justica-federal/bloco-08-jf.md § 2",
+    "literal": "a) Nominais: fixados em valores nominais na moeda corrente da época. Ex.: Ufir, BTN, OTN, ORTN. Refletem a inflação do mês (ou dia) anterior à data do valor divulgado. b) Percentuais (ou reais): fixados em valores percentuais. Ex.: INPC, IGP-DI, IGP-M. Refletem a inflação do próprio mês de competência e terão aplicação prática no mês (ou dia) seguinte à data da divulgação."
+  },
+  "apoio_no_corpus": {
+    "D8-C21": {
+      "arquivo": "docs/calculo/extracao/justica-federal/bloco-08-jf-detalhe.md",
+      "linha": 416,
+      "literal": "O IPC/IBGE é índice percentual, e o item 4.1.2.4 diz que percentuais 'refletem a inflação do próprio mês de competência'",
+      "sustenta": [
+        "IPC/IBGE"
+      ]
+    },
+    "D8-C22": {
+      "arquivo": "docs/calculo/extracao/justica-federal/bloco-08-jf-detalhe.md",
+      "linha": 421,
+      "literal": "Ufir é nominal, Selic não é índice de inflação.",
+      "sustenta": [
+        "Ufir",
+        "Selic"
+      ]
+    },
+    "R1": {
+      "arquivo": "docs/calculo/00-base-normativa.md",
+      "secao": "7",
+      "o_que_diz": "SELIC e taxa legal ENGLOBAM correção monetária e juros de mora. É o que o campo 'engloba' das cadeias já grava.",
+      "sustenta": [
+        "Selic",
+        "taxa-legal"
+      ]
+    }
+  },
+  "valores_de_tipo": {
+    "nominal": "fixado em valores nominais na moeda corrente da época; reflete a inflação do mês (ou dia) ANTERIOR. Item 4.1.2.4, letra a.",
+    "percentual": "fixado em valores percentuais; reflete a inflação do PRÓPRIO mês de competência. Item 4.1.2.4, letra b.",
+    "englobante": "cobre correção monetária E juros no mesmo fator (R1). NÃO é índice de inflação — D8-C22 é literal quanto à Selic — e por isso a dicotomia do item 4.1.2.4, que fala em 'refletir a inflação', não lhe é aplicável. Forçá-la em nominal ou percentual seria dedução, e dedução materialmente errada.",
+    "nao-indexador": "o segmento não referencia índice algum: padrão monetário, operação de conversão, ou juros fixados em percentual legal. Valor PRÓPRIO, e não ausência do campo, porque ausência é indistinguível de 'esquecemos de classificar' — que é exatamente a falha que este catálogo existe para curar. 'nao-indexador' afirma: verificado, e o conceito não se aplica.",
+    "indeterminado": "o conceito se aplica, mas NENHUMA fonte do corpus o classifica. Não é o mesmo que 'nao-indexador'. Toda ocorrência é pendência aberta."
+  },
+  "ESCOPO_DA_BUSCA_DE_AUSENCIA": {
+    "por_que": "Afirmação de ausência exige escopo declarado (regra do bloco 17).",
+    "arvores_varridas": [
+      "docs/",
+      "skills/",
+      "scripts/",
+      "tests/"
+    ],
+    "extensoes": [
+      ".md",
+      ".json",
+      ".csv",
+      ".py"
+    ],
+    "criterio": "toda linha que contenha o nome do índice e, na janela de ±3 linhas, qualquer de 'nominal', 'nominais', 'percentual', 'percentuais'",
+    "resultado": "Para IPCA-E, IPCA-15, IPCA serie especial, IPC/FGV, IPC-R, IRSM, TR, MVR e URV, NENHUMA ocorrencia atribui tipo com citacao de fonte primaria. As linhas que classificavam IRSM e IPC-R eram documentos DERIVADOS, sem citacao de item ou pagina_pdf — deducao por nome propagada rio abaixo, nao fonte. CORRIGIDAS na validacao adversarial do bloco 17. Permanece divergente a § 7 de 00-base-normativa.md, que e fonte de verdade do usuario e nao foi alterada."
+  },
+  "indexadores": {
+    "ORTN": {
+      "tipo": "nominal",
+      "fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos"
+    },
+    "OTN": {
+      "tipo": "nominal",
+      "fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos"
+    },
+    "BTN": {
+      "tipo": "nominal",
+      "fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos"
+    },
+    "Ufir": {
+      "tipo": "nominal",
+      "fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE; corroborado por D8-C22 ('Ufir é nominal')"
+    },
+    "INPC": {
+      "tipo": "percentual",
+      "fonte": "item 4.1.2.4, letra b, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos"
+    },
+    "INPC/IBGE": {
+      "tipo": "percentual",
+      "fonte": "item 4.1.2.4, letra b, pagina_pdf 42 — o item nomeia 'INPC'",
+      "identificacao_declarada": "'INPC/IBGE' é o mesmo índice, com o emissor colado ao rótulo pela tabela do capítulo 4 do CJF. A identificação é de ROTULAGEM, não de semelhança de nome: não existe INPC de outro emissor. Declarada aqui para que quem auditar veja a costura em vez de supô-la."
+    },
+    "IGP-DI": {
+      "tipo": "percentual",
+      "fonte": "item 4.1.2.4, letra b, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos"
+    },
+    "IPC/IBGE": {
+      "tipo": "percentual",
+      "fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'"
+    },
+    "Selic": {
+      "tipo": "englobante",
+      "fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros"
+    },
+    "taxa-legal": {
+      "tipo": "englobante",
+      "fonte": "R1 (00-base-normativa.md § 7) — taxa legal engloba correção e juros. R11: é DERIVADA por razão entre fatores, não índice de preços publicado. O item 4.1.2.4 não a alcança: ela é posterior ao manual que o contém e não reflete inflação de mês algum."
+    },
+    "IPCA-E/IBGE": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "NÃO está na lista do item 4.1.2.4. Classificá-lo como percentual 'porque IPCA é percentual' é dedução a partir do nome — e o item sequer nomeia 'IPCA': nomeia INPC, IGP-DI e IGP-M. Busca no corpus (ver ESCOPO_DA_BUSCA_DE_AUSENCIA) não achou fonte.",
+      "pendencia": "P17-01"
+    },
+    "IPCA-15/IBGE": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Mesma razão do IPCA-E, agravada: é a prévia de 15 dias, índice distinto dos dois. Sem fonte no corpus.",
+      "pendencia": "P17-01"
+    },
+    "IPCA série especial": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Segmento próprio do manual para dez/1991. Zero ocorrências no corpus em janela de classificação.",
+      "pendencia": "P17-01"
+    },
+    "IPC/FGV": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "D8-C21 sustenta o IPC/IBGE, não o IPC/FGV — emissor distinto, índice distinto. Herdar a classificação do homônimo do IBGE é exatamente a dedução proibida, e é a mesma classe de erro que o bloco 8 registrou ao trocar IPC/FGV por IPC/IBGE entre 78 segmentos.",
+      "pendencia": "P17-01"
+    },
+    "IPC-R": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Não está na lista. A única linha do corpus que o chama percentual é documento derivado sem citação (previdenciario.md:45).",
+      "pendencia": "P17-01"
+    },
+    "IRSM": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Não está na lista. Mesma situação do IPC-R.",
+      "pendencia": "P17-01"
+    },
+    "TR": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "REBAIXAMENTO": "Estava gravado como 'percentual' em trab.hist.correcao-monetaria.json, por critério FORMAL ('não é unidade monetária, logo é percentual') e com a inferência declarada. O bloco 17 REBAIXA para 'indeterminado': o próprio bloco 9 registra que 'nenhum dos dois manuais classifica a TR' (bloco-09-relatorio.md § 5.3) e que o critério MATERIAL do item 4.1.2.4 — 'refletem a inflação do próprio mês' — não se aplica a uma taxa apurada prospectivamente (art. 12, I, da Lei 8.177/91). Inferência declarada não é fonte, e a regra deste bloco é que sem fonte o valor é 'indeterminado'. O que se perde é um rótulo que nunca teve lastro; o que se ganha é que a virada para a TR passa a ser vista pelo validador em vez de passar limpa.",
+      "pendencia": "P17-02"
+    },
+    "remuneração básica da caderneta de poupança (TR)": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "Segue a TR. Mesmo rebaixamento.",
+      "pendencia": "P17-02"
+    },
+    "NAO-DECLARADO-PELO-MANUAL": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "O índice em si não é declarado (P9-02). Não havendo índice nomeado, não há o que classificar.",
+      "pendencia": "P9-02"
+    },
+    "Ufir → Selic (bifurcado por fato gerador)": {
+      "tipo": "indeterminado",
+      "fonte": null,
+      "por_que": "SEGMENTO COMPOSTO: um único registro guarda dois indexadores de tipos diferentes — Ufir (nominal) e Selic (englobante) —, bifurcados pela data do fato gerador. Um rótulo só não os representa, e escolher um dos dois seria inventar. A correção é partir o segmento, não classificá-lo.",
+      "pendencia": "P17-03"
+    },
+    "Cruzeiro (Cr$)": {
+      "tipo": "nao-indexador",
+      "fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador."
+    },
+    "Cruzeiro novo (NCr$)": {
+      "tipo": "nao-indexador",
+      "fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador."
+    },
+    "Cruzeiro real (CR$)": {
+      "tipo": "nao-indexador",
+      "fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador."
+    },
+    "Cruzado (Cz$)": {
+      "tipo": "nao-indexador",
+      "fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador."
+    },
+    "Cruzado novo (NCz$)": {
+      "tipo": "nao-indexador",
+      "fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador."
+    },
+    "Real (R$)": {
+      "tipo": "nao-indexador",
+      "fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador."
+    },
+    "Conversão em URV": {
+      "tipo": "nao-indexador",
+      "fonte": "cjf.previdenciario, 1994-03..1994-06, item 4.2.3.1. É OPERAÇÃO de conversão de padrão monetário, não índice: o segmento enumera os quatro percentuais de conversão um a um. Não reflete inflação de mês algum, e não tem defasagem a ajustar.",
+      "nota": "O método de conversão da URV é a pendência § 9 de pendencias.md; nada aqui a resolve."
+    },
+    "(segmento sem indexador)": {
+      "tipo": "nao-indexador",
+      "fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
+    }
+  },
+  "series_csv": {
+    "POR_QUE_SIDECAR_E_NAO_COLUNA": "Decidido: MANIFESTO SIDECAR (este bloco), e não coluna no CSV nem linha de cabeçalho por arquivo. Três razões, todas de formato observado, não de gosto. (1) O cabeçalho das séries é um preâmbulo de comentários '#' com metadados de arquivo inteiro; 'tipo' não é metadado de arquivo em serie-18.11-otn-btn-mvr.csv, que traz TRÊS indexadores (OTN, BTN, MVR) discriminados na coluna 'serie' — um '# tipo=' por arquivo mentiria ali. (2) Coluna nova em todas as linhas repetiria o mesmo valor 5.104 vezes em serie-18.14 e, pior, obrigaria a reescrever arquivos declarados OUT_OF_SCOPE cuja integridade byte a byte é evidência de conferência contra a tabela mantida à parte. (3) A classificação precisa vir acompanhada da FONTE (arquivo, item, pagina_pdf), que é objeto estruturado e não cabe em célula de CSV. O sidecar dá o campo com a fonte junto e deixa o CSV intacto; cada arquivo afetado recebe UMA linha de comentário apontando para cá.",
+    "serie-18.11-otn-btn-mvr.csv": {
+      "chave": "coluna 'serie' (prefixo 'OTN ', 'BTN ', 'MVR ')",
+      "OTN": "nominal",
+      "BTN": "nominal",
+      "MVR": "indeterminado — 'Maior Valor de Referência' não está na lista do item 4.1.2.4 e nenhuma cadeia do repositório o consome. Pendência P17-01."
+    },
+    "serie-18.12-ufir.csv": {
+      "chave": "arquivo inteiro",
+      "Ufir": "nominal"
+    },
+    "serie-9.2.11-ufir-juros-ate-dez79.csv": {
+      "chave": "coluna 'coef_ufir'",
+      "Ufir": "nominal",
+      "nota": "A coluna 'pct_juros_devido_ate_dez79' não é índice: é percentual de juros. 'nao-indexador'."
+    },
+    "serie-18.15-juros-selic-acumulados.csv": {
+      "chave": "arquivo inteiro (quadros 'taxa-selic-mensal' e 'selic-acumulada-ate-maio-2016')",
+      "Selic": "englobante"
+    },
+    "serie-18.15-tabela-unica-trabalhista.csv": {
+      "chave": "arquivo inteiro",
+      "TR": "indeterminado — a tabela única do CSJT tem base TR, e a TR foi rebaixada a 'indeterminado'. Pendência P17-02."
+    },
+    "serie-18.10-urv.csv": {
+      "chave": "arquivo inteiro",
+      "URV": "nao-indexador — cotações diárias da URV em CR$, unidade de conta da transição monetária, não índice de correção."
+    },
+    "serie-18.2-moedas-e-paridades.csv": {
+      "chave": "arquivo inteiro",
+      "moedas-e-paridades": "nao-indexador — nomenclatura de padrão monetário e multiplicadores de transição."
+    },
+    "SERIES_SEM_INDEXADOR": {
+      "o_que_sao": "As 14 séries restantes não referenciam índice algum e por isso NÃO recebem o campo — a tarefa o pede para série 'que referencie índice'. Listadas para que a ausência seja verificada e não presumida.",
+      "arquivos": [
+        "serie-18.13-rsr-contagens.csv",
+        "serie-18.14-calendarios.csv",
+        "serie-18.15-tabela-pratica-contribuicoes-em-atraso.csv",
+        "serie-18.2-salario-minimo.csv",
+        "serie-18.3-salario-familia.csv",
+        "serie-18.4-irrf-tabela-progressiva-mensal.csv",
+        "serie-18.5-irrf-rra.csv",
+        "serie-18.6-irrf-plr.csv",
+        "serie-18.7-contribuicao-faixas.csv",
+        "serie-18.7-contribuicao-matriz-1982-1991.csv",
+        "serie-18.8.1-grau-risco-cnae-ate-2007-05.csv",
+        "serie-18.8.2-aliquotas-por-fpas.csv",
+        "serie-18.8.2-grau-risco-cnae-desde-2007-06.csv",
+        "serie-18.9-seguro-desemprego.csv"
+      ],
+      "ressalva": "serie-18.15-tabela-pratica-contribuicoes-em-atraso.csv consome acréscimos legais que dependem de Selic; o quadro extraído, porém, traz coeficientes prontos e não nomeia indexador. Não classificado — não se inventa o que o quadro não diz."
+    }
+  },
+  "ONDE_ISTO_E_CONSUMIDO": "scripts/calculo/valida_cobertura.py — campo 'tipo_indexador' do Segmento e invariante R3. Cadeias em cjf.*.json e trab.hist.*.json gravam 'tipo_indexador' e 'tipo_indexador_fonte' por segmento."
+}

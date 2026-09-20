@@ -182,6 +182,13 @@ tribunal** — sem súmula própria sobre divisor na 12×36 aplica-se **IRR-849 
 
 ## Procedimento
 
+**A ordem ponta a ponta — dezenove passos, com `FONTE` / `DERIVADO` / `COMPOSIÇÃO`, o raciocínio de posição
+e o custo medido de errá-la — está em `docs/calculo/consolidado/09-ordem-de-calculo.md`. Não repetida aqui.**
+
+> **O corpus não enuncia a ordem do começo ao fim**, só a ordem *dentro* de cada operação. Os
+> passos abaixo são **composição declarada**: três posições são `COMPOSIÇÃO` pura — **verbas**,
+> **bloco de descontos**, **encargos** —, e uma tem custo medido (**−R$ 285,83**).
+
 ### Passo 0 — a chave não é a data, é o par `(data, eixo)`
 
 **Dezoito pontos compartilham 11/11/2017 e cortam por três eixos diferentes.** *Dois processos ajuizados no
@@ -269,10 +276,10 @@ Detalhe e a pendência `P13A-05` em
 ### Passo 7 — imputação do que já foi pago
 
 **A amortização não é um passo a mais no fim.** Tudo é trazido até a data do levantamento, **rateado ali**,
-e só então levado ao marco final. **O valor pago é deduzido NOMINAL** — o que se atualiza é o crédito.
-Nenhuma linha de levantamento tem coluna de índice preenchida.
+e só então levado ao marco final. **O valor pago é deduzido NOMINAL** — o que se atualiza é o crédito, e
+nenhuma linha de levantamento tem coluna de índice. **Antes de tudo, descarregar (R23).**
 
-**São DUAS molduras no capítulo 10, com letreiros diferentes — e os exemplos seguem a segunda.**
+**São DUAS molduras no capítulo 10, e os exemplos seguem a segunda.**
 
 | Passo | **10.3.1** (A–H, **J**; **sem letra I**) | **10.3.2** (A a **O/P**; **COM letra I**) |
 |---|---|---|
@@ -283,29 +290,27 @@ Nenhuma linha de levantamento tem coluna de índice preenchida.
 F.1  principal no saldo = (B / D) × E        F.2  juros no saldo = (C / D) × E
 ```
 
-> **Ler o capítulo 10 com um letreiro só produz erro de endereço.** Os **Exemplos 5 e 6 seguem 10.3.2**,
-> embora o enunciado do capítulo descreva a moldura de 10.3.1. **A afirmação "não há letra I" vale só para
-> 10.3.1** — repetida sobre o capítulo inteiro, apaga a letra I de 10.3.2, que é justamente a alternativa
-> **sem exemplo** da pendência `P10D-05`.
+> **Ler o capítulo 10 com um letreiro só produz erro de endereço.** Os **Exemplos 5 e 6 seguem 10.3.2**, e
+> **"não há letra I" vale só para 10.3.1** — sobre o capítulo inteiro, apaga a de 10.3.2 (`P10D-05`).
 
 **Sobre o quê incide:** **10.3.1** (sem descontos) sobre o **bruto**; **10.3.2.1** (com descontos) sobre o
-bruto **já reduzido do INSS e IR proporcionais ao levantamento** — e ali **os tributos também são rateados**
-entre principal e juros, **regra estrutural que só existe na aritmética**. **E o rateio de 10.2 não é o de
-10.3:** em **10.3** rateia-se **principal × juros**; em **10.2**, **bruto → INSS**. Objetos distintos, sem
-conflito numérico, **e a mesma lacuna: nenhum dispositivo é citado para nenhum dos dois**. Detalhe:
-`references/imputacao-e-amortizacao.md`.
+bruto **já reduzido do INSS e IR proporcionais ao levantamento**, **rateados também** — **são dois momentos
+de desconto, não um**. **E o rateio de 10.2 não é o de 10.3:** em **10.3** rateia-se **principal × juros**;
+em **10.2**, **bruto → INSS** — objetos distintos, **e nenhum dispositivo citado para nenhum dos dois**.
+Detalhe: `references/imputacao-e-amortizacao.md`.
 
 ### Passo 8 — encargos, e a ordem entre eles
 
 1. **honorários advocatícios** sobre o **bruto do reclamante + FGTS a depositar**, **excluída a cota
    patronal** (OJ 348 e **TJP 4 do TRT-3**);
 2. **custas de execução** — `R8-CE-01`, **invariante promovida de exemplo**: `0,5%` sobre o **total do
-   cálculo ANTES da própria linha de CE**, excluídas **apenas** as custas do conhecimento, teto R$ 638,46;
+   cálculo ANTES da própria linha de CE**, excluídas **apenas** as custas do conhecimento, teto R$ 638,46.
+   **Os honorários entram nessa base** (8.2.1, literal) — por isso vêm antes;
 3. **R19** — gravar qual lado de cada corte foi aplicado; para `C8-01`, gravar a **data de propositura**.
 
 **Gratuidade muda a conta:** sendo o reclamante beneficiário, os honorários sucumbenciais devidos por ele
-**não podem ser abatidos do seu crédito** (ADI 5766, 20/10/2021, **sem modulação**, *ex tunc*) — **some uma
-parcela da cadeia de descontos sobre o líquido**. Detalhe: `references/encargos-processuais.md`.
+**não podem ser abatidos do seu crédito** (ADI 5766, *ex tunc*) — **some uma parcela da cadeia de descontos
+sobre o líquido**. Detalhe: `references/encargos-processuais.md`.
 
 ### Passo 9 — registrar (R13, R19, R20, R21)
 

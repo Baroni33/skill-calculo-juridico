@@ -67,8 +67,17 @@ antiga até a data-base.
 > lacuna** — `bloco-09-relatorio.md` § 2.
 
 **R3 — Tipo do indexador na virada.** Nominal (Ufir, BTN, OTN, ORTN) reflete a inflação do mês
-**anterior**; percentual (INPC, IPCA, IGP) reflete a do **próprio** mês. Trocar entre tipos sem
+**anterior**; percentual (INPC, IGP-DI) reflete a do **próprio** mês. Trocar entre tipos sem
 ajustar a defasagem **desloca o cálculo em um mês**.
+
+> **A fonte classifica sete índices, e só sete** — item 4.1.2.4 do CJF, `pagina_pdf` 42, mais o
+> IPC/IBGE por D8-C21. As listas são exemplificativas, **o que não autoriza estendê-las por
+> semelhança de nome**: **dez indexadores em uso ficaram `indeterminado`** no bloco 17, entre
+> eles IPCA-E, IPCA-15, IPC-R, IRSM e a **TR**, rebaixada por ser inferência e não fonte.
+> Pendências `P17-01` e `P17-02`.
+>
+> **A § 7 da base normativa ainda enuncia R3 com "INPC, IPCA, IGP".** Divergência registrada,
+> **não corrigida** — a base é fonte de verdade do usuário.
 
 ### 2.2 Juros e capitalização
 
@@ -308,7 +317,7 @@ regional`**. Não bloqueia, não erra: registra.
 > não-verbete, de **três** tribunais (TRT-3, TRT-4, TJMG). O enunciado do bloco 16 nomeava três.
 > Contagem e fontes em [`08-nacional-e-regional.md`](08-nacional-e-regional.md).
 
-**Armadilha de nome.** As cadeias `trt3.hist.*` de `tabelas-normativas/` **são NACIONAIS**: seus
+**Armadilha de nome.** As cadeias `trab.hist.*` de `tabelas-normativas/` **são NACIONAIS**: seus
 fundamentos declarados são CC arts. 1.062–1.063, Lei 8.177/91 art. 39, Súmulas 200 e 381 do TST e
 as paridades da moeda — e a correção monetária **delega à Tabela Única do CSJT**. O prefixo é do
 arquivo, não da norma. **Um motor que resolva cadeia por prefixo de tribunal não acha cadeia
@@ -360,6 +369,7 @@ título judicial  >  escolha do usuário  >  default da jurisdição
 | Amortização, rateio, descarregar, item "i" | `05-imputacao.md` |
 | Custas, honorários, multas | `06-encargos.md` |
 | **Como este manual se lê** | `07-leitura-do-corpus.md` |
+| **A ordem de cálculo ponta a ponta**, passo a passo, com a fonte de cada posição | [`09-ordem-de-calculo.md`](09-ordem-de-calculo.md) |
 | Defeitos do original | `../armadilhas-comparador.md` |
 | Vereditos | `../confronto-normativo/01-vereditos.md` |
 | O que está aberto | `../pendencias.md` |

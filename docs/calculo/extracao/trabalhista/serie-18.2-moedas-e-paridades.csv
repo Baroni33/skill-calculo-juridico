@@ -5,6 +5,8 @@
 # Dois quadros sem numeração própria no original, impressos na margem
 # direita da tabela 18.2: MOEDAS (período/nomenclatura) e PARIDADES
 # (proporção/data). Fora do escopo declarado do bloco — ver relatório.
+# tipo do indexador (R3): nao-indexador (padrao monetario e paridades).
+# Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
 pagina_pdf,item,ordem,campo_1,campo_2
 381,18.2,1,01/11/42 a 12/02/67,Cruzeiro Cr$
 381,18.2,2,13/02/67 a 14/05/70,Cruzeiro novo NCr$

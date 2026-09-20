@@ -291,7 +291,7 @@ def extrai_18_1(doc) -> dict:
                 parcelas.append(registro)
 
     return {
-        "id": "trt3.trabalhista.incidencia.parcelas",
+        "id": "trab.incidencia.parcelas",
         "categoria": "A-semantica",
         "titulo": "Incidência de INSS, FGTS e IRRF por parcela",
         "jurisdicao": "justica-do-trabalho",
@@ -1079,7 +1079,7 @@ def extrai_18_13(doc):
     )
 
     semantica = {
-        "id": "trt3.trabalhista.rsr.criterios-de-contagem",
+        "id": "trab.rsr.criterios-de-contagem",
         "categoria": "A-semantica",
         "titulo": "RSR sobre dias úteis — critérios de contagem",
         "jurisdicao": "justica-do-trabalho",
@@ -1312,7 +1312,7 @@ def extrai_18_15(doc):
 
 def escreve_semantica(doc):
     ir = {
-        "id": "trt3.trabalhista.irrf.estrutura-das-tabelas",
+        "id": "trab.irrf.estrutura-das-tabelas",
         "categoria": "A-semantica",
         "titulo": "IRRF — estrutura das tabelas progressivas e regimes especiais",
         "jurisdicao": "justica-do-trabalho",
@@ -1381,7 +1381,7 @@ def escreve_semantica(doc):
     }
 
     previdencia = {
-        "id": "trt3.trabalhista.contribuicao-previdenciaria.estrutura",
+        "id": "trab.contribuicao-previdenciaria.estrutura",
         "categoria": "A-semantica",
         "titulo": "Contribuição previdenciária do segurado — estrutura das tabelas",
         "jurisdicao": "justica-do-trabalho",
@@ -1426,7 +1426,7 @@ def escreve_semantica(doc):
     }
 
     grau_risco = {
-        "id": "trt3.trabalhista.gilrat.grau-de-risco",
+        "id": "trab.gilrat.grau-de-risco",
         "categoria": "A-semantica",
         "titulo": "GILRAT/SAT — grau de risco por atividade preponderante",
         "jurisdicao": "justica-do-trabalho",
@@ -1506,7 +1506,7 @@ def escreve_semantica(doc):
     }
 
     urv = {
-        "id": "trt3.trabalhista.urv.conversao",
+        "id": "trab.urv.conversao",
         "categoria": "A-semantica",
         "titulo": "URV — o que o bloco de tabelas contém e o que não contém",
         "jurisdicao": "justica-do-trabalho",

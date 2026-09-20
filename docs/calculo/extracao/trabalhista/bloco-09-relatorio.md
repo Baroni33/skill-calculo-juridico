@@ -2,7 +2,7 @@
 
 Capítulo 7 do Manual de Cálculos do TRT-3 (julho/2016), páginas 83 a 99 do PDF.
 Extração dirigida. Produto em `bloco-09-cadeias-historicas.md` e em
-`docs/calculo/tabelas-normativas/trt3.hist.*.json`.
+`docs/calculo/tabelas-normativas/trab.hist.*.json`.
 
 ---
 
@@ -18,8 +18,8 @@ Extração dirigida. Produto em `bloco-09-cadeias-historicas.md` e em
 | Verificação de citação literal por script | **Feita** — 34 de 36 LITERAL-OK, 0 página errada |
 | Notas conferidas contra as linhas que qualificam | **Feita** |
 
-Cadeias: `trt3.hist.trabalhista.correcao-monetaria` (3), `trt3.hist.trabalhista.juros-mora`
-(3), `trt3.hist.fazenda-publica.juros-mora` (5), `trt3.hist.moedas-e-paridades` (8).
+Cadeias: `trab.hist.correcao-monetaria` (3), `trab.hist.juros-mora`
+(3), `trab.hist.fazenda-publica.juros-mora` (5), `trab.hist.moedas-e-paridades` (8).
 
 ---
 
@@ -121,7 +121,7 @@ As dezesseis nascem do `engloba` da Selic: um segmento que declara
 um universo do componente alheio. **O filtro é defensável; a afirmação de que não havia
 filtro, não.** Corrigido aqui e no relatório do bloco 8.
 
-As quatro cadeias `trt3.hist.*` passam com `valida_cobertura` direto, sem filtro.
+As quatro cadeias `trab.hist.*` passam com `valida_cobertura` direto, sem filtro.
 
 ---
 
@@ -191,7 +191,7 @@ antecipava, sem saber, o regime que o CJF encerraria cinco anos depois.
 
 ### 5.1 R2 — a única é deliberada
 
-`trt3.hist.fazenda-publica.juros-mora`, ramo **`fazenda-publica-subsidiaria`**: declarado
+`trab.hist.fazenda-publica.juros-mora`, ramo **`fazenda-publica-subsidiaria`**: declarado
 em `dominio_condicoes` e **sem segmento**, de propósito. O manual registra corrente
 jurisprudencial ("grande parte da jurisprudência entende", `pagina_pdf 93`), não regra
 assentada, e divergência jurisprudencial não se resolve neste projeto.
@@ -260,7 +260,7 @@ R1/R2 explicados, 34 de 36 citações LITERAL-OK, zero páginas erradas. E havia
 
 ### 6.1 O pior: um quadro inteiro não lido, e negado por escrito
 
-`trt3.hist.fazenda-publica.juros-mora` foi montada sobre o **resumo em prosa** da
+`trab.hist.fazenda-publica.juros-mora` foi montada sobre o **resumo em prosa** da
 `pagina_pdf 90`. O **quadro sinóptico completo está na `pagina_pdf 92`, com cinco linhas** —
 duas páginas adiante, nunca abertas.
 
@@ -300,10 +300,10 @@ não dispara suspeita.
 
 ### 6.4 O que resistiu
 
-- **`trt3.hist.moedas-e-paridades`, os 8 segmentos** — período, moeda, símbolo, proporção,
+- **`trab.hist.moedas-e-paridades`, os 8 segmentos** — período, moeda, símbolo, proporção,
   data e raciocínio, caractere a caractere contra a `pagina_pdf 99`, inclusive a elipse
   "1.000 = 1,00 cruzado". E o `DEFEITO_DO_ORIGINAL` corretamente dimensionado em três anos.
-- **`trt3.hist.trabalhista.juros-mora`, os 3 segmentos** — batem com o quadro da
+- **`trab.hist.juros-mora`, os 3 segmentos** — batem com o quadro da
   `pagina_pdf 89`, inclusive "Ex.: 3 meses = 3,03%".
 - **O episódio IPCA-E** — todas as datas e autuações conferidas na `pagina_pdf 84`.
 - **`aplicacao` e a mecânica da Súmula 381** — literais e corretos, com o exemplo

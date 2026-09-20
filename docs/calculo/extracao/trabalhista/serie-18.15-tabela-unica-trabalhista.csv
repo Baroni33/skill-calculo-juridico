@@ -6,6 +6,8 @@
 # 31/05/2016 para 1º/06/2016. Base TR — SUPERADA pela ADC 58 do STF.
 # 'serie' = ano, 'chave' = mês, 'valor' = coeficiente de atualização.
 # Não use como fonte normativa: ver 00-base-normativa.md, seção 1.
+# tipo do indexador (R3): base TR=indeterminado (rebaixado no bloco 17).
+# Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
 pagina_pdf,item,serie,chave,valor
 467,18.15,2006,JAN,"1,121989897"
 467,18.15,2007,JAN,"1,099583326"

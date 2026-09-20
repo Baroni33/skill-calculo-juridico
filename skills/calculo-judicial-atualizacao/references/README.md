@@ -47,7 +47,10 @@ Fonte da classificação: `docs/calculo/consolidado/08-nacional-e-regional.md`;
 
 ---
 
-## Os seis arquivos
+## Os oito arquivos
+
+**Eram seis até o bloco 16. O bloco 17 acrescentou dois**, e a razão está na § "Limitação da
+própria divisão", abaixo.
 
 | Arquivo | Cobre |
 |---|---|
@@ -55,8 +58,15 @@ Fonte da classificação: `docs/calculo/consolidado/08-nacional-e-regional.md`;
 | **`trabalhista-regional-trt3.md`** | os verbetes regionais que o manual invoca — **R1** Súmula 15 (data da dedução), **R13** juros na falência, **R15** tabela própria até out/2005 — com o **fallback nacional** de cada um; as outras doze regras regionais em tabela, com ponteiro; **R24** e a chave de resolução |
 | **`civel-cc-nacional.md`** | STJ **Tema 1368**; SELIC de jan/2003 a 29/08/2024; **IPCA + taxa legal** a partir de 30/08/2024; termos iniciais (Súmulas 43, 54 e 362 do STJ); metodologia da taxa legal |
 | **`civel-regional-tjmg.md`** | tabela da **CGJ/TJMG** — períodos pré-2003 e as **três hipóteses de sobrevida**; o que acontece fora de MG |
-| **`tributario-federal.md`** | repetição de indébito e dívida fiscal; **e mais**, por falta de arquivo próprio: condenatórias gerais, **desapropriação com os juros compensatórios**, ECs 113/136 e precatório |
+| **`civel-federal.md`** ⟨bloco 17⟩ | **condenatórias em geral** do CJF (item 4.2) — tronco comum, correção (15 segmentos, bifurca em **dez/2021**), **cadeia autônoma de juros** (11 segmentos, bifurca em **jul/2009**), as duas reconvergências em **set/2025**, o ramo paralelo `N-8`, as fórmulas **D1 e D2**, as **fixtures 1 a 3** |
+| **`desapropriacao.md`** ⟨bloco 17⟩ | **três cadeias autônomas** — correção (com o **IPC/FGV** exclusivo), juros de mora (eixo na **data da sentença**) e **juros compensatórios** (`D8-C10`, os três cortes, `N-6`, `N-10`, `R-08-19`, honorários de perito) |
+| **`tributario-federal.md`** | repetição de indébito e dívida fiscal; **e as seções transversais** a todas as cadeias federais: as quatro fórmulas de `aplicacao`, ECs 113/136, precatório e a consolidação de dez/2021 nos cinco lugares |
 | **`previdenciario.md`** | cadeia de benefícios do CJF (15 segmentos) e a **taxa legal com deflator INPC** |
+
+> **O nome `civel-federal.md` declara alcance, como os demais.** *Cível federal* é o contencioso
+> condenatório da Justiça Federal regido pelo **cap. 4 do Manual CJF**; *cível nacional* é o do
+> **Código Civil** (`civel-cc-nacional.md`). **São cadeias diferentes, e o nome é o que impede
+> confundi-las.**
 
 ---
 
@@ -83,14 +93,42 @@ aberta: `docs/calculo/pendencias.md` § 2.
 
 ---
 
-## Limitação da própria divisão
+## Limitação da própria divisão — **fechada no bloco 17**
 
-**Duas cadeias federais não são tributárias nem previdenciárias e não têm arquivo:**
-condenatórias gerais e desapropriação (direta e indireta, com os **juros compensatórios**, que
-são **cadeia autônoma** com corte em **ago./2017** que nenhuma tabela mostra). Ficam em
-`tributario-federal.md` §§ 5 e 7, **sinalizadas no topo daquele arquivo**. Candidato a sétimo
-arquivo: `federal-condenatorias-desapropriacao.md`.
+**A lista de seis fixada pelo bloco 16 não fechava o domínio.** Duas cadeias federais não são
+tributárias nem previdenciárias e ficaram sem arquivo: **condenatórias em geral** e
+**desapropriação** (direta e indireta, com os **juros compensatórios**, que são **cadeia autônoma**
+com corte em **ago./2017** que nenhuma tabela mostra). Ambas foram extraídas no **bloco 08**, ambas
+têm **cadeia própria**, e ficaram alojadas em `tributario-federal.md` §§ 5 e 7 com aviso no topo.
+A lacuna estava registrada em `docs/calculo/extracao/bloco-16-relatorio.md` § 6.
+
+**O bloco 17 criou `civel-federal.md` e `desapropriacao.md`**, migrou o conteúdo **sem alterar
+norma** — mudou de lugar, não de teor —, deixou ponteiro explícito em `tributario-federal.md` § 5
+e **removeu o aviso do topo**, que existia só por causa da lacuna.
+
+> **O candidato nomeado pelo bloco 16 era um arquivo só** (`federal-condenatorias-desapropriacao.md`).
+> **São dois**, porque são **matérias distintas com cadeias distintas**: as condenatórias gerais
+> têm **duas** cadeias e bifurcam por devedor; a desapropriação tem **três** e nunca bifurca por
+> devedor (`R-08-08`). Juntá-las repetiria o defeito que a divisão existe para evitar.
+
+### O que a varredura do bloco 17 encontrou, e NÃO foi criado
+
+O enunciado autorizou **dois** arquivos. As demais lacunas ficam **listadas, não preenchidas**:
+
+| Matéria | Cadeia própria? | Por que não virou `reference` |
+|---|---|---|
+| **FGTS do cap. 4 do CJF** (item 4.8, índice **JAM**) e **poupança** (item 4.9, **12 segmentos**) | **sim** — `D8-C12` (eixo por **saque integral**), `D8-C13`, `D8-C14`, `D8-C15`, `D8-C16` | **Não estão no consolidado.** Vivem só em `extracao/justica-federal/bloco-08-jf-detalhe.md` §§ 3.2 e 3.3, e **não foram extraídos como cadeia** para `tabelas-normativas/` (são sete cadeias, e nenhuma é FGTS ou poupança). Escrever `reference` exigiria consolidar antes |
+| **Dívida fiscal** | **sim** — bifurca por `data-do-fato-gerador`, **não tem o tronco comum**, tem janela **sem correção** e base de juros que **alterna quatro vezes** | **Tem casa e o nome a cobre:** é tributária. `tributario-federal.md` § 3. **Não é lacuna** |
+| **Repetição de indébito** | **sim** — `D3`, termo inicial no **trânsito em julgado**, **não consolida** em dez/2021 | idem — `tributario-federal.md` § 2. **Não é lacuna** |
+| **Precatórios / requisitórios** (ECs 113 e 136, `C14-02`, `R-08-17`) | **não é cadeia por jurisdição** — é **regime de fase**, transversal a todas elas | Ficaria duplicado em cada arquivo. **Fica em `tributario-federal.md` §§ 6 e 7 como seção transversal**, referenciada pelos demais |
+| **Planos econômicos** (`pr.planos-economicos`) | é **regime temporal**, outra família | **`bloqueado` por falta de série** (P19). `presets-regime.md`; `consolidado/03-verbas.md` § 5.12. **Pendência, não matéria de `reference`** |
+| **FGTS trabalhista** (`pr.fgts-indice-jam`, `pr.fgts-prescricao`) | regime temporal, eixo **conteúdo do título** | pertence a `calculo-trabalhista-liquidacao`, não a esta skill |
+
+**Escopo declarado da varredura:** os **11 arquivos** de `docs/calculo/consolidado/`, mais
+`presets-regime.md`, `pendencias.md` e os dois arquivos do bloco 08, buscando `JAM`, `poupan`,
+`FGTS`, `planos econ`, `planos-economicos`, `4.8` e `4.9`. **Fora deste escopo não há afirmação.**
 
 ## Estado
 
-**Os seis arquivos estão escritos.** `SKILL.md` escrito no mesmo bloco.
+**Os oito arquivos estão escritos.** Os seis primeiros no bloco 16; `civel-federal.md` e
+`desapropriacao.md` no **bloco 17**, com `SKILL.md` e este README atualizados no mesmo bloco.

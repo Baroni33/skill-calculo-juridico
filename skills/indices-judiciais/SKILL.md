@@ -89,7 +89,7 @@ crua.** Quem desloca é o consumidor.
 | Classe | Índices | O que a série reflete |
 |---|---|---|
 | **nominal** | **Ufir, BTN, OTN, ORTN** | a inflação do mês **anterior** |
-| **percentual** | **INPC, IPCA, IGP** | a inflação do **próprio** mês |
+| **percentual** | **INPC, IGP-DI** — e só os nomeados | a inflação do **próprio** mês |
 
 Fonte: item 4.1.2.4 do Manual CJF (`pagina_pdf` 42), via `02-atualizacao.md` § 11, R3.
 
@@ -245,47 +245,29 @@ de "início e fim" lê as pontas da série validada, não um metadado.
 
 ### Os índices, com a classificação que decide tudo
 
-Fontes: `02-atualizacao.md` §§ 5, 10 e 11; `02-atualizacao-detalhe.md` §§ 5.1, 5.2 e 10.
-**Onde cada um incide é matéria de `calculo-judicial-atualizacao`** — aqui só a semântica.
+**Catálogo completo — 28 indexadores, com o que cada um é, onde entra e a fonte da
+classificação — em [`references/catalogo-de-indices.md`](references/catalogo-de-indices.md).**
+A classificação normativa é `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`,
+**que é o que o validador lê**.
 
-**NOMINAIS — refletem a inflação do mês ANTERIOR (R3):**
+**Quatro classes, e a terceira é a que este bloco tornou visível:**
 
-| Índice | O que é | Registro no corpus |
+| Classe | Quais | Fonte |
 |---|---|---|
-| **ORTN** | Obrigação Reajustável do Tesouro Nacional | tronco CJF 1964–fev/1986, Lei 4.357/1964 |
-| **OTN** | sucessora da ORTN | mar/1986–jan/1989, com **multiplicador 6,17** em jan/1989 |
-| **BTN** | Bônus do Tesouro Nacional | mar/1989–mar/1990; dívida fiscal jan/89–jan/91 |
-| **Ufir** | Unidade Fiscal de Referência | 1992–2000 (condenatórias); até jan/1996 (repetição) |
+| **nominal** — inflação do mês **anterior** | **ORTN, OTN, BTN, Ufir** | item 4.1.2.4, letra a, `pagina_pdf` 42 — **nomeados literalmente** |
+| **percentual** — inflação do **próprio** mês | **INPC, IGP-DI** (item 4.1.2.4, letra b) e **IPC/IBGE** (por **D8-C21**) | idem |
+| **indeterminado** — o conceito se aplica, **e não há fonte** | IPCA, IPCA-E, IPCA-15, IPCA série especial, IPC/FGV, IPC-R, IRSM, MVR, **TR** e remuneração básica da poupança | **nenhuma** — `P17-01`, `P17-02` |
+| **englobante** — cobre correção **e** juros (R1) | **SELIC**, **taxa legal** | D8-C22: *"Selic não é índice de inflação"* |
 
-**PERCENTUAIS — refletem a inflação do PRÓPRIO mês (R3):**
+> **As listas do item 4.1.2.4 são exemplificativas — e isso NÃO autoriza estendê-las por
+> semelhança de nome.** Classificar o IPCA-E como percentual *"porque IPCA soa percentual"* é a
+> dedução que o bloco 17 removeu. **Dez dos vinte e oito ficaram `indeterminado`**, e é resultado
+> correto.
 
-| Índice | O que é | Nota que não pode ser perdida |
-|---|---|---|
-| **INPC** | IBGE, população de renda baixa | é o **deflator da variante previdenciária** da taxa legal |
-| **IPCA** | IBGE, índice cheio | **não é o IPCA-E** |
-| **IPCA-E** | IBGE, **índice especial** | **não é o IPCA** — ver "Armadilhas" |
-| **IPCA-15** | IBGE, prévia de 15 dias | **deflator da taxa legal na regra geral**, do mês `m−1` |
-| **IPCA série especial** | registrada pelo manual como segmento próprio | dez/1991 — entrada distinta, não é "o IPCA" |
-| **IGP-DI** | FGV | cadeia previdenciária |
-| **IPC/IBGE** | expurgos | **42,72%** (jan/89) e **10,14%** (fev/89) — valores fixos, **o expurgo SUBSTITUI, não soma** |
-| **IPC/FGV** | mar–dez/1991 | **exclusivo da desapropriação direta** |
-| **IPC-R** | fase URV | cadeia previdenciária |
-| **IRSM** | Índice de Reajuste do Salário Mínimo | cadeia previdenciária |
-| **TR** | taxa referencial, art. 39 da Lei 8.177/91 | **classificação é INFERÊNCIA declarada** — ver "Limitações" |
-| **remuneração básica da poupança** | art. 1º-F da Lei 9.494/97 | **a fórmula muda em 04/05/2012**; até lá, 0,5% a.m. |
+**Moeda não é indexador.** Cruzado, cruzeiro, cruzeiro real, real e a conversão em URV entram
+como **`nao-indexador`** — que afirma *verificado, e o conceito não se aplica*, fato diferente de
+`indeterminado` (*aplica-se, sem fonte*). **Ausência de campo seria indistinguível de esquecimento.**
 
-**ENGLOBANTES — cobrem correção E juros (R1). Não são séries de correção:**
-
-| Índice | Natureza | Nota |
-|---|---|---|
-| **SELIC** | publicada (Bacen) | **nunca conviver com índice inflacionário no mesmo intervalo** |
-| **taxa legal** | **DERIVADA**, não publicada | razão entre fatores (R11); **6 decimais, truncamento**; piso zero (R6) |
-
-**Não são índices, mas o contrato as trata como série:** **URV** (cotações diárias em CR$; **o
-método de conversão não está no bloco** e não foi inferido), **moedas e paridades**
-(multiplicadores de transição) e **calendários** (18.14). E **MVR**, extraída em
-`serie-18.11-otn-btn-mvr.csv` ao lado de OTN e BTN, fica **sem classificação**: nenhuma cadeia
-do repositório a consome, e classificar por analogia seria inventar.
 
 ### Divulgação e oráculos
 
@@ -323,7 +305,7 @@ do manual fecha com o índice **implícito** (`1,012945924`), não com o impress
 índice publicado; o valor está certo.** Assinatura para o validador: monotonicidade quebrada em
 série de fator acumulado é **suspeita de defeito do publicador**, não de erro de leitura.
 
-**6 — `DEFEITO_DO_ORIGINAL` das moedas:** em `trt3.hist.moedas-e-paridades`, a primeira linha
+**6 — `DEFEITO_DO_ORIGINAL` das moedas:** em `trab.hist.moedas-e-paridades`, a primeira linha
 termina em **12/02/70** e a segunda começa em **13/02/67** — **três anos de sobreposição**; quase
 certamente era 12/02/67. **Registrado, não corrigido.**
 
@@ -362,7 +344,8 @@ com diferença de **0,9240%**. **Conferido em `Decimal`: fecha exato.**
 
 **3 — integridade do bloco 1**, `python scripts/calculo/valida_bloco_tabelas.py`
 (`encoding='utf-8'` explícito em toda leitura). Estado atual reproduzido:
-`14 ok, 31 divergências, 1 não verificados, 10 erros`.
+`15 ok, 31 divergências, 1 não verificados, **0 erros**`, exit 0. **Os dez erros eram de
+escopo do validador, não de dado, e sumiram no bloco 17** — ver § 5.
 
 **4 — contagens que devem bater exatamente** (`bloco-01-tabelas.md` § 4): 18.8.1 → 560 = 560;
 18.8.2 → 1.412 = 1.412; 18.10 URV → 546 = 546; 18.13 → 768 = 768; 18.15 Selic → 264 = 264.
@@ -434,7 +417,7 @@ histórica de normas coletivas também é externa:** o catálogo do repositório
 legais e pisos, não cláusulas de instrumentos** — as cláusulas ficam em `tests/fixtures/calculo/`
 e, no uso real, **em dados do cliente** (`tabelas-normativas/README.md`, "Terceira família").
 
-### 5. O que os "31 divergências e 10 erros" significam
+### 5. O que as "31 divergências" significam (e o que foram os "10 erros")
 
 **O script separa erro de extração de divergência do original. Divergência é RESULTADO
 ESPERADO.** Não apresentar como falha da skill.
@@ -444,32 +427,39 @@ erro de digitação, sobreposições reais de vigência (jan/10 tem **dois quadr
 jun/99, jun/00 e jun/11 mudam de tabela **no meio do mês**, e a checagem trabalha em competência
 mensal), rótulos com nota de rodapé colada, e a contagem de 18.1 que **não deve** fechar.
 
-**Os 10 erros são de ESCOPO, não de dado.** Todos apontam para o mesmo arquivo —
-`serie-9.2.11-ufir-juros-ate-dez79.csv`, linhas 2 a 11, *"página 178"*.
-`valida_bloco_tabelas.py` é o validador **do bloco 1** — `PAGINAS_DO_BLOCO = range(373, 472)` —
-mas varre `DIR_SERIE.glob("serie-*.csv")`, isto é, **todos** os CSV do diretório. Uma série de
-bloco posterior caiu no mesmo diretório e é acusada por estar fora de 373–471.
-**`bloco-01-tabelas.md` registra "0 erros de extração"**, e o registro estava certo **para o
-escopo dele**. **O dado não regrediu; o escopo do validador é que ficou estreito.**
+**Os 10 erros eram de ESCOPO, não de dado, e estão corrigidos (bloco 17, tarefa 4).** Todos
+apontavam para o mesmo arquivo — `serie-9.2.11-ufir-juros-ate-dez79.csv`, linhas 2 a 11,
+*"página 178"*. O validador conferia a proveniência contra `PAGINAS_DO_BLOCO =
+range(373, 472)`, constante do bloco 1, enquanto varria `DIR_SERIE.glob("serie-*.csv")` —
+**todos** os CSV do diretório. Uma série de bloco posterior caiu no mesmo lugar e foi acusada
+de estar fora de 373–471. **`bloco-01-tabelas.md` registra "0 erros de extração"**, e o
+registro estava certo **para o escopo dele**. **O dado nunca regrediu; o escopo do validador é
+que estava estreito.**
+
+**A constante não existe mais.** A faixa se resolve **por arquivo**, em duas origens: o
+`pagina_pdf=` declarado no cabeçalho do próprio CSV, ou o item da linha resolvido no contrato
+de páginas do bloco. Arquivo sem nenhuma das duas sai como **não verificável**, nunca como erro
+e nunca em silêncio. Saída atual: **15 ok, 31 divergências, 1 não verificado, 0 erros.**
 **Consequência para o contrato:** proveniência **exige o intervalo de páginas declarado junto
 com a série** — validador com intervalo fixo global não escala para múltiplos blocos.
 
 ### 6. Pontos que repousam em fonte secundária ou em inferência
 
-- **`tipo_indexador: "percentual"` para a TR é INFERÊNCIA DECLARADA, não extração.** Pelo
-  critério **formal** do item 4.1.2.4 do manual federal a TR não é unidade monetária, logo é
-  percentual; mas o critério **material** daquele item — *"refletem a inflação do próprio mês"*
-  — **não se aplica à TR**, que é taxa apurada **prospectivamente** (art. 12, I, da Lei
-  8.177/91). **Nenhum dos dois manuais classifica a TR.** Marcado como inferência no JSON;
+- **A TR foi REBAIXADA a `indeterminado` no bloco 17.** Era `percentual` pelo critério
+  **formal** do item 4.1.2.4 — não é unidade monetária, logo é percentual —, mas o critério
+  **material** daquele item (*"refletem a inflação do próprio mês"*) **não a alcança**: é taxa
+  apurada **prospectivamente** (art. 12, I, da Lei 8.177/91). **Nenhum dos dois manuais a
+  classifica.** **Inferência declarada não é fonte** — `P17-02`;
+- **Nove índices seguem sem classificação em fonte alguma** (`P17-01`): IPCA, IPCA-E, IPCA-15,
+  IPCA série especial, IPC/FGV, IPC-R, IRSM, MVR, e a remuneração básica da poupança. **Não se
+  fecha relendo os PDFs** — exige o ato de instituição de cada índice, ou decisão de estender a
+  lista do item 4.1.2.4. Até lá, **o validador bloqueia a virada em vez de aprová-la**;
 - **a variante IPCA-15 da taxa legal — a regra geral e a de maior uso — está implementada mas SEM
   verificação contra valor publicado.** Os dois pares validados são do caso **INPC**; a
   aritmética é compartilhada e está coberta, falta confirmar que a **série correta** alimenta
   `fator_deflator`. Fecha-se extraindo dois meses do SGS e acrescentando
   `PARES_VALIDACAO_IPCA15` (`pendencias.md` § 2). A tabela de fatores do Bacen reproduzida no
   Manual CJF **não foi extraída como série** — é *"ilustração de método"*;
-- **`tipo` (nominal/percentual) não é campo de nenhuma série extraída.** Existe uma única vez,
-  como `tipo_indexador`, **num JSON de cadeia** — e ali é a inferência sobre a TR. O contrato o
-  exige; **o dado atual não o carrega**;
 - **o método de conversão da URV não está no bloco.** As pp. 453–455 trazem título e cotações
   diárias, **e nada mais**: sem procedimento, sem fundamento legal, sem nota. Data-base,
   arredondamento e tratamento de dia não útil **não foram inferidos**.

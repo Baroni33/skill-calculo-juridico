@@ -697,7 +697,7 @@ Segue F7-04. **Mas a marcação é geral, não pontual:** o bloco 11A registrou 
 
 ### CH-01 — `BIFURCADO`
 
-**Cadeia `trt3.hist.trabalhista.correcao-monetaria 1942-11..2009-06`**
+**Cadeia `trab.hist.correcao-monetaria 1942-11..2009-06`**
 
 | Norma nova | ADC 58, EC 113/2021 art. 3º, Lei 14.905/2024 |
 |---|---|
@@ -710,7 +710,7 @@ Segue F7-04. **Mas a marcação é geral, não pontual:** o bloco 11A registrou 
 
 ### CH-02 — `BIFURCADO`
 
-**Cadeia `trt3.hist.trabalhista.correcao-monetaria 2009-07..2016-05 (não-Fazenda)`**
+**Cadeia `trab.hist.correcao-monetaria 2009-07..2016-05 (não-Fazenda)`**
 
 | Norma nova | ADC 58, EC 113/2021 art. 3º, Lei 14.905/2024 |
 |---|---|
@@ -723,7 +723,7 @@ Segue F7-04. **Mas a marcação é geral, não pontual:** o bloco 11A registrou 
 
 ### CH-03 — `BIFURCADO`
 
-**Cadeia `trt3.hist.trabalhista.correcao-monetaria 2009-07..2016-05 (Fazenda)`**
+**Cadeia `trab.hist.correcao-monetaria 2009-07..2016-05 (Fazenda)`**
 
 | Norma nova | ADC 58, EC 113/2021 art. 3º, Lei 14.905/2024 |
 |---|---|
@@ -736,7 +736,7 @@ Segue F7-04. **Mas a marcação é geral, não pontual:** o bloco 11A registrou 
 
 ### CH-04 — `BIFURCADO`
 
-**Cadeia `trt3.hist.trabalhista.juros-mora 1991-04..2016-05`**
+**Cadeia `trab.hist.juros-mora 1991-04..2016-05`**
 
 | Norma nova | ADC 58, EC 113/2021 art. 3º, Lei 14.905/2024 |
 |---|---|
@@ -749,7 +749,7 @@ Segue F7-04. **Mas a marcação é geral, não pontual:** o bloco 11A registrou 
 
 ### CH-05 — `BIFURCADO`
 
-**Cadeia `trt3.hist.fazenda-publica.juros-mora 2009-07..2016-05`**
+**Cadeia `trab.hist.fazenda-publica.juros-mora 2009-07..2016-05`**
 
 | Norma nova | ADC 58, EC 113/2021 art. 3º, Lei 14.905/2024 |
 |---|---|

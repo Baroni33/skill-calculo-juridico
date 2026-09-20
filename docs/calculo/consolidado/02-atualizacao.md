@@ -17,7 +17,7 @@ base normativa, **aplicando os vereditos** de `../confronto-normativo/01-veredit
 
 > **O erro que este arquivo existe para não cometer:** tratar bifurcação como substituição.
 > `CH-01` a `CH-05` são **`BIFURCADO`**, e o `status_norma: "superado"` gravado nos JSON
-> `trt3.hist.*` está **certo quanto ao futuro e incompleto quanto ao passado** — ver § 9.
+> `trab.hist.*` está **certo quanto ao futuro e incompleto quanto ao passado** — ver § 9.
 
 ---
 
@@ -25,8 +25,8 @@ base normativa, **aplicando os vereditos** de `../confronto-normativo/01-veredit
 
 | # | Jurisdição | Devedor | Cadeia vigente | Cadeia histórica |
 |---|---|---|---|---|
-| 1 | Trabalhista | privado | § 2.1 | § 2.2 (`trt3.hist.*`) |
-| 2 | Trabalhista | Fazenda Pública | § 3.1 | § 3.2 (`trt3.hist.fazenda-publica.juros-mora`) |
+| 1 | Trabalhista | privado | § 2.1 | § 2.2 (`trab.hist.*`) |
+| 2 | Trabalhista | Fazenda Pública | § 3.1 | § 3.2 (`trab.hist.fazenda-publica.juros-mora`) |
 | 3 | Trabalhista | Fazenda **subsidiária** | **ramo vazio, por decisão** — § 3.3 | — |
 | 4 | Cível | qualquer | § 4 | § 4 (tabela CGJ/TJMG) |
 | 5 | Federal | cinco ramos do CJF | § 5 | § 5 (o tronco comum 1964–fev/1991) |
@@ -65,7 +65,7 @@ E-ED-RR-713-03.2010.5.04.0029, DEJT 25/10/2024.
 usá-las para competências posteriores ao corte da ADC 58 (18/12/2020), eixo = competência da
 parcela.
 
-**Correção — `trt3.hist.trabalhista.correcao-monetaria`** (cap. 7, `pagina_pdf` 83–85):
+**Correção — `trab.hist.correcao-monetaria`** (cap. 7, `pagina_pdf` 83–85):
 
 | Período | Indexador | Fundamento | Veredito |
 |---|---|---|---|
@@ -76,7 +76,7 @@ parcela.
 `aplicacao`: `primeiro-dia-do-mes-subsequente-a-prestacao` — Súmula 381 do TST,
 `pagina_pdf` 84. Ver § 7.
 
-**Juros — `trt3.hist.trabalhista.juros-mora`** (quadro sinóptico, `pagina_pdf` 89):
+**Juros — `trab.hist.juros-mora`** (quadro sinóptico, `pagina_pdf` 89):
 
 | Período literal | Taxa | Capitalização | Fundamento |
 |---|---|---|---|
@@ -148,7 +148,7 @@ Fonte: TST, 2ª Turma, ata da 17ª sessão ordinária de 2026 (RR 131300-14.2010
 |---|---|---|
 | 2009-07 .. 2016-05 | remuneração básica da poupança (**TR**) | art. 1º-F da Lei 9.494/97, redação do art. 5º da Lei 11.960/09 (corte ao dia **29/06/2009**) |
 
-**Juros — `trt3.hist.fazenda-publica.juros-mora`**, quadro de **cinco** linhas,
+**Juros — `trab.hist.fazenda-publica.juros-mora`**, quadro de **cinco** linhas,
 `pagina_pdf` 92 (não três: a primeira extração lera o resumo em prosa da p. 90) — `CH-05`:
 
 | Período literal | Taxa | Fundamento |
@@ -299,11 +299,7 @@ Tabela Única do CSJT e a cadeia do CJF (cap. 4), que **é** um mapa completo.
 **Não infiro a ponte.** O tronco do CJF (§ 5.1) cobre o período, mas **o corpus não faz a
 remissão** — usá-lo como cadeia trabalhista seria ponte inventada.
 
-**`tipo_indexador: "percentual"` para a TR é inferência declarada, não extração.** Pelo critério
-formal do item 4.1.2.4 do manual federal (`pagina_pdf` 42) a TR não é unidade monetária, logo é
-percentual; mas o critério **material** daquele item — "refletem a inflação do próprio mês" —
-**não se aplica à TR**, que é taxa apurada prospectivamente (art. 12, I, da Lei 8.177/91).
-**Nenhum dos dois manuais classifica a TR.** Marcado como inferência no JSON.
+**A TR foi REBAIXADA a `tipo_indexador: "indeterminado"` no bloco 17.** Era `percentual` por critério **formal** do item 4.1.2.4 — não é unidade monetária, logo é percentual —, mas o critério **material** daquele item (*"refletem a inflação do próprio mês"*) **não a alcança**: é taxa apurada **prospectivamente** (art. 12, I, da Lei 8.177/91). **Nenhum dos dois manuais classifica a TR**, e **inferência declarada não é fonte**. Pendência `P17-02`; o validador bloqueia a virada sob `R3-INDETERMINADO`.
 
 ---
 
@@ -361,17 +357,17 @@ sempre simples"* erra quatro anos de qualquer conta que atravesse o período.
 
 ---
 
-## 9. Os `status_norma` dos JSON `trt3.hist.*` — **`BIFURCADO`, não `SUPERADO`**
+## 9. Os `status_norma` dos JSON `trab.hist.*` — **`BIFURCADO`, não `SUPERADO`**
 
 Vereditos **`CH-01` a `CH-05`**, todos `BIFURCADO`:
 
 | ID | Cadeia / segmento | `status_norma` no JSON | Veredito |
 |---|---|---|---|
-| **CH-01** | `trt3.hist.trabalhista.correcao-monetaria` 1942-11..2009-06 | `superado` | **`BIFURCADO`** |
+| **CH-01** | `trab.hist.correcao-monetaria` 1942-11..2009-06 | `superado` | **`BIFURCADO`** |
 | **CH-02** | idem 2009-07..2016-05 (não-Fazenda) | `superado` | **`BIFURCADO`** |
 | **CH-03** | idem 2009-07..2016-05 (Fazenda) | `superado` | **`BIFURCADO`** |
-| **CH-04** | `trt3.hist.trabalhista.juros-mora` 1991-04..2016-05 | `superado` | **`BIFURCADO`** |
-| **CH-05** | `trt3.hist.fazenda-publica.juros-mora` 2009-07..2016-05 | `superado` | **`BIFURCADO`** |
+| **CH-04** | `trab.hist.juros-mora` 1991-04..2016-05 | `superado` | **`BIFURCADO`** |
+| **CH-05** | `trab.hist.fazenda-publica.juros-mora` 2009-07..2016-05 | `superado` | **`BIFURCADO`** |
 
 > **O `status_norma: "superado"` está certo quanto ao futuro e incompleto quanto ao passado.**
 > O segmento continua sendo a regra aplicável às competências que cobre — é essa a razão de a
@@ -419,8 +415,8 @@ primeira redação do bloco 08 listava **quatro** lugares e três ramos; são **
 | ID | Enunciado | Onde morde nesta espinha |
 |---|---|---|
 | **R1** | **Exclusividade de englobamento.** Segmento cujo `engloba` cobre correção **e** juros não admite outro segmento do mesmo componente no mesmo intervalo | todo segmento **Selic** e **taxa legal**: §§ 2.1, 3.1, 4, 5.2. **É o que impede contar inflação duas vezes** — e é a razão de `AM-03` (§ 2.4) |
-| **R2** | **Cobertura sem lacuna nem sobreposição**, da parcela mais antiga até a data-base | a ponta `1942-11` das cadeias `trt3.hist.*` é **janela de análise**, não afirmação do manual (`ponta_materializada`). No CJF, **R-08-04**: em cadeia de índices **nominais**, fim e início no mesmo mês (OTN/BTN em jan/1989) **não é dupla contagem** |
-| **R3** | **Tipo do indexador na virada.** Nominal (Ufir, BTN, OTN, ORTN) reflete a inflação do mês **anterior**; percentual (INPC, IPCA, IGP) a do **próprio mês** | item 4.1.2.4 do CJF, `pagina_pdf` 42. **Trocar entre tipos sem ajustar a defasagem desloca o cálculo em um mês** — e é o que sustenta a ressalva da TR no § 6 |
+| **R2** | **Cobertura sem lacuna nem sobreposição**, da parcela mais antiga até a data-base | a ponta `1942-11` das cadeias `trab.hist.*` é **janela de análise**, não afirmação do manual (`ponta_materializada`). No CJF, **R-08-04**: em cadeia de índices **nominais**, fim e início no mesmo mês (OTN/BTN em jan/1989) **não é dupla contagem** |
+| **R3** | **Tipo do indexador na virada.** Nominal (Ufir, BTN, OTN, ORTN) reflete a inflação do mês **anterior**; percentual (**INPC, IGP-DI**) a do **próprio mês** | item 4.1.2.4 do CJF, `pagina_pdf` 42. **Trocar entre tipos sem ajustar a defasagem desloca o cálculo em um mês** — e é o que sustenta a ressalva da TR no § 6 |
 | **R4** | Juros de mora, Selic e taxa legal **sempre simples** | **com a R4-EXCEÇÃO do § 8** |
 | **R5** | **Piso nominal.** Índices negativos entram no cálculo, mas nenhuma parcela fica abaixo do valor nominal | **R-08-06: o piso é POR PARCELA**, não no total — *"considerada cada parcela do principal"*, item 4.1.2.2, `pagina_pdf` 42. Fundamento: REsp 1.265.580 |
 
@@ -447,7 +443,7 @@ superveniente de legislação sobre o indexador passa por cima do título), **R9
 **Defeitos do original que atravessam a cadeia** — não corrigidos, catalogados em
 `../armadilhas-comparador.md`: **A5** (índice de dez/10, `pagina_pdf` 96, monotonicidade
 quebrada — o erro está no índice publicado e o valor está certo) e o
-**`DEFEITO_DO_ORIGINAL` das moedas** (`trt3.hist.moedas-e-paridades`, `pagina_pdf` 99): a
+**`DEFEITO_DO_ORIGINAL` das moedas** (`trab.hist.moedas-e-paridades`, `pagina_pdf` 99): a
 primeira linha termina em **12/02/70** e a segunda começa em **13/02/67** — três anos de
 sobreposição; quase certamente era **12/02/67**. **Registrado, não corrigido.**
 
@@ -472,7 +468,7 @@ sobreposição; quase certamente era **12/02/67**. **Registrado, não corrigido.
   defasagens, a anomalia da capitalização, moedas e paridades
 - `../extracao/justica-federal/bloco-08-jf.md` e `bloco-08-jf-detalhe.md` — as sete cadeias do
   CJF linha a linha, notas × linhas, defeitos do original
-- `../tabelas-normativas/cjf.*.json` e `trt3.hist.*.json` — as cadeias em schema
+- `../tabelas-normativas/cjf.*.json` e `trab.hist.*.json` — as cadeias em schema
   `cadeia-temporal`, com `status_norma`, `ALERTA_R4` e `ponta_materializada`
 - `../00-base-normativa.md` §§ 1, 1.1, 2, 4, 5, 6, 7 — regimes vigentes e invariantes
 - `00-calendario-de-cortes.md` — o par `(data, eixo)`

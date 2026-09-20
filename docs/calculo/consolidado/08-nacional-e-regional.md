@@ -141,17 +141,17 @@ anos, já computa as conversões e paridades da moeda nacional e não contém ju
 **série (B), dado externo**, não regra (A). A Tabela Única **é a dependência que torna o motor
 nacional**: sem ela não há correção trabalhista em nenhum TRT, não só no 3.
 
-### 5.3 As cadeias `trt3.hist.*` — **NACIONAL com nome enganoso** (achado)
+### 5.3 As cadeias `trab.hist.*` — **NACIONAL com nome enganoso** (achado)
 
-**Armadilha 2, confirmada.** Os quatro JSON de `tabelas-normativas/` com prefixo `trt3.hist.` têm
+**Armadilha 2, confirmada.** Os quatro JSON de `tabelas-normativas/` com prefixo `trab.hist.` têm
 **conteúdo inteiramente nacional**. O prefixo é do **arquivo de origem**, não da norma:
 
 | Arquivo | Fundamentos que o próprio JSON declara | Classificação |
 |---|---|---|
-| `trt3.hist.trabalhista.correcao-monetaria.json` | Súmula 381/TST; e **delega a cadeia à Tabela Única do CSJT** | **NACIONAL** |
-| `trt3.hist.trabalhista.juros-mora.json` | CC arts. 1.062–1.063; **Lei 8.177/91, art. 39**; CLT art. 883; Súmula 200/TST | **NACIONAL** |
-| `trt3.hist.fazenda-publica.juros-mora.json` | mesma cadeia legal + juros da poupança a partir de 29/06/09 (**Lei 11.960/2009**) | **NACIONAL** |
-| `trt3.hist.moedas-e-paridades.json` | padrões monetários e paridades da **moeda nacional** — cruzeiro, cruzeiro novo etc. | **NACIONAL**, e o mais evidente de todos: paridade de moeda **não tem região** |
+| `trab.hist.correcao-monetaria.json` | Súmula 381/TST; e **delega a cadeia à Tabela Única do CSJT** | **NACIONAL** |
+| `trab.hist.juros-mora.json` | CC arts. 1.062–1.063; **Lei 8.177/91, art. 39**; CLT art. 883; Súmula 200/TST | **NACIONAL** |
+| `trab.hist.fazenda-publica.juros-mora.json` | mesma cadeia legal + juros da poupança a partir de 29/06/09 (**Lei 11.960/2009**) | **NACIONAL** |
+| `trab.hist.moedas-e-paridades.json` | padrões monetários e paridades da **moeda nacional** — cruzeiro, cruzeiro novo etc. | **NACIONAL**, e o mais evidente de todos: paridade de moeda **não tem região** |
 
 **Consequência de arquitetura:** o prefixo `trt3.` nesses quatro IDs **mente sobre o alcance**. Um
 motor que resolva cadeia por prefixo de tribunal passará a não achar cadeia nenhuma para TRT-1,
@@ -307,7 +307,7 @@ divisor 220 na 12×36 **afasta a OJ 23** mesmo em Minas, por **art. 879, § 1º,
 
 **Não altera os 11 arquivos do consolidado** — a aplicação é decisão posterior. **Não resolve
 pendência aberta**: `P9-02`, `P9-04`, `P8`, `P13`, `P8-F4-03` e a vigência da Súmula 46 seguem
-abertas. **Não renomeia** os JSON `trt3.hist.*` — só registra o achado da § 5.3. **Não classifica**
+abertas. **Não renomeia** os JSON `trab.hist.*` — só registra o achado da § 5.3. **Não classifica**
 os arquivos fora do consolidado: `tabelas-normativas/trt3-18.*.json`, `jurisprudencia-indice.md`
 (158 verbetes) e os relatórios de `extracao/` foram **lidos para conferência**, não classificados
 item a item. **Não confirma** a premissa da § 1 — ela é externa e assim está declarada.

@@ -35,7 +35,7 @@ CSJT**.
 | reconstrução do bruto antes do rateio; **R23** descarregar antes dos juros | regra de conta, sem veículo regional |
 | **arredondamento** half-up em grandeza física, 2 casas | classificado NACIONAL **pelo enunciado do bloco 16**; o corpus registra `P10 · P17` — cadeia **não declarada**, quatro práticas distintas |
 
-**As duas últimas linhas das cadeias `trt3.hist.*` são nacionais** — ver
+**As duas últimas linhas das cadeias `trab.hist.*` são nacionais** — ver
 `trabalhista-nacional.md` § 1(c). **O prefixo `trt3.` mente sobre o alcance.**
 
 ---

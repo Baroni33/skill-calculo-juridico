@@ -31,9 +31,15 @@ trabalhista-nacional.md        cadeia nacional, Tabela Única CSJT
 trabalhista-regional-trt3.md   os verbetes regionais que o manual invoca
 civel-cc-nacional.md           Tema 1368, Lei 14.905, taxa legal
 civel-regional-tjmg.md         tabela da CGJ/TJMG, histórico pré-2003
-tributario-federal.md
+civel-federal.md               condenatórias em geral do CJF — correção + juros autônomos
+desapropriacao.md              as TRÊS cadeias, com os juros compensatórios
+tributario-federal.md          repetição, dívida fiscal, ECs 113/136, precatório
 previdenciario.md
 ```
+
+> **ACRESCENTADOS NO BLOCO 17:** `civel-federal.md` e `desapropriacao.md`. A lista de seis do
+> bloco 16 **não fechava o domínio** — as duas matérias estavam hospedadas em
+> `tributario-federal.md` § 5 por falta de lugar. **O conteúdo mudou de lugar, não de teor.**
 
 > **RENOMEADO NO BLOCO 16.** A lista anterior separava por qualidade do devedor e por
 > precedente; a nova separa por **alcance da norma — NACIONAL × REGIONAL**, porque a

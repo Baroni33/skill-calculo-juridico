@@ -23,7 +23,9 @@
       ],
       "pagina_pdf": 78,
       "componente": "juros-mora",
-      "ponta_materializada": "inicio — o manual não dá mês inicial"
+      "ponta_materializada": "inicio — o manual não dá mês inicial",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "1987-03",
@@ -36,7 +38,9 @@
       "fundamento": "Art. 3º do Decreto-Lei n. 2.322/1987",
       "pagina_pdf": 78,
       "ALERTA_R4": "Única capitalização COMPOSTA de juros de mora em todo o manual. A invariante R4 do projeto diz que juros de mora são sempre simples. Transcrito como está.",
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "1991-04",
@@ -48,7 +52,9 @@
       ],
       "fundamento": "Art. 39 da Lei n. 8.177/1991",
       "pagina_pdf": 78,
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2001-08",
@@ -63,7 +69,9 @@
       ],
       "fundamento": "Art. 1º-F da Lei n. 9.494/1991, incluído pela MP n. 2.180-35/2001, combinado com a Lei n. 8.177/1991",
       "pagina_pdf": 78,
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2001-08",
@@ -77,7 +85,9 @@
         "juros-mora"
       ],
       "pagina_pdf": 78,
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2012-05",
@@ -91,7 +101,9 @@
         "juros-mora"
       ],
       "pagina_pdf": 78,
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2012-05",
@@ -105,12 +117,16 @@
         "juros-mora"
       ],
       "pagina_pdf": 79,
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2021-12",
       "fim": "2025-08",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "fazenda-publica"
@@ -136,12 +152,16 @@
         "juros-mora"
       ],
       "pagina_pdf": 79,
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2025-09",
       "fim": "2026-06",
       "indexador": "taxa-legal",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "R1 (00-base-normativa.md § 7) — taxa legal engloba correção e juros. R11: é DERIVADA por razão entre fatores, não índice de preços publicado. O item 4.1.2.4 não a alcança: ela é posterior ao manual que o contém e não reflete inflação de mês algum.",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "fazenda-publica"
@@ -169,7 +189,9 @@
       ],
       "pagina_pdf": 79,
       "componente": "juros-mora",
-      "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
+      "ponta_materializada": "fim — o manual escreve 'A partir de ...'",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     }
   ],
   "notas": [
@@ -210,5 +232,6 @@
       "empresa-publica-ou-prestador-de-servicos"
     ]
   },
-  "dominio_condicoes_nota": "Declara que os ramos abaixo ESGOTAM o eixo. Sem esta declaração o validador cobra o universo 'nenhuma condição se aplica', porque exaustividade não se presume."
+  "dominio_condicoes_nota": "Declara que os ramos abaixo ESGOTAM o eixo. Sem esta declaração o validador cobra o universo 'nenhuma condição se aplica', porque exaustividade não se presume.",
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

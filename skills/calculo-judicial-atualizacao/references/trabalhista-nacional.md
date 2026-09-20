@@ -34,15 +34,15 @@ região que aplica norma nacional. São **nacionais**: o termo inicial dos juros
 desejável": **sem ela não há correção trabalhista em nenhum TRT**, não só no 3. Classificação
 correta: **dependência estrutural** (`08-nacional-e-regional.md` § 5.2).
 
-**(c) As cadeias `trt3.hist.*` são NACIONAIS com nome enganoso.** Os fundamentos que os próprios
+**(c) As cadeias `trab.hist.*` são NACIONAIS com nome enganoso.** Os fundamentos que os próprios
 JSON declaram:
 
 | Arquivo | Fundamentos declarados | Alcance real |
 |---|---|---|
-| `trt3.hist.trabalhista.correcao-monetaria.json` | **Súmula 381/TST**; e **delega a cadeia à Tabela Única do CSJT** | **NACIONAL** |
-| `trt3.hist.trabalhista.juros-mora.json` | **CC arts. 1.062–1.063**; **Lei 8.177/91 art. 39**; CLT art. 883; **Súmula 200/TST** | **NACIONAL** |
-| `trt3.hist.fazenda-publica.juros-mora.json` | mesma cadeia legal + juros da poupança desde 29/06/09 (**Lei 11.960/2009**) | **NACIONAL** |
-| `trt3.hist.moedas-e-paridades.json` | padrões monetários e paridades da **moeda nacional** | **NACIONAL** — paridade de moeda não tem região |
+| `trab.hist.correcao-monetaria.json` | **Súmula 381/TST**; e **delega a cadeia à Tabela Única do CSJT** | **NACIONAL** |
+| `trab.hist.juros-mora.json` | **CC arts. 1.062–1.063**; **Lei 8.177/91 art. 39**; CLT art. 883; **Súmula 200/TST** | **NACIONAL** |
+| `trab.hist.fazenda-publica.juros-mora.json` | mesma cadeia legal + juros da poupança desde 29/06/09 (**Lei 11.960/2009**) | **NACIONAL** |
+| `trab.hist.moedas-e-paridades.json` | padrões monetários e paridades da **moeda nacional** | **NACIONAL** — paridade de moeda não tem região |
 
 O prefixo é do **arquivo de origem**, não da norma. O campo `jurisdicao` já diz
 `"justica-do-trabalho"`, **sem recorte regional**, o que corrobora a leitura.
@@ -116,7 +116,7 @@ estado processual e de evento.
 usá-las para competências **posteriores** ao corte da ADC 58 (**18/12/2020**), **eixo =
 competência da parcela**.
 
-**Correção** — `trt3.hist.trabalhista.correcao-monetaria` (cap. 7, `pagina_pdf` 83–85):
+**Correção** — `trab.hist.correcao-monetaria` (cap. 7, `pagina_pdf` 83–85):
 
 | Período | Indexador | Fundamento | Veredito |
 |---|---|---|---|
@@ -127,7 +127,7 @@ competência da parcela**.
 `aplicacao`: **`primeiro-dia-do-mes-subsequente-a-prestacao`** — Súmula 381/TST, `pagina_pdf` 84.
 Ver § 7.
 
-**Juros** — `trt3.hist.trabalhista.juros-mora` (quadro sinóptico, `pagina_pdf` 89) — `CH-04`:
+**Juros** — `trab.hist.juros-mora` (quadro sinóptico, `pagina_pdf` 89) — `CH-04`:
 
 | Período literal | Taxa | Capitalização | Fundamento |
 |---|---|---|---|
@@ -203,7 +203,7 @@ natureza"*. A restrição a requisitórios federais é **criação da EC 136/202
 |---|---|---|
 | 2009-07 .. 2016-05 | remuneração básica da poupança (**TR**) | art. 1º-F da Lei 9.494/97, redação do art. 5º da Lei 11.960/09 — corte ao dia **29/06/2009** |
 
-**Juros** — `trt3.hist.fazenda-publica.juros-mora`, quadro de **cinco** linhas, `pagina_pdf` 92 —
+**Juros** — `trab.hist.fazenda-publica.juros-mora`, quadro de **cinco** linhas, `pagina_pdf` 92 —
 `CH-05`. *(Não três: a primeira extração lera o resumo em prosa da p. 90.)*
 
 | Período literal | Taxa | Fundamento |
@@ -306,11 +306,7 @@ partir de **novembro/2005**; **até outubro/2005 o TRT-3 publicava tabela própr
 **A ponte não é inferida.** O tronco do CJF (1964–fev/1991) **cobre** o período, mas **o corpus
 não faz a remissão** — usá-lo como cadeia trabalhista seria **ponte inventada**.
 
-**`tipo_indexador: "percentual"` para a TR é inferência declarada, não extração.** Pelo critério
-**formal** do item 4.1.2.4 do manual federal a TR não é unidade monetária, logo é percentual; mas
-o critério **material** daquele item — *"refletem a inflação do próprio mês"* — **não se aplica à
-TR**, que é taxa apurada **prospectivamente** (art. 12, I, da Lei 8.177/91). **Nenhum dos dois
-manuais classifica a TR.** Marcado como inferência no JSON.
+**A TR foi REBAIXADA a `tipo_indexador: "indeterminado"` no bloco 17.** Era `percentual` por critério **formal** do item 4.1.2.4 — não é unidade monetária, logo é percentual —, mas o critério **material** daquele item (*"refletem a inflação do próprio mês"*) **não a alcança**: é taxa apurada **prospectivamente** (art. 12, I, da Lei 8.177/91). **Nenhum dos dois manuais classifica a TR**, e **inferência declarada não é fonte**. Pendência `P17-02`; o validador bloqueia a virada sob `R3-INDETERMINADO`.
 
 ---
 
@@ -379,11 +375,11 @@ a **convenção de contagem**, não.
 
 | ID | Cadeia / segmento | `status_norma` no JSON | Veredito |
 |---|---|---|---|
-| **CH-01** | `trt3.hist.trabalhista.correcao-monetaria` 1942-11..2009-06 | `superado` | **`BIFURCADO`** |
+| **CH-01** | `trab.hist.correcao-monetaria` 1942-11..2009-06 | `superado` | **`BIFURCADO`** |
 | **CH-02** | idem 2009-07..2016-05 (não-Fazenda) | `superado` | **`BIFURCADO`** |
 | **CH-03** | idem 2009-07..2016-05 (Fazenda) | `superado` | **`BIFURCADO`** |
-| **CH-04** | `trt3.hist.trabalhista.juros-mora` 1991-04..2016-05 | `superado` | **`BIFURCADO`** |
-| **CH-05** | `trt3.hist.fazenda-publica.juros-mora` 2009-07..2016-05 | `superado` | **`BIFURCADO`** |
+| **CH-04** | `trab.hist.juros-mora` 1991-04..2016-05 | `superado` | **`BIFURCADO`** |
+| **CH-05** | `trab.hist.fazenda-publica.juros-mora` 2009-07..2016-05 | `superado` | **`BIFURCADO`** |
 
 > **O `status_norma: "superado"` está certo quanto ao futuro e incompleto quanto ao passado.** O
 > segmento continua sendo a regra aplicável às competências que cobre — **é essa a razão de a
@@ -407,7 +403,7 @@ superior do segmento**, não como invalidade. Por **R19**, toda conta que atrave
 | **`P9-05`** | juros **vincendos** (mecânica de decréscimo) — método, não mapa; fora do escopo dirigido |
 | **base 3** | efeito da **EC 136/2025** na Justiça do Trabalho — aguarda TST/CSJT |
 | **`A5`** | índice de dez/10 (`pagina_pdf` 96) **quebra a monotonicidade**. **O erro está no índice publicado; o valor está certo** |
-| **`DEFEITO_DO_ORIGINAL`** | `trt3.hist.moedas-e-paridades` (`pagina_pdf` 99): a 1ª linha termina em **12/02/70** e a 2ª começa em **13/02/67** — **três anos de sobreposição**; quase certamente era 12/02/67. **Registrado, não corrigido** |
+| **`DEFEITO_DO_ORIGINAL`** | `trab.hist.moedas-e-paridades` (`pagina_pdf` 99): a 1ª linha termina em **12/02/70** e a 2ª começa em **13/02/67** — **três anos de sobreposição**; quase certamente era 12/02/67. **Registrado, não corrigido** |
 
 ---
 
@@ -416,5 +412,5 @@ superior do segmento**, não como invalidade. Por **R19**, toda conta que atrave
 - `docs/calculo/consolidado/02-atualizacao.md` §§ 2, 3, 6, 7, 8, 9, 12 — a espinha
 - `docs/calculo/consolidado/08-nacional-e-regional.md` §§ 1, 5.1–5.3 — a classificação
 - `docs/calculo/extracao/trabalhista/bloco-09-cadeias-historicas.md` — cadeias, defasagens, moedas
-- `docs/calculo/tabelas-normativas/trt3.hist.*.json` — as cadeias em schema `cadeia-temporal`
+- `docs/calculo/tabelas-normativas/trab.hist.*.json` — as cadeias em schema `cadeia-temporal`
 - `references/trabalhista-regional-trt3.md` — o que neste ramo **não** é nacional

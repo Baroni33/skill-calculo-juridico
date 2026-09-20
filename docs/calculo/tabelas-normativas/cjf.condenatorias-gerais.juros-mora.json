@@ -23,12 +23,16 @@
       "fundamento": "Arts. 1.062, 1.063 e 1.064 do antigo Código Civil",
       "pagina_pdf": 54,
       "componente": "juros-mora",
-      "ponta_materializada": "inicio — o manual não dá mês inicial"
+      "ponta_materializada": "inicio — o manual não dá mês inicial",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2003-01",
       "fim": "2009-06",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "capitalizacao": "simples",
       "engloba": [
         "juros-mora",
@@ -52,12 +56,16 @@
       ],
       "fundamento": "Art. 1º-F da Lei n. 9.494/1997, com a redação dada pela Lei n. 11.960/2009, combinado com a Lei n. 8.177/1991",
       "pagina_pdf": 54,
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2009-07",
       "fim": "2012-04",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "nao-fazenda-publica"
@@ -83,12 +91,16 @@
       ],
       "fundamento": "Art. 1º-F da Lei n. 9.494/1997 [...] com alterações da MP n. 567, convertida na Lei n. 12.703/2012",
       "pagina_pdf": 54,
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "2012-05",
       "fim": "2021-11",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "nao-fazenda-publica"
@@ -105,6 +117,8 @@
       "inicio": "2021-12",
       "fim": "2024-08",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "fazenda-publica"
@@ -122,6 +136,8 @@
       "inicio": "2021-12",
       "fim": "2024-08",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "nao-fazenda-publica"
@@ -138,6 +154,8 @@
       "inicio": "2024-09",
       "fim": "2025-08",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "fazenda-publica"
@@ -155,6 +173,8 @@
       "inicio": "2024-09",
       "fim": "2025-08",
       "indexador": "taxa-legal",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "R1 (00-base-normativa.md § 7) — taxa legal engloba correção e juros. R11: é DERIVADA por razão entre fatores, não índice de preços publicado. O item 4.1.2.4 não a alcança: ela é posterior ao manual que o contém e não reflete inflação de mês algum.",
       "capitalizacao": "simples",
       "condicao": {
         "devedor": "nao-fazenda-publica"
@@ -171,6 +191,8 @@
       "inicio": "2025-09",
       "fim": "2026-06",
       "indexador": "taxa-legal",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "R1 (00-base-normativa.md § 7) — taxa legal engloba correção e juros. R11: é DERIVADA por razão entre fatores, não índice de preços publicado. O item 4.1.2.4 não a alcança: ela é posterior ao manual que o contém e não reflete inflação de mês algum.",
       "capitalizacao": "simples",
       "engloba": [
         "juros-mora"
@@ -216,5 +238,6 @@
       "nao-fazenda-publica"
     ]
   },
-  "dominio_condicoes_nota": "Declara que os ramos abaixo ESGOTAM o eixo. Sem esta declaração o validador cobra o universo 'nenhuma condição se aplica', porque exaustividade não se presume."
+  "dominio_condicoes_nota": "Declara que os ramos abaixo ESGOTAM o eixo. Sem esta declaração o validador cobra o universo 'nenhuma condição se aplica', porque exaustividade não se presume.",
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

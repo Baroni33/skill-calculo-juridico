@@ -1,4 +1,4 @@
-"""Validador das invariantes R1 e R2 sobre conjuntos de segmentos.
+"""Validador das invariantes R1, R2 e R3 sobre conjuntos de segmentos.
 
 R1 — Exclusividade de englobamento. Segmento cujo `engloba` cobre um componente
      não admite outro segmento do mesmo componente no mesmo intervalo. Vale para
@@ -6,6 +6,11 @@ R1 — Exclusividade de englobamento. Segmento cujo `engloba` cobre um component
 
 R2 — Cobertura sem lacuna nem sobreposição. A união dos segmentos cobre da parcela
      mais antiga até a data-base.
+
+R3 — Tipo do indexador na virada. Nominal reflete a inflação do mês ANTERIOR;
+     percentual, a do PRÓPRIO mês (Manual CJF, item 4.1.2.4, `pagina_pdf` 42).
+     Virar de um tipo para o outro sem ajustar a defasagem desloca o cálculo em
+     um mês — e nada mais o detecta.
 
 Fonte: docs/calculo/00-base-normativa.md, seção 7.
 
@@ -38,6 +43,34 @@ domínio de cada eixo é **declarável**, via `dominio_condicoes`:
 * eixo não declarado — o universo incondicional continua sendo cobrado, como o
   caso "nenhuma condição se aplica". Pode gerar ruído em cadeia realmente
   exaustiva; o remédio é declarar o domínio, não silenciar a checagem.
+
+**R3 — o tipo do indexador na virada.** Cada segmento declara `tipo_indexador`,
+com os cinco valores do catálogo `docs/calculo/tabelas-normativas/
+indexadores-tipo-catalogo.json`:
+
+* `nominal` e `percentual` — as duas letras do item 4.1.2.4. Medem meses
+  diferentes: a virada entre elas exige ajuste de defasagem;
+* `englobante` — SELIC e taxa legal. **Não entram em R3.** O item 4.1.2.4 fala
+  em "refletir a inflação", e `bloco-08-jf-detalhe.md` (D8-C22) é literal: *"Selic
+  não é índice de inflação"*. Quem governa a convivência delas é R1, não R3;
+* `nao-indexador` — padrão monetário, conversão de moeda, juros em percentual
+  legal. Sem índice não há defasagem a alinhar;
+* `indeterminado` — o conceito se aplica e **nenhuma fonte o classifica**.
+
+**Virada com ponta `indeterminado` BLOQUEIA** — vira violação, sob a regra
+`R3-INDETERMINADO`. Não é a mesma coisa que uma virada confirmada, e por isso
+tem rótulo próprio; mas passar seria converter "não se sabe" em "está certo".
+É a troca de falso positivo por falso negativo que a nota sobre exaustividade,
+logo acima, já condena uma vez. Num validador cuja razão de existir é que o erro
+de R3 não tem sintoma, o silêncio é o pior resultado possível.
+
+**O que salva a virada** é `aplicacao` não-vazio no segmento que ENTRA. É o campo
+onde as cadeias declaram quando o índice incide em relação à competência
+(`mes-posterior-a-competencia`, `primeiro-dia-do-mes-subsequente-a-prestacao`).
+Ausente o campo, não há ajuste declarado — e declarar é o requisito.
+
+Segmentos consecutivos com o **mesmo `indexador`** não são virada e não são
+examinados: trocar o fundamento ou a condição não muda a régua de defasagem.
 """
 
 from __future__ import annotations
@@ -49,11 +82,26 @@ from typing import Any, Mapping, Iterable, Sequence
 __all__ = [
     "Segmento",
     "Violacao",
+    "TIPOS_DE_INDEXADOR",
+    "TIPOS_COM_DEFASAGEM",
     "competencia_para_indice",
     "indice_para_competencia",
     "valida_cobertura",
     "carrega_segmentos",
 ]
+
+
+# --------------------------------------------------------------------------
+# Tipos de indexador (R3)
+# --------------------------------------------------------------------------
+# Domínio fechado, espelho de `valores_de_tipo` em
+# docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json.
+TIPOS_DE_INDEXADOR: frozenset[str] = frozenset(
+    {"nominal", "percentual", "englobante", "nao-indexador", "indeterminado"}
+)
+
+#: Os dois tipos cuja troca move a defasagem em um mês — item 4.1.2.4, letras a e b.
+TIPOS_COM_DEFASAGEM: frozenset[str] = frozenset({"nominal", "percentual"})
 
 
 # --------------------------------------------------------------------------
@@ -95,6 +143,9 @@ class Segmento:
     engloba: tuple[str, ...] = ()
     condicao: tuple[tuple[str, str], ...] = ()
     id: str = ""
+    indexador: str = ""
+    tipo_indexador: str = ""
+    aplicacao: str = ""
 
     @staticmethod
     def de_dict(d: dict[str, Any], indice: int = 0) -> "Segmento":
@@ -104,6 +155,12 @@ class Segmento:
         condicao = d.get("condicao") or {}
         if not isinstance(condicao, dict):
             raise ValueError(f"segmento #{indice}: 'condicao' deve ser objeto")
+        tipo = str(d.get("tipo_indexador") or "")
+        if tipo and tipo not in TIPOS_DE_INDEXADOR:
+            raise ValueError(
+                f"segmento #{indice}: 'tipo_indexador' inválido {tipo!r} — "
+                f"valores do catálogo: {', '.join(sorted(TIPOS_DE_INDEXADOR))}"
+            )
         seg = Segmento(
             inicio=d["inicio"],
             fim=d["fim"],
@@ -111,6 +168,9 @@ class Segmento:
             engloba=tuple(d.get("engloba") or ()),
             condicao=tuple(sorted((str(k), str(v)) for k, v in condicao.items())),
             id=str(d.get("id") or d.get("indexador") or f"segmento[{indice}]"),
+            indexador=str(d.get("indexador") or ""),
+            tipo_indexador=tipo,
+            aplicacao=str(d.get("aplicacao") or "").strip(),
         )
         if competencia_para_indice(seg.inicio) > competencia_para_indice(seg.fim):
             raise ValueError(f"{seg.id}: início {seg.inicio} posterior ao fim {seg.fim}")
@@ -172,7 +232,10 @@ class Relatorio:
 
     def __str__(self) -> str:
         if self.ok:
-            return "OK — cobertura íntegra, sem englobamento concorrente."
+            return (
+                "OK — cobertura íntegra, sem englobamento concorrente e sem virada "
+                "de tipo de indexador desacompanhada de ajuste de defasagem."
+            )
         return "\n".join(str(v) for v in self.violacoes)
 
 
@@ -195,6 +258,75 @@ def _agrupa_intervalos(meses: Sequence[int]) -> list[tuple[int, int]]:
         ini = ant = m
     faixas.append((ini, ant))
     return faixas
+
+
+def _valida_r3(
+    componente: str,
+    condicao_txt: str,
+    provedores: Sequence[Segmento],
+) -> list[Violacao]:
+    """R3 sobre um universo já resolvido (tronco ∪ ramo), em ordem cronológica.
+
+    Examina pares CONSECUTIVOS. Um par só é virada quando os dois segmentos
+    nomeiam indexadores diferentes; trocar fundamento, condição ou página não
+    move a régua de defasagem.
+    """
+    violacoes: list[Violacao] = []
+    ordenados = sorted(
+        provedores,
+        key=lambda s: (competencia_para_indice(s.inicio), competencia_para_indice(s.fim)),
+    )
+    for anterior, seguinte in zip(ordenados, ordenados[1:]):
+        ta, tb = anterior.tipo_indexador, seguinte.tipo_indexador
+
+        # Sem o campo em alguma das pontas não há o que comparar. Não se
+        # inventa tipo, e tampouco se acusa quem ainda não o declara.
+        if not ta or not tb:
+            continue
+
+        # Mesmo indexador dos dois lados: não é virada.
+        if anterior.indexador and anterior.indexador == seguinte.indexador:
+            continue
+
+        # Fora do alcance de R3: sem índice, ou índice que não é de inflação.
+        if "nao-indexador" in (ta, tb) or "englobante" in (ta, tb):
+            continue
+
+        janela = (seguinte.inicio, seguinte.fim)
+
+        if "indeterminado" in (ta, tb):
+            violacoes.append(Violacao(
+                regra="R3-INDETERMINADO",
+                componente=componente,
+                condicao=condicao_txt,
+                inicio=janela[0],
+                fim=janela[1],
+                segmentos=[anterior.id, seguinte.id],
+                mensagem=(
+                    f"virada de indexador com tipo indeterminado em uma das pontas "
+                    f"({anterior.id}={ta} → {seguinte.id}={tb}) — R3 NÃO PODE SER "
+                    f"VERIFICADA; classificação sem fonte é pendência, não aprovação"
+                ),
+            ))
+            continue
+
+        if ta in TIPOS_COM_DEFASAGEM and tb in TIPOS_COM_DEFASAGEM and ta != tb:
+            if seguinte.aplicacao:
+                continue
+            violacoes.append(Violacao(
+                regra="R3",
+                componente=componente,
+                condicao=condicao_txt,
+                inicio=janela[0],
+                fim=janela[1],
+                segmentos=[anterior.id, seguinte.id],
+                mensagem=(
+                    f"virada {ta} → {tb} sem ajuste de defasagem declarado em "
+                    f"'aplicacao' — desloca o cálculo em um mês (item 4.1.2.4, "
+                    f"pagina_pdf 42)"
+                ),
+            ))
+    return violacoes
 
 
 def valida_cobertura(
@@ -336,6 +468,8 @@ def valida_cobertura(
                         ),
                     ))
 
+            relatorio.violacoes.extend(_valida_r3(componente, condicao_txt, provedores))
+
     # Colisão entre dois segmentos do TRONCO é um fato só. Como o tronco entra
     # em todo ramo, ela reapareceria uma vez por ramo e inflaria a contagem.
     # Aqui vira uma violação, rotulada "(tronco)".
@@ -371,7 +505,7 @@ def carrega_segmentos(caminho: str) -> list[Segmento]:
 def main(argv: Sequence[str] | None = None) -> int:
     import argparse
 
-    parser = argparse.ArgumentParser(description="Valida R1 e R2 de uma tabela normativa.")
+    parser = argparse.ArgumentParser(description="Valida R1, R2 e R3 de uma tabela normativa.")
     parser.add_argument("tabela", help="caminho do JSON da tabela normativa")
     parser.add_argument("--inicio", help="competência inicial exigida (YYYY-MM)")
     parser.add_argument("--fim", help="competência final exigida (YYYY-MM), tipicamente a data-base")

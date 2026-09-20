@@ -1,5 +1,5 @@
 {
-  "id": "trt3.hist.trabalhista.juros-mora",
+  "id": "trab.hist.juros-mora",
   "titulo": "Juros de mora do débito trabalhista — encadeamento histórico",
   "tipo": "cadeia-temporal",
   "jurisdicao": "justica-do-trabalho",
@@ -28,7 +28,9 @@
       "corte_ao_dia": "26/02/1987",
       "pagina_pdf": 89,
       "ponta_materializada": "inicio — o manual escreve 'ajuizamento da ação até 26/02/87'",
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "1987-03",
@@ -44,7 +46,9 @@
       "corte_ao_dia": "27/02/1987 a 03/03/1991",
       "pagina_pdf": 89,
       "ALERTA_R4": "Capitalização COMPOSTA de juros de mora, contra a invariante R4 do projeto. Transcrita como está. O manual federal registra o MESMO período como composto (cjf.trabalhista.juros-mora, 'De mar./1987 a mar./1991 | 1,0% – composta', manual_de_calculos_2026.pdf pagina_pdf 78) — os dois manuais concordam, e o TRT-3 acrescenta a mecânica: 3 meses = 3,03%.",
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "inicio": "1991-04",
@@ -63,7 +67,9 @@
       "status_norma": "superado",
       "substituido_por": "ADC 58 e ADC 59 (STF, 18/12/2020); EC 113/2021, art. 3º; Lei 14.905/2024; EC 136/2025 e ARE 1.557.312/SP (Tema 1.419). Ver 00-base-normativa.md §§ 1 e 5, e as cadeias cjf.* do bloco 8.",
       "por_que_permanece_extraido": "O encadeamento histórico não caduca: competência de 1994 corrige-se pelo índice de 1994. O que caducou é a regra de qual índice vale HOJE.",
-      "componente": "juros-mora"
+      "componente": "juros-mora",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     }
   ],
   "situacoes_especiais": [
@@ -106,5 +112,6 @@
       "nao_corrigido": "Registrado como está. Ver bloco-09-relatorio.md."
     },
     "excecao_literal": "exceto para os débitos da Fazenda Pública"
-  }
+  },
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

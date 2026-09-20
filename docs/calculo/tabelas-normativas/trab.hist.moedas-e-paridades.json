@@ -1,5 +1,5 @@
 {
-  "id": "trt3.hist.moedas-e-paridades",
+  "id": "trab.hist.moedas-e-paridades",
   "titulo": "Padrões monetários e paridades — marcos de conversão",
   "tipo": "cadeia-temporal",
   "jurisdicao": "justica-do-trabalho",
@@ -18,6 +18,8 @@
       "inicio": "1942-11",
       "fim": "1970-02",
       "indexador": "Cruzeiro (Cr$)",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador.",
       "engloba": [
         "padrao-monetario"
       ],
@@ -35,6 +37,8 @@
       "inicio": "1967-02",
       "fim": "1970-05",
       "indexador": "Cruzeiro novo (NCr$)",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador.",
       "engloba": [
         "padrao-monetario"
       ],
@@ -51,6 +55,8 @@
       "inicio": "1970-05",
       "fim": "1986-02",
       "indexador": "Cruzeiro (Cr$)",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador.",
       "engloba": [
         "padrao-monetario"
       ],
@@ -67,6 +73,8 @@
       "inicio": "1986-02",
       "fim": "1989-01",
       "indexador": "Cruzado (Cz$)",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador.",
       "engloba": [
         "padrao-monetario"
       ],
@@ -83,6 +91,8 @@
       "inicio": "1989-01",
       "fim": "1990-03",
       "indexador": "Cruzado novo (NCz$)",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador.",
       "engloba": [
         "padrao-monetario"
       ],
@@ -99,6 +109,8 @@
       "inicio": "1990-03",
       "fim": "1993-07",
       "indexador": "Cruzeiro (Cr$)",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador.",
       "engloba": [
         "padrao-monetario"
       ],
@@ -115,6 +127,8 @@
       "inicio": "1993-08",
       "fim": "1994-06",
       "indexador": "Cruzeiro real (CR$)",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador.",
       "engloba": [
         "padrao-monetario"
       ],
@@ -131,6 +145,8 @@
       "inicio": "1994-07",
       "fim": "2016-05",
       "indexador": "Real (R$)",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "componente 'padrao-monetario' — item 7.7 do Manual TRT-3, pagina_pdf 99. Moeda não é indexador.",
       "engloba": [
         "padrao-monetario"
       ],
@@ -151,5 +167,6 @@
     "fim": "2016-05",
     "por_que": "1942-11 é o marco mais antigo que o capítulo 7 declara (item 7.7, instituição do cruzeiro). 2016-05 é a data-base dos exemplos do próprio manual (tabela única vigente em maio/16). O manual é de 2016 e não alcança nada depois disso — por isso a janela fecha ali, e não na data de hoje.",
     "marcador": "ponta_materializada"
-  }
+  },
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

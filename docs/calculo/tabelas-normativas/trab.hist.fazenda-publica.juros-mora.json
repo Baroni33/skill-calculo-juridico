@@ -1,5 +1,5 @@
 {
-  "id": "trt3.hist.fazenda-publica.juros-mora",
+  "id": "trab.hist.fazenda-publica.juros-mora",
   "titulo": "Juros de mora da Fazenda Pública na Justiça do Trabalho — encadeamento histórico",
   "tipo": "cadeia-temporal",
   "jurisdicao": "justica-do-trabalho",
@@ -31,7 +31,9 @@
       "corte_ao_dia": "26/02/1987",
       "fundamento": "CC, 1062 e 1063",
       "criterio_literal": "0,5% ao mês, simples.",
-      "ponta_materializada": "inicio — o manual só dá o termo final desta linha"
+      "ponta_materializada": "inicio — o manual só dá o termo final desta linha",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "condicao": {
@@ -50,7 +52,9 @@
       "corte_ao_dia": "27/02/1987 a 03/03/1991",
       "fundamento": "DL 2322/87, art. 3º",
       "criterio_literal": "1,0% ao mês, c/ taxa capitalizada. Ex.: 3 meses = 3,03%",
-      "ALERTA_R4": "Capitalização COMPOSTA, contra a invariante R4 (juros de mora sempre simples). É o que o manual diz, em quadro próprio da Fazenda, e coincide com o quadro geral da pagina_pdf 89 e com a cadeia do CJF para o mesmo período. Três registros independentes. Transcrito, não harmonizado."
+      "ALERTA_R4": "Capitalização COMPOSTA, contra a invariante R4 (juros de mora sempre simples). É o que o manual diz, em quadro próprio da Fazenda, e coincide com o quadro geral da pagina_pdf 89 e com a cadeia do CJF para o mesmo período. Três registros independentes. Transcrito, não harmonizado.",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "condicao": {
@@ -68,7 +72,9 @@
       "periodo_literal": "Entre 04/03/91 e 26/08/01",
       "corte_ao_dia": "04/03/1991 a 26/08/2001",
       "fundamento": "L. 8177/91, art. 39",
-      "criterio_literal": "1,0% ao mês de forma simples, sem taxa capitalizada. Ex.: 3 meses = 3%"
+      "criterio_literal": "1,0% ao mês de forma simples, sem taxa capitalizada. Ex.: 3 meses = 3%",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "condicao": {
@@ -88,7 +94,9 @@
       "corte_ao_dia": "27/08/2001 a 28/06/2009",
       "fundamento": "Lei 9494/97, art. 1º F, introduzido pela MP 2180-35, de 2001",
       "criterio_literal": "0,5% ao mês, limitado a 6% ao ano",
-      "observacao_limite": "O limite de 6% ao ano estava AUSENTE da primeira versão. Não é redundante com 0,5% ao mês: 0,5% simples por doze meses dá exatamente 6%, mas o limite passa a morder em qualquer contagem por dias que ultrapasse o ano-calendário."
+      "observacao_limite": "O limite de 6% ao ano estava AUSENTE da primeira versão. Não é redundante com 0,5% ao mês: 0,5% simples por doze meses dá exatamente 6%, mas o limite passa a morder em qualquer contagem por dias que ultrapasse o ano-calendário.",
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     },
     {
       "condicao": {
@@ -116,7 +124,9 @@
         "depois_literal": "A partir de 04/05/12, com a publicação da MP 567/12, convertida na Lei 12.703, de 07 de agosto de 2012,  as regras de rendimento das cadernetas de poupança foram alteradas.",
         "pagina_pdf": 91,
         "observacao": "Subcorte, não segmento próprio: a REGRA (art. 1º-F, poupança) não muda em 04/05/12; muda a fórmula da poupança. Modelado como qualificação do segmento para não criar corte de regime onde o manual não cria."
-      }
+      },
+      "tipo_indexador": "nao-indexador",
+      "tipo_indexador_fonte": "segmentos de juros-mora cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, poupança) e não índice. 21 segmentos, em 6 cadeias. Sem índice, R3 não tem o que verificar."
     }
   ],
   "janela_de_analise": {
@@ -168,5 +178,6 @@
     "pagina_pdf": 93,
     "NAO_VIRA_SEGMENTO": "'grande parte da jurisprudência entende' é corrente, não regra assentada. Pela disciplina do projeto, divergência jurisprudencial não se resolve: fica como variante com fundamento. O ramo é declarado no dominio_condicoes e deliberadamente não tem segmento — o validador o reporta como lacuna, que é a leitura correta: o manual não fecha a questão.",
     "pendencia": "P9-01"
-  }
+  },
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

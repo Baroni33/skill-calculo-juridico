@@ -1,4 +1,4 @@
-"""Testes de valida_cobertura.py — invariantes R1 e R2."""
+"""Testes de valida_cobertura.py — invariantes R1, R2 e R3."""
 
 from __future__ import annotations
 
@@ -6,8 +6,10 @@ import json
 import os
 import tempfile
 import unittest
+from pathlib import Path
 
 from valida_cobertura import (
+    TIPOS_DE_INDEXADOR,
     Segmento,
     carrega_segmentos,
     competencia_para_indice,
@@ -17,6 +19,11 @@ from valida_cobertura import (
 
 CM = "correcao-monetaria"
 JM = "juros-mora"
+PM = "padrao-monetario"
+
+RAIZ = Path(__file__).resolve().parents[2]
+TABELAS = RAIZ / "docs" / "calculo" / "tabelas-normativas"
+CATALOGO = TABELAS / "indexadores-tipo-catalogo.json"
 
 
 def seg(inicio, fim, componente, engloba=(), condicao=None, id=None):
@@ -28,6 +35,30 @@ def seg(inicio, fim, componente, engloba=(), condicao=None, id=None):
         condicao=tuple(sorted((k, v) for k, v in (condicao or {}).items())),
         id=id or f"{componente}:{inicio}..{fim}",
     )
+
+
+def segt(inicio, fim, indexador, tipo, aplicacao="", componente=CM, condicao=None,
+         engloba=()):
+    """Segmento com tipo de indexador declarado — o material de R3."""
+    return Segmento(
+        inicio=inicio,
+        fim=fim,
+        componente=componente,
+        engloba=tuple(engloba),
+        condicao=tuple(sorted((k, v) for k, v in (condicao or {}).items())),
+        id=indexador,
+        indexador=indexador,
+        tipo_indexador=tipo,
+        aplicacao=aplicacao,
+    )
+
+
+def carrega_cadeia(nome):
+    """Lê uma cadeia real do repositório. utf-8 explícito (Windows é cp1252)."""
+    with open(TABELAS / nome, "r", encoding="utf-8") as fh:
+        dados = json.load(fh)
+    segmentos = [Segmento.de_dict(s, i) for i, s in enumerate(dados["segmentos"])]
+    return dados, segmentos
 
 
 class TestAritmeticaCompetencia(unittest.TestCase):
@@ -302,7 +333,7 @@ class TestCadeiaRealTrabalhista(unittest.TestCase):
 class TestCarregamentoArquivo(unittest.TestCase):
     def test_le_json_utf8_com_acentuacao(self):
         tabela = {
-            "id": "trt3.trabalhista.correcao-monetaria.privado",
+            "id": "trab.correcao-monetaria.privado",
             "segmentos": [
                 {
                     "inicio": "2021-12",
@@ -339,6 +370,389 @@ class TestCarregamentoArquivo(unittest.TestCase):
 class TestConjuntoVazio(unittest.TestCase):
     def test_sem_segmentos_nao_quebra(self):
         self.assertTrue(valida_cobertura([]).ok)
+
+
+# --------------------------------------------------------------------------
+# R3 — tipo do indexador na virada
+# --------------------------------------------------------------------------
+
+class TestR3ViradaDeTipo(unittest.TestCase):
+    """Item 4.1.2.4 do Manual CJF, `pagina_pdf` 42: nominal reflete a inflação do
+    mês ANTERIOR, percentual a do PRÓPRIO mês. Virar sem ajustar a defasagem
+    desloca o cálculo em um mês — e nada mais o detecta."""
+
+    def r3(self, relatorio):
+        return [v for v in relatorio.violacoes if v.regra == "R3"]
+
+    def indet(self, relatorio):
+        return [v for v in relatorio.violacoes if v.regra == "R3-INDETERMINADO"]
+
+    # --- caso POSITIVO: a virada que viola -------------------------------
+
+    def test_nominal_para_percentual_sem_aplicacao_viola(self):
+        r = valida_cobertura(
+            [
+                segt("1989-03", "1990-02", "BTN", "nominal"),
+                segt("1990-03", "1991-02", "IPC/IBGE", "percentual"),
+            ],
+            inicio="1989-03", fim="1991-02",
+        )
+        v = self.r3(r)
+        self.assertEqual(len(v), 1, str(r))
+        self.assertEqual((v[0].inicio, v[0].fim), ("1990-03", "1991-02"))
+        self.assertEqual(v[0].segmentos, ["BTN", "IPC/IBGE"])
+        self.assertIn("nominal → percentual", v[0].mensagem)
+        self.assertFalse(r.ok)
+
+    def test_percentual_para_nominal_tambem_viola(self):
+        r = valida_cobertura(
+            [
+                segt("1989-01", "1989-02", "IPC/IBGE", "percentual"),
+                segt("1989-03", "1990-03", "BTN", "nominal"),
+            ],
+            inicio="1989-01", fim="1990-03",
+        )
+        self.assertEqual(len(self.r3(r)), 1, "a virada é simétrica")
+        self.assertIn("percentual → nominal", self.r3(r)[0].mensagem)
+
+    # --- caso NEGATIVO: a virada com ajuste declarado --------------------
+
+    def test_virada_com_aplicacao_declarada_no_segmento_que_entra_nao_viola(self):
+        r = valida_cobertura(
+            [
+                segt("1989-03", "1990-02", "BTN", "nominal"),
+                segt(
+                    "1990-03", "1991-02", "IPC/IBGE", "percentual",
+                    aplicacao="mes-posterior-a-competencia",
+                ),
+            ],
+            inicio="1989-03", fim="1991-02",
+        )
+        self.assertEqual(self.r3(r), [], str(r))
+        self.assertTrue(r.ok, str(r))
+
+    def test_aplicacao_so_no_segmento_que_SAI_nao_salva(self):
+        """O ajuste tem de estar declarado em quem entra: é o índice novo que
+        muda de régua."""
+        r = valida_cobertura(
+            [
+                segt("1989-03", "1990-02", "BTN", "nominal",
+                     aplicacao="mes-posterior-a-competencia"),
+                segt("1990-03", "1991-02", "IPC/IBGE", "percentual"),
+            ],
+            inicio="1989-03", fim="1991-02",
+        )
+        self.assertEqual(len(self.r3(r)), 1, str(r))
+
+    def test_aplicacao_so_de_espacos_nao_conta_como_declaracao(self):
+        r = valida_cobertura(
+            [
+                Segmento.de_dict({"inicio": "1989-03", "fim": "1990-02",
+                                  "componente": CM, "indexador": "BTN",
+                                  "tipo_indexador": "nominal"}, 0),
+                Segmento.de_dict({"inicio": "1990-03", "fim": "1991-02",
+                                  "componente": CM, "indexador": "IPC/IBGE",
+                                  "tipo_indexador": "percentual",
+                                  "aplicacao": "   "}, 1),
+            ],
+            inicio="1989-03", fim="1991-02",
+        )
+        self.assertEqual(len(self.r3(r)), 1, str(r))
+
+    # --- o que NÃO é virada ----------------------------------------------
+
+    def test_mesmo_tipo_dos_dois_lados_nao_e_virada(self):
+        r = valida_cobertura(
+            [
+                segt("1964-01", "1986-02", "ORTN", "nominal"),
+                segt("1986-03", "1989-01", "OTN", "nominal"),
+            ],
+            inicio="1964-01", fim="1989-01",
+        )
+        self.assertTrue(r.ok, str(r))
+
+    def test_mesmo_indexador_dos_dois_lados_nao_e_virada(self):
+        """Trocar fundamento ou condição não move a régua de defasagem."""
+        r = valida_cobertura(
+            [
+                segt("2021-12", "2024-08", "INPC", "percentual"),
+                segt("2024-09", "2025-08", "INPC", "nominal"),  # tipo absurdo de propósito
+            ],
+            inicio="2021-12", fim="2025-08",
+        )
+        self.assertEqual(self.r3(r), [], "mesmo indexador não é virada")
+
+    def test_englobante_nao_entra_em_r3(self):
+        """Selic não é índice de inflação (D8-C22). Quem governa é R1, não R3."""
+        r = valida_cobertura(
+            [
+                segt("1992-01", "1995-12", "Ufir", "nominal"),
+                segt("1996-01", "2021-11", "Selic", "englobante"),
+                segt("2021-12", "2024-08", "INPC", "percentual"),
+            ],
+            inicio="1992-01", fim="2024-08",
+        )
+        self.assertEqual(self.r3(r), [], str(r))
+        self.assertEqual(self.indet(r), [], str(r))
+
+    def test_nao_indexador_nao_entra_em_r3(self):
+        """Moeda não é indexador: não há defasagem a alinhar."""
+        r = valida_cobertura(
+            [
+                segt("1990-03", "1993-07", "Cruzeiro (Cr$)", "nao-indexador",
+                     componente=PM),
+                segt("1993-08", "1994-06", "Cruzeiro real (CR$)", "nao-indexador",
+                     componente=PM),
+            ],
+            inicio="1990-03", fim="1994-06",
+        )
+        self.assertEqual(self.r3(r), [], str(r))
+        self.assertEqual(self.indet(r), [], str(r))
+
+    def test_sem_o_campo_tipo_nao_acusa_nada(self):
+        """Retrocompatibilidade: R3 não inventa tipo para quem não o declara."""
+        r = valida_cobertura(
+            [seg("1989-03", "1990-02", CM, id="BTN"), seg("1990-03", "1991-02", CM, id="IPC")],
+            inicio="1989-03", fim="1991-02",
+        )
+        self.assertTrue(r.ok, str(r))
+
+    # --- o caso INDETERMINADO: decidido BLOQUEIA --------------------------
+
+    def test_indeterminado_numa_ponta_bloqueia(self):
+        """DECISÃO do bloco 17: bloqueia, com rótulo próprio.
+
+        Passar converteria "não se sabe" em "está certo". Num validador cuja
+        razão de existir é que o erro de R3 não tem sintoma, o falso negativo
+        é o pior resultado possível — é a mesma troca que a nota sobre
+        exaustividade, no módulo, já condena uma vez."""
+        r = valida_cobertura(
+            [
+                segt("1992-01", "2000-12", "Ufir", "nominal"),
+                segt("2001-01", "2021-11", "IPCA-E/IBGE", "indeterminado"),
+            ],
+            inicio="1992-01", fim="2021-11",
+        )
+        self.assertFalse(r.ok, "indeterminado numa ponta não pode passar limpo")
+        self.assertEqual(self.r3(r), [], "não é virada CONFIRMADA")
+        v = self.indet(r)
+        self.assertEqual(len(v), 1, str(r))
+        self.assertEqual(v[0].segmentos, ["Ufir", "IPCA-E/IBGE"])
+        self.assertIn("NÃO PODE SER VERIFICADA", v[0].mensagem)
+
+    def test_indeterminado_dos_dois_lados_tambem_bloqueia(self):
+        r = valida_cobertura(
+            [
+                segt("2001-01", "2024-08", "IPCA-E/IBGE", "indeterminado"),
+                segt("2024-09", "2025-08", "IPCA-15/IBGE", "indeterminado"),
+            ],
+            inicio="2001-01", fim="2025-08",
+        )
+        self.assertEqual(len(self.indet(r)), 1, str(r))
+
+    def test_aplicacao_declarada_NAO_salva_o_indeterminado(self):
+        """Declarar a defasagem não supre a falta de classificação: sem saber o
+        tipo, não se sabe se a defasagem declarada é a certa."""
+        r = valida_cobertura(
+            [
+                segt("1992-01", "2000-12", "Ufir", "nominal"),
+                segt("2001-01", "2021-11", "IPCA-E/IBGE", "indeterminado",
+                     aplicacao="mes-posterior-a-competencia"),
+            ],
+            inicio="1992-01", fim="2021-11",
+        )
+        self.assertEqual(len(self.indet(r)), 1, str(r))
+
+    def test_indeterminado_contra_englobante_nao_acusa(self):
+        r = valida_cobertura(
+            [
+                segt("2001-01", "2021-11", "IPCA-E/IBGE", "indeterminado"),
+                segt("2021-12", "2025-08", "Selic", "englobante"),
+            ],
+            inicio="2001-01", fim="2025-08",
+        )
+        self.assertEqual(self.indet(r), [], str(r))
+
+    # --- fronteiras de universo ------------------------------------------
+
+    def test_r3_nao_cruza_ramos_de_condicao_distinta(self):
+        """Fazenda e privado são linhas do tempo separadas: a 'virada' entre
+        elas não existe."""
+        r = valida_cobertura(
+            [
+                segt("2021-12", "2024-08", "Selic", "englobante",
+                     condicao={"devedor": "fazenda-publica"}, engloba=[CM, JM]),
+                segt("2021-12", "2024-08", "INPC", "percentual",
+                     condicao={"devedor": "privado"}),
+            ],
+            inicio="2021-12", fim="2024-08",
+            dominio_condicoes={"devedor": ["fazenda-publica", "privado"]},
+        )
+        self.assertEqual(self.r3(r), [], str(r))
+
+    def test_tronco_entra_na_linha_do_ramo(self):
+        """Tronco nominal seguido de ramo percentual É virada, uma por ramo."""
+        r = valida_cobertura(
+            [
+                segt("1964-01", "2021-11", "Ufir", "nominal"),
+                segt("2021-12", "2025-08", "INPC", "percentual",
+                     condicao={"devedor": "fazenda-publica"}),
+                segt("2021-12", "2025-08", "IGP-DI", "percentual",
+                     condicao={"devedor": "privado"}),
+            ],
+            inicio="1964-01", fim="2025-08",
+            dominio_condicoes={"devedor": ["fazenda-publica", "privado"]},
+        )
+        self.assertEqual(len(self.r3(r)), 2, str(r))
+        self.assertEqual(
+            {v.condicao for v in self.r3(r)},
+            {"devedor=fazenda-publica", "devedor=privado"},
+        )
+
+    # --- domínio do campo -------------------------------------------------
+
+    def test_tipo_fora_do_dominio_e_rejeitado(self):
+        with self.assertRaises(ValueError) as ctx:
+            Segmento.de_dict({
+                "inicio": "2020-01", "fim": "2020-12", "componente": CM,
+                "tipo_indexador": "real",
+            }, 7)
+        self.assertIn("tipo_indexador", str(ctx.exception))
+
+    def test_dominio_tem_exatamente_cinco_valores(self):
+        self.assertEqual(
+            TIPOS_DE_INDEXADOR,
+            {"nominal", "percentual", "englobante", "nao-indexador", "indeterminado"},
+        )
+
+
+class TestR3NasCadeiasDoBloco9(unittest.TestCase):
+    """As cadeias históricas do TRT-3. O relatório do bloco 9 (§ 5.3) afirma que
+    NÃO há virada entre nominal e percentual neste capítulo — "porque não há
+    cadeia de índices: o único indexador nomeado é a TR". O validador confirma:
+    zero R3 confirmadas. O que ele acrescenta é o que o bloco 9 não tinha campo
+    para dizer — as duas pontas indeterminadas."""
+
+    def test_correcao_monetaria_tem_zero_r3_confirmada_e_duas_indeterminadas(self):
+        _, segmentos = carrega_cadeia("trab.hist.correcao-monetaria.json")
+        r = valida_cobertura(
+            segmentos, "1942-11", "2016-05",
+            dominio_condicoes={"devedor": ["fazenda-publica", "nao-fazenda-publica"]},
+        )
+        confirmadas = [v for v in r.violacoes if v.regra == "R3"]
+        indeterminadas = [v for v in r.violacoes if v.regra == "R3-INDETERMINADO"]
+        self.assertEqual(confirmadas, [], "bloco-09-relatorio.md § 5.3: não há virada")
+        self.assertEqual(len(indeterminadas), 2, str(r))
+        self.assertTrue(
+            all("NAO-DECLARADO-PELO-MANUAL" in v.segmentos for v in indeterminadas)
+        )
+
+    def test_tr_esta_rebaixada_a_indeterminado(self):
+        """Era `percentual` por inferência DECLARADA (critério formal do 4.1.2.4).
+        Inferência declarada não é fonte — logo, indeterminado."""
+        _, segmentos = carrega_cadeia("trab.hist.correcao-monetaria.json")
+        tr = [s for s in segmentos if "TR" in s.indexador]
+        self.assertEqual(len(tr), 2)
+        for s in tr:
+            self.assertEqual(s.tipo_indexador, "indeterminado", s.indexador)
+
+    def test_moedas_nao_produzem_r3(self):
+        _, segmentos = carrega_cadeia("trab.hist.moedas-e-paridades.json")
+        r = valida_cobertura(segmentos, "1942-11", "2016-05")
+        self.assertEqual([v for v in r.violacoes if v.regra.startswith("R3")], [])
+
+    def test_juros_trabalhistas_sem_indexador_nao_produzem_r3(self):
+        _, segmentos = carrega_cadeia("trab.hist.juros-mora.json")
+        r = valida_cobertura(segmentos, "1942-11", "2016-05")
+        self.assertEqual([v for v in r.violacoes if v.regra.startswith("R3")], [])
+
+
+class TestCatalogoDeTipos(unittest.TestCase):
+    """O catálogo é a única fonte do campo. Nenhuma cadeia pode carregar
+    indexador que ele não classifique, nem tipo fora do domínio."""
+
+    def catalogo(self):
+        with open(CATALOGO, "r", encoding="utf-8") as fh:
+            return json.load(fh)
+
+    def cadeias(self):
+        """Descoberta pelo CONTEUDO, nunca pelo prefixo do nome do arquivo.
+
+        A versao anterior filtrava por `("cjf.", "trt3.hist.")`. Quando o bloco
+        17 renomeou os quatro `trt3.hist.*` para `trab.hist.*`, ela passou a
+        achar 7 de 11 — e as guardas de `tipo_indexador` teriam dado OK sem
+        inspecionar quatro cadeias. O teste falhou, e estava certo.
+        """
+        nomes = []
+        for p in sorted(TABELAS.glob("*.json")):
+            with open(p, "r", encoding="utf-8") as fh:
+                dados = json.load(fh)
+            if dados.get("tipo") == "cadeia-temporal" and isinstance(
+                dados.get("segmentos"), list
+            ):
+                nomes.append(p.name)
+        self.assertEqual(len(nomes), 11, "11 cadeias no bloco 17")
+        return nomes
+
+    def test_todo_segmento_de_toda_cadeia_tem_tipo(self):
+        total = 0
+        for nome in self.cadeias():
+            _, segmentos = carrega_cadeia(nome)
+            for s in segmentos:
+                self.assertIn(s.tipo_indexador, TIPOS_DE_INDEXADOR, f"{nome}: {s.id}")
+                total += 1
+        self.assertEqual(total, 97, "97 segmentos carimbados")
+
+    def test_todo_indexador_esta_no_catalogo_com_o_mesmo_tipo(self):
+        idx = self.catalogo()["indexadores"]
+        for nome in self.cadeias():
+            _, segmentos = carrega_cadeia(nome)
+            for s in segmentos:
+                chave = s.indexador or "(segmento sem indexador)"
+                self.assertIn(chave, idx, f"{nome}: indexador fora do catálogo")
+                self.assertEqual(idx[chave]["tipo"], s.tipo_indexador, chave)
+
+    def test_classificado_tem_fonte_e_indeterminado_tem_pendencia(self):
+        idx = self.catalogo()["indexadores"]
+        for chave, e in idx.items():
+            if e["tipo"] == "indeterminado":
+                self.assertIsNone(e.get("fonte"), chave)
+                self.assertTrue(
+                    e.get("pendencia"), f"{chave}: indeterminado sem pendência"
+                )
+            else:
+                self.assertTrue(e.get("fonte"), f"{chave}: classificado sem fonte")
+
+    def test_ipca_e_continua_indeterminado(self):
+        """A regra dura do bloco 17. 'IPCA-E é percentual porque IPCA é
+        percentual' é a dedução proibida: o item 4.1.2.4 não nomeia nem um
+        nem outro."""
+        idx = self.catalogo()["indexadores"]
+        for chave in ("IPCA-E/IBGE", "IPCA-15/IBGE", "IPCA série especial"):
+            self.assertEqual(idx[chave]["tipo"], "indeterminado", chave)
+
+    def test_selic_e_taxa_legal_sao_englobantes(self):
+        idx = self.catalogo()["indexadores"]
+        self.assertEqual(idx["Selic"]["tipo"], "englobante")
+        self.assertEqual(idx["taxa-legal"]["tipo"], "englobante")
+
+    def test_moedas_sao_nao_indexador(self):
+        idx = self.catalogo()["indexadores"]
+        for chave in ("Cruzado (Cz$)", "Cruzeiro novo (NCr$)", "Real (R$)",
+                      "Conversão em URV"):
+            self.assertEqual(idx[chave]["tipo"], "nao-indexador", chave)
+
+    def test_os_quatro_nominais_literais_da_fonte(self):
+        idx = self.catalogo()["indexadores"]
+        for chave in ("Ufir", "BTN", "OTN", "ORTN"):
+            self.assertEqual(idx[chave]["tipo"], "nominal", chave)
+            self.assertIn("4.1.2.4", idx[chave]["fonte"])
+
+    def test_os_percentuais_literais_da_fonte(self):
+        idx = self.catalogo()["indexadores"]
+        for chave in ("INPC", "IGP-DI"):
+            self.assertEqual(idx[chave]["tipo"], "percentual", chave)
+            self.assertIn("4.1.2.4", idx[chave]["fonte"])
 
 
 if __name__ == "__main__":

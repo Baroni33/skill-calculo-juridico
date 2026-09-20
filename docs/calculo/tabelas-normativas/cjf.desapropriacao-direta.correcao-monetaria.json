@@ -16,6 +16,8 @@
       "inicio": "1964-01",
       "fim": "1986-02",
       "indexador": "ORTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -29,6 +31,8 @@
       "inicio": "1986-03",
       "fim": "1989-01",
       "indexador": "OTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -44,6 +48,8 @@
       "inicio": "1989-01",
       "fim": "1989-01",
       "indexador": "IPC/IBGE",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'",
       "valor_fixo_pct": "42,72",
       "engloba": [
         "correcao-monetaria"
@@ -57,6 +63,8 @@
       "inicio": "1989-02",
       "fim": "1989-02",
       "indexador": "IPC/IBGE",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'",
       "valor_fixo_pct": "10,14",
       "engloba": [
         "correcao-monetaria"
@@ -70,6 +78,8 @@
       "inicio": "1989-03",
       "fim": "1990-03",
       "indexador": "BTN",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE na lista de exemplos",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -80,6 +90,8 @@
       "inicio": "1990-03",
       "fim": "1991-02",
       "indexador": "IPC/IBGE",
+      "tipo_indexador": "percentual",
+      "tipo_indexador_fonte": "D8-C21 — bloco-08-jf-detalhe.md linha 416, literal: 'O IPC/IBGE é índice percentual'",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -92,6 +104,9 @@
       "inicio": "1991-03",
       "fim": "1991-12",
       "indexador": "IPC/FGV",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "D8-C21 sustenta o IPC/IBGE, não o IPC/FGV — emissor distinto, índice distinto. Herdar a classificação do homônimo do IBGE é exatamente a dedução proibida, e é a mesma classe de erro que o bloco 8 registrou ao trocar IPC/FGV por IPC/IBGE entre 78 segmentos.",
+      "tipo_indexador_pendencia": "P17-01",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -103,6 +118,8 @@
       "inicio": "1992-01",
       "fim": "2000-12",
       "indexador": "Ufir",
+      "tipo_indexador": "nominal",
+      "tipo_indexador_fonte": "item 4.1.2.4, letra a, pagina_pdf 42 — nomeado LITERALMENTE; corroborado por D8-C22 ('Ufir é nominal')",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -113,6 +130,9 @@
       "inicio": "2001-01",
       "fim": "2021-11",
       "indexador": "IPCA-E/IBGE",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "NÃO está na lista do item 4.1.2.4. Classificá-lo como percentual 'porque IPCA é percentual' é dedução a partir do nome — e o item sequer nomeia 'IPCA': nomeia INPC, IGP-DI e IGP-M. Busca no corpus (ver ESCOPO_DA_BUSCA_DE_AUSENCIA) não achou fonte.",
+      "tipo_indexador_pendencia": "P17-01",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -123,6 +143,8 @@
       "inicio": "2021-12",
       "fim": "2025-08",
       "indexador": "Selic",
+      "tipo_indexador": "englobante",
+      "tipo_indexador_fonte": "D8-C22 — bloco-08-jf-detalhe.md linha 421, literal: 'Selic não é índice de inflação'; e R1 (00-base-normativa.md § 7), que a trata como englobante de correção e juros",
       "capitalizacao": "simples",
       "engloba": [
         "correcao-monetaria",
@@ -137,6 +159,9 @@
       "inicio": "2025-09",
       "fim": "2026-06",
       "indexador": "IPCA-15/IBGE",
+      "tipo_indexador": "indeterminado",
+      "tipo_indexador_fonte": "Mesma razão do IPCA-E, agravada: é a prévia de 15 dias, índice distinto dos dois. Sem fonte no corpus.",
+      "tipo_indexador_pendencia": "P17-01",
       "engloba": [
         "correcao-monetaria"
       ],
@@ -152,5 +177,6 @@
     "fim": "2026-06",
     "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
     "marcador": "ponta_materializada"
-  }
+  },
+  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

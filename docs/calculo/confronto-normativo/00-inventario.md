@@ -104,7 +104,7 @@ Origem: `extracao/trabalhista/bloco-07-descontos.md` § 13.
 
 ### 3.4 As 17 que nunca foram contadas
 
-**Cinco `status_norma` em cadeias temporais** — `tabelas-normativas/trt3.hist.*.json`:
+**Cinco `status_norma` em cadeias temporais** — `tabelas-normativas/trab.hist.*.json`:
 
 | ID | Cadeia, segmento | `substituido_por` |
 |---|---|---|

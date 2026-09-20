@@ -44,9 +44,11 @@ PDF = Path(
     r"\manual-de-calculo-trabalhista_2016-1.pdf"
 )
 
-PAGINAS_DO_BLOCO = range(373, 472)
-
-# Intervalo declarado de cada item, para a checagem de proveniência.
+# Intervalo declarado de cada item do bloco 1, para a checagem de proveniência.
+# Não é "a faixa do diretório": é o contrato de páginas de cada item. A faixa
+# contra a qual cada linha é conferida se RESOLVE por arquivo (ver
+# `faixa_declarada`), nunca por uma constante única do bloco — o diretório
+# recebe séries de outros blocos, e uma constante de bloco as acusaria de erro.
 FAIXAS_DE_PAGINA = {
     "18.1": (373, 380),
     "18.2": (381, 381),
@@ -123,6 +125,17 @@ def le_csv(nome: str) -> list[dict]:
     with open(caminho, "r", encoding="utf-8", newline="") as fh:
         linhas = [l for l in fh if not l.startswith("#")]
     return list(csv.DictReader(linhas))
+
+
+def le_cabecalho(caminho: Path) -> str:
+    """Bloco de comentários '#' do topo do CSV, onde mora a proveniência declarada."""
+    partes: list[str] = []
+    with open(caminho, "r", encoding="utf-8", newline="") as fh:
+        for linha in fh:
+            if not linha.startswith("#"):
+                break
+            partes.append(linha)
+    return "".join(partes)
 
 
 def le_json(nome: str) -> dict:
@@ -465,11 +478,57 @@ def valida_vigencias(rel: Relatorio, nome_csv: str, coluna: str, rotulo: str) ->
 # 4. Proveniência
 # --------------------------------------------------------------------------
 
+# 'pagina_pdf=178-179' e 'item=9.2.11' no cabeçalho de comentário do CSV.
+_RE_PAGINA_CABECALHO = re.compile(r"\bpagina_pdf\s*=\s*(\d+)\s*(?:[-–]\s*(\d+))?")
+_RE_ITEM_CABECALHO = re.compile(r"\bitem\s*=\s*([0-9]+(?:\.[0-9]+)*(?:-[\w.-]+)?)")
+
+
+def faixa_declarada(caminho: Path, linhas: list[dict]) -> tuple[tuple[int, int], str] | None:
+    """Faixa de páginas contra a qual conferir ESTE arquivo, e de onde ela veio.
+
+    Duas origens, nesta ordem, e nenhuma constante de bloco:
+
+      1. o cabeçalho do próprio CSV, quando declara `pagina_pdf=` (é o caso das
+         séries trazidas de outros blocos, como 9.2.11, p178-179);
+      2. o item declarado nas linhas, resolvido em `FAIXAS_DE_PAGINA` — o
+         contrato de páginas do bloco 1.
+
+    Sem nenhuma das duas, devolve None: o arquivo não é conferível aqui, e dizê-lo
+    é obrigação do relatório. Silêncio seria pior que o falso erro.
+    """
+    cabecalho = le_cabecalho(caminho)
+    m = _RE_PAGINA_CABECALHO.search(cabecalho)
+    if m:
+        ini = int(m.group(1))
+        fim = int(m.group(2)) if m.group(2) else ini
+        return (ini, fim), "cabeçalho do próprio arquivo"
+
+    itens = {r["item"] for r in linhas if r.get("item")}
+    mi = _RE_ITEM_CABECALHO.search(cabecalho)
+    if mi:
+        itens.add(mi.group(1))
+    conhecidos = [FAIXAS_DE_PAGINA[i] for i in itens if i in FAIXAS_DE_PAGINA]
+    if itens and len(conhecidos) == len(itens):
+        return (min(f[0] for f in conhecidos), max(f[1] for f in conhecidos)), \
+            "contrato de páginas do item"
+    return None
+
+
 def valida_proveniencia(rel: Relatorio) -> None:
     faltando, fora_da_faixa, sem_item = 0, [], 0
     total = 0
+    sem_faixa: list[str] = []
+    origens: dict[str, int] = {}
     for caminho in sorted(DIR_SERIE.glob("serie-*.csv")):
-        for numero, r in enumerate(le_csv(caminho.name), start=2):
+        linhas = le_csv(caminho.name)
+        resolvida = faixa_declarada(caminho, linhas)
+        if resolvida is None:
+            sem_faixa.append(caminho.name)
+            faixa_do_arquivo = None
+        else:
+            faixa_do_arquivo, origem = resolvida
+            origens[origem] = origens.get(origem, 0) + 1
+        for numero, r in enumerate(linhas, start=2):
             total += 1
             pagina, item = r.get("pagina_pdf"), r.get("item")
             if not pagina:
@@ -478,11 +537,12 @@ def valida_proveniencia(rel: Relatorio) -> None:
             if not item:
                 sem_item += 1
                 continue
-            if int(pagina) not in PAGINAS_DO_BLOCO:
-                fora_da_faixa.append(f"{caminho.name}:{numero} página {pagina}")
+            # O item, quando é do bloco 1, dá a faixa mais estreita e prevalece;
+            # senão vale a faixa declarada pelo arquivo.
+            esperada = FAIXAS_DE_PAGINA.get(item, faixa_do_arquivo)
+            if esperada is None:
                 continue
-            esperada = FAIXAS_DE_PAGINA.get(item)
-            if esperada and not esperada[0] <= int(pagina) <= esperada[1]:
+            if not esperada[0] <= int(pagina) <= esperada[1]:
                 fora_da_faixa.append(
                     f"{caminho.name}:{numero} item {item} na página {pagina}, "
                     f"fora de {esperada[0]}-{esperada[1]}"
@@ -490,21 +550,39 @@ def valida_proveniencia(rel: Relatorio) -> None:
 
     for nome in ("trt3-18.1-incidencia-parcelas.json",):
         dados = le_json(nome)
+        faixa_18_1 = FAIXAS_DE_PAGINA["18.1"]
         for p in dados["parcelas"]:
             total += 1
             if not p.get("paginas_pdf"):
                 faltando += 1
-            elif any(x not in PAGINAS_DO_BLOCO for x in p["paginas_pdf"]):
-                fora_da_faixa.append(f"{nome}: {p['parcela']!r}")
+            elif any(not faixa_18_1[0] <= x <= faixa_18_1[1] for x in p["paginas_pdf"]):
+                fora_da_faixa.append(
+                    f"{nome}: {p['parcela']!r} fora de "
+                    f"{faixa_18_1[0]}-{faixa_18_1[1]}"
+                )
 
+    if sem_faixa:
+        rel.sem_verificacao(
+            "proveniência: sem faixa de páginas declarada, nem no cabeçalho nem por "
+            f"item conhecido — {', '.join(sem_faixa)}"
+        )
     if faltando or sem_item:
         rel.erro(
             f"proveniência: {faltando} linhas sem pagina_pdf e {sem_item} sem item"
         )
     for caso in fora_da_faixa[:10]:
         rel.erro(f"proveniência fora do intervalo declarado: {caso}")
+    if len(fora_da_faixa) > 10:
+        rel.erro(
+            f"proveniência: mais {len(fora_da_faixa) - 10} linhas fora do intervalo "
+            f"declarado, não listadas acima"
+        )
     if not faltando and not sem_item and not fora_da_faixa:
-        rel.passou(f"proveniência: {total} linhas, todas com documento, item e pagina_pdf")
+        detalhe = ", ".join(f"{n} por {o}" for o, n in sorted(origens.items()))
+        rel.passou(
+            f"proveniência: {total} linhas, todas com documento, item e pagina_pdf; "
+            f"faixa resolvida por arquivo ({detalhe})"
+        )
 
 
 # --------------------------------------------------------------------------

@@ -62,7 +62,7 @@ tese em termos absolutos, deixou de procurá-los. Ver § 4 e o relatório, § 6.
 
 ## 3. Cadeia de correção monetária
 
-`trt3.hist.trabalhista.correcao-monetaria` — 3 segmentos.
+`trab.hist.correcao-monetaria` — 3 segmentos.
 
 ### 3.1 O índice antes de março de 1991 é `nao-declarado`
 
@@ -116,7 +116,7 @@ Gravado com `status_norma: superado`. É história do regime, não regra.
 
 ## 4. Cadeias de juros
 
-### 4.1 Geral — `trt3.hist.trabalhista.juros-mora`
+### 4.1 Geral — `trab.hist.juros-mora`
 
 Quadro sinóptico da `pagina_pdf 89`, transcrito sem alteração:
 
@@ -129,7 +129,7 @@ Quadro sinóptico da `pagina_pdf 89`, transcrito sem alteração:
 **A linha do meio contraria a invariante R4** (juros de mora sempre simples). Não foi
 harmonizada. Ver § 5.
 
-### 4.2 Fazenda Pública — `trt3.hist.fazenda-publica.juros-mora`
+### 4.2 Fazenda Pública — `trab.hist.fazenda-publica.juros-mora`
 
 **Cinco** segmentos, do quadro da `pagina_pdf 92` — não três, como a primeira versão
 trazia. Ver o relatório, § 6, sobre como o erro ocorreu.
@@ -212,7 +212,7 @@ precisa honrá-la. Registrada no campo `ALERTA_R4` dos segmentos, não harmoniza
 
 ## 6. Moedas e paridades
 
-`trt3.hist.moedas-e-paridades` — 8 segmentos, `pagina_pdf 99`, conferidos caractere a
+`trab.hist.moedas-e-paridades` — 8 segmentos, `pagina_pdf 99`, conferidos caractere a
 caractere.
 
 | Período | Moeda | Símbolo | Proporção | Raciocínio |
