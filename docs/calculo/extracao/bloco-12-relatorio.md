@@ -183,6 +183,19 @@ Três achados forçaram a reclassificação, e o terceiro é decisivo:
 - **16.4.7** — multa limitada ao principal **corrigido**, art. 412 do CC + OJ 54;
 - **p. 328** — **o único lugar do manual** que conecta o "descarregar" ao anatocismo.
 
+> **Revisado no bloco 13.** Destes três, **o segundo caiu**: o capítulo técnico enuncia a
+> regra da multa no item **6.13.10, p. 77**, com o texto íntegro da OJ 54 — melhor do que a
+> minuta, que a traz truncada. Gravei a afirmação sem cruzá-la contra o capítulo 6.
+>
+> E há **precisão a fazer no terceiro**: `anatocismo` ocorre nas pp. 16, 90, 328 e 335 — não é
+> exclusivo do capítulo 16. **Exclusiva é a aplicação do conceito à amortização.**
+>
+> **A reclassificação sai reforçada, não enfraquecida:** o bloco 13 cruzou 36 fundamentos e
+> achou **mais quatro exclusivos** — IN SRF 15/2001 (a fonte declarada do *gross-up*, com
+> **uma única ocorrência em 471 páginas**), Súmula 454/TST, Súmula 388/TST com o art. 83 da
+> Lei 11.101/05, e o Prov. 03/91 com o art. 104, § 5º, do PGC. Eram três achados, um caiu;
+> são **seis**.
+
 **O padrão se repetiu três vezes: o manual pratica no capítulo técnico e fundamenta na
 minuta.** Quem extrair só os capítulos técnicos fica com as operações sem as razões.
 

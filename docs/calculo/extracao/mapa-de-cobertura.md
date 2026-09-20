@@ -3,8 +3,19 @@
 Artefato de fechamento da Fase 2. Lista **todo capítulo e item dos dois manuais**, com o
 bloco que o cobriu ou a razão de não ter sido coberto.
 
-Produzido no bloco 10. Fronteiras de capítulo obtidas por varredura do PDF, não do sumário
-impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
+Produzido no bloco 10, **fechado no bloco 13**. Fronteiras de capítulo obtidas por varredura
+do PDF, não do sumário impresso — o sumário deste manual já se mostrou incompleto mais de uma
+vez.
+
+> **ESTADO FINAL — os dois PDFs fecham em 100%.**
+>
+> | Manual | Páginas | Cobertas | Pré-textuais com decisão | Sem decisão |
+> |---|---|---|---|---|
+> | TRT-3 (2016) | 471 | **463** | 8 | **0** |
+> | CJF (Res. 990/2026) | 93 | **83** | 10 | **0** |
+> | **total** | **564** | **546** | **18** | **0** |
+>
+> **Nenhuma página sem destino registrado.** Conferido por script.
 
 ---
 
@@ -21,50 +32,43 @@ impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
 | 5 | Cálculos de liquidação — como se estrutura | 14–17 | 4 | 2 | coberto |
 | 6 | Verbas trabalhistas | 18–82 | 65 | 3 e 4 | coberto |
 | 7 | Atualização monetária e juros de mora | 83–99 | 17 | 9 e 10 | coberto |
-| 8 | Encargos e despesas processuais | 100–106 | 7 | **13** | decidido — ver § 2.2 |
+| 8 | Encargos e despesas processuais | 100–106 | 7 | **13B** | **coberto** |
 | 9 | Descontos legais: previdenciário e fiscal | 107–208 | 102 | 7 | coberto |
-| 10 | Atualização de débitos trabalhistas | 209–277 | 69 | **11A, 11B, 11C** | **56 pp. cobertas**, 13 com decisão registrada — ver § 2.1 |
+| 10 | Atualização de débitos trabalhistas | 209–277 | 69 | **11A, 11B, 11C, 13A** | **coberto** — ver § 2.1 |
 | 11 | Exemplo de cálculos, acordos e atualizações | 278–298 | 21 | 10 | coberto |
-| 12 | Contribuição sindical | 299–302 | 4 | **13** | decidido — ver § 2.3 |
+| 12 | Contribuição sindical | 299–302 | 4 | **13C** | **coberto** — estrutura, marcado superado |
 | 13 | Atualização de créditos da dívida ativa da União | 303 | 1 | 10 | coberto |
-| 14 | Precatórios | 304–306 | 3 | **13** | decidido — ver § 2.4 |
+| 14 | Precatórios | 304–306 | 3 | **13C** | **coberto** — estrutura, marcado superado |
 | 15 | Comandos facilitadores do cálculo de liquidação | 307–309 | 3 | 10 | coberto |
-| 16 | Promoções | 310–336 | 27 | **13** | **FONTE NORMATIVA** — reclassificado. Ver § 3 |
+| 16 | Promoções | 310–336 | 27 | **13E** | **coberto** por varredura dirigida — **FONTE NORMATIVA**. Ver § 3 |
 | 17 | Súmulas, OJs e TJPs — TST e TRT-3 | 337–372 | 36 | 10 | coberto |
 | 18 | Tabelas | 373–471 | 99 | 1 | coberto |
 
-**Conferido em script**, não estimado. Atualizado no bloco 12.
+**Conferido em script**, não estimado. **Fechado no bloco 13.**
 
 Página não coberta exige decisão registrada, e o mapa separa os dois casos:
 
 | | Páginas |
 |---|---|
-| **Cobertas** | **409** |
-| Não cobertas **com decisão registrada** | **54** |
+| **Cobertas** | **463** |
 | Não cobertas **sem decisão** | **0** |
-| Soma dos capítulos | 463 |
-| Pré-textuais (capa e sumário, pp. 1–8) | 8 |
+| Pré-textuais (pp. 1–8) — **decisão registrada** | 8 |
 | **Total do PDF** | **471** |
 
-**Cobertura: 86,8% do PDF, 88,3% das páginas de capítulo.**
+**Todas as 463 páginas de capítulo estão cobertas.** As 8 pré-textuais — capa, folha de rosto
+e sumário — não têm conteúdo normativo; **decisão registrada, não omissão**.
 
-### Não coberto COM decisão registrada — 54 pp.
+**Cobertura: 100% das páginas de capítulo; 100% do PDF com destino registrado.**
 
-| Onde | Págs | Decisão |
-|---|---|---|
-| Cap. 10, segmento **B** (pp. 224–236) | 13 | **Bloco 11D** — descontos proporcionais. Reordenado: o 11C foi ao segmento D porque a amortização estava incompleta sem os Exemplos 5 e 6 |
-| Cap. 8 (pp. 100–106) | 7 | **Bloco 13.** Custas, honorários periciais e advocatícios — fecha a assimetria com o cap. 1 do Manual CJF, já extraído |
-| Cap. 12 (pp. 299–302) | 4 | **Bloco 13**, como **estrutura**, marcado **superado pela Reforma** (contribuição facultativa desde 2017) |
-| Cap. 14 (pp. 304–306) | 3 | **Bloco 13**, como **estrutura**, marcado **superado pela EC 113/2021 e pela EC 136/2025** |
-| Cap. 16 (pp. 310–336) | 27 | **Bloco 13**, varredura dirigida a 16.4.3–16.4.7 e 16.4.9–16.4.12. **Reclassificado para FONTE NORMATIVA** — ver § 3. Pendência **P10-C16** |
+### Não coberto — nenhuma página
 
-### Não coberto SEM decisão — 0 pp.
+O bloco 13 cobriu as 54 que faltavam: segmento B do cap. 10 (13 pp.), cap. 8 (7), cap. 12
+(4), cap. 14 (3) e cap. 16 (27).
 
-**Não há mais páginas sem decisão registrada.** Os capítulos 8, 12, 14 e 16 receberam destino
-no bloco 12; todos vão para o **bloco 13**.
-
-O mapa mantém a distinção porque ela é a que importa para a Fase 3: *não coberto* não diz
-nada; *não coberto sem decisão* é dívida técnica, e chegou a zero.
+**Ressalva de natureza, registrada:** o capítulo 16 foi coberto por **varredura dirigida**, não
+por extração integral. As 27 páginas foram lidas e cruzadas; o que não é regra de cálculo —
+endereçamento, fecho, pedido de prazo — **foi deliberadamente não extraído**. Isso é decisão,
+não lacuna: ver § 3.
 
 ### 1.1 Detalhamento do capítulo 6 (blocos 3 e 4)
 
@@ -215,7 +219,7 @@ onde a regra é fundamentada.
 
 ### 3.1 Os três achados que forçaram a reclassificação
 
-**16.4.11 — imputação na data do levantamento** (`pagina_pdf` 335):
+**16.4.11 — imputação na data do levantamento** (`pagina_pdf` **333–334**):
 
 > "a dedução do valor recebido pelo reclamante foi efetuada na data do efetivo levantamento,
 > na forma do disposto na **Súmula nº 15 do TRT/3ª Região**, considerando que o depósito de
@@ -227,8 +231,17 @@ dedução em 56 páginas, **nunca cita a Súmula 15** — `Súmula` tem zero oco
 que a aplica.
 
 **16.4.7 — multa limitada ao principal CORRIGIDO** (`pagina_pdf` 330), com fundamento duplo:
-art. 412 do CC (art. 920 do CC/1916) e OJ 54 da SDI. O teto mede-se sobre o principal **já
-corrigido**, não sobre o nominal — decisão de ordem de operações.
+art. 412 do CC (art. 920 do CC/1916) e OJ 54 da SDI.
+
+> **CORRIGIDO NO BLOCO 13 — este achado caiu.** Não é caso de "fundamenta só na minuta": o
+> capítulo técnico **enuncia a mesma regra, e melhor**. Item **6.13.10 "Multa diária",
+> `pagina_pdf` 77**, com o texto **íntegro** da OJ 54 e o art. 412 dentro das aspas — o que a
+> p. 330 traz **truncado e com erro** (*"não poderá **se** superior"*). A p. 77 ainda
+> acrescenta duas regras que a minuta não tem: a correção começa **um dia após** o teto ser
+> atingido, e *"A incidência de juros sobre a multa é controversa."*
+>
+> **Eu gravei esta afirmação no bloco 12 sem cruzá-la contra o capítulo 6.** A varredura
+> dirigida do bloco 13 a derrubou.
 
 **p. 328 — o fundamento do "descarregar"**:
 
@@ -236,8 +249,34 @@ corrigido**, não sobre o nominal — decisão de ordem de operações.
 > (anatocismo)**"
 
 **É o único lugar do manual que conecta a operação de descarregar ao anatocismo.** O capítulo
-10 executa a operação e a nomeia apenas "descarregar"; `anatocismo` tem **zero ocorrências**
-em todo o capítulo 10. Ver `00-base-normativa.md` § 7, **R23**.
+10 executa a operação e a nomeia apenas "descarregar" — `descarreg` tem **uma única ocorrência
+em todo o manual**, na p. 237 —, e `anatocismo` tem **zero ocorrências** nas 69 páginas do
+capítulo 10. Ver `00-base-normativa.md` § 7, **R23**.
+
+> **Precisão acrescentada no bloco 13.** `anatocismo` **não é exclusivo do capítulo 16**:
+> ocorre nas pp. **16, 90, 328 e 335**. A p. 16 o usa para a acumulação da Selic (com a
+> Súmula 121 do STF) e a p. 90 para a Fazenda Pública. **O que é exclusivo do capítulo 16 é a
+> aplicação do conceito à operação de amortização** — e a p. 328 abre com a **mesma frase** do
+> item 10.3.1, qualificando juridicamente o que lá é apenas nomeado.
+
+### 3.1.1 E o bloco 13 achou mais quatro, todas confirmadas
+
+A varredura dirigida cruzou **36 fundamentos** do capítulo 16 contra os capítulos técnicos.
+**Quatro aparecem só no capítulo 16**, em todas as 471 páginas:
+
+| Fundamento | Onde | Ocorrências no manual |
+|---|---|---|
+| **IN SRF 15/2001** — fonte do *gross-up* bruto↔líquido | 16.4.4.10, p. 326 | **1**, e é essa |
+| **Súmula 454/TST** — SAT na desoneração | 16.4.3.19, pp. 320–322 | **3**, todas no cap. 16 |
+| **Súmula 388/TST** + **art. 83 da Lei 11.101/05** — massa falida | 16.4.9.2, p. 332 | **2** e **1**, todas na p. 332 |
+| **Prov. 03/91** e **art. 104, § 5º, do PGC TRT-3** | 16.3.5, 16.4.2, 16.4.8.3, 16.4.12.1 | **0 em qualquer capítulo técnico** |
+
+A IN SRF 15/2001 é a mais gritante: é **a fonte declarada da fórmula de gross-up**, e a
+expressão "bruto em relação ao líquido" ocorre em 16 páginas — **15 delas no capítulo 10**,
+que nunca diz de onde a fórmula vem.
+
+**A reclassificação para fonte normativa sai reforçada:** eram três achados, um dos quais caiu;
+são **seis** confirmados.
 
 ### 3.2 O que isso significa para o bloco 13
 
@@ -258,15 +297,36 @@ Pendência **P10-C16**, elevada a prioridade alta.
 
 **Offset de paginação: 1.** `pagina_pdf = impresso + 1`.
 
-| Cap. | Título | Bloco | Estado |
-|---|---|---|---|
-| 1 | Custas processuais | 8 | coberto |
-| 2 | Dívida fiscal (2.1 a 2.9) | 8 | coberto |
-| 3 | Dívidas diversas | 8 | coberto |
-| 4 | Liquidação de sentença (4.1 a 4.9) | 8 | coberto — ver § 4.1 |
-| 5 | Requisições de pagamento (precatório, RPV, EC 136/2025) | 8 | coberto |
+**Fronteiras conferidas por varredura no bloco 13** — não estavam mapeadas página a página.
 
-**Integralmente extraído.** É a única fonte do corpus cuja edição está vigente.
+| Faixa | Conteúdo | Nº | Bloco | Estado |
+|---|---|---|---|---|
+| 1–10 | brancas (1 e 3), composição do Conselho, elaboração e revisão, **sumário** (5–10) | 10 | — | **pré-textual — decisão registrada** |
+| 11–12 | **Apresentação** — declara os critérios da Lei 14.905/2024 | 2 | 8 | **coberto** |
+| 13 | **Resolução CJF n. 990, de 3 de julho de 2026** | 1 | 8 | **coberto** |
+| 14–21 | Capítulo 1 — Custas processuais | 8 | 8 | coberto |
+| 22–39 | Capítulo 2 — Dívida fiscal (2.1 a 2.9) | 18 | 8 | coberto |
+| 40 | Capítulo 3 — Dívidas diversas | 1 | 8 | coberto |
+| 41–87 | Capítulo 4 — Liquidação de sentença (4.1 a 4.9) | 47 | 8 | coberto — ver § 4.1 |
+| 88–93 | Capítulo 5 — Requisições de pagamento (EC 136/2025) | 6 | 8 | coberto |
+| | **cobertas** | **83** | | |
+| | **pré-textuais com decisão** | **10** | | |
+| | **total** | **93** | | |
+
+**100% com destino registrado.**
+
+### 4.0 Uma imprecisão corrigida no bloco 13
+
+Desde o bloco 8 este manual era descrito como **"93 páginas, integral"**. A descrição
+superestimava: **os capítulos ocupam 80 páginas**; as outras 13 são pré-textuais, e **3 delas
+têm conteúdo normativo** — a Apresentação, que declara os critérios da Lei 14.905/2024, e a
+própria Resolução 990/2026.
+
+**Essas três estão cobertas** — `bloco-08-jf.md` cita a Apresentação literalmente, e a
+**Resolução CMN n. 5.171/2024**, que ela invoca, está na § 4 de `00-base-normativa.md`. A
+imprecisão era de contagem, não de leitura.
+
+É a única fonte do corpus cuja edição está vigente.
 
 ### 4.1 Cadeias do capítulo 4 lidas mas não codificadas
 

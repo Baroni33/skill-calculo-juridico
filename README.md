@@ -72,7 +72,8 @@ console, não corrupção do arquivo.
 
 Fases 0 e 1 fechadas (contrato de saída e triagem).
 
-Fase 2 em curso.
+**Fase 2 encerrada no bloco 13.** Os dois manuais estão extraídos, com destino registrado
+em todas as 564 páginas.
 
 | Bloco | Conteúdo | Relatório |
 |---|---|---|
@@ -90,10 +91,13 @@ Fase 2 em curso.
 | 11B | Capítulo 10, segmento C — amortização de valor pago (art. 12-A) | `docs/calculo/extracao/trabalhista/bloco-11b-relatorio.md` |
 | 11C | Capítulo 10, segmento D — vincendos e art. 12-B; **fecha a amortização** | `docs/calculo/extracao/trabalhista/bloco-11c-relatorio.md` |
 | 12 | Consolidação da base de conhecimento — presets, invariantes, armadilhas | `docs/calculo/extracao/bloco-12-relatorio.md` |
+| 13 | **Fechamento da extração** — cap. 10 seg. B, caps. 8, 12, 14 e varredura do 16 | `docs/calculo/extracao/bloco-13-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
-93 páginas, sete cadeias temporais em `tabelas-normativas/`, e é a única fonte do corpus cuja
-edição está vigente.
+**80 páginas de capítulo** mais a Apresentação e a Resolução, sete cadeias temporais em
+`tabelas-normativas/`, e é a única fonte do corpus cuja edição está vigente. *(A descrição
+"93 páginas integrais", usada até o bloco 12, superestimava: 13 das 93 são pré-textuais, e as
+3 com conteúdo normativo estão cobertas. Corrigido no bloco 13.)*
 
 O **bloco 9** acrescenta quatro cadeias históricas trabalhistas (`trt3.hist.*`) e corrige o
 validador de cobertura: a exaustividade dos ramos condicionados passou a ser **declarada**
@@ -102,19 +106,25 @@ ver `bloco-09-relatorio.md` § 2.
 
 **O artefato que abre a Fase 3 é [`docs/calculo/extracao/mapa-de-cobertura.md`](docs/calculo/extracao/mapa-de-cobertura.md)** —
 todo capítulo e item dos dois manuais, com o bloco que o cobriu ou a razão de não ter sido
-coberto. Conferido por script: **cobertura de 86,8%**, e desde o bloco 12 **zero páginas sem
-decisão registrada** — as 54 não cobertas têm bloco atribuído.
+coberto. **O bloco 13 fechou a extração: os dois PDFs têm destino registrado em todas as 564
+páginas.**
+
+| Manual | Páginas | Cobertas | Pré-textuais com decisão | Sem decisão |
+|---|---|---|---|---|
+| TRT-3 (2016) | 471 | **463** | 8 | **0** |
+| CJF (Res. 990/2026) | 93 | **83** | 10 | **0** |
+| **total** | **564** | **546** | **18** | **0** |
 
 O **bloco 12** consolidou o que estava espalhado pelos relatórios:
 [`armadilhas-comparador.md`](docs/calculo/armadilhas-comparador.md) reúne os **defeitos do
-manual que um perito reproduz** — dez armadilhas com página, valor impresso, valor correto e
-assinatura detectável, mais os deltas de método e os comportamentos que **não** são defeito
+manual que um perito reproduz** — **quinze** armadilhas com página, valor impresso, valor
+correto e assinatura detectável, mais os deltas de método e os comportamentos que **não** são
+defeito
 (precisão plena, ausência de regra de arredondamento, mês comercial inclusivo). O limiar de
 alarme do comparador não deve ser o centavo.
 
-O **capítulo 10** está em extração pela série 11A–11D, dividida **por operação** — 56 das 69
-páginas cobertas, e **a amortização fechada** pelo 11C. O **bloco 11B** respondeu a invariante
-**R10**:
+O **capítulo 10** foi extraído pela série 11A–11C e 13A, dividido **por operação** — as 69
+páginas estão cobertas. O **bloco 11B** respondeu a invariante **R10**:
 
 > A imputação de pagamento parcial no trabalhista é **proporcional** — o pagamento abate
 > principal e juros na razão em que compõem o bruto (item 10.3.1, letra F, p. 237). **E não

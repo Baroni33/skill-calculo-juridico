@@ -116,6 +116,98 @@ não.
 **Agravante:** a p. 220 declara literalmente *"Aplicação apenas dos Juros Selic, sem a
 inclusão da multa"*, e a própria coluna E vem `0,00`.
 
+### A11 — Fórmula do bruto levantado com o colchete fechado cedo demais
+
+| | |
+|---|---|
+| **`pagina_pdf`** | **227** e **231**; propaga para **244** e **250** |
+| **Impresso (fórmula)** | `{ 1 – [(TB × IPIR – INSS) × ALIQ / TB] + (INSS / TB) }` |
+| **Correto** | `{ 1 – [(TB × IPIR – INSS) × ALIQ / TB  +  (INSS / TB)] }` |
+| **Erro** | **−3.771,73** (p. 227) e **−3.071,48** (p. 231) se a fórmula for seguida à risca |
+| **Bloco** | 13A |
+
+Com os parâmetros do próprio exemplo — `TB = 412.023,32`, `IPIR = 0,8340`,
+`INSS = 1.871,37`, `ALIQ = 27,5%`, `TL = 282.500,00`, `PD = 723,95425`, `NMP = 48,5`:
+
+```
+literal, como impresso   → 318.618,21
+com o colchete correto   → 322.389,94   = o valor impresso no manual   ✓
+```
+
+**Assinatura detectável, e é forte:** a fórmula publicada e o resultado publicado **não
+coincidem**, e **o próprio manual publica a forma correta duas páginas depois** — item
+10.2.2.1, `pagina_pdf` 233: `1 – [(TB x IPIR – INSS) x (ALIQ. / TB) + (INSS / TB)]`.
+
+Mesma classe de A7 (gross-up): **fórmula errada, resultado certo**. Um motor que implemente o
+que está escrito diverge; um que reproduza o resultado, não.
+
+**Cuidado adicional:** com `INSS = 0` as duas leituras **coincidem**. Os exemplos do art. 12-B
+usam `INSS = 0,00`, logo **não exercitam o defeito** — ele só aparece quando há INSS.
+
+### A12 — Rótulo do cap. 9 ignora o juro Selic da cota-reclamante
+
+| | |
+|---|---|
+| **`pagina_pdf`** | 132 (rótulo), 280 (onde a divergência aparece) |
+| **Impresso** | `"(Vr. Bruto do recte + INSS recda) x 0,5%"` |
+| **Correto** | a base real é `líquido + INSS recte COM Selic + INSS recda` |
+| **Erro** | **35,29** no exemplo da p. 280 — a base dá 30.312,81 e não 30.277,52 |
+| **Bloco** | 13B |
+
+```
+606,12 − 570,83 = 35,29     ← o juro Selic sobre a cota-reclamante
+```
+
+`bruto ≡ líquido + INSS recte SEM Selic`. O rótulo **só coincide quando o INSS não carrega
+juro** — que é o caso nas três ocorrências do cap. 9 (pp. 132, 137, 163).
+
+**Assinatura detectável:** a base impressa difere do bruto + INSS recda exatamente pelo juro
+Selic da cota do reclamante. **Isto reclassifica o achado P10-18** de divergência normativa
+entre capítulos para **defeito de rótulo**. E o `151,39` do bloco 10 **não é impresso em
+nenhuma das 471 páginas** — era valor derivado.
+
+### A13 — Base impressa errada no percentual de honorários
+
+| | |
+|---|---|
+| **`pagina_pdf`** | 106 |
+| **Impresso** | `(15% s/ 277.338,69)` → resultado `41.600,76` |
+| **Correto** | a base é `277.338,39` |
+| **Bloco** | 13B |
+
+**Assinatura detectável:** 15% de 277.338,69 daria **41.600,80**; o impresso é **41.600,76**,
+que é 15% de **277.338,39**. **O rótulo está errado e o resultado certo** — terceiro caso do
+mesmo padrão (ver A7 e A11).
+
+### A14 — Teto rural de 2011 fora do padrão de arredondamento
+
+| | |
+|---|---|
+| **`pagina_pdf`** | cap. 12, tabelas rurais |
+| **Impresso** | `10.867,51` |
+| **Correto** | `10.867,32` pelo fecho da própria tabela |
+| **Erro** | **0,19** |
+| **Bloco** | 13C |
+
+**Assinatura detectável:** os demais anos fecham com delta de **0,01**; este destoa em **0,19**
+— uma ordem de grandeza acima do ruído de arredondamento do manual. Na mesma família: faixa de
+2013 com **sobreposição** em `3.255,47` e **buraco de R$ 2,01**; faixa de 2014 com
+`6.89.754,21` malformado.
+
+### A15 — OJ 54 transcrita truncada e com erro na minuta
+
+| | |
+|---|---|
+| **`pagina_pdf`** | 330 (errada) contra **77** (correta) |
+| **Impresso** | *"não poderá **se** superior"* — falta o "r" — e a citação **omite o art. 412/2002 de dentro das aspas** |
+| **Correto** | `pagina_pdf` 77, item 6.13.10, com o texto íntegro |
+| **Bloco** | 13E |
+
+**Assinatura detectável:** o mesmo verbete aparece duas vezes no manual, e a versão do capítulo
+técnico é **mais completa** que a da minuta. A p. 77 ainda acrescenta duas regras ausentes da
+p. 330: a correção começa **um dia após** o teto ser atingido, e *"A incidência de juros sobre
+a multa é controversa."*
+
 ### A5 — Índice de dez/10 com monotonicidade quebrada
 
 | | |
@@ -277,7 +369,11 @@ o centavo.**
 | 266 | A3 — bloqueio P11B-01 · A9 — títulos idênticos |
 | 267–268, 276 | A10 — duplicações e duplo valor |
 | 269, 271 | A2 — bloqueio P10D-01 |
+| 106 | A13 — base do percentual de honorários |
+| 132, 280 | A12 — rótulo ignora o Selic da cota-reclamante |
+| 227, 231 (→ 244, 250) | **A11 — colchete da fórmula do bruto** |
 | 296–298 | A1 — FGTS em dobro (linha na 297) |
+| 330 | A15 — OJ 54 truncada |
 
 ---
 

@@ -332,7 +332,12 @@ Regras que, violadas, produzem erro material. Devem ser impedidas na composiçã
 >
 > Quem a nomeia como anatocismo é uma **minuta de petição do capítulo 16** (`pagina_pdf` 328):
 > *"recalculando os juros de mora desde a inicial, não incidindo juros sobre juros
-> (anatocismo)"*.
+> (anatocismo)"*. A p. 328 abre com a **mesma frase** do item 10.3.1 — a diferença é que lá a
+> operação é apenas nomeada, e aqui é qualificada juridicamente.
+>
+> **Precisão do bloco 13:** `anatocismo` ocorre nas pp. **16, 90, 328 e 335** — não é
+> exclusivo do capítulo 16. A p. 16 trata da acumulação da Selic e a p. 90 da Fazenda Pública.
+> **Exclusiva do capítulo 16 é a aplicação do conceito à operação de amortização.**
 >
 > **E são duas regras anti-anatocismo distintas, que o manual nunca reúne:** (1) juros
 > acumulam por **soma** de percentuais, nunca por multiplicação — `pagina_pdf` 16, **única**

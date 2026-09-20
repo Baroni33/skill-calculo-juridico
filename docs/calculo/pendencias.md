@@ -671,3 +671,59 @@ bloco 5.
 Confirmar contra o inteiro teor antes de usar em produção — a distinção i.1 × i.2 decide se o
 critério do STF alcança ou não valores já pagos, e é o que sustenta o preset
 `pr.adc58-item-i`.
+
+---
+
+## 21. Bloco 13 — fechamento da extração
+
+**Status: a extração está encerrada.** Os dois manuais têm destino registrado em todas as
+564 páginas. O que resta não se fecha lendo os PDFs.
+
+### 21.1 FECHADAS pelo bloco 13
+
+| # | Como fechou |
+|---|---|
+| **P11B-02** — arredondamento do NMP | **A regra É declarada**, pp. 226 e 230: *"parágrafo único do 45 da IN 1500/14"*, com o artigo transcrito. **Não é half-up** — três ramos, e `=5` manda olhar a 3ª casa. Difere de `ROUND_HALF_UP` em `x,y50`–`x,y54`. Minha afirmação anterior era negativa não verificada |
+| **P11B-03** — percentual pleno × `0,9091` | **Erro meu de leitura.** `0,9091` é o **IPIR**, índice das parcelas passíveis de IR. O contraste não existe |
+| **P10D-07** — art. 12-B por paráfrase | **Resolvida.** A string está nas pp. 224 e 233, com hipótese de incidência literal. Sob 12-B **não há NM** |
+| **P10-18** — base das custas de execução | **Reclassificada.** A causa é o **juro Selic sobre a cota-reclamante** (35,29), não bruto × líquido. Vira defeito de rótulo — A12. Resta o estado da base, que o cap. 8 define **só por exclusão** |
+| **P10-C16** — varredura do cap. 16 | **Feita.** 39 achados, 36 fundamentos cruzados, **seis exclusivos do capítulo 16** |
+
+### 21.2 NOVAS — e a primeira bloqueia uma pendência antiga
+
+| # | Pendência |
+|---|---|
+| **P13B-02** | **O manual se contradiz sobre Fazenda Pública.** Cap. 8, p. 102: isentos os entes públicos *"que não explorem atividade econômica"* (art. 790-A). Cap. 14, p. 306: isentos os órgãos da administração *"direta e indireta"*, **sem a ressalva**. Dois testes incompatíveis. **Consequência: o manual NÃO pode fechar a pendência 1 da § 9.** `economia mista` = 0 ocorrências nas 471 páginas |
+| **P8-F4-02** | **As faixas do art. 85, § 3º, do CPC não existem no repositório.** Busca em toda a árvore `docs/` por `200 salários`, `1.000 salários`, `2.000 salários`, `20.000 salários`, `100.000 salários` → **zero**. Só existe a regra de progressividade (`bloco-08-jf.md`, R-08-21). Sem elas, a marcação de Fase 4 do art. 791-A não tem contra o que ser confrontada |
+| **P13A-01** | Fórmula do bruto levantado com **colchete fechado cedo demais**, pp. 227 e 231; **propaga para 244 e 250**. Delta 3.771,73. Armadilha A11 |
+| **P13A-02** | O capítulo 10 aplica **dois critérios de rateio** (principal×juros em 10.3; bruto→INSS em 10.2) e **não fundamenta nenhum** |
+| **P13A-03** | `OJ 400` ausente do segmento B: a escolha entre base de IR **com** e **sem** juros é bifurcação declarada, **sem regra de escolha** |
+| **P13A-05** | Divergência de citação da IN 1500/14: 10.2.2 cita "arts. 26, **44 e 45**"; 9.3.8 cita "arts. 26, **43** e 44". O art. 45 é **inaplicável ao 12-B** |
+| **P13C-01** | **Três posições no mesmo manual** sobre a data da dedução: cap. 10 usa **levantamento** sem fundamento; 16.4.11 dá **duas teses** separadas pela finalidade do depósito; cap. 14, p. 306, manda **data do pagamento** |
+| **P13E-01** | **IN SRF 15/2001** — fonte declarada da fórmula de *gross-up* — tem **uma única ocorrência em 471 páginas**, no cap. 16. O cap. 10 usa a fórmula em todos os exemplos e nunca diz de onde vem |
+| **P13B-04** | Juros sobre honorários periciais: quatro acórdãos em cada sentido. **Duas variantes com fundamento** |
+
+### 21.3 Correções de registro feitas no bloco 13
+
+Afirmações de blocos anteriores que a extração final derrubou, todas minhas:
+
+- **16.4.11 está nas pp. 333–334**, não na 335 (bloco 12);
+- **16.4.7 não é caso de "fundamenta só na minuta"** — o cap. 6, p. 77, enuncia a regra com o
+  texto **íntegro** da OJ 54, melhor que a minuta (bloco 12);
+- **`anatocismo` não é exclusivo do cap. 16** — pp. 16, 90, 328 e 335. Exclusiva é a
+  **aplicação do conceito à amortização** (bloco 12);
+- **o capítulo técnico do FGTS cita a OJ 302** — cap. 6, p. 79, com transcrição;
+- **o manual CJF não tem "93 páginas integrais"** — os capítulos são 80; 13 são pré-textuais,
+  das quais 3 têm conteúdo normativo e estão cobertas (bloco 8).
+
+### 21.4 O que permanece aberto e não se fecha por extração
+
+- **P11B-01** e **P10D-01** — os dois bloqueios aritméticos, nenhum absorvível por
+  arredondamento;
+- **P11B-07** — o critério de imputação sem norma, modelado como `pr.imputacao` sem default;
+- **P10D-04** — obrigatoriedade do critério alternativo da letra C, declarada e não
+  demonstrada;
+- **P10D-08** — migração de regime tributário dentro do mesmo cálculo, sem disciplina em todo
+  o manual;
+- **§ 20.6** — a origem externa da subseção § 1.1 da base normativa: o inteiro teor dos três
+  precedentes do TST **não foi lido**.
