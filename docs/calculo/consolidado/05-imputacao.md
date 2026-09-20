@@ -3,8 +3,8 @@
 Espinha consolidada. Amortização de valor pago, rateio principal × juros, o *descarregar*, e
 o item "i" da modulação da ADC 58.
 
-**É a operação que o produto mais usa** — quem está no polo passivo paga, deposita e acorda,
-então quase toda conta tem valor pago antes do resultado final.
+**É a operação que o produto mais usa.** Sempre que houve pagamento, depósito ou acordo antes
+do resultado final — em qualquer polo — a conta passa por aqui.
 
 Fontes: blocos **11A**, **11B**, **11C**, **13A**; `../00-base-normativa.md` §§ 1.1 e 7;
 `../confronto-normativo/01-vereditos.md`.

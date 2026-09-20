@@ -38,7 +38,7 @@ tests/fixtures/calculo/      fixtures de aceite, seção 8 da base normativa
 ```
 
 Cada pasta tem `README.md` com propósito, o que entra, o que não entra e a fase do
-pipeline. Nenhuma contém conteúdo normativo ainda.
+pipeline. **As quatro skills estão escritas** desde o bloco 16.
 
 ## Validadores
 
@@ -106,7 +106,27 @@ por unanimidade), com `R20-EXCEÇÃO` caindo de cinco casos para **quatro**; e a
 fases em `01-plano-extracao.md`, que estava invertida, foi corrigida — **o confronto vem antes
 da consolidação**.
 
-**Nenhuma skill escrita. A skill é o bloco 16.**
+**Fase 5 (build das skills) encerrada no bloco 16** — ver
+[`skills/`](skills/) e
+[`docs/calculo/extracao/bloco-16-relatorio.md`](docs/calculo/extracao/bloco-16-relatorio.md).
+**Quatro skills**, todas abaixo de 500 linhas, com `references/` divididas entre **nacional** e
+**regional**. Os **33 casos difíceis** fecham em **33 COBERTO, zero perdido na transposição**.
+
+**Uma premissa do projeto caiu, e é estrutural.** A atualização monetária trabalhista é
+**nacional** desde a Res. CSJT 8/2005 (hoje Res. CSJT 380/2024, com o PJe-Calc como sistema de
+toda a Justiça do Trabalho). **O manual do TRT-3 é fonte procedimental de uma região que aplica
+norma nacional — sua aritmética não é prática regional divergente.** Regional são os verbetes que
+ele invoca, e **são quinze, de três tribunais** (TRT-3, TRT-4, TJMG), não três.
+
+> **As cadeias `trt3.hist.*` são NACIONAIS com nome enganoso.** Um motor que resolva cadeia por
+> prefixo de tribunal **não acha cadeia nenhuma para TRT-1, TRT-2 ou TRT-15**.
+
+Daí a invariante nova: **R24 — ausência de súmula regional não é erro.** Resolve pela regra
+nacional e marca a conta `sem cobertura regional`. Chave: `(regra, tribunal, competência)`.
+
+**A lacuna que o bloco 17 precisa fechar:** a **ordem de cálculo ponta a ponta não é enunciada em
+lugar nenhum do corpus**. O Procedimento das skills é composição declarada — e está marcado como
+tal.
 
 | Bloco | Conteúdo | Relatório |
 |---|---|---|
@@ -127,6 +147,7 @@ da consolidação**.
 | 13 | **Fechamento da extração** — cap. 10 seg. B, caps. 8, 12, 14 e varredura do 16 | `docs/calculo/extracao/bloco-13-relatorio.md` |
 | 14 | **Fase 3 — confronto normativo.** 50 vereditos, 19 suspeitas sobre a base | `docs/calculo/extracao/bloco-14-relatorio.md` |
 | 15 | **Fase 4 — consolidação.** Onze arquivos em espinha e detalhe; os 33 casos difíceis como aceite | `docs/calculo/extracao/bloco-15-relatorio.md` |
+| 16 | **Fase 5 — build das skills.** Quatro skills, `references/` nacional × regional, R24 | `docs/calculo/extracao/bloco-16-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 **80 páginas de capítulo** mais a Apresentação e a Resolução, sete cadeias temporais em

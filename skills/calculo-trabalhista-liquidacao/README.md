@@ -36,6 +36,12 @@ ramos. Decidir na Fase 5, não antes.
   matemáticos (cap. 5) e a estrutura dos descontos (cap. 9) servem; as faixas e os
   honorários, não. Ver `docs/calculo/confronto-normativo/`.
 
+## Fronteira resolvida na Fase 5
+
+**Encargos processuais ficaram aqui**, em `references/encargos-processuais.md`, **provisoriamente
+e com a razão registrada**: separá-los exigiria decidir onde ficam as custas de execução, cuja
+base o corpus **define só por exclusão** (`P13B-01`, aberta). A instabilidade continua declarada.
+
 ## Estado
 
-Vazio.
+**Escrita.** `SKILL.md` + `references/` com seis arquivos — bloco 16, Fase 5.

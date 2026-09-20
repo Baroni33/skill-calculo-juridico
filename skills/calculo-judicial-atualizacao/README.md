@@ -27,13 +27,19 @@ quando o STF, o STJ, o TST ou o Congresso mexem na regra.
 O agente carrega só o arquivo da jurisdição em questão:
 
 ```
-trabalhista-privado.md
-trabalhista-fazenda.md
-civel-cc-tema1368.md
-civel-mg-cgj.md
+trabalhista-nacional.md        cadeia nacional, Tabela Única CSJT
+trabalhista-regional-trt3.md   os verbetes regionais que o manual invoca
+civel-cc-nacional.md           Tema 1368, Lei 14.905, taxa legal
+civel-regional-tjmg.md         tabela da CGJ/TJMG, histórico pré-2003
 tributario-federal.md
 previdenciario.md
 ```
+
+> **RENOMEADO NO BLOCO 16.** A lista anterior separava por qualidade do devedor e por
+> precedente; a nova separa por **alcance da norma — NACIONAL × REGIONAL**, porque a
+> atualização trabalhista é nacional desde a Res. CSJT 8/2005 e o que o manual do TRT-3
+> tem de regional são **os verbetes que ele invoca**, não sua aritmética. Razões arquivo a
+> arquivo em [`references/README.md`](references/README.md).
 
 ## Armadilhas que esta skill precisa cobrir
 
@@ -46,4 +52,4 @@ previdenciario.md
 
 ## Estado
 
-Vazio, inclusive `references/`.
+**Escrito no bloco 16, fase 5.** `SKILL.md` e os seis arquivos de `references/` existem.

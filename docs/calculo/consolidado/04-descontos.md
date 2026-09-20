@@ -250,7 +250,7 @@ em 2026** — o que mudou é que uma das correntes ganhou apoio vinculante **no 
 > **Por que não se resolve:** o Tema 808 **não revogou** a OJ 400, e a OJ 400 **não foi
 > cancelada**. O STF decidiu um recorte; a OJ afirma a regra geral. **A área de atrito é o espaço
 > entre os dois** — juros sobre verbas indenizatórias, sobre honorários, sobre rescisórias de
-> natureza não remuneratória. É **escolha jurídica do cliente**, não determinação de cálculo:
+> natureza não remuneratória. É **escolha jurídica do usuário do módulo**, não determinação de cálculo:
 > **preset sem default**, como `pr.imputacao`.
 
 **Eixo: não é temporal — é MATERIAL**, a natureza da verba principal sobre a qual os juros
@@ -473,7 +473,7 @@ defeito** (precisão plena; ausência de regra de arredondamento monetário). De
 | **De-para RIR/99 → RIR/2018, artigo a artigo** | Planalto inacessível. **Não foi feito**, e sem ele toda remissão a "art. X do RIR/99" é endereço quebrado — inclusive o art. 74 (R-07-01) e o art. 56 (§ 6) |
 | **Destino dos códigos 2909, 1708, 1889 e 5936** | as fontes tratam da substituição **em bloco**; **confiança nula** código a código |
 | **Percentuais da transição da Lei 14.973/2024** | lei **não lida**; secundária comprovadamente ruidosa. **Não usar em produção** |
-| **`F7-03` — juros na base do IR** | **duas correntes vigentes**, Tema 808 × OJ 400. **Não resolvo**: escolha jurídica do cliente, preset sem default |
+| **`F7-03` — juros na base do IR** | **duas correntes vigentes**, Tema 808 × OJ 400. **Não resolvo**: escolha jurídica do usuário do módulo, preset sem default |
 | **Migração 12-A ↔ 12-B no mesmo cálculo**; **escolha da base do IR com/sem juros** no 10.2 | **P10D-08** (0 disciplina em 471 páginas) e **P13A-03** (`OJ 400` ausente do segmento). **Não infiro** |
 | **Fundamento normativo dos dois rateios do cap. 10** | **P13A-02** — `art. 354` tem **0 ocorrências em 471 páginas** |
 | **Conferência artigo a artigo da IN 1500/14** · **nota do MTE sobre a base do seguro-desemprego** (6.13.4, p. 70) | a primeira não foi realizada, e impede confiança maior em `F7-08`; a segunda é **SEM FONTE verificada** — lacuna declarada, não fechada, e **não é regra** |

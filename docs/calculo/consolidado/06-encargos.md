@@ -422,7 +422,7 @@ perguntar ao Juiz ou ao Diretor de secretaria**, não inferir.
 |---|---|
 | **P13B-01** | a base das CE é definida **por exclusão**; **o estado (bruto ou líquido) não é declarado** |
 | **P13B-02** | **contradição cap. 8 × cap. 14** sobre a isenção de entes públicos — § 6 |
-| **Pendência 1 da § 9** | classificação de sociedade de economia mista como Fazenda Pública. **Pergunta ao jurídico do cliente**, não matéria de cálculo |
+| **Pendência 1 da § 9** | classificação de sociedade de economia mista como Fazenda Pública. **Pergunta ao jurídico do usuário do módulo**, não matéria de cálculo |
 | **P13B-04** | juros sobre honorários periciais — **quatro acórdãos em cada sentido**, duas variantes |
 | **P8-F4-02** | regra **fechada**; **os valores numéricos das faixas do art. 85, § 3º, continuam ausentes do repositório** — § 5.3 |
 | — | **responsabilidade e momento** das custas do conhecimento: **não enunciados** no item 8.1 |

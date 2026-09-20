@@ -60,7 +60,7 @@ NÃO tem este tronco.**
 **D1 e D2 dão resultados diferentes sobre a mesma série.** A taxa legal segue **D1**
 (item 4.2.2, NOTA 7, `pagina_pdf` 56).
 
-### 5.4 Desapropriação — os juros compensatórios são cadeia própria
+### 5.3.1 Desapropriação — os juros compensatórios são cadeia própria
 
 **Terceira cadeia autônoma, além da correção (§ 5.2) e dos juros de mora.** Itens 4.5.3
 (direta) e 4.6.3 (indireta). Quem tratar a desapropriação só pela linha de correção monetária
@@ -149,7 +149,7 @@ a nova (que não a alcança) — **lacuna normativa, não pendência de pesquisa
 
 Aplicabilidade do regime de precatórios ao caso do produto. **Razão:** prejudicialidade — depende
 de classificar a devedora como Fazenda Pública ou não, que é a **Pendência 1** de
-`../00-base-normativa.md` § 9, qualificada como *"pergunta ao jurídico do cliente"*.
+`../00-base-normativa.md` § 9, qualificada como *"pergunta ao jurídico do usuário do módulo"*.
 **C14-01 e C14-02 são condicionais a ela.** Busca declarada do bloco 13C: `economia mista` tem
 **zero ocorrências nas 471 páginas** do Manual TRT-3; a única equiparação nominada é a ECT, e só
 *"para efeito de execução e do DL 779/1969"*.

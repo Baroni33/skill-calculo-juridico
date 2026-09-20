@@ -264,7 +264,7 @@ administrativo → original, R-08-17). **Divergência registrada:** TJ-SP manté
 de precatório; **ADI 7873 pendente**; Fazenda **estadual e municipal** sem regra.
 
 **`C14-03` — `INAPLICÁVEL` por prejudicialidade**, razão declarada: depende de classificar a
-devedora como Fazenda Pública — **Pendência 1**, *"pergunta ao jurídico do cliente"*. **C14-01 e
+devedora como Fazenda Pública — **Pendência 1**, *"pergunta ao jurídico do usuário do módulo"*. **C14-01 e
 C14-02 são condicionais a ela.** Busca declarada do bloco 13C: `economia mista` tem **zero
 ocorrências nas 471 páginas**; a única equiparação nominada é a ECT, e só *"para efeito de execução
 e do DL 779/1969"*.
@@ -462,7 +462,7 @@ sobreposição; quase certamente era **12/02/67**. **Registrado, não corrigido.
 | **Fazenda subsidiária** | P9-01 — divergência jurisprudencial, que a disciplina do projeto **não resolve** |
 | **Fazenda estadual e municipal pós-EC 136/2025** | lacuna **normativa**, não de pesquisa: a regra antiga foi revogada e a nova não os alcança |
 | **EC 136/2025 na Justiça do Trabalho** | TST e CSJT não consolidaram |
-| **Classificação da devedora como Fazenda Pública** | Pendência 1 — **determinação jurídica do cliente**. Se negativa, somem o ramo FP das três jurisdições, precatório, ECs 113/136 e a consolidação de dez/2021 |
+| **Classificação da devedora como Fazenda Pública** | Pendência 1 — **determinação jurídica do usuário do módulo**. Se negativa, somem o ramo FP das três jurisdições, precatório, ECs 113/136 e a consolidação de dez/2021 |
 
 ---
 

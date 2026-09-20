@@ -1,7 +1,10 @@
 # Domínio e invariantes
 
-Espinha consolidada. Modelo, vocabulário, as invariantes **R1 a R23** e a regra de
-precedência. É o arquivo que os outros seis pressupõem.
+Espinha consolidada. Modelo, vocabulário, as invariantes **R1 a R24** e a regra de
+precedência. É o arquivo que os outros pressupõem.
+
+> **R24 nasceu no bloco 16** (§ 2.9), com a correção da premissa nacional × regional. As
+> invariantes não são numeradas por ordem de importância, e sim por ordem de descoberta.
 
 Fontes: `../00-base-normativa.md` § 7, `../presets-regime.md` § 5,
 `../parametros-negociaveis.md`, e os vereditos do bloco 14.
@@ -264,6 +267,52 @@ diferentes.
 
 **R22 — regime antes de parâmetro.** `parametro_consultavel()` levanta `RegimesNaoAvaliados` se
 chamado sem avaliação prévia.
+
+### 2.9 Jurisdição regional — R24
+
+**A premissa que o projeto carregava estava errada, e a correção é estrutural.**
+
+A atualização monetária trabalhista é **nacional** desde a **Res. CSJT 8/2005**, que unificou as
+24 tabelas dos TRTs; hoje vale a **Res. CSJT 380/2024**, com duas tabelas — débitos comuns e
+Fazenda Pública, esta referenciada ao Manual do CJF. O **PJe-Calc** é o sistema de toda a Justiça
+do Trabalho. *(Origem: enunciado do bloco 16, **externa ao corpus** — ver
+[`08-nacional-e-regional.md`](08-nacional-e-regional.md).)*
+
+**Consequência:** o manual do TRT-3 é **fonte procedimental de uma região que aplica norma
+nacional**. **Sua aritmética não é prática regional divergente.** O que nele é regional são os
+**verbetes que ele invoca**.
+
+**R24 — ausência de súmula regional não é erro.** Competência **sem verbete regional cadastrado
+para o tribunal** resolve pela **regra nacional** e marca a conta como **`sem cobertura
+regional`**. Não bloqueia, não erra: registra.
+
+> **É a mesma forma da R14**, e a simetria é deliberada: `sem cobertura coletiva` e `sem
+> cobertura regional` são a mesma espécie de silêncio — **o dado não existe**, não **a regra
+> não existe**.
+
+**A chave de resolução tem três componentes:**
+
+```
+(regra, tribunal, competência)
+```
+
+- **`regra`** identifica o **ponto de cálculo**, não o verbete;
+- **`tribunal`** só entra onde há **variante regional cadastrada**. Ausente → fallback nacional;
+- **`competência`** é necessária porque **verbete regional nasce e morre com data** — a Súmula 39
+  do TRT-3 foi cancelada com eficácia retroagida a 11/11/2017.
+
+**R24 não cria exceção à R8.** O título judicial continua vencendo: comando exequendo expresso
+(art. 879, § 1º, da CLT) afasta o verbete regional **mesmo dentro da região que o editou**.
+
+> **São quinze as regras regionais catalogadas, não três** — nove verbetes e seis fontes
+> não-verbete, de **três** tribunais (TRT-3, TRT-4, TJMG). O enunciado do bloco 16 nomeava três.
+> Contagem e fontes em [`08-nacional-e-regional.md`](08-nacional-e-regional.md).
+
+**Armadilha de nome.** As cadeias `trt3.hist.*` de `tabelas-normativas/` **são NACIONAIS**: seus
+fundamentos declarados são CC arts. 1.062–1.063, Lei 8.177/91 art. 39, Súmulas 200 e 381 do TST e
+as paridades da moeda — e a correção monetária **delega à Tabela Única do CSJT**. O prefixo é do
+arquivo, não da norma. **Um motor que resolva cadeia por prefixo de tribunal não acha cadeia
+nenhuma para TRT-1, TRT-2 ou TRT-15.**
 
 ---
 
