@@ -108,13 +108,14 @@ intervalo**.
 
 ### R3 — Tipo do indexador na virada
 
-Nominal (Ufir, BTN, OTN, ORTN) reflete a inflação do mês **anterior**; percentual (INPC, IGP-DI)
-reflete a do **próprio** mês. **Trocar entre tipos sem ajustar desloca o cálculo em um mês.**
+**Três classes desde o bloco 19:** nominal reflete a inflação do mês **anterior**; percentual, a
+do **próprio**; **`janela-deslocada`**, metade de cada. **Trocar entre classes sem ajustar desloca
+o cálculo em um mês** — e **a régua desse ajuste não existe no corpus** (ver Limitações).
 
-> **Só estes sete estão classificados em fonte** (item 4.1.2.4, `pagina_pdf` 42), mais o IPC/IBGE
-> por D8-C21. **Dez indexadores em uso são `indeterminado`** — entre eles IPCA-E, IPCA-15, IPC-R,
-> IRSM e a TR. **Não os presuma percentuais por semelhança de nome**; o validador bloqueia a
-> virada sob `R3-INDETERMINADO`. Catálogo em `tabelas-normativas/indexadores-tipo-catalogo.json`.
+> **A classe de cada índice NÃO se copia para cá:** a fonte é
+> `tabelas-normativas/indexadores-tipo-catalogo.json` (o que o validador lê). Classificar por
+> semelhança de nome (*"IPCA-E soa percentual"*) é a dedução que o bloco 17 removeu; sem fonte, a
+> classe é **`indeterminado`** e a virada **bloqueia** sob `R3-INDETERMINADO`.
 
 ### R4 — Capitalização: juros sempre simples
 
@@ -285,7 +286,12 @@ verbete regional **mesmo dentro da região que o editou**.
 **A regra do NMP não é half-up.** 2ª casa `<5` mantém, `>5` sobe, **`=5` manda olhar a 3ª casa**
 (0–4 mantém, 5–9 sobe). **Difere de `ROUND_HALF_UP` na faixa `x,y50` a `x,y54`.**
 
-### Três regras que o motor não pode violar
+> **O corpus escreve "arredondamento" onde faz TRUNCAMENTO** (`D8-D33`). CJF `pagina_pdf` **53**:
+> *"critério de **truncamento** [...] em cada etapa"*; a **92**, sobre a mesma coisa,
+> *"**arredondamento** de casas decimais"*. **Medido: seis células de 4.2.1.1 e 5.2.1 em que
+> `ROUND_HALF_UP` dá outro número e o manual publica o truncado** (`1.133,9588923 → 1.133,95`).
+
+### Quatro regras que o motor não pode violar
 
 1. **Precisão plena encadeada.** Os números impressos com 2 casas **não são os operandos**. O
    truncamento é só na **emissão**, e **valor exibido nunca realimenta cálculo** — mesmo que
@@ -293,6 +299,12 @@ verbete regional **mesmo dentro da região que o editou**.
 2. **`1/30` é dízima.** Usar `Decimal(1)/Decimal(30)`, nunca o truncamento impresso — o corpus
    grafa `0,0333%` na regra e `0,03333%` no exemplo **duas linhas abaixo**;
 3. **Nenhum float. Em lugar nenhum.**
+4. **`TRUNCAMENTO POR ETAPA` é MODO, não default — e é o que as fixtures 2 e 4 exigem.** Os
+   métodos **resumido** e **detalhado** do CJF **truncam a 2 casas a cada célula e realimentam o
+   valor truncado**. É a exceção declarada da regra 1: **rodar em precisão plena faz os dois
+   convergirem e zera as divergências de R$ 0,01 e R$ 0,03 que as fixtures asseveram.** O motor
+   precisa dos **dois modos**, e o procedimento de cada método está em
+   `skills/calculo-judicial-atualizacao/references/metodos-resumido-e-detalhado.md`.
 
 > **Consequência que muda o comparador: as colunas impressas do corpus não somam os totais
 > impressos**, por 0,01 a 0,02. **O limiar de alarme não deve ser o centavo.**
@@ -406,8 +418,7 @@ amplitude_imputacao = min(abatimento, principal, juros)
 ## Armadilhas conhecidas
 
 **Quinze armadilhas com assinatura detectável**, em
-[`../../docs/calculo/armadilhas-comparador.md`](../../docs/calculo/armadilhas-comparador.md).
-As de maior valor:
+[`../../docs/calculo/armadilhas-comparador.md`](../../docs/calculo/armadilhas-comparador.md) — as de maior valor:
 
 | | Efeito |
 |---|---|
@@ -424,24 +435,23 @@ As de maior valor:
 
 ---
 
-## Fixtures de aceite
+## Fixtures de aceite — **dois níveis**
 
-`tests/fixtures/calculo/` — quatro fixtures de cálculo e dois conjuntos de instrumentos.
+**NÍVEL 1 — o aceite DA SKILL**, executável só com a skill: R11 pelos dois pares publicados, R12
+por AST (zero `float`), R1 na composição, as cinco cadeias de arredondamento e o NMP de três
+ramos. **NÍVEL 2 — o aceite do SISTEMA**, não da skill: as **quatro** fixtures de
+`tests/fixtures/calculo/`, que **exigem a série de índices — camada (B) —, que esta skill não
+carrega por desenho**. Os dois níveis, fixture a fixture: `references/aceite-em-dois-niveis.md`.
 
-| Fixture | Cobre |
-|---|---|
-| `fixture-01-fazenda-publica-jun2022` | Fazenda, antes da virada de 2024 |
-| `fixture-02-fazenda-publica-jun2026` | Fazenda, regime atual |
-| `fixture-03-nao-fazenda-publica-jun2026` | não-Fazenda, regime atual |
-| `fixture-04-precatorio-complementar` | precatório, com exclusão de compensatórios |
-
-**As fixtures 2 e 4 divergem do corpus em R$ 0,01 e R$ 0,03. É esperado** — é a precisão plena
-da seção de aritmética, não defeito. **Comparador que alarme no centavo dá falso positivo aqui.**
+**As fixtures 2 e 4 divergem entre o método RESUMIDO e o DETALHADO do próprio manual** — R$ 0,01
+e R$ 0,03 —, **não do corpus**. Motor que produz **um** número não passa; motor que **zera** a
+diferença está arredondando errado.
 
 **Validadores:** `scripts/calculo/`. **A contagem da suíte não se escreve aqui** — ela vive em
 `docs/calculo/consolidado/00-numeros.md` § 5, gerado por script.
 
 ```
+python scripts/calculo/test_aceite_nivel1.py       # NÍVEL 1 — o aceite DA SKILL
 python scripts/calculo/test_valida_cobertura.py    # R1, R2
 python scripts/calculo/test_valida_regimes.py      # R19-R22
 python scripts/calculo/test_valida_parametros.py   # R14-R18
@@ -466,6 +476,8 @@ sabe produz número errado com aparência de fundamentação.
 | **art. 85, § 3º, do CPC** e **série histórica de normas coletivas** | **dados externos**, não integrados |
 | **a ordem de cálculo ponta a ponta** | **não é enunciada em lugar nenhum do corpus.** O Procedimento acima é composição declarada a partir de R22 e das seções de cada skill — **não citação** |
 | **`R4-EXCEÇÃO`** | granularidade divergente entre as duas fontes: uma dá ao dia, outra ao mês. **Não harmonizado** |
+| **régua de ajuste de `R3`** | o corpus diz que trocar de classe desloca um mês e **não diz o que fazer**. `aplicacao` (D1–D4) declara *se* há ajuste, não *qual*. `10-literais-na-extracao.md` § 5.2 |
+| **as fixtures do CJF só rodam com a SÉRIE carregada** | a fixture 1 sozinha consome **23 meses de IPCA-E**. A série é **dependência externa** — esta skill **não a carrega por desenho**. Por isso são **NÍVEL 2**, aceite do sistema, e o aceite **desta skill** é o NÍVEL 1 |
 
 > **Registrar a pendência é a resposta certa.** Um veredito inventado é pior que uma pendência
 > declarada.

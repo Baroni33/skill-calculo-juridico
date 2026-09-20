@@ -202,6 +202,21 @@ corte **usa a antiga**. Nunca substituir.
 > e **inclui** o mês de pagamento; D2 ancora no **termo inicial dos juros**, **exclui** o mês de
 > pagamento e o substitui por **1% fixo**. **A mesma Selic, dois números.**
 
+> **LACUNA — `Fazenda de jul/2009 a nov/2021` fica SEM fórmula atribuída.** A tabela acima cobre
+> a Fazenda **de jan/2003 a jun/2009** (D2) e **a partir de dez/2021** (D1). **A janela do meio
+> não recebe nenhuma das duas**, e a **fixture 1** (citação em 01/2021) cai exatamente nela.
+>
+> **Não estenda D1 "por ser o que a Fazenda usa depois".** Continuidade de sujeito **não é**
+> continuidade de fórmula: o que muda em dez/2021 é a **EC 113/2021**, que reescreveu o regime
+> inteiro — o D1 nasce com ela, e antes dela a Fazenda esteve em D2. **Herdar a fórmula pelo
+> nome do devedor é a mesma espécie de dedução que o catálogo de índices proíbe**, e `R-08-09`
+> mede o preço: *a mesma Selic, dois números*.
+>
+> **Conduta:** resolva o regime (camada 1) e, sem fórmula declarada, **bloqueie e pergunte** —
+> não arbitre. Registrado também em § 11, item 10. **Busca declarada:** § 5 inteira (tabela +
+> NOTA 4 literal + NOTA 7), `tributario-federal.md` § 4 (D3 e D4, declaradamente de outras
+> cadeias) e o `aplicacao` de cada segmento de `cjf.condenatorias-gerais.juros-mora`.
+
 **`R-08-11` — a taxa legal segue D1.** NOTA 7, `pagina_pdf` 56, literal: *"O cálculo da taxa legal
 observará o disposto na Resolução CMN n. 5.171/2024 ou no ato normativo que vier a alterá-la. A
 taxa legal deverá ser aplicada **no mês posterior ao de sua competência**, de acordo com a
@@ -281,10 +296,26 @@ Eventuais diferenças de centavos [...] **não decorrem de erro, mas são ineren
 truncamento** de casas decimais aplicado em cada etapa do cálculo, sendo, portanto, desprezíveis."*
 **Um motor que zera essas diferenças está arredondando errado.**
 
-**Ressalva de extração declarada (`D8-D32`):** o dígito final do método detalhado da fixture 2
-(R$ 5.218,27) foi **derivado por aritmética** — a camada de texto do PDF trunca em *"R$ 5.218,2"*
-(`pagina_pdf` 52). O valor esperado da fixture, que é o do **método resumido**, **não depende
-disso**. `pendencias.md` § 6.
+> **O PROCEDIMENTO dos dois métodos está em `references/metodos-resumido-e-detalhado.md`.** Aqui
+> ficam os **resultados**; lá fica **como se chega a cada um** — passo a passo, com casas e ponto
+> de truncamento. **É de lá que sai a legenda de fórmula do resumido** (`(C) = A x B`,
+> `(G) = C x D%`, `(H) = (C + G) x E%`, `(I) = C x F%`), **impressa pelo próprio manual** na
+> `pagina_pdf` **53**. **Atenção:** a `pagina_pdf` **52** imprime legenda **diferente**, de **nove**
+> letras — `(F) = C x D%` · `(G) = (C + F) x E%` · `(H) = F + G` · `(I) = C + H` —, em que **`(G)` é
+> a SELIC e `(I)` é o TOTAL**. É o mesmo procedimento com um regime a menos: o 1º Exemplo para em
+> jun/2022, antes de out/2025. **Citar `(G) = C x D%` apontando para a 52 é citar a coluna errada.**
+> **Sem a legenda da 53 não se reproduz o R$ 5.218,28**, e a divergência de R$ 0,01
+> não tem como ser asseverada. **Onde os dois se separam:** na **correção monetária do bloco de
+> juros acumulado**, de set/2025 a jun/2026 — Σ`(G)`+Σ`(H)` = **1.565,74** contra
+> `trunc(1.503,02 × 1,0417234826)` = **1.565,73**. **Principal (3.412,64) e juros de 7,03%
+> (239,90) são idênticos nos dois métodos.**
+
+**Ressalva de extração declarada (`D8-D32`) — agora confirmada visualmente:** o dígito final do
+método detalhado da fixture 2 (R$ 5.218,27) foi **derivado por aritmética**, porque a
+`pagina_pdf` 52 **imprime** *"R$ 5.218,2"*. **Renderizada a 250 dpi: o dígito não existe no PDF.
+Não é artefato da camada de texto — é defeito do original**, célula que estourou a largura. O
+valor esperado da fixture, que é o do **método resumido**, **não depende disso** — e o 5.218,27 é
+o que o **procedimento** detalhado produz. `pendencias.md` § 6.
 
 **A fixture 4 é de precatório complementar**, não desta cadeia — `tributario-federal.md` § 7.
 
@@ -314,10 +345,13 @@ em `references/tributario-federal.md`:
   sobreposições de **jan/1989** e **mar/1990** são do **original**, não do modelo: a primeira o
   manual explica (`R-08-04`), a segunda **não** (`D8-C21`);
 - **`R3`** — o tronco é quase todo **nominal** (ORTN, OTN, BTN, Ufir), todos nomeados na fonte, e
-  a ponta **INPC** é **percentual**, também nomeado. Mas **IPCA-E e IPCA-15 são `indeterminado`**:
-  nenhuma fonte os classifica, e o item 4.1.2.4 **não nomeia sequer "IPCA"** (`P17-01`). **Cada
-  virada entre tipos exige ajuste de defasagem**, sob pena de deslocar o cálculo em um mês — e
-  onde a ponta é indeterminada **não se sabe sequer se há virada**;
+  a ponta **INPC** é **percentual**, também nomeado. **IPCA-E e IPCA-15 saíram de `P17-01` no
+  bloco 19 e são `janela-deslocada`**, por fonte **externa ao corpus** (IBGE) — o item 4.1.2.4
+  segue **sem nomear sequer "IPCA"**. **A classe de cada rótulo é a do catálogo**
+  (`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`), nunca a copiada para cá.
+  **Cada virada entre classes exige ajuste de defasagem**, sob pena de deslocar o cálculo em um
+  mês — e onde a ponta é `indeterminado` **não se sabe sequer se há virada**. **A régua do ajuste
+  não existe no consolidado**: ver `10-literais-na-extracao.md` § 5.2;
 - **`R4`** — juros **simples**, inclusive a Selic: *"deve ser capitalizada de forma simples"*
   (NOTA 4, "a"). A **`R4-EXCEÇÃO`** (1,0% composta, mar/1987–mar/1991) **não é desta cadeia** — é
   de `cjf.trabalhista.juros-mora` (`trabalhista-nacional.md` §§ 4 e 6);
@@ -353,9 +387,19 @@ em `references/tributario-federal.md`:
    (`tributario-federal.md` § 6.4);
 8. **As séries não estão aqui.** ORTN, OTN, BTN, Ufir, INPC, IPCA série especial, IPCA-E, IPCA-15
    e Selic são dado **(B)** — contrato em `skills/indices-judiciais/`;
-9. **O campo `tipo` (nominal/percentual) que `R3` exige não existe em nenhuma série extraída.**
+9. **O campo `tipo` que `R3` exige — hoje com cinco valores, não dois — não existe em nenhuma
+   série extraída.**
    Está nos **segmentos** desta cadeia (`tipo_indexador`, com `tipo_indexador_fonte` apontando o
-   item 4.1.2.4), **não no catálogo de séries**. `bloco-16-relatorio.md` § 6.
+   item 4.1.2.4), **não no catálogo de séries**. `bloco-16-relatorio.md` § 6;
+10. **`aplicacao` da Fazenda entre jul/2009 e nov/2021: nem D1 nem D2 é declarado.** § 5. **A
+    fixture 1 cai na janela**, e estender D1 por analogia ao devedor muda o número (`R-08-09`).
+    **Bloqueio, não arbitragem;**
+11. **"Mensalizada", no segmento `2012-05..2021-11` (70% da Selic a.a.), não é definida
+    aritmeticamente** — divisão por 12 ou raiz duodécima? A NOTA 4 é **negativa**: diz do que o
+    critério *não* depende. **R4 (juros simples) sugere divisão, e sugerir não é dizer.**
+    **A mesma indefinição reaparece na janela 2016–2020 do precatório complementar**, somada ao
+    conflito entre o critério poupança e o *"0,5% a.m. desde ago/2001"* — `tributario-federal.md`
+    § 10, item **10** (lacuna **#8** do registro da Frente A, **IMPOSSÍVEL**).
 
 ---
 

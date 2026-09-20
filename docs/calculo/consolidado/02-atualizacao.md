@@ -461,6 +461,121 @@ primeira redação do bloco 08 listava **quatro** lugares e três ramos; são **
 
 ---
 
+## 10-A. **Método resumido × método detalhado** — os dois procedimentos
+
+**O manual descreve dois procedimentos para a mesma conta, e eles produzem números diferentes por
+centavos.** Fixtures **2** (R$ 0,01) e **4** (R$ 0,03) asseveram a divergência. **Um motor que
+produz um número só não tem o que comparar.**
+
+**A regra de escolha — citação, item 5.2.1, `pagina_pdf` 90:** *"A apuração do resíduo pode ser
+feita mediante **dois procedimentos: o método resumido ou o método detalhado**. Salvo decisão
+judicial em contrário ou necessidade de informações específicas, **deve-se utilizar o cálculo
+resumido**."* **O default é o resumido**, e é a **única** regra de escolha do manual — o item
+4.2.1.1 apresenta os dois **sem hierarquia**.
+
+**Comum aos dois** (citação, 5.2.1, p. 90): *"separam-se as parcelas que compõem o total do débito
+(principal, juros, honorários etc.)"*.
+
+### 10-A.1 Resumido — **uma linha por parcela, um coeficiente até a data-base, taxas sobre ele**
+
+*"para uma **única data de atualização**, partindo dos valores do cálculo original"*, com
+*"abatimento de valores pagos, **sem a incidência de juros sobre juros**"* (5.2.1.1, p. 90).
+**A legenda de fórmula das colunas é impressa pelo manual** — não é inferência. **Mas são DUAS
+legendas, e as letras abaixo são as da `pagina_pdf` 53.** A **52** tem **duas** colunas de taxa e
+**nove** letras: `(F) = C x D%` (juros até 12/2021) · `(G) = (C + F) x E%` (**SELIC**) ·
+`(H) = F + G` · `(I) = C + H` (**TOTAL**). **Lá `(G)` é SELIC e `(I)` é o total** — o oposto do que
+as letras da 53 nomeiam. É o **mesmo procedimento com um regime a menos**: só o 2º Exemplo alcança
+out/2025, e por isso só a 53 tem `(I) = C x F%`. A § 10-A.2 do detalhe distingue as duas.
+
+| Passo | Operação | Casas | Trunca |
+|---|---|---|---|
+| **S2** | `(B)` = coeficiente acumulado **da competência da linha até a data-base** | **10** | impresso com 10 |
+| **S3** | `(C) = A × B` — principal corrigido | 2 | **sim** |
+| **S4** | `(G) = C × D%` — juros do 1º regime, **sobre o principal já corrigido até a data-base** | 2 | **sim** |
+| **S5** | `(H) = (C + G) × E%` — SELIC, **sobre principal E juros** (`R-08-14`) | 2 | **sim** |
+| **S6** | `(I) = C × F%` — taxa pós-set/2025, **sobre `C` puro**. **A assimetria com `(H)` é do manual** | 2 | **sim** |
+| **S7** | `(J) = G + H + I`; `(L) = C + J`; totais por **soma de coluna** | — | não |
+| **S8** | pagamentos recebem o mesmo tratamento e são **subtraídos**; a parcela de juros do cálculo original leva **só correção** — `(juros cor/mon.)` | 2 | **sim** |
+| **S9** | honorários: `% ×` subtotal, **separadamente** sobre principal e sobre juros | 2 | **sim** |
+
+### 10-A.2 Detalhado — **uma sub-tabela por marco, e agrega antes da taxa seguinte**
+
+*"a conta é elaborada **passo a passo**, partindo-se dos valores originários [...] nos seguintes
+momentos: 1º) até a data da apresentação do precatório; 2º) até a data final do prazo
+constitucional; 3º) até a data final de atualização"* (5.2.1.2, p. 91). Em **4.2.1.1** os marcos
+são os das alíneas: `a) até dez./2021` · `b) até set./2025` · `c) até a data-base`.
+
+| Passo | Operação | Casas | Trunca |
+|---|---|---|---|
+| **T1** | corrigir o principal pelo coeficiente **do trecho só** | 2 | **sim** |
+| **T2** | aplicar a taxa do trecho **sobre o principal do próprio trecho** | 2 | **sim** |
+| **T3a** | corrigir o **bloco de juros acumulado** pelo coeficiente do trecho — `(juros correção monetária)` | 2 | **sim** |
+| **T3b** | **se o indexador de juros do trecho ENGLOBA correção** (SELIC, taxa legal), aplicar a taxa **também sobre o bloco de juros** | 2 | **sim** |
+| **T4** | **agregar por coluna** (`Soma:` / `TOTAL`) e levar **o agregado** ao marco seguinte | — | não |
+| **T5** | parcela posterior ao marco entra pelo **nominal**, com a taxa do **seu** trecho — que **não é** a do agregado | 2 | **sim** |
+| **T6** | pagamento: corrigido pelo coeficiente do seu trecho e **subtraído dentro do passo** | 2 | **sim** |
+
+> **A única diferença estrutural: o detalhado AGREGA antes de aplicar a taxa seguinte; o resumido
+> nunca agrega antes do fim.** As duas linhas `Dez./2021` da `pagina_pdf` 51 — R$ 2.275,96 e
+> R$ 55,75 — **são totais de coluna**, e a SELIC incide **uma vez sobre cada agregado**.
+
+> **Três correções do bloco 23, e cada uma tem célula publicada que refuta a redação anterior.**
+>
+> 1. **O PRIMEIRO marco não tem coeficiente único — tem um por parcela, e trunca por linha.**
+>    `1,1420100005` e `1,1339588923` (p. 51), `27,97 + 27,78 = 55,75`. Sobre o agregado,
+>    `2.275,96 × 2,45% = 55,76102 → **55,76**`, e o manual publica **55,75**. Agregado só existe
+>    depois de `Soma:`;
+> 2. **`T3` dizia "sem nova taxa" e o manual APLICA a taxa sobre o bloco de juros** —
+>    `Dez./2021 · R$ 55,75 · (juros) · 5,05 · R$ 2,81` (p. 51) e `· 43,89 · R$ 24,46` (p. 52). A
+>    § 10-A.8 do detalhe **já listava** `55,75 × 43,89% = 24,468675 → 24,46` como prova de
+>    truncamento. **O discriminante é `R1`, não anatocismo:** trecho cujo indexador de juros
+>    **engloba** correção não tem coeficiente próprio, e a taxa é a única correção que o bloco de
+>    juros recebe; trecho com coeficiente próprio dá ao bloco o **coeficiente** e **não** a taxa —
+>    `1.503,02 × 1,0417234826 = 1.565,73` do marco **`c)`**, sem coluna `% Juros`. **É a mesma
+>    assimetria da legenda do resumido:** `(H) = (C + G) × E%` contra `(I) = C × F%`;
+> 3. **Um marco pode ter mais de uma taxa ao mesmo tempo:** o `b)` aplica **43,89%** ao agregado de
+>    dez/2021 **e 42,39%** à parcela de fev/2022, no mesmo passo (5,05% e 3,55% na p. 51).
+>
+> **Executável e verificado sem série:** `scripts/calculo/test_metodos.py` reproduz **3.484,95**,
+> **5.218,27**, **5.218,28** e **4.435,07 · 4.435,04 · Δ 0,03** célula por célula, a partir dos
+> coeficientes impressos.
+
+### 10-A.3 Onde divergem, com a operação nomeada — e a hipótese **confirmada**
+
+| Fixture | Operação em que se separam | Resumido | Detalhado |
+|---|---|---|---|
+| **2** | **correção monetária do bloco de juros acumulado**, set/2025 → jun/2026: 5 truncamentos de linha (`G`, `H`) × **1** truncamento sobre o agregado `1.503,02` | Σ`G`+Σ`H` = **1.565,74** → total **5.218,28** | `trunc(1.503,02 × 1,0417234826)` = **1.565,73** → total **5.218,27** |
+| **4** | **subtração do pagamento**: truncar o subtraendo (`22.192,058973 → 22.192,05`) **empurra o resíduo para cima** | principal **1.575,38** → total **4.435,07** | 3 truncamentos em cascata → **1.575,36** → total **4.435,04** |
+
+**Principal e taxa pós-set/2025 da fixture 2 são idênticos nos dois métodos** (3.412,64 e 239,90);
+**os honorários da fixture 4 são idênticos** (157,53 · 245,65). **A divergência está isolada.**
+
+**Hipótese do truncamento por etapa: CONFIRMADA, e é a causa única.** Removido o truncamento, os
+dois caminhos são o **mesmo produto em ordem trocada** — verificado em `Decimal` com 60 dígitos,
+`564.08027018950592144500596500` dos dois lados. Os coeficientes compostos divergem em
+**7 × 10⁻⁷**, **sete ordens de grandeza abaixo do centavo**, e não contribuem.
+
+**Duas correções ao enunciado ingênuo da hipótese**, e cada uma quebra um comparador:
+
+1. **não é a contagem de truncamentos, é QUANDO se trunca.** Perda truncada cedo é **multiplicada
+   por todos os fatores seguintes**: os `0,01123787` que o detalhado perde em `55,75` chegam a
+   jun/2026 valendo `0,01684` — **sozinhos maiores que o centavo em disputa**;
+2. **truncamento em subtraendo INVERTE o sinal do desvio.** Na fixture 4 o resumido fica **acima**
+   do exato. Quem supuser *"truncar sempre puxa para baixo"* erra este caso.
+
+> **`D8-D33` — o manual escreve "arredondamento" na `pagina_pdf` 92 e faz TRUNCAMENTO.** A
+> `pagina_pdf` 53 diz certo (*"critério de **truncamento** de casas decimais aplicado em cada
+> etapa do cálculo"*); a obs. do 5.2.1.2 diz *"arredondamento"*. **Seis células medidas em que
+> `ROUND_HALF_UP` daria outro número e o manual publica o truncado.** Vale `R12`: **truncamento,
+> nos dois itens**. Detalhe § 10-A.8.
+
+> **`D8-D32` confirmado, e não era da camada de texto.** A `pagina_pdf` 52 **imprime**
+> `R$ 5.218,2` — conferido por renderização a 250 dpi. **Defeito do original**, célula estourada.
+> O 5.218,27 segue derivado por aritmética, e agora o § 10-A.5 do detalhe mostra que **1.805,63 é
+> o que o procedimento detalhado produz**.
+
+---
+
 ## 11. As invariantes aplicadas às cadeias
 
 | ID | Enunciado | Onde morde nesta espinha |
@@ -530,8 +645,10 @@ segunda começa em **13/02/67** — três anos de sobreposição; era quase cert
 
 ## Detalhe
 
-As seções **5** e **10** estão aqui condensadas. O desenvolvimento — a **varredura item × JSON ×
-consolidado** dos caps. 2 e 4 (§ 5.0), as cadeias **segmento a segmento**, **FGTS e poupança**
-(§§ 5.3.2–5.3.5) e a consolidação de dez/2021 com texto integral — vive em
+As seções **5**, **10** e **10-A** estão aqui condensadas. O desenvolvimento — a **varredura
+item × JSON × consolidado** dos caps. 2 e 4 (§ 5.0), as cadeias **segmento a segmento**, **FGTS e
+poupança** (§§ 5.3.2–5.3.5), a consolidação de dez/2021 com texto integral, e os **dois métodos
+com a proveniência passo a passo, a aritmética da divergência e a varredura que a sustenta**
+(§§ 10-A.0 a 10-A.9) — vive em
 **[`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md)**, para manter a espinha abaixo de 500
 linhas. **A espinha é o que o motor precisa para calcular; o detalhe é onde está a evidência.**

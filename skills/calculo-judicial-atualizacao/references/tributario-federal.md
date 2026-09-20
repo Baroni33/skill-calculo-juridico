@@ -49,8 +49,9 @@ gerais, previdenciário, repetição de indébito e desapropriação.
 > janeiro serve para definir a inflação de dez./1988, e a BTN de janeiro, comparada com a de
 > fevereiro, para fixar a inflação de jan./1989."*
 
-**Vale para todas as cadeias com indexador nominal.** E é a razão de `tipo: nominal | percentual`
-ser campo obrigatório.
+**Vale para todas as cadeias com indexador nominal.** E é a razão de `tipo` ser campo
+obrigatório — hoje com **cinco** valores, não dois, e **resolvido pelo catálogo**
+(`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`), nunca por esta página.
 
 **A ponta inicial é `ponta_materializada`:** o manual abre com *"De 1964"*, **sem mês**. `1964-01`
 é materialização para permitir a checagem de R1/R2 — **pendência `P8-07`**.
@@ -274,6 +275,17 @@ pelas ECs 113 e 136:
 apresentação → **administrativo** no prazo constitucional → **novamente o original** depois.
 **Governada pelo ESTADO DA REQUISIÇÃO, não pela competência** (`pagina_pdf` 89).
 
+> **O cálculo do resíduo tem DOIS procedimentos, e o manual diz qual é o default.** Item
+> **5.2.1**, `pagina_pdf` **90**: *"A apuração do resíduo pode ser feita mediante **dois
+> procedimentos: o método resumido ou o método detalhado**. Salvo decisão judicial em contrário
+> ou necessidade de informações específicas, **deve-se utilizar o cálculo resumido**."*
+> **É a única regra de escolha entre os dois em todo o manual** — o item 4.2.1.1 não hierarquiza.
+> **O procedimento de cada um** — e a razão dos **R$ 0,03** da fixture 4, que é a **subtração do
+> pagamento** com o subtraendo truncado — está em `references/metodos-resumido-e-detalhado.md`.
+> **Os três marcos do detalhado são citação** (5.2.1.2, `pagina_pdf` 91): *"1º) até a data da
+> apresentação do precatório; 2º) até a data final do prazo constitucional; 3º) até a data final
+> de atualização"* — **são os mesmos três trechos do `R-08-17`**, e não por acaso.
+
 **`C14-03` — `INAPLICÁVEL` por prejudicialidade, razão declarada:** depende de **classificar a
 devedora como Fazenda Pública**, que é **determinação jurídica do usuário do módulo**, não
 matéria de cálculo. **`C14-01` e `C14-02` são condicionais a ela.** **Busca declarada:**
@@ -358,7 +370,32 @@ corrigido **R$ 2.275,96** e juros **R$ 55,75** — **ambas recebendo 5,05% de Se
 9. **As séries (Ufir, BTN, OTN, ORTN, IPCA-E, IPCA-15, TMMCTN) não estão aqui.** São
    dado (B) — `skills/indices-judiciais/`. A única tabela numérica que o manual **reproduz** é o
    quadro da **taxa legal previdenciária** de set./2025 a jun./2026 (`pagina_pdf` 61), e **não foi
-   extraída como série** porque é **ilustração de metodologia**, não a série em si.
+   extraída como série** porque é **ilustração de metodologia**, não a série em si;
+10. **Os juros do precatório complementar não são calculáveis por esta skill — e o obstáculo é
+    DUPLO, sendo que só um deles é série.** É a **lacuna #8** do
+    `docs/calculo/aceitacao/frente-a/registro-de-lacunas.md`, classificada **IMPOSSÍVEL**, e até o
+    bloco 23 **nenhuma skill a declarava**. São duas coisas distintas:
+
+    **(a) `"mensalizada"` não é definida aritmeticamente — agora de 2016 a 2020.** O critério
+    literal da fixture 4 é *"o mesmo percentual de juros incidentes sobre a caderneta de poupança,
+    capitalizados de forma simples: 0,5% ao mês, caso a taxa Selic ao ano seja superior a 8,5%;
+    **70% da taxa Selic ao ano, mensalizada**, nos demais casos"* (`pagina_pdf` 91). **Divisão por
+    12 ou raiz duodécima?** É a **mesma** indefinição do item 11 de `civel-federal.md` § 11, que a
+    registra para o segmento `2012-05..2021-11`. **Aqui ela reaparece na janela da fixture 4**, e o
+    corpus continua sem dizer. `R4` (juros simples) **sugere** divisão, e sugerir não é dizer;
+
+    **(b) a § 7 acima diz *"juros de 0,5% a.m. desde ago/2001"* e a fixture transcreve o critério
+    POUPANÇA — e os dois não são a mesma regra.** Pelo critério poupança, `0,5% a.m.` é **um dos
+    dois ramos**, condicionado a Selic anual `> 8,5%`; a § 7 o enuncia como **regra única desde
+    ago/2001**. **Não se escolheu entre os dois, e não se deve escolher sem fonte:** se a § 7
+    prevalecer, o ramo dos 70% nunca é alcançado e `(a)` deixa de importar; se prevalecer o
+    critério da fixture, `(a)` é bloqueio. **As duas leituras entram, nenhuma é arbitrada.**
+
+    **Consequência operacional, e é a honesta:** mesmo com série completa de INPC e IPCA-E, os
+    percentuais `14,15` · `5,15` · `9,00` das `pagina_pdf` 91 e 92 **não são deriváveis** por esta
+    skill. O que **é** reprodutível — **o procedimento**, dados os percentuais — está verificado em
+    `scripts/calculo/test_metodos.py` (4.435,07 · 4.435,04 · Δ 0,03, célula por célula). **A
+    fronteira é essa, e agora está escrita.**
 
 ---
 

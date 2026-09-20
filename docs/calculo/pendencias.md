@@ -1426,3 +1426,66 @@ existe e o buraco está visível ao validador, que é o desenho que o bloco 19 e
 **Correção de registro.** A § 24.2 descrevia a `TRD` como *"segue a TR (P17-02)"*. **O bloco 19
 desfez essa herança** — a fonte do BCB nomeia TBF, Redutor-R e TR, **não** a TRD (§ 25.3). A
 célula foi corrigida; o resto da § 24.2 fica como estava.
+
+---
+
+## 27. Bloco 23 — as duas lacunas que a aceitação da frente A revelou
+
+**Nenhuma das duas é falta de dado externo. As duas são o corpus não dizendo o que fazer**, e
+por isso entram aqui em vez de virarem regra.
+
+### 27.1 `P23-01` — a **régua de ajuste** da virada de `R3` não existe
+
+`R3` diz que `nominal` reflete **M−1**, `percentual` reflete **M** e `janela-deslocada` reflete
+**metade de cada**, e que trocar de classe **sem ajustar desloca o cálculo em um mês**. **O que
+FAZER na virada — repetir o mês, pular, pro-ratizar — não está enunciado.**
+
+**O que existe e não é isso:** o campo `aplicacao`, vocabulário fechado **D1–D4**
+(`consolidado/02-atualizacao-detalhe.md` § 5.3). Ele declara **se** a defasagem foi tratada
+naquele segmento; **não** qual deslocamento aplicar na fronteira entre dois segmentos de classes
+diferentes.
+
+**Busca negativa, escopo contado:** os **15** arquivos de `consolidado/` e as **31** páginas
+`.md` de `skills/`, por `defasagem`, `desloca`, `ajustar`, `ajuste`, `na virada`, `um mês`,
+`pro rata` e `régua`. Toda ocorrência **enuncia o efeito de não ajustar** ou **descreve D1–D4**;
+**nenhuma dá o procedimento**. O próprio corpus registra a indecisão: a `L3` de
+`consolidado/10-literais-na-extracao.md` § 5.2 foi reclassificada `DÚVIDA` com a frase *"ninguém
+sabe qual é o comportamento certo"*, e a primeira das três perguntas que faltam é **decisão de
+modelagem, não leitura de fonte**.
+
+**Fecha com:** decisão de modelagem declarada — não com releitura de PDF. Até lá: ponta
+`indeterminado` **bloqueia** sob `R3-INDETERMINADO`; duas pontas com classe diferente viram `[R3]`
+**registrada e não consertada**. Quem precisar do número decide a régua, justifica (**R21**) e
+grava (**R13**). Declarada em `calculo-judicial-core` (Limitações),
+`indices-judiciais/references/catalogo-de-indices.md` (última seção) e `civel-federal.md` § 10.
+
+### 27.2 `P23-02` — `aplicacao` da **Fazenda entre jul/2009 e nov/2021** não é declarada
+
+`civel-federal.md` § 5 atribui **D2** à Fazenda de **jan/2003 a jun/2009** e **D1** à Fazenda **a
+partir de dez/2021**. **A janela do meio fica sem fórmula**, e a **fixture 1** (citação em
+01/2021) cai exatamente nela.
+
+> **Estender D1 "por ser o que a Fazenda usa depois" é dedução por continuidade de sujeito.** O
+> que muda em dez/2021 é a **EC 113/2021**, que reescreve o regime — **o D1 nasce com ela**, e
+> antes dela a Fazenda esteve em **D2**. `R-08-09` mede o preço da escolha errada: *a mesma
+> Selic, dois números*.
+
+**Conduta declarada:** **bloquear e perguntar**, nunca arbitrar. Registrada em `civel-federal.md`
+§§ 5 e 11 (itens 10 e 11 — o item 11 é a **outra** metade do mesmo segmento: *"mensalizada"* sem
+definição aritmética).
+
+### 27.3 O que a aceitação mostrou que **já funcionava**, e por quê
+
+Três quase-invenções foram contidas **pela skill, não pela disciplina do implementador** — e o
+que as conteve foi sempre a mesma forma: **a conduta proibida está NOMEADA, não deduzível.**
+
+| Quase-invenção | O que a impediu |
+|---|---|
+| classificar **IPCA-E como percentual** | a frase *"classificar o IPCA-E como percentual porque IPCA soa percentual é a dedução que o bloco 17 removeu"* — **nomeia o erro com o exemplo dele dentro**, e a `REGRA_DESTE_CATALOGO` repete a proibição no dado |
+| **interpolar** IPCA-E entre meses conhecidos | *"a conduta padrão diante do buraco é registrar e parar, nunca costurar"*, numa tabela em que **nenhum** dos quatro comportamentos é interpolação |
+| buscar série nos **CSV de `extracao/trabalhista/`** | o cabeçalho `# OUT_OF_SCOPE` no próprio arquivo **mais** a frase da skill: existem *"como evidência de conferência, não como fonte de consulta"*. **Duas barreiras, uma delas no dado** |
+
+**O padrão que se replica:** proibição genérica (*"não invente"*) não segura ninguém; **proibição
+com o caso concreto ao lado** segurou as três. As duas quase-invenções que a skill **não** cobria
+— taxa legal da variante errada e extensão de D1 — eram exatamente aquelas em que **o valor certo
+existe no repositório para OUTRO uso**, e nenhuma delas tinha o caso nomeado. Agora têm.

@@ -62,7 +62,7 @@ Abreviações: **core** = `calculo-judicial-core`; **atu** = `calculo-judicial-a
 | **C1** | Englobamento | **core** (+ atu, idx) | `## Invariantes` → `### R1` — *"aplicar correção junto … é erro material"*, literal | **COBERTO** |
 | **C2** | Taxa legal é razão | **idx** (+ atu) | `## Invariantes` → `### R11` — fórmula, 6 decimais, IPCA-15 de `m−1`, **e a tabela de validação**: set/2025 `1,377047%` × `1,374156%` | **COBERTO** |
 | **C3** | Deflação e piso nominal | **core** (+ idx) | `### R5 e R6 — Pisos`: piso **por parcela**, e *"dividir pelo índice negativo"* como **redação defeituosa que não se implementa** | **COBERTO** |
-| **C4** | Nominal × percentual | **idx** (+ core R3, atu R3) | `### R3` — tabela nominal/percentual, fonte item 4.1.2.4, *"desloca o cálculo em um mês"* | **COBERTO** |
+| **C4** | Nominal × percentual | **idx** (+ core R3, atu R3) | `### R3` — as **três** classes com defasagem (`janela-deslocada` desde o bloco 19), fonte item 4.1.2.4, *"desloca o cálculo em um mês"*. **Quais índices, no catálogo** — a skill aponta. **A régua do ajuste é lacuna declarada** (`P23-01`) | **COBERTO, com lacuna nomeada** |
 
 ---
 
@@ -141,7 +141,7 @@ Abreviações: **core** = `calculo-judicial-core`; **atu** = `calculo-judicial-a
 | # | Assunto | Skill (primária) | Seção | Estado |
 |---|---|---|---|---|
 | **C30** | O comparador precisa conhecer os erros | **core** (+ liq, idx, atu) | core `## Comparador` → a tabela das **três classes** (erro material × delta de método × comportamento do original) e `## Armadilhas conhecidas`; liq `## Armadilhas` com A11, A1, A4, A7, A12; **os dois bloqueios aritméticos** em liq `## Limitações` **item 2** (deltas de 10,00 e 2.036,51, com a propagação) e idx `## Limitações` 2; dez/10 em idx armadilha 5 | **COBERTO** |
-| **C31** | Divergências esperadas não são erros | **core** (+ atu) | core `## Fixtures de aceite` — *"As fixtures 2 e 4 divergem do corpus em R$ 0,01 e R$ 0,03. É esperado"*; atu `## Fixtures de aceite` — *"um motor que zera essas diferenças está arredondando errado"* | **COBERTO — fechou** |
+| **C31** | Divergências esperadas não são erros | **core** (+ atu) | core `## Fixtures de aceite — dois níveis` — *"as fixtures 2 e 4 divergem entre o método RESUMIDO e o DETALHADO do próprio manual — R$ 0,01 e R$ 0,03 —, não do corpus"* (**redação corrigida no bloco 23**: *"divergem do corpus"* induzia banda de tolerância, e induziu o defeito do runner); atu `## Fixtures de aceite` — *"um motor que zera essas diferenças está arredondando errado"* | **COBERTO — fechou** |
 
 ---
 

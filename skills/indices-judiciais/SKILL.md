@@ -84,17 +84,23 @@ crua.** Quem desloca é o consumidor.
 `docs/calculo/consolidado/01-dominio-e-invariantes.md` § 2, e em `calculo-judicial-core`.
 **As seis que mordem nesta skill:**
 
-### `R3` — nominal × percentual. A armadilha mais silenciosa da camada de séries
+### `R3` — a classe do indexador. A armadilha mais silenciosa da camada de séries
 
-| Classe | Índices | O que a série reflete |
-|---|---|---|
-| **nominal** | **Ufir, BTN, OTN, ORTN** | a inflação do mês **anterior** |
-| **percentual** | **INPC, IGP-DI** — e só os nomeados | a inflação do **próprio** mês |
+| Classe | O que a série reflete |
+|---|---|
+| **nominal** | a inflação do mês **anterior** |
+| **percentual** | a inflação do **próprio** mês |
+| **`janela-deslocada`** | **metade de M−1, metade de M** — bloco 19 |
 
-Fonte: item 4.1.2.4 do Manual CJF (`pagina_pdf` 42), via `02-atualizacao.md` § 11, R3.
+**Quais índices caem em cada classe não se escreve aqui: sai de
+`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`**, que é o que o validador lê, e
+cuja regra é *"o valor SAI DA FONTE"*. Base normativa das duas primeiras: item 4.1.2.4 do Manual
+CJF (`pagina_pdf` 42), via `02-atualizacao.md` § 11, R3.
 
-> **Trocar entre tipos sem ajustar a defasagem desloca o cálculo em um mês** — sem sinal de
-> alarme: a conta roda, o total é plausível, e o erro atravessa a cadeia inteira.
+> **Trocar entre classes sem ajustar a defasagem desloca o cálculo em um mês** — sem sinal de
+> alarme: a conta roda, o total é plausível, e o erro atravessa a cadeia inteira. **E a régua do
+> ajuste NÃO EXISTE no corpus** — busca, escopo contado e o que ela custa em
+> [`references/catalogo-de-indices.md`](references/catalogo-de-indices.md), última seção.
 
 **Corolário de R2 que só faz sentido aqui** — `R-08-04`: em cadeia de índices **nominais**, fim
 e início no **mesmo mês** (OTN/BTN em jan/1989) **não é dupla contagem**, e o manual o diz
@@ -120,13 +126,15 @@ TL_m = (Fator_Selic_m / Fator_Deflator_{m-1} − 1) × 100
 > A lei e o acórdão descrevem *"SELIC deduzido o IPCA"*. **Isso é descrição do efeito, não a
 > operação.** A subtração literal erra ~**0,003 p.p./mês**, e **acumula**.
 
-Conferido nos dois pares publicados (`pendencias.md` §§ 2 e 3, variante INPC) — e ali o
-truncamento também se resolveu empiricamente: `1,3770478004` → **`1,377047`**, não `1,377048`.
+**Os dois pares publicados são da VARIANTE PREVIDENCIÁRIA — deflator `Fator INPC`** (`pendencias.md`
+§§ 2 e 3). São **par de validação da aritmética, NÃO série de taxa legal**: usá-los numa cadeia
+condenatória é **trocar a série por semelhança de número**, e a variante geral (IPCA-15) segue
+**sem par publicado** — pendência aberta. Ali o truncamento também se resolveu empiricamente.
 
-| Competência | Fator Selic | Fator deflator | Razão | Subtração |
-|---|---|---|---|---|
-| Set/2025 | 1,01164156 | 0,9979 | **1,377047%** ✓ | 1,374156% ✗ |
-| Mai/2026 | 1,01090058 | 1,0081 | **0,277807%** ✓ | 0,280058% ✗ |
+| Competência | **variante** | Fator Selic | Fator deflator | Razão | Subtração |
+|---|---|---|---|---|---|
+| Set/2025 | **INPC — previdenciária** | 1,01164156 | 0,9979 | **1,377047%** ✓ | 1,374156% ✗ |
+| Mai/2026 | **INPC — previdenciária** | 1,01090058 | 1,0081 | **0,277807%** ✓ | 0,280058% ✗ |
 
 ### `R5` — piso nominal: índice negativo **entra**
 
@@ -185,7 +193,7 @@ publicado ou derivado** (R11).
 | Classe | O que afirma |
 |---|---|
 | `nominal` · `percentual` | reflete o mês **anterior** · o **próprio** mês |
-| **`janela-deslocada`** | **bloco 19** — coleta do dia **16 de M−1** ao dia **15 de M**: metade em cada. **IPCA-15 e IPCA-E** |
+| **`janela-deslocada`** | **bloco 19** — coleta do dia **16 de M−1** ao dia **15 de M**: metade em cada. **IPCA-15/IBGE e IPCA-E/IBGE**, *pelo catálogo* |
 | **`indeterminado`** | **o conceito se aplica, e não há classe atribuível.** A virada **bloqueia** sob `R3-INDETERMINADO` |
 | `nao-indexador` | **verificado, e o conceito não se aplica** — moeda, paridade, conversão |
 | ~~`englobante`~~ | **RETIRADO no bloco 19** — era fato de **R1** no campo de **R3**, e deixava a SELIC **cega** para a defasagem |
@@ -231,6 +239,8 @@ Quatro comportamentos, todos observados no validador, **nenhum deles interpolaç
 | **Sobreposição** | registra divergência. **Não desempata** — pode ser real: jan/10 tem dois quadros vigentes no original |
 | **Célula ilegível** | **suspende a análise daquela vigência** em vez de reportar a lacuna aparente — *"o vão seria artefato da leitura, não do original"* |
 | **Rótulo em forma livre** | vai para `NÃO VERIFICÁVEL MECANICAMENTE`. Fica como **texto literal**; normalizar seria interpretar |
+| **O gabarito de uma fixture permite ISOLAR o valor por álgebra** | **não.** Extrair a SELIC de um mês invertendo o total esperado é **engenharia reversa do gabarito, não cálculo**: a fixture passa a validar a si mesma, e o número entra na série sem fonte. **Bloqueie a fixture** |
+| **Existe valor publicado de OUTRA variante do mesmo indexador** | **não.** Taxa legal previdenciária (deflator INPC) não alimenta cadeia condenatória (deflator IPCA-15). **Semelhança de número não é identidade de série** |
 
 > **A conduta padrão diante do buraco é registrar e parar, nunca costurar.** O CSV guarda a
 > **string literal do original**; a normalização convive com ela em coluna separada
@@ -267,34 +277,28 @@ de "início e fim" lê as pontas da série validada, não um metadado.
 
 ### Os índices, com a classificação que decide tudo
 
-**Catálogo completo — 28 indexadores, com o que cada um é, onde entra e a fonte da
-classificação — em [`references/catalogo-de-indices.md`](references/catalogo-de-indices.md).**
-A classificação normativa é `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`,
-**que é o que o validador lê**.
+**QUAIS índices estão em cada classe não se escreve aqui — esta skill APONTA, não copia.** A
+classificação normativa é `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`, **que
+é o que o validador lê**; a leitura humana, com o que cada índice é e onde entra, está em
+[`references/catalogo-de-indices.md`](references/catalogo-de-indices.md) — **divergiram, vale o
+JSON**; os totais por classe, em `consolidado/00-numeros.md` §§ 1 e 2. Abaixo, só **a fonte de
+cada classe**, que é o que não muda quando entra rótulo novo:
 
-**Os rótulos das cadeias, um a um** (quantos: `consolidado/00-numeros.md` §§ 1 e 2):
-
-| Classe | Quais | Fonte |
-|---|---|---|
-| **nominal** (4) — inflação do mês **anterior** | **ORTN, OTN, BTN, Ufir** | item 4.1.2.4, letra a, `pagina_pdf` 42 — **nomeados literalmente** |
-| **percentual** (5) — inflação do **próprio** mês | **INPC, INPC/IBGE, IGP-DI** (item 4.1.2.4, letra b), **IPC/IBGE** (por **D8-C21**) e **SELIC** | idem; a SELIC por **fonte externa ao corpus** |
-| **janela-deslocada** (2) — metade de M−1, metade de M | **IPCA-E/IBGE, IPCA-15/IBGE** | **FONTE EXTERNA AO CORPUS** (IBGE), declarada como externa |
-| **nao-indexador** (8) | as 6 moedas, a conversão em URV, `(segmento sem indexador)` | componente `padrao-monetario` |
-| **indeterminado** (17) | IPCA série especial, IPC/FGV, IPC-R, IRSM, IPC nu, UPC, LBC, LBC – 0,5%, LFT – 0,5%, TRD, **taxa legal**, **`BTNF`** (`P19-02`, tarefa 3 — **fonte alguma o alcança; herdar do BTN pelo nome é a dedução proibida**), NAO-DECLARADO-PELO-MANUAL — **13 sem fonte** (`P17-01`, `P18-01`, `P19-01`, `P19-02`, `P9-02`); **2 segmentos compostos** (`P17-03`): `Ufir → Selic` e **`UPC → índices básicos de atualização dos saldos da poupança`** (tarefa 3); e **TR** e **remuneração básica da poupança**, **2 com RAZÃO** | ver `indexadores-tipo-catalogo.json` |
-| ~~englobante~~ (0) | — | **retirado** |
-
-> **`IGP-DI` divergiu, e a fonte extraída prevaleceu.** A tabela externa não o nomeia; o item
-> 4.1.2.4, letra b, o nomeia **literalmente**. Permanece `percentual`. A linha `IPCA` da tabela
-> externa **não tem destinatário**: nenhum segmento tem rótulo `IPCA` nu.
+| Classe | De onde a classificação sai |
+|---|---|
+| **nominal** — inflação do mês **anterior** | item 4.1.2.4, letra a, `pagina_pdf` 42 — **nomeados literalmente** |
+| **percentual** — inflação do **próprio** mês | item 4.1.2.4, letra b; o **IPC/IBGE** por **D8-C21**; a **SELIC** por **fonte externa ao corpus** |
+| **janela-deslocada** — metade de M−1, metade de M | **FONTE EXTERNA AO CORPUS** (IBGE), declarada como externa no catálogo |
+| **nao-indexador** | componente `padrao-monetario` — moedas, paridades, conversão em URV e `(segmento sem indexador)`. *Verificado, e o conceito não se aplica* |
+| **indeterminado** | **nenhuma fonte alcança o rótulo** (`P17-01`, `P18-01`, `P19-01`, `P19-02`, `P9-02`, `P17-03`) **ou a fonte diz que não cabe** (TR e remuneração básica da poupança) |
+| ~~englobante~~ | **RETIRADO no bloco 19** — era fato de R1 no campo de R3 |
 
 > **As listas do item 4.1.2.4 são exemplificativas — e isso NÃO autoriza estendê-las por
-> semelhança de nome.** Classificar o IPCA-E como percentual *"porque IPCA soa percentual"* é a
-> dedução que o bloco 17 removeu. **Dez dos vinte e oito ficaram `indeterminado`**, e é resultado
-> correto.
-
-**Moeda não é indexador.** Cruzado, cruzeiro, cruzeiro real, real e a conversão em URV entram
-como **`nao-indexador`** — que afirma *verificado, e o conceito não se aplica*, fato diferente de
-`indeterminado` (*aplica-se, sem fonte*). **Ausência de campo seria indistinguível de esquecimento.**
+> semelhança de nome.** Classificar o IPCA-E como percentual *"porque IPCA soa percentual"*, ou o
+> `BTNF` como nominal por causa do BTN, é a dedução que o bloco 17 removeu. **`IGP-DI` divergiu, e
+> a fonte extraída prevaleceu**: a tabela externa não o nomeia, o item 4.1.2.4, letra b, o nomeia
+> **literalmente**, e ele permanece `percentual`. A linha `IPCA` da tabela externa **não tem
+> destinatário** — nenhum segmento tem rótulo `IPCA` nu.
 
 ### Divulgação e oráculos
 
@@ -340,16 +344,10 @@ certamente era 12/02/67. **Registrado, não corrigido.**
 inconstitucional para débitos trabalhistas pela ADC 58**: **registro histórico**, não série
 vigente (`bloco-01-tabelas.md` § 7).
 
-**8 — o calendário de 18.14 não serve para contar dias úteis.** **Treze meses impressos com
-menos dias do que têm** — conferido na imagem da página. Março de 2017 imprime **27 dias num mês
-de 31**, com a coluna inteira de segunda-feira vazia. `dia_da_semana` vem da coluna sob o
-cabeçalho do original, **não de cálculo de calendário**, e diverge do real em **42 dias**.
-
-**9 — ruído tipográfico que o validador acusa, e que é do original.** Dígito a mais ou ponto no
-lugar da vírgula nos limites de faixa (`De 2.2347,86 até 3.130,51`, `Até 1.1710,78`,
-`De 478.78 até 957,56` — **nove ocorrências**, `bloco-01-tabelas.md` § 5.1); e **chamada de nota
-de rodapé colada na data** (`04/04/9116`, `Dez/1017`), que faz o validador acusar lacuna de
-**1018-01 a 2010-12**. O CSV guarda a **string literal**.
+**8 e 9 — os defeitos do ORIGINAL que o validador acusa** (calendários de 18.14 com dias
+faltando; ruído tipográfico em limites de faixa e nota de rodapé colada na data) estão em
+[`references/divergencias-e-erros.md`](references/divergencias-e-erros.md), com os literais. **O
+CSV guarda a string literal do original; normalizar seria interpretar.**
 
 **10 — tolerância do comparador.** Diferenças de **0,01 a 0,03** entre recalculado e impresso
 são **esperadas**. **O limiar de alarme não deve ser o centavo.**
@@ -496,4 +494,4 @@ Cinco pendências abertas — `P9-02`, **A2 e A3**, `pendencias.md` §§ 5 e 2, 
 | **Defeitos (A1–A15)** · **pendências** · **cadeias em schema** | `armadilhas-comparador.md` · `pendencias.md` · `tabelas-normativas/*.json` |
 | **Período → indexador** · **invariantes e aritmética** | `skills/calculo-judicial-atualizacao/` · `skills/calculo-judicial-core/` |
 
-**Sem `references/`:** o arquivo cabe abaixo do limite, e partir a semântica dos índices em dois lugares é exatamente o erro que produz "IPCA" onde deveria estar "IPCA-E".
+**As duas `references/`:** [`catalogo-de-indices.md`](references/catalogo-de-indices.md) — índice a índice, com a fonte de cada classe e a **lacuna da régua de `R3`** — e [`divergencias-e-erros.md`](references/divergencias-e-erros.md). **A espinha não repete a lista:** a classe sai do catálogo JSON, e copiá-la para cá é como IPCA-E e IPCA-15 ficaram quatro blocos desatualizados em duas skills.

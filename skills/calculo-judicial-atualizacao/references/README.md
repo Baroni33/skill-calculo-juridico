@@ -47,12 +47,18 @@ Fonte da classificação: `docs/calculo/consolidado/08-nacional-e-regional.md`;
 
 ---
 
-## Os dez arquivos
+## Os onze arquivos — **dez por cadeia, e um transversal**
 
 **Eram seis até o bloco 16. O bloco 17 acrescentou dois**, e a razão está na § "Limitação da
 própria divisão", abaixo. **O bloco 18 acrescentou outros dois** — `fgts.md` e `poupanca.md` —,
 que eram a **primeira linha** da tabela "o que a varredura achou e não foi criado" e só puderam
 ser escritos **depois de consolidados** (§ "O que o bloco 18 fechou").
+
+**O bloco 23 acrescentou o décimo primeiro, e ele quebra a regra de divisão desta pasta de
+propósito.** `metodos-resumido-e-detalhado.md` **não é uma cadeia** — é **o procedimento de
+cálculo**, e vale para **todas** as cadeias. Ficaria duplicado dez vezes se seguisse a regra.
+**A justificativa é a mesma das seções transversais de `tributario-federal.md`**: matéria que
+atravessa todas as jurisdições fica em um lugar só, referenciada pelos demais.
 
 | Arquivo | Cobre |
 |---|---|
@@ -66,6 +72,7 @@ ser escritos **depois de consolidados** (§ "O que o bloco 18 fechou").
 | **`poupanca.md`** ⟨bloco 18⟩ | **cadernetas de poupança** (item 4.9) — correção (12 segmentos) e juros de mora (3); **`D8-C16`/`N-11`**, o corte por **data de abertura da conta**; **UPC** e **LBC**, que só aparecem aqui; a **cadeia paralela da NOTA 3** (cruzados novos bloqueados); as **duas `R3` cheias do manual**; `D8-D19`, `D8-D24`, `D8-D25` |
 | **`tributario-federal.md`** | repetição de indébito e dívida fiscal; **e as seções transversais** a todas as cadeias federais: as quatro fórmulas de `aplicacao`, ECs 113/136, precatório e a consolidação de dez/2021 nos cinco lugares |
 | **`previdenciario.md`** | cadeia de benefícios do CJF (15 segmentos) e a **taxa legal com deflator INPC** |
+| **`metodos-resumido-e-detalhado.md`** ⟨bloco 23⟩ **· transversal** | **o PROCEDIMENTO dos dois métodos** do CJF (itens **4.2.1.1, NOTA 6** e **5.2.1**), passo a passo, com casas, ponto de truncamento e **citação × inferência marcadas**; a **regra de escolha** (*"deve-se utilizar o cálculo resumido"*); **onde divergem, com a operação nomeada**, e a confirmação em `Decimal` de que a divergência é **só truncamento**; `D8-D33` e `D8-D32` |
 
 > **O nome `civel-federal.md` declara alcance, como os demais.** *Cível federal* é o contencioso
 > condenatório da Justiça Federal regido pelo **cap. 4 do Manual CJF**; *cível nacional* é o do

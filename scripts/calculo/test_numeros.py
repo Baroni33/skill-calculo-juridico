@@ -161,6 +161,41 @@ CLASSES = {
 # linha inteira. Cada entrada carrega o porquê, e a entrada órfã FALHA.
 # --------------------------------------------------------------------------
 EXCECOES: list[dict] = [
+    # ---- docs/calculo/aceitacao/bloco-23-relatorio.md --------------------
+    # Relatório de bloco é REGISTRO DATADO: fixa o estado do fechamento e
+    # NÃO se atualiza. `docs/calculo/extracao/` está fora da varredura por
+    # árvore exatamente por isso; `aceitacao/` não está, e os relatórios de
+    # bloco que moram ali entram aqui, um a um.
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-23-relatorio.md",
+        "achado": "20 testes",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Tamanho de `test_aceite_nivel1.py` no fechamento do bloco 23, "
+            "citado para dizer que o NÍVEL 1 é executável e não prosa. "
+            "Atualizar apagaria o que o bloco entregou."
+        ),
+    },
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-23-relatorio.md",
+        "achado": "32 testes",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Tamanho de `test_metodos.py` no fechamento. É a resposta ao G3 "
+            "da auditoria — 'nenhum teste confrontava metodos.py' —, e o "
+            "número é a medida da correção."
+        ),
+    },
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-23-relatorio.md",
+        "achado": "36 rótulos",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "CITAÇÃO da divergência corrigida: a skill dizia 'Catálogo "
+            "completo — 28 indexadores' e o catálogo tinha 36 rótulos. "
+            "Apagá-la apagaria o defeito que o bloco 23 consertou."
+        ),
+    },
     # ---- README.md ------------------------------------------------------
     {
         "arquivo": "README.md",

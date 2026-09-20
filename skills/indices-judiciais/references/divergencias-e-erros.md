@@ -3,6 +3,23 @@
 Companheiro de [`../SKILL.md`](../SKILL.md), § Limitações declaradas, item 5. **Movido da
 espinha no bloco 19, pelo limite de 500 linhas** — nada foi removido.
 
+**Bloco 23:** recebeu também as **armadilhas 8 e 9** da espinha, pela mesma razão de limite.
+
+---
+
+### As armadilhas 8 e 9 — defeitos do original, não da leitura
+
+**8 — o calendário de 18.14 não serve para contar dias úteis.** **Treze meses impressos com
+menos dias do que têm** — conferido na imagem da página. Março de 2017 imprime **27 dias num mês
+de 31**, com a coluna inteira de segunda-feira vazia. `dia_da_semana` vem da coluna sob o
+cabeçalho do original, **não de cálculo de calendário**, e diverge do real em **42 dias**.
+
+**9 — ruído tipográfico que o validador acusa, e que é do original.** Dígito a mais ou ponto no
+lugar da vírgula nos limites de faixa (`De 2.2347,86 até 3.130,51`, `Até 1.1710,78`,
+`De 478.78 até 957,56` — **nove ocorrências**, `bloco-01-tabelas.md` § 5.1); e **chamada de nota
+de rodapé colada na data** (`04/04/9116`, `Dez/1017`), que faz o validador acusar lacuna de
+**1018-01 a 2010-12**. O CSV guarda a **string literal**.
+
 ---
 
 ### 5. O que as "31 divergências" significam (e o que foram os "10 erros")

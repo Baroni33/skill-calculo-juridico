@@ -18,7 +18,53 @@ Dado tabular e aritmética normativa se verificam com código.
 | `migra_bloco19_tipos.py` | **Não valida — reescreve.** Migração idempotente do bloco 19: `tipo_indexador` da SELIC, da taxa legal, do IPCA-E/IPCA-15 e da família TR. Mantido para que a alteração seja auditável segmento a segmento (`--conferir` só lista) |
 
 Testes em `test_valida_cobertura.py`, `test_valida_taxa_legal.py`,
-`test_valida_bloco_tabelas.py` e `test_ponteiros.py`.
+`test_valida_bloco_tabelas.py`, `test_ponteiros.py`, `test_aceite_nivel1.py` e
+`test_metodos.py`.
+
+## `test_metodos.py` — o procedimento dos dois métodos, contra célula publicada
+
+**Bloco 23.** Até então **nenhum teste confrontava `metodos.py`** — `grep -l metodos
+scripts/calculo/test_*.py` devolvia **vazio**, e a única verificação era um `hasattr` dentro do
+runner de aceitação, que afere que a função **existe** e não que ela está **certa**. Estava errada:
+a regra `T3` proibia, em prosa, a célula `55,75 × 43,89% = 24,46` que o manual **publica** na
+`pagina_pdf` 52 e que o consolidado **já usava** como prova de truncamento.
+
+**Não precisa de série, e é o ponto.** Os coeficientes estão **impressos** no PDF com 10 casas. O
+que se afere é o **procedimento**: dado o coeficiente publicado, a sequência de operações e de
+truncamentos reproduz — ou não — o número publicado. Reproduz **3.484,95** (`pagina_pdf` 51),
+**5.218,27** (52), **5.218,28** (53) e **4.435,07 · 4.435,04 · Δ 0,03** (91–92), célula por célula.
+
+**O que não fecha fica declarado com `skipTest` e a razão** — o rótulo do corte de dez/2021
+(lacuna #3), o coeficiente a partir da série mensal (camada B) e a fixture 3, que tem um método só.
+**Nunca silenciado, nunca ajustado para caber.**
+
+## `test_aceite_nivel1.py` — o critério de aceite DA SKILL
+
+**Bloco 23.** O conjunto declara **não carregar série de índices** e usava como critério de aceite
+quatro fixtures do CJF que **consomem série** — a fixture 1 sozinha, 23 meses de IPCA-E. **As duas
+afirmações não podem ser verdadeiras ao mesmo tempo.** A resolução não foi popular série; foi
+declarar o nível:
+
+| | O que é | Executável |
+|---|---|---|
+| **NÍVEL 1** | invariantes e aritmética: **R11** pelos dois pares publicados, **R12** por AST, **R1 na composição**, as **cinco cadeias de arredondamento**, o **NMP de três ramos** | **só com a skill** — este arquivo |
+| **NÍVEL 2** | as **quatro fixtures** de `tests/fixtures/calculo/` | **exige série carregada** |
+
+**NÍVEL 1 é o aceite da SKILL; NÍVEL 2 é o aceite do SISTEMA.** O conteúdo do NÍVEL 1 não é lista
+idealizada: é o que a Frente A do bloco 22 de fato acertou sem série nenhuma
+(`bloco-22-relatorio.md` § 1).
+
+**Por que aqui e não em `tests/fixtures/calculo/` nem só numa seção de skill:** aquele diretório é
+**dado**, e seção de skill **declara, não verifica**. Este é o único diretório que roda inteiro em
+toda varredura. **Critério de aceite que ninguém roda envelhece** — foi exatamente o que aconteceu
+com a afirmação que o bloco 23 veio corrigir, e por isso o arquivo também **guarda a própria
+declaração**: falha se o README das fixtures ou as duas `SKILL.md` deixarem de declará-lo.
+
+**Não é motor de cálculo** — a restrição de "O que não entra" segue valendo. Cada asserção está
+ancorada em **número publicado pelo corpus**; não se liquida condenação e não se consulta série.
+A varredura de R12 por AST **exclui os `test_*.py`**, e a exclusão é necessária:
+`test_valida_taxa_legal.py` e `test_valida_parametros.py` **plantam float de propósito** para
+provar que o caminho aritmético o recusa.
 
 ## Descoberta é por CONTEÚDO, nunca por convenção de nome
 
@@ -51,6 +97,24 @@ python valida_cadeias.py --sem-atualizar-manifesto  # só confere, não escreve 
 
 As guardas de `tipo_indexador` em `test_valida_cobertura.py` leem o mesmo manifesto, em vez
 de cravar a contagem.
+
+## `test_classes_de_indice.py` — a skill não diverge do catálogo
+
+**O catálogo é a fonte; a skill APONTA, não copia.** Varre os `.md` de `skills/` — espinha e
+`references/`, **sem exclusão nenhuma** — atrás de afirmação de classe de R3, e falha quando o
+rótulo afirmado tem outra classe em `indexadores-tipo-catalogo.json`. Nasceu porque **IPCA-E e
+IPCA-15 viraram `janela-deslocada` no bloco 19 e duas skills continuaram publicando
+`indeterminado` até o bloco 23**, com as fixtures 1 a 3 apoiadas exatamente nisso.
+
+**Dois idiomas, nenhuma janela de proximidade:** a linha de tabela com uma célula de classe — o
+índice fica na célula vizinha, e a direção depende de a célula ser **só** o token ou o **rótulo**
+da classe — e o predicado em prosa *"X e Y são `classe`"*, que era a forma das duas divergências
+reais. **Medido antes de decidir:** a alternativa por proximidade de ±60 caracteres devolvia 52
+achados divergentes, dos quais **48 eram falso positivo**, todos pela prosa que **ensina** R3
+pondo as classes lado a lado. **Custo aceito e declarado: este arquivo NÃO tem ledger de
+exceções.** Não há divergência legítima aqui — ou é a classe do catálogo, ou é defeito —, e a
+cobertura parcial se paga com uma falha que nunca precisa ser anistiada. As medições, o que passa
+ileso e a razão de `docs/` ficar fora estão no docstring.
 
 ## `test_ponteiros.py` — ponteiro morto não volta
 

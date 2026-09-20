@@ -80,6 +80,37 @@ resultado. Pendências **P17-01**, **P18-01** e **P19-01**. Catálogo:
 > dentro do campo de R3, e deixava a SELIC cega para a comparação de defasagem. **`engloba` não
 > mudou**, e R1 segue lendo exatamente o que lia.
 
+---
+
+## A régua de ajuste da virada de `R3` — **LACUNA DECLARADA, não régua a inventar**
+
+`R3` diz que `nominal` reflete **M−1**, `percentual` reflete **M** e `janela-deslocada` reflete
+**metade de cada**, e que trocar de classe **sem ajustar desloca o cálculo em um mês**. **O que o
+corpus não diz é o que FAZER na virada** — se o mês da ponta se repete, se pula, ou se o índice se
+pro-ratiza. **Não há régua, e inventar uma plausível produziria número plausível e errado.**
+
+**O que existe, e não é isso:** o campo **`aplicacao`** do segmento, com o vocabulário fechado
+**D1–D4** (`02-atualizacao-detalhe.md` § 5.3). Ele declara **se** a defasagem foi tratada naquele
+segmento — é contra ele que o validador decide entre `[R3]` e segmento limpo —, **não qual
+deslocamento aplicar na fronteira entre dois segmentos de classes diferentes**.
+
+**Busca negativa, com escopo contado:** os **15** arquivos de `docs/calculo/consolidado/` e as
+**31** páginas `.md` de `skills/`, por `defasagem`, `desloca`, `ajustar`, `ajuste`, `na virada`,
+`um mês`, `pro rata`, `régua`. Todas as ocorrências **enunciam o efeito de não ajustar** ou
+**descrevem D1–D4**; **nenhuma dá o procedimento**. E o corpus registra a própria indecisão: a
+`L3` de [`../../../docs/calculo/consolidado/10-literais-na-extracao.md`](../../../docs/calculo/consolidado/10-literais-na-extracao.md)
+§ 5.2 foi reclassificada como **`DÚVIDA`** com a frase *"ninguém sabe qual é o comportamento
+certo"*, e nomeia as três perguntas que faltam responder — a primeira delas é **decisão de
+modelagem, não leitura de fonte**.
+
+**Conduta enquanto a lacuna existir:** onde uma das pontas é `indeterminado`, o validador já
+**bloqueia** sob `R3-INDETERMINADO`. Onde as duas pontas têm classe **e são diferentes**, a
+violação é **registrada como `[R3]` e não é consertada pelo motor** — as confirmadas que
+`00-numeros.md` § 3 publica são **do manual**. **Quem precisar do número tem de decidir a régua, declarar
+a decisão como override justificado (R21) e gravá-la na memória de cálculo (R13).**
+
+---
+
 **Não são índices, mas o contrato as trata como série:** **URV** (cotações diárias em CR$; **o
 método de conversão não está no bloco** e não foi inferido), **moedas e paridades**
 (multiplicadores de transição) e **calendários** (18.14). E **MVR**, extraída em

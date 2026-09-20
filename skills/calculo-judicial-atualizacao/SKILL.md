@@ -124,7 +124,7 @@ resolução, não erro.
 |---|---|
 | **R1** — exclusividade de englobamento | **SELIC e taxa legal englobam correção e juros.** Cumular com índice inflacionário é **erro material**, não escolha de critério: conta a inflação duas vezes. Vale em `trabalhista-nacional` §§ 2–3, `civel-cc-nacional`, `civel-federal`, `desapropriacao`, `tributario-federal`, `previdenciario` |
 | **R2** — cobertura sem lacuna nem sobreposição | a ponta `1942-11` das cadeias históricas é **janela de análise** (`ponta_materializada`), não afirmação do manual. Em cadeia de índices **nominais**, fim e início no mesmo mês (OTN/BTN em jan/1989) **não é dupla contagem** — R-08-04, e o manual o diz expressamente |
-| **R3** — tipo do indexador na virada | nominal (ORTN, OTN, BTN, Ufir) reflete a inflação do mês **anterior**; percentual (INPC, IGP-DI) a do **próprio** mês. **Trocar entre tipos sem ajustar a defasagem desloca o cálculo em um mês** |
+| **R3** — classe do indexador na virada | `nominal` reflete a inflação do mês **anterior**; `percentual`, a do **próprio**; **`janela-deslocada`**, metade de cada. **Trocar de classe sem ajustar a defasagem desloca o cálculo em um mês** — e **a régua do ajuste não existe no corpus**. **A classe de cada rótulo sai de `indexadores-tipo-catalogo.json`**, nunca desta skill |
 | **R4** — juros sempre simples | **com a `R4-EXCEÇÃO`**: ver abaixo |
 | **R5** — piso nominal | índice negativo **entra** no cálculo, mas o piso é **por parcela**, não sobre o total |
 | **R7** — termo inicial não é intercambiável | trabalhista = **ajuizamento**; cível = citação (salvo Súmulas 54, 43 e 362/STJ); repetição = **trânsito em julgado** |
@@ -132,14 +132,23 @@ resolução, não erro.
 
 ### `R4-EXCEÇÃO` — juros **COMPOSTOS** de 27/02/1987 a 03/03/1991
 
-**Dentro do invariante, não em nota.** Por força do **DL 2.322/87, art. 3º**. Confirmada por
-**três registros independentes, duas jurisdições, edições separadas por dez anos**: quadro geral
-do TRT-3 (`pagina_pdf` 89), quadro da Fazenda (92) e cadeia do CJF (`pagina_pdf` 78, *"De
-mar./1987 a mar./1991 — 1,0% — composta"*). Mecânica que o próprio manual dá: *"1,0% ao mês, c/
-taxa capitalizada. Ex.: 3 meses = 3,03%"*.
+**Dentro do invariante, não em nota.** Por força do **DL 2.322/87, art. 3º**, em **três registros
+independentes, duas jurisdições** (`trabalhista-nacional.md` § 4). Mecânica literal do manual:
+*"1,0% ao mês, c/ taxa capitalizada. Ex.: 3 meses = 3,03%"*. **Quem ler só "juros sempre simples"
+erra quatro anos de qualquer conta que atravesse o período.**
 
-> **Quem ler apenas "juros de mora sempre simples" erra quatro anos de qualquer conta que
-> atravesse o período.**
+**E a mecânica sem a fronteira é função morta — o GATILHO:**
+
+| | |
+|---|---|
+| **eixo** | **competência da parcela** (Passo 1, par 1) — não o ajuizamento nem o pagamento. **Não é preset**: é cadeia temporal, e o motor a liga sozinho |
+| **entra / sai** | **27/02/1987** e **03/03/1991** (TRT-3) — `1987-03` e `1991-03` (CJF) |
+| **onde** | `cjf.trabalhista.juros-mora` e o quadro do TRT-3 (`trabalhista-nacional.md` §§ 4 e 6). **NÃO é das condenatórias gerais** — `civel-federal.md` § 10 |
+| **fora dela** | **R4 puro:** 0,5% a.m. até fev/87; **1,0% a.m. SIMPLES** desde a Lei 8.177/91, art. 39 |
+
+> **A fronteira NÃO está harmonizada, e na virada do mês a escolha muda o número.** O **TRT-3 dá
+> ao dia**; o **CJF, ao mês**. **Leve as duas, não escolha um lado**: a granularidade adotada é
+> **override com justificativa** (R21), gravada na memória de cálculo (R13).
 
 ### `R11` — a taxa legal não é subtração
 
@@ -302,9 +311,9 @@ antecipa. E o deflator é o do mês **`m−1`**, não o corrente.
 
 **3 — `R4-EXCEÇÃO`: quatro anos de juros compostos.** 27/02/1987 a 03/03/1991.
 
-**4 — `R3`: trocar indexador nominal por percentual sem ajustar a defasagem.** Desloca **um
-mês**. É por isso que `tipo: nominal | percentual` é campo que **não pode faltar** no catálogo
-de índices.
+**4 — `R3`: trocar de classe de indexador sem ajustar a defasagem.** Desloca **um mês**. São
+**cinco** classes, não duas, e `tipo` é campo que **não pode faltar** no catálogo de índices.
+**E a régua do ajuste é lacuna declarada** — não se inventa uma.
 
 **5 — IPCA-**E** × IPCA.** IPCA-**E** na fase pré-judicial trabalhista; **IPCA (sem E)** a partir
 de 30/08/2024. A distinção é do dispositivo do acórdão. **Fontes secundárias escrevem IPCA nos
@@ -342,10 +351,10 @@ são os operandos**. **O limiar de alarme não deve ser o centavo.**
 
 ---
 
-## Fixtures de aceite
+## Fixtures de aceite — **NÍVEL 2: exigem série**
 
-Do Manual CJF (Res. 990/2026, item 4.2.1.1, Nota 6). Fonte:
-`docs/calculo/00-base-normativa.md` § 8.
+Do Manual CJF (Res. 990/2026, item 4.2.1.1, Nota 6). Fonte: `00-base-normativa.md` § 8. **São
+NÍVEL 2 — aceite do SISTEMA, não desta skill: exigem série de índices.** Ver Limitações, item 8.
 
 | # | Caso | Esperado |
 |---|---|---|
@@ -354,17 +363,19 @@ Do Manual CJF (Res. 990/2026, item 4.2.1.1, Nota 6). Fonte:
 | **3** | **não** Fazenda, data-base jun/2026. Parcelas 01/2002 e 08/2024 de R$ 1.000,00; citação 01/2005 | **R$ 5.772,95** — principal 2.554,45; juros 3.218,50 |
 | **4** | precatório complementar (item 5.2.1): principal 20.000,00 + juros 3.000,00 em jan/2016, honorários 10%, INPC; pagamento ago/2018 dentro do prazo, precatório apresentado 01/07/2017; atualização até mai/2020 | **R$ 4.435,07** resumido · **R$ 4.435,04** detalhado |
 
-**A divergência de centavos é parte do teste.** Fixture 2: R$ 0,01 entre detalhado e resumido.
-Fixture 4: R$ 0,03 — **o melhor teste de arredondamento do conjunto**. **Um motor que zera essas
-diferenças está arredondando errado.**
+**A divergência de centavos é parte do teste.** Fixture 2: R$ 0,01; fixture 4: R$ 0,03 — **o melhor
+teste de arredondamento do conjunto**. **Um motor que zera essas diferenças está arredondando
+errado — e para produzir DOIS números tem de implementar DOIS procedimentos**, passo a passo, com
+casas e ponto de truncamento, em `references/metodos-resumido-e-detalhado.md`. **O default é o
+resumido** (5.2.1). Divergem na **correção do bloco de juros acumulado** (fixt. 2) e na
+**subtração do pagamento** (fixt. 4). **`R12` vale nos dois itens: truncamento** (`D8-D33`).
 
 **Verificação numérica embutida na cadeia da Fazenda trabalhista** (`pagina_pdf` 92): a série (B)
 de jun/12 a ago/13 soma **6,5760%**; o atalho do manual é `15 × 0,5% = 7,5%`, com diferença de
 `0,9240%`. **Conferido em `Decimal`: fecha exato.**
 
-**Ressalva da fixture 2:** o dígito final do método detalhado (R$ 5.218,27) foi **derivado por
-aritmética** — a camada de texto do PDF trunca em `R$ 5.218,2`. `pendencias.md` § 6. O valor
-esperado da fixture (método resumido) **não depende disso**.
+**`D8-D32`, conferido a 250 dpi:** a `pagina_pdf` 52 **imprime** `R$ 5.218,2` — **defeito do
+original**, não da extração. O 5.218,27 é derivado, e o detalhado o produz. `pendencias.md` § 6.
 
 ---
 
@@ -396,8 +407,8 @@ esperado da fixture (método resumido) **não depende disso**.
      **externa ao corpus**, do enunciado do bloco 16, **não conferida nesta fase**;
    - a **regra de incidência assimétrica** do Prov. CNJ 207/2025 **não decorre da leitura da
      emenda** — é especificação de implementação;
-   - `tipo_indexador: "percentual"` para a **TR** é **inferência declarada**, não extração:
-     **nenhum dos dois manuais classifica a TR**.
+   - a **TR** foi `percentual` por **inferência declarada**, e o bloco 17 a rebaixou: hoje é
+     **`indeterminado` com razão registrada** (bloco 19). **Nenhum dos dois manuais a classifica.**
 
 4. **`pr.intertemporal` tem default, e a ultratividade continua disponível.** O **Tema 23 do TST**
    (IRR, Pleno, 25/11/2024, 15 × 10, transitado, **modulação negada por unanimidade**) fixou
@@ -423,28 +434,19 @@ esperado da fixture (método resumido) **não depende disso**.
    falência** (três ementas do TRT-3, **duas divergentes entre si**); **TJ-SP** mantendo a SELIC
    fora da fase de precatório contra a Res. CJF 990/2026 e o STJ.
 
-7. **A divisão em seis arquivos não cobria duas cadeias federais — fechado no bloco 17.**
-   Condenatórias em geral e desapropriação (direta e indireta, **com os compensatórios**) não são
-   tributárias nem previdenciárias e não tinham arquivo na lista do bloco 16. **Passaram a ter:**
-   `references/civel-federal.md` e `references/desapropriacao.md`. **O conteúdo mudou de lugar, não
-   de teor**, e as pendências que ele carregava (`N-8`, `P8-09`, `N-10`, honorários de perito de
-   4.5.6) **seguem abertas** nos arquivos que as receberam.
+7. **Limitações da própria DIVISÃO em arquivos — e as lacunas que a varredura achou e não
+   preencheu — não se repetem aqui:** estão em
+   [`references/README.md`](references/README.md), seções *"Limitação da própria divisão"*, *"O que
+   a varredura do bloco 17 encontrou, e NÃO foi criado"* e *"O que o bloco 18 fechou"*, com o
+   **escopo contado** de cada busca negativa. Ali ficam, uma a uma, **`N-5`/`D8-C13`** (expurgos do
+   FGTS: substituem ou acrescem?), **`P18-01`**, **`P18-02`**, **`P19-02`** e as **duas `R3`
+   cheias** da poupança. **Nenhuma virou regra; todas seguem abertas.**
 
-8. **A varredura do bloco 17 encontrou lacunas que NÃO foram preenchidas** — o enunciado autorizou
-   dois arquivos, e elas ficam **listadas, com a razão**, em `references/README.md`:
-   - **FGTS (item 4.8, índice JAM) e poupança (item 4.9, 12 segmentos) — FECHADO NO BLOCO 18.**
-     Consolidados em `02-atualizacao-detalhe.md` §§ 5.3.2–5.3.5, com quatro cadeias novas, e só
-     **então** escritos: `references/fgts.md` e `references/poupanca.md`. **Seguem abertas**
-     `N-5`/`D8-C13` (os expurgos do FGTS **não dizem se substituem ou acrescem** — os percentuais
-     **não viraram segmento**), **`P18-01`** (sete rótulos `indeterminado`, entre eles o **`IPC`
-     nu**) e **`P18-02`** (oito cadeias tabuladas sem JSON, inclusive o **FGTS fiscal de 2.4.4.1**,
-     critério `JCM`, que **não é** a cadeia de 4.8);
-   - **precatórios/requisitórios** não são cadeia por jurisdição, e sim **regime de fase**
-     transversal — ficam em `tributario-federal.md` §§ 6 e 7, referenciados pelos demais;
-   - **planos econômicos** são **regime temporal bloqueado por falta de série** (P19), não matéria
-     de `reference`;
-   - **dívida fiscal** e **repetição de indébito** **não são lacuna**: o nome
-     `tributario-federal.md` as cobre.
+8. **As fixtures do CJF só são executáveis com a SÉRIE de índices carregada — são NÍVEL 2.**
+   A fixture 1 sozinha consome **23 meses de IPCA-E**. A série é **dependência externa, e esta
+   skill não a carrega por desenho** — o contrato está em `skills/indices-judiciais/`. **O aceite
+   DESTA skill é o NÍVEL 1** — invariantes e aritmética —, executável em
+   `scripts/calculo/test_aceite_nivel1.py`. Os dois níveis: `aceite-em-dois-niveis.md`.
 
 ---
 
@@ -478,6 +480,8 @@ fgts.md                        critério JAM, corte por SAQUE INTEGRAL, expurgos
 poupanca.md                    corte por ABERTURA DA CONTA, UPC e LBC, as duas R3 do manual
 tributario-federal.md          repetição, dívida fiscal, aplicacao, ECs 113/136, precatório
 previdenciario.md              INPC, e a taxa legal com deflator INPC
+metodos-resumido-e-detalhado.md   transversal: é O PROCEDIMENTO dos dois métodos. Carregue
+                               para IMPLEMENTAR, e para as fixtures 2 e 4
 ```
 
 > **FGTS e poupança têm CALENDÁRIO DE JUROS PRÓPRIO:** vão de Selic **direto à taxa legal em
