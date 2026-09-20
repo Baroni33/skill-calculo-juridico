@@ -23,7 +23,7 @@ impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
 | 7 | Atualização monetária e juros de mora | 83–99 | 17 | 9 e 10 | coberto |
 | **8** | **Encargos e despesas processuais** | **100–106** | **7** | **—** | **NÃO COBERTO** |
 | 9 | Descontos legais: previdenciário e fiscal | 107–208 | 102 | 7 | coberto |
-| 10 | Atualização de débitos trabalhistas | 209–277 | 69 | **11A e 11B** | **45 pp. cobertas**, 24 com decisão registrada — ver § 2.1 |
+| 10 | Atualização de débitos trabalhistas | 209–277 | 69 | **11A, 11B, 11C** | **56 pp. cobertas**, 13 com decisão registrada — ver § 2.1 |
 | 11 | Exemplo de cálculos, acordos e atualizações | 278–298 | 21 | 10 | coberto |
 | **12** | **Contribuição sindical** | **299–302** | **4** | **—** | **NÃO COBERTO** |
 | 13 | Atualização de créditos da dívida ativa da União | 303 | 1 | 10 | coberto |
@@ -33,27 +33,26 @@ impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
 | 17 | Súmulas, OJs e TJPs — TST e TRT-3 | 337–372 | 36 | 10 | coberto |
 | 18 | Tabelas | 373–471 | 99 | 1 | coberto |
 
-**Conferido em script**, não estimado. Atualizado no bloco 11B.
+**Conferido em script**, não estimado. Atualizado no bloco 11C.
 
 Página não coberta exige decisão registrada, e o mapa separa os dois casos:
 
 | | Páginas |
 |---|---|
-| **Cobertas** | **398** |
-| Não cobertas **com decisão registrada** | **51** |
+| **Cobertas** | **409** |
+| Não cobertas **com decisão registrada** | **40** |
 | Não cobertas **sem decisão** | **14** |
 | Soma dos capítulos | 463 |
 | Pré-textuais (capa e sumário, pp. 1–8) | 8 |
 | **Total do PDF** | **471** |
 
-**Cobertura: 84,5% do PDF, 86,0% das páginas de capítulo.**
+**Cobertura: 86,8% do PDF, 88,3% das páginas de capítulo.**
 
-### Não coberto COM decisão registrada — 51 pp.
+### Não coberto COM decisão registrada — 40 pp.
 
 | Onde | Págs | Decisão |
 |---|---|---|
-| Cap. 10, segmento **B** (pp. 224–236) | 13 | **Bloco 11C** — descontos proporcionais, art. 12-A e 12-B |
-| Cap. 10, segmento **D** (pp. 267–277) | 11 | **Bloco 11D** — amortização sob o art. 12-B. **Atenção:** o bloco 11B mostrou que o corte C/D parte a hipótese dos juros vincendos, que a moldura declara obrigatória e que só os Exemplos 5 e 6 exercitam. Pendência **P11B-08** |
+| Cap. 10, segmento **B** (pp. 224–236) | 13 | **Bloco 11D** — descontos proporcionais. Reordenado: o 11C foi ao segmento D porque a amortização estava incompleta sem os Exemplos 5 e 6 |
 | Cap. 16 (pp. 310–336) | 27 | `fora-de-escopo-com-ressalva-confirmada` — varredura dirigida a 16.4.3–16.4.7 e 16.4.9–16.4.12. Pendência **P10-C16** |
 
 ### Não coberto SEM decisão — 14 pp.
@@ -94,13 +93,15 @@ negativa: varredura por `grep -rn` em `docs/calculo/extracao/` pelos termos `cap
 `capítulo 10`, `capítulo 12`, `capítulo 14`, `capítulo 16` e pelas faixas de página
 `100`–`106` e `209`–`277`. Nenhuma ocorrência que indicasse extração.
 
-**Atualização do bloco 11B:** o capítulo 10 tem **45 das 69 páginas cobertas** (segmentos A e
-C); as 24 restantes têm bloco atribuído. Restam **três capítulos sem decisão**: 8, 12 e 14.
+**Atualização do bloco 11C:** o capítulo 10 tem **56 das 69 páginas cobertas** (segmentos A, C
+e D) — **a amortização está fechada**. Resta o segmento B, 13 pp., para o 11D. Seguem **três
+capítulos sem decisão**: 8, 12 e 14.
 
 ### 2.1 Capítulo 10 — em extração, dividido por operação
 
-**69 páginas, 45 cobertas.** O bloco 11A fez a varredura estrutural e extraiu o segmento A;
-o bloco 11B extraiu o segmento **C**, que é onde vive a regra de imputação.
+**69 páginas, 56 cobertas.** O bloco 11A fez a varredura estrutural e extraiu o segmento A;
+o 11B extraiu o **C**, onde vive a regra de imputação; o 11C extraiu o **D**, que fecha a
+amortização. Resta o segmento **B**.
 
 A numeração impressa **para em 10.3.2.1, na p. 239** — e o capítulo segue por mais 38 páginas
 estruturadas apenas por `Exemplo 1` a `Exemplo 6`. Dividir pela numeração perderia 55% do
@@ -109,9 +110,9 @@ capítulo. A divisão real, medida por script:
 | Seg. | Item | Operação | pp. | Caracteres | Bloco |
 |---|---|---|---|---|---|
 | **A** | 10.1 | Atualização **sem** amortização | 209–223 (parcial) | 41.471 | **11A — feito** |
-| **B** | 10.2 | Descontos proporcionais | 223–236 | 41.228 | 11C |
+| **B** | 10.2 | Descontos proporcionais | 223–236 | 41.228 | 11D |
 | **C** | 10.3 | Amortização — **RRA, art. 12-A** | 237 (off. 681)–266 (off. 2141) | 89.290 | **11B — feito** |
-| **D** | 10.3 | Amortização — **art. 12-B** (Ex. 5–6) | 266–277 | 33.694 | 11D |
+| **D** | 10.3 | Amortização — vincendos e **art. 12-B** (Ex. 5–6) | 266 (off. 2141)–277 | 33.694 | **11C — feito** |
 
 **Nenhuma das fronteiras internas do capítulo 10 é quebra de página** — todas caem no meio de
 uma folha, e foram localizadas por offset. O capítulo termina na p. 277; o cap. 11 abre na 278.
@@ -122,8 +123,11 @@ do texto da p. 249, não um título. Os Exemplos 1 a 6 ficam todos pendurados no
 
 **A fronteira A/B não é quebra de página:** o título `10.2` está no offset 2.658 da p. 223.
 
-**O segmento C é o que o produto precisa** — é onde vive a regra de imputação e a resposta
-para a invariante R10. Por isso o 11B vai a C, não a B.
+**A ordem dos blocos seguiu o valor, não o documento.** O 11B foi ao segmento C porque é onde
+vive a regra de imputação e a resposta para R10. O 11C foi ao **D**, e não ao B, porque o 11B
+mostrou que a hipótese que a moldura declara obrigatória — o critério alternativo da letra C,
+sob juros vincendos — não tinha exemplo no segmento C: a amortização estava incompleta sem os
+Exemplos 5 e 6.
 
 Estrutura original, para referência:
 
