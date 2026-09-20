@@ -39,7 +39,7 @@ sumário de itens numerados (regex `^[2-5](\.\d+){1,4}\s`), e **integralmente** 
 | **4.6.2** | **juros de mora — indireta** | **não** | § 5.3.1 | **SEGUE AUSENTE** — `P18-02`, pela mesma razão de 4.5.2. Fecha em **dez/2021**, e a gêmea 4.5.2 em **nov/2021** |
 | **4.6.3** | **juros compensatórios — indireta** | **sim, bloco 19 T3** | §§ 5.3.1 e 5.3.6 | **era lacuna; GERADA** — 3 segmentos. Carrega o `N-10` (remete a *"item 4.5.2"*, da direta), **transcrito, não corrigido** |
 | **4.7.1** | correção — ações trabalhistas | **não, e não deve haver** | §§ 6 e 5.3.6 | **NÃO É LACUNA — não existe tabela.** **Registra-se a DELEGAÇÃO, não a ausência.** Só lista de leis, e a NOTA 2 **delega**: *"utilizar a tabela de coeficientes trabalhistas expedida pelo TST"*. Mesmo desenho do `P9-02`. A cadeia vive numa **série**, não numa regra |
-| 4.7.2 | juros — trabalhista | **sim** | § 5.2 | ok |
+| 4.7.2 | juros — trabalhista | **sim** | § 5.2 e **§ 5.2-B** | **escopo restrito e termo inicial próprios** — `pagina_pdf` 77 e 78 |
 | **4.8.1.1** | **correção — FGTS (`JAM`)** | **sim, bloco 18** | **§ 5.3.2 (agora)** | **era lacuna; consolidada** |
 | 4.8.2 | juros remuneratórios — FGTS | não | § 5.3.2 | **não é cadeia temporal** — eixo = conta existente em 22/9/1971 |
 | **4.8.3** | **juros de mora — FGTS** | **sim, bloco 18** | **§ 5.3.4 (agora)** | **era lacuna; consolidada** |
@@ -137,17 +137,83 @@ competências.
 > ortogonalidade que a fonte não declara. **Fica como nota de aplicação, com item e página** — o
 > mesmo tratamento de 4.8.2, 4.9.2 e da NOTA 3 de 4.9.1.1.
 
+### 5.2-B A cadeia trabalhista do CJF — escopo e termo inicial **não são os da Justiça do Trabalho**
+
+**Achado `L12` de [`10-literais-na-extracao.md`](10-literais-na-extracao.md), promovido a
+`BLOQUEIA` no bloco 20, mais o termo `estatutário` da varredura de entidade (§ 5 daquele
+arquivo).** `cjf.trabalhista.juros-mora` aparece na § 5.2 como *"a cadeia trabalhista do CJF"*, e
+quem lê só isso importa de **R7** ([`01-dominio-e-invariantes.md`](01-dominio-e-invariantes.md)
+§ 2.4) o termo inicial da linha **Trabalhista**, que é **ajuizamento**. **O CJF escreve outra
+coisa, e escreve para quem o capítulo alcança.**
+
+**Termo inicial — item 4.7.2, `pagina_pdf` 78, campo `termo_inicial` de
+`../tabelas-normativas/cjf.trabalhista.juros-mora.json`, literal:**
+
+> *"Os juros são contados a partir da **notificação inicial (Súmula n. 224 do STF)**, salvo
+> determinação judicial em outro sentido."*
+
+**Escopo — NOTA de abertura do item 4.7, `pagina_pdf` 77, campo `escopo_restrito`, literal:**
+
+> *"Este capítulo aplica-se **apenas a ações trabalhistas relativas a contratos regidos pela
+> Consolidação das Leis do Trabalho (CLT) anteriores à promulgação da vigente Constituição
+> Federal**, nos termos do art. 27, § 10, do ADCT/1988, **não se aplicando a ações relativas a
+> servidores(as) públicos(as) sob regime estatutário**."*
+
+**Por que muda resultado, e nos dois literais:**
+
+1. **`ajuizamento` ≠ `notificação inicial`.** São datas distintas, e o termo inicial é operando
+   de **D2**. Reclamação ajuizada em **10/03/1995** e notificada em **05/04/1995**, **1,0% a.m.
+   simples**: pela espinha os juros correm desde **março**; pelo literal, desde **abril**. **Um
+   mês inteiro de juros sobre todo o principal**. *(O segmento aplicável em 1995 é o
+   `1991-04..2001-07`, **sem `condicao`**: em 1995 a cadeia é **tronco**, e a bifurcação por
+   devedor — Fazenda × empresa pública/prestador — só nasce em **ago/2001**. Qualificar o caso
+   por ramo seria anacronismo.)*;
+2. **o escopo decide se a cadeia é sequer a certa.** Contrato **celetista posterior à promulgação
+   da vigente Constituição Federal** em ação na Justiça Federal: pela § 5.2 o implementador aplica
+   esta cadeia e obtém **1,0% a.m.** em 2005; pelo literal o item 4.7 **não o alcança**, e a conta
+   corre por **4.2.2** — **Selic** desde jan/2003. **Servidor(a) estatutário(a) está excluído(a)
+   por escrito**, e é o recorte da § 5.2-A que o governa.
+
+> **`05/10/1988` é GLOSA, não literal.** O `escopo_restrito` escreve *"anteriores à promulgação da
+> vigente Constituição Federal"*; a data é **inferência nossa** sobre qual dia isso é. **Correta**
+> — e ainda assim inferência, dentro de uma seção cujo produto é o literal. Fica marcada como tal,
+> e o texto acima usa a formulação da fonte.
+
+> **Não harmonizado, e é o ponto.** **R7** continua dizendo **ajuizamento** para a Justiça do
+> Trabalho (CLT art. 883; Súmula 200 do TST) — é outra jurisdição e outra fonte. O que este
+> parágrafo acrescenta é que **a cadeia do CJF tem termo inicial próprio, escrito**, e um escopo
+> que a espinha não exibia. **Os dois ficam registrados lado a lado**, como em
+> [`08-nacional-e-regional.md`](08-nacional-e-regional.md).
+>
+> **Ressalva de proveniência:** o JSON **não grava `termo_inicial_pagina_pdf`** para esta cadeia;
+> a página citada é a da `fonte` do item (78). A do `escopo_restrito` é gravada (77).
+
 ### 5.3 As quatro fórmulas de `aplicacao` do CJF
 
-| # | Regra | Onde |
-|---|---|---|
-| **D1** | Selic **no mês posterior ao de sua competência, inclusive no mês de pagamento** | Fazenda, a partir de dez/2021 |
-| **D2** | Selic **do mês seguinte ao termo inicial dos juros até o mês anterior ao pagamento, e 1% no mês do pagamento** | não-Fazenda; e Fazenda jan/03–jun/09 |
-| **D3** | do mês seguinte ao **recolhimento indevido** até o mês anterior à repetição, e 1% no mês | repetição de indébito |
-| **D4** | do mês seguinte à **competência da parcela** até o mês anterior ao pagamento, e 1% no mês | dívida fiscal |
+| # | Regra | `aplicacao` (token) | Onde |
+|---|---|---|---|
+| **D1** | Selic **no mês posterior ao de sua competência, inclusive no mês de pagamento** | `mes-posterior-a-competencia` | Fazenda, a partir de dez/2021; e a taxa legal |
+| **D2** | Selic **do mês seguinte ao termo inicial dos juros até o mês anterior ao pagamento, e 1% no mês do pagamento** | `mes-seguinte-ao-termo-inicial-dos-juros-e-1pct-no-mes-do-pagamento` | não-Fazenda; e Fazenda jan/03–jun/09 |
+| **D3** | do mês seguinte ao **recolhimento indevido** até o mês anterior à repetição, e 1% no mês | `mes-seguinte-ao-recolhimento-indevido-e-1pct-no-mes-da-repeticao` | repetição de indébito |
+| **D4** | do mês seguinte à **competência da parcela** até o mês anterior ao pagamento, e 1% no mês | `mes-seguinte-a-competencia-da-parcela-e-1pct-no-mes-do-pagamento` | dívida fiscal (2.3.2.2), **FGTS (4.8.3) e poupança (4.9.3)** |
 
 **D1 e D2 dão resultados diferentes sobre a mesma série.** A taxa legal segue **D1**
 (item 4.2.2, NOTA 7, `pagina_pdf` 56).
+
+> **As quatro são TOKEN, e a coluna do meio é o contrato com o validador — bloco 20.**
+> `valida_cobertura.py` só desliga R3 contra o **vocabulário fechado**
+> `APLICACOES_QUE_AJUSTAM_DEFASAGEM`, e ele nasceu com **dois** valores enquanto esta tabela
+> declarava **quatro fórmulas**: `D2`, `D3` e `D4` estavam gravadas em **prosa** e eram rejeitadas
+> **pela grafia**, não pelo conteúdo. **Uma das duas violações de R3 que o fechamento revelou era,
+> por isso, falso positivo de modelagem** — a `Ufir → Selic` de
+> `cjf.repeticao-indebito.correcao-monetaria`, que é o `D3` do próprio componente do segmento
+> (`componente: correcao-monetaria`, `engloba` os dois). Tokenizadas as três, ela desapareceu.
+>
+> **O literal não se perdeu:** a prosa do manual migrou para `aplicacao_literal`, e
+> `aplicacao_formula` grava qual `D` é. A **outra** violação revelada **se sustenta**: o
+> `aplicacao` do IPCA-E de jan./2001 (`cjf.condenatorias-gerais.correcao-monetaria`) diz **qual
+> valor** usar naquele mês, **não quando** o índice incide — **não é regra de defasagem**, e por
+> isso **não foi tokenizada**.
 
 ### 5.3.1 Desapropriação — os juros compensatórios são cadeia própria
 
@@ -298,6 +364,26 @@ programada, a prazo fixo ou de rendimentos crescentes, *"deve-se consultar o ju�
 tem coluna de observações — e o manual não a explica. **Não harmonizada.** Some-se a ela a divergência
 de **rótulo do IPC** (`IPC` × `IPC/IBGE`) nos mesmos meses, em duas janelas.
 
+**Os juros REMUNERATÓRIOS de 4.9.2 — a regra-base, e ela não estava em ponto nenhum da espinha.**
+Item **4.9.2**, `pagina_pdf` **86**, campo `JUROS_REMUNERATORIOS_NAO_SAO_ESTA_CADEIA.regra` de
+`../tabelas-normativas/cjf.poupanca.juros-mora.json`, literal:
+
+> *"**0,5% ao mês** (art. 52 do Decreto n. 24.427/1934; art. 12 do DL n. 2.284/1986; art. 2º da
+> Lei n. 8.088/1990 e art. 12 da Lei n. 8.177/1991); **6% ao ano ou fração *pro rata* para
+> cruzados novos bloqueados** (art. 6º da Lei n. 8.024/1990; art. 7º da Lei n. 8.177/1991)."*
+
+**São um componente de VALOR, e incidem concomitantemente aos moratórios** — e são
+**capitalizados mensalmente** (NOTA 1 do mesmo item, `pagina_pdf` 86; é a exceção a **R4**
+enunciada em [`02-atualizacao.md`](02-atualizacao.md) § 8).
+
+> **Achado do bloco 20 — o ponteiro de `L7` não alcançava.** A absolvição dizia *"a espinha não
+> silencia: ela aponta"*, e o ponteiro existia; mas o **destino** — esta § 5.3.3 — trazia só a
+> **NOTA 2** (contas abertas a partir de maio/2012) e a nota dos cruzados novos **da correção**.
+> **A regra-base do 4.9.2 não estava em lugar nenhum**, e o caso que a própria seção nomeia —
+> **conta bloqueada, 1990** — chegava ao destino e **não encontrava taxa**. A frase *"Registrados
+> no JSON, fora dos segmentos"* é dita da § 5.3.2, sobre **4.8.2 (FGTS)**, não sobre 4.9.2.
+> **O ponteiro passou a alcançar**, e é por isso que `L7` segue `ENFRAQUECE`.
+
 **`D8-C16` / `N-11` — o corte da poupança é por DATA DE ABERTURA DA CONTA.** Item 4.9.2, NOTA 2,
 `pagina_pdf` 86, literal: *"Tratando-se de **contas abertas a partir de maio/2012** (art. 12 da Lei
 8.177/1991 com alterações da MP 567/2012, convertida na Lei 12.703/2012): 0,5% ao mês, caso a taxa
@@ -398,6 +484,10 @@ a base alterna quatro vezes entre originário e corrigido) e **2.4.4.1 é lista,
 
 **Os novos baselines dos validadores** — `scripts/calculo/valida_cadeias.py`, que descobre cadeia por
 `tipo == "cadeia-temporal"` e portanto absorveu os quatro arquivos sem alteração de código:
+
+> **As tabelas *antes × depois* desta subseção são REGISTRO DATADO e NÃO se atualizam** — uma
+> variação só é auditável se as duas pontas ficarem como estavam. **O placar corrente está em
+> [`00-numeros.md`](00-numeros.md) § 3**, gerado por script.
 
 | | antes | **depois** |
 |---|---|---|
@@ -685,6 +775,42 @@ R$ 2.275,96 e juros R$ 55,75 — **ambas recebendo 5,05% de Selic**.
 > **Verificação por varredura:** `0,4412` ocorre nas páginas **50, 59, 67, 74 e 79**. A primeira
 > redação do bloco 08 listava **quatro** lugares e três ramos; são **cinco** — as duas
 > desapropriações ficaram de fora.
+
+---
+
+## 11. Atualização do DEPÓSITO — **três regimes, conforme a natureza** (`A17`)
+
+**Achado `A17`, promovido a `BLOQUEIA` no bloco 20.** Manual TRT-3, **capítulo 16**,
+`pagina_pdf` **329** — `../extracao/trabalhista/bloco-13e-capitulo16.md` § 5. **A dedução do
+depósito é passo do cálculo** (passo **11** de [`09-ordem-de-calculo.md`](09-ordem-de-calculo.md)
+§ 3, item 10.3.1 letra **E**), e **qual regime se aplica muda o número deduzido**.
+
+| Natureza do depósito | Critério de atualização |
+|---|---|
+| **judicial** | critérios da **caderneta de poupança** — **TR + 0,5% a.m.** |
+| **recursal** | critérios do **FGTS** — **TR + 3% a.a.** |
+| **crédito trabalhista** (o exequendo) | **art. 39 da Lei 8.177/1991** — **TR + 1% a.m. simples** |
+
+**São três taxas diferentes sobre o mesmo eixo de tempo**, e o discriminante não é a competência:
+é a **natureza do depósito**. Quem atualizar um depósito recursal pela régua do crédito troca
+**3% a.a.** por **1% a.m.** — doze pontos percentuais ao ano de diferença sobre o valor
+depositado, e o resultado é o **saldo**, não uma linha acessória.
+
+> **Por que isto era lacuna, e por que escapou de duas peneiras.** A § 6.4 de
+> [`10-literais-na-extracao.md`](10-literais-na-extracao.md) classificara `A17` como *"lacuna de
+> REGRA, não de entidade"*, porque o **termo** `depósito recursal` ocorre no consolidado
+> ([`05-imputacao.md`](05-imputacao.md) § 4). **O fato é verdadeiro e a consequência não se
+> sustentava:** o termo estar lá qualificando o alcance do item "i" da ADC 58 **não põe os três
+> regimes em lugar algum**. Busca literal nos arquivos do consolidado por `TR + 3% a.a.`,
+> `3% ao ano`, `TR +` e `poupança … 0,5%`: **zero ocorrências**. E a classificação fez `A17`
+> escapar **das duas varreduras** — não entrou na reauditoria dos dez (que cobriu `L1`–`L13`) nem
+> na varredura de entidade (excluída pelo critério do termo). **Uma regra que não está em peneira
+> nenhuma não é "registrada como insumo": é lacuna.**
+
+**Eixo vizinho, e NÃO é o mesmo.** [`05-imputacao.md`](05-imputacao.md) § 5 registra as **três
+posições sobre a DATA da dedução** (levantamento, depósito ou cálculo). Aquilo é **quando**
+deduzir; isto é **com que régua o depósito chega até lá**. As duas perguntas são independentes, e
+errar qualquer uma muda o saldo.
 
 ---
 

@@ -272,7 +272,7 @@ classificação — em [`references/catalogo-de-indices.md`](references/catalogo
 A classificação normativa é `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`,
 **que é o que o validador lê**.
 
-**Os 36 rótulos das 20 cadeias, mapeados um a um (bloco 19, tarefa 3):**
+**Os rótulos das cadeias, um a um** (quantos: `consolidado/00-numeros.md` §§ 1 e 2):
 
 | Classe | Quais | Fonte |
 |---|---|---|
@@ -369,9 +369,9 @@ a série (B) de **jun/12 a ago/13** soma **6,5760%**; o atalho do manual é `15 
 com diferença de **0,9240%**. **Conferido em `Decimal`: fecha exato.**
 
 **3 — integridade do bloco 1**, `python scripts/calculo/valida_bloco_tabelas.py`
-(`encoding='utf-8'` explícito em toda leitura). Estado atual reproduzido:
-`15 ok, 31 divergências, 1 não verificados, **0 erros**`, exit 0. **Os dez erros eram de
-escopo do validador, não de dado, e sumiram no bloco 17** — ver § 5.
+(`encoding='utf-8'` explícito). **Placar em `consolidado/00-numeros.md` § 4**, gerado por script.
+O que vale aqui é estável: sai **não-zero só em ERRO**, e **erro da extração é zero**. **Os dez
+erros eram de escopo do validador, não de dado, e sumiram no bloco 17** — ver § 5.
 
 **4 — contagens que devem bater exatamente** (`bloco-01-tabelas.md` § 4): 18.8.1 → 560 = 560;
 18.8.2 → 1.412 = 1.412; 18.10 URV → 546 = 546; 18.13 → 768 = 768; 18.15 Selic → 264 = 264.
@@ -443,15 +443,15 @@ histórica de normas coletivas também é externa:** o catálogo do repositório
 legais e pisos, não cláusulas de instrumentos** — as cláusulas ficam em `tests/fixtures/calculo/`
 e, no uso real, **em dados do cliente** (`tabelas-normativas/README.md`, "Terceira família").
 
-### 5. As "31 divergências" não são falha, e os "10 erros" acabaram
+### 5. Divergência do original não é falha, e os "10 erros" acabaram
 
 `valida_bloco_tabelas.py` **separa erro de extração de divergência do original** e sai com
 código não-zero **só no primeiro**. **Divergência é resultado esperado do trabalho:** o manual
 tem erros de digitação e calendários com dias faltando, e eles ficam registrados.
 
-**Estado: `15 ok, 31 divergências, 1 não verificados, 0 erros`, exit 0.** Os **dez erros eram de
-ESCOPO do validador, não de dado** — `range` de páginas do bloco 1 aplicado a CSV de outro bloco,
-**corrigido no bloco 17**. As 31 uma a uma em
+**Placar corrente: `docs/calculo/consolidado/00-numeros.md` § 4.** O que não muda: **erro da
+extração é zero, e exit 0**. Os **dez erros eram de ESCOPO do validador, não de dado** — `range`
+de páginas do bloco 1 aplicado a CSV de outro bloco, **corrigido no bloco 17**. Uma a uma em
 [`references/divergencias-e-erros.md`](references/divergencias-e-erros.md).
 
 ### 6. Pontos que repousam em fonte secundária ou em inferência

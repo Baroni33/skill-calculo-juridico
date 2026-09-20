@@ -438,7 +438,8 @@ As de maior valor:
 **As fixtures 2 e 4 divergem do corpus em R$ 0,01 e R$ 0,03. É esperado** — é a precisão plena
 da seção de aritmética, não defeito. **Comparador que alarme no centavo dá falso positivo aqui.**
 
-**Validadores:** `scripts/calculo/` — 214 testes.
+**Validadores:** `scripts/calculo/`. **A contagem da suíte não se escreve aqui** — ela vive em
+`docs/calculo/consolidado/00-numeros.md` § 5, gerado por script.
 
 ```
 python scripts/calculo/test_valida_cobertura.py    # R1, R2

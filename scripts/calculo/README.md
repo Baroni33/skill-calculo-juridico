@@ -103,12 +103,22 @@ aniversário e prefixação"* — e **não se fecha esperando fonte**. As duas b
 que muda é a mensagem, e é ela que diz a quem audita se vale a pena esperar.
 
 ```
-python valida_cadeias.py    # 20 cadeias | R1: 21 | R2: 1 | R3: 62
+python valida_cadeias.py
 ```
 
-**R3 foi de 46 para 51 na Tarefa 2 e de 51 para 62 na Tarefa 3.** O número publicado acima é o
-**final do bloco**; os dois saltos são narrados em separado porque é isso que permite auditar
-de novo.
+> **O placar não é transcrito aqui.** Cadeias, R1, R2 e R3 — com a composição de R3 entre
+> confirmada e `R3-INDETERMINADO` — vivem em
+> [`docs/calculo/consolidado/00-numeros.md`](../../docs/calculo/consolidado/00-numeros.md),
+> **gerado por script a partir do estado real**. Placar digitado no comentário de um runbook é
+> exatamente o que o bloco 18 deixou envelhecer: *"14 ok, 10 erros"* depois de os erros sumirem.
+
+**O que segue é REGISTRO DATADO DO BLOCO 19, e não se atualiza.** São os números que valiam **ao
+fim daquele bloco**. Narrativa de variação só é auditável se as duas pontas ficarem como estavam
+— relatório que se atualiza sozinho deixa de ser registro. Para o estado de agora,
+`00-numeros.md`.
+
+**R3 foi de 46 para 51 na Tarefa 2 e de 51 para 62 na Tarefa 3**, e os dois saltos vão em
+separado porque é isso que permite auditar de novo.
 
 **Tarefa 2 — R3 de 46 para 51, e a variação é ACHADO, não regressão.** Oito violações novas,
 três fechadas. As novas: **2** `Selic → IPCA-15/IBGE` (a SELIC deixou de saltar R3), **5**

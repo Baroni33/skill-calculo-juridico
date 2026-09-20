@@ -63,7 +63,16 @@ indexadores-tipo-catalogo.json`:
   leitura; **nenhum segmento o usa**, e `test_valida_cobertura.py` prova que
   nenhum voltou a usá-lo;
 * `nao-indexador` — padrão monetário, conversão de moeda, juros em percentual
-  legal. Sem índice não há defasagem a alinhar;
+  legal, e **janela sem correção monetária alguma**. Sem índice não há defasagem
+  a alinhar. **A isenção foi medida, e a caracterização corrigida no bloco 20:**
+  retirá-la acrescentaria **três** viradas, e elas **não são** "todas moeda ×
+  índice". Duas são `Conversão em URV` em `cjf.previdenciario.correcao-monetaria`
+  (`IRSM → URV` e `URV → IPC-R`) — essas, sim, moeda. A terceira é o
+  `segmento[3]` de `cjf.divida-fiscal.correcao-monetaria` (`1991-02..1991-12`),
+  com `indexador: null` e a observação *"Não há correção monetária, somente
+  juros de mora equivalentes à TRD"*: **não é moeda, é uma janela sem correção**.
+  A isenção **se sustenta nos três casos** — em nenhum há índice de inflação nas
+  duas pontas —, mas a razão do terceiro é outra, e está pinada em teste;
 * `indeterminado` — o conceito se aplica e **não há classe atribuível**. Duas
   razões distintas, e elas se fecham de formas diferentes: *sem fonte* (fecha
   quando a fonte chegar) e *fonte diz que não cabe* (não fecha esperando
@@ -82,10 +91,37 @@ tem rótulo próprio; mas passar seria converter "não se sabe" em "está certo"
 logo acima, já condena uma vez. Num validador cuja razão de existir é que o erro
 de R3 não tem sintoma, o silêncio é o pior resultado possível.
 
-**O que salva a virada** é `aplicacao` não-vazio no segmento que ENTRA. É o campo
-onde as cadeias declaram quando o índice incide em relação à competência
-(`mes-posterior-a-competencia`, `primeiro-dia-do-mes-subsequente-a-prestacao`).
-Ausente o campo, não há ajuste declarado — e declarar é o requisito.
+**O que salva a virada** é `aplicacao` **do vocabulário fechado**
+`APLICACOES_QUE_AJUSTAM_DEFASAGEM` no segmento que ENTRA. É o campo onde as
+cadeias declaram quando o índice incide em relação à competência. O vocabulário
+tem **cinco** valores: as **quatro fórmulas do CJF** (`D1`–`D4`, § 5.3 de
+`02-atualizacao-detalhe.md`) e a da cadeia histórica trabalhista. Ausente o
+campo, não há ajuste declarado — e declarar é o requisito.
+
+**Por que o vocabulário é FECHADO — bloco 20.** O teste era de *truthiness*:
+qualquer string não-vazia em `aplicacao` desligava R3. E `aplicacao` guarda
+também prosa transcrita do manual que **não é** declaração de defasagem: a
+regra de **qual valor** do IPCA-E usar em jan./2001 (em
+`cjf.condenatorias-gerais.correcao-monetaria`), que diz *qual*, não *quando*.
+Prosa desligando a checagem de R3 é a mesma falha que `englobante` produzia
+pelo outro campo — o fato de R1 gravado no campo de R3.
+
+**E a primeira versão do fechamento errou de volta, na direção oposta.** Ela
+tratava `"a partir do mês seguinte ao recolhimento indevido ... e 1% no mês da
+repetição"`, de `cjf.repeticao-indebito.correcao-monetaria`, como *"prosa de
+outro componente — a regra dos JUROS"*. **Era falso.** O segmento declara
+`componente: "correcao-monetaria"` e `engloba: ["correcao-monetaria",
+"juros-mora"]`: a prosa é **do próprio componente**, e é a fórmula **`D3`** do
+consolidado. O que faltava não era pertinência, era **grafia** — o domínio
+tinha dois tokens e o consolidado, quatro fórmulas, de modo que `D2`, `D3` e
+`D4` eram rejeitadas por estarem escritas em prosa. **A violação de R3 que dali
+saía era falso positivo de modelagem, e sumiu quando as três foram
+tokenizadas.** A de jan./2001 **não** foi tokenizada e **se sustenta**: ela diz
+que valor usar, não quando o índice incide.
+
+**Nenhuma prosa foi jogada fora.** O literal do manual passou a `aplicacao_literal`
+— campo que já existia em `cjf.condenatorias-gerais.correcao-monetaria` e em
+`trab.hist.correcao-monetaria` —, e `aplicacao` passou a carregar o token.
 
 Segmentos consecutivos com o **mesmo `indexador`** não são virada e não são
 examinados: trocar o fundamento ou a condição não muda a régua de defasagem.
@@ -112,6 +148,9 @@ __all__ = [
     "TIPOS_DE_INDEXADOR",
     "TIPOS_COM_DEFASAGEM",
     "TIPOS_RETIRADOS",
+    "TIPOS_FORA_DO_ALCANCE_DE_R3",
+    "TIPOS_QUE_BLOQUEIAM_R3",
+    "APLICACOES_QUE_AJUSTAM_DEFASAGEM",
     "competencia_para_indice",
     "indice_para_competencia",
     "valida_cobertura",
@@ -146,6 +185,56 @@ TIPOS_RETIRADOS: frozenset[str] = frozenset({"englobante"})
 TIPOS_COM_DEFASAGEM: frozenset[str] = frozenset(
     {"nominal", "percentual", "janela-deslocada"}
 )
+
+#: BLOCO 20. Domínio FECHADO do que conta como ajuste de defasagem declarado.
+#: `aplicacao` é campo de texto e guarda também prosa do manual que não declara
+#: defasagem alguma — a regra de QUAL valor usar num mês. Enquanto o teste era
+#: `if seguinte.aplicacao`, essa prosa desligava R3.
+#: Valor fora desta lista NÃO salva a virada: é texto, não é declaração.
+#:
+#: **As QUATRO fórmulas do CJF, tokenizadas** — `02-atualizacao-detalhe.md`
+#: § 5.3. O domínio nasceu com duas entradas e rejeitava `D2`, `D3` e `D4` **pela
+#: grafia**: as três estavam gravadas em prosa, e prosa não casa com token. O
+#: consolidado declarava quatro fórmulas e o validador conhecia uma. A prosa
+#: **não foi jogada fora** — migrou para `aplicacao_literal`, campo que já
+#: existia em dois segmentos e agora existe nos cinco tokenizados.
+APLICACOES_QUE_AJUSTAM_DEFASAGEM: frozenset[str] = frozenset(
+    {
+        # D1 — a Selic, sendo devedora a Fazenda, incide no mês POSTERIOR ao de
+        # sua competência, inclusive no mês de pagamento (item 4.2.2, NOTA 7,
+        # pagina_pdf 56).
+        "mes-posterior-a-competencia",
+        # D2 — do mês seguinte ao termo inicial dos juros (citação ou outro) até
+        # o mês anterior ao pagamento, e 1% no mês do pagamento (item 4.2.2,
+        # pagina_pdf 54).
+        "mes-seguinte-ao-termo-inicial-dos-juros-e-1pct-no-mes-do-pagamento",
+        # D3 — do mês seguinte ao recolhimento indevido até o mês anterior à
+        # repetição, e 1% no mês da repetição (item 4.4.1.1, pagina_pdf 63).
+        "mes-seguinte-ao-recolhimento-indevido-e-1pct-no-mes-da-repeticao",
+        # D4 — do mês seguinte à competência da parcela devida até o mês anterior
+        # ao pagamento, e 1% no mês do pagamento (itens 2.3.2.2, 4.8.3 e 4.9.3;
+        # pagina_pdf 26, 83 e 86).
+        "mes-seguinte-a-competencia-da-parcela-e-1pct-no-mes-do-pagamento",
+        # Cadeia histórica trabalhista: o índice do mês da prestação é aplicado
+        # no primeiro dia do mês subsequente.
+        "primeiro-dia-do-mes-subsequente-a-prestacao",
+    }
+)
+
+#: Classes para as quais R3 **não tem o que verificar**. Declaradas em conjunto
+#: próprio, e não soltas dentro da função, para que o teste possa amarrar a
+#: PARTIÇÃO: todo valor de `TIPOS_DE_INDEXADOR` está em exatamente um entre
+#: `TIPOS_COM_DEFASAGEM`, `TIPOS_FORA_DO_ALCANCE_DE_R3` e `TIPOS_QUE_BLOQUEIAM_R3`.
+#: Sem essa amarra, valor novo no domínio cairia no fim de `_valida_r3` **sem
+#: violação e sem `R3-INDETERMINADO`** — silêncio, que é o pior resultado
+#: possível num validador cuja razão de existir é que o erro de R3 não tem
+#: sintoma. É o buraco que o bloco 20 fechou.
+TIPOS_FORA_DO_ALCANCE_DE_R3: frozenset[str] = frozenset(
+    {"nao-indexador", "englobante"}
+)
+
+#: Classe que BLOQUEIA a virada, sob a regra `R3-INDETERMINADO`.
+TIPOS_QUE_BLOQUEIAM_R3: frozenset[str] = frozenset({"indeterminado"})
 
 
 # --------------------------------------------------------------------------
@@ -350,12 +439,12 @@ def _valida_r3(
             continue
 
         # Fora do alcance de R3: sem índice, ou índice que não é de inflação.
-        if "nao-indexador" in (ta, tb) or "englobante" in (ta, tb):
+        if TIPOS_FORA_DO_ALCANCE_DE_R3 & {ta, tb}:
             continue
 
         janela = (seguinte.inicio, seguinte.fim)
 
-        if "indeterminado" in (ta, tb):
+        if TIPOS_QUE_BLOQUEIAM_R3 & {ta, tb}:
             # Razão declarada em fonte ("não cabe") não é pendência ("não há
             # fonte"): as duas bloqueiam, mas só a segunda fecha esperando.
             razoes = [
@@ -390,7 +479,10 @@ def _valida_r3(
         # `percentual` (M) e `janela-deslocada` (metade de M−1, metade de M).
         # A regra não enumera pares: qualquer troca entre duas delas é virada.
         if ta in TIPOS_COM_DEFASAGEM and tb in TIPOS_COM_DEFASAGEM and ta != tb:
-            if seguinte.aplicacao:
+            # Só o VOCABULÁRIO DECLARADO salva. Prosa em `aplicacao` é
+            # transcrição do manual, não declaração de defasagem — ver a nota
+            # do bloco 20 na docstring do módulo.
+            if seguinte.aplicacao in APLICACOES_QUE_AJUSTAM_DEFASAGEM:
                 continue
             violacoes.append(Violacao(
                 regra="R3",
@@ -403,8 +495,33 @@ def _valida_r3(
                     f"virada {ta} → {tb} sem ajuste de defasagem declarado em "
                     f"'aplicacao' — desloca o cálculo em um mês (item 4.1.2.4, "
                     f"pagina_pdf 42)"
+                    + (
+                        ""
+                        if not seguinte.aplicacao
+                        else (
+                            f"; 'aplicacao' traz PROSA fora do vocabulário "
+                            f"({seguinte.aplicacao[:60]!r}...) e prosa não é "
+                            f"declaração de defasagem"
+                        )
+                    )
                 ),
             ))
+            continue
+
+        # FALL-THROUGH DECLARADO — bloco 20. Chegar aqui significa que uma das
+        # pontas tem valor de `tipo_indexador` que não está em nenhum dos três
+        # conjuntos. Antes, isso passava em SILÊNCIO: nem violação, nem
+        # `R3-INDETERMINADO`. Silêncio é o pior resultado possível aqui, e a
+        # partição é provada por teste — se este ramo disparar, o domínio
+        # cresceu e ninguém decidiu o que R3 faz com o valor novo.
+        if ta != tb and not (TIPOS_COM_DEFASAGEM >= {ta, tb}):
+            raise ValueError(
+                f"R3 sem regra para o par de tipos ({ta!r}, {tb!r}) em "
+                f"{anterior.id} → {seguinte.id}: valor de 'tipo_indexador' fora "
+                f"de TIPOS_COM_DEFASAGEM, TIPOS_FORA_DO_ALCANCE_DE_R3 e "
+                f"TIPOS_QUE_BLOQUEIAM_R3. Declare em qual dos três ele entra — "
+                f"deixá-lo cair aqui faria R3 aprovar por omissão."
+            )
     return violacoes
 
 

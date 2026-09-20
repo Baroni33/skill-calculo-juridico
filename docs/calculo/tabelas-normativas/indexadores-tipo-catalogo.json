@@ -61,7 +61,7 @@
       ],
       "NAO_sustenta": [
         "TRD",
-        "TBF e Redutor-R — nomeados pela fonte, mas ausentes das 15 cadeias; nada a classificar"
+        "TBF e Redutor-R — nomeados pela fonte, mas ausentes de TODA cadeia do repositório; nada a classificar. Contagem de cadeias e segmentos: consolidado/00-numeros.md, § 1 — número de resultado NÃO se transcreve aqui, e esta frase dizia 'as 15 cadeias' quando já eram 20."
       ],
       "efeito": "A TR não tem competência mensal a alinhar: o período não é o mês, e a taxa é prospectiva. NÃO é 'sem fonte' — a fonte existe e diz que o índice NÃO CABE na tricotomia. Ver 'razoes_de_indeterminado'."
     },
@@ -85,7 +85,7 @@
         "TR",
         "e o que restar"
       ],
-      "COMO_FOI_USADA": "Mapeamento UM A UM contra os 34 rótulos efetivamente presentes nas 15 cadeias — nunca por semelhança de nome. Rótulo que a tabela não alcança permanece 'indeterminado'. Ver 'MAPEAMENTO_BLOCO_19'.",
+      "COMO_FOI_USADA": "Mapeamento UM A UM contra os rótulos efetivamente presentes nas cadeias do repositório — nunca por semelhança de nome. As contagens correntes de cadeias, segmentos e rótulos vivem em consolidado/00-numeros.md, § 1; aqui elas NÃO se transcrevem (esta frase dizia '34 rótulos em 15 cadeias' quando já eram 35 em 20). Rótulo que a tabela não alcança permanece 'indeterminado'. Ver 'MAPEAMENTO_BLOCO_19'.",
       "DIVERGENCIAS": "IGP-DI — a tabela externa não o nomeia; o item 4.1.2.4, letra b, o nomeia LITERALMENTE. Prevalece a FONTE EXTRAÍDA: segue 'percentual'. 'IPCA' nu — a tabela o nomeia, e NENHUMA cadeia tem rótulo 'IPCA' nu; não há o que classificar, e 'IPCA série especial' NÃO é ele (segmento próprio do manual). 'taxa-legal' — a tabela externa NÃO a alcança, e por isso ela cai em 'indeterminado', não em 'percentual' por analogia com a SELIC."
     }
   },
@@ -202,12 +202,12 @@
     ],
     "resultado": {
       "taxa-legal": "ZERO ocorrências que ATRIBUAM tipo com citação de item e pagina_pdf. As únicas linhas que a acompanham de vocabulário de tipo são as que este bloco reescreve e a própria § 7 de 00-base-normativa.md, que fala de ENGLOBAMENTO (R1), não de defasagem (R3). valida_taxa_legal.py a trata como DERIVADA (TL = Fator_Selic / Fator_Deflator − 1), o que confirma que não é índice publicado — mas 'é derivada' não atribui classe. CONCLUSÃO: sem fonte, P19-01.",
-      "IGP-M": "Ocorre no corpus SÓ dentro do literal do item 4.1.2.4 e nas transcrições dele. NÃO é rótulo de indexador de segmento algum nas 15 cadeias — verificado varrendo o campo 'indexador' dos 126 segmentos. Nada a mapear.",
+      "IGP-M": "Ocorre no corpus SÓ dentro do literal do item 4.1.2.4 e nas transcrições dele. NÃO é rótulo de indexador de segmento algum — verificado varrendo o campo 'indexador' de TODOS os segmentos de TODA cadeia do repositório, e reconferido no bloco 20. Nada a mapear.",
       "TDA": "Ocorre como objeto de direito material (títulos da dívida agrária, item 4.5.4, corte de ago./2017), nunca como rótulo de indexador de segmento. Nada a mapear.",
       "JCM": "É o NOME DO CRITÉRIO do FGTS fiscal (item 2.4.4.1), cadeia AUSENTE do repositório (P18-02). Não é rótulo de indexador de segmento algum. Nada a mapear. Mesmo desenho do JAM, que já constava.",
-      "IPCA (nu)": "NENHUM segmento das 15 cadeias tem 'IPCA' como rótulo. Os rótulos existentes são 'IPCA-E/IBGE', 'IPCA-15/IBGE' e 'IPCA série especial'. A linha 'IPCA → percentual' da tabela externa, portanto, NÃO TEM DESTINATÁRIO no repositório, e não pode ser derramada sobre os três rótulos que existem."
+      "IPCA (nu)": "NENHUM segmento de cadeia alguma do repositório tem 'IPCA' como rótulo. Os rótulos existentes são 'IPCA-E/IBGE', 'IPCA-15/IBGE' e 'IPCA série especial'. A linha 'IPCA → percentual' da tabela externa, portanto, NÃO TEM DESTINATÁRIO no repositório, e não pode ser derramada sobre os três rótulos que existem."
     },
-    "COMO_FOI_LEVANTADA_A_LISTA": "Do repositório, não da tabela: varredura do campo 'indexador' de todos os segmentos de todo arquivo com tipo == 'cadeia-temporal' em docs/calculo/tabelas-normativas/. 126 segmentos, 34 rótulos distintos (contando '(segmento sem indexador)' como um). É a lista de MAPEAMENTO_BLOCO_19."
+    "COMO_FOI_LEVANTADA_A_LISTA": "Do repositório, não da tabela: varredura do campo 'indexador' de todos os segmentos de todo arquivo com tipo == 'cadeia-temporal' em docs/calculo/tabelas-normativas/, contando '(segmento sem indexador)' como um rótulo. É a lista de MAPEAMENTO_BLOCO_19. A CONTAGEM NÃO MORA AQUI: cadeias, segmentos e rótulos estão em consolidado/00-numeros.md, § 1, e a de rótulos é conferida por test_valida_cobertura.py::TestMapeamentoBloco19. Dizia '126 segmentos, 34 rótulos' quando já eram 156 e 36 — .json está fora do alcance do detector de test_numeros.py, e por isso envelheceu em silêncio."
   },
   "MAPEAMENTO_BLOCO_19": {
     "o_que_e": "Os rótulos de indexador efetivamente presentes nas cadeias, mapeados UM A UM contra a tabela externa. Eram 34 em 15 cadeias na tarefa 2; são 36 em 20 cadeias depois da tarefa 3, que gerou cinco cadeias de P18-02 e trouxe DOIS rótulos novos, ambos 'indeterminado': 'BTNF' (sem fonte, P19-02) e 'UPC → índices básicos de atualização dos saldos da poupança' (segmento composto, P17-03). Cada entrada de 'indexadores' traz a fonte; aqui fica o resumo auditável e a contagem.",

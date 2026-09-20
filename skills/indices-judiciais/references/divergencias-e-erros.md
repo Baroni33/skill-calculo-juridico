@@ -27,6 +27,7 @@ que estava estreito.**
 **A constante não existe mais.** A faixa se resolve **por arquivo**, em duas origens: o
 `pagina_pdf=` declarado no cabeçalho do próprio CSV, ou o item da linha resolvido no contrato
 de páginas do bloco. Arquivo sem nenhuma das duas sai como **não verificável**, nunca como erro
-e nunca em silêncio. Saída atual: **15 ok, 31 divergências, 1 não verificado, 0 erros.**
+e nunca em silêncio. **A saída corrente não é transcrita aqui** — ok, divergências, não
+verificados e erros estão em `docs/calculo/consolidado/00-numeros.md` § 4, gerado por script.
 **Consequência para o contrato:** proveniência **exige o intervalo de páginas declarado junto
 com a série** — validador com intervalo fixo global não escala para múltiplos blocos.

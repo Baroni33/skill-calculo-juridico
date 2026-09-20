@@ -14,8 +14,19 @@ A skill não é o entregável. O código que um agente constrói lendo a skill �
 | `docs/calculo/01-plano-extracao.md` | Arquitetura das skills, schemas, triagem do corpus, pipeline |
 | `docs/calculo/fontes.md` | Localização dos PDFs e offsets de paginação |
 | `docs/calculo/pendencias.md` | O que está em aberto e o que bloqueia |
-| `docs/calculo/consolidado/` | **Fase 4, fechada.** Catorze arquivos, um por assunto: espinha do que o motor precisa, detalhe de onde está a evidência. **É daqui que a skill se escreve.** |
+| `docs/calculo/consolidado/` | **Fase 4, fechada.** Um arquivo por assunto: espinha do que o motor precisa, detalhe de onde está a evidência. **É daqui que a skill se escreve.** A contagem de arquivos está em [`00-numeros.md`](docs/calculo/consolidado/00-numeros.md) § 6 |
 | `docs/calculo/consolidado/00-calendario-de-cortes.md` | **Chave primária da consolidação.** Um par `(data, eixo)` por corte |
+| [`docs/calculo/consolidado/00-numeros.md`](docs/calculo/consolidado/00-numeros.md) | **Todo número de RESULTADO do repositório** — cadeias, segmentos, R1/R2/R3, placar dos validadores, testes, arquivos, linhas das `SKILL.md`. **Gerado por script** (`python scripts/calculo/gera_numeros.py`), nunca digitado |
+
+> **Número de resultado tem um dono só.** Nenhum outro arquivo publica contagem do estado
+> corrente — eles apontam para `00-numeros.md`. Número de **conteúdo normativo** (42,72% em
+> jan./1989, 0,5% a.m., `art. 457`, `pagina_pdf` 42) **não é resultado, é o dado**, e fica onde
+> está. Número em **relatório de bloco** é registro datado e **não** se atualiza.
+>
+> A regra nasceu de três reincidências: o bloco 19 publicou *"R1 e R2 não se moveram"* em quatro
+> arquivos **depois** de R1 ter ido a 21; o bloco 18 deixou *"14 ok, 10 erros"* num runbook
+> depois de os erros sumirem; o bloco 17 deixou *"97 de 97 segmentos"* depois de virarem 126.
+> **Número digitado em quatro lugares envelhece em quatro lugares.**
 
 Os dois manuais em PDF **não são versionados aqui** — ver `docs/calculo/fontes.md`.
 
@@ -131,7 +142,8 @@ nacional e marca a conta `sem cobertura regional`. Chave: `(regra, tribunal, com
 [`docs/calculo/extracao/bloco-17-relatorio.md`](docs/calculo/extracao/bloco-17-relatorio.md).
 
 **R3 deixou de ser letra morta.** O campo `tipo_indexador` não existia em série nenhuma; passou
-a estar em **todos os segmentos de todas as cadeias** — 97 no bloco 17, **156** hoje —, e o
+a estar em **todos os segmentos de todas as cadeias** — 97 no bloco 17; quantos hoje, em
+[`00-numeros.md`](docs/calculo/consolidado/00-numeros.md) —, e o
 validador bloqueia a virada entre tipos sem ajuste de defasagem. **Dez dos vinte e oito indexadores ficaram `indeterminado`** — a fonte nomeia sete, e
 estender por semelhança de nome era a dedução proibida. **A TR foi rebaixada:** era `percentual`
 por inferência formal, e **inferência declarada não é fonte**.
@@ -158,7 +170,8 @@ indireta inteira** e um **segundo FGTS**, o fiscal do item 2.4.4.1, com critéri
 > manual delega ao TST. **Afirmá-la ausente seria afirmar ausência de algo que a fonte nunca
 > prometeu.**
 
-**15 cadeias, 267 testes.** A contagem deixou de ser constante e passou a ser **manifesto
+**Ao fim do bloco 18: 15 cadeias, 267 testes** *(registro datado — o estado de hoje está em
+[`00-numeros.md`](docs/calculo/consolidado/00-numeros.md))*. A contagem deixou de ser constante e passou a ser **manifesto
 assimétrico**: cresce sozinho quando aparece cadeia nova, e **só encolhe por edição deliberada** —
 porque cadeia a mais é crescimento e **cadeia a menos é regressão**. E entrou
 `test_ponteiros.py`, com *ledger* que distingue ponteiro morto de narrativa histórica pelo par
@@ -174,7 +187,8 @@ referência. E **`englobante` foi retirado**: era um fato de R1 dentro do campo 
 SELIC **cega para defasagem**. O englobamento não se perdeu — mudou para o campo `engloba`, que já
 existia.
 
-**20 cadeias, 156 segmentos, 311 testes.** Dos 36 rótulos de indexador, **32 segmentos seguem
+**Ao fim do bloco 19: 20 cadeias, 156 segmentos, 311 testes** *(registro datado — ver
+[`00-numeros.md`](docs/calculo/consolidado/00-numeros.md))*. Dos 36 rótulos de indexador, **32 segmentos seguem
 `indeterminado`** — e a distinção que o bloco introduziu é entre *"sem fonte"* e *"a fonte diz que
 não cabe"*: **a TR é divulgada para período entre datas de aniversário, não para mês calendário**.
 Essa **não se fecha esperando fonte**.
@@ -182,6 +196,21 @@ Essa **não se fecha esperando fonte**.
 > **`indeterminado` continua sendo a resposta correta onde falta fonte, e continua bloqueando.**
 > Foi o que impediu `BTNF` de herdar do `BTN`, a taxa legal de herdar da SELIC, e o `IPC` nu de
 > herdar do irmão.
+
+**Bloco 20 — fechar a espinha contra o extraído** — ver
+[`docs/calculo/extracao/bloco-20-relatorio.md`](docs/calculo/extracao/bloco-20-relatorio.md).
+
+**O bloco 19 achou um `BLOQUEIA` de conteúdo por acaso; o bloco 20 procurou de propósito e achou
+três** — e **dois na mesma cadeia**. A busca certa não é por paráfrase: **é por entidade que
+sumiu**. E a mais perigosa é a **cláusula que exclui um sujeito**, porque a ausência dela faz a
+regra parecer aplicável a todo mundo: a cadeia trabalhista do CJF alcança **só contratos
+celetistas anteriores à Constituição** e **exclui servidores estatutários por escrito**. O termo
+inicial dos juros ali é a **notificação inicial**, não o ajuizamento — **um mês sobre todo o
+principal**, com R1, R2 e R3 passando nos dois cenários.
+
+> **E o `englobante` tinha um irmão.** `aplicacao` era teste de *truthiness*: **qualquer prosa
+> desligava R3**. Fechar o domínio revelou que o conserto também erra — fechá-lo em dois tokens
+> quando o corpus declara **quatro** fórmulas faz o critério ser **a grafia, não o conteúdo**.
 
 | Bloco | Conteúdo | Relatório |
 |---|---|---|
@@ -206,6 +235,7 @@ Essa **não se fecha esperando fonte**.
 | 17 | **Correções estruturais.** Campo `tipo` e R3 no validador; ids neutros; ordem de cálculo | `docs/calculo/extracao/bloco-17-relatorio.md` |
 | 18 | **Lacunas de consolidação.** FGTS e poupança; manifesto de cadeias; teste de ponteiros | `docs/calculo/extracao/bloco-18-relatorio.md` |
 | 19 | **Classificação de índices.** Terceira classe de R3; 36 rótulos mapeados; 5 cadeias novas | `docs/calculo/extracao/bloco-19-relatorio.md` |
+| 20 | **Espinha contra o extraído.** Quatro `BLOQUEIA` de conteúdo; `00-numeros.md` gerado | `docs/calculo/extracao/bloco-20-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 **80 páginas de capítulo** mais a Apresentação e a Resolução, sete cadeias temporais em

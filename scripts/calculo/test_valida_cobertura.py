@@ -10,8 +10,11 @@ from pathlib import Path
 
 from valida_cadeias import confere_manifesto, descobre_cadeias, le_manifesto
 from valida_cobertura import (
+    APLICACOES_QUE_AJUSTAM_DEFASAGEM,
     TIPOS_COM_DEFASAGEM,
     TIPOS_DE_INDEXADOR,
+    TIPOS_FORA_DO_ALCANCE_DE_R3,
+    TIPOS_QUE_BLOQUEIAM_R3,
     TIPOS_RETIRADOS,
     Segmento,
     carrega_segmentos,
@@ -657,6 +660,85 @@ class TestR3ViradaDeTipo(unittest.TestCase):
         )
 
 
+class TestParticaoDoDominioDeTipo(unittest.TestCase):
+    """BLOCO 20 — o buraco em `derivado`, e ele era real.
+
+    `_valida_r3` acusava só quando **as duas pontas** estavam em
+    `TIPOS_COM_DEFASAGEM`. Valor de `tipo_indexador` fora dos três conjuntos
+    caía no fim da função **sem violação e sem `R3-INDETERMINADO`** — silêncio.
+    Num validador cuja razão de existir é que o erro de R3 não tem sintoma,
+    silêncio é o pior resultado possível: é a mesma troca de falso positivo por
+    falso negativo que a nota sobre exaustividade já condena.
+
+    O conserto tem duas metades, e as duas estão aqui: **os conjuntos amarrados**
+    (nenhum valor do domínio sem destino) e **o fall-through que grita**.
+    """
+
+    def test_os_tres_conjuntos_particionam_o_dominio(self):
+        cobertos = (
+            TIPOS_COM_DEFASAGEM
+            | TIPOS_FORA_DO_ALCANCE_DE_R3
+            | TIPOS_QUE_BLOQUEIAM_R3
+        )
+        self.assertEqual(
+            TIPOS_DE_INDEXADOR - cobertos, set(),
+            "valor de tipo_indexador sem destino em R3: ou tem defasagem, ou "
+            "está declarado fora de alcance, ou bloqueia. Silêncio não é opção.",
+        )
+        self.assertEqual(
+            cobertos - TIPOS_DE_INDEXADOR, set(),
+            "conjunto de R3 nomeia tipo que não está no domínio",
+        )
+
+    def test_os_tres_conjuntos_sao_disjuntos(self):
+        """Dois destinos para o mesmo valor é ambiguidade, e a ordem dos `if`
+        decidiria em silêncio qual vale."""
+        pares = (
+            (TIPOS_COM_DEFASAGEM, TIPOS_FORA_DO_ALCANCE_DE_R3),
+            (TIPOS_COM_DEFASAGEM, TIPOS_QUE_BLOQUEIAM_R3),
+            (TIPOS_FORA_DO_ALCANCE_DE_R3, TIPOS_QUE_BLOQUEIAM_R3),
+        )
+        for a, b in pares:
+            self.assertEqual(a & b, set(), f"{sorted(a)} × {sorted(b)}")
+
+    def test_valor_fora_dos_tres_conjuntos_GRITA_em_vez_de_passar(self):
+        """A prova de que o silêncio acabou. `Segmento.de_dict` barra o valor
+        desconhecido na leitura; este teste constrói o `Segmento` direto, que é
+        o caminho por onde um valor novo entraria sem revalidação."""
+        estranho = Segmento(
+            inicio="2010-01", fim="2019-12", componente=CM,
+            id="X", indexador="X", tipo_indexador="derivado",
+        )
+        normal = segt("2000-01", "2009-12", "Ufir", "nominal")
+        with self.assertRaises(ValueError) as ctx:
+            valida_cobertura([normal, estranho], inicio="2000-01", fim="2019-12")
+        self.assertIn("R3 sem regra para o par de tipos", str(ctx.exception))
+        self.assertIn("derivado", str(ctx.exception))
+
+    def test_nao_indexador_isenta_tres_viradas_e_a_caracterizacao_esta_certa(self):
+        """L-a do bloco 20 — a isenção se sustenta; a caracterização não estava.
+
+        Dizia-se *"+3, todas moeda × índice"*. **Duas** são `Conversão em URV`;
+        a terceira é `cjf.divida-fiscal.correcao-monetaria` segmento 4, com
+        `indexador: null` e a observação *"Não há correção monetária, somente
+        juros"* — **não é moeda, é janela sem correção**. Índice classificado por
+        dedução é proibido, e chamar de moeda o que é ausência de índice era
+        justamente isso.
+        """
+        dados, _ = carrega_cadeia("cjf.divida-fiscal.correcao-monetaria.json")
+        s = dados["segmentos"][3]
+        self.assertIsNone(s["indexador"])
+        self.assertEqual(s["tipo_indexador"], "nao-indexador")
+        self.assertIn("Não há correção monetária", s["observacao"])
+        self.assertEqual((s["inicio"], s["fim"]), ("1991-02", "1991-12"))
+
+        # As duas que SÃO moeda, e são as únicas.
+        dados, _ = carrega_cadeia("cjf.previdenciario.correcao-monetaria.json")
+        urv = [x for x in dados["segmentos"] if x.get("indexador") == "Conversão em URV"]
+        self.assertEqual(len(urv), 1, "a URV é um segmento só; as viradas são duas")
+        self.assertEqual(urv[0]["tipo_indexador"], "nao-indexador")
+
+
 class TestR3JanelaDeslocada(unittest.TestCase):
     """Bloco 19 — a terceira classe.
 
@@ -902,6 +984,173 @@ class TestR3NasCadeiasDoBloco9(unittest.TestCase):
         _, segmentos = carrega_cadeia("trab.hist.juros-mora.json")
         r = valida_cobertura(segmentos, "1942-11", "2016-05")
         self.assertEqual([v for v in r.violacoes if v.regra.startswith("R3")], [])
+
+
+class TestAplicacaoEVocabularioFechado(unittest.TestCase):
+    """BLOCO 20 — `aplicacao` deixou de ser um teste de truthiness.
+
+    O padrão auditado é o de `englobante`: valor que duplica o que outro campo
+    já expressa e cuja presença DESLIGA uma checagem. Aqui não era um valor de
+    enum — era a AUSÊNCIA de enum: qualquer string não-vazia em `aplicacao`
+    desligava R3, inclusive prosa que fala de outro componente (a regra de
+    incidência dos JUROS, transcrita dentro de uma cadeia de CORREÇÃO).
+
+    Estes testes impedem o retorno, como `test_nenhuma_constante_de_faixa_do_
+    bloco_sobrou` do bloco 17 impediu o da constante.
+    """
+
+    def r3(self, r):
+        return [v for v in r.violacoes if v.regra == "R3"]
+
+    def test_prosa_em_aplicacao_nao_salva_a_virada(self):
+        """Prosa NÃO casa com token, mesmo prosa que descreve uma defasagem real.
+
+        Este é exatamente o mecanismo do falso positivo que o bloco 20 corrigiu
+        em seguida: a prosa abaixo É a fórmula **D3**, do próprio componente do
+        segmento que a carrega — e era rejeitada pela GRAFIA. O conserto não foi
+        reabrir o vocabulário: foi **tokenizar D2, D3 e D4** e guardar o literal
+        em `aplicacao_literal`. O teste segue aqui para provar que a régua
+        continua sendo o token, nunca o texto.
+        """
+        r = valida_cobertura(
+            [
+                segt("1992-01", "1995-12", "Ufir", "nominal"),
+                segt("1996-01", "2026-06", "Selic", "percentual",
+                     aplicacao=("a partir do mês seguinte ao recolhimento indevido "
+                                "até o mês anterior à repetição, e 1% no mês da "
+                                "repetição")),
+            ],
+            inicio="1992-01", fim="2026-06",
+        )
+        self.assertEqual(len(self.r3(r)), 1, str(r))
+        self.assertIn("PROSA fora do vocabulário", str(r))
+
+    def test_o_token_D3_salva_a_mesma_virada_que_a_prosa_nao_salvava(self):
+        """A metade que faltava: tokenizada, a MESMA regra passa a valer."""
+        r = valida_cobertura(
+            [
+                segt("1992-01", "1995-12", "Ufir", "nominal"),
+                segt("1996-01", "2026-06", "Selic", "percentual",
+                     aplicacao=("mes-seguinte-ao-recolhimento-indevido-e-1pct-"
+                                "no-mes-da-repeticao")),
+            ],
+            inicio="1992-01", fim="2026-06",
+        )
+        self.assertEqual(self.r3(r), [], str(r))
+
+    def test_regra_de_qual_valor_usar_tambem_nao_salva(self):
+        """A prosa literal de `cjf.condenatorias-gerais.correcao-monetaria`:
+        diz QUAL valor do IPCA-E usar em jan./2001, não QUANDO ele incide."""
+        r = valida_cobertura(
+            [
+                segt("1992-01", "2000-12", "Ufir", "nominal"),
+                segt("2001-01", "2021-11", "IPCA-E/IBGE", "janela-deslocada",
+                     aplicacao=("O percentual a ser utilizado em janeiro de 2001 "
+                                "deverá ser o IPCA-E acumulado no período de "
+                                "janeiro a dezembro de 2000.")),
+            ],
+            inicio="1992-01", fim="2021-11",
+        )
+        self.assertEqual(len(self.r3(r)), 1, str(r))
+
+    def test_o_vocabulario_e_fechado_e_tem_as_quatro_formulas_mais_a_trabalhista(self):
+        """Eram DOIS tokens para QUATRO fórmulas declaradas no consolidado.
+
+        `02-atualizacao-detalhe.md` § 5.3 enuncia `D1`–`D4`; o domínio só tinha
+        `D1`. `D2`, `D3` e `D4` estavam gravadas em prosa e eram rejeitadas pela
+        GRAFIA — não por não serem declaração de defasagem.
+        """
+        self.assertEqual(
+            APLICACOES_QUE_AJUSTAM_DEFASAGEM,
+            frozenset({
+                "mes-posterior-a-competencia",                                    # D1
+                "mes-seguinte-ao-termo-inicial-dos-juros-e-1pct-no-mes-do-pagamento",   # D2
+                "mes-seguinte-ao-recolhimento-indevido-e-1pct-no-mes-da-repeticao",     # D3
+                "mes-seguinte-a-competencia-da-parcela-e-1pct-no-mes-do-pagamento",     # D4
+                "primeiro-dia-do-mes-subsequente-a-prestacao",
+            }),
+        )
+
+    def test_todo_valor_de_aplicacao_do_repositorio_e_token_ou_literal(self):
+        """`aplicacao` é campo de TOKEN. Prosa mora em `aplicacao_literal`.
+
+        Uma única exceção, e ela é o achado que se sustenta: a de jan./2001 em
+        `cjf.condenatorias-gerais.correcao-monetaria`, que diz **qual** valor do
+        IPCA-E usar, não **quando** ele incide — não é regra de defasagem, e por
+        isso NÃO foi tokenizada e segue produzindo violação de R3.
+        """
+        prosa = []
+        for ident, c in sorted(descobre_cadeias(TABELAS).items()):
+            with open(TABELAS / c["arquivo"], "r", encoding="utf-8") as fh:
+                dados = json.load(fh)
+            for i, s in enumerate(dados["segmentos"]):
+                valor = (s.get("aplicacao") or "").strip()
+                if valor and valor not in APLICACOES_QUE_AJUSTAM_DEFASAGEM:
+                    prosa.append((ident, i, valor[:40]))
+        self.assertEqual(len(prosa), 1, prosa)
+        self.assertEqual(prosa[0][0], "cjf.condenatorias-gerais.correcao-monetaria")
+        self.assertTrue(prosa[0][2].startswith("O percentual a ser utilizado"), prosa)
+
+    def test_os_cinco_tokenizados_preservam_o_literal_e_nomeiam_a_formula(self):
+        """Tokenizar não pode perder o literal do manual. `aplicacao_literal` é
+        onde a prosa foi guardada, e `aplicacao_formula` diz qual `D` é."""
+        esperado = {
+            ("cjf.condenatorias-gerais.juros-mora.json", 1): "D2",
+            ("cjf.repeticao-indebito.correcao-monetaria.json", 9): "D3",
+            ("cjf.fgts.juros-mora.json", 1): "D4",
+            ("cjf.poupanca.juros-mora.json", 1): "D4",
+            ("cjf.divida-fiscal.juros-mora.json", 7): "D4",
+        }
+        for (arquivo, i), formula in esperado.items():
+            with open(TABELAS / arquivo, "r", encoding="utf-8") as fh:
+                s = json.load(fh)["segmentos"][i]
+            self.assertIn(s["aplicacao"], APLICACOES_QUE_AJUSTAM_DEFASAGEM, arquivo)
+            self.assertEqual(s.get("aplicacao_formula"), formula, arquivo)
+            literal = s.get("aplicacao_literal", "")
+            self.assertIn("a partir do mês seguinte", literal, arquivo)
+            self.assertIn("1% no mês", literal, arquivo)
+
+    def test_a_virada_da_repeticao_de_indebito_era_falso_positivo_e_sumiu(self):
+        """`cjf.repeticao-indebito.correcao-monetaria`, `Ufir → Selic`.
+
+        A justificativa escrita no validador dizia que a prosa era *"de outro
+        componente — a regra dos JUROS"*. **Era falsa**: o segmento declara
+        `componente: correcao-monetaria` e `engloba` os dois. É o `D3` do
+        próprio componente, e a violação que dali saía era de modelagem.
+        """
+        dados, segmentos = carrega_cadeia(
+            "cjf.repeticao-indebito.correcao-monetaria.json")
+        alvo = dados["segmentos"][9]
+        self.assertEqual(alvo["componente"], CM)
+        self.assertEqual(sorted(alvo["engloba"]), [CM, JM])
+        r = valida_cobertura(segmentos, "1964-01", "2026-06")
+        pares = {tuple(sorted(v.segmentos)) for v in self.r3(r)}
+        self.assertNotIn(("Selic", "Ufir"), pares, str(r))
+
+    def test_nenhum_escape_por_truthiness_sobrou_no_codigo(self):
+        """Guarda literal: o teste `if seguinte.aplicacao:` não pode voltar."""
+        fonte = (Path(__file__).resolve().parent / "valida_cobertura.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertNotIn("if seguinte.aplicacao:", fonte)
+        self.assertIn("in APLICACOES_QUE_AJUSTAM_DEFASAGEM", fonte)
+
+    def test_a_virada_que_a_prosa_escondia_e_que_se_sustenta(self):
+        """`Ufir → IPCA-E`, em `cjf.condenatorias-gerais.correcao-monetaria`.
+
+        Das DUAS viradas que o fechamento do vocabulário revelou, **uma era
+        falso positivo de modelagem** (a de `repeticao-indebito` — teste acima) e
+        **esta se sustenta**: o `aplicacao` do segmento que entra diz qual valor
+        do IPCA-E usar em jan./2001, e não quando o índice incide. Violação DO
+        MANUAL: ele troca de classe de janela e não declara ajuste de defasagem.
+        """
+        _, segmentos = carrega_cadeia("cjf.condenatorias-gerais.correcao-monetaria.json")
+        r = valida_cobertura(
+            segmentos, "1964-01", "2026-06",
+            dominio_condicoes={"devedor": ["fazenda-publica", "nao-fazenda-publica"]},
+        )
+        pares = {tuple(sorted(v.segmentos)) for v in self.r3(r) if v.componente == CM}
+        self.assertIn(("IPCA-E/IBGE", "Ufir"), pares, str(r))
 
 
 class TestCatalogoDeTipos(unittest.TestCase):

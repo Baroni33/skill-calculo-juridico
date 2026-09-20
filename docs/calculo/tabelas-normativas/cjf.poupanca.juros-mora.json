@@ -62,7 +62,9 @@
         "correcao-monetaria",
         "juros-mora"
       ],
-      "aplicacao": "a partir do mês seguinte ao de competência da parcela devida até o mês anterior ao pagamento, e 1% no mês do pagamento",
+      "aplicacao": "mes-seguinte-a-competencia-da-parcela-e-1pct-no-mes-do-pagamento",
+      "aplicacao_literal": "a partir do mês seguinte ao de competência da parcela devida até o mês anterior ao pagamento, e 1% no mês do pagamento",
+      "aplicacao_formula": "D4",
       "fundamento": "Art. 406 da Lei n. 10.406/2002 – Código Civil.",
       "pagina_pdf": 86,
       "componente": "juros-mora"

@@ -31,11 +31,13 @@ base normativa, **aplicando os vereditos** de `../confronto-normativo/01-veredit
 | 4 | Cível | qualquer | § 4 | § 4 (tabela CGJ/TJMG) |
 | 5 | Federal | sete ramos do CJF | § 5 | § 5 (o tronco comum 1964–fev/1991) |
 
-**Escopo declarado:** o Manual CJF (Res. 990/2026) tem **11 cadeias** em
-`../tabelas-normativas/cjf.*.json` (107 segmentos) — **7 de correção** (condenatórias, previdenciário,
-repetição, desapropriação direta, dívida fiscal, **FGTS**, **poupança**) e **4 de juros**
-(condenatórias, trabalhista-JF, **FGTS**, **poupança**). **Oito outras cadeias tabuladas do manual
-ainda não têm JSON** — `P18-02`, detalhe § 5.0.
+**Escopo declarado:** as cadeias do Manual CJF (Res. 990/2026) estão em
+`../tabelas-normativas/cjf.*.json` — **correção** (condenatórias, previdenciário, repetição,
+desapropriação **direta** e **indireta**, dívida fiscal, **FGTS**, **FGTS fiscal**, **poupança**)
+e **juros** (condenatórias, trabalhista-JF, compensatórios da desapropriação direta e indireta,
+dívida fiscal, **FGTS**, **poupança**). **Quantas cadeias e quantos segmentos, uma a uma:
+[`00-numeros.md`](00-numeros.md) § 1.1**, gerado por script. O que permanece sem JSON está em
+`P18-02`, detalhe § 5.0 e § 5.3.6.
 
 ---
 
@@ -119,6 +121,17 @@ Sob Selic pós-citação a distinção **principal × juros** perde objeto: no p
 separados, o rateio de 10.3 tem objeto. **A conta real atravessa os dois regimes, logo os dois
 coexistem por segmento.** Não é supersessão — é mudança de natureza da operação.
 Fonte: `../extracao/trabalhista/bloco-11c-vincendos.md` § 9.
+
+---
+
+## 2-A. Atualização do DEPÓSITO — três regimes, conforme a natureza
+
+**O depósito não se atualiza pela cadeia do crédito.** Manual TRT-3, cap. 16, `pagina_pdf`
+**329** (`A17`): **judicial** → poupança, **TR + 0,5% a.m.**; **recursal** → FGTS, **TR + 3%
+a.a.**; **crédito trabalhista** → art. 39 da Lei 8.177/1991, **TR + 1% a.m. simples**. O
+discriminante é a **natureza do depósito**, não a competência, e a dedução do depósito é o
+**passo 11** de [`09-ordem-de-calculo.md`](09-ordem-de-calculo.md) — **muda o saldo**. Literal e
+o efeito em [`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md) **§ 11**.
 
 ---
 
@@ -215,7 +228,8 @@ ato ilícito, efetivo prejuízo (Súmula 43/STJ); dano moral, arbitramento (Súm
 ## 5. Justiça Federal — as cadeias do CJF
 
 Manual CJF, Res. 990/2026 (`../extracao/justica-federal/bloco-08-jf.md`); JSON em
-`../tabelas-normativas/cjf.*.json` — **11 cadeias** (7 do bloco 8 + **4 do bloco 18**).
+`../tabelas-normativas/cjf.*.json` — as sete do bloco 8, as quatro do bloco 18 e as cinco do
+bloco 19 T3; **a contagem corrente, cadeia a cadeia, em [`00-numeros.md`](00-numeros.md) § 1.1**.
 **Única fonte do corpus cuja edição está vigente. Segmento a segmento no detalhe § 5.**
 
 **Tronco comum de 1964 a fev/1991**, idêntico palavra por palavra em quatro cadeias de correção
@@ -268,11 +282,22 @@ crédito.** Para **créditos de servidores(as) e empregados(as) públicos(as)** 
 pagamento** (4.2.1.1, NOTA 3, `pagina_pdf` 49). **A nota restringe a tabela.** Literais e o porquê
 de não virar ramo em [`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md) § 5.2-A.
 
+> **E a cadeia trabalhista do CJF (4.7.2) não é a cadeia da Justiça do Trabalho.** O item 4.7
+> **restringe o capítulo por escrito** a *"contratos regidos pela CLT anteriores à promulgação da
+> vigente Constituição Federal"*, **excluindo servidores(as) sob regime estatutário**
+> (`pagina_pdf` 77); e o termo inicial dos juros ali é a **notificação inicial (Súmula 224 do
+> STF)**, *"salvo determinação judicial em outro sentido"* (4.7.2, `pagina_pdf` 78) — **não o
+> ajuizamento de R7**. As duas regras ficam **lado a lado, não harmonizadas**: são jurisdições e
+> fontes distintas. Literais, item, página e o efeito sobre a conta em
+> [`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md) **§ 5.2-B**.
+
 **Quatro fórmulas de `aplicacao`, e D1 ≠ D2 sobre a mesma série:** **D1** — Selic no mês posterior
 ao de sua competência, **inclusive no mês de pagamento** (Fazenda, desde dez/2021; a taxa legal segue
 D1); **D2** — do mês seguinte ao termo inicial dos juros até o mês anterior ao pagamento, **e 1% no
 mês do pagamento** (não-Fazenda; Fazenda jan/03–jun/09); **D3** — eixo no **recolhimento indevido**
 (repetição); **D4** — competência da parcela — **dívida fiscal, e também FGTS e poupança**.
+**As quatro são TOKEN do campo `aplicacao`**, e é contra esse vocabulário fechado que R3 decide se
+a virada tem ajuste declarado — a tabela token × fórmula está no detalhe § 5.3.
 
 **`C14-01` — `SUPERADO`.** A EC 136/2025 reescreveu o art. 3º da EC 113/2021: requisitórios da
 Fazenda **federal**, da expedição ao pagamento, **IPCA** + **juros simples de 2% a.a.**, com

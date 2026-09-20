@@ -439,4 +439,5 @@ Ambas registradas na própria fixture, em `divergencia_de_referencia` e
 - [`tabelas-normativas/camada-norma-coletiva-catalogo.json`](tabelas-normativas/camada-norma-coletiva-catalogo.json) — os 32 parâmetros
 - [`extracao/bloco-05-relatorio.md`](extracao/bloco-05-relatorio.md) — relatório do bloco
 - `scripts/calculo/valida_parametros.py` — validador e resolvedor
-- `scripts/calculo/test_valida_parametros.py` — 71 testes, nenhum skip
+- `scripts/calculo/test_valida_parametros.py` — **nenhum skip**; a contagem por arquivo está em
+  [`consolidado/00-numeros.md`](consolidado/00-numeros.md) § 5, gerado por script

@@ -494,5 +494,6 @@ geral de prescrição trabalhista em lugar nenhum do corpus**.
 - [`tabelas-normativas/camada-regime-temporal-schema.json`](tabelas-normativas/camada-regime-temporal-schema.json) — o contrato
 - [`parametros-negociaveis.md`](parametros-negociaveis.md) — a outra camada, avaliada depois
 - [`extracao/bloco-06-relatorio.md`](extracao/bloco-06-relatorio.md) — relatório do bloco
-- `scripts/calculo/valida_regimes.py` — validador e resolvedor (76 testes)
+- `scripts/calculo/valida_regimes.py` — validador e resolvedor; a contagem de testes está em
+  [`consolidado/00-numeros.md`](consolidado/00-numeros.md) § 5, gerado por script
 - `tests/fixtures/calculo/regimes-casos.json` — doze casos, sintéticos e declarados

@@ -150,7 +150,9 @@
         "correcao-monetaria",
         "juros-mora"
       ],
-      "aplicacao": "a partir do mês seguinte ao recolhimento indevido até o mês anterior à repetição, e 1% no mês da repetição",
+      "aplicacao": "mes-seguinte-ao-recolhimento-indevido-e-1pct-no-mes-da-repeticao",
+      "aplicacao_literal": "a partir do mês seguinte ao recolhimento indevido até o mês anterior à repetição, e 1% no mês da repetição",
+      "aplicacao_formula": "D3",
       "fundamento": "Art. 39, § 4º, da Lei n. 9.250/1995 e art. 3ª da EC n. 113/2021",
       "pagina_pdf": 63,
       "observacao": "O manual escreve 'A partir de jan./1996' enquanto a linha anterior termina em 'jan./1996' — sobreposição do original, preservada.",

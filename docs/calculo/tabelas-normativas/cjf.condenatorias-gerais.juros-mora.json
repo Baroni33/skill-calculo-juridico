@@ -38,7 +38,9 @@
         "juros-mora",
         "correcao-monetaria"
       ],
-      "aplicacao": "a partir do mês seguinte ao da citação ou de outro termo inicial dos juros de mora até o mês anterior ao pagamento, e 1% no mês do pagamento",
+      "aplicacao": "mes-seguinte-ao-termo-inicial-dos-juros-e-1pct-no-mes-do-pagamento",
+      "aplicacao_literal": "a partir do mês seguinte ao da citação ou de outro termo inicial dos juros de mora até o mês anterior ao pagamento, e 1% no mês do pagamento",
+      "aplicacao_formula": "D2",
       "fundamento": "Art. 406 da Lei n. 10.406/2002 — Código Civil",
       "pagina_pdf": 54,
       "componente": "juros-mora"

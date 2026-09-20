@@ -321,7 +321,8 @@ cada dispositivo não foi verificado**.
 **A pendência original desta seção está FECHADA.** `docs/calculo/02-base-normativa-verbas.md`
 chegou ao repositório, foi lido integralmente, e desbloqueou as tarefas 2 e 4 do bloco 5: o
 inventário está consolidado em **32 parâmetros** e a fixture do ACT Gasmig é real. O `skip`
-do caso 6 saiu da suíte. Hoje são 199 testes no repositório, nenhum pulado.
+do caso 6 saiu da suíte, e **nenhum teste do repositório é pulado**. A contagem da suíte não se
+escreve aqui: `consolidado/00-numeros.md` § 5.
 
 O que a chegada do arquivo deixou aberto:
 
@@ -945,7 +946,7 @@ discute** recebe os dois por padrão (NOTA 2).
 | **`LBC`** | FGTS 1987-02; poupança 1987-02..1987-06 | não está no item 4.1.2.4; nada no corpus |
 | **`LBC – 0,5%`** | ambas, 1987-07..1987-09 | idem, e o rótulo embute um redutor de 0,5% não explicado |
 | **`LFT – 0,5%`** | ambas, 1989-01..1989-04 | idem. É a linha do expurgo de 42,72% (`N-5`) |
-| **`TRD`** | ambas, 1991-02..1993-04 | segue a TR (P17-02). As únicas ocorrências no corpus são o texto `nao-indexador` de segmentos de **juros**, que não classifica a TRD como índice de correção |
+| **`TRD`** | ambas, 1991-02..1993-04 | **NÃO segue a TR** — a herança foi desfeita no bloco 19 (§ 25.3): a fonte do BCB nomeia TBF, Redutor-R e TR, **não** a TRD. As únicas ocorrências no corpus são o texto `nao-indexador` de segmentos de **juros**, que não classifica a TRD como índice de correção |
 | **`IPC`** (nu) | FGTS, duas janelas | `D8-C21` sustenta o **`IPC/IBGE`**, não o `IPC` sem emissor — e o manual usa **dois** IPC (IBGE e FGV, item 4.5.1.1). A poupança escreve `IPC/IBGE` nos **mesmos meses** |
 
 **Escopo da busca de ausência declarado** em `tabelas-normativas/indexadores-tipo-catalogo.json`,
@@ -1190,10 +1191,238 @@ gerador:
 
 **`R2` seguiu em 1** nas duas tarefas.
 
-**Testes: 311** — eram **310** ao fim da Tarefa 3, **299** depois da Tarefa 2 e **267** antes do
-bloco. O 311º é
+**A suíte cresceu de 267 para 311 ao longo do bloco 19** — **299** depois da Tarefa 2, **310** ao
+fim da Tarefa 3. *(Registro datado do bloco 19; não se atualiza.)* O 311º é
 `TestMapeamentoBloco19::test_a_contagem_de_segmentos_sem_indexador_bate_com_o_repositorio`, que
 guarda a única contagem que sobrou em prosa no catálogo (`(segmento sem indexador)` →
 `quantos`), agora que ela saiu do texto replicado para dentro dos segmentos.
-`valida_cadeias.py` fecha em `20 cadeias | R1: 21 | R2: 1 | R3: 62`;
-`valida_bloco_tabelas.py` segue em `15 ok, 31 divergências, 1 não verificados, 0 erros`, exit 0.
+
+> **O placar atual dos validadores e da suíte não é transcrito aqui** — sai de
+> `consolidado/00-numeros.md`, §§ 3 a 5, **gerado por script**. Esta seção registra a VARIAÇÃO do
+> bloco 19, que é o que ela existe para contar; o estado de hoje tem um dono só.
+
+---
+
+## 26. Bloco 20 — caminho de fechamento das pendências abertas
+
+**Nada é fechado aqui.** Esta seção diz, para cada pendência aberta, **o que exatamente falta,
+onde procurar e quem resolve** — e, onde a resposta é *"não dá para fechar com o que há"*, diz
+isso. Contagens de resultado (cadeias, testes, violações) não são escritas aqui: ver
+*00-numeros.md*, Tarefa 6 do bloco 20.
+
+### 26.1 Os `indeterminado`, recontados — a separação é estrutural
+
+**Escopo contado antes de declarado:** os **32 arquivos `.json`** de `tabelas-normativas/`, campo
+`indexador` e `tipo_indexador` de todo segmento de arquivo com `tipo == "cadeia-temporal"`.
+**São 32 segmentos `indeterminado`, em 17 rótulos distintos.**
+
+| Grupo | Campo que o marca | Rótulos | Segmentos | Fecha |
+|---|---|---|---|---|
+| **`indeterminado-sem-fonte`** | `tipo_indexador_pendencia` (`P17-01`, `P18-01`, `P19-01`, `P19-02`) | **12** | **24** | **quando a fonte aparecer** |
+| **`indeterminado-por-natureza`** | `tipo_indexador_razao` | **2** — TR e remuneração básica da poupança (TR) | **5** | **nunca, esperando fonte** |
+| **segmento composto** (`P17-03`) | `tipo_indexador_pendencia` | **2** | **2** | quando o segmento for partido — § 26.4 |
+| **índice não declarado** (`P9-02`) | `tipo_indexador_pendencia` | **1** | **1** | quando o manual nomear o índice |
+
+**Duas divergências de contagem, registradas e não harmonizadas:**
+
+- `extracao/bloco-19-relatorio.md` § 2 diz **12 rótulos sem fonte**; a § 25.4 deste arquivo diz
+  **13**. A diferença é `NAO-DECLARADO-PELO-MANUAL`, que **não é "sem fonte de tipo"** — é *"sem
+  índice"*, e é a `P9-02`. **12** é a contagem do grupo *sem-fonte*; **13** é a contagem dos
+  rótulos que carregam `tipo_indexador_pendencia` fora dos compostos. As duas frases são
+  verdadeiras sobre coisas diferentes, e é por isso que colidem;
+- o catálogo tem **18** rótulos `indeterminado`, **um a mais** que os 17 dos segmentos: **`JAM`**
+  (`P18-01`) está no catálogo e **não é `indexador` de segmento algum**. O catálogo declara o
+  porquê — o rótulo circula no corpus como se fosse índice. **Declarado, não removido.**
+
+#### A separação já é legível por script — confirmado, com uma ressalva
+
+`tipo_indexador_razao` ocorre **exatamente** nos 5 segmentos da família TR e em nenhum outro;
+`tipo_indexador_pendencia` ocorre nos outros 27; **nunca os dois juntos** — `Segmento.de_dict`
+rejeita o par. O predicado *"é `indeterminado-por-natureza`"* é, portanto, uma linha de script:
+presença de `tipo_indexador_razao`. **A distinção do enunciado está no dado, não na prosa.**
+
+**A ressalva, e a proposta:** o **subgrupo** — sem-fonte × composto × índice-não-declarado — **não
+tem campo**. Só se lê **parseando o ID da pendência** (`P17-03` = composto, `P9-02` = sem índice),
+e ID de pendência é string de prosa. **Proposta, não executada:** um mapa
+`subgrupo_por_pendencia` em `indexadores-tipo-catalogo.json`, ao lado de `razoes_de_indeterminado`
+— que já nomeia os três subgrupos em texto. **Sem campo novo no segmento**: o segmento já carrega
+o ID, e duplicar a classificação nele criaria duas verdades para manter.
+
+### 26.2 Os doze — qual fonte fecharia cada um
+
+**Não "uma fonte". A fonte.** Onde a resposta é *"nenhuma"*, está escrito.
+
+| Rótulo | Segs. | **A fonte que fecharia** | Natureza |
+|---|---|---|---|
+| **`taxa-legal`** | 5 | **Nenhuma.** Art. 406 do CC (red. Lei 14.905/2024) e Res. CMN n. 5.171/2024 dão a **fórmula**, não a classe — e a fórmula compõe duas classes distintas (§ 26.3). **É decisão do projeto**: a tricotomia admite ou não índice **derivado**? | **decisão** |
+| **`TRD`** | 3 | **Norma do emissor (BCB)** sobre a apuração da TRD — **a mesma classe de documento que fechou a TR fora do agente**. Se disser *"período entre datas de aniversário"*, fecha como **razão**, não como classe, e a TRD migra de `pendencia` para `razao` | norma do emissor |
+| **`IPCA série especial`** | 2 | **Art. 2º, § 2º, da Lei n. 8.383/1991** — **já nomeado no `fundamento` do próprio segmento**; o **texto** do ato não está no corpus. Subsidiariamente, nota metodológica do **IBGE** sobre a série especial de dez./1991 | ato de instituição, **já nomeado** |
+| **`IPC/FGV`** | 2 | **Metodologia do emissor (FGV)**. O manual usa o índice e não o classifica; `D8-C21` alcança só o IPC/IBGE | norma do emissor |
+| **`IPC`** (nu) | 2 | **Nenhuma fonte de classe — a pergunta não é de classe, é de EMISSOR.** Fecha quem nomeie o emissor do `IPC` do item 4.8.1.1 (`pagina_pdf` 82): errata ou edição nova do **CJF**. Se o emissor for o IBGE, `D8-C21` **já** classifica. **Ninguém no repositório pode declará-lo** | fonte externa (CJF) |
+| **`LBC`** | 2 | **Ato de instituição da LBC** e a **resolução do CMN/BACEN** que a pôs como remuneração de FGTS e poupança em 1987. **Nenhum dos dois é citado em lugar algum do corpus** | ato de instituição, **não nomeado** |
+| **`LBC – 0,5%`** | 2 | Idem — **e uma segunda pergunta na mesma norma**: a natureza do redutor de 0,5% (juros descontados? redutor do índice?), que a tabela não declara | idem |
+| **`LFT – 0,5%`** | 2 | Idem, e a mesma norma responderia o **`N-5` / `D8-C13`** (o expurgo de 42,72% substitui ou acresce) | idem |
+| **`BTNF`** | 1 | **Ato de instituição do BTNF.** O corpus **não o nomeia**: o item 2.4.4.1 (`pagina_pdf` 35) e a NOTA 3 de 4.9.1.1 (`pagina_pdf` 85) **usam** o BTNF sem classificá-lo | ato de instituição, **não nomeado** |
+| **`UPC`** | 1 | **Ato de instituição da UPC.** O item 2.4.4.1 só **expande a sigla** — rotulagem, não classificação. Não nomeado no corpus | ato de instituição, **não nomeado** |
+| **`IRSM`** | 1 | **Art. 9º, § 2º, da Lei n. 8.542/1992** — **já nomeado no `fundamento` do segmento**; texto não extraído | ato de instituição, **já nomeado** |
+| **`IPC-R`** | 1 | **Art. 20, § 6º, da Lei n. 8.880/1994** — **já nomeado no `fundamento` do segmento**; texto não extraído | ato de instituição, **já nomeado** |
+
+**O que a coluna da direita muda, e é o ponto desta tarefa:**
+
+- **três** (`IPCA série especial`, `IRSM`, `IPC-R`) já trazem o ato **escrito no próprio segmento**
+  — o que falta é o **texto**, e quem o busca sabe exatamente o que pedir;
+- **cinco rótulos em quatro normas** (`LBC`, `LBC – 0,5%`, `LFT – 0,5%`, `BTNF`, `UPC`) dependem
+  de ato **que o repositório não nomeia**: antes de ler, é preciso **descobrir qual ler**;
+- **dois** (`TRD`, `IPC/FGV`) fecham por **norma do emissor**, não por lei;
+- **um** (`IPC` nu) **não é problema de classe** e nenhuma fonte de tipo o fecha;
+- **um** (`taxa-legal`) **nenhuma fonte fecha — é decisão.** E isso **muda quem resolve**: sai do
+  campo da pesquisa documental e entra no de quem desenha o domínio.
+
+> **`indeterminado` continua bloqueando em todos os doze.** Nenhuma linha acima autoriza
+> classificar; todas dizem onde procurar.
+
+### 26.3 A varredura do extraído — escopo contado, e o que ela achou
+
+**Escopo contado antes de declarado:** **48 arquivos `.md` e 21 `.csv`** sob
+`docs/calculo/extracao/` — **69 arquivos, 1.745.128 bytes** —, mais os **32 `.json`** de
+`tabelas-normativas/`. Três critérios, todos com `encoding='utf-8'` explícito:
+
+1. cada um dos doze rótulos em **janela de ±350 caracteres** de *nominal*, *percentual*,
+   *reflete*, *defasag*, *mês anterior*, *próprio mês*, *divulga*, *aniversár*, *acumulad*,
+   *prefixad*, *período de coleta*;
+2. cada rótulo em janela de ±250 caracteres de **ato normativo** — *Lei*, *Decreto-lei*,
+   *Decreto*, *Resolução*, *MP*, *Medida Provisória*, *Circular* —, para achar o ato citado num
+   `fundamento` sem ninguém ter notado;
+3. leitura **campo a campo** dos 32 segmentos `indeterminado`, nos campos que classificam sem
+   nomear a classe: `formula`, `aplicacao`, `aplicacao_fonte`, `regra_literal`, `fundamento`,
+   `observacao`, `notas`, `base_incidencia`.
+
+> **Resultado: NÃO HÁ fonte no extraído que classifique qualquer um dos doze.** Nos **21 `.csv`**,
+> **zero ocorrências** dos doze rótulos. Os acertos dos critérios 1 e 2 são de três espécies,
+> nenhuma classificatória: (i) os relatórios dos blocos 17, 18 e 19 **narrando a ausência**;
+> (ii) `bloco-04-verbas2.md`, que usa `IPC`, `IPC-r` e `IRSM` como **índice de reajuste salarial**
+> — cronologia normativa, nunca classificação; (iii) os próprios campos `tipo_indexador_*`.
+
+#### Um achado, e ele não fecha — **muda a natureza da pendência**
+
+**`taxa-legal`.** Os cinco segmentos carregam `formula: "SELIC, com dedução do IPCA-15"`, e três
+carregam `aplicacao: "mes-posterior-a-competencia"` com `aplicacao_fonte` citando a **NOTA 4** do
+item — *"A taxa legal observará as mesmas orientações estabelecidas na Nota 7 do item 4.2.2"* — e
+a **Nota 7, `pagina_pdf` 56**, fórmula `D1`. **Isto estava no extraído e não chegou ao catálogo**,
+cuja entrada de `taxa-legal` não traz nem a fórmula nem a Nota 7.
+
+**E ainda assim não classifica**, por duas razões que se somam:
+
+- a fórmula **compõe** um `percentual` (Selic) com um `janela-deslocada` (IPCA-15). **A tricotomia
+  do bloco 19 não tem resultado para essa composição** — e a reclassificação da SELIC, que a
+  tornou `percentual`, é o que deixou isso visível;
+- o item 4.1.2.4, letra b, prende *"aplicação prática no mês seguinte"* à **DIVULGAÇÃO**; a Nota 7
+  prende ao **mês posterior à COMPETÊNCIA**. **Casar as duas é inferência**, e é a dedução que o
+  catálogo existe para impedir.
+
+> **Efeito: `P19-01` deixa de ser *"esperando fonte"*.** A fonte que descreve a taxa legal **está
+> no corpus, com item e `pagina_pdf`** — e o que ela descreve é um **índice derivado**, objeto que
+> a tricotomia não prevê. **`P19-01` é decisão de modelagem**, e a opção está em § 26.4.
+> **Próximo passo nomeado, não executado:** levar `formula` e a citação da Nota 7 para a entrada
+> `taxa-legal` do catálogo. É **movimentação de dado já extraído**, não classificação.
+
+### 26.4 Os quatro — extração, fonte externa ou decisão de modelagem
+
+| # | Item | Veredito |
+|---|---|---|
+| 1 | `Ufir → Selic (bifurcado por fato gerador)` | **modelagem** |
+| 2 | `UPC → índices básicos de atualização dos saldos da poupança` | **extração — e a fronteira é o que a fonte não declara** |
+| 3 e 4 | as duas `taxa: null` dos juros compensatórios | **extração pura** |
+
+#### 1. `Ufir → Selic`, em `cjf.divida-fiscal.correcao-monetaria.json`, `1992-01..2026-06` — MODELAGEM
+
+**A fronteira ESTÁ declarada.** O `regra_literal` do próprio segmento data as viradas dos dois
+ramos: *"Para fatos geradores ocorridos: a) Até 31/12/1994: I. Até jan./1997: Ufir; II. A partir
+de jan./97: taxa Selic, até o mês anterior ao pagamento; 1% no mês do pagamento. b) A partir de
+jan./1995: I. De jan./95 a mar./1995: TMMCTN; II. A partir de abr./1995: taxa Selic até o mês
+anterior ao pagamento; 1% no mês do pagamento."* **E o eixo já existe no arquivo:**
+`condicao: {"eixo": "data-do-fato-gerador"}`, com `dominio_condicoes` declarado. **Partir
+resolve**, e nada precisa ser inventado.
+
+> **Achado colateral desta leitura:** o rótulo `Ufir → Selic` **esconde um terceiro indexador** —
+> **`TMMCTN`**, jan. a mar./1995 —, que **não está no catálogo** nem é `indexador` de segmento
+> algum. Partir o segmento **cria um rótulo novo**, e ele nasce `indeterminado`.
+
+**As opções, e o que cada uma custa:**
+
+| Opção | Custo |
+|---|---|
+| **(A)** dois ramos em `condicao`, com valores próprios | Expõe a R3 a virada `nominal → percentual` que hoje está escondida. **Custa uma lacuna de R2** no ramo *"a partir de jan./1995"* antes de 1995-01 — janela **vazia por construção**, porque não há fato gerador ali —, que exige **exceção declarada** |
+| **(B)** manter um registro, declarando a composição | Custo zero de validador, e **mantém uma virada de classe escondida dentro de um segmento** — exatamente o que a § 25.4 registra como agravado pela reclassificação da SELIC |
+| **(C)** uma cadeia por ramo | Duplicação, do tipo que a `DECISAO_1` da desapropriação indireta já pagou uma vez, e ali **com derivação em tempo de geração**. Aqui os ramos **não são derivados um do outro** |
+
+**Por que o agente não escolhe sozinho:** a opção (A) cria **ramo sem gêmeo**, e o próprio
+`gera_cadeias_bloco19.py` registra, em outra cadeia, que isso *"abriria lacuna de R2"*. Escolher
+entre **aceitar exceção de R2** e **duplicar cadeia** é decisão de desenho do domínio, com efeito
+sobre o validador e sobre quem consome a cadeia — não é leitura de fonte.
+
+#### 2. `UPC → índices básicos`, em `cjf.fgts-divida-fiscal.correcao-monetaria.json`, `1983-10..1989-10` — EXTRAÇÃO
+
+O item 2.4.4.1 (`pagina_pdf` 35–36) é **lista, não tabela**, e foi transcrito literalmente:
+*"Unidade Padrão de Capital (UPC) e os índices básicos de atualização dos saldos da poupança."*
+**Não data a fronteira.**
+
+**O que pedir** — o PDF está fora do repositório: releitura das **`pagina_pdf` 35–36, item
+2.4.4.1**, procurando (a) data de virada entre a UPC e os *"índices básicos"*, e (b) **notas do
+item**, se houver, já que a extração registra a cadeia como lista sem notas.
+
+> **E o atalho óbvio NÃO funciona — verificado.** A cadeia da poupança (item 4.9.1.1,
+> `pagina_pdf` 85) encerra a UPC em **1983-06**; este segmento **começa em 1983-10**. Importar a
+> data de lá trocaria a data de uma cadeia pela de outra **e ainda erraria por quatro meses**.
+> Registrado para que a tentativa não se repita.
+
+**Se a releitura voltar sem data, é isso a resposta:** **partir exigiria inventar a fronteira**, e
+o segmento permanece composto. Não é fonte externa — o documento é o próprio manual.
+
+#### 3 e 4. As duas `taxa: null` dos juros compensatórios — EXTRAÇÃO PURA
+
+`cjf.desapropriacao-direta.juros-compensatorios.json` (item **4.5.3**, `pagina_pdf` **69**) e
+`cjf.desapropriacao-indireta.juros-compensatorios.json` (item **4.6.3**, `pagina_pdf` **76**),
+primeiras duas linhas de cada: `1964-01..1997-06` e `1997-06..2021-11`, `taxa: null` com
+`taxa_nao_extraida`. O corpus registra **período**, **fundamento** (MP n. 1.577/1997 e sucessivas,
+com a ADI n. 2332 nas observações) e os **três cortes** — e **não registra a coluna do percentual**.
+
+**O que pedir, nominalmente:**
+
+1. a **coluna de percentual/critério** das duas linhas — *"Até 10/6/1997"* e *"De 11/6/1997 a
+   nov./2021"* — da tabela do **item 4.5.3, `pagina_pdf` 69**;
+2. a mesma coluna da tabela do **item 4.6.3, `pagina_pdf` 76** — **as duas, e não uma**: as
+   cadeias divergem em termo inicial (`D8-C10`) e a indireta **não** é derivada da direta aqui;
+3. junto, a **coluna de fundamento da PRIMEIRA linha** de cada, hoje `fundamento: null` com
+   `fundamento_nao_extraido`.
+
+**Varredura de confirmação, escopo declarado:** `docs/` e `skills/`, extensões `.md`, `.csv` e
+`.json`, termo *compensat* com **percentual na janela**. **Nenhum percentual de juros
+compensatórios ocorre no repositório inteiro** — o que há é *"0,5% a.m. desde ago/2001"*, que é
+**juros de mora de precatório**, e *"vedado o cálculo de juros compostos"* (`pagina_pdf` 71), que
+é **capitalização**, não taxa.
+
+**Não é fonte externa** — a fonte é o próprio manual, e ela existe. **Não é modelagem** — o campo
+existe e o buraco está visível ao validador, que é o desenho que o bloco 19 escolheu de propósito.
+
+> **Ressalva que evita um pedido errado:** a **terceira** linha de cada cadeia
+> (`2021-12..2026-06`) **também** tem `taxa: null`, e **não é o mesmo buraco**. Ali o `null` **é a
+> regra** — *"Já incluídos na SELIC aplicada aos juros de mora"* —, e o segmento o declara em
+> `D8-C11`. **Pedir percentual para ela é pedir dado que não existe**, e gravá-lo seria dupla
+> contagem.
+
+### 26.5 Veredito sobre partir os compostos, e uma correção de registro
+
+| Composto | Partir resolve? |
+|---|---|
+| **`Ufir → Selic (bifurcado por fato gerador)`** | **SIM.** A fonte declara as quatro viradas e o eixo já está no arquivo. O que falta é **decisão**, não dado |
+| **`UPC → índices básicos de atualização dos saldos da poupança`** | **NÃO, com o que há.** **A fronteira é justamente o que a fonte não declara** — partir exigiria **inventar a data** |
+
+> **Os dois vivem sob a mesma `P17-03` e não têm a mesma natureza.** **Proposta, não executada:**
+> desdobrar em **`P17-03a`** (modelagem — dívida fiscal) e **`P17-03b`** (fonte não declara a
+> fronteira — FGTS fiscal). **Não feito aqui** porque mexer em ID de pendência toca os dois JSON,
+> o catálogo e esta seção de uma vez, e a Tarefa 4 do bloco 20 **dá caminho, não fecha**.
+
+**Correção de registro.** A § 24.2 descrevia a `TRD` como *"segue a TR (P17-02)"*. **O bloco 19
+desfez essa herança** — a fonte do BCB nomeia TBF, Redutor-R e TR, **não** a TRD (§ 25.3). A
+célula foi corrigida; o resto da § 24.2 fica como estava.
