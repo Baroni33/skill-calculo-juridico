@@ -75,6 +75,24 @@ Fases 0 e 1 fechadas (contrato de saída e triagem).
 **Fase 2 encerrada no bloco 13.** Os dois manuais estão extraídos, com destino registrado
 em todas as 564 páginas.
 
+**Fase 4 (confronto normativo) encerrada no bloco 14** — ver
+[`docs/calculo/confronto-normativo/`](docs/calculo/confronto-normativo/). **50 vereditos,
+zero `SEM FONTE`**, e **32 deles `BIFURCADO`**: nem a Reforma, nem a ADC 58, nem a
+**Resolução 225/2025 do TST** revogaram com efeito *ex nunc* — todas cortaram no tempo.
+
+> **Consequência de arquitetura:** o motor não pode ter *uma* tabela de regras vigentes. Precisa
+> de **cadeia temporal por ponto**, como já tem para índices. Um `SUPERADO` mal lido apaga o
+> período anterior ao corte — e a maioria das contas atravessa o corte.
+
+Dois achados pendentes de decisão no bloco 15: o **Tema 23 do TST** (Pleno, 25/11/2024,
+vinculante) resolveu a divergência intertemporal que sustenta o `pr.intertemporal` **sem
+default**; e **17 dos pontos compartilham o mesmo corte de 11/11/2017**, o que só apareceu
+depois de normalizar três grafias distintas da mesma data.
+
+> **A numeração das fases está invertida em `01-plano-extracao.md`** — ele chama o confronto de
+> "Fase 4" e a consolidação de "Fase 3". O confronto vem antes. Registrado, a corrigir no
+> bloco 15.
+
 | Bloco | Conteúdo | Relatório |
 |---|---|---|
 | 1 | Tabelas do Manual TRT-3, p. 373–471 | `docs/calculo/extracao/trabalhista/bloco-01-tabelas.md` |
@@ -92,6 +110,7 @@ em todas as 564 páginas.
 | 11C | Capítulo 10, segmento D — vincendos e art. 12-B; **fecha a amortização** | `docs/calculo/extracao/trabalhista/bloco-11c-relatorio.md` |
 | 12 | Consolidação da base de conhecimento — presets, invariantes, armadilhas | `docs/calculo/extracao/bloco-12-relatorio.md` |
 | 13 | **Fechamento da extração** — cap. 10 seg. B, caps. 8, 12, 14 e varredura do 16 | `docs/calculo/extracao/bloco-13-relatorio.md` |
+| 14 | **Fase 4 — confronto normativo.** 50 vereditos, 19 suspeitas sobre a base | `docs/calculo/extracao/bloco-14-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 **80 páginas de capítulo** mais a Apresentação e a Resolução, sete cadeias temporais em

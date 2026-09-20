@@ -101,8 +101,23 @@ cap. 14 dão testes incompatíveis para a mesma pergunta.
 
 | Se | Então |
 |---|---|
-| **for** Fazenda Pública | aplica-se o regime de precatório/RPV, com a ressalva de que o cap. 14 só conhece a EC 62/2009, e a **EC 113/2021 art. 3º alcança apenas requisitórios federais** |
+| **for** Fazenda Pública | aplica-se o regime de precatório/RPV, com a ressalva de que o cap. 14 só conhece a EC 62/2009 |
 | **não for** | o capítulo não se aplica |
+
+> **ERRO CORRIGIDO NO BLOCO 14.** A versão anterior desta linha afirmava que *"a EC 113/2021,
+> art. 3º, alcança apenas requisitórios da Fazenda Pública federal"*. **É falso, e por quatro
+> anos.** A redação da EC 113/2021 diz *"Nas discussões e nas condenações que envolvam a
+> Fazenda Pública, **independentemente de sua natureza**"* — alcança **toda** Fazenda. A
+> restrição a **federal**, e a redução de "discussões e condenações" para "requisitórios",
+> vieram com a **EC 136/2025**, promulgada em 09/09/2025.
+>
+> A própria `00-base-normativa.md` § 5 transcreve as duas redações e tabula os **três
+> estreitamentos simultâneos** — objeto, ente e período. **Retroprojetei a restrição**, lendo
+> "a nova redação do art. 3º" como se fosse a redação original.
+>
+> **Consequência material:** para uma Fazenda Pública estadual ou municipal, entre dez/2021 e
+> set/2025 **vale o regime da Selic única da EC 113/2021**. A afirmação errada a teria
+> excluído desse regime.
 
 **Não resolvi a classificação** — não é matéria de cálculo, e a pendência 1 da § 9 permanece
 aberta. Busca que sustenta: **`economia mista` → zero ocorrências nas 471 páginas**; a única

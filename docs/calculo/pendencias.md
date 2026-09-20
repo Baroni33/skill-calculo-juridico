@@ -727,3 +727,64 @@ Afirmações de blocos anteriores que a extração final derrubou, todas minhas:
   o manual;
 - **§ 20.6** — a origem externa da subseção § 1.1 da base normativa: o inteiro teor dos três
   precedentes do TST **não foi lido**.
+
+---
+
+## 22. Bloco 14 — Fase 4, confronto normativo
+
+**Status: a auditoria está feita.** 50 vereditos, zero `SEM FONTE`. O que resta são decisões
+de modelagem, não de pesquisa.
+
+### 22.1 FECHADAS pelo bloco 14
+
+| # | Como fechou |
+|---|---|
+| **P8-F4-02** — faixas do art. 85, § 3º, do CPC | **Transcritas de fonte primária** (acórdão do STJ). Três consequências: unidade é salário-mínimo; a **data** é a do § 4º, IV — sentença líquida ou decisão de liquidação, **não o ajuizamento**; e o percentual é **entrada arbitrada**, não saída calculada |
+| **Súmula 48 do TRT-3** | Confirmada **cancelada** no portal oficial do TRT-3 — o que **não contradiz** o bloco 10: o manual de 2016 não a invoca (zero ocorrências em 471 páginas) e ela existe e foi cancelada. Duas afirmações distintas, ambas verdadeiras |
+| **Súmula 124 do TST** | **Sobreviveu** ao expurgo da Res. 225/2025 — conferido contra os 27 incisos. Permanece na redação da Res. 219/2017. `pr.sumula124-divisor-bancario` segue válido |
+
+### 22.2 DECISÕES para o bloco 15 — não são pesquisa
+
+| # | Decisão |
+|---|---|
+| **D15-01** | **`pr.intertemporal` continua sem default?** O **Tema 23 do TST** (Pleno, 25/11/2024, 15×10, vinculante, modulação negada) fixou *tempus regit actum* com eixo na **competência do fato gerador**. A Corrente B da base é a posição dos dez vencidos. Se ganhar default, **os 17 pontos do corte de 11/11/2017 destravam** e `R20-EXCECAO` cai de cinco para quatro |
+| **D15-02** | **Corrigir a colisão `F*`** — `F1`–`F9` do bloco 03 e `F1`–`F7` do bloco 04 são pontos diferentes com os mesmos rótulos, e há remissões cruzadas já ambíguas nos arquivos |
+| **D15-03** | **Registrar os cancelamentos da Res. 225/2025 com as datas de perda de eficácia**, não como revogação simples. São 27 súmulas com data pretérita declarada |
+| **D15-04** | **Implementar os cortes por data, não por ponto** — 17 pontos compartilham 11/11/2017 |
+| **D15-05** | **Inverter a numeração das fases** em `01-plano-extracao.md`: o confronto vem antes da consolidação |
+
+### 22.3 ERROS DE FATO na base — confirmados, não corrigidos
+
+| # | Erro |
+|---|---|
+| **E14-01** | **O art. 58, § 2º, da CLT NÃO foi revogado** — teve redação alterada. Revogado foi o **§ 3º**. A base cita o dispositivo errado como fonte de um parâmetro negociável (`02-base-normativa-verbas.md` §§ 3 e 10) |
+| **E14-02** | **A base invoca como vigentes verbetes cancelados** — Súmulas 90, 423 e 437, canceladas em 30/06/2025 com perda de eficácia pretérita. A **423** é a mais grave: sustenta o turno de revezamento e perdeu eficácia em **14/06/2022** pelo Tema 1046 |
+| **E14-03** | **Divergência de atribuição na Súmula 228** — a base atribui a cassação à **Rcl 6.275** (abril/2018); a Res. 225/2025 do TST atribui à **Rcl 6266**, "a partir da publicação em 18/04/2018". Mesma data, reclamação diferente. **Não resolvido** |
+| **E14-04** | **Erro de linguagem propagado** — `bloco-05-relatorio.md`, `bloco-06-relatorio.md` e `parametros-negociaveis.md` dizem *"a Rcl 6.275 foi cassada"*. Uma reclamação não é cassada: **a súmula é que foi cassada pela reclamação** |
+| **E14-05** | **Atribuição incorreta no manual, reproduzida sem ressalva** — o manual diz que comissões integram *"pela média dos últimos doze meses (art. 457, § 1º)"*. **O art. 457, § 1º não contém essa regra**, nem antes nem depois da Reforma |
+
+**Já corrigido:** a afirmação de que a EC 113/2021 alcançaria "apenas requisitórios federais"
+(`bloco-13c` § 7). Era **erro meu de extração**, não da base — a restrição é da EC 136/2025.
+
+### 22.4 As 19 suspeitas, e a natureza delas
+
+Íntegra em `confronto-normativo/03-suspeitas-base.md`. **A maioria não é erro de mérito — é
+desatualização de rastro:** a base acertou o direito aplicável e não registrou o ato formal
+posterior.
+
+### 22.5 Limites de acesso — valem para as próximas fases
+
+**Recusaram acesso automatizado a sessão inteira:** Planalto, DOU, Receita Federal,
+`portal.stf.jus.br`, Legin da Câmara.
+
+**Consequências declaradas:**
+- a **modulação da ADC 58 continua sem transcrição literal**;
+- o de-para **RIR/99 → RIR/2018** não foi feito;
+- **nenhum inteiro teor** de Rcl 6.275, 6.266 ou 53.157 foi lido.
+
+**Canais que funcionaram:** `portal.trt3.jus.br` (hospeda acórdãos do STF), `stj.jus.br`,
+`juslaboris.tst.jus.br`.
+
+**E um alerta:** **as fichas de tema do TST não servem como fonte.** A do **Tema 9** omite a
+modulação; a do **Tema 23** está com "Tese Firmada" em branco e situação "Afetado", cache
+anterior ao julgamento. Usar os **acórdãos publicados**.
