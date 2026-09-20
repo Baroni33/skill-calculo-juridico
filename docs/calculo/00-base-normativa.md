@@ -27,6 +27,67 @@ Regras acessórias do dispositivo:
 
 **Divergência doutrinária registrada:** parte da doutrina sustenta que aplicar juros pela TRD na fase pré-judicial é incompatível com a própria ADC 58, que declarou a TR inconstitucional para débitos trabalhistas. Expor como variante no catálogo de critérios, não como default.
 
+### 1.1 O item "i" da modulação tem DUAS situações
+
+> **ORIGEM DESTA SUBSEÇÃO.** Conteúdo de **pesquisa jurisprudencial externa ao corpus**,
+> trazido pelo enunciado do bloco 12 e conferido em **fontes secundárias que reproduzem a
+> fundamentação**. **O inteiro teor dos três precedentes não foi lido.** Declarado nos mesmos
+> termos em que se declarou a origem do art. 611-B da CLT no bloco 5. Confirmar contra o
+> inteiro teor antes de usar em produção.
+
+Precedentes citados:
+
+| Órgão | Relator | Publicação |
+|---|---|---|
+| TST, 6ª Turma, ED-RR | Min. Kátia Magalhães Arruda | DEJT 17/03/2023 |
+| TST, 7ª Turma, Ag-RR | Min. Cláudio Mascarenhas Brandão | DEJT 17/03/2023 |
+| TST, SDI-1, E-Ag-RR | Min. Hugo Carlos Scheuermann | DEJT 10/03/2023 |
+
+A ressalva de valores pagos **não é incondicional**. O TST distingue duas situações, e a
+diferença entre elas decide se o critério do STF alcança ou não o que já foi pago.
+
+#### Situação i.1 — pagamento consolidado (regra)
+
+Valores pagos ao exequente **sem qualquer questionamento**, ou objeto de **trânsito em
+julgado**.
+
+- **não** são recalculados pelos critérios das ADCs 58 e 59 para dedução ou compensação;
+- na atualização, **desconsidera-se o que já foi pago** pelos parâmetros anteriores;
+- os índices do STF incidem **apenas sobre o montante que ainda falta pagar**;
+- valores depositados judicialmente **e já levantados** seguem esta regra e **não entram na
+  conta de liquidação atualizada**.
+
+**Recorte do alcance dentro de i.1:**
+
+| Alcança | Não alcança |
+|---|---|
+| depósito com **finalidade de pagamento** | **depósito recursal** |
+| **valor incontroverso liberado** ao reclamante (pagamento consolidado) | a **parte controversa** do depósito em garantia |
+
+#### Situação i.2 — execução questionada (exceção)
+
+Execução instaurada **após o início dos debates da ADC 58**, havendo **questionamento
+expresso de qualquer das partes** sobre a necessidade de observar o posicionamento do STF.
+
+- a atualização leva em conta os novos índices **inclusive sobre os valores já pagos**;
+- o TST trata esta hipótese como **exceção ao item "i"**.
+
+#### Consequência para o motor
+
+**O conflito entre o rateio proporcional do Manual TRT-3 e a modulação é condicional, não
+estrutural** — ver `extracao/trabalhista/bloco-11b-amortizacao.md` § 9, que o marcara como o
+maior atrito do projeto:
+
+- **em i.1 o rateio não se aplica ao valor pago.** Não há o que ratear: o pago sai da conta e
+  o critério novo incide só sobre o residual. **O método do manual — recompor o bruto até a
+  data do pagamento antes de deduzir — é exatamente o que a modulação veda nesta situação;**
+- **em i.2 o rateio se aplica**, sobre valores recalculados pelo critério novo. A proporção
+  mudar porque os juros mudaram **é o comportamento correto**, não um defeito.
+
+A escolha entre i.1 e i.2 **não é derivável do cálculo**: depende de estado processual e de
+evento (houve questionamento expresso?). Entra como preset — `pr.adc58-item-i`, em
+`presets-regime.md`.
+
 ---
 
 ## 2. Trabalhista — devedor Fazenda Pública
@@ -216,6 +277,16 @@ Regras que, violadas, produzem erro material. Devem ser impedidas na composiçã
 
 **R4 — Capitalização.** Juros de mora, SELIC e taxa legal: sempre simples. Capitalização mensal só em juros remuneratórios.
 
+> **R4-EXCEÇÃO — juros COMPOSTOS de 27/02/1987 a 03/03/1991.** Por força do **DL 2.322/87,
+> art. 3º**. Não é defeito de transcrição: está no quadro geral do Manual TRT-3
+> (`pagina_pdf` 89), repetido no quadro da Fazenda (`pagina_pdf` 92) e **confirmado de forma
+> independente pela cadeia do Manual CJF** para o mesmo período — três registros, duas
+> jurisdições, edições separadas por dez anos. O manual dá inclusive a mecânica:
+> *"1,0% ao mês, c/ taxa capitalizada. Ex.: 3 meses = 3,03%"*.
+>
+> **Gravado dentro do invariante, não em nota de rodapé:** quem ler apenas "juros de mora
+> sempre simples" erra quatro anos de qualquer conta que atravesse o período.
+
 **R5 — Piso nominal.** Índices negativos entram no cálculo, mas nenhuma parcela do principal fica abaixo do valor nominal. Fonte: REsp 1.265.580; Manual CJF item 4.1.2.2.
 
 **R6 — Piso zero da taxa legal.** Resultado negativo vira zero, nunca negativo.
@@ -226,13 +297,50 @@ Regras que, violadas, produzem erro material. Devem ser impedidas na composiçã
 
 **R9 — Fazenda Pública é atributo do processo**, não configuração de sistema nem cadastro da empresa. A mesma parte pode receber classificações distintas em processos distintos.
 
-**R10 — Pagamentos parciais.** Cível: imputação pelo art. 354 do CC. Trabalhista sob ADC 58: valores pagos são ressalvados e é vedada a dedução ou compensação de diferenças apuradas pelo critério anterior. Regras diferentes, não unificáveis.
+**R10 — Pagamentos parciais.** Cível: imputação pelo art. 354 do CC. Trabalhista sob ADC 58: valores pagos são ressalvados e é vedada a dedução ou compensação de diferenças apuradas pelo critério anterior — **com as duas situações da § 1.1**. Regras diferentes, não unificáveis.
+
+> **R10 está FUNDAMENTADA, e por razão mais forte que a suposta.** O bloco 11B extraiu a regra
+> trabalhista: a imputação é **proporcional** — o pagamento abate principal e juros na razão em
+> que compõem o bruto (Manual TRT-3, item 10.3.1, letra F, `pagina_pdf` 237). E **não tem
+> fundamento normativo declarado**: `art. 354` não ocorre em nenhuma das 471 páginas do manual,
+> enquanto `proporcional` ocorre 101 vezes só no segmento que a aplica.
+>
+> Não são duas normas concorrentes: são **uma norma (art. 354 do CC) contra um costume de
+> liquidação sem base declarada**. Por isso a escolha entra como preset `pr.imputacao`, **sem
+> default** — ver `presets-regime.md`.
+>
+> **Amplitude medida: até 23,83% do saldo.** Direção: juros primeiro produz saldo **maior**,
+> logo dívida maior. O critério proporcional **favorece o devedor**; o art. 354 **favorece o
+> credor**.
 
 **R11 — Taxa legal calcula-se por razão entre fatores**, nunca por subtração de percentuais. Seis decimais, IPCA-15 do mês anterior.
 
 **R12 — Aritmética decimal.** Nenhum float. Critério de truncamento definido e consistente por etapa. O Manual CJF registra que diferenças de centavos entre métodos decorrem do truncamento e são desprezíveis — isso só é verdade se o critério for consistente.
 
 **R13 — Reprodutibilidade.** Toda conta grava: preset aplicado, overrides com justificativa, versão do conjunto normativo, versão das séries consumidas.
+
+> **R14 a R22 não estão aqui.** Vivem nas camadas que as usam: **R14–R18** (norma coletiva) em
+> `parametros-negociaveis.md`; **R19–R22** (regime temporal) em `presets-regime.md`. O salto de
+> R13 para R23 nesta seção é de localização, não de numeração.
+
+**R23 — Descarregar antes de aplicar juros.** Antes de aplicar juros sobre saldo remanescente, os juros já contidos nesse saldo devem ser excluídos. Aplicar juros sobre saldo que já os contém produz **anatocismo**.
+
+> **Anomalia de localização do fundamento, registrada.** O Manual TRT-3 **executa** a operação
+> em todo o capítulo 10 e a nomeia apenas como *"descarregar"* (`pagina_pdf` 237, única
+> ocorrência da palavra no manual), **sem fundamentá-la**: `anatocismo` → **0 ocorrências** em
+> todo o capítulo 10.
+>
+> Quem a nomeia como anatocismo é uma **minuta de petição do capítulo 16** (`pagina_pdf` 328):
+> *"recalculando os juros de mora desde a inicial, não incidindo juros sobre juros
+> (anatocismo)"*.
+>
+> **E são duas regras anti-anatocismo distintas, que o manual nunca reúne:** (1) juros
+> acumulam por **soma** de percentuais, nunca por multiplicação — `pagina_pdf` 16, **única**
+> invocação da **Súmula 121 do STF** em todo o manual; (2) o **descarregar**, `pagina_pdf` 237.
+> A Súmula 121 é citada só para a primeira.
+>
+> Efeito medido: no Exemplo 5 do capítulo 10, aplicar juros sobre o saldo não descarregado
+> produziria **+R$ 30.452,43**.
 
 ---
 

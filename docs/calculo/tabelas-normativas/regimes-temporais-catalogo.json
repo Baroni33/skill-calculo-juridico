@@ -1,1278 +1,1401 @@
 {
-  "id": "camada.regime-temporal.catalogo",
-  "versao": "1.0",
-  "bloco": 6,
-  "descricao": "Regimes temporais: qual REGRA se aplica a cada competência. Distinto do catálogo de parâmetros negociáveis, que decide QUANTO VALE cada constante.",
-  "schema": "docs/calculo/tabelas-normativas/camada-regime-temporal-schema.json",
-  "a_distincao_que_governa_tudo": {
-    "preset_de_regime": "Escolha JURÍDICA do usuário sobre qual entendimento aplicar. NÃO é negociável por sindicato. Fundamentada, com default quando o corpus permite.",
-    "parametro_negociavel": "Valor resolvido por (parametro, categoria, competencia). Camada separada — camada-norma-coletiva-catalogo.json.",
-    "ordem": "O preset de regime é AVALIADO ANTES (R22). Ele decide se um parâmetro é SEQUER CONSULTADO.",
-    "exemplo": "Contrato de 2015 sob a corrente ultrativa nunca consulta a redação nova do art. 71, § 4º — e, portanto, nunca consulta os parâmetros que só existem sob ela."
+ "id": "camada.regime-temporal.catalogo",
+ "versao": "3",
+ "bloco": "6 + 12",
+ "descricao": "Regimes temporais: qual REGRA se aplica a cada competência. Distinto do catálogo de parâmetros negociáveis, que decide QUANTO VALE cada constante.",
+ "schema": "docs/calculo/tabelas-normativas/camada-regime-temporal-schema.json",
+ "a_distincao_que_governa_tudo": {
+  "preset_de_regime": "Escolha JURÍDICA do usuário sobre qual entendimento aplicar. NÃO é negociável por sindicato. Fundamentada, com default quando o corpus permite.",
+  "parametro_negociavel": "Valor resolvido por (parametro, categoria, competencia). Camada separada — camada-norma-coletiva-catalogo.json.",
+  "ordem": "O preset de regime é AVALIADO ANTES (R22). Ele decide se um parâmetro é SEQUER CONSULTADO.",
+  "exemplo": "Contrato de 2015 sob a corrente ultrativa nunca consulta a redação nova do art. 71, § 4º — e, portanto, nunca consulta os parâmetros que só existem sob ela."
+ },
+ "nao_confundir_com_os_presets_de_atualizacao": {
+  "o_que_sao": "01-plano-extracao.md já tem um catálogo de presets: TRAB-ADC58-LEI14905, TRAB-FAZENDA, CIVEL-CC-TEMA1368, TRIB-FED-REPETICAO e outros.",
+  "diferenca": "Aqueles respondem COMO SE ATUALIZA um valor já apurado — cadeias de correção e juros. Estes respondem QUAL REGRA DE APURAÇÃO vale na competência. São famílias distintas e não se misturam.",
+  "o_unico_cruzamento": "TRAB-INTERTEMP-TEMPUS e TRAB-INTERTEMP-ULTRATIVO já estavam nomeados em 02-base-normativa-verbas.md § 1 e pertencem a ESTA família, não àquela. Eram os únicos presets sem catálogo — é a lacuna que o bloco 6 fecha."
+ },
+ "eixos": {
+  "AVISO": "O eixo de corte NÃO É O MESMO entre regimes. Modelar como se fosse um só eixo é erro, e é o erro central que este bloco existe para impedir.",
+  "declarados_no_corpus": {
+   "competencia-do-fato": "A data da prestação ou da parcela. 4 regimes.",
+   "data-de-admissao": "A data de contratação. 2 regimes (eletricitários; e a Corrente B do intertemporal).",
+   "conteudo-do-titulo": "O que o comando exequendo ou o cálculo já homologado determina. Dois regimes o têm como eixo primário e três o declaram como eixo ALTERNATIVO, sempre com a mesma fórmula: 'salvo se nos autos constar entendimento contrário', 'o termo prescricional vai estar definido pelo comando exequendo'.",
+   "data-da-sentenca": "1 regime — a multa do art. 467.",
+   "data-da-dispensa": "1 regime — seguro-desemprego.",
+   "inicio-do-aviso": "1 regime — aviso proporcional.",
+   "ciencia-da-lesao": "1 regime — prescrição do FGTS.",
+   "determinacao-judicial-na-execucao": "1 regime — prescrição intercorrente.",
+   "estado-processual": "Trânsito em julgado + fase de liquidação. Componente da modulação do IRR-849.",
+   "decisao-de-merito-no-processo": "Data de decisão de Turma/SDI-1 DENTRO do próprio processo. Componente da modulação do IRR-849.",
+   "fato-gerador": "1 regime — GILRAT. Declarado com negação nominal de dois eixos rivais.",
+   "data-do-calculo": "1 regime — faixas de INSS em jan/2010. Único ponto do corpus com esse eixo.",
+   "efetivo-pagamento": "Nenhum regime o tem como eixo PRIMÁRIO. É o eixo da ARITMÉTICA da conversão URV — outra pergunta, registrada em pr.urv-conversao.eixo_da_aritmetica.",
+   "data-base-da-categoria": "Componente dos planos econômicos."
   },
-  "nao_confundir_com_os_presets_de_atualizacao": {
-    "o_que_sao": "01-plano-extracao.md já tem um catálogo de presets: TRAB-ADC58-LEI14905, TRAB-FAZENDA, CIVEL-CC-TEMA1368, TRIB-FED-REPETICAO e outros.",
-    "diferenca": "Aqueles respondem COMO SE ATUALIZA um valor já apurado — cadeias de correção e juros. Estes respondem QUAL REGRA DE APURAÇÃO vale na competência. São famílias distintas e não se misturam.",
-    "o_unico_cruzamento": "TRAB-INTERTEMP-TEMPUS e TRAB-INTERTEMP-ULTRATIVO já estavam nomeados em 02-base-normativa-verbas.md § 1 e pertencem a ESTA família, não àquela. Eram os únicos presets sem catálogo — é a lacuna que o bloco 6 fecha."
+  "valores_especiais": {
+   "meta": "O eixo é o próprio objeto da escolha — só pr.intertemporal.",
+   "herdado": "O regime não tem eixo próprio; usa o eixo efetivo do regime de que herda. Exige o campo herda_de.",
+   "composto": "Mais de um eixo simultâneo. Exige eixos_componentes.",
+   "NAO-DECLARADO": "O corpus dá a data de corte mas não diz qual data governa. Exige eixo_declarado: false e pendencia."
   },
-  "eixos": {
-    "AVISO": "O eixo de corte NÃO É O MESMO entre regimes. Modelar como se fosse um só eixo é erro, e é o erro central que este bloco existe para impedir.",
-    "declarados_no_corpus": {
-      "competencia-do-fato": "A data da prestação ou da parcela. 4 regimes.",
-      "data-de-admissao": "A data de contratação. 2 regimes (eletricitários; e a Corrente B do intertemporal).",
-      "conteudo-do-titulo": "O que o comando exequendo ou o cálculo já homologado determina. Dois regimes o têm como eixo primário e três o declaram como eixo ALTERNATIVO, sempre com a mesma fórmula: 'salvo se nos autos constar entendimento contrário', 'o termo prescricional vai estar definido pelo comando exequendo'.",
-      "data-da-sentenca": "1 regime — a multa do art. 467.",
-      "data-da-dispensa": "1 regime — seguro-desemprego.",
-      "inicio-do-aviso": "1 regime — aviso proporcional.",
-      "ciencia-da-lesao": "1 regime — prescrição do FGTS.",
-      "determinacao-judicial-na-execucao": "1 regime — prescrição intercorrente.",
-      "estado-processual": "Trânsito em julgado + fase de liquidação. Componente da modulação do IRR-849.",
-      "decisao-de-merito-no-processo": "Data de decisão de Turma/SDI-1 DENTRO do próprio processo. Componente da modulação do IRR-849.",
-      "fato-gerador": "1 regime — GILRAT. Declarado com negação nominal de dois eixos rivais.",
-      "data-do-calculo": "1 regime — faixas de INSS em jan/2010. Único ponto do corpus com esse eixo.",
-      "efetivo-pagamento": "Nenhum regime o tem como eixo PRIMÁRIO. É o eixo da ARITMÉTICA da conversão URV — outra pergunta, registrada em pr.urv-conversao.eixo_da_aritmetica.",
-      "data-base-da-categoria": "Componente dos planos econômicos."
-    },
-    "valores_especiais": {
-      "meta": "O eixo é o próprio objeto da escolha — só pr.intertemporal.",
-      "herdado": "O regime não tem eixo próprio; usa o eixo efetivo do regime de que herda. Exige o campo herda_de.",
-      "composto": "Mais de um eixo simultâneo. Exige eixos_componentes.",
-      "NAO-DECLARADO": "O corpus dá a data de corte mas não diz qual data governa. Exige eixo_declarado: false e pendencia."
-    },
-    "a_conclusao_que_o_bloco_carrega": "Dos catorze eixos, apenas DOIS são de competência ou fato — os outros doze são processuais, documentais ou contratuais. E o conteúdo do título comparece MAIS VEZES do que qualquer outro eixo não-temporal, somando os primários aos alternativos. A precedência R8 não é, portanto, uma exceção no corpus.",
-    "CORRECAO": "A primeira redação afirmava que o título era 'o eixo MAIS FREQUENTE do corpus'. Contado pela mesma régua dos dois lados — primários mais componentes mais alternativos —, título e competência ficam empatados ou a um de distância. A afirmação forte não se sustentava e foi retirada; o que resta é o que a contagem mostra."
-  },
-  "eixo_origem": {
-    "por_que_nao_um_booleano": "A primeira versão deste catálogo tinha um booleano, eixo_declarado. A validação adversarial mostrou que ele forçava a escolha entre mentir e bloquear: regimes em que o corpus sustenta o eixo para uma pergunta VIZINHA — o piso salarial, a tabela do seguro-desemprego, o regime monetário — apareciam como DECLARADOS sem sê-lo. Apresentar inferência como declaração é o erro que o projeto inteiro existe para não cometer.",
-    "declarado": "O corpus diz qual data governa a SELEÇÃO DA VARIANTE. Ex.: 'pela data do trabalho, não pela data do ajuizamento nem do julgamento'.",
-    "inferido": "O corpus sustenta o eixo para uma pergunta vizinha, mas não declara a regra de seleção. Exige justificativa_da_inferencia. O regime É aplicável, e a resolução marca a inferência — quem lê a memória de cálculo vê que ali houve um passo de raciocínio, não uma leitura.",
-    "herdado": "O eixo não é próprio nem inferido: é DELEGADO ao regime-pai. Enquanto o pai não for escolhido, não há eixo — e o regime não resolve.",
-    "nao-declarado": "Nada. O corpus dá a data de corte e cala sobre qual data governa. O regime é INAPLICÁVEL.",
-    "diferenca_pratica": "declarado e inferido resolvem; herdado resolve depois da escolha do pai; nao-declarado devolve calculavel: false. O que separa declarado de inferido não é o resultado — é o rastro."
-  },
-  "LACUNA_EIXO_NAO_DECLARADO": {
-    "quantos": "Cinco regimes deste catálogo ficaram com eixo NAO-DECLARADO, e cinco outros com eixo INFERIDO. Some-se as dezesseis marcas de Fase 4 — nove em bloco-03-verbas.md § 8 e sete em bloco-04-verbas2.md § 12 —, que herdam o eixo de pr.intertemporal.",
-    "CORRECAO": "A primeira redação dizia 'quinze pontos do corpus'. Esse número não era derivável de nada nem estava enumerado em lugar algum — foi retirado. As dezesseis marcas F são verificáveis e conferem.",
-    "as_marcas_F": "bloco-03-verbas.md § 8 (F1–F9) e bloco-04-verbas2.md § 12 (F1–F7) marcam pontos afetados pela Reforma, com o corte de 11/11/2017 — COM UMA EXCEÇÃO: a marca F6 do bloco 03 (gorjetas, art. 457, § 3º) é da Lei 13.419/2017, lei e data diferentes. As quinze restantes herdam o eixo de pr.intertemporal, que não está arbitrado. Cada bloco traz a sua própria ressalva de que o conteúdo novo de cada dispositivo não foi verificado, e as duas redações são diferentes entre si — não há uma frase comum, e a primeira redação deste campo citava uma costura das duas.",
-    "consequencia": "Regimes com eixo_declarado: false NÃO podem ser aplicados sem que alguém declare o eixo. O validador os separa e o resolvedor devolve calculavel: false quando o eixo é NAO-DECLARADO e não há herança.",
-    "por_que_nao_foi_suposto": "Supor o eixo é a forma mais silenciosa de errar: o resultado sai plausível e a conta inteira está no regime errado. A regra do bloco — não pesquisar, declarar a pendência — vale aqui com força redobrada."
-  },
-  "invariantes": {
-    "R19": "Todo cálculo grava qual preset de regime foi aplicado a CADA COMPETÊNCIA. Não basta gravar a escolha uma vez: sob tempus regit actum a mesma conta usa regimes diferentes em meses diferentes. Deriva de R13.",
-    "R20": "Regime sem escolha explícita do usuário usa o default e MARCA a conta (origem: 'default'). A marca não é decorativa — é o que permite a alguém revisar o que ninguém decidiu.",
-    "R20-EXCECAO": "Regime com sem_default: true NÃO tem default. Sem escolha explícita, o resultado é calculavel: false. São QUATRO: pr.intertemporal, pr.tema1046-validade-clausula, pr.he-adicional-cf88 e pr.sumula17-salario-profissional. Onde o corpus manda não resolver, inventar um default seria resolver.",
-    "R21": "Divergência entre o preset escolhido e o default fica registrada COM A JUSTIFICATIVA, do mesmo modo que a R8 trata o título judicial. Escolher contra o default sem justificar é rejeitado.",
-    "R22": "Presets de regime são avaliados ANTES da resolução de parâmetros. Consultar um parâmetro sem ter avaliado os regimes que o alcançam é erro de composição, não de resultado — e o motor impede, não detecta."
-  },
-  "interacao_com_o_intertemporal": {
-    "regra": "Sob a corrente ULTRATIVA, regimes posteriores à admissão NUNCA SÃO CONSULTADOS.",
-    "mecanica": "Regimes com eixo 'herdado' consultam pr.intertemporal. Sob 'ultratividade', o eixo efetivo é a data de admissão: um contrato de 2015 resolve o intervalo intrajornada pela redação anterior em TODAS as competências, inclusive as de 2024.",
-    "consequencia_pratica": "Os parâmetros que só existem sob a redação nova ficam INALCANÇÁVEIS para esse contrato. O resolvedor devolve consultado: false com o motivo, em vez de resolver e depois descartar — porque resolver e descartar deixa rastro de consulta que não houve.",
-    "o_reverso": "Sob 'tempus regit actum', o mesmo contrato usa a redação anterior até 10/11/2017 e a nova a partir de 11/11/2017. Uma única conta, dois regimes, e a R19 exige o registro de cada competência."
-  },
-  "regimes": [
+  "a_conclusao_que_o_bloco_carrega": "Dos catorze eixos, apenas DOIS são de competência ou fato — os outros doze são processuais, documentais ou contratuais. E o conteúdo do título comparece MAIS VEZES do que qualquer outro eixo não-temporal, somando os primários aos alternativos. A precedência R8 não é, portanto, uma exceção no corpus.",
+  "CORRECAO": "A primeira redação afirmava que o título era 'o eixo MAIS FREQUENTE do corpus'. Contado pela mesma régua dos dois lados — primários mais componentes mais alternativos —, título e competência ficam empatados ou a um de distância. A afirmação forte não se sustentava e foi retirada; o que resta é o que a contagem mostra."
+ },
+ "eixo_origem": {
+  "por_que_nao_um_booleano": "A primeira versão deste catálogo tinha um booleano, eixo_declarado. A validação adversarial mostrou que ele forçava a escolha entre mentir e bloquear: regimes em que o corpus sustenta o eixo para uma pergunta VIZINHA — o piso salarial, a tabela do seguro-desemprego, o regime monetário — apareciam como DECLARADOS sem sê-lo. Apresentar inferência como declaração é o erro que o projeto inteiro existe para não cometer.",
+  "declarado": "O corpus diz qual data governa a SELEÇÃO DA VARIANTE. Ex.: 'pela data do trabalho, não pela data do ajuizamento nem do julgamento'.",
+  "inferido": "O corpus sustenta o eixo para uma pergunta vizinha, mas não declara a regra de seleção. Exige justificativa_da_inferencia. O regime É aplicável, e a resolução marca a inferência — quem lê a memória de cálculo vê que ali houve um passo de raciocínio, não uma leitura.",
+  "herdado": "O eixo não é próprio nem inferido: é DELEGADO ao regime-pai. Enquanto o pai não for escolhido, não há eixo — e o regime não resolve.",
+  "nao-declarado": "Nada. O corpus dá a data de corte e cala sobre qual data governa. O regime é INAPLICÁVEL.",
+  "diferenca_pratica": "declarado e inferido resolvem; herdado resolve depois da escolha do pai; nao-declarado devolve calculavel: false. O que separa declarado de inferido não é o resultado — é o rastro."
+ },
+ "LACUNA_EIXO_NAO_DECLARADO": {
+  "quantos": "Cinco regimes deste catálogo ficaram com eixo NAO-DECLARADO, e cinco outros com eixo INFERIDO. Some-se as dezesseis marcas de Fase 4 — nove em bloco-03-verbas.md § 8 e sete em bloco-04-verbas2.md § 12 —, que herdam o eixo de pr.intertemporal.",
+  "CORRECAO": "A primeira redação dizia 'quinze pontos do corpus'. Esse número não era derivável de nada nem estava enumerado em lugar algum — foi retirado. As dezesseis marcas F são verificáveis e conferem.",
+  "as_marcas_F": "bloco-03-verbas.md § 8 (F1–F9) e bloco-04-verbas2.md § 12 (F1–F7) marcam pontos afetados pela Reforma, com o corte de 11/11/2017 — COM UMA EXCEÇÃO: a marca F6 do bloco 03 (gorjetas, art. 457, § 3º) é da Lei 13.419/2017, lei e data diferentes. As quinze restantes herdam o eixo de pr.intertemporal, que não está arbitrado. Cada bloco traz a sua própria ressalva de que o conteúdo novo de cada dispositivo não foi verificado, e as duas redações são diferentes entre si — não há uma frase comum, e a primeira redação deste campo citava uma costura das duas.",
+  "consequencia": "Regimes com eixo_declarado: false NÃO podem ser aplicados sem que alguém declare o eixo. O validador os separa e o resolvedor devolve calculavel: false quando o eixo é NAO-DECLARADO e não há herança.",
+  "por_que_nao_foi_suposto": "Supor o eixo é a forma mais silenciosa de errar: o resultado sai plausível e a conta inteira está no regime errado. A regra do bloco — não pesquisar, declarar a pendência — vale aqui com força redobrada."
+ },
+ "invariantes": {
+  "R19": "Todo cálculo grava qual preset de regime foi aplicado a CADA COMPETÊNCIA. Não basta gravar a escolha uma vez: sob tempus regit actum a mesma conta usa regimes diferentes em meses diferentes. Deriva de R13.",
+  "R20": "Regime sem escolha explícita do usuário usa o default e MARCA a conta (origem: 'default'). A marca não é decorativa — é o que permite a alguém revisar o que ninguém decidiu.",
+  "R20-EXCECAO": "Regime com sem_default: true NÃO tem default. Sem escolha explícita, o resultado é calculavel: false. São QUATRO: pr.intertemporal, pr.tema1046-validade-clausula, pr.he-adicional-cf88 e pr.sumula17-salario-profissional. Onde o corpus manda não resolver, inventar um default seria resolver. No bloco 12 entrou o QUINTO: pr.imputacao — e por razão distinta das quatro anteriores. Nelas o corpus deixa a questão aberta ou não declara o eixo; aqui a prática majoritária (rateio proporcional) não tem norma e a norma (art. 354 do CC) não tem prática. Escolher default seria o motor tomar posição jurídica.",
+  "R21": "Divergência entre o preset escolhido e o default fica registrada COM A JUSTIFICATIVA, do mesmo modo que a R8 trata o título judicial. Escolher contra o default sem justificar é rejeitado.",
+  "R22": "Presets de regime são avaliados ANTES da resolução de parâmetros. Consultar um parâmetro sem ter avaliado os regimes que o alcançam é erro de composição, não de resultado — e o motor impede, não detecta."
+ },
+ "interacao_com_o_intertemporal": {
+  "regra": "Sob a corrente ULTRATIVA, regimes posteriores à admissão NUNCA SÃO CONSULTADOS.",
+  "mecanica": "Regimes com eixo 'herdado' consultam pr.intertemporal. Sob 'ultratividade', o eixo efetivo é a data de admissão: um contrato de 2015 resolve o intervalo intrajornada pela redação anterior em TODAS as competências, inclusive as de 2024.",
+  "consequencia_pratica": "Os parâmetros que só existem sob a redação nova ficam INALCANÇÁVEIS para esse contrato. O resolvedor devolve consultado: false com o motivo, em vez de resolver e depois descartar — porque resolver e descartar deixa rastro de consulta que não houve.",
+  "o_reverso": "Sob 'tempus regit actum', o mesmo contrato usa a redação anterior até 10/11/2017 e a nova a partir de 11/11/2017. Uma única conta, dois regimes, e a R19 exige o registro de cada competência."
+ },
+ "regimes": [
+  {
+   "id": "pr.intertemporal",
+   "nome": "Direito intertemporal da Lei 13.467/2017",
+   "natureza": "divergencia-interpretativa",
+   "meta_regime": true,
+   "eixo": "meta",
+   "eixo_declarado": true,
+   "fonte_do_eixo": "02-base-normativa-verbas.md § 1 — o eixo é o PRÓPRIO OBJETO da escolha. Corrente A põe o eixo na competência do fato; Corrente B, na data de admissão.",
+   "corte": "2017-11-11",
+   "variantes": [
     {
-      "id": "pr.intertemporal",
-      "nome": "Direito intertemporal da Lei 13.467/2017",
-      "natureza": "divergencia-interpretativa",
-      "meta_regime": true,
-      "eixo": "meta",
-      "eixo_declarado": true,
-      "fonte_do_eixo": "02-base-normativa-verbas.md § 1 — o eixo é o PRÓPRIO OBJETO da escolha. Corrente A põe o eixo na competência do fato; Corrente B, na data de admissão.",
-      "corte": "2017-11-11",
-      "variantes": [
-        {
-          "id": "tempus-regit-actum",
-          "preset": "TRAB-INTERTEMP-TEMPUS",
-          "eixo_efetivo": "competencia-do-fato",
-          "fundamento": "A lei tem efeito imediato e geral e se aplica aos contratos em curso a partir de sua vigência. O contrato se divide: regra antiga até 10/11/2017, regra nova a partir de 11/11/2017.",
-          "fonte": "02-base-normativa-verbas.md § 1, Corrente A"
-        },
-        {
-          "id": "ultratividade",
-          "preset": "TRAB-INTERTEMP-ULTRATIVO",
-          "eixo_efetivo": "data-de-admissao",
-          "fundamento": "Contrato iniciado antes da Reforma segue a regra antiga por toda a sua duração, sob pena de ofensa à irretroatividade, ao princípio da proteção e à segurança jurídica.",
-          "fonte": "02-base-normativa-verbas.md § 1, Corrente B"
-        }
-      ],
-      "sem_default": true,
-      "por_que_sem_default": "O corpus manda literalmente NÃO RESOLVER: 'Há acórdãos do TST nos dois sentidos, inclusive dentro do mesmo tema (intervalo intrajornada). Não resolver — expor como preset.' Atribuir um default aqui seria arbitrar a divergência que a base proíbe arbitrar. A consequência é dura e correta: sem escolha explícita, o cálculo dos regimes dependentes NÃO É CALCULÁVEL. Ver R20-EXCECAO.",
-      "impacto": "A própria base diz que, tendo a Gasmig contratos anteriores a 11/11/2017 gerando passivo, a escolha move o resultado em praticamente todos os pontos daquela seção.",
-      "afeta_parametros": [
-        "pn.in-itinere.prefixacao",
-        "pn.ferias.particao",
-        "pn.he.banco-de-horas",
-        "pn.he.regime-de-compensacao",
-        "pn.composicao.natureza-de-verba"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "depende_de": [],
-      "afeta_verbas": []
+     "id": "tempus-regit-actum",
+     "preset": "TRAB-INTERTEMP-TEMPUS",
+     "eixo_efetivo": "competencia-do-fato",
+     "fundamento": "A lei tem efeito imediato e geral e se aplica aos contratos em curso a partir de sua vigência. O contrato se divide: regra antiga até 10/11/2017, regra nova a partir de 11/11/2017.",
+     "fonte": "02-base-normativa-verbas.md § 1, Corrente A"
     },
     {
-      "id": "pr.oj394-reflexo-rsr",
-      "nome": "Reflexo do RSR majorado por horas extras — OJ 394 × Tema Repetitivo 9",
-      "natureza": "cadeia-temporal",
-      "eixo": "competencia-do-fato",
-      "fonte_do_eixo": "02a-adendo-lacunas-verbas.md § 13 — 'A modulação é pela data do trabalho, não pela data do ajuizamento nem do julgamento. O corte é por competência da hora extra.' É o único achado do corpus que NEGA NOMINALMENTE dois eixos rivais.",
-      "corte": "2023-03-20",
-      "variantes": [
-        {
-          "id": "sem-repercussao",
-          "vigencia": {
-            "de": null,
-            "ate": "2023-03-19"
-          },
-          "efeito": {
-            "repercute_em_ferias_13_aviso_fgts": false
-          },
-          "fundamento": "OJ 394 da SDI-1, redação de 2010: a majoração do RSR decorrente da integração das horas extras habituais NÃO repercute no cálculo das férias, da gratificação natalina, do aviso prévio e do FGTS, sob pena de bis in idem.",
-          "fonte": "02a § 13"
-        },
-        {
-          "id": "com-repercussao",
-          "vigencia": {
-            "de": "2023-03-20",
-            "ate": null
-          },
-          "efeito": {
-            "repercute_em_ferias_13_aviso_fgts": true
-          },
-          "fundamento": "Tema Repetitivo 9, IncJulgRREmbRep-10169-57.2013.5.05.0024, Tribunal Pleno do TST, Rel. Min. Amaury Rodrigues Pinto Junior, 20/03/2023, item II: 'O item I será aplicado às horas extras trabalhadas a partir de 20.03.2023.'",
-          "fonte": "02a § 13"
-        }
-      ],
-      "nota": "A tese menciona também as CONTRIBUIÇÕES PREVIDENCIÁRIAS como parcela alcançada, o que amplia o efeito para além das quatro verbas nomeadas no verbete.",
-      "corrige": "O caso difícil nº 6 da lista de validação da Fase 3 está errado e precisa ser reescrito (02a § 13, consequência 1). O bloco 03 § 8 listou a OJ 394 sob a ressalva 'Não marcado, porque não muda' — está desmentido.",
-      "afeta_parametros": [
-        "pn.rsr.dias",
-        "pn.rsr.feriados-no-reflexo"
-      ],
-      "afeta_verbas": [
-        "reflexo-he-rsr",
-        "ferias",
-        "decimo-terceiro",
-        "aviso-previo",
-        "fgts",
-        "contribuicao-previdenciaria"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": []
-    },
-    {
-      "id": "pr.divisor-cf88",
-      "nome": "Divisor do salário-hora antes e depois da CF/88",
-      "natureza": "cadeia-temporal",
-      "eixo": "competencia-do-fato",
-      "fonte_do_eixo": "bloco-03-verbas.md — 'nota 3: 240, se o PERÍODO DO CÁLCULO for anterior à CF/88'",
-      "corte": "1988-10-05",
-      "variantes": [
-        {
-          "id": "divisor-240",
-          "vigencia": {
-            "de": null,
-            "ate": "1988-10-04"
-          },
-          "efeito": {
-            "divisor": "240"
-          },
-          "fundamento": "Limite de 48 horas semanais anterior à CF/88.",
-          "fonte": "bloco-03-verbas.md"
-        },
-        {
-          "id": "divisor-220",
-          "vigencia": {
-            "de": "1988-10-05",
-            "ate": null
-          },
-          "efeito": {
-            "divisor": "220"
-          },
-          "fundamento": "A CF/88 reduziu o limite de 48 para 44 horas semanais, resultando na alteração do divisor 240 p/ 220.",
-          "fonte": "bloco-03-verbas.md"
-        }
-      ],
-      "nota": "Interage com pn.jornada.divisor, que é DERIVADO de pn.jornada.semanal. Este regime move a constante 30/7 do denominador legal, não o divisor cadastrado — que não é cadastrável.",
-      "afeta_parametros": [
-        "pn.jornada.divisor",
-        "pn.jornada.semanal"
-      ],
-      "afeta_verbas": [
-        "horas-extras",
-        "adicional-noturno",
-        "intervalos"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": []
-    },
-    {
-      "id": "pr.inss-aviso-indenizado",
-      "nome": "Incidência de contribuição previdenciária sobre o aviso-prévio indenizado",
-      "natureza": "cadeia-temporal",
-      "eixo": "competencia-do-fato",
-      "fonte_do_eixo": "bloco-03-verbas.md — 'a partir da COMPETÊNCIA janeiro de 2009, salvo se nos autos constar entendimento contrário'",
-      "corte": "2009-01",
-      "variantes": [
-        {
-          "id": "sem-incidencia",
-          "vigencia": {
-            "de": null,
-            "ate": "2008-12"
-          },
-          "efeito": {
-            "incide_inss": false
-          },
-          "fundamento": "Lei 9.528/97 (11/12/1997) e regime anterior ao Dec. 6.727/2009.",
-          "fonte": "bloco-03-verbas.md"
-        },
-        {
-          "id": "com-incidencia",
-          "vigencia": {
-            "de": "2009-01",
-            "ate": null
-          },
-          "efeito": {
-            "incide_inss": true
-          },
-          "fundamento": "Dec. 6.727, de 12/01/2009 (DOU 13/01/2009); cancelamento da OJ 03 das Turmas do TRT-3 em julho/2010; Súmula 50 do TRT-3 (RA 284/2015).",
-          "fonte": "bloco-03-verbas.md"
-        }
-      ],
-      "eixo_alternativo": {
-        "eixo": "conteudo-do-titulo",
-        "quando": "'salvo se nos autos constar entendimento contrário' — o título desloca o eixo",
-        "invariante": "R8"
-      },
-      "afeta_verbas": [
-        "inss-sobre-aviso-previo-indenizado"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.piso-nacional-salarios",
-      "nome": "Piso Nacional de Salários como base da insalubridade",
-      "natureza": "cadeia-temporal",
-      "eixo": "competencia-do-fato",
-      "eixo_origem": "inferido",
-      "fonte_do_eixo": "O corpus (bloco-04-verbas2.md) apenas LISTA, numa linha sobre o período anterior à SV 4, três bases coexistentes — salário mínimo, PNS 'de 09/87 a 07/89', salário profissional. Dá a JANELA, não o eixo.",
-      "justificativa_da_inferencia": "Uma janela de vigência de piso salarial só pode ser lida por competência da parcela: o piso é o que vigia no mês. A inferência é forte, mas é inferência — pela mesma régua que classifica pr.multa477-documentos como não declarado.",
-      "corte": "1987-09",
-      "variantes": [
-        {
-          "id": "pns",
-          "vigencia": {
-            "de": "1987-09",
-            "ate": "1989-07"
-          },
-          "efeito": {
-            "base": "piso-nacional-de-salarios"
-          },
-          "fundamento": "DL 2351/87 — Piso Nacional de Salários de 09/87 a 07/89.",
-          "fonte": "bloco-04-verbas2.md"
-        },
-        {
-          "id": "salario-minimo",
-          "vigencia": {
-            "de": "1989-08",
-            "ate": null
-          },
-          "efeito": {
-            "base": "salario-minimo"
-          },
-          "fundamento": "CLT art. 192 — base legal geral. CONSTRUÇÃO DESTE CATÁLOGO: o corpus não enuncia 'retorno' nem fixa fronteira em 08/1989; a fronteira é o fim da janela do PNS, lido a contrario.",
-          "fonte": "bloco-04-verbas2.md, a contrario"
-        }
-      ],
-      "nota": "É a terceira variante de pn.insalubridade.base, além de salário mínimo e do salário básico já removido. A 'restauração da Súmula 17/TST pela Res. 121/03' (salário profissional) seria a quarta, mas está com EIXO NÃO DECLARADO — ver pr.sumula17-salario-profissional.",
-      "afeta_parametros": [
-        "pn.insalubridade.base"
-      ],
-      "afeta_verbas": [
-        "adicional-insalubridade"
-      ],
-      "escopo": "apuracao",
-      "eixo_declarado": false,
-      "depende_de": []
-    },
-    {
-      "id": "pr.multa467-base",
-      "nome": "Base da multa do art. 467 da CLT",
-      "natureza": "cadeia-temporal",
-      "eixo": "data-da-sentenca",
-      "fonte_do_eixo": "bloco-04-verbas2.md, sob o rótulo 'Como escolher': 'é necessário verificar o comando sentencial ou a data da sentença'. Não é a data da rescisão nem a competência.",
-      "corte": "2001-09-05",
-      "variantes": [
-        {
-          "id": "dobro-dos-salarios",
-          "vigencia": {
-            "de": null,
-            "ate": "2001-09-04"
-          },
-          "efeito": {
-            "base": "dobro-dos-salarios"
-          },
-          "fundamento": "Redação anterior à Lei 10.272/01.",
-          "fonte": "bloco-04-verbas2.md"
-        },
-        {
-          "id": "cinquenta-por-cento",
-          "vigencia": {
-            "de": "2001-09-05",
-            "ate": null
-          },
-          "efeito": {
-            "base": "50pct-sobre-parte-incontroversa"
-          },
-          "fundamento": "Lei 10.272, de 05/09/2001 — 50% sobre a parte incontroversa das parcelas rescisórias.",
-          "fonte": "bloco-04-verbas2.md"
-        }
-      ],
-      "eixo_alternativo": {
-        "eixo": "conteudo-do-titulo",
-        "quando": "o comando sentencial precede a data da sentença",
-        "invariante": "R8"
-      },
-      "nota": "É o eixo mais anômalo do corpus: a mesma competência de rescisão produz multas diferentes conforme a data em que a sentença veio a ser proferida.",
-      "afeta_verbas": [
-        "multa-art-467"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.periculosidade-eletricitarios",
-      "nome": "Base da periculosidade do eletricitário — Súmula 191, II",
-      "natureza": "cadeia-temporal",
-      "eixo": "data-de-admissao",
-      "fonte_do_eixo": "02-base-normativa-verbas.md § 7 e bloco-04-verbas2.md — 'eletricitários CONTRATADOS ANTES da Lei 12.740/2012'. Único caso, fora da Corrente B do intertemporal, em que a admissão governa a regra.",
-      "corte": "2012",
-      "lacuna_de_data": "O corpus diz apenas 'eletricitários CONTRATADOS ANTES da Lei 12.740/2012' — SEM DIA E SEM MÊS. A data exata da lei não está em nenhum arquivo do repositório e NÃO FOI SUPOSTA. Consequência deliberada: admissões ocorridas em 2012 não resolvem — o resolvedor devolve 'nenhuma-variante-cobre-a-data'. Uma data ao dia que o corpus não traz é invenção, ainda que historicamente correta.",
-      "variantes": [
-        {
-          "id": "totalidade-das-parcelas",
-          "condicao": "admissao < corte",
-          "vigencia": {
-            "de": null,
-            "ate": "2011"
-          },
-          "efeito": {
-            "base": "totalidade-das-parcelas-salariais"
-          },
-          "fundamento": "Súmula 191, II, do TST — eletricitários contratados antes da Lei 12.740/2012 têm o adicional calculado sobre a totalidade das parcelas de natureza salarial.",
-          "fonte": "02-base § 7"
-        },
-        {
-          "id": "salario-base",
-          "condicao": "admissao >= corte",
-          "vigencia": {
-            "de": "2013",
-            "ate": null
-          },
-          "efeito": {
-            "base": "salario-base"
-          },
-          "fundamento": "Regra geral do art. 193 após a Lei 12.740/2012.",
-          "fonte": "02-base § 7"
-        }
-      ],
-      "pendencia_de_dado": "Não se sabe se existem empregados da Gasmig nessa condição — pendência 4 da § 12 da base, replicada em pendencias.md § 18. Sem o dado, a variante fica cadastrada e nunca usada.",
-      "afeta_parametros": [
-        "pn.periculosidade.base"
-      ],
-      "afeta_verbas": [
-        "adicional-periculosidade"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": []
-    },
-    {
-      "id": "pr.aviso-proporcional",
-      "nome": "Aviso-prévio proporcional — Lei 12.506/2011",
-      "natureza": "cadeia-temporal",
-      "eixo": "inicio-do-aviso",
-      "fonte_do_eixo": "bloco-03-verbas.md — 'A lei NÃO RETROAGE para alcançar AVISO JÁ INICIADO'. O eixo vem da própria negativa — se a lei não alcança aviso já iniciado, é o início do aviso que manda. Não é competência mensal nem data da rescisão.",
-      "corte": "2011-10-13",
-      "variantes": [
-        {
-          "id": "trinta-dias",
-          "vigencia": {
-            "de": null,
-            "ate": "2011-10-12"
-          },
-          "efeito": {
-            "dias": "30"
-          },
-          "fundamento": "Regime anterior — aviso de 30 dias, sem proporcionalidade.",
-          "fonte": "bloco-03-verbas.md"
-        },
-        {
-          "id": "proporcional",
-          "vigencia": {
-            "de": "2011-10-13",
-            "ate": null
-          },
-          "efeito": {
-            "dias": "30 + 3 × anos_completos, teto 90"
-          },
-          "fundamento": "Lei 12.506/11, DOU 13/10/2011, a partir da publicação. A proporcionalidade só beneficia o empregado, aplicável exclusivamente na rescisão sem justa causa.",
-          "fonte": "bloco-03-verbas.md"
-        }
-      ],
-      "nota": "Por PROJEÇÃO altera os avos de 13º e de férias, e os reflexos de insalubridade, periculosidade, noturno e HE no aviso. O alerta está repetido em três itens do bloco 03.",
-      "afeta_parametros": [
-        "pn.aviso.proporcionalidade"
-      ],
-      "afeta_verbas": [
-        "aviso-previo",
-        "projecao-doze-avos-ferias",
-        "projecao-doze-avos-13o",
-        "reflexos-no-aviso"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": []
-    },
-    {
-      "id": "pr.fgts-prescricao",
-      "nome": "Prescrição do FGTS — trintenária × quinquenal",
-      "natureza": "cadeia-temporal",
-      "eixo": "ciencia-da-lesao",
-      "fonte_do_eixo": "bloco-04-verbas2.md — 'Ciência da lesão A PARTIR DE 13.11.2014 → quinquenal'",
-      "corte": "2014-11-13",
-      "variantes": [
-        {
-          "id": "quinquenal",
-          "condicao": "ciencia_da_lesao >= 2014-11-13",
-          "vigencia": {
-            "de": "2014-11-13",
-            "ate": null
-          },
-          "efeito": {
-            "prazo_anos": "5"
-          },
-          "fundamento": "ARE 709212/DF, plenário de 13/11/2014; Súmula 362 alterada em junho/2015 (Res. 198/2015).",
-          "fonte": "bloco-04-verbas2.md"
-        },
-        {
-          "id": "transicao",
-          "condicao": "prazo já em curso em 13/11/2014",
-          "vigencia": {
-            "de": null,
-            "ate": "2014-11-12"
-          },
-          "efeito": {
-            "prazo": "o que se consumar primeiro: trinta anos do termo inicial, ou cinco anos a partir de 13/11/2014"
-          },
-          "fundamento": "Regra de transição do ARE 709212/DF.",
-          "fonte": "bloco-04-verbas2.md"
-        }
-      ],
-      "eixo_alternativo": {
-        "eixo": "conteudo-do-titulo",
-        "quando": "'o termo prescricional vai estar definido pelo comando exequendo, cabendo ao calculista apenas efetuar o cálculo a partir da data estipulada'",
-        "invariante": "R8"
-      },
-      "nota": "Por Súmula 206 alcança TODOS os reflexos fundiários. O manual reproduz ainda DUAS redações anteriores da Súmula 362 (Res. 121/2003 e Res. 90/1999) — três redações concorrentes, e o corpus não diz por qual eixo se escolhe entre elas. Ver pendência.",
-      "afeta_verbas": [
-        "fgts",
-        "multa-40pct-fgts",
-        "reflexos-fundiarios"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.fgts-indice-jam",
-      "nome": "Atualização do FGTS pelo JAM",
-      "natureza": "divergencia-interpretativa",
-      "eixo": "conteudo-do-titulo",
-      "fonte_do_eixo": "bloco-04-verbas2.md — 'só prevalece para processos mais antigos, em que a SENTENÇA DETERMINAVA EXPRESSAMENTE a correção pelo JAM, ou processos em que a execução está em curso e NOS CÁLCULOS JÁ HOMOLOGADOS o índice utilizado foi o JAM'. Não é data: são duas condições alternativas, ambas declaradas.",
-      "corte": null,
-      "variantes": [
-        {
-          "id": "jam",
-          "condicao": "título determina JAM OU cálculo homologado usou JAM",
-          "efeito": {
-            "indice": "JAM",
-            "juros_embutidos": true
-          },
-          "fundamento": "Os índices JAM já computam juros de 3% ao ano.",
-          "fonte": "bloco-04-verbas2.md"
-        },
-        {
-          "id": "sem-jam",
-          "condicao": "demais casos",
-          "efeito": {
-            "indice": "regime-geral",
-            "juros_embutidos": false
-          },
-          "fundamento": "Regime geral de atualização.",
-          "fonte": "bloco-04-verbas2.md"
-        }
-      ],
-      "default": "sem-jam",
-      "default_justificativa": "O corpus trata o JAM como excepcional — 'só prevalece para processos mais antigos'. O default é o regime geral.",
-      "invariante_tocada": "R1 — aplicar juros por fora sobre valor corrigido pelo JAM conta juros duas vezes. É violação de englobamento.",
-      "afeta_verbas": [
-        "fgts",
-        "multa-40pct-fgts"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.seguro-desemprego-regime",
-      "nome": "Regime de cálculo do seguro-desemprego",
-      "natureza": "cadeia-temporal",
-      "eixo": "data-da-dispensa",
-      "eixo_origem": "inferido",
-      "fonte_do_eixo": "As duas citações são literais — roteiro, passo 2: 'enquadrar na tabela vigente na data da demissão'; piso: 'salário mínimo vigente na data da dispensa'. Mas governam O VALOR DA PARCELA — em que tabela enquadrar, qual o piso —, não a escolha entre regime-simples e regime-tres-variaveis, que o corpus dá só como 'Até 27/02/2015' / 'A partir de 28/02/2015'.",
-      "justificativa_da_inferencia": "Se a tabela e o piso se fixam na dispensa, o regime que as consome dificilmente se fixaria noutra data. Inferência forte, e ainda assim inferência.",
-      "corte": "2015-02-28",
-      "variantes": [
-        {
-          "id": "regime-simples",
-          "vigencia": {
-            "de": null,
-            "ate": "2015-02-27"
-          },
-          "efeito": {
-            "variaveis": "número de meses"
-          },
-          "fundamento": "Regime anterior à MP 665/14.",
-          "fonte": "bloco-04-verbas2.md"
-        },
-        {
-          "id": "regime-tres-variaveis",
-          "vigencia": {
-            "de": "2015-02-28",
-            "ate": null
-          },
-          "efeito": {
-            "variaveis": "três"
-          },
-          "fundamento": "MP 665/14, convertida na Lei 13.134/15.",
-          "fonte": "bloco-04-verbas2.md"
-        }
-      ],
-      "nota": "Consome serie-18.9-seguro-desemprego.csv (bloco 1).",
-      "afeta_verbas": [
-        "indenizacao-seguro-desemprego"
-      ],
-      "escopo": "apuracao",
-      "eixo_declarado": false,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.urv-conversao",
-      "nome": "Conversão URV ↔ cruzeiro real",
-      "natureza": "cadeia-temporal",
-      "eixo": "competencia-do-fato",
-      "eixo_origem": "inferido",
-      "fonte_do_eixo": "O corpus NÃO declara o eixo de SELEÇÃO entre os três regimes monetários. As citações de bloco-02-criterios.md — 'multiplicando-se a expressão em URV pelo valor nominal da URV do dia do pagamento' e 'pelo valor em cruzeiros reais do equivalente em URV na data do efetivo pagamento' — declaram a DATA-BASE DA ARITMÉTICA da conversão, que é outra pergunta.",
-      "justificativa_da_inferencia": "Qual moeda vigia é fato da competência: CR$ até fev/94, URV de mar a jun/94, R$ a partir de jul/94. Nenhum eixo processual escolheria isso. Mas a distinção importa e por isso está separada em eixo_da_aritmetica.",
-      "eixo_da_aritmetica": {
-        "eixo": "efetivo-pagamento",
-        "o_que_governa": "o valor pelo qual se converte, não qual regime monetário vale",
-        "fonte": "bloco-02-criterios.md, as duas citações acima, nas duas direções — que são operações opostas",
-        "por_que_separar": "A primeira redação deste registro punha 'efetivo-pagamento' como eixo do REGIME. Era erro: apresentava como declarado um eixo que o corpus declara para outra coisa."
-      },
-      "corte": "1994-03-01",
-      "variantes": [
-        {
-          "id": "cruzeiro-real",
-          "vigencia": {
-            "de": null,
-            "ate": "1994-02"
-          },
-          "efeito": {
-            "moeda": "CR$"
-          },
-          "fundamento": "Regime anterior à URV.",
-          "fonte": "bloco-02-criterios.md"
-        },
-        {
-          "id": "urv",
-          "vigencia": {
-            "de": "1994-03",
-            "ate": "1994-06"
-          },
-          "efeito": {
-            "moeda": "URV"
-          },
-          "fundamento": "MP 434/94 e Lei 8880/94, a partir de 01/03/1994.",
-          "fonte": "bloco-02-criterios.md"
-        },
-        {
-          "id": "real",
-          "vigencia": {
-            "de": "1994-07",
-            "ate": null
-          },
-          "efeito": {
-            "moeda": "R$"
-          },
-          "fundamento": "Em 01/07/94, uma URV equivalia a um Real.",
-          "fonte": "bloco-02-criterios.md"
-        }
-      ],
-      "nota": "A OJ Transitória do 13º manda deduzir a antecipação 'em URV, na data do efetivo pagamento' — teto implícito. O critério de arredondamento da conversão continua não declarado (pendência P2 do bloco 02).",
-      "afeta_verbas": [
-        "todas-no-periodo",
-        "decimo-terceiro-1994"
-      ],
-      "escopo": "apuracao",
-      "eixo_declarado": false,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.gilrat-fato-gerador",
-      "nome": "Alíquota GILRAT/SAT por grau de risco",
-      "natureza": "cadeia-temporal",
-      "eixo": "fato-gerador",
-      "fonte_do_eixo": "bloco-01-tabelas.md — 'É O FATO GERADOR QUE MANDA, não a data do cálculo nem a do ajuizamento.' Negação nominal de dois eixos rivais.",
-      "corte": "2009-12-31",
-      "variantes": [
-        {
-          "id": "sem-fap",
-          "vigencia": {
-            "de": null,
-            "ate": "2009-12-31"
-          },
-          "efeito": {
-            "regra": "alíquota por grau de risco, sem FAP"
-          },
-          "fundamento": "Regime anterior ao Dec. 6.957/2009.",
-          "fonte": "bloco-01-tabelas.md"
-        },
-        {
-          "id": "dec-6957",
-          "vigencia": {
-            "de": "2010-01-01",
-            "ate": null
-          },
-          "efeito": {
-            "regra": "Dec. 6.957/2009, art. 4º"
-          },
-          "fundamento": "Dec. 6.957/2009, art. 4º.",
-          "fonte": "bloco-01-tabelas.md"
-        }
-      ],
-      "corte_secundario": {
-        "data": "2007-05-31",
-        "o_que": "CNAE 1.0 → CNAE 2.0",
-        "eixo": "NAO-DECLARADO",
-        "observacao": "O corpus dá a vigência ('até 31/05/2007' / 'a partir de 01/06/2007') mas NÃO declara o eixo para este corte, ao contrário do corte de 2009."
-      },
-      "escopo": "encargos",
-      "afeta_verbas": [
-        "contribuicao-previdenciaria-patronal"
-      ],
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.faixas-inss-jan2010",
-      "nome": "Faixas de contribuição do segurado em janeiro de 2010",
-      "natureza": "divergencia-interpretativa",
-      "eixo": "data-do-calculo",
-      "fonte_do_eixo": "bloco-01-tabelas.md — 'A ESCOLHA DEPENDE DA DATA DO CÁLCULO, não do bloco.' Único ponto do corpus com esse eixo.",
-      "corte": "2010-01",
-      "variantes": [
-        {
-          "id": "portaria-350-09",
-          "condicao": "cálculo de janeiro a junho de 2010",
-          "efeito": {
-            "tabela": "MPS/MF 350/09"
-          },
-          "fundamento": "Revogada, mas usada nos cálculos de janeiro a junho de 2010. O original traz os dois quadros como vigentes.",
-          "fonte": "bloco-01-tabelas.md"
-        },
-        {
-          "id": "portaria-333-10",
-          "condicao": "demais",
-          "efeito": {
-            "tabela": "MPS/MF 333/10"
-          },
-          "fundamento": "Portaria vigente.",
-          "fonte": "bloco-01-tabelas.md"
-        }
-      ],
-      "default": "portaria-333-10",
-      "default_justificativa": "A portaria vigente é o default; a 350/09 é a exceção declarada pelo original, e depende de quando o cálculo foi feito.",
-      "nota": "DUAS NORMAS SIMULTANEAMENTE APLICÁVEIS À MESMA COMPETÊNCIA. É o caso que prova que o eixo não pode ser único no motor.",
-      "escopo": "encargos",
-      "afeta_verbas": [
-        "contribuicao-previdenciaria-cota-reclamante"
-      ],
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.planos-economicos",
-      "nome": "Reajustes salariais dos planos econômicos (1986–1996)",
-      "natureza": "cadeia-temporal",
-      "eixo": "composto",
-      "eixos_componentes": [
-        "competencia-do-fato",
-        "data-base-da-categoria"
-      ],
-      "eixo_origem": "inferido",
-      "fonte_do_eixo": "O componente DATA-BASE está declarado, com três citações literais: 'as datas-base de cada categoria zeravam a inflação acumulada, iniciando novo ciclo'; 'exceto no mês da data-base' (art. 8º do Dec. 2335/87); 'reposição das perdas no mês da primeira data-base de cada categoria' (Lei 8.880/94). O componente COMPETÊNCIA não: o corpus dá os períodos de cada norma, não a data que governa.",
-      "justificativa_da_inferencia": "Um componente declarado e um inferido. O regime está bloqueado por falta de série, de modo que a inferência não chega a ser aplicada.",
-      "corte": "1986-02-28",
-      "variantes": [
-        {
-          "id": "cadeia-de-treze-regimes",
-          "efeito": {
-            "regra": "cadeia de normas de política salarial entre 1986 e 1996, de DL 2302/86 a MPs 1053/95 e 1079/95"
-          },
-          "fundamento": "A pendência P19 do bloco 04 conta 'dez normas de política salarial entre 1986 e 1996'; a tabela do próprio bloco tem dezesseis linhas, das quais catorze nomeiam norma. Os números do corpus não coincidem entre si, e por isso NENHUM foi adotado aqui — a primeira redação deste campo dizia 'treze', que não vem de lugar nenhum.",
-          "fonte": "bloco-04-verbas2.md"
-        }
-      ],
-      "bloqueado": true,
-      "por_que_bloqueado": "Pendência P19 do bloco 04: os índices do período (IPC, URP, IRSM, FAS, FAZ, IPC-r, FRS) NÃO ESTÃO em nenhuma tabela do item 18 extraída no bloco 1. É regime sem série — não há o que aplicar.",
-      "nota": "A data-base da categoria é um eixo que o catálogo de parâmetros negociáveis também precisa, e que a pendência 2 da § 12 (mapa de categoria por sindicato) alimenta.",
-      "afeta_verbas": [
-        "diferencas-salariais",
-        "toda-base-de-calculo-do-periodo"
-      ],
-      "escopo": "apuracao",
-      "eixo_declarado": false,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.intrajornada-71-4",
-      "nome": "Intervalo intrajornada suprimido — art. 71, § 4º, nas duas redações",
-      "natureza": "cadeia-temporal",
-      "eixo": "herdado",
-      "herda_de": "pr.intertemporal",
-      "eixo_origem": "herdado",
-      "fonte_do_eixo": "NÃO DECLARADO AUTONOMAMENTE. bloco-04-verbas2.md remete: 'qual regra se aplica a fatos anteriores a 11/11/2017 depende da corrente de direito intertemporal, e a base manda não resolver'.",
-      "corte": "2017-11-11",
-      "variantes": [
-        {
-          "id": "redacao-anterior",
-          "vigencia": {
-            "de": null,
-            "ate": "2017-11-10"
-          },
-          "efeito": {
-            "extensao": "integral",
-            "natureza": "salarial",
-            "tem_reflexos": true
-          },
-          "fundamento": "Redação anterior do art. 71, § 4º, com a Súmula 437 — pagamento do intervalo INTEGRAL, como hora extra, com natureza SALARIAL e reflexos.",
-          "fonte": "bloco-04-verbas2.md § 4.1; 02-base § 4"
-        },
-        {
-          "id": "redacao-reforma",
-          "vigencia": {
-            "de": "2017-11-11",
-            "ate": null
-          },
-          "efeito": {
-            "extensao": "periodo-suprimido",
-            "natureza": "indenizatoria",
-            "tem_reflexos": false
-          },
-          "fundamento": "Lei 13.467/2017 — apenas o período SUPRIMIDO, com natureza INDENIZATÓRIA e sem reflexos.",
-          "fonte": "bloco-04-verbas2.md § 4.1; 02-base § 4"
-        }
-      ],
-      "duas_mudancas": "EXTENSÃO e NATUREZA mudaram juntas. Tratar como uma só mudança é erro: a natureza arrasta toda a cadeia de reflexos (13º, férias + 1/3, aviso, FGTS, RSR); a extensão muda o número de horas.",
-      "lacuna_anterior": {
-        "evento": "Lei 8.923, de 27/07/1994, acrescentou o § 4º",
-        "situacao": "Implica um TERCEIRO regime — antes de 27/07/1994 não havia consequência pecuniária. O corpus NÃO o enuncia como regime nem diz o que valia antes. Não foi cadastrado."
-      },
-      "afeta_parametros": [
-        "pn.he.adicional"
-      ],
-      "afeta_verbas": [
-        "intervalo-intrajornada-suprimido",
-        "decimo-terceiro",
-        "ferias",
-        "aviso-previo",
-        "fgts",
-        "rsr"
-      ],
-      "escopo": "apuracao",
-      "eixo_declarado": false,
-      "depende_de": []
-    },
-    {
-      "id": "pr.in-itinere",
-      "nome": "Horas in itinere — existência da verba",
-      "natureza": "cadeia-temporal",
-      "eixo": "herdado",
-      "herda_de": "pr.intertemporal",
-      "eixo_origem": "herdado",
-      "fonte_do_eixo": "NÃO DECLARADO AUTONOMAMENTE — herda de pr.intertemporal.",
-      "corte": "2017-11-11",
-      "variantes": [
-        {
-          "id": "devidas",
-          "vigencia": {
-            "de": null,
-            "ate": "2017-11-10"
-          },
-          "efeito": {
-            "verba_existe": true
-          },
-          "fundamento": "CLT art. 58, § 2º, redação anterior. Dois requisitos cumulativos: condução fornecida pelo empregador E local de difícil acesso ou sem transporte regular.",
-          "fonte": "bloco-04-verbas2.md § 6.7"
-        },
-        {
-          "id": "suprimidas",
-          "vigencia": {
-            "de": "2017-11-11",
-            "ate": null
-          },
-          "efeito": {
-            "verba_existe": false
-          },
-          "fundamento": "Lei 13.467/2017 suprimiu a hipótese do art. 58, § 2º.",
-          "fonte": "bloco-04-verbas2.md § 12, F1"
-        }
-      ],
-      "nota": "'O item deixa de existir para fatos a partir de 11/11/2017. Extraído integralmente porque O PASSIVO ANTERIOR PERMANECE.' É o caso que prova por que a camada de regime precisa existir: sem ela, o motor não sabe que a verba já existiu.",
-      "afeta_parametros": [
-        "pn.in-itinere.prefixacao"
-      ],
-      "afeta_verbas": [
-        "horas-in-itinere"
-      ],
-      "escopo": "apuracao",
-      "eixo_declarado": false,
-      "depende_de": []
-    },
-    {
-      "id": "pr.art384-quinze-minutos",
-      "nome": "Intervalo do art. 384 da CLT — 15 minutos extras",
-      "natureza": "cadeia-temporal",
-      "eixo": "herdado",
-      "herda_de": "pr.intertemporal",
-      "eixo_origem": "herdado",
-      "fonte_do_eixo": "NÃO DECLARADO AUTONOMAMENTE — herda de pr.intertemporal. Marca F6 do bloco 04.",
-      "corte": "2017-11-11",
-      "variantes": [
-        {
-          "id": "devido",
-          "vigencia": {
-            "de": null,
-            "ate": "2017-11-10"
-          },
-          "efeito": {
-            "verba_existe": true,
-            "minutos": "15"
-          },
-          "fundamento": "CLT art. 384 e Súmula 39 do TRT-3: o descumprimento parcial ou integral gera 15 minutos extras diários.",
-          "fonte": "bloco-04-verbas2.md"
-        },
-        {
-          "id": "revogado",
-          "vigencia": {
-            "de": "2017-11-11",
-            "ate": null
-          },
-          "efeito": {
-            "verba_existe": false
-          },
-          "fundamento": "CLT art. 384 revogado pela Lei 13.467/2017.",
-          "fonte": "bloco-04-verbas2.md"
-        }
-      ],
-      "acumula_com_atributo": "Só alcança empregadas mulheres — atributo do vínculo, não do tempo.",
-      "afeta_verbas": [
-        "intervalo-art-384"
-      ],
-      "escopo": "apuracao",
-      "eixo_declarado": false,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.tema1046-validade-clausula",
-      "nome": "Validade da cláusula coletiva — Temas 357/762 × Tema 1046",
-      "natureza": "divergencia-interpretativa",
-      "eixo": "NAO-DECLARADO",
-      "eixo_declarado": false,
-      "fonte_do_eixo": "02-base-normativa-verbas.md § 2 registra o julgamento (ARE 1.121.633/GO, Pleno, 02/06/2022) e que ele REVISOU as teses dos Temas 357 e 762, mas NÃO diz se cláusula de ACT anterior a 02/06/2022 se julga pelo Tema 1046 ou pelo regime revisado.",
-      "corte": "2022-06-02",
-      "variantes": [
-        {
-          "id": "tema-1046",
-          "efeito": {
-            "onus": "de quem alega a nulidade"
-          },
-          "fundamento": "São constitucionais os acordos e as convenções coletivos que pactuam limitações ou afastamentos de direitos trabalhistas, desde que respeitados os direitos absolutamente indisponíveis.",
-          "fonte": "02-base § 2"
-        },
-        {
-          "id": "temas-357-762",
-          "efeito": {
-            "onus": "de quem defende a cláusula"
-          },
-          "fundamento": "Regime revisado pelo Tema 1046. O corpus não transcreve as teses anteriores.",
-          "fonte": "02-base § 2 (por referência)"
-        }
-      ],
-      "sem_default": true,
-      "por_que_sem_default": "O corpus não declara o eixo nem diz qual regime alcança cláusulas anteriores a 02/06/2022. Fixar um default aqui seria resolver uma questão de direito intertemporal constitucional que a base não resolve.",
-      "impacto": "MAIOR IMPACTO ISOLADO DO INVENTÁRIO. Decide se a cláusula que limita direito vale — logo, governa a resolução dos 32 parâmetros negociáveis inteiros. Sob o regime revisado, o ônus se inverte e o motor pode estar aplicando cláusulas que não valeriam.",
-      "afeta_parametros": [
-        "TODOS"
-      ],
-      "pendencia": "Obter as teses dos Temas 357 e 762 e a regra de alcance temporal do Tema 1046.",
-      "escopo": "apuracao",
-      "eixo_origem": "nao-declarado",
-      "depende_de": [],
-      "afeta_verbas": []
-    },
-    {
-      "id": "pr.insalubridade-base-sumula228",
-      "nome": "Base da insalubridade — cassação da Súmula 228 pela Rcl 6.275",
-      "natureza": "cadeia-temporal",
-      "eixo": "NAO-DECLARADO",
-      "eixo_declarado": false,
-      "fonte_do_eixo": "02-base-normativa-verbas.md § 5 diz 'Estado atual: a base é o salário mínimo' e dá a data (abril/2018), mas NÃO diz se a cassação alcança competências pretéritas, cálculos em curso ou só novos.",
-      "corte": "2018-04",
-      "variantes": [
-        {
-          "id": "salario-minimo",
-          "efeito": {
-            "base": "salario-minimo"
-          },
-          "fundamento": "CLT art. 192; SV 4 do STF; Rcl 6.275, Min. Ricardo Lewandowski, abril/2018, que CASSOU DEFINITIVAMENTE a parte da Súmula 228 que fixava o salário básico.",
-          "fonte": "02-base § 5"
-        }
-      ],
-      "variante_removida": {
-        "id": "salario-basico",
-        "por_que": "A v1 do catálogo de parâmetros registrava a SV 4 como 'suspensa' pela Rcl 6.275. A base mostra que a Reclamação foi CASSADA DEFINITIVAMENTE em abril de 2018. A variante foi removida de pn.insalubridade.base no bloco 5.",
-        "cuidado": "Removê-la do catálogo de PARÂMETROS foi correto — não é mais opção negociável. Mas se a cassação não retroage, competências anteriores a abril/2018 podem seguir o salário básico, e aí ela precisa voltar COMO VARIANTE DE REGIME, não de parâmetro. É precisamente isso que o eixo não declarado impede decidir."
-      },
-      "pendencia": "A regra de alcance temporal da cassação. Sem ela, não sei se existe uma segunda variante deste regime. Correlata: vigência da Súmula 46 do TRT-3 após 2018 (02a § 19, pendência 3).",
-      "afeta_parametros": [
-        "pn.insalubridade.base"
-      ],
-      "afeta_verbas": [
-        "adicional-insalubridade",
-        "reflexos-adicional-insalubridade"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "nao-declarado",
-      "depende_de": []
-    },
-    {
-      "id": "pr.he-adicional-cf88",
-      "nome": "Adicional de horas extras antes e depois da CF/88",
-      "natureza": "cadeia-temporal",
-      "eixo": "NAO-DECLARADO",
-      "eixo_declarado": false,
-      "fonte_do_eixo": "bloco-03-verbas.md dá a tabela ('A partir da CF/88 → 50%' / 'Antes da CF/88 → 20% ou 25%') mas NÃO repete o 'período do cálculo' que aparece na linha do divisor (pr.divisor-cf88). O eixo é presumível, não declarado.",
-      "corte": "1988-10-05",
-      "variantes": [
-        {
-          "id": "cinquenta",
-          "vigencia": {
-            "de": "1988-10-05",
-            "ate": null
-          },
-          "efeito": {
-            "adicional": "50"
-          },
-          "fundamento": "CF art. 7º, XVI — o manual cita apenas 'CF, 7º', sem inciso.",
-          "fonte": "bloco-03-verbas.md"
-        },
-        {
-          "id": "pre-cf88-vinte",
-          "vigencia": {
-            "de": null,
-            "ate": "1988-10-04"
-          },
-          "efeito": {
-            "adicional": "20"
-          },
-          "fundamento": "CLT art. 59, redação anterior.",
-          "fonte": "bloco-03-verbas.md"
-        },
-        {
-          "id": "pre-cf88-vinte-e-cinco",
-          "vigencia": {
-            "de": null,
-            "ate": "1988-10-04"
-          },
-          "efeito": {
-            "adicional": "25"
-          },
-          "fundamento": "Súmula 215/TST, CANCELADA pela Res. 28 de 27/04/94, DJU 12/05/94.",
-          "fonte": "bloco-03-verbas.md"
-        }
-      ],
-      "disjuncao_nao_resolvida": "O corpus escreve '20% (CLT art. 59) OU 25% (Súmula 215)' e não resolve a disjunção. Além disso NÃO diz se o cancelamento de 1994 alcança períodos pré-1988 já consumados. Duas lacunas empilhadas: qual das duas variantes vale, e se o cancelamento retroage.",
-      "sem_default": true,
-      "por_que_sem_default": "Escolher entre 20% e 25% para o período pré-CF/88 é resolver uma disjunção que o corpus deixa aberta.",
-      "afeta_parametros": [
-        "pn.he.adicional",
-        "pn.he.adicional-noturna"
-      ],
-      "afeta_verbas": [
-        "horas-extras",
-        "horas-extras-noturnas"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "nao-declarado",
-      "depende_de": []
-    },
-    {
-      "id": "pr.multa477-documentos",
-      "nome": "Multa do art. 477, § 8º — alcance da entrega de documentos",
-      "natureza": "cadeia-temporal",
-      "eixo": "NAO-DECLARADO",
-      "eixo_declarado": false,
-      "fonte_do_eixo": "02a § 14 descreve as duas redações e o corte de 11/11/2017, mas não diz o eixo. Presumível data da rescisão; o texto não diz.",
-      "corte": "2017-11-11",
-      "variantes": [
-        {
-          "id": "so-pagamento",
-          "vigencia": {
-            "de": null,
-            "ate": "2017-11-10"
-          },
-          "efeito": {
-            "gatilho": "atraso no pagamento das parcelas"
-          },
-          "fundamento": "Redação original do art. 477, § 6º — o prazo tratava apenas do PAGAMENTO.",
-          "fonte": "02a § 14"
-        },
-        {
-          "id": "pagamento-e-documentos",
-          "vigencia": {
-            "de": "2017-11-11",
-            "ate": null
-          },
-          "efeito": {
-            "gatilho": "atraso no pagamento OU na entrega dos documentos",
-            "prazo_dias": "10 corridos, unificado"
-          },
-          "fundamento": "Lei 13.467/2017 — o prazo passou a alcançar também a entrega dos documentos que comprovem a comunicação da extinção aos órgãos competentes. A Súmula 48 do TRT-3 foi superada.",
-          "fonte": "02a § 14"
-        }
-      ],
-      "conferido": "O manual TRT-3 NÃO invoca a Súmula 48 do TRT-3 no item de multas — fecha a pendência 2 da § 19 do adendo.",
-      "afeta_verbas": [
-        "multa-art-477"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "nao-declarado",
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.sumula17-salario-profissional",
-      "nome": "Salário profissional como base da insalubridade — Súmula 17/TST",
-      "natureza": "divergencia-interpretativa",
-      "eixo": "NAO-DECLARADO",
-      "eixo_declarado": false,
-      "fonte_do_eixo": "bloco-04-verbas2.md registra 'salário profissional na hipótese da Súmula 17/TST, RESTAURADA pela Res. 121/03' — dá o evento e a data da restauração, mas não o eixo nem o alcance.",
-      "corte": "2003",
-      "variantes": [
-        {
-          "id": "salario-profissional",
-          "efeito": {
-            "base": "salario-profissional"
-          },
-          "fundamento": "Súmula 17/TST, restaurada pela Res. 121/2003.",
-          "fonte": "bloco-04-verbas2.md"
-        }
-      ],
-      "sem_default": true,
-      "por_que_sem_default": "Há uma única variante cadastrada e nenhuma regra de alcance. Dar-lhe o status de default faria o salário profissional valer por omissão — exatamente o contrário do que o corpus sustenta, que é uma HIPÓTESE ('na hipótese da Súmula 17/TST'). Sem o eixo e sem a articulação com a Rcl 6.275, não há o que resolver.",
-      "pendencia": "Falta o eixo, o alcance da restauração e a articulação com a Rcl 6.275 (pr.insalubridade-base-sumula228). É a quarta variante possível de pn.insalubridade.base.",
-      "afeta_parametros": [
-        "pn.insalubridade.base"
-      ],
-      "afeta_verbas": [
-        "adicional-insalubridade"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "nao-declarado",
-      "depende_de": []
-    },
-    {
-      "id": "pr.sumula124-divisor-bancario",
-      "nome": "Divisor do bancário — modulação do IRR-849",
-      "natureza": "cadeia-temporal",
-      "eixo": "composto",
-      "eixos_componentes": [
-        "decisao-de-merito-no-processo",
-        "estado-processual",
-        "conteudo-do-titulo"
-      ],
-      "fonte_do_eixo": "bloco-03-verbas.md e 02-base § 8 — TRÊS eixos declarados, e NENHUM deles é a competência da parcela.",
-      "corte": "2016-11-21",
-      "variantes": [
-        {
-          "id": "regime-novo",
-          "condicao": "processo em curso, sem decisão de mérito de Turma/SDI-1 entre 27/09/2012 e 21/11/2016",
-          "efeito": {
-            "aplica_irr_849": true
-          },
-          "fundamento": "IRR-849-83.2013.5.03.0138, SDI-1, Rel. Min. Cláudio Brandão, julgado 21/11/2016, publicado 19/12/2016; Súmula 124 revista pela Res. 219/2017 em 26/06/2017.",
-          "fonte": "bloco-03-verbas.md"
-        },
-        {
-          "id": "regime-preservado",
-          "condicao": "há decisão de mérito sobre o tema, de Turma do TST ou da SBDI-1, entre 27/09/2012 e 21/11/2016",
-          "efeito": {
-            "aplica_irr_849": false
-          },
-          "fundamento": "Modulação expressa: 'aplica-se a todos os processos em curso, EXCETO aqueles com decisão de mérito sobre o tema, de Turma do TST ou da SBDI-1, entre 27/09/2012 e 21/11/2016'.",
-          "fonte": "bloco-03-verbas.md"
-        },
-        {
-          "id": "transitado-e-silente",
-          "condicao": "sentença condenatória transitada em julgado, ainda em fase de liquidação, E silente quanto ao divisor",
-          "efeito": {
-            "aplica_irr_849": true
-          },
-          "fundamento": "Ressalva expressa da modulação: 'aplica-se às sentenças condenatórias transitadas em julgado, ainda em fase de liquidação, desde que SILENTES quanto ao divisor'.",
-          "fonte": "bloco-03-verbas.md; 02-base § 8"
-        }
-      ],
-      "default": "regime-novo",
-      "default_justificativa": "É a regra; as outras duas são a exceção e a ressalva, ambas com condição declarada. Na ausência de informação sobre decisão de mérito no intervalo, o processo em curso segue o IRR.",
-      "nota": "É o regime que prova a tese do bloco: um eixo único não modela isto. A mesma competência, no mesmo processo, resolve-se por um estado PROCESSUAL e pelo CONTEÚDO do título — nunca pela data do fato.",
-      "afeta_parametros": [
-        "pn.jornada.divisor",
-        "pn.bancario.enquadramento-224",
-        "pn.jornada.sabado-como-rsr"
-      ],
-      "afeta_verbas": [
-        "horas-extras-bancario"
-      ],
-      "escopo": "apuracao",
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": []
-    },
-    {
-      "id": "pr.indenizacao-tempo-servico-cf88",
-      "nome": "Limite da indenização por tempo de serviço em 05/10/1988",
-      "natureza": "divergencia-interpretativa",
-      "eixo": "conteudo-do-titulo",
-      "eixo_origem": "inferido",
-      "fonte_do_eixo": "O corpus (bloco-04-verbas2.md) diz 'O aviso-prévio integra a contagem do tempo, salvo se a indenização estiver limitada a 05/10/88' e 'Os cálculos de hoje limitam-se frequentemente a 05/10/88, por força do regime genérico do FGTS'. NUNCA NOMEIA O TÍTULO como fonte do limite.",
-      "justificativa_da_inferencia": "A voz passiva 'estiver limitada' pressupõe alguém que limite, e no processo quem limita o objeto da condenação é o título. Mas o corpus não o diz, e o campo pendencia abaixo reconhece que também não diz QUANDO o título impõe o limite. Inferência, não declaração.",
-      "corte": "1988-10-05",
-      "variantes": [
-        {
-          "id": "limitada",
-          "condicao": "o título limita a indenização a 05/10/1988",
-          "efeito": {
-            "aviso_integra_contagem": false,
-            "limite": "1988-10-05"
-          },
-          "fundamento": "'Os cálculos de hoje limitam-se frequentemente a 05/10/88, por força do regime genérico do FGTS.'",
-          "fonte": "bloco-04-verbas2.md"
-        },
-        {
-          "id": "sem-limite",
-          "condicao": "demais",
-          "efeito": {
-            "aviso_integra_contagem": true
-          },
-          "fundamento": "Regra geral dos arts. 477, caput, e 478 da CLT.",
-          "fonte": "bloco-04-verbas2.md"
-        }
-      ],
-      "default": "limitada",
-      "default_justificativa": "'Os cálculos de hoje limitam-se FREQUENTEMENTE a 05/10/88, por força do regime genérico do FGTS' — o corpus descreve isso como a prática corrente, não como exceção.",
-      "pendencia": "O corpus não diz QUANDO o título impõe o limite. O default vem de uma descrição de frequência, não de uma regra.",
-      "afeta_verbas": [
-        "indenizacao-por-tempo-de-servico"
-      ],
-      "escopo": "apuracao",
-      "eixo_declarado": false,
-      "depende_de": [],
-      "afeta_parametros": []
-    },
-    {
-      "id": "pr.prescricao-intercorrente",
-      "nome": "Prescrição intercorrente — art. 11-A da CLT",
-      "natureza": "cadeia-temporal",
-      "eixo": "determinacao-judicial-na-execucao",
-      "fonte_do_eixo": "02a § 15 — IN 41/2018 do TST, art. 2º: 'o fluxo da prescrição intercorrente conta-se a partir do descumprimento da determinação judicial a que alude o § 1º do art. 11-A, DESDE QUE A DETERMINAÇÃO TENHA SIDO FEITA APÓS 11/11/2017'. Não é a data do ajuizamento nem a do início da execução.",
-      "corte": "2017-11-11",
-      "variantes": [
-        {
-          "id": "nao-se-aplica",
-          "condicao": "determinação judicial anterior a 11/11/2017",
-          "vigencia": {
-            "de": null,
-            "ate": "2017-11-10"
-          },
-          "efeito": {
-            "prescricao_intercorrente": false
-          },
-          "fundamento": "Execução iniciada antes da Reforma, com intimação para atos executórios anterior a 11/11/2017, não sofre a prescrição intercorrente do art. 11-A. Jurisprudência firme.",
-          "fonte": "02a § 15"
-        },
-        {
-          "id": "aplica-dois-anos",
-          "condicao": "determinação judicial posterior a 11/11/2017",
-          "vigencia": {
-            "de": "2017-11-11",
-            "ate": null
-          },
-          "efeito": {
-            "prescricao_intercorrente": true,
-            "prazo_anos": "2"
-          },
-          "fundamento": "Art. 11-A da CLT, incluído pela Lei 13.467/2017. Exige expressa intimação do exequente (Recomendação 03/GCGJT, 24/07/2018) e omissão reiterada por mais de dois anos — não basta a demora.",
-          "fonte": "02a § 15"
-        }
-      ],
-      "default": "nao-se-aplica",
-      "default_justificativa": "O default é não prescrever: a prescrição depende de condições procedimentais e materiais cumulativas que só se verificam no processo. Presumi-la seria extinguir crédito por omissão de cadastro.",
-      "escopo": "liquidacao-execucao",
-      "fora_do_motor_de_verbas": "02a § 15, literal: 'é regra de liquidação e execução, não de apuração. Afeta o que pode ser cobrado, não como se calcula. Entra como marcador no processo, não no motor de verbas.' Está no catálogo para que o marcador exista e seja registrado (R19), não para alterar apuração.",
-      "afeta_verbas": [],
-      "eixo_origem": "declarado",
-      "eixo_declarado": true,
-      "depende_de": [],
-      "afeta_parametros": []
+     "id": "ultratividade",
+     "preset": "TRAB-INTERTEMP-ULTRATIVO",
+     "eixo_efetivo": "data-de-admissao",
+     "fundamento": "Contrato iniciado antes da Reforma segue a regra antiga por toda a sua duração, sob pena de ofensa à irretroatividade, ao princípio da proteção e à segurança jurídica.",
+     "fonte": "02-base-normativa-verbas.md § 1, Corrente B"
     }
-  ]
+   ],
+   "sem_default": true,
+   "por_que_sem_default": "O corpus manda literalmente NÃO RESOLVER: 'Há acórdãos do TST nos dois sentidos, inclusive dentro do mesmo tema (intervalo intrajornada). Não resolver — expor como preset.' Atribuir um default aqui seria arbitrar a divergência que a base proíbe arbitrar. A consequência é dura e correta: sem escolha explícita, o cálculo dos regimes dependentes NÃO É CALCULÁVEL. Ver R20-EXCECAO.",
+   "impacto": "A própria base diz que, tendo a Gasmig contratos anteriores a 11/11/2017 gerando passivo, a escolha move o resultado em praticamente todos os pontos daquela seção.",
+   "afeta_parametros": [
+    "pn.in-itinere.prefixacao",
+    "pn.ferias.particao",
+    "pn.he.banco-de-horas",
+    "pn.he.regime-de-compensacao",
+    "pn.composicao.natureza-de-verba"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "depende_de": [],
+   "afeta_verbas": []
+  },
+  {
+   "id": "pr.oj394-reflexo-rsr",
+   "nome": "Reflexo do RSR majorado por horas extras — OJ 394 × Tema Repetitivo 9",
+   "natureza": "cadeia-temporal",
+   "eixo": "competencia-do-fato",
+   "fonte_do_eixo": "02a-adendo-lacunas-verbas.md § 13 — 'A modulação é pela data do trabalho, não pela data do ajuizamento nem do julgamento. O corte é por competência da hora extra.' É o único achado do corpus que NEGA NOMINALMENTE dois eixos rivais.",
+   "corte": "2023-03-20",
+   "variantes": [
+    {
+     "id": "sem-repercussao",
+     "vigencia": {
+      "de": null,
+      "ate": "2023-03-19"
+     },
+     "efeito": {
+      "repercute_em_ferias_13_aviso_fgts": false
+     },
+     "fundamento": "OJ 394 da SDI-1, redação de 2010: a majoração do RSR decorrente da integração das horas extras habituais NÃO repercute no cálculo das férias, da gratificação natalina, do aviso prévio e do FGTS, sob pena de bis in idem.",
+     "fonte": "02a § 13"
+    },
+    {
+     "id": "com-repercussao",
+     "vigencia": {
+      "de": "2023-03-20",
+      "ate": null
+     },
+     "efeito": {
+      "repercute_em_ferias_13_aviso_fgts": true
+     },
+     "fundamento": "Tema Repetitivo 9, IncJulgRREmbRep-10169-57.2013.5.05.0024, Tribunal Pleno do TST, Rel. Min. Amaury Rodrigues Pinto Junior, 20/03/2023, item II: 'O item I será aplicado às horas extras trabalhadas a partir de 20.03.2023.'",
+     "fonte": "02a § 13"
+    }
+   ],
+   "nota": "A tese menciona também as CONTRIBUIÇÕES PREVIDENCIÁRIAS como parcela alcançada, o que amplia o efeito para além das quatro verbas nomeadas no verbete.",
+   "corrige": "O caso difícil nº 6 da lista de validação da Fase 3 está errado e precisa ser reescrito (02a § 13, consequência 1). O bloco 03 § 8 listou a OJ 394 sob a ressalva 'Não marcado, porque não muda' — está desmentido.",
+   "afeta_parametros": [
+    "pn.rsr.dias",
+    "pn.rsr.feriados-no-reflexo"
+   ],
+   "afeta_verbas": [
+    "reflexo-he-rsr",
+    "ferias",
+    "decimo-terceiro",
+    "aviso-previo",
+    "fgts",
+    "contribuicao-previdenciaria"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": []
+  },
+  {
+   "id": "pr.divisor-cf88",
+   "nome": "Divisor do salário-hora antes e depois da CF/88",
+   "natureza": "cadeia-temporal",
+   "eixo": "competencia-do-fato",
+   "fonte_do_eixo": "bloco-03-verbas.md — 'nota 3: 240, se o PERÍODO DO CÁLCULO for anterior à CF/88'",
+   "corte": "1988-10-05",
+   "variantes": [
+    {
+     "id": "divisor-240",
+     "vigencia": {
+      "de": null,
+      "ate": "1988-10-04"
+     },
+     "efeito": {
+      "divisor": "240"
+     },
+     "fundamento": "Limite de 48 horas semanais anterior à CF/88.",
+     "fonte": "bloco-03-verbas.md"
+    },
+    {
+     "id": "divisor-220",
+     "vigencia": {
+      "de": "1988-10-05",
+      "ate": null
+     },
+     "efeito": {
+      "divisor": "220"
+     },
+     "fundamento": "A CF/88 reduziu o limite de 48 para 44 horas semanais, resultando na alteração do divisor 240 p/ 220.",
+     "fonte": "bloco-03-verbas.md"
+    }
+   ],
+   "nota": "Interage com pn.jornada.divisor, que é DERIVADO de pn.jornada.semanal. Este regime move a constante 30/7 do denominador legal, não o divisor cadastrado — que não é cadastrável.",
+   "afeta_parametros": [
+    "pn.jornada.divisor",
+    "pn.jornada.semanal"
+   ],
+   "afeta_verbas": [
+    "horas-extras",
+    "adicional-noturno",
+    "intervalos"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": []
+  },
+  {
+   "id": "pr.inss-aviso-indenizado",
+   "nome": "Incidência de contribuição previdenciária sobre o aviso-prévio indenizado",
+   "natureza": "cadeia-temporal",
+   "eixo": "competencia-do-fato",
+   "fonte_do_eixo": "bloco-03-verbas.md — 'a partir da COMPETÊNCIA janeiro de 2009, salvo se nos autos constar entendimento contrário'",
+   "corte": "2009-01",
+   "variantes": [
+    {
+     "id": "sem-incidencia",
+     "vigencia": {
+      "de": null,
+      "ate": "2008-12"
+     },
+     "efeito": {
+      "incide_inss": false
+     },
+     "fundamento": "Lei 9.528/97 (11/12/1997) e regime anterior ao Dec. 6.727/2009.",
+     "fonte": "bloco-03-verbas.md"
+    },
+    {
+     "id": "com-incidencia",
+     "vigencia": {
+      "de": "2009-01",
+      "ate": null
+     },
+     "efeito": {
+      "incide_inss": true
+     },
+     "fundamento": "Dec. 6.727, de 12/01/2009 (DOU 13/01/2009); cancelamento da OJ 03 das Turmas do TRT-3 em julho/2010; Súmula 50 do TRT-3 (RA 284/2015).",
+     "fonte": "bloco-03-verbas.md"
+    }
+   ],
+   "eixo_alternativo": {
+    "eixo": "conteudo-do-titulo",
+    "quando": "'salvo se nos autos constar entendimento contrário' — o título desloca o eixo",
+    "invariante": "R8"
+   },
+   "afeta_verbas": [
+    "inss-sobre-aviso-previo-indenizado"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.piso-nacional-salarios",
+   "nome": "Piso Nacional de Salários como base da insalubridade",
+   "natureza": "cadeia-temporal",
+   "eixo": "competencia-do-fato",
+   "eixo_origem": "inferido",
+   "fonte_do_eixo": "O corpus (bloco-04-verbas2.md) apenas LISTA, numa linha sobre o período anterior à SV 4, três bases coexistentes — salário mínimo, PNS 'de 09/87 a 07/89', salário profissional. Dá a JANELA, não o eixo.",
+   "justificativa_da_inferencia": "Uma janela de vigência de piso salarial só pode ser lida por competência da parcela: o piso é o que vigia no mês. A inferência é forte, mas é inferência — pela mesma régua que classifica pr.multa477-documentos como não declarado.",
+   "corte": "1987-09",
+   "variantes": [
+    {
+     "id": "pns",
+     "vigencia": {
+      "de": "1987-09",
+      "ate": "1989-07"
+     },
+     "efeito": {
+      "base": "piso-nacional-de-salarios"
+     },
+     "fundamento": "DL 2351/87 — Piso Nacional de Salários de 09/87 a 07/89.",
+     "fonte": "bloco-04-verbas2.md"
+    },
+    {
+     "id": "salario-minimo",
+     "vigencia": {
+      "de": "1989-08",
+      "ate": null
+     },
+     "efeito": {
+      "base": "salario-minimo"
+     },
+     "fundamento": "CLT art. 192 — base legal geral. CONSTRUÇÃO DESTE CATÁLOGO: o corpus não enuncia 'retorno' nem fixa fronteira em 08/1989; a fronteira é o fim da janela do PNS, lido a contrario.",
+     "fonte": "bloco-04-verbas2.md, a contrario"
+    }
+   ],
+   "nota": "É a terceira variante de pn.insalubridade.base, além de salário mínimo e do salário básico já removido. A 'restauração da Súmula 17/TST pela Res. 121/03' (salário profissional) seria a quarta, mas está com EIXO NÃO DECLARADO — ver pr.sumula17-salario-profissional.",
+   "afeta_parametros": [
+    "pn.insalubridade.base"
+   ],
+   "afeta_verbas": [
+    "adicional-insalubridade"
+   ],
+   "escopo": "apuracao",
+   "eixo_declarado": false,
+   "depende_de": []
+  },
+  {
+   "id": "pr.multa467-base",
+   "nome": "Base da multa do art. 467 da CLT",
+   "natureza": "cadeia-temporal",
+   "eixo": "data-da-sentenca",
+   "fonte_do_eixo": "bloco-04-verbas2.md, sob o rótulo 'Como escolher': 'é necessário verificar o comando sentencial ou a data da sentença'. Não é a data da rescisão nem a competência.",
+   "corte": "2001-09-05",
+   "variantes": [
+    {
+     "id": "dobro-dos-salarios",
+     "vigencia": {
+      "de": null,
+      "ate": "2001-09-04"
+     },
+     "efeito": {
+      "base": "dobro-dos-salarios"
+     },
+     "fundamento": "Redação anterior à Lei 10.272/01.",
+     "fonte": "bloco-04-verbas2.md"
+    },
+    {
+     "id": "cinquenta-por-cento",
+     "vigencia": {
+      "de": "2001-09-05",
+      "ate": null
+     },
+     "efeito": {
+      "base": "50pct-sobre-parte-incontroversa"
+     },
+     "fundamento": "Lei 10.272, de 05/09/2001 — 50% sobre a parte incontroversa das parcelas rescisórias.",
+     "fonte": "bloco-04-verbas2.md"
+    }
+   ],
+   "eixo_alternativo": {
+    "eixo": "conteudo-do-titulo",
+    "quando": "o comando sentencial precede a data da sentença",
+    "invariante": "R8"
+   },
+   "nota": "É o eixo mais anômalo do corpus: a mesma competência de rescisão produz multas diferentes conforme a data em que a sentença veio a ser proferida.",
+   "afeta_verbas": [
+    "multa-art-467"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.periculosidade-eletricitarios",
+   "nome": "Base da periculosidade do eletricitário — Súmula 191, II",
+   "natureza": "cadeia-temporal",
+   "eixo": "data-de-admissao",
+   "fonte_do_eixo": "02-base-normativa-verbas.md § 7 e bloco-04-verbas2.md — 'eletricitários CONTRATADOS ANTES da Lei 12.740/2012'. Único caso, fora da Corrente B do intertemporal, em que a admissão governa a regra.",
+   "corte": "2012",
+   "lacuna_de_data": "O corpus diz apenas 'eletricitários CONTRATADOS ANTES da Lei 12.740/2012' — SEM DIA E SEM MÊS. A data exata da lei não está em nenhum arquivo do repositório e NÃO FOI SUPOSTA. Consequência deliberada: admissões ocorridas em 2012 não resolvem — o resolvedor devolve 'nenhuma-variante-cobre-a-data'. Uma data ao dia que o corpus não traz é invenção, ainda que historicamente correta.",
+   "variantes": [
+    {
+     "id": "totalidade-das-parcelas",
+     "condicao": "admissao < corte",
+     "vigencia": {
+      "de": null,
+      "ate": "2011"
+     },
+     "efeito": {
+      "base": "totalidade-das-parcelas-salariais"
+     },
+     "fundamento": "Súmula 191, II, do TST — eletricitários contratados antes da Lei 12.740/2012 têm o adicional calculado sobre a totalidade das parcelas de natureza salarial.",
+     "fonte": "02-base § 7"
+    },
+    {
+     "id": "salario-base",
+     "condicao": "admissao >= corte",
+     "vigencia": {
+      "de": "2013",
+      "ate": null
+     },
+     "efeito": {
+      "base": "salario-base"
+     },
+     "fundamento": "Regra geral do art. 193 após a Lei 12.740/2012.",
+     "fonte": "02-base § 7"
+    }
+   ],
+   "pendencia_de_dado": "Não se sabe se existem empregados da Gasmig nessa condição — pendência 4 da § 12 da base, replicada em pendencias.md § 18. Sem o dado, a variante fica cadastrada e nunca usada.",
+   "afeta_parametros": [
+    "pn.periculosidade.base"
+   ],
+   "afeta_verbas": [
+    "adicional-periculosidade"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": []
+  },
+  {
+   "id": "pr.aviso-proporcional",
+   "nome": "Aviso-prévio proporcional — Lei 12.506/2011",
+   "natureza": "cadeia-temporal",
+   "eixo": "inicio-do-aviso",
+   "fonte_do_eixo": "bloco-03-verbas.md — 'A lei NÃO RETROAGE para alcançar AVISO JÁ INICIADO'. O eixo vem da própria negativa — se a lei não alcança aviso já iniciado, é o início do aviso que manda. Não é competência mensal nem data da rescisão.",
+   "corte": "2011-10-13",
+   "variantes": [
+    {
+     "id": "trinta-dias",
+     "vigencia": {
+      "de": null,
+      "ate": "2011-10-12"
+     },
+     "efeito": {
+      "dias": "30"
+     },
+     "fundamento": "Regime anterior — aviso de 30 dias, sem proporcionalidade.",
+     "fonte": "bloco-03-verbas.md"
+    },
+    {
+     "id": "proporcional",
+     "vigencia": {
+      "de": "2011-10-13",
+      "ate": null
+     },
+     "efeito": {
+      "dias": "30 + 3 × anos_completos, teto 90"
+     },
+     "fundamento": "Lei 12.506/11, DOU 13/10/2011, a partir da publicação. A proporcionalidade só beneficia o empregado, aplicável exclusivamente na rescisão sem justa causa.",
+     "fonte": "bloco-03-verbas.md"
+    }
+   ],
+   "nota": "Por PROJEÇÃO altera os avos de 13º e de férias, e os reflexos de insalubridade, periculosidade, noturno e HE no aviso. O alerta está repetido em três itens do bloco 03.",
+   "afeta_parametros": [
+    "pn.aviso.proporcionalidade"
+   ],
+   "afeta_verbas": [
+    "aviso-previo",
+    "projecao-doze-avos-ferias",
+    "projecao-doze-avos-13o",
+    "reflexos-no-aviso"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": []
+  },
+  {
+   "id": "pr.fgts-prescricao",
+   "nome": "Prescrição do FGTS — trintenária × quinquenal",
+   "natureza": "cadeia-temporal",
+   "eixo": "ciencia-da-lesao",
+   "fonte_do_eixo": "bloco-04-verbas2.md — 'Ciência da lesão A PARTIR DE 13.11.2014 → quinquenal'",
+   "corte": "2014-11-13",
+   "variantes": [
+    {
+     "id": "quinquenal",
+     "condicao": "ciencia_da_lesao >= 2014-11-13",
+     "vigencia": {
+      "de": "2014-11-13",
+      "ate": null
+     },
+     "efeito": {
+      "prazo_anos": "5"
+     },
+     "fundamento": "ARE 709212/DF, plenário de 13/11/2014; Súmula 362 alterada em junho/2015 (Res. 198/2015).",
+     "fonte": "bloco-04-verbas2.md"
+    },
+    {
+     "id": "transicao",
+     "condicao": "prazo já em curso em 13/11/2014",
+     "vigencia": {
+      "de": null,
+      "ate": "2014-11-12"
+     },
+     "efeito": {
+      "prazo": "o que se consumar primeiro: trinta anos do termo inicial, ou cinco anos a partir de 13/11/2014"
+     },
+     "fundamento": "Regra de transição do ARE 709212/DF.",
+     "fonte": "bloco-04-verbas2.md"
+    }
+   ],
+   "eixo_alternativo": {
+    "eixo": "conteudo-do-titulo",
+    "quando": "'o termo prescricional vai estar definido pelo comando exequendo, cabendo ao calculista apenas efetuar o cálculo a partir da data estipulada'",
+    "invariante": "R8"
+   },
+   "nota": "Por Súmula 206 alcança TODOS os reflexos fundiários. O manual reproduz ainda DUAS redações anteriores da Súmula 362 (Res. 121/2003 e Res. 90/1999) — três redações concorrentes, e o corpus não diz por qual eixo se escolhe entre elas. Ver pendência.",
+   "afeta_verbas": [
+    "fgts",
+    "multa-40pct-fgts",
+    "reflexos-fundiarios"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.fgts-indice-jam",
+   "nome": "Atualização do FGTS pelo JAM",
+   "natureza": "divergencia-interpretativa",
+   "eixo": "conteudo-do-titulo",
+   "fonte_do_eixo": "bloco-04-verbas2.md — 'só prevalece para processos mais antigos, em que a SENTENÇA DETERMINAVA EXPRESSAMENTE a correção pelo JAM, ou processos em que a execução está em curso e NOS CÁLCULOS JÁ HOMOLOGADOS o índice utilizado foi o JAM'. Não é data: são duas condições alternativas, ambas declaradas.",
+   "corte": null,
+   "variantes": [
+    {
+     "id": "jam",
+     "condicao": "título determina JAM OU cálculo homologado usou JAM",
+     "efeito": {
+      "indice": "JAM",
+      "juros_embutidos": true
+     },
+     "fundamento": "Os índices JAM já computam juros de 3% ao ano.",
+     "fonte": "bloco-04-verbas2.md"
+    },
+    {
+     "id": "sem-jam",
+     "condicao": "demais casos",
+     "efeito": {
+      "indice": "regime-geral",
+      "juros_embutidos": false
+     },
+     "fundamento": "Regime geral de atualização.",
+     "fonte": "bloco-04-verbas2.md"
+    }
+   ],
+   "default": "sem-jam",
+   "default_justificativa": "O corpus trata o JAM como excepcional — 'só prevalece para processos mais antigos'. O default é o regime geral.",
+   "invariante_tocada": "R1 — aplicar juros por fora sobre valor corrigido pelo JAM conta juros duas vezes. É violação de englobamento.",
+   "afeta_verbas": [
+    "fgts",
+    "multa-40pct-fgts"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.seguro-desemprego-regime",
+   "nome": "Regime de cálculo do seguro-desemprego",
+   "natureza": "cadeia-temporal",
+   "eixo": "data-da-dispensa",
+   "eixo_origem": "inferido",
+   "fonte_do_eixo": "As duas citações são literais — roteiro, passo 2: 'enquadrar na tabela vigente na data da demissão'; piso: 'salário mínimo vigente na data da dispensa'. Mas governam O VALOR DA PARCELA — em que tabela enquadrar, qual o piso —, não a escolha entre regime-simples e regime-tres-variaveis, que o corpus dá só como 'Até 27/02/2015' / 'A partir de 28/02/2015'.",
+   "justificativa_da_inferencia": "Se a tabela e o piso se fixam na dispensa, o regime que as consome dificilmente se fixaria noutra data. Inferência forte, e ainda assim inferência.",
+   "corte": "2015-02-28",
+   "variantes": [
+    {
+     "id": "regime-simples",
+     "vigencia": {
+      "de": null,
+      "ate": "2015-02-27"
+     },
+     "efeito": {
+      "variaveis": "número de meses"
+     },
+     "fundamento": "Regime anterior à MP 665/14.",
+     "fonte": "bloco-04-verbas2.md"
+    },
+    {
+     "id": "regime-tres-variaveis",
+     "vigencia": {
+      "de": "2015-02-28",
+      "ate": null
+     },
+     "efeito": {
+      "variaveis": "três"
+     },
+     "fundamento": "MP 665/14, convertida na Lei 13.134/15.",
+     "fonte": "bloco-04-verbas2.md"
+    }
+   ],
+   "nota": "Consome serie-18.9-seguro-desemprego.csv (bloco 1).",
+   "afeta_verbas": [
+    "indenizacao-seguro-desemprego"
+   ],
+   "escopo": "apuracao",
+   "eixo_declarado": false,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.urv-conversao",
+   "nome": "Conversão URV ↔ cruzeiro real",
+   "natureza": "cadeia-temporal",
+   "eixo": "competencia-do-fato",
+   "eixo_origem": "inferido",
+   "fonte_do_eixo": "O corpus NÃO declara o eixo de SELEÇÃO entre os três regimes monetários. As citações de bloco-02-criterios.md — 'multiplicando-se a expressão em URV pelo valor nominal da URV do dia do pagamento' e 'pelo valor em cruzeiros reais do equivalente em URV na data do efetivo pagamento' — declaram a DATA-BASE DA ARITMÉTICA da conversão, que é outra pergunta.",
+   "justificativa_da_inferencia": "Qual moeda vigia é fato da competência: CR$ até fev/94, URV de mar a jun/94, R$ a partir de jul/94. Nenhum eixo processual escolheria isso. Mas a distinção importa e por isso está separada em eixo_da_aritmetica.",
+   "eixo_da_aritmetica": {
+    "eixo": "efetivo-pagamento",
+    "o_que_governa": "o valor pelo qual se converte, não qual regime monetário vale",
+    "fonte": "bloco-02-criterios.md, as duas citações acima, nas duas direções — que são operações opostas",
+    "por_que_separar": "A primeira redação deste registro punha 'efetivo-pagamento' como eixo do REGIME. Era erro: apresentava como declarado um eixo que o corpus declara para outra coisa."
+   },
+   "corte": "1994-03-01",
+   "variantes": [
+    {
+     "id": "cruzeiro-real",
+     "vigencia": {
+      "de": null,
+      "ate": "1994-02"
+     },
+     "efeito": {
+      "moeda": "CR$"
+     },
+     "fundamento": "Regime anterior à URV.",
+     "fonte": "bloco-02-criterios.md"
+    },
+    {
+     "id": "urv",
+     "vigencia": {
+      "de": "1994-03",
+      "ate": "1994-06"
+     },
+     "efeito": {
+      "moeda": "URV"
+     },
+     "fundamento": "MP 434/94 e Lei 8880/94, a partir de 01/03/1994.",
+     "fonte": "bloco-02-criterios.md"
+    },
+    {
+     "id": "real",
+     "vigencia": {
+      "de": "1994-07",
+      "ate": null
+     },
+     "efeito": {
+      "moeda": "R$"
+     },
+     "fundamento": "Em 01/07/94, uma URV equivalia a um Real.",
+     "fonte": "bloco-02-criterios.md"
+    }
+   ],
+   "nota": "A OJ Transitória do 13º manda deduzir a antecipação 'em URV, na data do efetivo pagamento' — teto implícito. O critério de arredondamento da conversão continua não declarado (pendência P2 do bloco 02).",
+   "afeta_verbas": [
+    "todas-no-periodo",
+    "decimo-terceiro-1994"
+   ],
+   "escopo": "apuracao",
+   "eixo_declarado": false,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.gilrat-fato-gerador",
+   "nome": "Alíquota GILRAT/SAT por grau de risco",
+   "natureza": "cadeia-temporal",
+   "eixo": "fato-gerador",
+   "fonte_do_eixo": "bloco-01-tabelas.md — 'É O FATO GERADOR QUE MANDA, não a data do cálculo nem a do ajuizamento.' Negação nominal de dois eixos rivais.",
+   "corte": "2009-12-31",
+   "variantes": [
+    {
+     "id": "sem-fap",
+     "vigencia": {
+      "de": null,
+      "ate": "2009-12-31"
+     },
+     "efeito": {
+      "regra": "alíquota por grau de risco, sem FAP"
+     },
+     "fundamento": "Regime anterior ao Dec. 6.957/2009.",
+     "fonte": "bloco-01-tabelas.md"
+    },
+    {
+     "id": "dec-6957",
+     "vigencia": {
+      "de": "2010-01-01",
+      "ate": null
+     },
+     "efeito": {
+      "regra": "Dec. 6.957/2009, art. 4º"
+     },
+     "fundamento": "Dec. 6.957/2009, art. 4º.",
+     "fonte": "bloco-01-tabelas.md"
+    }
+   ],
+   "corte_secundario": {
+    "data": "2007-05-31",
+    "o_que": "CNAE 1.0 → CNAE 2.0",
+    "eixo": "NAO-DECLARADO",
+    "observacao": "O corpus dá a vigência ('até 31/05/2007' / 'a partir de 01/06/2007') mas NÃO declara o eixo para este corte, ao contrário do corte de 2009."
+   },
+   "escopo": "encargos",
+   "afeta_verbas": [
+    "contribuicao-previdenciaria-patronal"
+   ],
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.faixas-inss-jan2010",
+   "nome": "Faixas de contribuição do segurado em janeiro de 2010",
+   "natureza": "divergencia-interpretativa",
+   "eixo": "data-do-calculo",
+   "fonte_do_eixo": "bloco-01-tabelas.md — 'A ESCOLHA DEPENDE DA DATA DO CÁLCULO, não do bloco.' Único ponto do corpus com esse eixo.",
+   "corte": "2010-01",
+   "variantes": [
+    {
+     "id": "portaria-350-09",
+     "condicao": "cálculo de janeiro a junho de 2010",
+     "efeito": {
+      "tabela": "MPS/MF 350/09"
+     },
+     "fundamento": "Revogada, mas usada nos cálculos de janeiro a junho de 2010. O original traz os dois quadros como vigentes.",
+     "fonte": "bloco-01-tabelas.md"
+    },
+    {
+     "id": "portaria-333-10",
+     "condicao": "demais",
+     "efeito": {
+      "tabela": "MPS/MF 333/10"
+     },
+     "fundamento": "Portaria vigente.",
+     "fonte": "bloco-01-tabelas.md"
+    }
+   ],
+   "default": "portaria-333-10",
+   "default_justificativa": "A portaria vigente é o default; a 350/09 é a exceção declarada pelo original, e depende de quando o cálculo foi feito.",
+   "nota": "DUAS NORMAS SIMULTANEAMENTE APLICÁVEIS À MESMA COMPETÊNCIA. É o caso que prova que o eixo não pode ser único no motor.",
+   "escopo": "encargos",
+   "afeta_verbas": [
+    "contribuicao-previdenciaria-cota-reclamante"
+   ],
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.planos-economicos",
+   "nome": "Reajustes salariais dos planos econômicos (1986–1996)",
+   "natureza": "cadeia-temporal",
+   "eixo": "composto",
+   "eixos_componentes": [
+    "competencia-do-fato",
+    "data-base-da-categoria"
+   ],
+   "eixo_origem": "inferido",
+   "fonte_do_eixo": "O componente DATA-BASE está declarado, com três citações literais: 'as datas-base de cada categoria zeravam a inflação acumulada, iniciando novo ciclo'; 'exceto no mês da data-base' (art. 8º do Dec. 2335/87); 'reposição das perdas no mês da primeira data-base de cada categoria' (Lei 8.880/94). O componente COMPETÊNCIA não: o corpus dá os períodos de cada norma, não a data que governa.",
+   "justificativa_da_inferencia": "Um componente declarado e um inferido. O regime está bloqueado por falta de série, de modo que a inferência não chega a ser aplicada.",
+   "corte": "1986-02-28",
+   "variantes": [
+    {
+     "id": "cadeia-de-treze-regimes",
+     "efeito": {
+      "regra": "cadeia de normas de política salarial entre 1986 e 1996, de DL 2302/86 a MPs 1053/95 e 1079/95"
+     },
+     "fundamento": "A pendência P19 do bloco 04 conta 'dez normas de política salarial entre 1986 e 1996'; a tabela do próprio bloco tem dezesseis linhas, das quais catorze nomeiam norma. Os números do corpus não coincidem entre si, e por isso NENHUM foi adotado aqui — a primeira redação deste campo dizia 'treze', que não vem de lugar nenhum.",
+     "fonte": "bloco-04-verbas2.md"
+    }
+   ],
+   "bloqueado": true,
+   "por_que_bloqueado": "Pendência P19 do bloco 04: os índices do período (IPC, URP, IRSM, FAS, FAZ, IPC-r, FRS) NÃO ESTÃO em nenhuma tabela do item 18 extraída no bloco 1. É regime sem série — não há o que aplicar.",
+   "nota": "A data-base da categoria é um eixo que o catálogo de parâmetros negociáveis também precisa, e que a pendência 2 da § 12 (mapa de categoria por sindicato) alimenta.",
+   "afeta_verbas": [
+    "diferencas-salariais",
+    "toda-base-de-calculo-do-periodo"
+   ],
+   "escopo": "apuracao",
+   "eixo_declarado": false,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.intrajornada-71-4",
+   "nome": "Intervalo intrajornada suprimido — art. 71, § 4º, nas duas redações",
+   "natureza": "cadeia-temporal",
+   "eixo": "herdado",
+   "herda_de": "pr.intertemporal",
+   "eixo_origem": "herdado",
+   "fonte_do_eixo": "NÃO DECLARADO AUTONOMAMENTE. bloco-04-verbas2.md remete: 'qual regra se aplica a fatos anteriores a 11/11/2017 depende da corrente de direito intertemporal, e a base manda não resolver'.",
+   "corte": "2017-11-11",
+   "variantes": [
+    {
+     "id": "redacao-anterior",
+     "vigencia": {
+      "de": null,
+      "ate": "2017-11-10"
+     },
+     "efeito": {
+      "extensao": "integral",
+      "natureza": "salarial",
+      "tem_reflexos": true
+     },
+     "fundamento": "Redação anterior do art. 71, § 4º, com a Súmula 437 — pagamento do intervalo INTEGRAL, como hora extra, com natureza SALARIAL e reflexos.",
+     "fonte": "bloco-04-verbas2.md § 4.1; 02-base § 4"
+    },
+    {
+     "id": "redacao-reforma",
+     "vigencia": {
+      "de": "2017-11-11",
+      "ate": null
+     },
+     "efeito": {
+      "extensao": "periodo-suprimido",
+      "natureza": "indenizatoria",
+      "tem_reflexos": false
+     },
+     "fundamento": "Lei 13.467/2017 — apenas o período SUPRIMIDO, com natureza INDENIZATÓRIA e sem reflexos.",
+     "fonte": "bloco-04-verbas2.md § 4.1; 02-base § 4"
+    }
+   ],
+   "duas_mudancas": "EXTENSÃO e NATUREZA mudaram juntas. Tratar como uma só mudança é erro: a natureza arrasta toda a cadeia de reflexos (13º, férias + 1/3, aviso, FGTS, RSR); a extensão muda o número de horas.",
+   "lacuna_anterior": {
+    "evento": "Lei 8.923, de 27/07/1994, acrescentou o § 4º",
+    "situacao": "Implica um TERCEIRO regime — antes de 27/07/1994 não havia consequência pecuniária. O corpus NÃO o enuncia como regime nem diz o que valia antes. Não foi cadastrado."
+   },
+   "afeta_parametros": [
+    "pn.he.adicional"
+   ],
+   "afeta_verbas": [
+    "intervalo-intrajornada-suprimido",
+    "decimo-terceiro",
+    "ferias",
+    "aviso-previo",
+    "fgts",
+    "rsr"
+   ],
+   "escopo": "apuracao",
+   "eixo_declarado": false,
+   "depende_de": []
+  },
+  {
+   "id": "pr.in-itinere",
+   "nome": "Horas in itinere — existência da verba",
+   "natureza": "cadeia-temporal",
+   "eixo": "herdado",
+   "herda_de": "pr.intertemporal",
+   "eixo_origem": "herdado",
+   "fonte_do_eixo": "NÃO DECLARADO AUTONOMAMENTE — herda de pr.intertemporal.",
+   "corte": "2017-11-11",
+   "variantes": [
+    {
+     "id": "devidas",
+     "vigencia": {
+      "de": null,
+      "ate": "2017-11-10"
+     },
+     "efeito": {
+      "verba_existe": true
+     },
+     "fundamento": "CLT art. 58, § 2º, redação anterior. Dois requisitos cumulativos: condução fornecida pelo empregador E local de difícil acesso ou sem transporte regular.",
+     "fonte": "bloco-04-verbas2.md § 6.7"
+    },
+    {
+     "id": "suprimidas",
+     "vigencia": {
+      "de": "2017-11-11",
+      "ate": null
+     },
+     "efeito": {
+      "verba_existe": false
+     },
+     "fundamento": "Lei 13.467/2017 suprimiu a hipótese do art. 58, § 2º.",
+     "fonte": "bloco-04-verbas2.md § 12, F1"
+    }
+   ],
+   "nota": "'O item deixa de existir para fatos a partir de 11/11/2017. Extraído integralmente porque O PASSIVO ANTERIOR PERMANECE.' É o caso que prova por que a camada de regime precisa existir: sem ela, o motor não sabe que a verba já existiu.",
+   "afeta_parametros": [
+    "pn.in-itinere.prefixacao"
+   ],
+   "afeta_verbas": [
+    "horas-in-itinere"
+   ],
+   "escopo": "apuracao",
+   "eixo_declarado": false,
+   "depende_de": []
+  },
+  {
+   "id": "pr.art384-quinze-minutos",
+   "nome": "Intervalo do art. 384 da CLT — 15 minutos extras",
+   "natureza": "cadeia-temporal",
+   "eixo": "herdado",
+   "herda_de": "pr.intertemporal",
+   "eixo_origem": "herdado",
+   "fonte_do_eixo": "NÃO DECLARADO AUTONOMAMENTE — herda de pr.intertemporal. Marca F6 do bloco 04.",
+   "corte": "2017-11-11",
+   "variantes": [
+    {
+     "id": "devido",
+     "vigencia": {
+      "de": null,
+      "ate": "2017-11-10"
+     },
+     "efeito": {
+      "verba_existe": true,
+      "minutos": "15"
+     },
+     "fundamento": "CLT art. 384 e Súmula 39 do TRT-3: o descumprimento parcial ou integral gera 15 minutos extras diários.",
+     "fonte": "bloco-04-verbas2.md"
+    },
+    {
+     "id": "revogado",
+     "vigencia": {
+      "de": "2017-11-11",
+      "ate": null
+     },
+     "efeito": {
+      "verba_existe": false
+     },
+     "fundamento": "CLT art. 384 revogado pela Lei 13.467/2017.",
+     "fonte": "bloco-04-verbas2.md"
+    }
+   ],
+   "acumula_com_atributo": "Só alcança empregadas mulheres — atributo do vínculo, não do tempo.",
+   "afeta_verbas": [
+    "intervalo-art-384"
+   ],
+   "escopo": "apuracao",
+   "eixo_declarado": false,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.tema1046-validade-clausula",
+   "nome": "Validade da cláusula coletiva — Temas 357/762 × Tema 1046",
+   "natureza": "divergencia-interpretativa",
+   "eixo": "NAO-DECLARADO",
+   "eixo_declarado": false,
+   "fonte_do_eixo": "02-base-normativa-verbas.md § 2 registra o julgamento (ARE 1.121.633/GO, Pleno, 02/06/2022) e que ele REVISOU as teses dos Temas 357 e 762, mas NÃO diz se cláusula de ACT anterior a 02/06/2022 se julga pelo Tema 1046 ou pelo regime revisado.",
+   "corte": "2022-06-02",
+   "variantes": [
+    {
+     "id": "tema-1046",
+     "efeito": {
+      "onus": "de quem alega a nulidade"
+     },
+     "fundamento": "São constitucionais os acordos e as convenções coletivos que pactuam limitações ou afastamentos de direitos trabalhistas, desde que respeitados os direitos absolutamente indisponíveis.",
+     "fonte": "02-base § 2"
+    },
+    {
+     "id": "temas-357-762",
+     "efeito": {
+      "onus": "de quem defende a cláusula"
+     },
+     "fundamento": "Regime revisado pelo Tema 1046. O corpus não transcreve as teses anteriores.",
+     "fonte": "02-base § 2 (por referência)"
+    }
+   ],
+   "sem_default": true,
+   "por_que_sem_default": "O corpus não declara o eixo nem diz qual regime alcança cláusulas anteriores a 02/06/2022. Fixar um default aqui seria resolver uma questão de direito intertemporal constitucional que a base não resolve.",
+   "impacto": "MAIOR IMPACTO ISOLADO DO INVENTÁRIO. Decide se a cláusula que limita direito vale — logo, governa a resolução dos 32 parâmetros negociáveis inteiros. Sob o regime revisado, o ônus se inverte e o motor pode estar aplicando cláusulas que não valeriam.",
+   "afeta_parametros": [
+    "TODOS"
+   ],
+   "pendencia": "Obter as teses dos Temas 357 e 762 e a regra de alcance temporal do Tema 1046.",
+   "escopo": "apuracao",
+   "eixo_origem": "nao-declarado",
+   "depende_de": [],
+   "afeta_verbas": []
+  },
+  {
+   "id": "pr.insalubridade-base-sumula228",
+   "nome": "Base da insalubridade — cassação da Súmula 228 pela Rcl 6.275",
+   "natureza": "cadeia-temporal",
+   "eixo": "NAO-DECLARADO",
+   "eixo_declarado": false,
+   "fonte_do_eixo": "02-base-normativa-verbas.md § 5 diz 'Estado atual: a base é o salário mínimo' e dá a data (abril/2018), mas NÃO diz se a cassação alcança competências pretéritas, cálculos em curso ou só novos.",
+   "corte": "2018-04",
+   "variantes": [
+    {
+     "id": "salario-minimo",
+     "efeito": {
+      "base": "salario-minimo"
+     },
+     "fundamento": "CLT art. 192; SV 4 do STF; Rcl 6.275, Min. Ricardo Lewandowski, abril/2018, que CASSOU DEFINITIVAMENTE a parte da Súmula 228 que fixava o salário básico.",
+     "fonte": "02-base § 5"
+    }
+   ],
+   "variante_removida": {
+    "id": "salario-basico",
+    "por_que": "A v1 do catálogo de parâmetros registrava a SV 4 como 'suspensa' pela Rcl 6.275. A base mostra que a Reclamação foi CASSADA DEFINITIVAMENTE em abril de 2018. A variante foi removida de pn.insalubridade.base no bloco 5.",
+    "cuidado": "Removê-la do catálogo de PARÂMETROS foi correto — não é mais opção negociável. Mas se a cassação não retroage, competências anteriores a abril/2018 podem seguir o salário básico, e aí ela precisa voltar COMO VARIANTE DE REGIME, não de parâmetro. É precisamente isso que o eixo não declarado impede decidir."
+   },
+   "pendencia": "A regra de alcance temporal da cassação. Sem ela, não sei se existe uma segunda variante deste regime. Correlata: vigência da Súmula 46 do TRT-3 após 2018 (02a § 19, pendência 3).",
+   "afeta_parametros": [
+    "pn.insalubridade.base"
+   ],
+   "afeta_verbas": [
+    "adicional-insalubridade",
+    "reflexos-adicional-insalubridade"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "nao-declarado",
+   "depende_de": []
+  },
+  {
+   "id": "pr.he-adicional-cf88",
+   "nome": "Adicional de horas extras antes e depois da CF/88",
+   "natureza": "cadeia-temporal",
+   "eixo": "NAO-DECLARADO",
+   "eixo_declarado": false,
+   "fonte_do_eixo": "bloco-03-verbas.md dá a tabela ('A partir da CF/88 → 50%' / 'Antes da CF/88 → 20% ou 25%') mas NÃO repete o 'período do cálculo' que aparece na linha do divisor (pr.divisor-cf88). O eixo é presumível, não declarado.",
+   "corte": "1988-10-05",
+   "variantes": [
+    {
+     "id": "cinquenta",
+     "vigencia": {
+      "de": "1988-10-05",
+      "ate": null
+     },
+     "efeito": {
+      "adicional": "50"
+     },
+     "fundamento": "CF art. 7º, XVI — o manual cita apenas 'CF, 7º', sem inciso.",
+     "fonte": "bloco-03-verbas.md"
+    },
+    {
+     "id": "pre-cf88-vinte",
+     "vigencia": {
+      "de": null,
+      "ate": "1988-10-04"
+     },
+     "efeito": {
+      "adicional": "20"
+     },
+     "fundamento": "CLT art. 59, redação anterior.",
+     "fonte": "bloco-03-verbas.md"
+    },
+    {
+     "id": "pre-cf88-vinte-e-cinco",
+     "vigencia": {
+      "de": null,
+      "ate": "1988-10-04"
+     },
+     "efeito": {
+      "adicional": "25"
+     },
+     "fundamento": "Súmula 215/TST, CANCELADA pela Res. 28 de 27/04/94, DJU 12/05/94.",
+     "fonte": "bloco-03-verbas.md"
+    }
+   ],
+   "disjuncao_nao_resolvida": "O corpus escreve '20% (CLT art. 59) OU 25% (Súmula 215)' e não resolve a disjunção. Além disso NÃO diz se o cancelamento de 1994 alcança períodos pré-1988 já consumados. Duas lacunas empilhadas: qual das duas variantes vale, e se o cancelamento retroage.",
+   "sem_default": true,
+   "por_que_sem_default": "Escolher entre 20% e 25% para o período pré-CF/88 é resolver uma disjunção que o corpus deixa aberta.",
+   "afeta_parametros": [
+    "pn.he.adicional",
+    "pn.he.adicional-noturna"
+   ],
+   "afeta_verbas": [
+    "horas-extras",
+    "horas-extras-noturnas"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "nao-declarado",
+   "depende_de": []
+  },
+  {
+   "id": "pr.multa477-documentos",
+   "nome": "Multa do art. 477, § 8º — alcance da entrega de documentos",
+   "natureza": "cadeia-temporal",
+   "eixo": "NAO-DECLARADO",
+   "eixo_declarado": false,
+   "fonte_do_eixo": "02a § 14 descreve as duas redações e o corte de 11/11/2017, mas não diz o eixo. Presumível data da rescisão; o texto não diz.",
+   "corte": "2017-11-11",
+   "variantes": [
+    {
+     "id": "so-pagamento",
+     "vigencia": {
+      "de": null,
+      "ate": "2017-11-10"
+     },
+     "efeito": {
+      "gatilho": "atraso no pagamento das parcelas"
+     },
+     "fundamento": "Redação original do art. 477, § 6º — o prazo tratava apenas do PAGAMENTO.",
+     "fonte": "02a § 14"
+    },
+    {
+     "id": "pagamento-e-documentos",
+     "vigencia": {
+      "de": "2017-11-11",
+      "ate": null
+     },
+     "efeito": {
+      "gatilho": "atraso no pagamento OU na entrega dos documentos",
+      "prazo_dias": "10 corridos, unificado"
+     },
+     "fundamento": "Lei 13.467/2017 — o prazo passou a alcançar também a entrega dos documentos que comprovem a comunicação da extinção aos órgãos competentes. A Súmula 48 do TRT-3 foi superada.",
+     "fonte": "02a § 14"
+    }
+   ],
+   "conferido": "O manual TRT-3 NÃO invoca a Súmula 48 do TRT-3 no item de multas — fecha a pendência 2 da § 19 do adendo.",
+   "afeta_verbas": [
+    "multa-art-477"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "nao-declarado",
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.sumula17-salario-profissional",
+   "nome": "Salário profissional como base da insalubridade — Súmula 17/TST",
+   "natureza": "divergencia-interpretativa",
+   "eixo": "NAO-DECLARADO",
+   "eixo_declarado": false,
+   "fonte_do_eixo": "bloco-04-verbas2.md registra 'salário profissional na hipótese da Súmula 17/TST, RESTAURADA pela Res. 121/03' — dá o evento e a data da restauração, mas não o eixo nem o alcance.",
+   "corte": "2003",
+   "variantes": [
+    {
+     "id": "salario-profissional",
+     "efeito": {
+      "base": "salario-profissional"
+     },
+     "fundamento": "Súmula 17/TST, restaurada pela Res. 121/2003.",
+     "fonte": "bloco-04-verbas2.md"
+    }
+   ],
+   "sem_default": true,
+   "por_que_sem_default": "Há uma única variante cadastrada e nenhuma regra de alcance. Dar-lhe o status de default faria o salário profissional valer por omissão — exatamente o contrário do que o corpus sustenta, que é uma HIPÓTESE ('na hipótese da Súmula 17/TST'). Sem o eixo e sem a articulação com a Rcl 6.275, não há o que resolver.",
+   "pendencia": "Falta o eixo, o alcance da restauração e a articulação com a Rcl 6.275 (pr.insalubridade-base-sumula228). É a quarta variante possível de pn.insalubridade.base.",
+   "afeta_parametros": [
+    "pn.insalubridade.base"
+   ],
+   "afeta_verbas": [
+    "adicional-insalubridade"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "nao-declarado",
+   "depende_de": []
+  },
+  {
+   "id": "pr.sumula124-divisor-bancario",
+   "nome": "Divisor do bancário — modulação do IRR-849",
+   "natureza": "cadeia-temporal",
+   "eixo": "composto",
+   "eixos_componentes": [
+    "decisao-de-merito-no-processo",
+    "estado-processual",
+    "conteudo-do-titulo"
+   ],
+   "fonte_do_eixo": "bloco-03-verbas.md e 02-base § 8 — TRÊS eixos declarados, e NENHUM deles é a competência da parcela.",
+   "corte": "2016-11-21",
+   "variantes": [
+    {
+     "id": "regime-novo",
+     "condicao": "processo em curso, sem decisão de mérito de Turma/SDI-1 entre 27/09/2012 e 21/11/2016",
+     "efeito": {
+      "aplica_irr_849": true
+     },
+     "fundamento": "IRR-849-83.2013.5.03.0138, SDI-1, Rel. Min. Cláudio Brandão, julgado 21/11/2016, publicado 19/12/2016; Súmula 124 revista pela Res. 219/2017 em 26/06/2017.",
+     "fonte": "bloco-03-verbas.md"
+    },
+    {
+     "id": "regime-preservado",
+     "condicao": "há decisão de mérito sobre o tema, de Turma do TST ou da SBDI-1, entre 27/09/2012 e 21/11/2016",
+     "efeito": {
+      "aplica_irr_849": false
+     },
+     "fundamento": "Modulação expressa: 'aplica-se a todos os processos em curso, EXCETO aqueles com decisão de mérito sobre o tema, de Turma do TST ou da SBDI-1, entre 27/09/2012 e 21/11/2016'.",
+     "fonte": "bloco-03-verbas.md"
+    },
+    {
+     "id": "transitado-e-silente",
+     "condicao": "sentença condenatória transitada em julgado, ainda em fase de liquidação, E silente quanto ao divisor",
+     "efeito": {
+      "aplica_irr_849": true
+     },
+     "fundamento": "Ressalva expressa da modulação: 'aplica-se às sentenças condenatórias transitadas em julgado, ainda em fase de liquidação, desde que SILENTES quanto ao divisor'.",
+     "fonte": "bloco-03-verbas.md; 02-base § 8"
+    }
+   ],
+   "default": "regime-novo",
+   "default_justificativa": "É a regra; as outras duas são a exceção e a ressalva, ambas com condição declarada. Na ausência de informação sobre decisão de mérito no intervalo, o processo em curso segue o IRR.",
+   "nota": "É o regime que prova a tese do bloco: um eixo único não modela isto. A mesma competência, no mesmo processo, resolve-se por um estado PROCESSUAL e pelo CONTEÚDO do título — nunca pela data do fato.",
+   "afeta_parametros": [
+    "pn.jornada.divisor",
+    "pn.bancario.enquadramento-224",
+    "pn.jornada.sabado-como-rsr"
+   ],
+   "afeta_verbas": [
+    "horas-extras-bancario"
+   ],
+   "escopo": "apuracao",
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": []
+  },
+  {
+   "id": "pr.indenizacao-tempo-servico-cf88",
+   "nome": "Limite da indenização por tempo de serviço em 05/10/1988",
+   "natureza": "divergencia-interpretativa",
+   "eixo": "conteudo-do-titulo",
+   "eixo_origem": "inferido",
+   "fonte_do_eixo": "O corpus (bloco-04-verbas2.md) diz 'O aviso-prévio integra a contagem do tempo, salvo se a indenização estiver limitada a 05/10/88' e 'Os cálculos de hoje limitam-se frequentemente a 05/10/88, por força do regime genérico do FGTS'. NUNCA NOMEIA O TÍTULO como fonte do limite.",
+   "justificativa_da_inferencia": "A voz passiva 'estiver limitada' pressupõe alguém que limite, e no processo quem limita o objeto da condenação é o título. Mas o corpus não o diz, e o campo pendencia abaixo reconhece que também não diz QUANDO o título impõe o limite. Inferência, não declaração.",
+   "corte": "1988-10-05",
+   "variantes": [
+    {
+     "id": "limitada",
+     "condicao": "o título limita a indenização a 05/10/1988",
+     "efeito": {
+      "aviso_integra_contagem": false,
+      "limite": "1988-10-05"
+     },
+     "fundamento": "'Os cálculos de hoje limitam-se frequentemente a 05/10/88, por força do regime genérico do FGTS.'",
+     "fonte": "bloco-04-verbas2.md"
+    },
+    {
+     "id": "sem-limite",
+     "condicao": "demais",
+     "efeito": {
+      "aviso_integra_contagem": true
+     },
+     "fundamento": "Regra geral dos arts. 477, caput, e 478 da CLT.",
+     "fonte": "bloco-04-verbas2.md"
+    }
+   ],
+   "default": "limitada",
+   "default_justificativa": "'Os cálculos de hoje limitam-se FREQUENTEMENTE a 05/10/88, por força do regime genérico do FGTS' — o corpus descreve isso como a prática corrente, não como exceção.",
+   "pendencia": "O corpus não diz QUANDO o título impõe o limite. O default vem de uma descrição de frequência, não de uma regra.",
+   "afeta_verbas": [
+    "indenizacao-por-tempo-de-servico"
+   ],
+   "escopo": "apuracao",
+   "eixo_declarado": false,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.prescricao-intercorrente",
+   "nome": "Prescrição intercorrente — art. 11-A da CLT",
+   "natureza": "cadeia-temporal",
+   "eixo": "determinacao-judicial-na-execucao",
+   "fonte_do_eixo": "02a § 15 — IN 41/2018 do TST, art. 2º: 'o fluxo da prescrição intercorrente conta-se a partir do descumprimento da determinação judicial a que alude o § 1º do art. 11-A, DESDE QUE A DETERMINAÇÃO TENHA SIDO FEITA APÓS 11/11/2017'. Não é a data do ajuizamento nem a do início da execução.",
+   "corte": "2017-11-11",
+   "variantes": [
+    {
+     "id": "nao-se-aplica",
+     "condicao": "determinação judicial anterior a 11/11/2017",
+     "vigencia": {
+      "de": null,
+      "ate": "2017-11-10"
+     },
+     "efeito": {
+      "prescricao_intercorrente": false
+     },
+     "fundamento": "Execução iniciada antes da Reforma, com intimação para atos executórios anterior a 11/11/2017, não sofre a prescrição intercorrente do art. 11-A. Jurisprudência firme.",
+     "fonte": "02a § 15"
+    },
+    {
+     "id": "aplica-dois-anos",
+     "condicao": "determinação judicial posterior a 11/11/2017",
+     "vigencia": {
+      "de": "2017-11-11",
+      "ate": null
+     },
+     "efeito": {
+      "prescricao_intercorrente": true,
+      "prazo_anos": "2"
+     },
+     "fundamento": "Art. 11-A da CLT, incluído pela Lei 13.467/2017. Exige expressa intimação do exequente (Recomendação 03/GCGJT, 24/07/2018) e omissão reiterada por mais de dois anos — não basta a demora.",
+     "fonte": "02a § 15"
+    }
+   ],
+   "default": "nao-se-aplica",
+   "default_justificativa": "O default é não prescrever: a prescrição depende de condições procedimentais e materiais cumulativas que só se verificam no processo. Presumi-la seria extinguir crédito por omissão de cadastro.",
+   "escopo": "liquidacao-execucao",
+   "fora_do_motor_de_verbas": "02a § 15, literal: 'é regra de liquidação e execução, não de apuração. Afeta o que pode ser cobrado, não como se calcula. Entra como marcador no processo, não no motor de verbas.' Está no catálogo para que o marcador exista e seja registrado (R19), não para alterar apuração.",
+   "afeta_verbas": [],
+   "eixo_origem": "declarado",
+   "eixo_declarado": true,
+   "depende_de": [],
+   "afeta_parametros": []
+  },
+  {
+   "id": "pr.adc58-item-i",
+   "nome": "Item \"i\" da modulação da ADC 58 — alcance da ressalva de valores pagos",
+   "natureza": "divergencia-interpretativa",
+   "eixo": "composto",
+   "eixos_componentes": [
+    "estado-processual",
+    "evento-questionamento-expresso",
+    "natureza-do-deposito"
+   ],
+   "eixo_origem": "declarado",
+   "fonte_do_eixo": "00-base-normativa.md § 1.1 — subseção do bloco 12. PESQUISA JURISPRUDENCIAL EXTERNA AO CORPUS, conferida em fontes secundárias que reproduzem a fundamentação; o inteiro teor dos três precedentes NÃO foi lido.",
+   "corte": null,
+   "corte_observacao": "O corte NÃO é uma data e por isso `corte` é null: é o par (momento de instauração da execução em relação ao início dos debates da ADC 58, houve questionamento expresso?). Gravar uma data aqui seria inventar a que o corpus não dá. Mesma família de pr.sumula124-divisor-bancario, que também corta por estado processual e não por competência.",
+   "nao_derivavel": true,
+   "por_que_nao_derivavel": "Nem o estado processual nem a existência de questionamento expresso saem do cálculo. São input do usuário, e o segundo é evento do processo, não atributo da parcela.",
+   "segundo_input": {
+    "nome": "natureza do depósito",
+    "valores": [
+     "pagamento",
+     "incontroverso-liberado",
+     "recursal",
+     "controverso-em-garantia"
+    ],
+    "decide": "o alcance da proteção dentro da situação i.1"
+   },
+   "variantes": [
+    {
+     "id": "i1-pagamento-consolidado",
+     "condicao": "valores pagos ao exequente sem qualquer questionamento, ou objeto de trânsito em julgado",
+     "efeito": {
+      "recalcula_pago_pelo_criterio_novo": false,
+      "pago_entra_na_conta_atualizada": false,
+      "indices_stf_incidem_sobre": "apenas o montante que ainda falta pagar",
+      "rateio_proporcional_do_manual": "NÃO se aplica ao valor pago"
+     },
+     "alcanca": [
+      "pagamento",
+      "incontroverso-liberado"
+     ],
+     "nao_alcanca": [
+      "recursal",
+      "controverso-em-garantia"
+     ],
+     "fundamento": "Primeira parte do item \"i\" da modulação do STF. Valores depositados judicialmente E JÁ LEVANTADOS seguem esta regra e não entram na conta de liquidação atualizada.",
+     "fonte": "00-base-normativa.md § 1.1 — subseção do bloco 12. PESQUISA JURISPRUDENCIAL EXTERNA AO CORPUS, conferida em fontes secundárias que reproduzem a fundamentação; o inteiro teor dos três precedentes NÃO foi lido."
+    },
+    {
+     "id": "i2-execucao-questionada",
+     "condicao": "execução instaurada após o início dos debates da ADC 58, havendo questionamento expresso de qualquer das partes sobre a necessidade de observar o posicionamento do STF",
+     "efeito": {
+      "recalcula_pago_pelo_criterio_novo": true,
+      "indices_stf_incidem_sobre": "inclusive os valores já pagos",
+      "rateio_proporcional_do_manual": "aplica-se, sobre valores recalculados pelo critério novo"
+     },
+     "fundamento": "O TST trata como EXCEÇÃO ao item \"i\".",
+     "fonte": "00-base-normativa.md § 1.1 — subseção do bloco 12. PESQUISA JURISPRUDENCIAL EXTERNA AO CORPUS, conferida em fontes secundárias que reproduzem a fundamentação; o inteiro teor dos três precedentes NÃO foi lido."
+    }
+   ],
+   "default": "i1-pagamento-consolidado",
+   "resolve_o_atrito_do_bloco_11B": "O bloco 11B marcou como maior atrito do projeto o conflito entre o rateio proporcional e a modulação. O conflito é CONDICIONAL, não estrutural: em i.1 não há o que ratear, e o método do manual (recompor o bruto até a data do pagamento antes de deduzir) é justamente o que a modulação veda; em i.2 o rateio se aplica e a proporção mudar porque os juros mudaram é o comportamento correto.",
+   "precedentes": [
+    "TST, 6ª Turma, ED-RR, Rel. Min. Kátia Magalhães Arruda, DEJT 17/03/2023",
+    "TST, 7ª Turma, Ag-RR, Rel. Min. Cláudio Mascarenhas Brandão, DEJT 17/03/2023",
+    "TST, SDI-1, E-Ag-RR, Rel. Min. Hugo Carlos Scheuermann, DEJT 10/03/2023"
+   ],
+   "afeta_parametros": [],
+   "afeta_verbas": [
+    "TODAS"
+   ],
+   "default_justificativa": "i.1 é a regra e i.2 a exceção, declarada como tal. O default é a regra; a exceção exige o input do questionamento expresso. Sob R20, a conta fica marcada origem: 'default'."
+  },
+  {
+   "id": "pr.imputacao",
+   "nome": "Imputação de pagamento parcial entre principal e juros",
+   "natureza": "divergencia-interpretativa",
+   "eixo": "sem-eixo-temporal",
+   "eixo_origem": "declarado",
+   "fonte_do_eixo": "bloco-11b-amortizacao.md §§ 1 e 2 — extração do item 10.3 do Manual TRT-3, pp. 237-266, contra o art. 354 do Código Civil.",
+   "corte": null,
+   "corte_observacao": "Não há corte temporal. A escolha é de critério jurídico, não de vigência.",
+   "variantes": [
+    {
+     "id": "proporcional",
+     "condicao": "prática do Manual de Cálculos do TRT-3",
+     "efeito": {
+      "formula": "principal_no_saldo = (B/D) x E ; juros_no_saldo = (C/D) x E",
+      "favorece": "devedor"
+     },
+     "fundamento": "PRÁTICA DO MANUAL DO TRT-3, SEM NORMA CITADA. Item 10.3.1, letra F, pagina_pdf 237; repetido como letra G em 10.3.2.1, pagina_pdf 239. Aplicada 101 vezes no segmento e fundamentada zero: 'art. 354', '354 do C' e 'artigo 354' têm ZERO ocorrências nas 471 páginas do manual; no segmento que a aplica, '354', 'imputa', 'Código Civil', 'Súmula' e 'anatocismo' são todos zero, contra 101 ocorrências de 'proporcional'. A única justificativa oferecida é aritmética — evitar anatocismo, 'descarregar' o saldo.",
+     "fonte": "bloco-11b-amortizacao.md § 1"
+    },
+    {
+     "id": "art-354-cc",
+     "condicao": "art. 354 do Código Civil aplicado subsidiariamente",
+     "efeito": {
+      "formula": "o pagamento imputa-se primeiro aos juros vencidos, depois ao capital",
+      "favorece": "credor"
+     },
+     "fundamento": "Art. 354 do Código Civil. Norma expressa, aplicada subsidiariamente ao processo do trabalho.",
+     "fonte": "00-base-normativa.md § 7, R10"
+    }
+   ],
+   "sem_default": true,
+   "por_que_sem_default": "QUINTO caso de R20-EXCECAO, e por razão distinta dos quatro anteriores. Nos outros a base deixa a questão aberta ou não declara o eixo. Aqui o problema é de outra ordem: A PRÁTICA MAJORITÁRIA NÃO TEM NORMA E A NORMA NÃO TEM PRÁTICA. Não são duas normas concorrentes — são uma norma (art. 354) contra um costume de liquidação sem base declarada. Escolher um default seria o motor tomar posição jurídica.",
+   "amplitude_medida": {
+    "formula": "min(abatimento, principal, juros) x indice_residual x pct_juros_residual",
+    "observacao": "Qual das três grandezas limita MUDA de caso para caso.",
+    "casos": {
+     "Manual TRT-3, EXEMPLO de 10.3.1": "R$ 36,60 — 0,25% do saldo",
+     "Manual TRT-3, Exemplo 1": "R$ 9.918,92 — 23,83% do saldo",
+     "Manual TRT-3, Exemplo 5": "R$ 22.272,55 — 15,85% do saldo",
+     "Manual TRT-3, Exemplo 6": "R$ 2,51 — 0,05% do saldo"
+    },
+    "direcao_do_delta": "JUROS PRIMEIRO produz saldo MAIOR, logo dívida maior. O critério proporcional favorece o DEVEDOR; o art. 354 favorece o CREDOR.",
+    "medicao": "bloco-11b-relatorio.md § 3 e bloco-11c-relatorio.md § 4"
+   },
+   "interacao_com_pr_adc58_item_i": "Em i.1 este regime NÃO É CONSULTADO para o valor pago — não há o que ratear. Em i.2 é consultado, sobre valores recalculados pelo critério novo. Avaliar pr.adc58-item-i ANTES, por R22.",
+   "afeta_parametros": [],
+   "afeta_verbas": [
+    "TODAS"
+   ]
+  }
+ ]
 }

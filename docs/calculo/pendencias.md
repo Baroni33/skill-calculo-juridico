@@ -594,3 +594,80 @@ Súmula 228 não retroage, competências anteriores a abril/2018 podem segui-la,
 então ela precisa voltar **como variante de regime**. É o que a § 19.1 impede
 decidir.
 
+
+---
+
+## 20. Capítulo 10 e consolidação — blocos 11A a 12
+
+**Status: parcialmente fechada.** A amortização está extraída e R10 respondida; sobram
+dois bloqueios aritméticos e uma pendência de fundamento.
+
+### 20.1 FECHADAS pelo bloco 12
+
+| # | O que era | Como fechou |
+|---|---|---|
+| **R10 sem lastro** | A invariante afirmava que cível e trabalhista tratam imputação por regras não unificáveis, **sem a regra trabalhista extraída** | O bloco 11B extraiu: é **proporcional**, item 10.3.1 letra F. E **sem fundamento normativo** — `art. 354` tem zero ocorrências nas 471 páginas. R10 gravada em `00-base-normativa.md` § 7 |
+| **Atrito rateio × modulação** (11B § 9) | Marcado como "maior atrito do projeto" | **Condicional, não estrutural.** O item "i" tem duas situações — `00-base-normativa.md` § 1.1. Em i.1 não há o que ratear; em i.2 o rateio se aplica sobre valores recalculados |
+| **R23 sem invariante** | O "descarregar" era praticado e não normatizado | **R23** criada, com a anomalia de localização registrada: quem a fundamenta é a minuta da p. 328, capítulo 16 |
+| **R4 sem exceção nomeada** | "Juros de mora sempre simples" — e há quatro anos de juros compostos | **R4-EXCEÇÃO** gravada **dentro** do invariante: DL 2.322/87, de 27/02/1987 a 03/03/1991 |
+| **Páginas sem decisão** | 14 pp. (caps. 8, 12, 14) + 27 pp. (cap. 16) sem destino | **Zero.** Todas ao bloco 13. O cap. 16 reclassificado para **fonte normativa** |
+| **P11B-05** gross-up invertido | Suspeita de regra oculta | Fecha exato com o denominador correto; não reaparece no segmento D. **Defeito de publicação da fórmula**, catalogado em `armadilhas-comparador.md` A7 |
+| **Pendência herdada do 11A** (delta 0,44) | Regra usada e não declarada | **Não reaparece** no segmento C nem no D. O único delta próximo (0,45) dissolve-se com os operandos reais |
+
+### 20.2 BLOQUEIOS — abertos, e não contornados
+
+| # | Onde | Erro | Por que é bloqueio |
+|---|---|---|---|
+| **P11B-01** | `pagina_pdf` 266, Ex. 4 | total `43.077,24` contra `43.088,23` | Coluna K erra **10,00 exatos**; para fechar seria preciso um H que não sai de operação alguma. Dois desvios independentes na mesma linha |
+| **P10D-01** | `pagina_pdf` 269 e 271, Ex. 5 letra I | total `154.874,90` contra `156.911,41`, delta de `2.036,51` na linha | Índice implícito `1,00257222` **sem origem**; `55.236,01` não existe em nenhuma das 471 páginas — não é cópia, não é transposição |
+
+Ambos em `armadilhas-comparador.md`, §§ A3 e A2.
+
+### 20.3 Regras ocultas — usadas e não declaradas
+
+| # | O que |
+|---|---|
+| **P11B-02** | Arredondamento do **NMP**: `17,16303 → 17,2` e `10,788 → 10,8`. Uma casa, half-up — **inferido**. No segmento D nem a nota sobre "regra de arredondamento" existe |
+| **P11B-03** | Percentual **pleno** de IR no saldo contra `0,9091` no levantamento, no mesmo exemplo |
+| **P11B-04** | Base de IR do saldo: bruto **com** juros no Ex. 1, principal **sem** juros nos Ex. 2–4. No segmento D a divergência é **instanciada com causa declarada** (OJ 400), não resolvida |
+
+### 20.4 Fundamento ausente — a que mais pesa
+
+**P11B-07 — o critério proporcional não tem fundamento normativo declarado.** Aplicado 101
+vezes no segmento e fundamentado zero. Entrou como preset `pr.imputacao`, **sem default** —
+quinto caso de `R20-EXCECAO`, e o único em que o problema não é o corpus deixar a questão
+aberta, mas **a prática não ter norma e a norma não ter prática**.
+
+**P10D-04 — a obrigatoriedade do critério alternativo da letra C não tem lastro
+demonstrativo.** A moldura declara que sob juros vincendos o segundo critério "é obrigatório",
+e o manual atravessa 69 páginas sem um caso em que o primeiro erre. Pior: o critério 1 é
+**inexecutável a partir do publicado** (nenhum exemplo informa data de ajuizamento nem
+percentual acumulado), e sob a única reconstrução possível os dois dão **delta 0,00**.
+
+### 20.5 Demais pendências abertas dos blocos 11A a 11C
+
+| # | Pendência |
+|---|---|
+| **P11A-02** | `2.820,40` e `5.109,98` (p. 215) não reproduzem por via declarada alguma — delta 0,44 |
+| **P11A-04** | Dois valores simultâneos do mesmo INSS: `649,83` para deduzir, `906,64` para recolher |
+| **P11A-05** | Método agregado de juros vincendos de 10.1 × método linha a linha do cap. 7 — equivalentes só sob acréscimo uniforme |
+| **P11B-06** | O segmento C adota a dedução na data do levantamento **sem citar** a Súmula 15/TRT-3 nem o 16.4.11, que reconhece **duas** teses |
+| **P10D-02** | Centavo perdido no rateio do Ex. 6 (`5.057,47` onde o correto é `5.057,48`); o `J` é construído sobre o valor errado |
+| **P10D-03** | `11.731,57` × `11.731,37` na mesma página, com a letra B imprimindo o errado |
+| **P10D-05** | A alternativa da **letra I** não tem exemplo em lugar nenhum do capítulo 10 |
+| **P10D-06** | Os `251,02` rotulados "juros vincendos" no Ex. 6 são juros **vencidos** |
+| **P10D-07** | Enquadramento no art. **12-B** é paráfrase: a string não ocorre no segmento |
+| **P10D-08** | Migração de regime tributário dentro do mesmo cálculo (Ex. 5) — caso único do manual, sem enunciado |
+| **P10-C16** | Varredura dirigida do capítulo 16 — **prioridade alta**, após a reclassificação para fonte normativa |
+| **P10-18** | Base das custas de execução: cap. 11 diverge do cap. 9. O cap. 8 é onde a regra deveria estar |
+
+### 20.6 Pendência de origem — declarada
+
+**A subseção § 1.1 de `00-base-normativa.md` vem de pesquisa jurisprudencial externa ao
+corpus**, conferida em fontes secundárias que reproduzem a fundamentação. **O inteiro teor dos
+três precedentes do TST não foi lido.** Declarado nos mesmos termos do art. 611-B da CLT no
+bloco 5.
+
+Confirmar contra o inteiro teor antes de usar em produção — a distinção i.1 × i.2 decide se o
+critério do STF alcança ou não valores já pagos, e é o que sustenta o preset
+`pr.adc58-item-i`.

@@ -21,49 +21,50 @@ impresso — o sumário deste manual já se mostrou incompleto mais de uma vez.
 | 5 | Cálculos de liquidação — como se estrutura | 14–17 | 4 | 2 | coberto |
 | 6 | Verbas trabalhistas | 18–82 | 65 | 3 e 4 | coberto |
 | 7 | Atualização monetária e juros de mora | 83–99 | 17 | 9 e 10 | coberto |
-| **8** | **Encargos e despesas processuais** | **100–106** | **7** | **—** | **NÃO COBERTO** |
+| 8 | Encargos e despesas processuais | 100–106 | 7 | **13** | decidido — ver § 2.2 |
 | 9 | Descontos legais: previdenciário e fiscal | 107–208 | 102 | 7 | coberto |
 | 10 | Atualização de débitos trabalhistas | 209–277 | 69 | **11A, 11B, 11C** | **56 pp. cobertas**, 13 com decisão registrada — ver § 2.1 |
 | 11 | Exemplo de cálculos, acordos e atualizações | 278–298 | 21 | 10 | coberto |
-| **12** | **Contribuição sindical** | **299–302** | **4** | **—** | **NÃO COBERTO** |
+| 12 | Contribuição sindical | 299–302 | 4 | **13** | decidido — ver § 2.3 |
 | 13 | Atualização de créditos da dívida ativa da União | 303 | 1 | 10 | coberto |
-| **14** | **Precatórios** | **304–306** | **3** | **—** | **NÃO COBERTO** |
+| 14 | Precatórios | 304–306 | 3 | **13** | decidido — ver § 2.4 |
 | 15 | Comandos facilitadores do cálculo de liquidação | 307–309 | 3 | 10 | coberto |
-| **16** | **Promoções** | **310–336** | **27** | **—** | fora de escopo — ver § 3 |
+| 16 | Promoções | 310–336 | 27 | **13** | **FONTE NORMATIVA** — reclassificado. Ver § 3 |
 | 17 | Súmulas, OJs e TJPs — TST e TRT-3 | 337–372 | 36 | 10 | coberto |
 | 18 | Tabelas | 373–471 | 99 | 1 | coberto |
 
-**Conferido em script**, não estimado. Atualizado no bloco 11C.
+**Conferido em script**, não estimado. Atualizado no bloco 12.
 
 Página não coberta exige decisão registrada, e o mapa separa os dois casos:
 
 | | Páginas |
 |---|---|
 | **Cobertas** | **409** |
-| Não cobertas **com decisão registrada** | **40** |
-| Não cobertas **sem decisão** | **14** |
+| Não cobertas **com decisão registrada** | **54** |
+| Não cobertas **sem decisão** | **0** |
 | Soma dos capítulos | 463 |
 | Pré-textuais (capa e sumário, pp. 1–8) | 8 |
 | **Total do PDF** | **471** |
 
 **Cobertura: 86,8% do PDF, 88,3% das páginas de capítulo.**
 
-### Não coberto COM decisão registrada — 40 pp.
+### Não coberto COM decisão registrada — 54 pp.
 
 | Onde | Págs | Decisão |
 |---|---|---|
 | Cap. 10, segmento **B** (pp. 224–236) | 13 | **Bloco 11D** — descontos proporcionais. Reordenado: o 11C foi ao segmento D porque a amortização estava incompleta sem os Exemplos 5 e 6 |
-| Cap. 16 (pp. 310–336) | 27 | `fora-de-escopo-com-ressalva-confirmada` — varredura dirigida a 16.4.3–16.4.7 e 16.4.9–16.4.12. Pendência **P10-C16** |
+| Cap. 8 (pp. 100–106) | 7 | **Bloco 13.** Custas, honorários periciais e advocatícios — fecha a assimetria com o cap. 1 do Manual CJF, já extraído |
+| Cap. 12 (pp. 299–302) | 4 | **Bloco 13**, como **estrutura**, marcado **superado pela Reforma** (contribuição facultativa desde 2017) |
+| Cap. 14 (pp. 304–306) | 3 | **Bloco 13**, como **estrutura**, marcado **superado pela EC 113/2021 e pela EC 136/2025** |
+| Cap. 16 (pp. 310–336) | 27 | **Bloco 13**, varredura dirigida a 16.4.3–16.4.7 e 16.4.9–16.4.12. **Reclassificado para FONTE NORMATIVA** — ver § 3. Pendência **P10-C16** |
 
-### Não coberto SEM decisão — 14 pp.
+### Não coberto SEM decisão — 0 pp.
 
-| Cap. | Título | Págs |
-|---|---|---|
-| 8 | Encargos e despesas processuais | 7 |
-| 12 | Contribuição sindical | 4 |
-| 14 | Precatórios | 3 |
+**Não há mais páginas sem decisão registrada.** Os capítulos 8, 12, 14 e 16 receberam destino
+no bloco 12; todos vão para o **bloco 13**.
 
-**São estes três que continuam sem destino atribuído.** Ver § 2.2 a 2.4.
+O mapa mantém a distinção porque ela é a que importa para a Fase 3: *não coberto* não diz
+nada; *não coberto sem decisão* é dívida técnica, e chegou a zero.
 
 ### 1.1 Detalhamento do capítulo 6 (blocos 3 e 4)
 
@@ -86,16 +87,16 @@ capítulo 16" não é o capítulo 15: entre eles estão os capítulos 7 a 14 int
 
 ---
 
-## 2. Os capítulos não cobertos, e o que está em curso
+## 2. Os capítulos fora dos blocos concluídos, e seu destino
 
 **A busca que sustentou a afirmação original** (bloco 10), conforme a regra de afirmação
 negativa: varredura por `grep -rn` em `docs/calculo/extracao/` pelos termos `capítulo 8`,
 `capítulo 10`, `capítulo 12`, `capítulo 14`, `capítulo 16` e pelas faixas de página
 `100`–`106` e `209`–`277`. Nenhuma ocorrência que indicasse extração.
 
-**Atualização do bloco 11C:** o capítulo 10 tem **56 das 69 páginas cobertas** (segmentos A, C
-e D) — **a amortização está fechada**. Resta o segmento B, 13 pp., para o 11D. Seguem **três
-capítulos sem decisão**: 8, 12 e 14.
+**Atualização do bloco 12:** o capítulo 10 tem **56 das 69 páginas cobertas** (segmentos A, C
+e D) — **a amortização está fechada**. Resta o segmento B, 13 pp., para o 11D. E **nenhum
+capítulo segue sem decisão**: 8, 12, 14 e 16 foram destinados ao **bloco 13**.
 
 ### 2.1 Capítulo 10 — em extração, dividido por operação
 
@@ -166,14 +167,25 @@ comparação entre as duas jurisdições sobre custas está hoje pela metade.
 
 O manual cita a IN nº 20/2002 do TST e a Lei 10.537/02 — fundamentos que não estão no corpus.
 
+**Decisão do bloco 12: bloco 13.** Extração normal, sem ressalva de vigência. É o capítulo que
+fecha a assimetria com o cap. 1 do Manual CJF.
+
+**E já há um atrito conhecido esperando:** o bloco 10 mediu que a **base das custas de
+execução do cap. 11 diverge da do cap. 9** (151,39 contra 151,56 no mesmo exemplo), e que na
+mesma base o crédito entra líquido e os honorários entram brutos. O cap. 8 é onde a regra
+deveria estar enunciada. Pendência **P10-18**.
+
 ### 2.3 Capítulo 12 — contribuição sindical
 
 **4 páginas.** Itens: 12.1 Esclarecimentos gerais · 12.2 Forma de cálculo · 12.3 Contribuição
 sindical rural · 12.4 Forma de atualização.
 
-É **verba com forma de cálculo e forma de atualização próprias**. Cabe na espinha. Fica a
-ressalva de direito intertemporal: o manual é de 2016 e a Reforma de 2017 tornou a
-contribuição facultativa — o que o corpus precisa marcar, e a base normativa deve responder.
+É **verba com forma de cálculo e forma de atualização próprias**. Cabe na espinha.
+
+**Decisão do bloco 12: bloco 13, como ESTRUTURA, marcado SUPERADO pela Reforma.** O manual é
+de 2016 e a Lei 13.467/2017 tornou a contribuição **facultativa**. Extrai-se a mecânica de
+cálculo e atualização — que continua valendo para competências anteriores e para os casos em
+que há autorização — com `status_norma: superado` no que pressupõe obrigatoriedade.
 
 ### 2.4 Capítulo 14 — precatórios
 
@@ -184,52 +196,61 @@ atualização de cálculos em precatórios.
 inclusive EC 136/2025), extraído no bloco 8. O confronto entre os dois regimes é material —
 e hoje só um lado existe.
 
+**Decisão do bloco 12: bloco 13, como ESTRUTURA, marcado SUPERADO pela EC 113/2021 e pela
+EC 136/2025.** Extrai-se a estrutura e as diretrizes de elaboração; o regime de atualização
+que o capítulo pressupõe está superado. O valor do bloco 13 aqui é **o confronto com o cap. 5
+do CJF**, não a regra em si.
+
 ---
 
-## 3. Capítulo 16 — por que fica fora
+## 3. Capítulo 16 — reclassificado para FONTE NORMATIVA
 
 **27 páginas, 82 subitens.** *Promoções* aqui não são promoções funcionais: são **minutas de
-petição e despacho** — "pedindo elementos", "reiterando pedido", "manifestando sobre
-impugnações das partes", "pedindo retorno dos autos ao perito".
+petição e despacho**.
 
-É **texto processual, não regra de cálculo.** Não produz número, não altera base, não define
-critério. Fica fora do escopo da espinha por natureza, não por falta de tempo.
+O bloco 10 o classificou como `fora-de-escopo-com-ressalva-confirmada`. **O bloco 12 promove a
+classificação para FONTE NORMATIVA**, porque três achados confirmados mostram que o capítulo
+**enuncia regra que o capítulo técnico não enuncia** — e num caso é o **único lugar do manual**
+onde a regra é fundamentada.
 
-**E, no entanto, contém regra de cálculo.** Isto não é hipótese: foi verificado por leitura
-das pp. 310–336 no fechamento deste bloco. Três casos, literais:
+### 3.1 Os três achados que forçaram a reclassificação
 
-**16.4.11 — Dedução na data do depósito ou levantamento** (`pagina_pdf` 335). Subitem
-16.4.11.1, *"Dedução na data do levantamento e não na data do depósito"*:
+**16.4.11 — imputação na data do levantamento** (`pagina_pdf` 335):
 
 > "a dedução do valor recebido pelo reclamante foi efetuada na data do efetivo levantamento,
-> na forma do disposto na Súmula nº 15 do TRT/3ª Região, considerando que o depósito de fl.
-> 130 foi feito à disposição do juízo e precedeu aos embargos e agravo de petição,
-> tratando-se, portanto, de depósito em garantia da execução."
+> na forma do disposto na **Súmula nº 15 do TRT/3ª Região**, considerando que o depósito de
+> fl. 130 foi feito à disposição do juízo e precedeu aos embargos e agravo de petição,
+> tratando-se, portanto, de **depósito em garantia da execução**."
 
-É **regra de imputação com fundamento e condição de incidência**: depósito em garantia da
-execução deduz-se na data do **levantamento**, não na do depósito. Muda o saldo. E é
-exatamente a operação do **capítulo 10** (amortização de valor pago), que também não está
-extraído.
+Regra de imputação **com fundamento e condição de incidência**. E o capítulo 10, que executa a
+dedução em 56 páginas, **nunca cita a Súmula 15** — `Súmula` tem zero ocorrências no segmento
+que a aplica.
 
-**16.4.7 — Limitação da multa a 100%** (`pagina_pdf` 330), com fundamento duplo:
+**16.4.7 — multa limitada ao principal CORRIGIDO** (`pagina_pdf` 330), com fundamento duplo:
+art. 412 do CC (art. 920 do CC/1916) e OJ 54 da SDI. O teto mede-se sobre o principal **já
+corrigido**, não sobre o nominal — decisão de ordem de operações.
 
-> "a multa diária (...) foi limitada ao valor da obrigação principal (...) tendo em vista o
-> disposto no art. 412 do CC (art.920, CC/1916) e OJ/SDI/TST nº 54 da SDI ("Multa estipulada
-> em cláusula penal, ainda que diária, não poderá se superior ao principal corrigido -
-> Aplicação do art. 920 do C[C]")"
+**p. 328 — o fundamento do "descarregar"**:
 
-Note: **"superior ao principal CORRIGIDO"** — o teto é medido sobre o principal já corrigido,
-não sobre o nominal. É decisão de ordem de operações.
+> "recalculando os juros de mora desde a inicial, **não incidindo juros sobre juros
+> (anatocismo)**"
 
-**16.4.6.2 — FGTS** (`pagina_pdf` 327): atualizado "na forma do art. 39 da Lei 8177/91, tendo
-em vista o disposto na OJ nº 302/TST" — amarra o FGTS à mesma cadeia dos débitos
-trabalhistas, e a OJ 302 é justamente um dos verbetes que o capítulo 17 lista.
+**É o único lugar do manual que conecta a operação de descarregar ao anatocismo.** O capítulo
+10 executa a operação e a nomeia apenas "descarregar"; `anatocismo` tem **zero ocorrências**
+em todo o capítulo 10. Ver `00-base-normativa.md` § 7, **R23**.
 
-**Classificação: `fora-de-escopo-com-ressalva-confirmada`.** A natureza do capítulo é
-processual, mas ele **enuncia regra que o capítulo técnico não enuncia** — o mesmo padrão que
-o capítulo 9 exibiu e que o capítulo 11 foi varrido para encontrar. Varredura dirigida aos
-itens 16.4.3–16.4.7 e 16.4.9–16.4.12, **não** extração integral. Pendência **P10-C16**,
-elevada a prioridade média por causa de 16.4.11.
+### 3.2 O que isso significa para o bloco 13
+
+**Varredura dirigida, não extração integral.** O alvo são os itens **16.4.3 a 16.4.7** e
+**16.4.9 a 16.4.12**, que nomeiam assuntos de cálculo: INSS, IRRF, juros de mora, critérios de
+atualização, limitação da multa, massa falida, certidão de dívida ativa, dedução na data do
+depósito ou levantamento, Fazenda Pública.
+
+**O padrão é estável e já se repetiu três vezes:** o manual **pratica** no capítulo técnico e
+**fundamenta** na minuta. Quem extrair só os capítulos técnicos fica com as operações sem as
+razões.
+
+Pendência **P10-C16**, elevada a prioridade alta.
 
 ---
 

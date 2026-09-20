@@ -136,8 +136,21 @@ EIXOS_DECLARADOS = {
     "data-do-calculo",
     "efetivo-pagamento",
     "data-base-da-categoria",
+    # Bloco 12 — item "i" da modulação da ADC 58. Nenhum dos dois sai do
+    # cálculo: o primeiro é evento do processo, o segundo é qualificação do
+    # depósito, e é ele que decide o alcance da proteção dentro de i.1.
+    "evento-questionamento-expresso",
+    "natureza-do-deposito",
 }
-EIXOS_ESPECIAIS = {"meta", "herdado", "composto", "NAO-DECLARADO"}
+
+# `sem-eixo-temporal` não é um eixo ausente — é a constatação de que a escolha
+# NÃO VARIA NO TEMPO. `pr.imputacao` escolhe entre o critério proporcional do
+# Manual TRT-3 e o art. 354 do CC, e a escolha vale para o cálculo inteiro,
+# qualquer que seja a competência. Distinguir isso de "NAO-DECLARADO" importa:
+# lá falta informação, aqui não há o que faltar.
+EIXOS_ESPECIAIS = {
+    "meta", "herdado", "composto", "NAO-DECLARADO", "sem-eixo-temporal",
+}
 
 # Três estados, não dois. Um booleano forçaria a apresentar como DECLARADO o
 # que é INFERÊNCIA — e apresentar inferência como declaração é o erro que este

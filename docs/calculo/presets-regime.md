@@ -142,7 +142,7 @@ a divergência que a base manda não arbitrar.
 
 A consequência é dura e é correta: **sem escolha explícita, os regimes dependentes
 não calculam.** O silêncio vira bloqueio visível, não um número plausível. É a
-**R20-EXCECAO**, e vale para quatro regimes — este, o Tema 1046, o adicional de HE
+**R20-EXCECAO**, e vale hoje para **cinco** regimes — este, o Tema 1046, o adicional de HE
 pré-CF/88 e a Súmula 17.
 
 ### A interação que o enunciado mandou modelar
@@ -268,7 +268,25 @@ não detecção no resultado — a mesma filosofia da R1 à R13.
 | `pr.multa477-documentos` | 11/11/2017 | o eixo (presumível data da rescisão; o texto não diz) |
 | `pr.sumula17-salario-profissional` | 2003 | o eixo e o alcance da restauração |
 
-### 6.7 Fora do motor de verbas
+### 6.7 Amortização e imputação — acrescentados no bloco 12
+
+| id | eixo | corte | variantes |
+|---|---|---|---|
+| `pr.adc58-item-i` | estado processual ⊕ questionamento expresso ⊕ natureza do depósito | início dos debates da ADC 58 | i.1 pagamento consolidado · i.2 execução questionada |
+| `pr.imputacao` | escolha jurídica — **sem corte temporal** | — | proporcional · art. 354 do CC |
+
+**`pr.adc58-item-i`** decide se a ressalva de valores pagos alcança ou não o que já foi pago.
+Nenhum dos três eixos é derivável do cálculo: estado processual e questionamento expresso são
+input do usuário; a **natureza do depósito** (pagamento · incontroverso liberado · recursal ·
+controverso em garantia) decide o alcance da proteção dentro de i.1. Mesma família do divisor
+do bancário, que também corta por estado processual e não por competência.
+
+**Tem default** — i.1, porque é a regra e i.2 é declarada exceção.
+
+**`pr.imputacao`** é o **quinto** caso de `R20-EXCECAO`, e por razão distinta dos quatro
+anteriores. Ver § 7.4.
+
+### 6.8 Fora do motor de verbas
 
 | id | eixo | por quê |
 |---|---|---|
@@ -318,6 +336,52 @@ Três eixos simultâneos, **nenhum deles a competência**:
 
 A mesma competência, no mesmo processo, resolve-se por um estado processual e pelo
 conteúdo do título. Um eixo único não modela isto.
+
+### 7.4 `pr.imputacao` — quando a prática não tem norma e a norma não tem prática
+
+Os quatro casos anteriores de `R20-EXCECAO` têm a mesma forma: **o corpus deixa a questão
+aberta**, seja porque há acórdãos nos dois sentidos (`pr.intertemporal`), seja porque o eixo
+não é declarado (`pr.tema1046-validade-clausula`, `pr.he-adicional-cf88`,
+`pr.sumula17-salario-profissional`).
+
+**Este é de outra ordem.** O bloco 11B extraiu a regra trabalhista de imputação e descobriu
+que ela é **praticada sem fundamento normativo**:
+
+| | Ocorrências |
+|---|---|
+| `art. 354` · `354 do C` · `artigo 354` — **nas 471 páginas do manual** | **0** |
+| `354` · `imputa` · `Código Civil` · `Súmula` · `anatocismo` — no segmento que a aplica | **0** cada |
+| `proporcional` — no mesmo segmento | **101** |
+
+> Não são duas normas concorrentes. São **uma norma — o art. 354 do CC — contra um costume de
+> liquidação sem base declarada.**
+
+Por isso não há default: escolher um seria **o motor tomar posição jurídica**, e não sobre uma
+divergência entre correntes, mas sobre se a prática predominante tem ou não autoridade.
+
+**A escolha custa, e a direção importa:**
+
+```
+amplitude = min(abatimento, principal, juros) × índice_residual × pct_juros_residual
+```
+
+| Caso medido | Amplitude |
+|---|---|
+| EXEMPLO de 10.3.1 | R$ 36,60 — **0,25%** |
+| Exemplo 1 | R$ 9.918,92 — **23,83%** |
+| Exemplo 5 | R$ 22.272,55 — **15,85%** |
+| Exemplo 6 | R$ 2,51 — **0,05%** |
+
+**Qual das três grandezas limita muda de caso para caso** — o Exemplo 5 tem quase o dobro da
+participação de juros do Exemplo 1 e amplitude percentual menor, porque ali o limitante é o
+abatimento.
+
+**Direção do delta:** juros primeiro produz saldo **maior**, logo **dívida maior**. O critério
+proporcional **favorece o devedor**; o art. 354 **favorece o credor**. Um motor que escolhesse
+default estaria escolhendo um lado.
+
+**Ordem de avaliação:** `pr.adc58-item-i` **antes** de `pr.imputacao`, por R22. Em i.1 a
+imputação sequer é consultada para o valor pago — não há o que ratear.
 
 ---
 

@@ -89,6 +89,7 @@ Fase 2 em curso.
 | 11A | Capítulo 10 — varredura estrutural e item 10.1 (atualização sem amortização) | `docs/calculo/extracao/trabalhista/bloco-11a-relatorio.md` |
 | 11B | Capítulo 10, segmento C — amortização de valor pago (art. 12-A) | `docs/calculo/extracao/trabalhista/bloco-11b-relatorio.md` |
 | 11C | Capítulo 10, segmento D — vincendos e art. 12-B; **fecha a amortização** | `docs/calculo/extracao/trabalhista/bloco-11c-relatorio.md` |
+| 12 | Consolidação da base de conhecimento — presets, invariantes, armadilhas | `docs/calculo/extracao/bloco-12-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 93 páginas, sete cadeias temporais em `tabelas-normativas/`, e é a única fonte do corpus cuja
@@ -101,8 +102,15 @@ ver `bloco-09-relatorio.md` § 2.
 
 **O artefato que abre a Fase 3 é [`docs/calculo/extracao/mapa-de-cobertura.md`](docs/calculo/extracao/mapa-de-cobertura.md)** —
 todo capítulo e item dos dois manuais, com o bloco que o cobriu ou a razão de não ter sido
-coberto. Conferido por script: **cobertura de 86,8%**, separando **não coberto com decisão
-registrada** (40 pp.) de **não coberto sem decisão** (14 pp. — capítulos 8, 12 e 14).
+coberto. Conferido por script: **cobertura de 86,8%**, e desde o bloco 12 **zero páginas sem
+decisão registrada** — as 54 não cobertas têm bloco atribuído.
+
+O **bloco 12** consolidou o que estava espalhado pelos relatórios:
+[`armadilhas-comparador.md`](docs/calculo/armadilhas-comparador.md) reúne os **defeitos do
+manual que um perito reproduz** — dez armadilhas com página, valor impresso, valor correto e
+assinatura detectável, mais os deltas de método e os comportamentos que **não** são defeito
+(precisão plena, ausência de regra de arredondamento, mês comercial inclusivo). O limiar de
+alarme do comparador não deve ser o centavo.
 
 O **capítulo 10** está em extração pela série 11A–11D, dividida **por operação** — 56 das 69
 páginas cobertas, e **a amortização fechada** pelo 11C. O **bloco 11B** respondeu a invariante
@@ -114,6 +122,11 @@ páginas cobertas, e **a amortização fechada** pelo 11C. O **bloco 11B** respo
 > enquanto `proporcional` ocorre 101 vezes só no segmento. R10 fica fundamentada por razão
 > mais forte que a suposta — não são duas normas concorrentes, mas **uma norma (art. 354 do
 > CC) contra um costume de liquidação sem base declarada**.
+
+Por isso a escolha entra como preset **`pr.imputacao`, sem default** — quinto caso de
+`R20-EXCECAO`, e o único em que o problema não é o corpus deixar a questão aberta, mas a
+prática não ter norma. **Direção do delta:** juros primeiro produz dívida maior; o critério
+proporcional favorece o **devedor**, o art. 354 favorece o **credor**.
 
 A escolha da ordem de imputação move o saldo em até **23,83%** (juros primeiro: +10,58%;
 principal primeiro: −13,25%) — **a decisão mais cara já medida no corpus**. O bloco 11C

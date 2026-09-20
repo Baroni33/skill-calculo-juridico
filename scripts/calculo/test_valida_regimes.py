@@ -210,9 +210,12 @@ class TestCatalogo(unittest.TestCase):
         self.assertEqual(
             {r.id for r in sem},
             {"pr.intertemporal", "pr.tema1046-validade-clausula",
-             "pr.he-adicional-cf88", "pr.sumula17-salario-profissional"},
+             "pr.he-adicional-cf88", "pr.sumula17-salario-profissional",
+             # Bloco 12 — quinto caso, e de natureza distinta: não é o corpus
+             # deixando a questão aberta, é a prática não ter norma.
+             "pr.imputacao"},
         )
-        # E o catálogo nomeia os quatro, não três.
+        # E o catálogo nomeia todos, não um número desatualizado.
         texto = catalogo().dados["invariantes"]["R20-EXCECAO"]
         for rid in (r.id for r in sem):
             self.assertIn(rid, texto)
@@ -788,6 +791,62 @@ class TestHigiene(unittest.TestCase):
     def test_todo_regime_tem_id_estavel(self):
         for rid in catalogo().regimes:
             self.assertRegex(rid, r"^pr\.[a-z0-9-]+$")
+
+
+class TestRegimesDoBloco12(unittest.TestCase):
+    """pr.adc58-item-i e pr.imputacao, acrescentados na consolidação."""
+
+    def test_adc58_item_i_nao_crava_data_de_corte(self):
+        """O corte é um EVENTO. Cravar data seria inventar a que o corpus não dá."""
+        r = catalogo()["pr.adc58-item-i"]
+        self.assertIsNone(r.corte)
+        self.assertIn("não é uma data", r.bruto["corte_observacao"].lower())
+
+    def test_adc58_item_i_declara_origem_externa_ao_corpus(self):
+        """Pesquisa externa tem de vir declarada, como o art. 611-B no bloco 5."""
+        r = catalogo()["pr.adc58-item-i"]
+        self.assertIn("EXTERNA AO CORPUS", r.bruto["fonte_do_eixo"])
+        self.assertIn("NÃO foi lido", r.bruto["fonte_do_eixo"])
+        self.assertEqual(len(r.bruto["precedentes"]), 3)
+
+    def test_i1_nao_recalcula_o_pago_e_i2_recalcula(self):
+        """É a distinção que resolve o atrito marcado no bloco 11B."""
+        v = {x["id"]: x for x in catalogo()["pr.adc58-item-i"].bruto["variantes"]}
+        self.assertFalse(v["i1-pagamento-consolidado"]["efeito"]["recalcula_pago_pelo_criterio_novo"])
+        self.assertTrue(v["i2-execucao-questionada"]["efeito"]["recalcula_pago_pelo_criterio_novo"])
+
+    def test_i1_protege_pagamento_mas_nao_deposito_recursal(self):
+        v = {x["id"]: x for x in catalogo()["pr.adc58-item-i"].bruto["variantes"]}
+        i1 = v["i1-pagamento-consolidado"]
+        self.assertIn("pagamento", i1["alcanca"])
+        self.assertIn("incontroverso-liberado", i1["alcanca"])
+        self.assertIn("recursal", i1["nao_alcanca"])
+        self.assertIn("controverso-em-garantia", i1["nao_alcanca"])
+
+    def test_imputacao_nao_tem_default(self):
+        r = catalogo()["pr.imputacao"]
+        self.assertTrue(r.sem_default)
+        self.assertIsNone(r.default)
+
+    def test_imputacao_registra_que_a_pratica_nao_tem_norma(self):
+        """O achado que decide R10: 101 aplicações, zero fundamentos."""
+        r = catalogo()["pr.imputacao"]
+        prop = next(x for x in r.bruto["variantes"] if x["id"] == "proporcional")
+        self.assertIn("SEM NORMA CITADA", prop["fundamento"])
+        self.assertIn("101", prop["fundamento"])
+
+    def test_imputacao_registra_a_direcao_do_delta(self):
+        """Sem a direção, o número não diz a quem a escolha favorece."""
+        direcao = catalogo()["pr.imputacao"].bruto["amplitude_medida"]["direcao_do_delta"].lower()
+        self.assertIn("devedor", direcao)
+        self.assertIn("credor", direcao)
+        variantes = {x["id"]: x for x in catalogo()["pr.imputacao"].bruto["variantes"]}
+        self.assertEqual(variantes["proporcional"]["efeito"]["favorece"], "devedor")
+        self.assertEqual(variantes["art-354-cc"]["efeito"]["favorece"], "credor")
+
+    def test_imputacao_nao_tem_eixo_temporal(self):
+        """Distinto de NAO-DECLARADO: aqui não há o que faltar."""
+        self.assertEqual(catalogo()["pr.imputacao"].eixo, "sem-eixo-temporal")
 
 
 if __name__ == "__main__":

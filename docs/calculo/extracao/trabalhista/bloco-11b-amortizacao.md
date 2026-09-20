@@ -98,6 +98,13 @@ Medido em `Decimal`, variando **apenas** a ordem de imputação e mantendo todo 
 **O efeito escala com o tempo residual × a participação dos juros no bruto na data da
 amortização.** Num caso de 1 mês, 0,25% de amplitude; num de anos, 23,83%.
 
+> **Corrigido no bloco 11C.** Esta formulação está **incompleta**. A forma fechada, verificada
+> em quatro casos, é
+> `amplitude = min(abatimento, principal, juros) × índice_residual × pct_juros_residual` —
+> e **qual das três grandezas limita muda de caso para caso**. O Exemplo 5 tem quase o dobro da
+> participação de juros do Exemplo 1 e amplitude percentual **menor** (15,85% contra 23,83%),
+> porque ali o limitante é o **abatimento**. Ver `bloco-11c-relatorio.md` § 4.
+
 Reproduzi o **+10,58%** de forma independente, por caminho próprio — bate na terceira casa.
 
 Comparando com os deltas do bloco 11A (−2,48%, −3,15%, −285,83), **a ordem de imputação é a
@@ -307,8 +314,26 @@ pelo critério anterior**. O manual é de 2016 e opera sob TR + 1% ao mês.
 Busca no segmento: `ADC`, `IPCA`, `EC 113`, `compensação de diferenças` → **0 ocorrências**,
 como esperado num texto de 2016.
 
-**Marcado, não harmonizado.** É o ponto de maior atrito entre o corpus extraído e a base
-normativa vigente.
+**Marcado, não harmonizado.**
+
+### 9.1 RESOLVIDO no bloco 12 — o conflito é condicional, não estrutural
+
+A subseção § 1.1 de `00-base-normativa.md`, acrescentada no bloco 12, mostra que o item "i"
+da modulação **tem duas situações**, e a distinção dissolve o atrito:
+
+| Situação | O rateio se aplica ao valor pago? |
+|---|---|
+| **i.1** — pago sem questionamento, ou com trânsito em julgado | **Não.** Não há o que ratear: o pago sai da conta e o critério novo incide só sobre o residual. **O método do manual — recompor o bruto até a data do pagamento antes de deduzir — é exatamente o que a modulação veda aqui** |
+| **i.2** — execução instaurada após o início dos debates da ADC 58, com questionamento expresso | **Sim**, sobre valores recalculados pelo critério novo. A proporção mudar porque os juros mudaram **é o comportamento correto** |
+
+**Portanto não é um defeito estrutural do método do manual, e sim um método cuja aplicação
+depende de um fato processual que o cálculo não conhece.** A escolha entra como preset
+`pr.adc58-item-i` (`presets-regime.md` § 6.7), com default em i.1 — que é a regra — e i.2
+exigindo o input do questionamento expresso.
+
+**Origem do conteúdo normativo que resolve:** pesquisa jurisprudencial **externa ao corpus**,
+conferida em fontes secundárias; o inteiro teor dos três precedentes do TST **não foi lido**.
+Declarado em `00-base-normativa.md` § 1.1.
 
 ---
 
