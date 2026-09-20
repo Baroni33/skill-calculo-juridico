@@ -1,5 +1,10 @@
 # Bloco 4 — verbas trabalhistas, segunda parte (espinha)
 
+> **RENUMERADO NO BLOCO 15.** As marcas de Fase 4 deste arquivo eram `F1`…`F9`, e o
+> outro bloco de verbas usava os **mesmos rótulos para pontos diferentes**. Agora são
+> `B04-F*`. A colisão já havia causado dano: havia remissões cruzadas do tipo
+> "mesma raiz do F1 do bloco 3" que, lidas isoladamente, apontavam para o ponto errado.
+
 Manual de Cálculos do TRT-3. Páginas **55 a 82** do PDF — itens **6.7 a 6.15**, fechando o
 capítulo 6. Offset de paginação 0: `pagina_pdf` = número impresso.
 
@@ -63,7 +68,7 @@ extras do item 6.6.8 ficam na página seguinte. O fecho do exemplo está no deta
 > a liquidação desse passivo segue a regra abaixo.
 >
 > O manual é anterior à Reforma e descreve o regime revogado como vigente. Marcado em § 12,
-> **F1**.
+> **B04-F1**.
 
 **Fundamentos** (6.7, p. 55): Súmulas **90** e **320** do TST e **art. 58, § 2º, da CLT**.
 
@@ -177,7 +182,7 @@ contadas nos dias em que houve supressão **ou gozo parcial**.
 >
 > A Reforma mudou a **natureza** e a **extensão**: de hora extra sobre o intervalo integral,
 > com reflexos, para **indenização** do **período suprimido**. Duas mudanças, não uma.
-> Extraído como o manual diz. Marcado em § 12, **F2**.
+> Extraído como o manual diz. Marcado em § 12, **B04-F2**.
 
 ### 4.2 Intervalos especiais e remunerados
 
@@ -1130,21 +1135,21 @@ Identificados, **não corrigidos**. O conteúdo novo de cada dispositivo **não 
 
 | # | Ponto do manual | Dispositivo | Gravidade |
 |---|---|---|---|
-| **F1** | **Horas *in itinere*** — item 6.7 inteiro (p. 55) | **CLT art. 58, § 2º** — hipótese **suprimida** | **Alta.** O item deixa de existir para fatos a partir de 11/11/2017. Extraído integralmente porque o passivo anterior permanece |
-| **F2** | **Intervalo intrajornada suprimido** — pagamento do intervalo **integral**, como hora extra, com **natureza salarial** e reflexos (6.10.1, p. 56) | **CLT art. 71, § 4º** — nova redação | **Alta.** Muda **natureza** (de salarial para indenizatória) e **extensão** (do integral para o período suprimido). Duas mudanças |
-| **F3** | Base de cálculo do seguro-desemprego pelo **art. 457 da CLT**, incluindo **prêmios habituais e prestação in natura** (6.13.4, p. 70, nota do MTE) | CLT art. 457, §§ 1º e 2º | Média. Mesma raiz do F1 do bloco 3 |
-| **F4** | Comissões integram "pela média dos últimos doze meses" com base no **art. 457, § 1º** (6.12, p. 65) | CLT art. 457, § 1º — reescrito | Média |
-| **F5** | Adicional noturno em **12×36** — OJ 388 (6.11.4, p. 62) | **CLT art. 59-A** — introduzido | Média. Mesma raiz do F3 do bloco 3 |
-| **F6** | **Súmula 39 do TRT-3** e o **art. 384 da CLT** — intervalo de 15 min para mulheres (6.10.1, p. 57) | **CLT art. 384** — **revogado** | Média |
-| **F7** | Prescrição do FGTS e a Súmula 362 (6.14, p. 79) | **CLT art. 11, § 2º** — introduzido | Baixa a média |
+| **B04-F1** | **Horas *in itinere*** — item 6.7 inteiro (p. 55) | **CLT art. 58, § 2º** — hipótese **suprimida** | **Alta.** O item deixa de existir para fatos a partir de 11/11/2017. Extraído integralmente porque o passivo anterior permanece |
+| **B04-F2** | **Intervalo intrajornada suprimido** — pagamento do intervalo **integral**, como hora extra, com **natureza salarial** e reflexos (6.10.1, p. 56) | **CLT art. 71, § 4º** — nova redação | **Alta.** Muda **natureza** (de salarial para indenizatória) e **extensão** (do integral para o período suprimido). Duas mudanças |
+| **B04-F3** | Base de cálculo do seguro-desemprego pelo **art. 457 da CLT**, incluindo **prêmios habituais e prestação in natura** (6.13.4, p. 70, nota do MTE) | CLT art. 457, §§ 1º e 2º | Média. Mesma raiz do **B03-F1** (art. 457, §§ 1º e 2º) |
+| **B04-F4** | Comissões integram "pela média dos últimos doze meses" com base no **art. 457, § 1º** (6.12, p. 65) | CLT art. 457, § 1º — reescrito | Média |
+| **B04-F5** | Adicional noturno em **12×36** — OJ 388 (6.11.4, p. 62) | **CLT art. 59-A** — introduzido | Média. Mesma raiz do **B03-F3** (12×36, art. 59-A, par. único) |
+| **B04-F6** | **Súmula 39 do TRT-3** e o **art. 384 da CLT** — intervalo de 15 min para mulheres (6.10.1, p. 57) | **CLT art. 384** — **revogado** | Média |
+| **B04-F7** | Prescrição do FGTS e a Súmula 362 (6.14, p. 79) | **CLT art. 11, § 2º** — introduzido | Baixa a média |
 
 **Não marcado, porque não muda**: intervalo interjornada e OJ 355; a ficção legal da hora
 noturna; sobreaviso e prontidão (arts. 244, §§ 2º e 3º); as multas dos arts. 467 e 477;
 a OJ 54 e o teto do art. 412 do CC; a disciplina do FGTS; e toda a cronologia do item 6.15,
 que é histórica.
 
-> **F1 e F2 são os dois pedidos expressos do escopo**, e ambos confirmam o que o escopo
-> antecipava. Sobre o F2, um esclarecimento: o escopo descreveu a mudança como "de hora extra
+> **B04-F1 e B04-F2 são os dois pedidos expressos do escopo**, e ambos confirmam o que o escopo
+> antecipava. Sobre o B04-F2, um esclarecimento: o escopo descreveu a mudança como "de hora extra
 > com reflexos para indenização do período suprimido". O manual explicita as **duas metades**
 > que a Reforma altera — a natureza (§ 4.1, "possuem natureza salarial, refletindo no cálculo
 > das outras parcelas") e a extensão (o **integral**, mesmo com gozo parcial). Marcar só a
@@ -1204,7 +1209,7 @@ não se reescreve.
 
 | Ponto deste bloco | O que a base diz | Estado |
 |---|---|---|
-| **F2** — intervalo intrajornada suprimido (6.10.1, p. 56) | A Lei 13.467/2017 fez **duas** alterações no art. 71, § 4º: a natureza passou de salarial a indenizatória, **e** a extensão passou do intervalo integral para apenas o período suprimido (§ 4 da base) | **CONFIRMADO.** Este bloco havia identificado as duas mudanças e as marcado como a conferir |
+| **B04-F2** — intervalo intrajornada suprimido (6.10.1, p. 56) | A Lei 13.467/2017 fez **duas** alterações no art. 71, § 4º: a natureza passou de salarial a indenizatória, **e** a extensão passou do intervalo integral para apenas o período suprimido (§ 4 da base) | **CONFIRMADO.** Este bloco havia identificado as duas mudanças e as marcado como a conferir |
 | **6.11** — cumulação de insalubridade e periculosidade | Vedada. **TST, Tema Repetitivo 17**, IRR-239-55.2011.5.02.0319, julgado em **26/09/2019** (§ 6 da base) | **FECHADO.** O bloco 04 extraiu o silêncio do manual e registrou a pendência P15; a base a fecha |
 | **6.11** — base de cálculo da insalubridade | A **Rcl 6.275/STF foi CASSADA em abril de 2018**, definitivamente. A base volta a ser o salário mínimo (§ 5 da base) | **CORRIGIDO.** A leitura de que a SV 4 estaria "suspensa" não vale mais. Efeito direto em `pn.insalubridade.base`, cuja variante `salario-basico` foi removida do catálogo |
 | **6.11** — base da periculosidade | Salário-base, para inflamáveis (NR-16, Anexo 2). Exceção da **Súmula 191, II** para eletricitários contratados antes da Lei 12.740/2012 (§ 7 da base) | **CONFIRMADO**, com a exceção acrescentada |

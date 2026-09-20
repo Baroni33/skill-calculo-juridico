@@ -38,7 +38,7 @@ fusão saiu mecânica quando o arquivo apareceu, exatamente como o roteiro previ
 | § | Conteúdo | Efeito aqui |
 |---|---|---|
 | **1** | **Direito intertemporal — duas correntes do TST e dois presets nomeados** | **Não virou parâmetro** (não é negociável) e abriu pendência de modelagem — ver abaixo |
-| 5 | **Rcl 6.275 foi CASSADA em abril de 2018**, definitivamente | O catálogo dizia "suspensa". A variante `salario-basico` de `pn.insalubridade.base` **foi removida** |
+| 5 | **A Súmula 228 foi cassada pela Rcl 6.275 em abril de 2018**, definitivamente | O catálogo dizia "suspensa". A variante `salario-basico` de `pn.insalubridade.base` **foi removida** |
 | 4 | Duas alterações no intervalo intrajornada pela Lei 13.467/2017 | Confirma o achado do bloco 04, que estava marcado como a conferir |
 | 6 | TST Tema Repetitivo 17 (IRR-239-55.2011.5.02.0319, 26/09/2019) — cumulação vedada | Fecha ponto aberto do bloco 04 |
 | 8 | Súmula 124 revista em 26/06/2017, Res. 219/2017 — 180/220 | Sustenta `pn.jornada.sabado-como-rsr` |

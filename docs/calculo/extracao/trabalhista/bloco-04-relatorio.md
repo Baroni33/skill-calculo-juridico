@@ -1,5 +1,11 @@
 # Bloco 4 — relatório
 
+> **RENUMERADO NO BLOCO 15.** As marcas de Fase 4 citadas neste relatório eram `F1`…`F7`, e o
+> outro bloco de verbas usava os **mesmos rótulos para pontos diferentes**. Agora são
+> `B04-F*`, como na espinha `bloco-04-verbas2.md` § 12. A colisão já havia causado dano: havia
+> remissões cruzadas do tipo "mesma raiz do F1 do bloco 3" que, lidas isoladamente, apontavam
+> para o ponto errado.
+
 Manual de Cálculos do TRT-3, capítulo 6, **itens 6.7 a 6.15**, páginas 55 a 82. Fase 2 do
 pipeline, tipo *prosa e raciocínio*: validação **adversarial**.
 
@@ -90,8 +96,8 @@ multa_40%       = (saldo + JAM + saques no contrato) × 0,40
 
 | Pedido | Onde | Resultado |
 |---|---|---|
-| **6.7** — extrair integralmente e marcar a revogação com data de corte | Espinha § 1 e § 12 (F1) | Extraído com os dois requisitos cumulativos da Súmula 90 e o exemplo. Revogação marcada com corte em **11/11/2017** |
-| **6.10** — natureza do intervalo suprimido | Espinha § 4.1 e § 12 (F2) | Marcado. E o manual explicita **duas** mudanças, não uma: a natureza (salarial → indenizatória) **e** a extensão (integral → período suprimido). Marcar só a primeira perderia metade |
+| **6.7** — extrair integralmente e marcar a revogação com data de corte | Espinha § 1 e § 12 (B04-F1) | Extraído com os dois requisitos cumulativos da Súmula 90 e o exemplo. Revogação marcada com corte em **11/11/2017** |
+| **6.10** — natureza do intervalo suprimido | Espinha § 4.1 e § 12 (B04-F2) | Marcado. E o manual explicita **duas** mudanças, não uma: a natureza (salarial → indenizatória) **e** a extensão (integral → período suprimido). Marcar só a primeira perderia metade |
 | **6.11** — cumulação e base da insalubridade | Espinha § 5.1.1 e § 5.2 | A base tem histórico completo, com **duas súmulas do TST opostas, uma suspensa por liminar do STF**. **A cumulação não é tratada pelo manual** — pendência P15, nada inferido |
 | **6.13** — distinguir 467 de 477 | Espinha §§ 7.8 e 7.9 | Bases e grandezas distintas, e a **regra proporcional do IR** da multa do 467 |
 | **6.14** — apuração, multa de 40% e projeção do aviso | Espinha § 8 | Índice de 12 verbetes integral; **saques no curso do contrato entram na base da multa**; a tabela JAM **já embute juros de 3% a.a.** |
@@ -184,7 +190,7 @@ numeração cruzada que o bloco 3 catalogou.
 | "O gatilho do art. 467 é a verba incontroversa não paga na **primeira audiência**" | Juridicamente correto, mas **o manual não enuncia gatilho algum** — nem do 467, nem do 477. Reescrito para dizer o que o manual diz, com a ausência registrada |
 | "gatilho: atraso no pagamento" na multa do art. 477 | Mesma correção |
 | Seguro-desemprego, "o **único** item com dois regimes por data de corte" | Falso: o doméstico (§ 7.5) e a multa do 467 (§ 7.9) também têm |
-| F3 atribuía "prêmios e abonos habituais" à p. 68 | Os prêmios estão na **p. 70**, na nota do MTE; "abonos" não aparece no item |
+| B04-F3 atribuía "prêmios e abonos habituais" à p. 68 | Os prêmios estão na **p. 70**, na nota do MTE; "abonos" não aparece no item |
 | FGTS do adicional noturno atribuído à p. 64 | Está na **p. 63** |
 | "Três práticas de arredondamento" (P17) contra "quatro" no detalhe | Uniformizado em **quatro** |
 | Detalhe: "oito reflexos em RSR", "Dois defeitos" com três itens | São **sete** reflexos e **três** defeitos |
@@ -248,12 +254,12 @@ de alta gravidade são exatamente os que o escopo antecipava:
 
 | # | Ponto | Dispositivo |
 |---|---|---|
-| **F1** | **Horas *in itinere*** — item 6.7 inteiro | **CLT art. 58, § 2º** — hipótese suprimida. Corte em **11/11/2017** |
-| **F2** | **Intervalo intrajornada suprimido** — integral, como hora extra, com natureza salarial e reflexos | **CLT art. 71, § 4º** — muda **natureza e extensão** |
+| **B04-F1** | **Horas *in itinere*** — item 6.7 inteiro | **CLT art. 58, § 2º** — hipótese suprimida. Corte em **11/11/2017** |
+| **B04-F2** | **Intervalo intrajornada suprimido** — integral, como hora extra, com natureza salarial e reflexos | **CLT art. 71, § 4º** — muda **natureza e extensão** |
 
-Mais: base do seguro-desemprego e das comissões pelo art. 457 (F3, F4); adicional noturno em
-12×36 e o art. 59-A (F5); **o art. 384 da CLT, revogado**, que sustenta a Súmula 39 do TRT-3
-(F6); e a prescrição do art. 11, § 2º (F7).
+Mais: base do seguro-desemprego e das comissões pelo art. 457 (B04-F3, B04-F4); adicional
+noturno em 12×36 e o art. 59-A (B04-F5); **o art. 384 da CLT, revogado**, que sustenta a
+Súmula 39 do TRT-3 (B04-F6); e a prescrição do art. 11, § 2º (B04-F7).
 
 **Não marcado, porque não muda**: interjornada e OJ 355; ficção legal da hora noturna;
 sobreaviso e prontidão; multas dos arts. 467 e 477; OJ 54 e o teto do art. 412 do CC;

@@ -137,12 +137,20 @@ regimes que dele herdam.
 
 ### Sem default, e por quê
 
-`pr.intertemporal` tem `sem_default: true`. Atribuir-lhe um default seria arbitrar
+> **CORRIGIDO NO BLOCO 15 — `pr.intertemporal` GANHOU DEFAULT.** O parágrafo abaixo descreve
+> o estado até o bloco 14 e fica por registro. **O TST fixou tese vinculante no Tema 23**
+> (Pleno, 25/11/2024, 15 × 10, transitado, modulação negada por unanimidade): *tempus regit
+> actum*, eixo na **competência do fato gerador**. O default é `tempus-regit-actum`; a
+> ultratividade permanece como **posição vencida**, aplicável só a título que a tenha adotado
+> **expressamente**, por R8. **`R20-EXCECAO` cai de cinco para quatro casos.**
+
+`pr.intertemporal` tinha `sem_default: true`. Atribuir-lhe um default **àquela altura** seria
+arbitrar
 a divergência que a base manda não arbitrar.
 
 A consequência é dura e é correta: **sem escolha explícita, os regimes dependentes
 não calculam.** O silêncio vira bloqueio visível, não um número plausível. É a
-**R20-EXCECAO**, e vale hoje para **cinco** regimes — este, o Tema 1046, o adicional de HE
+**R20-EXCECAO**, e vale hoje para **quatro** regimes — o Tema 1046, o adicional de HE
 pré-CF/88 e a Súmula 17.
 
 ### A interação que o enunciado mandou modelar
@@ -283,8 +291,10 @@ do bancário, que também corta por estado processual e não por competência.
 
 **Tem default** — i.1, porque é a regra e i.2 é declarada exceção.
 
-**`pr.imputacao`** é o **quinto** caso de `R20-EXCECAO`, e por razão distinta dos quatro
-anteriores. Ver § 7.4.
+**`pr.imputacao`** é o **quarto** caso de `R20-EXCECAO`, e por razão distinta dos três
+anteriores. Ver § 7.4. *(atualizado no bloco 15: era o "quinto"; com a saída de
+`pr.intertemporal` da lista — Tema 23 do TST, § 3 — passou a quarto, como já registra
+[`consolidado/05-imputacao.md`](consolidado/05-imputacao.md) § 3.)*
 
 ### 6.8 Fora do motor de verbas
 
@@ -339,10 +349,17 @@ conteúdo do título. Um eixo único não modela isto.
 
 ### 7.4 `pr.imputacao` — quando a prática não tem norma e a norma não tem prática
 
-Os quatro casos anteriores de `R20-EXCECAO` têm a mesma forma: **o corpus deixa a questão
-aberta**, seja porque há acórdãos nos dois sentidos (`pr.intertemporal`), seja porque o eixo
-não é declarado (`pr.tema1046-validade-clausula`, `pr.he-adicional-cf88`,
-`pr.sumula17-salario-profissional`).
+Os **três** casos anteriores de `R20-EXCECAO` têm a mesma forma: **o corpus deixa a questão
+aberta** porque o eixo não é declarado — `pr.tema1046-validade-clausula` (falta saber se
+cláusula anterior se julga pelo Tema 1046 ou pelos Temas 357/762), `pr.he-adicional-cf88`
+(falta o eixo **e** a disjunção 20% × 25%) e `pr.sumula17-salario-profissional` (falta o eixo
+e o alcance da restauração) — os três do § 6.6.
+
+> *(atualizado no bloco 15: `pr.intertemporal` saiu desta lista. Era o caso "acórdãos nos dois
+> sentidos"; ganhou default `tempus-regit-actum` por força do **Tema 23 do TST** (Pleno,
+> 25/11/2024, transitado, modulação negada por unanimidade). `R20-EXCECAO` caiu de cinco para
+> quatro casos — ver § 3, "Sem default, e por quê". Com isso, `pr.imputacao` é o **quarto**, e
+> os "anteriores" passaram de quatro a três.)*
 
 **Este é de outra ordem.** O bloco 11B extraiu a regra trabalhista de imputação e descobriu
 que ela é **praticada sem fundamento normativo**:
@@ -390,9 +407,15 @@ imputação sequer é consultada para o valor pago — não há o que ratear.
 ### 8.1 Eixo não declarado — a maior
 
 Quinze pontos do corpus e **dezesseis marcas de Fase 4** trazem a data de corte sem
-declarar o eixo. As marcas F (`bloco-03-verbas.md` § 8, F1–F9; `bloco-04-verbas2.md`
-§ 12, F1–F7) herdam o eixo de `pr.intertemporal` — que não está arbitrado. **Todo o
-corte de 11/11/2017 está parado nesse único ponto.**
+declarar o eixo. As marcas F (`bloco-03-verbas.md` § 8, **B03-F1–B03-F9**; `bloco-04-verbas2.md`
+§ 12, **B04-F1–B04-F7**) herdam o eixo de `pr.intertemporal`.
+
+> *(atualizado no bloco 15: este parágrafo dizia que o eixo de `pr.intertemporal` "não está
+> arbitrado" e que "todo o corte de 11/11/2017 está parado nesse único ponto". **Não está mais.**
+> O **Tema 23 do TST** (Pleno, 25/11/2024, transitado, modulação negada por unanimidade) fixou o
+> eixo: **competência do fato gerador**. O default é `tempus-regit-actum`; a **ultratividade**
+> continua disponível como variante, mas só **mediante justificativa** — escolher contra o
+> default sem justificar é rejeitado por **R21**. O corte de 11/11/2017 destravou; ver § 3.)*
 
 Supor o eixo é a forma mais silenciosa de errar. A regra do bloco — não pesquisar,
 declarar a pendência — vale aqui com força redobrada.
@@ -410,7 +433,7 @@ consultável sem que o bloqueio fique registrado.
 ### 8.3 A variante do salário básico, e um cuidado
 
 O bloco 5 **removeu** `salario-basico` de `pn.insalubridade.base`, porque a Rcl
-6.275 foi cassada definitivamente. Removê-la do catálogo de **parâmetros** foi
+6.275 cassou a Súmula 228 definitivamente. Removê-la do catálogo de **parâmetros** foi
 correto: não é mais opção negociável.
 
 Mas se a cassação **não retroage**, competências anteriores a abril/2018 podem

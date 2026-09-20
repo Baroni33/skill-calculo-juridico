@@ -10,17 +10,46 @@
 
 **Lei 13.467/2017, vigência em 11/11/2017.**
 
-A regra de transição **não é pacífica** e a divergência é material. Duas correntes no próprio TST:
+**A regra de transição está fixada com força vinculante desde 25/11/2024.**
+
+> **TST, Tema 23 dos recursos repetitivos** — IncJulgRREmbRep-528-80.2018.5.14.0004, Tribunal
+> Pleno, j. 25/11/2024 (15 × 10), **transitado em julgado**. Tese:
+>
+> *"A Lei nº 13.467/2017 possui aplicação imediata aos contratos de trabalho em curso, passando
+> a regular os direitos decorrentes de lei cujos fatos geradores tenham se efetivado a partir
+> de sua vigência."*
+>
+> **Modulação pedida e negada por unanimidade** nos embargos de declaração (20/05/2025):
+> não é caso de alteração de jurisprudência e sim de lei nova, e a tese já embute o corte.
+
+**A regra é o `tempus regit actum`, e o eixo é a COMPETÊNCIA DO FATO GERADOR** — não a data de
+admissão, não o ajuizamento.
+
+**Corrigido no bloco 15.** Até então esta seção apresentava as duas correntes como simétricas e
+mandava "não resolver". **Estava desatualizada**: a corrente da ultratividade é hoje a posição
+dos **dez ministros vencidos** contra tese vinculante. Permanece registrada abaixo, porque um
+título judicial que a tenha adotado expressamente prevalece por R8 — mas deixou de ser variante
+de igual dignidade.
+
+As duas posições, para registro:
 
 **Corrente A — `tempus regit actum`.** A lei tem efeito imediato e geral e se aplica aos contratos em curso a partir de sua vigência. O fato de a admissão ter ocorrido antes de 11/11/2017 não afasta a nova regra para fatos posteriores. O contrato se divide: regra antiga até 10/11/2017, regra nova a partir de 11/11/2017.
 
 **Corrente B — ultratividade da lei do contrato.** Contrato iniciado antes da Reforma segue a regra antiga por toda a sua duração, sob pena de ofensa à irretroatividade, ao princípio da proteção e à segurança jurídica.
 
-Há acórdãos do TST nos dois sentidos, inclusive dentro do mesmo tema (intervalo intrajornada). **Não resolver — expor como preset.** Como a Gasmig tem contratos anteriores a 11/11/2017 gerando passivo, a escolha move o resultado em praticamente todos os pontos desta seção.
+**A Corrente A é a tese vinculante do Tema 23.** A Corrente B era sustentada por acórdãos do
+TST até 2024 — inclusive dentro do mesmo tema (intervalo intrajornada) — e é a posição vencida
+no julgamento.
+
+Como há contratos anteriores a 11/11/2017 gerando passivo no escopo, **o corte move o resultado
+em praticamente todos os pontos desta seção** — mas agora com regra definida, não com escolha
+em aberto.
 
 Presets:
-- `TRAB-INTERTEMP-TEMPUS` — corte em 11/11/2017, contrato dividido
-- `TRAB-INTERTEMP-ULTRATIVO` — regra da data de admissão por todo o contrato
+- `TRAB-INTERTEMP-TEMPUS` — **default**, corte em 11/11/2017, contrato dividido. Fundamento:
+  Tema 23 do TST;
+- `TRAB-INTERTEMP-ULTRATIVO` — regra da data de admissão por todo o contrato. **Posição
+  vencida**, aplicável apenas a título que a tenha adotado **expressamente**, por R8.
 
 ---
 
@@ -42,7 +71,15 @@ Isso confirma a modelagem de norma coletiva como camada de parâmetro. A cláusu
 
 ## 3. Horas *in itinere*
 
-**Revogado o art. 58, § 2º, da CLT pela Lei 13.467/2017**, com efeito a partir de 11/11/2017.
+**Alterada a redação do art. 58, § 2º, da CLT pela Lei 13.467/2017**, com efeito a partir de
+11/11/2017. A nova redação diz que o tempo de deslocamento **não se computa na jornada**, por
+não ser tempo à disposição.
+
+> **Corrigido no bloco 15.** Esta linha dizia *"revogado o art. 58, § 2º"*. **O § 2º não foi
+> revogado — teve a redação alterada.** O dispositivo **revogado** foi o **§ 3º** (art. 5º, I,
+> "a", da Lei 13.467/2017), que permitia prefixar as horas *in itinere* por norma coletiva em
+> microempresas e empresas de pequeno porte. A distinção importa: a prefixação por ACT tinha
+> base no § 3º, que não existe mais.
 
 Fatos anteriores continuam regidos pela redação revogada e pela Súmula 90 do TST. Como a Gasmig tem contratos pré-Reforma, o motor precisa da variante antiga.
 
@@ -170,7 +207,7 @@ Base para o schema da camada de norma coletiva. Cada linha é um ponto onde a le
 | Divisor | 220 | CLT art. 64 + Súmula 431 | Decorre da jornada |
 | Base do adicional de insalubridade | salário mínimo | CLT art. 192 + SV 4 + Rcl 6.275 | Só norma coletiva ou lei pode alterar |
 | Base do adicional de periculosidade | salário-base | CLT art. 193 | Exceção Súmula 191, II |
-| Horas *in itinere* | apuração real (pré-Reforma) | CLT art. 58, § 2º revogado | Prefixação por ACT é válida |
+| Horas *in itinere* | apuração real (pré-Reforma) | CLT art. 58, § 2º **com redação alterada**; § 3º **revogado** | Prefixação por ACT tinha base no § 3º, hoje revogado — ver § 3 |
 | 7ª e 8ª horas em turno de revezamento | extras | CF art. 7º, XIV + Súmula 423 | |
 | Natureza de verba (integra ou não a base) | por natureza legal | CLT art. 457-458 | Cláusula de não integração é frequente |
 | Partição de férias | 2 períodos | CLT art. 134 | Gasmig: 3 períodos |

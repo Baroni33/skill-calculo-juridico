@@ -1,5 +1,10 @@
 # Bloco 3 — verbas trabalhistas (espinha)
 
+> **RENUMERADO NO BLOCO 15.** As marcas de Fase 4 deste arquivo eram `F1`…`F9`, e o
+> outro bloco de verbas usava os **mesmos rótulos para pontos diferentes**. Agora são
+> `B03-F*`. A colisão já havia causado dano: havia remissões cruzadas do tipo
+> "mesma raiz do F1 do bloco 3" que, lidas isoladamente, apontavam para o ponto errado.
+
 Manual de Cálculos do TRT-3. Páginas **18 a 54** do PDF — onde termina o escopo declarado
 (itens 6.1 a 6.6). Offset de paginação 0: `pagina_pdf` = número impresso.
 
@@ -1074,15 +1079,15 @@ foi verificado** nesta extração — é trabalho da Fase 4.
 
 | # | Ponto do manual | Dispositivo alterado | Gravidade |
 |---|---|---|---|
-| **F1** | Base de cálculo integra **abonos e prêmios habituais** (6.1 p. 18; quadro de 6.6.6.5 p. 47) | **CLT art. 457, §§ 1º e 2º** — reescritos | **Alta.** Muda a base de cálculo de HE, 13º, férias e aviso |
-| **F2** | Habitualidade como teste de integração, com lapso até anual (6.1, p. 18) | CLT art. 457, § 2º | **Alta.** O critério deixa de ser só factual |
-| **F3** | 12×36: feriado laborado pago em dobro, com dois critérios divergentes (6.5, p. 34–35) | **CLT art. 59-A, parágrafo único** — introduzido | **Alta.** O novo texto diz que a remuneração mensal pactuada abrange RSR e feriados |
-| **F4** | Súmula 85 e compensação de jornada (6.6.1 p. 36; 6.6.5 p. 40) | **CLT art. 59-B** — introduzido | Média |
-| **F5** | Minutos residuais e Súmula 366 (6.6.5, p. 40) | CLT art. 58, § 1º (mantido) e **art. 4º, § 2º** — introduzido | Média |
-| **F6** | Gorjetas — Súmula 354 e a vedação de reflexos (6.6.6.5, p. 48) | **CLT art. 457, § 3º** — alterado pela **Lei 13.419/2017** | Média |
-| **F7** | Férias: regime de concessão e período único (6.4, p. 25–27) | **CLT art. 134, § 1º** — fracionamento em até três períodos | Média |
-| **F8** | Prescrição na supressão de HE (6.6.8, p. 53) | **CLT art. 11, § 2º** — introduzido | Baixa a média |
-| **F9** | Tempo parcial: tabela do art. 130-A (6.4, p. 30) | **CLT arts. 58-A e 130-A** — alterados | Média |
+| **B03-F1** | Base de cálculo integra **abonos e prêmios habituais** (6.1 p. 18; quadro de 6.6.6.5 p. 47) | **CLT art. 457, §§ 1º e 2º** — reescritos | **Alta.** Muda a base de cálculo de HE, 13º, férias e aviso |
+| **B03-F2** | Habitualidade como teste de integração, com lapso até anual (6.1, p. 18) | CLT art. 457, § 2º | **Alta.** O critério deixa de ser só factual |
+| **B03-F3** | 12×36: feriado laborado pago em dobro, com dois critérios divergentes (6.5, p. 34–35) | **CLT art. 59-A, parágrafo único** — introduzido | **Alta.** O novo texto diz que a remuneração mensal pactuada abrange RSR e feriados |
+| **B03-F4** | Súmula 85 e compensação de jornada (6.6.1 p. 36; 6.6.5 p. 40) | **CLT art. 59-B** — introduzido | Média |
+| **B03-F5** | Minutos residuais e Súmula 366 (6.6.5, p. 40) | CLT art. 58, § 1º (mantido) e **art. 4º, § 2º** — introduzido | Média |
+| **B03-F6** | Gorjetas — Súmula 354 e a vedação de reflexos (6.6.6.5, p. 48) | **CLT art. 457, § 3º** — alterado pela **Lei 13.419/2017** | Média |
+| **B03-F7** | Férias: regime de concessão e período único (6.4, p. 25–27) | **CLT art. 134, § 1º** — fracionamento em até três períodos | Média |
+| **B03-F8** | Prescrição na supressão de HE (6.6.8, p. 53) | **CLT art. 11, § 2º** — introduzido | Baixa a média |
+| **B03-F9** | Tempo parcial: tabela do art. 130-A (6.4, p. 30) | **CLT arts. 58-A e 130-A** — alterados | Média |
 
 **Não marcado, porque não muda**: a ficção legal da hora noturna (art. 73, § 1º), os
 divisores do art. 64, a Súmula 291, a OJ 394, a OJ 415, a Súmula 146 e o rol de feriados.

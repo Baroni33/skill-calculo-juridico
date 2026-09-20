@@ -1,5 +1,11 @@
 # Bloco 3 — relatório
 
+> **RENUMERADO NO BLOCO 15.** As marcas de Fase 4 citadas neste relatório eram `F1`…`F3`, e o
+> outro bloco de verbas usava os **mesmos rótulos para pontos diferentes**. Agora são
+> `B03-F*`, como na espinha `bloco-03-verbas.md` § 8. A colisão já havia causado dano: havia
+> remissões cruzadas do tipo "mesma raiz do F1 do bloco 3" que, lidas isoladamente, apontavam
+> para o ponto errado.
+
 Manual de Cálculos do TRT-3, capítulo 6 (verbas trabalhistas), **itens 6.1 a 6.6**,
 páginas 18 a 54. Fase 2 do pipeline, tipo *prosa e raciocínio*: validação **adversarial**.
 
@@ -268,12 +274,13 @@ da espinha. Os três de alta gravidade:
 
 | # | Ponto | Dispositivo |
 |---|---|---|
-| **F1** | Base de cálculo integra **abonos e prêmios habituais** | CLT art. 457, §§ 1º e 2º |
-| **F2** | Habitualidade como teste de integração, com lapso até anual | CLT art. 457, § 2º |
-| **F3** | 12×36: feriado laborado pago em dobro | CLT art. 59-A, parágrafo único |
+| **B03-F1** | Base de cálculo integra **abonos e prêmios habituais** | CLT art. 457, §§ 1º e 2º |
+| **B03-F2** | Habitualidade como teste de integração, com lapso até anual | CLT art. 457, § 2º |
+| **B03-F3** | 12×36: feriado laborado pago em dobro | CLT art. 59-A, parágrafo único |
 
-F1 e F2 atingem a **base de cálculo de todas as verbas do bloco**, não um item isolado.
-F3 atinge justamente o ponto em que o manual já registrava dissenso jurisprudencial.
+B03-F1 e B03-F2 atingem a **base de cálculo de todas as verbas do bloco**, não um item
+isolado. B03-F3 atinge justamente o ponto em que o manual já registrava dissenso
+jurisprudencial.
 
 **O conteúdo novo de cada dispositivo não foi verificado** nesta extração — só o ponto de
 impacto. Verificar é trabalho da Fase 4.

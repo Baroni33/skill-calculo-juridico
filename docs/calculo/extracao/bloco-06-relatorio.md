@@ -329,7 +329,7 @@ não tem.** Não foi suposto. Está aqui.
 ## 9. Um cuidado que o bloco 5 deixou
 
 O bloco 5 **removeu** a variante `salario-basico` de `pn.insalubridade.base`, porque
-a Rcl 6.275 foi cassada definitivamente em abril de 2018. Removê-la do catálogo de
+a Súmula 228 foi cassada definitivamente pela Rcl 6.275, em abril de 2018. Removê-la do catálogo de
 **parâmetros** foi correto: não é mais opção negociável.
 
 Mas se a cassação **não retroage**, competências anteriores a abril/2018 podem

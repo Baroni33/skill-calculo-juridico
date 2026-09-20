@@ -39,6 +39,15 @@ FIXTURES = RAIZ / "tests/fixtures/calculo"
 CASOS = FIXTURES / "regimes-casos.json"
 
 
+# Desde o bloco 15 pr.intertemporal TEM default (tempus regit actum, Tema 23 do
+# TST). Escolher a ultratividade passou a ser DIVERGÊNCIA, e R21 exige
+# justificativa. Não é afrouxamento: é a invariante fazendo o que promete.
+JUST_ULTRATIVA = (
+    "título judicial adotou expressamente a ultratividade — posição vencida no "
+    "Tema 23 do TST, mas prevalente por R8 quando o título a acolhe"
+)
+
+
 def catalogo() -> CatalogoRegimes:
     return CatalogoRegimes.de_arquivo()
 
@@ -55,7 +64,20 @@ def fatos_do_caso(caso: dict, dados: dict) -> Fatos:
 
 
 def escolhas_do_caso(caso: dict) -> dict[str, Escolha]:
-    return {k: Escolha(v) for k, v in caso.get("escolhas", {}).items()}
+    """Aceita as duas formas da fixture.
+
+    `"pr.x": "variante"` — escolha sem justificativa, válida quando não há
+    divergência do default. `"pr.x": {"variante": ..., "justificativa": ...}` —
+    necessária desde que `pr.intertemporal` ganhou default (bloco 15): divergir
+    exige justificar, por R21.
+    """
+    out: dict[str, Escolha] = {}
+    for k, v in caso.get("escolhas", {}).items():
+        if isinstance(v, dict):
+            out[k] = Escolha(v["variante"], v.get("justificativa"))
+        else:
+            out[k] = Escolha(v)
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -209,10 +231,12 @@ class TestCatalogo(unittest.TestCase):
         sem = [r for r in cat.regimes.values() if r.sem_default]
         self.assertEqual(
             {r.id for r in sem},
-            {"pr.intertemporal", "pr.tema1046-validade-clausula",
+            # Bloco 15: pr.intertemporal SAIU — o Tema 23 do TST fixou tese
+            # vinculante e o regime ganhou default. Restam quatro.
+            {"pr.tema1046-validade-clausula",
              "pr.he-adicional-cf88", "pr.sumula17-salario-profissional",
-             # Bloco 12 — quinto caso, e de natureza distinta: não é o corpus
-             # deixando a questão aberta, é a prática não ter norma.
+             # Bloco 12 — de natureza distinta: não é o corpus deixando a
+             # questão aberta, é a prática não ter norma.
              "pr.imputacao"},
         )
         # E o catálogo nomeia todos, não um número desatualizado.
@@ -291,14 +315,43 @@ class TestCasosDaFixture(unittest.TestCase):
 class TestIntertemporal(unittest.TestCase):
     ANTIGO = Fatos(admissao="2015-03-02", competencia="2024-05")
 
-    def test_sem_escolha_nao_calcula(self):
-        """R20-EXCECAO: onde o corpus manda não resolver, não há default."""
+    def test_sem_escolha_resolve_pelo_default_e_marca_a_conta(self):
+        """Inverteu no bloco 15 — e o teste antigo virou o de baixo.
+
+        Até o bloco 14 este regime era R20-EXCECAO e não calculava sem escolha. Com o
+        Tema 23, tem default. R20 continua valendo: a conta fica marcada `default`.
+        """
         r = resolve_regime("pr.intertemporal", self.ANTIGO, {}, catalogo())
+        self.assertTrue(r.calculavel)
+        self.assertEqual(r.variante, "tempus-regit-actum")
+        self.assertEqual(r.origem, ORIGEM_DEFAULT)
+
+    def test_o_mecanismo_de_bloqueio_continua_existindo(self):
+        """O default do intertemporal não desligou R20-EXCECAO — restam quatro casos."""
+        cat = catalogo()
+        sem = {r.id for r in cat.regimes.values() if r.sem_default}
+        self.assertEqual(
+            sem,
+            {"pr.tema1046-validade-clausula", "pr.he-adicional-cf88",
+             "pr.sumula17-salario-profissional", "pr.imputacao"},
+        )
+        r = resolve_regime("pr.imputacao", self.ANTIGO, {}, cat)
         self.assertFalse(r.calculavel)
         self.assertEqual(r.motivo, MOTIVO_SEM_DEFAULT)
-        self.assertIn("Não resolver", r.avisos[0])
 
-    def test_o_bloqueio_se_propaga_aos_dependentes(self):
+    def test_o_bloqueio_NAO_se_propaga_mais_a_partir_do_intertemporal(self):
+        """Inverteu no bloco 15. O intertemporal deixou de bloquear os dependentes.
+
+        Até o bloco 14, `pr.intrajornada-71-4` e os demais herdeiros ficavam
+        `calculavel: false` porque o meta-regime não resolvia. Com o default do
+        Tema 23, resolvem. O mecanismo de propagação segue testado em
+        `test_o_mecanismo_de_bloqueio_continua_existindo`.
+        """
+        a = avalia_regimes("2024-05", self.ANTIGO, {}, catalogo())
+        self.assertTrue(a["pr.intrajornada-71-4"].calculavel)
+        self.assertEqual(a["pr.intertemporal"].origem, ORIGEM_DEFAULT)
+
+    def _antigo_bloqueio_se_propagava(self):
         r = resolve_regime("pr.intrajornada-71-4", self.ANTIGO, {}, catalogo())
         self.assertFalse(r.calculavel)
         self.assertIn("pr.intertemporal", r.avisos[0])
@@ -311,7 +364,7 @@ class TestIntertemporal(unittest.TestCase):
             {"pr.intertemporal": Escolha("tempus-regit-actum")}, cat)
         ultra = resolve_regime(
             "pr.intrajornada-71-4", self.ANTIGO,
-            {"pr.intertemporal": Escolha("ultratividade")}, cat)
+            {"pr.intertemporal": Escolha("ultratividade", JUST_ULTRATIVA)}, cat)
 
         self.assertEqual(tempus.variante, "redacao-reforma")
         self.assertEqual(ultra.variante, "redacao-anterior")
@@ -332,14 +385,28 @@ class TestIntertemporal(unittest.TestCase):
         self.assertEqual(antes.variante, "redacao-anterior")
         self.assertEqual(depois.variante, "redacao-reforma")
 
-    def test_escolha_intertemporal_nao_exige_justificativa(self):
-        """Não há default, logo não há de que divergir (R21)."""
+    def test_escolher_a_ultratividade_agora_EXIGE_justificativa(self):
+        """Inverteu no bloco 15. Antes não havia default, logo não havia de que divergir.
+
+        O Tema 23 do TST fixou tese vinculante e o regime ganhou default. Escolher a
+        ultratividade — posição dos dez vencidos — passou a ser **divergência**, e R21
+        a rejeita sem justificativa. É a invariante fazendo o que promete.
+        """
+        with self.assertRaises(ErroDeDados) as ctx:
+            resolve_regime(
+                "pr.intertemporal", self.ANTIGO,
+                {"pr.intertemporal": Escolha("ultratividade")}, catalogo())
+        self.assertIn("R21", str(ctx.exception))
+
+    def test_com_justificativa_a_ultratividade_resolve_e_fica_registrada(self):
+        """R8: título que a adote expressamente prevalece — mas o rastro fica."""
         r = resolve_regime(
             "pr.intertemporal", self.ANTIGO,
-            {"pr.intertemporal": Escolha("ultratividade")}, catalogo())
+            {"pr.intertemporal": Escolha("ultratividade", JUST_ULTRATIVA)}, catalogo())
         self.assertTrue(r.calculavel)
         self.assertEqual(r.origem, ORIGEM_USUARIO)
-        self.assertEqual(r.divergencias, [])
+        self.assertEqual(len(r.divergencias), 1)
+        self.assertEqual(r.divergencias[0]["valor_do_default"], "tempus-regit-actum")
 
 
 # --------------------------------------------------------------------------
@@ -459,7 +526,7 @@ class TestIntrajornada(unittest.TestCase):
 class TestInteracaoComOIntertemporal(unittest.TestCase):
     def test_contrato_de_2015_sob_ultratividade_nunca_ve_a_regra_nova(self):
         cat = catalogo()
-        escolha = {"pr.intertemporal": Escolha("ultratividade")}
+        escolha = {"pr.intertemporal": Escolha("ultratividade", JUST_ULTRATIVA)}
         for competencia in ("2016-08", "2019-01", "2024-05", "2026-09"):
             with self.subTest(competencia=competencia):
                 r = resolve_regime(
@@ -487,7 +554,7 @@ class TestInteracaoComOIntertemporal(unittest.TestCase):
         cat = catalogo()
         a = avalia_regimes(
             "2024-05", Fatos(admissao="2015-03-02"),
-            {"pr.intertemporal": Escolha("ultratividade")}, cat)
+            {"pr.intertemporal": Escolha("ultratividade", JUST_ULTRATIVA)}, cat)
         r = a["pr.in-itinere"]
         self.assertTrue(r.calculavel)
         self.assertIs(r.efeito["verba_existe"], True)
@@ -650,13 +717,21 @@ class TestInvariantes(unittest.TestCase):
         with self.assertRaises(RegimesNaoAvaliados):
             parametro_consultavel("pn.he.adicional", None, catalogo())
 
-    def test_R22_regime_bloqueado_bloqueia_o_parametro(self):
-        """Sem escolha intertemporal, in itinere não se consulta."""
+    def test_R22_o_parametro_continua_bloqueado_mas_por_outra_razao(self):
+        """Inverteu no bloco 15, e a razão nova é mais forte que a antiga.
+
+        Antes: `pn.in-itinere.prefixacao` não se consultava porque o intertemporal
+        não resolvia. Agora resolve — por `tempus regit actum`, competência de 2024 —
+        e o resultado é que **a verba não existe nessa competência**: o art. 58, § 2º
+        deixou de computar o deslocamento na jornada. O parâmetro segue inconsultável,
+        e agora com um motivo de mérito em vez de um bloqueio de modelagem.
+        """
         cat = catalogo()
         a = avalia_regimes("2024-05", self.FATOS, {}, cat)
         ok, motivo = parametro_consultavel("pn.in-itinere.prefixacao", a, cat)
         self.assertFalse(ok)
-        self.assertIn("pr.intertemporal", motivo)
+        self.assertIn("pr.in-itinere", motivo)
+        self.assertIn("não existe nesta competência", motivo)
 
     def test_R22_o_tema1046_bloqueia_todos_os_parametros(self):
         """Ele decide a validade de qualquer cláusula coletiva."""

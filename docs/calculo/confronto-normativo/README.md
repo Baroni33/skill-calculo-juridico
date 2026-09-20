@@ -1,6 +1,11 @@
 # Confronto normativo
 
-**Fase do pipeline:** Fase 4. **Só trabalhista.**
+**Fase do pipeline:** **Fase 3** — renumerada no bloco 15, porque o confronto vem antes da
+consolidação. **Só trabalhista.**
+
+> **As marcas `marcar para Fase 4` espalhadas pelos blocos de extração apontam para ESTA pasta.**
+> Foram escritas sob a numeração antiga e **não foram reescritas**: são registro histórico, e
+> corrigi-las apagaria a ordem em que o trabalho foi feito.
 
 ## Propósito
 

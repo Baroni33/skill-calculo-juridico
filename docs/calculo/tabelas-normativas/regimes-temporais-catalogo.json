@@ -60,7 +60,7 @@
  "invariantes": {
   "R19": "Todo cálculo grava qual preset de regime foi aplicado a CADA COMPETÊNCIA. Não basta gravar a escolha uma vez: sob tempus regit actum a mesma conta usa regimes diferentes em meses diferentes. Deriva de R13.",
   "R20": "Regime sem escolha explícita do usuário usa o default e MARCA a conta (origem: 'default'). A marca não é decorativa — é o que permite a alguém revisar o que ninguém decidiu.",
-  "R20-EXCECAO": "Regime com sem_default: true NÃO tem default. Sem escolha explícita, o resultado é calculavel: false. São QUATRO: pr.intertemporal, pr.tema1046-validade-clausula, pr.he-adicional-cf88 e pr.sumula17-salario-profissional. Onde o corpus manda não resolver, inventar um default seria resolver. No bloco 12 entrou o QUINTO: pr.imputacao — e por razão distinta das quatro anteriores. Nelas o corpus deixa a questão aberta ou não declara o eixo; aqui a prática majoritária (rateio proporcional) não tem norma e a norma (art. 354 do CC) não tem prática. Escolher default seria o motor tomar posição jurídica.",
+  "R20-EXCECAO": "Regime com sem_default: true NÃO tem default. Sem escolha explícita, o resultado é calculavel: false. São QUATRO: pr.intertemporal, pr.tema1046-validade-clausula, pr.he-adicional-cf88 e pr.sumula17-salario-profissional. Onde o corpus manda não resolver, inventar um default seria resolver. No bloco 12 entrou o QUINTO: pr.imputacao — e por razão distinta das quatro anteriores. Nelas o corpus deixa a questão aberta ou não declara o eixo; aqui a prática majoritária (rateio proporcional) não tem norma e a norma (art. 354 do CC) não tem prática. Escolher default seria o motor tomar posição jurídica. ATUALIZAÇÃO DO BLOCO 15: pr.intertemporal DEIXOU de ser caso de R20-EXCECAO — o Tema 23 do TST fixou tese vinculante e o regime ganhou default. Os casos caem de cinco para QUATRO: pr.tema1046-validade-clausula, pr.he-adicional-cf88, pr.sumula17-salario-profissional e pr.imputacao.",
   "R21": "Divergência entre o preset escolhido e o default fica registrada COM A JUSTIFICATIVA, do mesmo modo que a R8 trata o título judicial. Escolher contra o default sem justificar é rejeitado.",
   "R22": "Presets de regime são avaliados ANTES da resolução de parâmetros. Consultar um parâmetro sem ter avaliado os regimes que o alcançam é erro de composição, não de resultado — e o motor impede, não detecta."
  },
@@ -78,25 +78,27 @@
    "meta_regime": true,
    "eixo": "meta",
    "eixo_declarado": true,
-   "fonte_do_eixo": "02-base-normativa-verbas.md § 1 — o eixo é o PRÓPRIO OBJETO da escolha. Corrente A põe o eixo na competência do fato; Corrente B, na data de admissão.",
+   "fonte_do_eixo": "00-base-normativa.md / 02-base-normativa-verbas.md § 1, reescrito no bloco 15. O eixo é a COMPETÊNCIA DO FATO GERADOR, fixada pelo Tema 23 — não a data de admissão.",
    "corte": "2017-11-11",
    "variantes": [
     {
      "id": "tempus-regit-actum",
      "preset": "TRAB-INTERTEMP-TEMPUS",
      "eixo_efetivo": "competencia-do-fato",
-     "fundamento": "A lei tem efeito imediato e geral e se aplica aos contratos em curso a partir de sua vigência. O contrato se divide: regra antiga até 10/11/2017, regra nova a partir de 11/11/2017.",
-     "fonte": "02-base-normativa-verbas.md § 1, Corrente A"
+     "fundamento": "TST, Tema 23 dos recursos repetitivos — IncJulgRREmbRep-528-80.2018.5.14.0004, Tribunal Pleno, j. 25/11/2024 (15 x 10), TRANSITADO EM JULGADO. Tese: 'A Lei nº 13.467/2017 possui aplicação imediata aos contratos de trabalho em curso, passando a regular os direitos decorrentes de lei cujos fatos geradores tenham se efetivado a partir de sua vigência.' Modulação pedida e NEGADA POR UNANIMIDADE nos embargos (20/05/2025). A lei tem efeito imediato e geral e se aplica aos contratos em curso a partir de sua vigência. O contrato se divide: regra antiga até 10/11/2017, regra nova a partir de 11/11/2017.",
+     "fonte": "02-base-normativa-verbas.md § 1, Corrente A",
+     "situacao": "tese vinculante"
     },
     {
      "id": "ultratividade",
      "preset": "TRAB-INTERTEMP-ULTRATIVO",
      "eixo_efetivo": "data-de-admissao",
-     "fundamento": "Contrato iniciado antes da Reforma segue a regra antiga por toda a sua duração, sob pena de ofensa à irretroatividade, ao princípio da proteção e à segurança jurídica.",
-     "fonte": "02-base-normativa-verbas.md § 1, Corrente B"
+     "fundamento": "Posição dos DEZ MINISTROS VENCIDOS no Tema 23 (15 x 10). Contrato iniciado antes da Reforma segue a regra antiga por toda a sua duração, sob pena de ofensa à irretroatividade, ao princípio da proteção e à segurança jurídica.",
+     "fonte": "02-base-normativa-verbas.md § 1, Corrente B",
+     "situacao": "POSIÇÃO VENCIDA",
+     "aplicavel_apenas_se": "o título judicial a tiver adotado EXPRESSAMENTE. Nesse caso prevalece por R8 (título > usuário > default). Fora dessa hipótese, não se aplica."
     }
    ],
-   "sem_default": true,
    "por_que_sem_default": "O corpus manda literalmente NÃO RESOLVER: 'Há acórdãos do TST nos dois sentidos, inclusive dentro do mesmo tema (intervalo intrajornada). Não resolver — expor como preset.' Atribuir um default aqui seria arbitrar a divergência que a base proíbe arbitrar. A consequência é dura e correta: sem escolha explícita, o cálculo dos regimes dependentes NÃO É CALCULÁVEL. Ver R20-EXCECAO.",
    "impacto": "A própria base diz que, tendo a Gasmig contratos anteriores a 11/11/2017 gerando passivo, a escolha move o resultado em praticamente todos os pontos daquela seção.",
    "afeta_parametros": [
@@ -109,7 +111,14 @@
    "escopo": "apuracao",
    "eixo_origem": "declarado",
    "depende_de": [],
-   "afeta_verbas": []
+   "afeta_verbas": [],
+   "default": "tempus-regit-actum",
+   "default_justificativa": "Tese VINCULANTE do Tema 23 do TST. Deixou de ser R20-EXCECAO no bloco 15: até então o regime não tinha default porque o corpus registrava duas correntes simétricas e mandava não resolver. O Pleno resolveu. TST, Tema 23 dos recursos repetitivos — IncJulgRREmbRep-528-80.2018.5.14.0004, Tribunal Pleno, j. 25/11/2024 (15 x 10), TRANSITADO EM JULGADO. Tese: 'A Lei nº 13.467/2017 possui aplicação imediata aos contratos de trabalho em curso, passando a regular os direitos decorrentes de lei cujos fatos geradores tenham se efetivado a partir de sua vigência.' Modulação pedida e NEGADA POR UNANIMIDADE nos embargos (20/05/2025).",
+   "historico_da_decisao": {
+    "ate_o_bloco_14": "sem_default — o corpus registrava duas correntes e mandava não resolver",
+    "bloco_14": "o confronto normativo localizou o Tema 23 e registrou que a divergência deixou de ser simétrica; NÃO alterou o preset",
+    "bloco_15": "default atribuído, com a ultratividade mantida como posição vencida"
+   }
   },
   {
    "id": "pr.oj394-reflexo-rsr",

@@ -316,7 +316,7 @@ que o corpus traz é o grau médio, 20%. Reintroduzir só com a fonte.
 
 **Correção do catálogo anterior:** a variante `salario-basico` de
 `pn.insalubridade.base` **foi removida**. A v1 registrava a SV 4 como "suspensa" pela
-Rcl 6.275. `02-base-normativa-verbas.md` § 5 mostra que a Reclamação foi **cassada
+Rcl 6.275. `02-base-normativa-verbas.md` § 5 mostra que a **Súmula** foi **cassada
 definitivamente em abril de 2018**. A variante não existe mais.
 
 ### 8.4 Transferência e comissões

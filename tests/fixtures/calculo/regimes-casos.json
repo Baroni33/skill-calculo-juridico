@@ -31,13 +31,13 @@
     {
       "id": "c1.intertemporal-sem-escolha",
       "titulo": "Contrato de 2015, competência de 2024, NENHUMA escolha intertemporal",
-      "o_que_prova": "R20-EXCECAO. O corpus manda não resolver; sem escolha, não há default e o regime dependente não calcula. O silêncio vira bloqueio visível, não um número plausível.",
+      "o_que_prova": "INVERTEU NO BLOCO 15. Até o bloco 14 este caso provava R20-EXCECAO: o corpus mandava não resolver e o silêncio virava bloqueio visível. O Tema 23 do TST fixou tese vinculante, o regime ganhou default, e agora o silêncio resolve por tempus regit actum — MARCANDO a conta com origem 'default', por R20. A competência de 2024 é posterior ao corte, logo aplica a redação da Reforma.",
       "contrato": "antigo",
       "competencia": "2024-05",
       "escolhas": {},
       "espera": {
-        "pr.intertemporal": {"calculavel": false, "motivo": "sem-default-e-sem-escolha"},
-        "pr.intrajornada-71-4": {"calculavel": false, "motivo": "sem-default-e-sem-escolha"}
+        "pr.intertemporal": {"calculavel": true, "variante": "tempus-regit-actum", "origem": "default"},
+        "pr.intrajornada-71-4": {"calculavel": true, "variante": "redacao-reforma"}
       }
     },
     {
@@ -76,7 +76,7 @@
       "o_que_prova": "A interação que o enunciado do bloco pediu para modelar explicitamente. Sob ultratividade o eixo vira a data de ADMISSÃO: 2015 é anterior ao corte, e a competência de 2024 resolve pela redação ANTERIOR. A regra nova nunca é consultada para este contrato.",
       "contrato": "antigo",
       "competencia": "2024-05",
-      "escolhas": {"pr.intertemporal": "ultratividade"},
+      "escolhas": {"pr.intertemporal": {"variante": "ultratividade", "justificativa": "título judicial adotou expressamente a ultratividade — posição vencida no Tema 23 do TST, mas prevalente por R8 quando o título a acolhe"}},
       "espera": {
         "pr.intrajornada-71-4": {
           "calculavel": true, "variante": "redacao-anterior",
@@ -96,7 +96,7 @@
       "o_que_prova": "Sob ultratividade o contrato novo aplica a regra nova em qualquer competência — inclusive numa anterior à admissão, que o motor não deve inventar. A competência não governa; a admissão, sim.",
       "contrato": "novo",
       "competencia": "2016-08",
-      "escolhas": {"pr.intertemporal": "ultratividade"},
+      "escolhas": {"pr.intertemporal": {"variante": "ultratividade", "justificativa": "título judicial adotou expressamente a ultratividade — posição vencida no Tema 23 do TST, mas prevalente por R8 quando o título a acolhe"}},
       "espera": {
         "pr.intrajornada-71-4": {
           "calculavel": true, "variante": "redacao-reforma",

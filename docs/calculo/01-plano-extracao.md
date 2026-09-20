@@ -179,11 +179,38 @@ Passada única, sem map-reduce — cabe em contexto. Cap. 1 custas, cap. 2 dívi
 
 Um bloco por prompt. `/clear` entre blocos.
 
-**Fase 3 — Consolidação em espinha + detalhe.**
+> **ORDEM CORRIGIDA NO BLOCO 15.** Este documento numerava a consolidação como Fase 3 e o
+> confronto normativo como Fase 4. **A ordem real é a inversa, e não é detalhe de rótulo:** o
+> confronto tem de vir antes, porque é ele que impede a consolidação de fundir conteúdo
+> invertido. Foi executado assim — bloco 14 (confronto) antes do bloco 15 (consolidação). Os
+> títulos abaixo estão na ordem de execução.
+
+**Fase 3 — Confronto normativo.** Só trabalhista. Cada regra extraída dos capítulos 7, 8, 9,
+10, 12 e 14 é confrontada com `00-base-normativa.md` e recebe um veredito: **vigente**,
+**superado**, **bifurcado**, **inaplicável** ou **sem fonte**.
+
+Sem esta fase, a validação adversarial confirma fidelidade ao manual de 2016 e o motor produz
+valores errados com aparência de fundamentação.
+
+**Executada no bloco 14.** Resultado em `confronto-normativo/`: 50 vereditos, **32
+bifurcados** — nem a Reforma, nem a ADC 58, nem a Res. 225/2025 do TST revogaram com efeito
+*ex nunc*.
+
+**Fase 4 — Consolidação em espinha + detalhe.**
 
 A validação adversarial contra o original **não funciona aqui**, porque os erros de consolidação são cruzados: contradição entre capítulos, exceção perdida, regra de precedência invertida. Não existe "original" contra o qual comparar a espinha.
 
-Validação por lista de casos difíceis. Se a espinha não responde às seis abaixo, perdeu informação essencial:
+Validação por lista de casos difíceis. Se a espinha não responde às seis abaixo, perdeu
+informação essencial.
+
+> **SUPERADO NO BLOCO 15.** Esta lista de seis foi escrita **antes da extração**, e o caso 6
+> está errado — a OJ 394 foi revertida pelo Tema Repetitivo 9 em 20/03/2023.
+>
+> **Substituída por [`03-casos-dificeis.md`](03-casos-dificeis.md): 33 casos em nove grupos**,
+> dos quais 27 marcados `[NOVO]` porque **vieram da extração, não da antecipação**. A validação
+> do bloco 15 responde aos 33, em `consolidado/00-validacao-casos.md`.
+>
+> Os seis ficam por registro do que se sabia antes de começar.
 
 1. SELIC e taxa legal englobam correção e juros — fica claro que aplicar CM junto é erro?
 2. O título judicial prevalece sobre o manual — sobreviveu à consolidação?
@@ -191,10 +218,6 @@ Validação por lista de casos difíceis. Se a espinha não responde às seis ab
 4. Consolidação em dez/2021 usa IPCA-E 1,17% no geral, INPC 0,84% no previdenciário e TR 0,00% no trabalhista
 5. Juros compensatórios em desapropriação passam a estar embutidos na SELIC a partir de dez/2021, sem taxa adicional
 6. OJ 394 da SDI-I: reflexo de HE no RSR não repercute em férias, 13º, aviso e FGTS
-
-**Fase 4 — Confronto normativo.** Só trabalhista. Cada regra extraída dos capítulos 7, 8, 9, 10, 12 e 14 é marcada como **vigente**, **superada** ou **alterada**, contra `00-base-normativa.md`.
-
-Sem esta fase, a validação adversarial confirma fidelidade ao manual de 2016 e o motor produz valores errados com aparência de fundamentação.
 
 **Fase 5 — Build das skills.** A estrutura se escreve a partir do conteúdo consolidado, não antes.
 

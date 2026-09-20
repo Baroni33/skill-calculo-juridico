@@ -747,11 +747,18 @@ de modelagem, não de pesquisa.
 
 | # | Decisão |
 |---|---|
-| **D15-01** | **`pr.intertemporal` continua sem default?** O **Tema 23 do TST** (Pleno, 25/11/2024, 15×10, vinculante, modulação negada) fixou *tempus regit actum* com eixo na **competência do fato gerador**. A Corrente B da base é a posição dos dez vencidos. Se ganhar default, **os 17 pontos do corte de 11/11/2017 destravam** e `R20-EXCECAO` cai de cinco para quatro |
-| **D15-02** | **Corrigir a colisão `F*`** — `F1`–`F9` do bloco 03 e `F1`–`F7` do bloco 04 são pontos diferentes com os mesmos rótulos, e há remissões cruzadas já ambíguas nos arquivos |
 | **D15-03** | **Registrar os cancelamentos da Res. 225/2025 com as datas de perda de eficácia**, não como revogação simples. São 27 súmulas com data pretérita declarada |
 | **D15-04** | **Implementar os cortes por data, não por ponto** — 17 pontos compartilham 11/11/2017 |
 | **D15-05** | **Inverter a numeração das fases** em `01-plano-extracao.md`: o confronto vem antes da consolidação |
+
+**D15-01 e D15-02 saíram desta tabela — foram decididas. Ver § 22.2.1.**
+
+### 22.2.1 DECIDIDAS no bloco 15 — referência 2026-09-20
+
+| # | Decisão |
+|---|---|
+| **D15-01** — *"`pr.intertemporal` continua sem default?"* | **DECIDIDA: ganhou default.** É `tempus-regit-actum`, eixo na **competência do fato gerador**, por força do **Tema 23 do TST** (IRR, Pleno, 25/11/2024, 15×10, transitado, modulação negada por unanimidade). A **ultratividade** — a Corrente B da base, posição dos dez vencidos — permanece como variante aplicável **mediante justificativa** (R21) ou a título que a tenha adotado expressamente (R8). Consequências: **o corte de 11/11/2017 destravou** e **`R20-EXCECAO` caiu de cinco para quatro casos** (`presets-regime.md` § 3, § 7.4 e § 8.1; `consolidado/05-imputacao.md` § 3, que já trata `pr.imputacao` como o **quarto**) |
+| **D15-02** — colisão `F1`–`F9` × `F1`–`F7` | **DECIDIDA: prefixo por bloco**, `B03-` e `B04-`. Aplicado nas **espinhas** (`bloco-03-verbas.md` § 8, `bloco-04-verbas2.md` § 12) e nos **detalhes**. **Ressalva do bloco 14:** seguia **não aplicada nos dois relatórios** — `bloco-03-relatorio.md` e `bloco-04-relatorio.md` —, onde `F1` significava "base de cálculo" num e "horas *in itinere*" no outro. Os dois relatórios foram renumerados em **2026-09-20**, cada um com a nota `> **RENUMERADO NO BLOCO 15.**` no topo |
 
 ### 22.3 ERROS DE FATO na base — confirmados, não corrigidos
 

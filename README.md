@@ -14,6 +14,8 @@ A skill não é o entregável. O código que um agente constrói lendo a skill �
 | `docs/calculo/01-plano-extracao.md` | Arquitetura das skills, schemas, triagem do corpus, pipeline |
 | `docs/calculo/fontes.md` | Localização dos PDFs e offsets de paginação |
 | `docs/calculo/pendencias.md` | O que está em aberto e o que bloqueia |
+| `docs/calculo/consolidado/` | **Fase 4, fechada.** Onze arquivos, um por assunto: espinha do que o motor precisa, detalhe de onde está a evidência. **É daqui que a skill se escreve.** |
+| `docs/calculo/consolidado/00-calendario-de-cortes.md` | **Chave primária da consolidação.** Um par `(data, eixo)` por corte |
 
 Os dois manuais em PDF **não são versionados aqui** — ver `docs/calculo/fontes.md`.
 
@@ -24,7 +26,8 @@ docs/calculo/
   extracao/trabalhista/        Fase 2 — um arquivo por bloco de páginas
   extracao/justica-federal/    Fase 2 — passada única
   tabelas-normativas/          JSON de regra (não de série)
-  confronto-normativo/         Fase 4 — só trabalhista
+  confronto-normativo/         Fase 3 — auditoria: 50 vereditos, só trabalhista
+  consolidado/                 Fase 4 — espinha + detalhe, por assunto
 skills/
   calculo-judicial-core/           domínio, invariantes, aritmética, comparador
   calculo-judicial-atualizacao/    cadeias período→indexador, com references/
@@ -75,7 +78,7 @@ Fases 0 e 1 fechadas (contrato de saída e triagem).
 **Fase 2 encerrada no bloco 13.** Os dois manuais estão extraídos, com destino registrado
 em todas as 564 páginas.
 
-**Fase 4 (confronto normativo) encerrada no bloco 14** — ver
+**Fase 3 (confronto normativo) encerrada no bloco 14** — ver
 [`docs/calculo/confronto-normativo/`](docs/calculo/confronto-normativo/). **50 vereditos,
 zero `SEM FONTE`**, e **32 deles `BIFURCADO`**: nem a Reforma, nem a ADC 58, nem a
 **Resolução 225/2025 do TST** revogaram com efeito *ex nunc* — todas cortaram no tempo.
@@ -84,14 +87,26 @@ zero `SEM FONTE`**, e **32 deles `BIFURCADO`**: nem a Reforma, nem a ADC 58, nem
 > de **cadeia temporal por ponto**, como já tem para índices. Um `SUPERADO` mal lido apaga o
 > período anterior ao corte — e a maioria das contas atravessa o corte.
 
-Dois achados pendentes de decisão no bloco 15: o **Tema 23 do TST** (Pleno, 25/11/2024,
-vinculante) resolveu a divergência intertemporal que sustenta o `pr.intertemporal` **sem
-default**; e **17 dos pontos compartilham o mesmo corte de 11/11/2017**, o que só apareceu
-depois de normalizar três grafias distintas da mesma data.
+**Fase 4 (consolidação) encerrada no bloco 15** — ver
+[`docs/calculo/consolidado/`](docs/calculo/consolidado/) e
+[`docs/calculo/extracao/bloco-15-relatorio.md`](docs/calculo/extracao/bloco-15-relatorio.md).
+Treze blocos de extração e os 50 vereditos viraram **onze arquivos**, espinha e detalhe. Os
+**33 casos difíceis** foram o critério de aceite: **31 respondidos, 2 parciais por ponteiro
+ausente, zero não respondidos**.
 
-> **A numeração das fases está invertida em `01-plano-extracao.md`** — ele chama o confronto de
-> "Fase 4" e a consolidação de "Fase 3". O confronto vem antes. Registrado, a corrigir no
-> bloco 15.
+**A consolidação corrigiu a própria instrução que a governava.** "Implementar por data" está
+incompleto: **dezoito pontos compartilham 11/11/2017 e cortam por três eixos diferentes** —
+competência do fato gerador, data de propositura da ação e modalidade do acordo.
+
+> **A chave não é a data. É o par `(data, eixo)`.**
+
+Duas decisões do bloco 15 mudam o motor: **`pr.intertemporal` ganhou default** — `tempus regit
+actum`, fundado no **Tema 23 do TST** (Pleno, 25/11/2024, 15 × 10, transitado, modulação negada
+por unanimidade), com `R20-EXCEÇÃO` caindo de cinco casos para **quatro**; e a numeração das
+fases em `01-plano-extracao.md`, que estava invertida, foi corrigida — **o confronto vem antes
+da consolidação**.
+
+**Nenhuma skill escrita. A skill é o bloco 16.**
 
 | Bloco | Conteúdo | Relatório |
 |---|---|---|
@@ -110,7 +125,8 @@ depois de normalizar três grafias distintas da mesma data.
 | 11C | Capítulo 10, segmento D — vincendos e art. 12-B; **fecha a amortização** | `docs/calculo/extracao/trabalhista/bloco-11c-relatorio.md` |
 | 12 | Consolidação da base de conhecimento — presets, invariantes, armadilhas | `docs/calculo/extracao/bloco-12-relatorio.md` |
 | 13 | **Fechamento da extração** — cap. 10 seg. B, caps. 8, 12, 14 e varredura do 16 | `docs/calculo/extracao/bloco-13-relatorio.md` |
-| 14 | **Fase 4 — confronto normativo.** 50 vereditos, 19 suspeitas sobre a base | `docs/calculo/extracao/bloco-14-relatorio.md` |
+| 14 | **Fase 3 — confronto normativo.** 50 vereditos, 19 suspeitas sobre a base | `docs/calculo/extracao/bloco-14-relatorio.md` |
+| 15 | **Fase 4 — consolidação.** Onze arquivos em espinha e detalhe; os 33 casos difíceis como aceite | `docs/calculo/extracao/bloco-15-relatorio.md` |
 
 O **Manual de Cálculos da Justiça Federal (CJF, Res. 990/2026) está integralmente extraído** —
 **80 páginas de capítulo** mais a Apresentação e a Resolução, sete cadeias temporais em
