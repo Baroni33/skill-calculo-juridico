@@ -1,89 +1,226 @@
 # skill-calculo-juridico
 
-Base para construir o módulo de cálculo judicial (cível, trabalhista, tributário
-federal) do SaaS jurídico. Repositório **separado** do SaaS: aqui ficam a extração
-normativa, as tabelas de regra e as skills; lá fica o produto.
+**Base de conhecimento e skills para cálculo judicial brasileiro** — trabalhista e cível, com
+ramos tributário federal e previdenciário. Repositório **separado** do SaaS: aqui ficam a
+extração normativa, as tabelas de regra e as skills; lá fica o produto.
 
-A skill não é o entregável. O código que um agente constrói lendo a skill é.
+> **O motor é de produto, não de cliente.** Nenhuma skill cita nome de cliente, nem assume UF,
+> tribunal ou polo processual. Onde há variante regional, ela entra por **cadastro**, sob a
+> chave `(regra, tribunal, competência)`.
 
-## Fonte de verdade
+**A skill não é o entregável. O código que um agente constrói lendo a skill é.**
 
-| Documento | Papel |
+---
+
+## As duas fontes primárias
+
+**Nenhum PDF é versionado aqui** — os dois vivem fora do repositório, referenciados por caminho
+em [`docs/calculo/fontes.md`](docs/calculo/fontes.md).
+
+| Manual | Emissor | Edição |
+|---|---|---|
+| **Cálculos da Justiça do Trabalho** | TRT-3, Secretaria de Cálculos Judiciais | rótulo **julho/2016** — **ver a ressalva** |
+| **Procedimentos para os Cálculos na Justiça Federal** | Conselho da Justiça Federal | **Resolução CJF 990/2026** — edição vigente |
+
+### O manual trabalhista não é o que o rótulo diz — e está materialmente defasado
+
+**A capa não traz data alguma.** O rótulo *"2016"* vem da base do projeto, e **o conteúdo é
+posterior**: transcreve acórdão publicado em **19/12/2016**, traz salário mínimo de 2017, tabelas
+de IRRF e de contribuição previdenciária de 2017, e calendários até 2020. **É, no mínimo, de
+2017.**
+
+**A consequência muda a leitura:** ele **não é anterior ao IRR-849** — ele o transcreve e comenta.
+**Continua anterior à Lei 13.467/2017**, cuja vigência é 11/11/2017.
+
+**E está materialmente defasado em quatro frentes**, todas com destino registrado no confronto
+normativo:
+
+| Frente | O que mudou depois |
 |---|---|
-| `docs/calculo/00-base-normativa.md` | Regras vigentes, validadas contra fontes primárias e acórdãos. **Prevalece sobre os manuais em PDF.** |
-| `docs/calculo/01-plano-extracao.md` | Arquitetura das skills, schemas, triagem do corpus, pipeline |
-| `docs/calculo/fontes.md` | Localização dos PDFs e offsets de paginação |
-| `docs/calculo/pendencias.md` | O que está em aberto e o que bloqueia |
-| `docs/calculo/consolidado/` | **Fase 4, fechada.** Um arquivo por assunto: espinha do que o motor precisa, detalhe de onde está a evidência. **É daqui que a skill se escreve.** A contagem de arquivos está em [`00-numeros.md`](docs/calculo/consolidado/00-numeros.md) § 6 |
-| `docs/calculo/consolidado/00-calendario-de-cortes.md` | **Chave primária da consolidação.** Um par `(data, eixo)` por corte |
-| [`docs/calculo/consolidado/00-numeros.md`](docs/calculo/consolidado/00-numeros.md) | **Todo número de RESULTADO do repositório** — cadeias, segmentos, R1/R2/R3, placar dos validadores, testes, arquivos, linhas das `SKILL.md`. **Gerado por script** (`python scripts/calculo/gera_numeros.py`), nunca digitado |
+| **correção monetária** | ADC 58, Lei 14.905/2024, EC 113/2021 e EC 136/2025 |
+| **juros** | taxa legal desde set/2024; Selic única desde dez/2021 |
+| **honorários** | art. 791-A da CLT — a sucumbência **passa a existir** na Justiça do Trabalho |
+| **contribuição sindical** | torna-se **facultativa** |
 
-> **Número de resultado tem um dono só.** Nenhum outro arquivo publica contagem do estado
-> corrente — eles apontam para `00-numeros.md`. Número de **conteúdo normativo** (42,72% em
-> jan./1989, 0,5% a.m., `art. 457`, `pagina_pdf` 42) **não é resultado, é o dado**, e fica onde
-> está. Número em **relatório de bloco** é registro datado e **não** se atualiza.
->
-> A regra nasceu de três reincidências: o bloco 19 publicou *"R1 e R2 não se moveram"* em quatro
-> arquivos **depois** de R1 ter ido a 21; o bloco 18 deixou *"14 ok, 10 erros"* num runbook
-> depois de os erros sumirem; o bloco 17 deixou *"97 de 97 segmentos"* depois de virarem 126.
+> **`docs/calculo/00-base-normativa.md` prevalece sobre os dois manuais** sempre que houver
+> conflito.
+
+---
+
+## Estado
+
+**Extração completa.** As **564 páginas** dos dois manuais têm **destino registrado** — cobertas,
+ou com a razão de não terem sido, página a página. Ver
+[`docs/calculo/extracao/mapa-de-cobertura.md`](docs/calculo/extracao/mapa-de-cobertura.md).
+
+**Confronto normativo fechado.** Cada regra extraída recebeu veredito contra a base — `VIGENTE`,
+`SUPERADO`, `BIFURCADO`, `INAPLICÁVEL` ou `SEM FONTE`. **Dois terços são `BIFURCADO`**, e a razão
+é estrutural: nem a Reforma, nem a ADC 58, nem a Res. 225/2025 do TST revogaram com efeito
+*ex nunc* — **todas cortaram no tempo**.
+
+> **Consequência de arquitetura:** o motor **não pode ter uma tabela de regras vigentes**.
+> Precisa de **cadeia temporal por ponto**. Um `SUPERADO` mal lido apaga o período anterior ao
+> corte — e a maioria das contas atravessa o corte.
+
+**Consolidação e skills construídas.** Quatro skills, com `references/` divididas entre
+**nacional** e **regional**.
+
+> **Toda contagem — cadeias, segmentos, testes, violações, arquivos — vive em
+> [`docs/calculo/consolidado/00-numeros.md`](docs/calculo/consolidado/00-numeros.md), gerado por
+> script.** Nenhum outro arquivo publica número de resultado. Número de **conteúdo normativo**
+> (42,72% em jan./1989, `art. 457`, `pagina_pdf` 42) **não é resultado, é o dado**, e fica onde
+> está. Número em **relatório de bloco** é registro datado e **não se atualiza**.
+
+**A regra nasceu de três reincidências**, e vale citá-las porque são o exemplo que a ensina: o
+bloco 19 publicou *"R1 e R2 não se moveram"* em **quatro arquivos** depois de R1 ter ido a 21; o
+bloco 18 deixou *"14 ok, 10 erros"* num runbook depois de os erros sumirem; o bloco 17 deixou
+*"97 de 97 segmentos"* depois de virarem 126.
+
 > **Número digitado em quatro lugares envelhece em quatro lugares.**
 
-Os dois manuais em PDF **não são versionados aqui** — ver `docs/calculo/fontes.md`.
+---
+
+## Por onde começar
+
+**Nesta ordem.** Pular etapa produz número plausível com a conta inteira no regime errado.
+
+| # | Leia | Por quê |
+|---|---|---|
+| **1** | [`docs/calculo/00-base-normativa.md`](docs/calculo/00-base-normativa.md) | **Prevalece sobre os manuais.** Regras vigentes e as invariantes R1–R24 |
+| **2** | [`02-base-normativa-verbas.md`](docs/calculo/02-base-normativa-verbas.md) e [`02a-adendo-lacunas-verbas.md`](docs/calculo/02a-adendo-lacunas-verbas.md) | o que cada verba é — e o que **falta** saber sobre ela |
+| **3** | [`consolidado/00-calendario-de-cortes.md`](docs/calculo/consolidado/00-calendario-de-cortes.md) | **A chave primária.** Um par `(data, eixo)` por corte |
+| **4** | [`consolidado/`](docs/calculo/consolidado/) | espinha por assunto, com o detalhe ao lado |
+| **5** | [`skills/`](skills/) | o que um agente lê para construir o motor |
+
+### A chave não é a data — é o par `(data, eixo)`
+
+**Dezoito pontos compartilham 11/11/2017, e cortam por três eixos diferentes:** competência do
+fato gerador, **data de propositura da ação** e **modalidade do acordo**.
+
+> Dois processos ajuizados no mesmo dia, com parcelas da mesma competência, **recebem respostas
+> diferentes**. Quem aplicar a data uniformemente erra os honorários de toda ação proposta antes
+> dela com parcelas posteriores — e vice-versa.
+
+---
 
 ## Estrutura
 
 ```
 docs/calculo/
-  extracao/trabalhista/        Fase 2 — um arquivo por bloco de páginas
-  extracao/justica-federal/    Fase 2 — passada única
-  tabelas-normativas/          JSON de regra (não de série)
-  confronto-normativo/         Fase 3 — auditoria: 50 vereditos, só trabalhista
-  consolidado/                 Fase 4 — espinha + detalhe, por assunto
+  00-base-normativa.md         fonte de verdade — prevalece sobre os PDFs
+  fontes.md                    onde estão os manuais, e os offsets de paginação
+  pendencias.md                o que está em aberto e o que bloqueia
+  extracao/trabalhista/        um arquivo por bloco de páginas
+  extracao/justica-federal/    passada única
+  tabelas-normativas/          JSON de regra — cadeias temporais, catálogos, manifesto
+  confronto-normativo/         os vereditos, um por regra
+  consolidado/                 espinha + detalhe — é daqui que a skill se escreve
 skills/
   calculo-judicial-core/           domínio, invariantes, aritmética, comparador
-  calculo-judicial-atualizacao/    cadeias período→indexador, com references/
+  calculo-judicial-atualizacao/    cadeias período→indexador, references/ por jurisdição
   calculo-trabalhista-liquidacao/  verbas, descontos, encargos
   indices-judiciais/               semântica dos índices e contrato de séries
 scripts/calculo/             validadores determinísticos
-tests/fixtures/calculo/      fixtures de aceite, seção 8 da base normativa
+tests/fixtures/calculo/      fixtures de aceite
 ```
 
-Cada pasta tem `README.md` com propósito, o que entra, o que não entra e a fase do
-pipeline. **As quatro skills estão escritas** desde o bloco 16.
+**Cada pasta tem `README.md`** com propósito, o que entra e o que não entra.
+
+---
+
+## O que bloqueia produção hoje
+
+**Nenhuma destas se fecha inventando dado.** Estão abertas porque fechá-las exigiria **escolher
+onde a fonte não escolhe**.
+
+| Pendência | Por que está aberta |
+|---|---|
+| **`P18-02` — três cadeias do CJF** | juros de mora da desapropriação **direta** e **indireta**, e juros da contribuição previdenciária. **A tabela das três nunca foi extraída linha a linha** — gerá-las exigiria reconstruir a **estrutura**, pior que inventar um valor |
+| **índices `indeterminado` sem fonte** | doze rótulos. O item 4.1.2.4 do CJF nomeia **sete** índices, e **lista exemplificativa não autoriza estender por semelhança de nome**. Virada com ponta indeterminada **bloqueia** sob `R3-INDETERMINADO` |
+| **taxa legal — `P19-01`** | **não espera fonte, espera decisão.** A fórmula compõe um `percentual` (Selic) com um `janela-deslocada` (IPCA-15), e **a tricotomia de R3 não tem resultado para essa composição** |
+| **dois bloqueios aritméticos — pp. 266 e 269** | deltas de **10,00 exatos** e **2.036,51 com índice sem origem**. **Nenhum é arredondamento**, e o segundo propaga |
+| **`pr.imputacao` sem default** | o critério proporcional é **aplicado 101 vezes e fundamentado zero**; `art. 354 do CC` tem **zero ocorrências em 471 páginas**. **Não são duas normas concorrentes — é uma norma contra um costume de liquidação sem base declarada.** Arbitrar seria o motor **tomar posição jurídica**. Amplitude medida: **até 23,83%** do saldo |
+| **§ 7 de `00-base-normativa.md`** | enuncia R3 com uma lista que a fonte não sustenta. **É fonte de verdade do usuário** — divergência **declarada**, correção **fora do agente** |
+
+### Dependências externas — dado que o repositório não tem
+
+| O que falta | O que trava |
+|---|---|
+| **Tabela Única do CSJT** | a cadeia trabalhista **anterior a março de 1991**. O cap. 7 do manual **delega** a ela — é **série**, não regra (`P9-02`). **É também a dependência que torna o motor nacional** |
+| **séries históricas de normas coletivas** | `pr.planos-economicos` — dez planos, 1986–1996 — fica **bloqueado por falta de série** |
+| **faixas do art. 85, § 3º, do CPC** | a **regra estrutural** está fechada com fonte primária; **os valores não estão transcritos**. Sem eles, não se calcula honorário por faixa |
+
+---
+
+## Cobertura regional — o que alcança hoje
+
+**Quinze fontes regionais, de três tribunais:** **TRT-3** (treze), **TRT-4** (uma — a posição da
+SEE sobre RSR em comissões) e **TJMG** (uma — a tabela da CGJ). São **nove verbetes** e **seis
+fontes não-verbete**, entre elas a IN que fixa **todas as custas de execução** do TRT-3.
+
+> **Outra região exige CADASTRO, não refatoração.** A chave `(regra, tribunal, competência)` já
+> existe, e o **fallback nacional está identificado para catorze das quinze**.
+
+**E a premissa que cai junto:** a atualização monetária trabalhista é **nacional** desde a
+Res. CSJT 8/2005 — hoje Res. CSJT 380/2024, com o **PJe-Calc** como sistema de toda a Justiça do
+Trabalho.
+
+> **O manual do TRT-3 é fonte procedimental de uma região que aplica norma nacional.** Sua
+> **aritmética não é prática regional divergente** — regional são **os verbetes que ele invoca**.
+
+**R24 — ausência de súmula regional não é erro.** Resolve pela regra nacional e marca a conta
+`sem cobertura regional`. Mesma forma da R14: **o dado não existe, não a regra**.
+
+---
 
 ## Validadores
 
 ```
 python -m unittest discover -s scripts/calculo -p "test_*.py"
-python scripts/calculo/valida_taxa_legal.py --validar
+python scripts/calculo/gera_numeros.py             # regenera 00-numeros.md
+python scripts/calculo/gera_numeros.py --verifica  # falha se divergir do estado real
+python scripts/calculo/valida_cadeias.py           # R1, R2, R3 sobre as cadeias reais
 python scripts/calculo/valida_bloco_tabelas.py     # exit 0 = sem erro de extração
-python scripts/calculo/extrai_bloco_01.py          # reextrai o bloco 1
 python scripts/calculo/valida_parametros.py --catalogo-ok
 ```
 
 | Script | Verifica |
 |---|---|
-| `valida_cobertura.py` | R1 (englobamento concorrente), R2 (lacuna/sobreposição), **R3 (virada entre tipos de indexador)** |
-| `valida_taxa_legal.py` | R6 (piso zero), R11 (razão, não subtração), R12 (decimal, truncamento) |
-| `valida_bloco_tabelas.py` | Bloco 1: contagem contra o PDF, faixas, vigências, proveniência |
-| `valida_parametros.py` | Camada de norma coletiva: R14 a R18, precedência, conflito, piso legal |
-| `test_ponteiros.py` | **Ponteiro morto** — link ou nome de arquivo sem alvo, com ledger para narrativa histórica |
+| `valida_cobertura.py` | **R1** englobamento concorrente · **R2** lacuna e sobreposição · **R3** virada entre classes de indexador |
+| `valida_cadeias.py` | as cadeias reais, com **manifesto assimétrico** — cresce sozinho, **só encolhe por edição deliberada** |
+| `valida_taxa_legal.py` | **R6** piso zero · **R11** razão, não subtração · **R12** decimal e truncamento |
+| `valida_bloco_tabelas.py` | contagem contra o PDF, faixas, vigências, proveniência |
+| `valida_parametros.py` | camada de norma coletiva — **R14 a R18**, precedência, conflito, piso legal |
+| `test_ponteiros.py` | **ponteiro morto**, com ledger que distingue narrativa histórica |
+| `test_numeros.py` | **número de resultado digitado** fora de `00-numeros.md` |
 
-`valida_bloco_tabelas.py` separa **erro de extração** de **divergência do original** e só
-sai com código não-zero no primeiro. Divergência é resultado esperado do trabalho: o
-manual tem erros de digitação e calendários com dias faltando, e eles ficam registrados.
+**`valida_bloco_tabelas.py` separa erro de extração de divergência do original**, e só sai com
+código não-zero no primeiro. **Divergência é resultado esperado do trabalho:** o manual tem erros
+de digitação e calendários com dias faltando, e eles ficam **registrados, não corrigidos**.
 
-## Duas regras que economizam retrabalho
+---
 
-**Truncamento, nunca arredondamento.** Os dois pares de validação do Manual CJF só
-fecham com truncamento; half-up erra o último dígito em ambos. Ver
-`docs/calculo/pendencias.md` § 3.
+## Três regras que economizam retrabalho
 
-**`encoding='utf-8'` explícito em toda leitura.** Windows assume cp1252 e corrompe
-acentuação silenciosamente. A mojibake que aparece no terminal é renderização do
-console, não corrupção do arquivo.
+**Truncamento, nunca arredondamento.** Os dois pares de validação do Manual CJF só fecham com
+truncamento; half-up erra o último dígito em ambos. **E o critério é POR ETAPA, não global** —
+cinco cadeias de arredondamento convivem, e a do NMP **não é half-up**.
 
-## Estado
+**`encoding='utf-8'` explícito em toda leitura.** Windows assume cp1252 e corrompe acentuação
+silenciosamente. A mojibake no terminal é renderização do console, **não corrupção do arquivo**.
+
+**Afirmação de ausência exige escopo declarado — e contado.** *"Zero ocorrências no segmento"* e
+*"zero ocorrências em 471 páginas"* são afirmações diferentes, **e só a segunda sustenta uma
+negativa sobre o manual**. Escopo declarado **errado** é pior que escopo não declarado, porque
+**parece auditado**.
+
+---
+
+## Histórico — o que cada bloco descobriu
+
+> **Registro datado.** Os números aqui valem para o fechamento de cada bloco e **não se
+> atualizam** — um registro que se atualiza sozinho deixa de ser registro. Estado corrente em
+> [`00-numeros.md`](docs/calculo/consolidado/00-numeros.md).
 
 Fases 0 e 1 fechadas (contrato de saída e triagem).
 
