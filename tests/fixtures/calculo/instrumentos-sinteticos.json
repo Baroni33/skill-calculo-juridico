@@ -9,7 +9,7 @@
     "instrumentos-act-gasmig.json, que é real e parcial.",
     "alfa-producao sofre conflito Alfa×Gama entre 2025-05 e 2025-12; alfa-manutencao não."
   ],
-  "schema": "docs/calculo/tabelas-normativas/camada-norma-coletiva-schema.json",
+  "schema": "skills/calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-schema.json",
   "instrumentos": [
     {
       "id": "sintetico.cct-alfa.2024-2026",

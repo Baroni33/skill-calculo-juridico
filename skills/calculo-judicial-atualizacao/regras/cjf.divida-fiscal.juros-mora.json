@@ -26,7 +26,7 @@
     "marcador": "ponta_materializada"
   },
   "SEM_CONDICAO_E_SEM_DOMINIO_CONDICOES": "Esta cadeia NÃO usa 'condicao' nem 'dominio_condicoes', ao contrário da gêmea de correção (2.3.1.2). O eixo 'data-do-fato-gerador' aparece DENTRO de uma única linha — 'A partir de fev./1992: 1%, bifurcado por fato gerador (Selic/TMMCTN)' — e a tabela de 2.3.2.2 não a desdobra. Marcar o segmento com 'condicao' criaria um ramo sem gêmeo e abriria lacuna de R2 no universo incondicional; declarar 'dominio_condicoes' para fechá-la seria afirmar exaustividade de um domínio que esta tabela não enumera. O eixo fica em 'eixo_declarado', campo de registro, que não muda a aritmética de cobertura.",
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
   "segmentos": [
     {
       "inicio": "1964-07",

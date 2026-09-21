@@ -168,5 +168,5 @@
     "por_que": "1942-11 é o marco mais antigo que o capítulo 7 declara (item 7.7, instituição do cruzeiro). 2016-05 é a data-base dos exemplos do próprio manual (tabela única vigente em maio/16). O manual é de 2016 e não alcança nada depois disso — por isso a janela fecha ali, e não na data de hoje.",
     "marcador": "ponta_materializada"
   },
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

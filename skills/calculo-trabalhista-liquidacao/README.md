@@ -45,3 +45,20 @@ base o corpus **define só por exclusão** (`P13B-01`, aberta). A instabilidade 
 ## Estado
 
 **Escrita.** `SKILL.md` + `references/` com seis arquivos — bloco 16, Fase 5.
+
+## `regras/` e `scripts/` — BLOCO 25
+
+**A camada de norma coletiva e as estruturas do capítulo 18 vieram para dentro da skill.**
+De `docs/calculo/tabelas-normativas/` para `regras/`: `camada-norma-coletiva-catalogo.json`
+e seu schema — lidos por `scripts/valida_parametros.py` — mais os seis `trt3-18.*`
+(`categoria: "A-semantica"`) de IRRF, contribuição, grau de risco, RSR, URV e incidência,
+que são o que as `references/` de liquidação consultam.
+
+**O que VEIO é estrutura e critério; o que FICOU é valor.** Os `trt3-18.*` guardam os
+**campos** da faixa — o de IRRF traz `["base_calculo","aliquota_pct","parcela_deduzir"]` —
+e **não as faixas**. As faixas, as alíquotas e as cotações continuam em
+`docs/calculo/extracao/trabalhista/serie-*.csv`, marcadas `OUT_OF_SCOPE` no cabeçalho.
+**Série de valor não migra**, e os `.json` daqui seguem apontando para ela como **dado
+externo** — exatamente como apontavam antes.
+
+`scripts/valida_parametros.py` resolve o catálogo por `__file__`, sem tocar em `docs/`.

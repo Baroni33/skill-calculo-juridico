@@ -48,6 +48,7 @@ import unittest
 from decimal import Decimal, ROUND_DOWN, ROUND_HALF_UP, localcontext
 from pathlib import Path
 
+import caminhos_de_skill  # noqa: F401
 from valida_cobertura import valida_cobertura
 from valida_taxa_legal import (
     PARES_VALIDACAO_INPC,
@@ -57,7 +58,7 @@ from valida_taxa_legal import (
 )
 
 RAIZ = Path(__file__).resolve().parents[2]
-TABELAS = RAIZ / "docs" / "calculo" / "tabelas-normativas"
+TABELAS = caminhos_de_skill.CADEIAS
 FIXTURES = RAIZ / "tests" / "fixtures" / "calculo"
 SKILLS = RAIZ / "skills"
 
@@ -240,7 +241,9 @@ class TestR12SemPontoFlutuanteBinarioNoCodigoDesteRepositorio(unittest.TestCase)
     `skills/calculo-judicial-core/references/linguagem-alvo-e-aritmetica.md`
     e **não foi implementado** — é trabalho de um bloco futuro.
 
-    ESCOPO DECLARADO: todo `.py` de `scripts/calculo/` e de
+    ESCOPO DECLARADO: todo `.py` de `scripts/calculo/`, dos `scripts/` das
+    **quatro skills** (bloco 25 — os validadores promovidos continuam sob R12,
+    e sair de `scripts/calculo/` não podia tirá-los da varredura) e de
     `docs/calculo/aceitacao/frente-a/`, EXCETO os `test_*.py`. A exceção é
     necessária e não é anistia: `test_valida_taxa_legal.py` e
     `test_valida_parametros.py` PLANTAM float de propósito, para provar que o
@@ -250,11 +253,14 @@ class TestR12SemPontoFlutuanteBinarioNoCodigoDesteRepositorio(unittest.TestCase)
 
     ARVORES = (
         RAIZ / "scripts" / "calculo",
+        *caminhos_de_skill.SCRIPTS_DE_SKILL,
         RAIZ / "docs" / "calculo" / "aceitacao" / "frente-a",
     )
 
     def _fontes(self):
         for arvore in self.ARVORES:
+            if not arvore.is_dir():
+                continue
             for p in sorted(arvore.rglob("*.py")):
                 if "__pycache__" in p.parts or p.name.startswith("test_"):
                     continue

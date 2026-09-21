@@ -86,7 +86,10 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
 SCRIPTS = RAIZ / "scripts" / "calculo"
-TABELAS = RAIZ / "docs" / "calculo" / "tabelas-normativas"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos_de_skill  # noqa: E402
+# BLOCO 25 — as regras migraram para `regras/` dentro das skills.
+TABELAS = caminhos_de_skill.REGRAS_ATUALIZACAO
 CONSOLIDADO = RAIZ / "docs" / "calculo" / "consolidado"
 SKILLS = RAIZ / "skills"
 DESTINO = CONSOLIDADO / "00-numeros.md"
@@ -236,8 +239,12 @@ def conta_arquivos() -> list[tuple[str, int]]:
         ("`skills/*/SKILL.md` — skills publicadas",
          len(sorted(SKILLS.glob("*/SKILL.md")))),
         ("`skills/*/references/*.md`", len(refs)),
-        ("`docs/calculo/tabelas-normativas/*.json` — todos",
-         len(sorted(TABELAS.glob("*.json")))),
+        # BLOCO 25 — as regras migraram para `regras/` dentro das skills. O
+        # inventário passa a contar a árvore nova, que é onde elas estão.
+        ("`skills/*/regras/*.json` — a regra, dentro da skill que a consome",
+         len(sorted(SKILLS.glob("*/regras/*.json")))),
+        ("`skills/*/scripts/*.py` — scripts de skill",
+         len(sorted(SKILLS.glob("*/scripts/*.py")))),
     ]
 
 
@@ -359,7 +366,7 @@ def monta(data: str | None = None) -> str:
     # § 1
     a("## 1. Cadeias temporais")
     a("")
-    a("Contado dos `.json` de `docs/calculo/tabelas-normativas/` com")
+    a("Contado dos `.json` de `skills/calculo-judicial-atualizacao/regras/` com")
     a("`tipo == \"cadeia-temporal\"` — **pelo campo, nunca pelo nome do arquivo**.")
     a("")
     a(f"| cadeias | **{len(todas)}** |")

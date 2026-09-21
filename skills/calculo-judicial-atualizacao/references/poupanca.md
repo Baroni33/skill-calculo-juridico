@@ -8,9 +8,9 @@ Procedimentos para os Cálculos na Justiça Federal, CJF, Res. 990/2026**.
 `consolidado/02-atualizacao-detalhe.md` **§ 5.0** (a varredura), **§ 5.3.3**, **§ 5.3.4** e
 **§ 5.3.5**;
 `docs/calculo/extracao/justica-federal/bloco-08-jf-detalhe.md` §§ 3.3 e 4 (`N-7`, `N-11`);
-`docs/calculo/tabelas-normativas/cjf.poupanca.correcao-monetaria.json` (12 segmentos) e
+`skills/calculo-judicial-atualizacao/regras/cjf.poupanca.correcao-monetaria.json` (12 segmentos) e
 `cjf.poupanca.juros-mora.json` (3 segmentos);
-`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json` (`P18-01`).
+`skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json` (`P18-01`).
 
 ---
 
@@ -368,11 +368,11 @@ em `docs/calculo/armadilhas-comparador.md`.
 
 ## 10. Ponteiros
 
-- `docs/calculo/tabelas-normativas/cjf.poupanca.correcao-monetaria.json` — 12 segmentos, a condição
+- `skills/calculo-judicial-atualizacao/regras/cjf.poupanca.correcao-monetaria.json` — 12 segmentos, a condição
   de incidência, o escape para 4.2, as três notas e os defeitos transcritos
-- `docs/calculo/tabelas-normativas/cjf.poupanca.juros-mora.json` — 3 segmentos, o achado do
+- `skills/calculo-judicial-atualizacao/regras/cjf.poupanca.juros-mora.json` — 3 segmentos, o achado do
   calendário e o bloco `JUROS_REMUNERATORIOS_NAO_SAO_ESTA_CADEIA` (`D8-C16`, `N-11`, `D8-D19`)
-- `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json` — `P18-01` e o escopo da busca
+- `skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json` — `P18-01` e o escopo da busca
   de ausência
 - `docs/calculo/consolidado/02-atualizacao-detalhe.md` **§ 5.0** (a varredura item × JSON ×
   consolidado), **§ 5.3.3** (esta cadeia), **§ 5.3.4** (o que é comum ao FGTS) e **§ 5.3.5**

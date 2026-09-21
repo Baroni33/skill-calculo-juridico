@@ -301,7 +301,7 @@ conversão**: **BTNF desde o bloqueio** até jan./1991; e **TRD**, de fev./1991 
    cadeia do FGTS fiscal já carrega `BTNF` com a pendência declarada.
 
 **Onde ela vive, então:** no campo `notas` de
-[`../tabelas-normativas/cjf.poupanca.correcao-monetaria.json`](../tabelas-normativas/cjf.poupanca.correcao-monetaria.json),
+[`../../../skills/calculo-judicial-atualizacao/regras/cjf.poupanca.correcao-monetaria.json`](../../../skills/calculo-judicial-atualizacao/regras/cjf.poupanca.correcao-monetaria.json),
 com `pagina_pdf` e com o `efeito` que registra por que não virou segmento; e em
 [`02-atualizacao-detalhe.md`](02-atualizacao-detalhe.md) § 5.3.3. **Está tratada, não perdida** — é a
 mesma ressalva de cobertura que § 1 faz para `CH-01`–`CH-05`.

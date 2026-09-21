@@ -33,8 +33,8 @@ seções entraram ali, e a segunda passagem conferiu o texto, não o rótulo.
 deste arquivo; **as que tocam ponteiros estão refletidas em C18, C27, C30, C32 e C33.**
 
 > **Pendência observada, NÃO corrigida aqui** (este arquivo não corrige skills): a contagem de
-> regimes temporais está **28** em `liq/references/cortes-e-bifurcacoes.md` (linha 236) e ainda
-> **26** na espinha `liq/SKILL.md` (linhas 323 e 485). C18 **não depende do número** — depende dos
+> regimes temporais está **28** em `calculo-trabalhista-liquidacao/references/cortes-e-bifurcacoes.md` (linha 236) e ainda
+> **26** na espinha `calculo-trabalhista-liquidacao/SKILL.md` (linhas 323 e 485). C18 **não depende do número** — depende dos
 > eixos —, então segue `COBERTO`, com a divergência registrada.
 
 ---
@@ -227,11 +227,11 @@ Buscas em `docs/` **não** foram feitas — nenhuma afirmação abaixo alcança 
 
 | Termo | 1ª passagem | **Agora** | Onde / consequência |
 |---|---|---|---|
-| `R16` | 0 | **6** | todas em `core/SKILL.md`, `### R8 e R16`. **Derruba o PARCIAL de C22** |
-| `no mínimo` | 0 | **2** | `liq/SKILL.md`, § 611-B — a anti-heurística. **Derruba o PARCIAL de C24** |
-| `apenas-elevacao` | 1, sem exemplo | **2** | `liq/SKILL.md` (com parâmetros concretos) + `cortes-e-bifurcacoes.md`. C24 |
-| `XVIII` · `inciso VI` | 0 | **1 · 1** | ambas na tabela de três vias de `liq/SKILL.md`. C24 |
-| `norma coletiva da competência` | 0 | **1** | degrau 2 da escada R16, `core/SKILL.md`. C22 |
+| `R16` | 0 | **6** | todas em `calculo-judicial-core/SKILL.md`, `### R8 e R16`. **Derruba o PARCIAL de C22** |
+| `no mínimo` | 0 | **2** | `calculo-trabalhista-liquidacao/SKILL.md`, § 611-B — a anti-heurística. **Derruba o PARCIAL de C24** |
+| `apenas-elevacao` | 1, sem exemplo | **2** | `calculo-trabalhista-liquidacao/SKILL.md` (com parâmetros concretos) + `cortes-e-bifurcacoes.md`. C24 |
+| `XVIII` · `inciso VI` | 0 | **1 · 1** | ambas na tabela de três vias de `calculo-trabalhista-liquidacao/SKILL.md`. C24 |
+| `norma coletiva da competência` | 0 | **1** | degrau 2 da escada R16, `calculo-judicial-core/SKILL.md`. C22 |
 | `TRT-4` | *não buscado* | **18**, em **7 arquivos** | confirma que o TRT-4 deixou de sumir da cobertura regional |
 | `RG14` | *não buscado* | **4** | o verbete SEE/TRT-4 (RSR sobre comissões) existe nos dois `references/` regionais. C10 |
 | `economia mista` | 6 | **6** | estável. C32 |

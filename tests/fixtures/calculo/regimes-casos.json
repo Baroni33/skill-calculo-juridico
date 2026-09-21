@@ -10,7 +10,7 @@
     "O ACT Gasmig tem contratos anteriores a 11/11/2017 gerando passivo — é o que",
     "torna o caso 1 o cenário real do cliente, não um exercício."
   ],
-  "catalogo": "docs/calculo/tabelas-normativas/regimes-temporais-catalogo.json",
+  "catalogo": "skills/calculo-judicial-core/regras/regimes-temporais-catalogo.json",
 
   "contratos": {
     "antigo": {

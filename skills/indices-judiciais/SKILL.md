@@ -68,7 +68,7 @@ conferência**, não como fonte de consulta.
 
 ### Onde mora a defasagem — e por que isso importa para o contrato
 
-Nos JSON de `docs/calculo/tabelas-normativas/`, **`aplicacao` está no segmento da cadeia**, nunca
+Nos JSON de `calculo-judicial-atualizacao/regras/`, **`aplicacao` está no segmento da cadeia**, nunca
 na série. Consequência para o contrato: **a série é indexada por competência de publicação,
 crua.** Quem desloca é o consumidor.
 
@@ -93,7 +93,7 @@ crua.** Quem desloca é o consumidor.
 | **`janela-deslocada`** | **metade de M−1, metade de M** — bloco 19 |
 
 **Quais índices caem em cada classe não se escreve aqui: sai de
-`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`**, que é o que o validador lê, e
+`calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`**, que é o que o validador lê, e
 cuja regra é *"o valor SAI DA FONTE"*. Base normativa das duas primeiras: item 4.1.2.4 do Manual
 CJF (`pagina_pdf` 42), via `02-atualizacao.md` § 11, R3.
 
@@ -280,7 +280,7 @@ de "início e fim" lê as pontas da série validada, não um metadado.
 ### Os índices, com a classificação que decide tudo
 
 **QUAIS índices estão em cada classe não se escreve aqui — esta skill APONTA, não copia.** A
-classificação normativa é `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`, **que
+classificação normativa é `calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`, **que
 é o que o validador lê**; a leitura humana, com o que cada índice é e onde entra, está em
 [`references/catalogo-de-indices.md`](references/catalogo-de-indices.md) — **divergiram, vale o
 JSON**; os totais por classe, em `consolidado/00-numeros.md` §§ 1 e 2. Abaixo, só **a fonte de

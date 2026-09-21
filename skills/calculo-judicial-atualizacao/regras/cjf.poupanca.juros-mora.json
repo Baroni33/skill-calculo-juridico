@@ -99,7 +99,7 @@
     "marcador": "ponta_materializada"
   },
   "ACHADO_O_CALENDARIO_E_OUTRO": "Esta cadeia NÃO tem o corte de dez./2021 da EC 113/2021 nem o de set./2025 da EC 136/2025. Vai direto de Selic (desde jan./2003) para TAXA LEGAL EM SET./2024 — um ano antes de todas as demais cadeias do manual —, com fundamento exclusivo no art. 406 do Código Civil na redação da Lei n. 14.905/2024 e na Resolução CMN n. 5.171/2024, SEM citar o ARE 1.557.312/SP (Tema 1.419 do STF), que todas as outras citam. Consequência verificada: FGTS e poupança NÃO estão entre os cinco lugares que consolidam em dez./2021 — '0,4412' ocorre nas pagina_pdf 50, 59, 67, 74 e 79, e nenhuma delas é 83 ou 86. Transcrito como está, não harmonizado.",
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
   "JUROS_REMUNERATORIOS_NAO_SAO_ESTA_CADEIA": {
     "item": "4.9.2",
     "pagina_pdf": 86,

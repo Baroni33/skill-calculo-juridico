@@ -11,7 +11,7 @@
 # . Fatos geradores ocorridos até dez/94 e com valores expressos em UFIR: Utilizar o valor da UFIR fixado para 1º de janeiro
 # . Fatos gerados ocorridos a partir de jan/95: Utilizar o valor da UFIR fixado para o exercício de 2000 (art. 6º, § único, Lei
 # tipo do indexador (R3): Ufir=nominal.
-# Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
+# Fonte de cada classificacao: skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json
 pagina_pdf,item,serie,chave,valor
 455,18.12,1992,jan,"597,06"
 455,18.12,1993,jan,"7.412,55"

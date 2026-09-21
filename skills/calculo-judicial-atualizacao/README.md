@@ -59,3 +59,29 @@ previdenciario.md
 ## Estado
 
 **Escrito no bloco 16, fase 5.** `SKILL.md` e os seis arquivos de `references/` existem.
+
+## `regras/` e `scripts/` — BLOCO 25
+
+**A regra mora aqui, não em `docs/`.** As cadeias temporais `cjf.*` e `trab.hist.*`, o
+**manifesto** que as inventaria e o **catálogo de tipos de indexador** vieram de
+`docs/calculo/tabelas-normativas/` para `regras/`. O critério foi **CONSUMO**: quem lê
+essas cadeias é `valida_cobertura.py`, as `references/` desta skill e os relatórios de
+atualização. Migração **não reescreve conteúdo normativo** — texto e proveniência estão
+como estavam, e o `git` registra renomeação.
+
+**Esta skill é a DONA de `indexadores-tipo-catalogo.json`.** Havia três candidatas:
+`indices-judiciais` (é semântica de índice), `calculo-judicial-core` (é vocabulário) e
+esta. **Ganhou esta** por duas razões que não são de arrumação: **(1)** o catálogo é o que
+o validador de **R3** lê, e `valida_cobertura.py` mora aqui; **(2)** as cadeias temporais
+apontam para ele no campo `tipo_indexador_catalogo`, e sidecar vive com o diretório que
+descreve. As outras duas skills **apontam** pelo caminho novo — **nenhuma guarda cópia**,
+porque catálogo duplicado diverge e `test_classes_de_indice.py` existe para acusar isso.
+
+| Diretório | O que é | Quem lê |
+|---|---|---|
+| `references/` | prosa por variante | o modelo |
+| `regras/` | as cadeias, o manifesto e o catálogo de tipos | script, por caminho |
+| `scripts/` | `valida_cobertura.py` (R1, R2, R3) e `valida_taxa_legal.py` (R6, R11, R12) | o agente |
+
+**Os dois scripts são autocontidos** — não abrem arquivo de configuração e não dependem
+de `docs/`. Eram assim antes de migrar, e continuam.

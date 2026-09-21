@@ -5,7 +5,7 @@ Federal. Item **4.3** do Manual CJF, Res. 990/2026.
 
 **Fonte:** `docs/calculo/consolidado/02-atualizacao.md` § 5; `02-atualizacao-detalhe.md` §§ 5.1,
 5.2 e 10; `00-base-normativa.md` §§ 4 e 6; `docs/calculo/pendencias.md` § 2;
-`docs/calculo/tabelas-normativas/cjf.previdenciario.correcao-monetaria.json`.
+`skills/calculo-judicial-atualizacao/regras/cjf.previdenciario.correcao-monetaria.json`.
 
 > **Não confundir com a contribuição previdenciária em dívida fiscal.** Aquela é outra cadeia,
 > com outros cortes — `references/tributario-federal.md` § 3.3.
@@ -177,7 +177,7 @@ enquanto esta **nunca bifurca**. `references/civel-federal.md` §§ 2 e 6.
 
 ## 7. Ponteiros
 
-- `docs/calculo/tabelas-normativas/cjf.previdenciario.correcao-monetaria.json` — os 15 segmentos
+- `skills/calculo-judicial-atualizacao/regras/cjf.previdenciario.correcao-monetaria.json` — os 15 segmentos
 - `docs/calculo/consolidado/02-atualizacao-detalhe.md` §§ 5.1, 5.2 e 10
 - `docs/calculo/00-base-normativa.md` § 4 — taxa legal, metodologia completa
 - `docs/calculo/pendencias.md` § 2 — o par de validação IPCA-15 ausente

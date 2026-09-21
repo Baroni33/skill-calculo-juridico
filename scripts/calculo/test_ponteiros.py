@@ -56,6 +56,43 @@ Três desenhos foram pesados:
 
 `test_a_varredura_enxerga_o_repositorio` existe para que um erro de regex não
 faça este arquivo passar por vacuidade, achando zero ponteiros e aprovando tudo.
+
+A VÁLVULA DE NOME-BASE, E POR QUE ELA FOI APERTADA NO BLOCO 25
+---------------------------------------------------------------
+Havia uma válvula: *se o nome-base existe em algum lugar, não é morte, é
+imprecisão de caminho relativo*. **Ela tem razão de existir** — este repositório
+cita `consolidado/00-numeros.md` de vários diretórios, e acusar isso é ruído que
+treina o leitor a ignorar o teste.
+
+**Mas ela foi desenhada contra RENOMEAÇÃO, e o bloco 25 fez MUDANÇA DE
+DIRETÓRIO.** 32 `.json` saíram de `docs/calculo/tabelas-normativas/` para
+`skills/*/regras/` e 4 validadores saíram de `scripts/calculo/` para
+`skills/*/scripts/`. O basename sobreviveu a todos, e **a válvula imunizou todo
+ponteiro antigo** — inclusive 8 links markdown clicáveis sob o rótulo *"Fonte de
+verdade executável"*. O teste passava.
+
+**O aperto, em `alcancavel_por_nome`:** o nome-base ainda salva, mas só se
+**todo diretório citado no alvo for diretório REAL** de algum arquivo com esse
+nome. `consolidado/00-numeros.md` continua salvo; `tabelas-normativas/x.json`
+não, porque `tabelas-normativas` deixou de ser diretório de `x.json`.
+
+**O CUSTO FOI MEDIDO ANTES DE A DECISÃO SER TOMADA** — a régua do bloco 20.
+Com a válvula larga: **728** ponteiros dependiam só dela. Com o aperto:
+**18 ponteiros, em 11 arquivos**, deixaram de ser imunizados. Classificados um
+a um:
+
+  * **13 eram defeito de verdade** — endereço de artefato que a migração moveu.
+    **Corrigidos**, não excepcionados;
+  * **5 eram abreviação de nome de skill em prosa** (`liq/SKILL.md`,
+    `core/SKILL.md`, `atualizacao/SKILL.md`). São o falso positivo genuíno do
+    aperto, e foram **escritos por extenso**: custa menos que uma entrada de
+    ledger, e o documento fica melhor;
+  * **5 entraram no ledger**, classe `registro datado de bloco` — relatório que
+    cita o endereço que o artefato tinha no dia em que foi escrito.
+
+**Custo declarado:** 5 abreviações deixaram de ser escrevíveis; quem quiser
+abreviar diretório de skill em prosa terá de tirar as crases ou declarar a
+exceção. Foi julgado barato diante de 13 ponteiros mortos que o teste aprovava.
 """
 
 from __future__ import annotations
@@ -82,6 +119,66 @@ RE_ALVO = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_./-]*\." + _EXT + r"$")
 # Ledger de exceções. Par (alvo, arquivo) — nunca alvo solto.
 # --------------------------------------------------------------------------
 EXCECOES: list[dict] = [
+    # ---- BLOCO 25 — o endereço de ANTES da migração -----------------------
+    # A válvula de nome-base foi apertada (ver `alcancavel_por_nome`) e passou
+    # a enxergar MUDANÇA DE DIRETÓRIO. O custo foi medido antes de a decisão
+    # ser tomada: **18 ponteiros, em 11 arquivos**, deixaram de ser imunizados.
+    # Treze eram defeito de verdade — ponteiro para `tabelas-normativas/` ou
+    # para `scripts/calculo/valida_*.py`, que já não existem — e **foram
+    # corrigidos**. Cinco eram abreviação de nome de skill em prosa
+    # (`liq/SKILL.md`, `core/SKILL.md`) e **foram escritos por extenso**, que
+    # custa menos que uma entrada de ledger e melhora o documento.
+    # Sobram estas cinco: registro DATADO que cita o caminho de então. O
+    # caminho velho É o fato registrado, e atualizá-lo apagaria o registro.
+    {
+        "alvo": "scripts/calculo/valida_parametros.py",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Relatório do bloco 5: 'o validador ficou em scripts/calculo/'. "
+            "O bloco 25 o promoveu a script de skill — hoje mora em "
+            "skills/calculo-trabalhista-liquidacao/scripts/. O relatório "
+            "registra onde ele nasceu, e não se atualiza."
+        ),
+        "arquivos": ["docs/calculo/extracao/bloco-05-relatorio.md"],
+    },
+    {
+        "alvo": "scripts/calculo/valida_regimes.py",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Idem, bloco 6. Hoje em skills/calculo-judicial-core/scripts/."
+        ),
+        "arquivos": ["docs/calculo/extracao/bloco-06-relatorio.md"],
+    },
+    {
+        "alvo": "docs/calculo/tabelas-normativas/cadeias-manifesto.json",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Relatório do bloco 18, que CRIOU o manifesto e diz onde o criou. "
+            "O bloco 25 o levou para skills/calculo-judicial-atualizacao/"
+            "regras/, junto das cadeias que ele inventaria."
+        ),
+        "arquivos": ["docs/calculo/extracao/bloco-18-relatorio.md"],
+    },
+    {
+        "alvo": "tabelas-normativas/trt3-18.1-incidencia-parcelas.json",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Bloco 3: 'a tabela 18.1 do manual — extraída no bloco 1, em "
+            "tabelas-normativas/…'. É a frase que diz ONDE o bloco 1 a pôs. "
+            "Hoje em skills/calculo-trabalhista-liquidacao/regras/."
+        ),
+        "arquivos": ["docs/calculo/extracao/trabalhista/bloco-03-verbas.md"],
+    },
+    {
+        "alvo": "tabelas-normativas/indexadores-tipo-catalogo.json",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Avaliação da frente B, escrita no bloco 22 sobre o estado de "
+            "então. Hoje o catálogo mora em skills/calculo-judicial-"
+            "atualizacao/regras/ e tem um dono declarado."
+        ),
+        "arquivos": ["docs/calculo/aceitacao/frente-b-avaliacao.md"],
+    },
     {
         "alvo": "manual_de_calculos_2026.pdf",
         "classe": "fonte externa",
@@ -281,15 +378,53 @@ def arquivos_varridos(raiz: Path) -> list[Path]:
     return achados
 
 
-def nomes_do_repositorio(raiz: Path) -> set[str]:
-    """Todo nome-base de arquivo existente. Menção por nome nu resolve aqui."""
-    nomes: set[str] = set()
+def nomes_do_repositorio(raiz: Path) -> dict[str, list[tuple[str, ...]]]:
+    """Nome-base → os diretórios REAIS de cada arquivo com esse nome.
+
+    **Bloco 25 — era um `set` de nomes, e o `set` era cego.** A válvula que
+    usava esse conjunto foi desenhada contra **RENOMEAÇÃO de diretório-pai
+    inexistente**: o documento cita `consolidado/00-numeros.md` de um diretório
+    onde o caminho relativo não bate, o arquivo existe, e acusar isso é ruído.
+    Mas o bloco 25 fez **MUDANÇA DE DIRETÓRIO** — `tabelas-normativas/x.json`
+    virou `skills/…/regras/x.json` —, e aí o nome-base sobrevive e **imuniza
+    todo ponteiro antigo**. Guardar os diretórios reais é o que permite separar
+    os dois casos.
+    """
+    onde: dict[str, list[tuple[str, ...]]] = {}
     for p in raiz.rglob("*"):
         if ".git" in p.parts or "__pycache__" in p.parts:
             continue
         if p.is_file():
-            nomes.add(p.name)
-    return nomes
+            rel = p.relative_to(raiz)
+            onde.setdefault(p.name, []).append(rel.parts[:-1])
+    return onde
+
+
+def alcancavel_por_nome(alvo: str, onde: dict[str, list[tuple[str, ...]]]) -> bool:
+    """A válvula, **apertada no bloco 25**. Vale quando as duas valem:
+
+      1. **o nome-base existe** em algum lugar do repositório; e
+      2. **todo diretório citado no alvo é diretório REAL** de algum arquivo
+         com esse nome. Alvo sem diretório nenhum — `` `00-numeros.md` `` —
+         passa direto: é menção por nome, e nome nu não promete caminho.
+
+    O item 2 é o aperto. `consolidado/00-numeros.md` passa porque o arquivo
+    mora mesmo dentro de um `consolidado/`; `tabelas-normativas/x.json` **não
+    passa mais**, porque `tabelas-normativas` deixou de ser diretório de `x.json`.
+    **Imprecisão de caminho relativo continua sendo perdoada; movimentação de
+    diretório passa a doer.**
+
+    `..` e `.` são descartados antes da comparação: são navegação relativa, não
+    afirmação sobre onde o arquivo mora.
+    """
+    partes = alvo.split("/")
+    reais = onde.get(partes[-1])
+    if reais is None:
+        return False
+    citados = [d for d in partes[:-1] if d not in ("..", ".")]
+    if not citados:
+        return True
+    return any(all(d in dirs for d in citados) for dirs in reais)
 
 
 def ponteiros(caminho: Path) -> set[str]:
@@ -313,7 +448,7 @@ def ponteiros(caminho: Path) -> set[str]:
 
 def varre(raiz: Path) -> tuple[list[tuple[str, str]], int]:
     """(mortos, total_de_ponteiros). `mortos` são pares (arquivo, alvo)."""
-    nomes = nomes_do_repositorio(raiz)
+    onde = nomes_do_repositorio(raiz)
     mortos: list[tuple[str, str]] = []
     total = 0
     for p in arquivos_varridos(raiz):
@@ -322,9 +457,7 @@ def varre(raiz: Path) -> tuple[list[tuple[str, str]], int]:
             total += 1
             if (p.parent / alvo).exists() or (raiz / alvo).exists():
                 continue
-            if alvo.split("/")[-1] in nomes:
-                # Nome-base existe em outro diretório: o alvo é alcançável, e
-                # o que sobra é imprecisão de caminho relativo, não morte.
+            if alcancavel_por_nome(alvo, onde):
                 continue
             mortos.append((rel, alvo))
     return mortos, total
@@ -380,6 +513,35 @@ class TestPonteirosMortos(unittest.TestCase):
             )
             self.assertEqual(total, 3)
 
+    def test_a_valvula_perdoa_caminho_relativo_e_acusa_mudanca_de_diretorio(self):
+        """**BLOCO 25 — os dois casos que a válvula tem de separar.**
+
+        Ela foi desenhada contra RENOMEAÇÃO e imprecisão de caminho relativo; o
+        bloco 25 fez MUDANÇA DE DIRETÓRIO, o nome-base sobreviveu, e todo
+        ponteiro antigo ficou imune. Este teste planta os dois lado a lado no
+        MESMO repositório sintético — sem ele, apertar a regra e afrouxá-la de
+        volta passa despercebido.
+        """
+        with tempfile.TemporaryDirectory() as d:
+            raiz = Path(d)
+            (raiz / "docs" / "consolidado").mkdir(parents=True)
+            (raiz / "docs" / "sub").mkdir()
+            (raiz / "docs" / "consolidado" / "x.json").write_text("{}\n", encoding="utf-8")
+            (raiz / "docs" / "sub" / "a.md").write_text(
+                # (1) caminho relativo impreciso: o arquivo MORA mesmo num
+                #     `consolidado/`, só não a partir deste diretório. PERDOA.
+                "impreciso: `consolidado/x.json`\n"
+                # (2) nome nu, sem diretório: não promete caminho. PERDOA.
+                "nome nu: `x.json`\n"
+                # (3) diretório que NÃO é diretório deste arquivo — o caso que
+                #     o bloco 25 criou e a válvula larga escondia. ACUSA.
+                "mudou de casa: `tabelas-normativas/x.json`\n",
+                encoding="utf-8",
+            )
+            mortos, total = varre(raiz)
+            self.assertEqual(total, 3)
+            self.assertEqual(mortos, [("docs/sub/a.md", "tabelas-normativas/x.json")])
+
     def test_url_externa_nao_e_ponteiro(self):
         with tempfile.TemporaryDirectory() as d:
             raiz = Path(d)
@@ -419,7 +581,12 @@ class TestLedgerNaoEnvelhece(unittest.TestCase):
             self.assertIn(
                 e["classe"],
                 {"fonte externa", "insumo efêmero de extração",
-                 "narrativa histórica", "molde de nomenclatura"},
+                 "narrativa histórica", "molde de nomenclatura",
+                 # BLOCO 25. Distinta de "narrativa histórica": lá o texto
+                 # DESCREVE a mudança ('era X, virou Y'); aqui ele apenas
+                 # registrou, na data em que foi escrito, o endereço que o
+                 # artefato tinha então — e relatório de bloco não se atualiza.
+                 "registro datado de bloco"},
                 e["alvo"],
             )
             self.assertGreater(len(e["por_que"]), 30, e["alvo"])
@@ -508,6 +675,116 @@ class TestManifestoDePlugin(unittest.TestCase):
                 chaves, aceitos,
                 f"{nome}: campo fora dos seis aceitos: {chaves - aceitos}",
             )
+
+    #: Teto de `description` fixado pela spec de Agent Skills. Acima dele o
+    #: cliente **derruba a skill no carregamento** — não trunca, não avisa.
+    LIMITE_DESCRIPTION = 1024
+
+    @staticmethod
+    def _description(texto: str) -> str:
+        """A `description` do frontmatter, inclusive quando ocupa várias linhas.
+
+        YAML dobra valor continuado por indentação, e as quatro `description`
+        deste repositório são todas dobradas — ler só a primeira linha mediria
+        um oitavo do que o cliente mede. O valor conferido é o texto COLADO,
+        que é o que conta para o limite.
+        """
+        bloco = texto.split("---")[1]
+        partes: list[str] = []
+        dentro = False
+        for linha in bloco.splitlines():
+            if linha.startswith("description:"):
+                dentro = True
+                cabeca = linha.split(":", 1)[1].strip()
+                # `>-`, `>`, `|` e `|-` são o INDICADOR de bloco do YAML, não
+                # conteúdo. Contá-los inflaria a medida em dois caracteres e
+                # faria a guarda mentir para os dois lados.
+                if cabeca not in (">", ">-", ">+", "|", "|-", "|+"):
+                    partes.append(cabeca)
+                continue
+            if dentro:
+                if linha and not linha[0].isspace():
+                    break
+                partes.append(linha.strip())
+        return " ".join(p for p in partes if p)
+
+    def test_nenhuma_description_passa_de_1024(self):
+        """BLOCO 25 — a guarda contra a regressão que só aparece no cliente.
+
+        **O modo de falha é silencioso e caro.** A spec de Agent Skills fixa
+        `description` em **1024 caracteres no máximo**, e cliente real **recusa
+        a skill inteira** quando o limite estoura: não há mensagem no
+        repositório, no teste ou no diff — a skill simplesmente não carrega na
+        máquina de quem instalou. É exatamente o mesmo feitio do defeito que
+        `test_o_caminho_de_skills_resolve_e_tem_skill` existe para matar.
+
+        **Fica aqui, ao lado da guarda de campos aceitos**, porque as duas
+        aferem a MESMA coisa — o frontmatter que o cliente lê no startup — e
+        pela mesma razão: campo inválido e `description` longa demais têm o
+        mesmo efeito, a skill some. Separá-las em arquivos diferentes obrigaria
+        a redescobrir o parse do frontmatter duas vezes.
+
+        A `description` é o único gatilho destas skills: elas são
+        *model-invoked*, sem comando de invocação. Perdê-la é perder a skill.
+        """
+        for nome in self.skills:
+            texto = (RAIZ / "skills" / nome / "SKILL.md").read_text(encoding="utf-8")
+            desc = self._description(texto)
+            with self.subTest(skill=nome):
+                self.assertTrue(desc, f"{nome}: SKILL.md sem `description`")
+                self.assertLessEqual(
+                    len(desc), self.LIMITE_DESCRIPTION,
+                    f"{nome}: description com {len(desc)} caracteres, acima do "
+                    f"teto de {self.LIMITE_DESCRIPTION}. O cliente NÃO trunca: "
+                    "derruba a skill no carregamento, em silêncio.",
+                )
+
+    def test_a_guarda_de_1024_reprova_uma_description_longa_demais(self):
+        """Contra o pior modo de falha de uma guarda: passar por vacuidade.
+
+        Se o parse do frontmatter quebrar, `_description` devolve string curta
+        ou vazia e o teto nunca é atingido — a guarda aprovaria tudo. Aqui ela
+        é exercida contra um frontmatter sintético que ESTOURA o limite, e
+        contra um que fica logo abaixo dele.
+        """
+        def fabrica(tamanho: int) -> str:
+            corpo = "x" * (tamanho - 40)
+            return (
+                "---\n"
+                "name: teste\n"
+                "description: >-\n"
+                f"  {corpo}\n"
+                f"  {'y' * 39}\n"
+                "---\n\nprosa\n"
+            )
+
+        curta = self._description(fabrica(self.LIMITE_DESCRIPTION))
+        longa = self._description(fabrica(self.LIMITE_DESCRIPTION + 200))
+        self.assertLessEqual(len(curta), self.LIMITE_DESCRIPTION)
+        self.assertGreater(len(longa), self.LIMITE_DESCRIPTION)
+        # E a leitura multilinha é a parte que pode regredir sem barulho:
+        self.assertGreater(len(curta), 200, "o parse parou na primeira linha")
+
+    def test_as_quatro_descriptions_sao_lidas_inteiras(self):
+        """A guarda só vale se `_description` enxergar o valor dobrado.
+
+        Medido no fechamento do bloco 25, uma a uma: **794** (atualização),
+        **802** (core), **870** (liquidação) e **890** (índices) caracteres,
+        contra o limite de 1024. A prosa dizia *"entre 797 e 893"* e **nenhum
+        dos dois extremos era uma medição** — a faixa não continha o menor dos
+        quatro. Folga real, e nenhuma delas caberia numa linha só. Não se
+        crava o número aqui (ele muda com a prosa); crava-se que o valor lido é
+        substancialmente maior que a primeira linha do YAML, que é o sintoma de
+        parse truncado.
+        """
+        for nome in self.skills:
+            texto = (RAIZ / "skills" / nome / "SKILL.md").read_text(encoding="utf-8")
+            with self.subTest(skill=nome):
+                self.assertGreater(
+                    len(self._description(texto)), 300,
+                    f"{nome}: description lida com menos de 300 caracteres — "
+                    "ou ela encolheu de verdade, ou o parse truncou.",
+                )
 
 
 if __name__ == "__main__":

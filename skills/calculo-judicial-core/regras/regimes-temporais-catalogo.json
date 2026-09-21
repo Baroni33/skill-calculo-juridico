@@ -3,7 +3,7 @@
  "versao": "3",
  "bloco": "6 + 12",
  "descricao": "Regimes temporais: qual REGRA se aplica a cada competência. Distinto do catálogo de parâmetros negociáveis, que decide QUANTO VALE cada constante.",
- "schema": "docs/calculo/tabelas-normativas/camada-regime-temporal-schema.json",
+ "schema": "skills/calculo-judicial-core/regras/camada-regime-temporal-schema.json",
  "a_distincao_que_governa_tudo": {
   "preset_de_regime": "Escolha JURÍDICA do usuário sobre qual entendimento aplicar. NÃO é negociável por sindicato. Fundamentada, com default quando o corpus permite.",
   "parametro_negociavel": "Valor resolvido por (parametro, categoria, competencia). Camada separada — camada-norma-coletiva-catalogo.json.",

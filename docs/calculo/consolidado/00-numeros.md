@@ -27,7 +27,7 @@
 
 ## 1. Cadeias temporais
 
-Contado dos `.json` de `docs/calculo/tabelas-normativas/` com
+Contado dos `.json` de `skills/calculo-judicial-atualizacao/regras/` com
 `tipo == "cadeia-temporal"` — **pelo campo, nunca pelo nome do arquivo**.
 
 | cadeias | **20** |
@@ -135,17 +135,18 @@ não coletado, arquivo fora do padrão de descoberta, erro de importação.
 |---|---|
 | `scripts/calculo/test_aceite_nivel1.py` | 20 |
 | `scripts/calculo/test_classes_de_indice.py` | 12 |
+| `scripts/calculo/test_geradores.py` | 8 |
 | `scripts/calculo/test_metodos.py` | 32 |
 | `scripts/calculo/test_numeros.py` | 18 |
-| `scripts/calculo/test_ponteiros.py` | 10 |
+| `scripts/calculo/test_ponteiros.py` | 14 |
 | `scripts/calculo/test_valida_bloco_tabelas.py` | 10 |
 | `scripts/calculo/test_valida_cobertura.py` | 121 |
 | `scripts/calculo/test_valida_parametros.py` | 71 |
 | `scripts/calculo/test_valida_regimes.py` | 86 |
 | `scripts/calculo/test_valida_taxa_legal.py` | 29 |
-| **total escrito** | **409** |
+| **total escrito** | **421** |
 
-**Executados:** `python -m unittest discover -s scripts/calculo -p "test_*.py"` → **409 testes, OK**.
+**Executados:** `python -m unittest discover -s scripts/calculo -p "test_*.py"` → **421 testes, OK**.
 
 ## 6. Arquivos
 
@@ -155,7 +156,8 @@ não coletado, arquivo fora do padrão de descoberta, erro de importação.
 | `skills/` — arquivos `.md`, em toda a árvore | **33** |
 | `skills/*/SKILL.md` — skills publicadas | **4** |
 | `skills/*/references/*.md` | **24** |
-| `docs/calculo/tabelas-normativas/*.json` — todos | **32** |
+| `skills/*/regras/*.json` — a regra, dentro da skill que a consome | **32** |
+| `skills/*/scripts/*.py` — scripts de skill | **4** |
 
 ## 7. Linhas das `SKILL.md` — o limite de 500 é verificável
 

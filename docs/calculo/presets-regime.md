@@ -4,8 +4,8 @@
 distinta da camada que decide **quanto vale** um parâmetro.
 
 Fonte de verdade executável:
-[`tabelas-normativas/regimes-temporais-catalogo.json`](tabelas-normativas/regimes-temporais-catalogo.json)
-e [`tabelas-normativas/camada-regime-temporal-schema.json`](tabelas-normativas/camada-regime-temporal-schema.json).
+[`../../skills/calculo-judicial-core/regras/regimes-temporais-catalogo.json`](../../skills/calculo-judicial-core/regras/regimes-temporais-catalogo.json)
+e [`../../skills/calculo-judicial-core/regras/camada-regime-temporal-schema.json`](../../skills/calculo-judicial-core/regras/camada-regime-temporal-schema.json).
 Este documento é a leitura humana deles. Divergiram, vale o JSON.
 
 **26 regimes. Catorze eixos de corte distintos.**
@@ -490,10 +490,10 @@ geral de prescrição trabalhista em lugar nenhum do corpus**.
 
 ## 10. Ver também
 
-- [`tabelas-normativas/regimes-temporais-catalogo.json`](tabelas-normativas/regimes-temporais-catalogo.json) — os 26 regimes
-- [`tabelas-normativas/camada-regime-temporal-schema.json`](tabelas-normativas/camada-regime-temporal-schema.json) — o contrato
+- [`../../skills/calculo-judicial-core/regras/regimes-temporais-catalogo.json`](../../skills/calculo-judicial-core/regras/regimes-temporais-catalogo.json) — os 26 regimes
+- [`../../skills/calculo-judicial-core/regras/camada-regime-temporal-schema.json`](../../skills/calculo-judicial-core/regras/camada-regime-temporal-schema.json) — o contrato
 - [`parametros-negociaveis.md`](parametros-negociaveis.md) — a outra camada, avaliada depois
 - [`extracao/bloco-06-relatorio.md`](extracao/bloco-06-relatorio.md) — relatório do bloco
-- `scripts/calculo/valida_regimes.py` — validador e resolvedor; a contagem de testes está em
+- `../../skills/calculo-judicial-core/scripts/valida_regimes.py` — validador e resolvedor (**script de skill** desde o bloco 25); a contagem de testes está em
   [`consolidado/00-numeros.md`](consolidado/00-numeros.md) § 5, gerado por script
 - `tests/fixtures/calculo/regimes-casos.json` — doze casos, sintéticos e declarados

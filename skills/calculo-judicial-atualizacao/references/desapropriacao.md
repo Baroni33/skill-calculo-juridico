@@ -9,7 +9,7 @@ para os Cálculos na Justiça Federal, CJF, Res. 990/2026**.
 `docs/calculo/extracao/justica-federal/bloco-08-jf.md` §§ 4, 5, 6 e 7 e
 `bloco-08-jf-detalhe.md` §§ 3.1, 3.1.1, 4, 5 e 6;
 `docs/calculo/consolidado/06-encargos.md` § 8.1;
-`docs/calculo/tabelas-normativas/cjf.desapropriacao-direta.correcao-monetaria.json` (11 segmentos),
+`skills/calculo-judicial-atualizacao/regras/cjf.desapropriacao-direta.correcao-monetaria.json` (11 segmentos),
 `cjf.desapropriacao-indireta.correcao-monetaria.json` (11), `cjf.desapropriacao-direta.juros-compensatorios.json` (3)
 e `cjf.desapropriacao-indireta.juros-compensatorios.json` (3) — as três últimas **geradas no bloco 19,
 tarefa 3**; ver `consolidado/02-atualizacao-detalhe.md` **§ 5.3.6**.
@@ -405,10 +405,10 @@ Fonte: `bloco-08-jf-detalhe.md` § 6 (trinta e três defeitos no total).
 
 ## 11. Ponteiros
 
-- `docs/calculo/tabelas-normativas/cjf.desapropriacao-direta.correcao-monetaria.json` — 11 segmentos
-- `docs/calculo/tabelas-normativas/cjf.desapropriacao-indireta.correcao-monetaria.json` — 11 segmentos
-- `docs/calculo/tabelas-normativas/cjf.desapropriacao-direta.juros-compensatorios.json` — 3 segmentos
-- `docs/calculo/tabelas-normativas/cjf.desapropriacao-indireta.juros-compensatorios.json` — 3 segmentos
+- `skills/calculo-judicial-atualizacao/regras/cjf.desapropriacao-direta.correcao-monetaria.json` — 11 segmentos
+- `skills/calculo-judicial-atualizacao/regras/cjf.desapropriacao-indireta.correcao-monetaria.json` — 11 segmentos
+- `skills/calculo-judicial-atualizacao/regras/cjf.desapropriacao-direta.juros-compensatorios.json` — 3 segmentos
+- `skills/calculo-judicial-atualizacao/regras/cjf.desapropriacao-indireta.juros-compensatorios.json` — 3 segmentos
 - `docs/calculo/consolidado/02-atualizacao-detalhe.md` **§ 5.3.1** — os compensatórios como cadeia
   própria, os três cortes, `N-6` e `N-10`
 - `docs/calculo/extracao/justica-federal/bloco-08-jf-detalhe.md` §§ 3.1, 3.1.1 — direta × indireta

@@ -412,5 +412,5 @@ superior do segmento**, não como invalidade. Por **R19**, toda conta que atrave
 - `docs/calculo/consolidado/02-atualizacao.md` §§ 2, 3, 6, 7, 8, 9, 12 — a espinha
 - `docs/calculo/consolidado/08-nacional-e-regional.md` §§ 1, 5.1–5.3 — a classificação
 - `docs/calculo/extracao/trabalhista/bloco-09-cadeias-historicas.md` — cadeias, defasagens, moedas
-- `docs/calculo/tabelas-normativas/trab.hist.*.json` — as cadeias em schema `cadeia-temporal`
+- `skills/calculo-judicial-atualizacao/regras/trab.hist.*.json` — as cadeias em schema `cadeia-temporal`
 - `references/trabalhista-regional-trt3.md` — o que neste ramo **não** é nacional

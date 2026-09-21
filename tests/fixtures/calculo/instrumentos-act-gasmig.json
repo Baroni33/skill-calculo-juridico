@@ -10,7 +10,7 @@
     "O ACT completo continua fora do repositório: o que existe é a leitura que a base",
     "normativa faz dele."
   ],
-  "schema": "docs/calculo/tabelas-normativas/camada-norma-coletiva-schema.json",
+  "schema": "skills/calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-schema.json",
   "divergencia_de_referencia": {
     "o_que_o_enunciado_disse": "A seção 3 do arquivo traz os valores.",
     "o_que_o_arquivo_tem": "A seção 3 é 'Horas in itinere' e não traz valor algum do ACT. Os VALORES estão nas seções 8, 9 e, principalmente, na coluna 'Observação' da tabela da seção 10. As seções 7 e 12 trazem contexto (base da periculosidade; sindicatos), não valores de cláusula.",

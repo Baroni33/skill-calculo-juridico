@@ -68,11 +68,19 @@ falha se ponto flutuante binário aparecer no caminho de cálculo.
 > **Script de skill roda no ambiente do AGENTE, para verificar a implementação — não no produto.**
 > **A linguagem do script de verificação é independente da linguagem do motor.**
 
-`scripts/calculo/*.py` **não é o motor e não vira o motor.** São validadores do repositório,
-executados por quem lê as skills para aferir norma, cadeia e aritmética normativa. Eles são Python
-**de fato**, e o termo é correto quando o texto fala deles.
+**Os validadores não são o motor e não viram o motor.** São executados por quem lê as skills para
+aferir norma, cadeia e aritmética normativa. Eles são Python **de fato**, e o termo é correto
+quando o texto fala deles.
 
-**O caso central é `scripts/calculo/valida_taxa_legal.py`**, que implementa **R11** — taxa legal
+> **Bloco 25 — eles moram em dois lugares, e a divisão é por CONSUMO.** Quatro viraram **script de
+> skill** e viajam com a skill que os instala: `valida_cobertura.py` e `valida_taxa_legal.py` em
+> `calculo-judicial-atualizacao/scripts/`, `valida_regimes.py` em `calculo-judicial-core/scripts/`
+> e `valida_parametros.py` em `calculo-trabalhista-liquidacao/scripts/`. Os demais são **ferramenta
+> de pipeline** e continuam em `scripts/calculo/` do repositório — **que a instalação manual manda
+> NÃO copiar**. Por isso nenhum artefato de skill deve apontar para lá: o ponteiro morreria na
+> instalação.
+
+**O caso central é `calculo-judicial-atualizacao/scripts/valida_taxa_legal.py`**, que implementa **R11** — taxa legal
 por razão entre fatores, nunca subtração de percentuais — e **pode ser executado pela skill** para
 conferir um par publicado sem que exista motor nenhum. Um motor em C# não o substitui e não é
 substituído por ele: **um verifica a regra; o outro executa a conta do produto.**

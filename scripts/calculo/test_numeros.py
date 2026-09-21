@@ -161,6 +161,67 @@ CLASSES = {
 # linha inteira. Cada entrada carrega o porquê, e a entrada órfã FALHA.
 # --------------------------------------------------------------------------
 EXCECOES: list[dict] = [
+    # ---- docs/calculo/aceitacao/bloco-25-relatorio.md --------------------
+    # Mesma razão de árvore das entradas do bloco 23, logo abaixo: relatório de
+    # bloco é REGISTRO DATADO e não se atualiza; `aceitacao/` não está fora da
+    # varredura por árvore, então cada número entra aqui, um a um, com o porquê.
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-25-relatorio.md",
+        "achado": "421 testes",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Tamanho da suíte no fechamento do bloco 25, na tabela de "
+            "verificação, ao lado da frase 'eram 412'. O par 412→421 É a "
+            "entrega do bloco; atualizá-lo apagaria a medida da correção."
+        ),
+    },
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-25-relatorio.md",
+        "achado": "8 testes",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Tamanho de `test_geradores.py` quando nasceu, no bloco 25. É a "
+            "resposta a M3/M4 — 'sem isso, volta' — e o número é a medida do "
+            "que foi acrescentado."
+        ),
+    },
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-25-relatorio.md",
+        "achado": "14 testes",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Tamanho de `test_ponteiros.py` no fechamento, citado para dizer "
+            "que UM teste novo entrou com o aperto da válvula de nome-base."
+        ),
+    },
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-25-relatorio.md",
+        "achado": "9 testes",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "A soma dos dois acima — 8 + 1 —, que é o delta do bloco. "
+            "Decomposição do 412→421, e não inventário corrente."
+        ),
+    },
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-25-relatorio.md",
+        "achado": "3 testes",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "CITAÇÃO do defeito M3: rodar `gera_cadeias_bloco19.py` derrubava "
+            "3 testes ao desfazer a tokenização do bloco 23. Apagá-la "
+            "apagaria o defeito que o bloco 25 consertou."
+        ),
+    },
+    {
+        "arquivo": "docs/calculo/aceitacao/bloco-25-relatorio.md",
+        "achado": "4 cadeias",
+        "classe": "registro datado de bloco",
+        "por_que": (
+            "Idem: eram 4 das 20 cadeias que o gerador regravava. É o tamanho "
+            "do estrago medido, não a contagem de cadeias do repositório."
+        ),
+    },
     # ---- docs/calculo/aceitacao/bloco-23-relatorio.md --------------------
     # Relatório de bloco é REGISTRO DATADO: fixa o estado do fechamento e
     # NÃO se atualiza. `docs/calculo/extracao/` está fora da varredura por
@@ -380,7 +441,7 @@ EXCECOES: list[dict] = [
     },
     # ---- tabelas-normativas/ (.json entrou no escopo no bloco 20) --------
     {
-        "arquivo": "docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json",
+        "arquivo": "skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json",
         "achado": "10 cadeias",
         "classe": "guardada por teste que a recomputa",
         "por_que": (
@@ -393,7 +454,7 @@ EXCECOES: list[dict] = [
         ),
     },
     {
-        "arquivo": "docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json",
+        "arquivo": "skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json",
         "achado": "6 cadeias",
         "classe": "narrativa histórica",
         "por_que": (
@@ -403,7 +464,7 @@ EXCECOES: list[dict] = [
         ),
     },
     {
-        "arquivo": "docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json",
+        "arquivo": "skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json",
         "achado": "15 cadeias",
         "classe": "narrativa histórica",
         "por_que": (
@@ -415,7 +476,7 @@ EXCECOES: list[dict] = [
         ),
     },
     {
-        "arquivo": "docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json",
+        "arquivo": "skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json",
         "achado": "34 rótulos",
         "classe": "narrativa histórica",
         "por_que": (
@@ -426,7 +487,7 @@ EXCECOES: list[dict] = [
         ),
     },
     {
-        "arquivo": "docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json",
+        "arquivo": "skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json",
         "achado": "20 cadeias",
         "classe": "registro datado de bloco",
         "por_que": (
@@ -436,7 +497,7 @@ EXCECOES: list[dict] = [
         ),
     },
     {
-        "arquivo": "docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json",
+        "arquivo": "skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json",
         "achado": "R1: 21",
         "classe": "registro datado de bloco",
         "por_que": (
@@ -446,13 +507,13 @@ EXCECOES: list[dict] = [
         ),
     },
     {
-        "arquivo": "docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json",
+        "arquivo": "skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json",
         "achado": "R2: 1",
         "classe": "registro datado de bloco",
         "por_que": "Mesma linha de `contagem_FINAL_DO_BLOCO`. Registro datado do bloco 19.",
     },
     {
-        "arquivo": "docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json",
+        "arquivo": "skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json",
         "achado": "R3: 62",
         "classe": "registro datado de bloco",
         "por_que": (

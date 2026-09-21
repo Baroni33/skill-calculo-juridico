@@ -215,5 +215,5 @@
     "D8-D24": "'de 31de outubro de 1990' — falta o espaço. Item 4.9.1, pagina_pdf 84. Transcrito como está.",
     "D8-D25": "'REsp n. 1.075.627; Resp n. 754.013; REsp. n. 1.314.478' — três grafias da mesma abreviatura na mesma linha. Item 4.9, pagina_pdf 84 (e 'REsp.' em 4.8, pagina_pdf 81). Transcrito como está."
   },
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

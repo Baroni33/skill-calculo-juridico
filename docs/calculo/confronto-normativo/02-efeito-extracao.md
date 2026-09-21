@@ -319,7 +319,7 @@ competência do escopo, o que aqui **não ocorre em nenhum caso**.
 |---|---|---|---|
 | **B03-F1** | `BIFURCADO` | 11/11/2017 (com subjanela 14/11/2017 a 22/04/2018 sob a MP 808/2017) | competência do fato gerador da parcela (mês de pagamento/competência… |
 
-### `tabelas-normativas/trt3-18.1-incidencia-parcelas.json`
+### `skills/calculo-trabalhista-liquidacao/regras/trt3-18.1-incidencia-parcelas.json`
 
 1 ponto(s).
 

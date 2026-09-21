@@ -1,16 +1,45 @@
 {
-  "id": "cjf.desapropriacao-direta.correcao-monetaria",
-  "titulo": "Correção monetária — desapropriações diretas",
+  "id": "cjf.desapropriacao-indireta.correcao-monetaria",
+  "titulo": "Correção monetária — desapropriações indiretas",
   "tipo": "cadeia-temporal",
-  "tipo_acao": "desapropriacao-direta",
+  "tipo_acao": "desapropriacao-indireta",
   "componente": "correcao-monetaria",
   "fonte": {
     "documento": "manual_de_calculos_2026.pdf",
     "norma": "Resolução CJF n. 990/2026",
-    "item": "4.5.1.1",
-    "pagina_pdf": 66
+    "item": "4.6.1.1",
+    "pagina_pdf": 72
   },
-  "termo_inicial": "A correção monetária é contada a partir da data do laudo do perito (Súmula n. 75 do TFR).",
+  "termo_inicial": "A correção monetária é contada a partir da data do laudo de avaliação (Súmula n. 75 do TFR).",
+  "IDENTICA_A_4_5_1_1": "A tabela de 4.6.1.1 (pagina_pdf 72–73) é IDÊNTICA à de 4.5.1.1 (pagina_pdf 66), INCLUSIVE no IPC/FGV de mar. a dez./1991 — índice que nenhuma outra cadeia do manual usa. Afirmação da extração: bloco-08-jf-detalhe.md § 3.1, literal 'são idênticas'. O que muda entre direta e indireta é o TERMO INICIAL e os JUROS, não a linha do tempo da correção.",
+  "DERIVADA_DE": {
+    "arquivo": "cjf.desapropriacao-direta.correcao-monetaria.json",
+    "como": "Os segmentos são LIDOS do arquivo da direta em tempo de geração por scripts/calculo/gera_cadeias_bloco19.py e reescritos com pagina_pdf 73. É a mitigação do único argumento que havia a favor de uma cadeia só: conteúdo idêntico duplicado à mão diverge; conteúdo idêntico DERIVADO não tem como divergir sem que o gerador seja reexecutado.",
+    "FUNDAMENTO_AUSENTE_E_PRE_EXISTENTE": "OITO DOS ONZE SEGMENTOS NÃO TÊM O CAMPO 'fundamento', e ISSO É PRÉ-EXISTENTE, DO BLOCO 8: eles são derivados de cjf.desapropriacao-direta.correcao-monetaria.json, onde os mesmos oito já estavam assim. NÃO foram convertidos para 'fundamento: null' com razão, ao contrário das cadeias NOVAS deste bloco (ver declara_fundamento_ausente em gera_cadeias_bloco19.py), por duas razões: consertar aqui seria assumir defeito alheio como se fosse deste bloco, e faria o DERIVADO divergir da ORIGEM — que é justamente o que este campo existe para impedir. Fecha junto com a direta, num bloco que a revisite."
+  },
+  "DECISAO_1_DUAS_CADEIAS_E_NAO_UMA_COM_DOIS_ESCOPOS": "DECIDIDO: DUAS cadeias. (a) O eixo que separa direta de indireta é a MODALIDADE da desapropriação, e modalidade não é eixo da linha do tempo: o que ela muda é o TERMO INICIAL, campo de CADEIA, e 'condicao' / 'dominio_condicoes' são campos de SEGMENTO. Usar 'condicao' para carregar modalidade obrigaria a repetir a condição nos 11 segmentos para exprimir que ela não muda nenhum deles, e ainda assim não alcançaria o termo inicial, que é onde a diferença mora (D8-C10). (b) As gêmeas divergem FORA da correção: os juros de mora fecham em nov/2021 (4.5.2) e dez/2021 (4.6.2), e 4.6.3 carrega o N-10. Uma cadeia 'desapropriação' seria verdadeira para a correção e falsa para as outras duas. (c) Regra do bloco 17 — o IDENTIFICADOR IDENTIFICA: 'cjf.desapropriacao-direta.*' já existe e o manifesto trata perda de id como regressão; renomeá-lo para abrigar as duas modalidades custaria uma regressão declarada para ganhar uma ambiguidade. O custo da decisão — duplicação — é pago por 'DERIVADA_DE'.",
+  "notas": [
+    {
+      "n": 2,
+      "texto": "Consolidação em dez./2021: o crédito será consolidado com base no mês de dez./2021 pelos critérios até então aplicáveis, considerando o IPCA-E de nov./2021 (1,17%) e os juros de dez./2021 (0,4412%); sobre o valor consolidado, sem exclusão de qualquer parcela, incidirá a taxa Selic a partir de jan./2022 (competência dez./2021).",
+      "pagina_pdf": 74,
+      "efeito": "A desapropriação INDIRETA é um dos CINCO lugares que consolidam em dez./2021. Verificado por varredura: '0,4412' ocorre nas pagina_pdf 50, 59, 67, 74 e 79. A primeira redação do bloco 8 listava quatro lugares, e as duas desapropriações ficaram de fora."
+    }
+  ],
+  "N_12_AUSENCIA_ASSIMETRICA": "O item 4.5.1 traz NOTA com o termo inicial da correção (pagina_pdf 66); o item 4.6.1 NÃO tem nota equivalente (pagina_pdf 72). O termo inicial gravado acima vem do bullet 'Súmula n. 75 do TFR a partir do laudo de avaliação' (bloco-08-jf-detalhe.md § 3.1). Assimetria registrada, não harmonizada.",
+  "DEFEITOS_DO_ORIGINAL": {
+    "D8-D26": "'Parágrafo Único' (4.5.1.1, pagina_pdf 66) × 'parágrafo único' (4.6.1.1, pagina_pdf 73) em tabelas GÊMEAS.",
+    "D8-D29": "'relativos a valores' × 'relativos aos valores' (pagina_pdf 67 e 74) em notas que deveriam ser idênticas.",
+    "D8-D30": "Espaço antes da pontuação em 4.6.1 (pagina_pdf 72), resíduo de hyperlink."
+  },
+  "jurisdicao": "justica-federal",
+  "janela_de_analise": {
+    "inicio": "1964-01",
+    "fim": "2026-06",
+    "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
+    "marcador": "ponta_materializada"
+  },
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
   "segmentos": [
     {
       "inicio": "1964-01",
@@ -22,7 +51,7 @@
         "correcao-monetaria"
       ],
       "fundamento": "Lei n. 4.357/1964",
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "observacao": "O manual escreve 'De 1964 a fev./1986' — início sem mês. Ver pendência P8-07.",
       "componente": "correcao-monetaria",
       "ponta_materializada": "inicio — o manual não dá mês inicial"
@@ -41,7 +70,7 @@
         "quando": "1989-01",
         "texto": "Os débitos anteriores a jan./1989 deverão ser multiplicados, neste mês, por 6,17."
       },
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria"
     },
     {
@@ -56,7 +85,7 @@
       ],
       "expurgo": true,
       "observacao": "Expurgo, em substituição ao BTN.",
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria"
     },
     {
@@ -71,7 +100,7 @@
       ],
       "expurgo": true,
       "observacao": "Expurgo, em substituição ao BTN.",
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria"
     },
     {
@@ -83,7 +112,7 @@
       "engloba": [
         "correcao-monetaria"
       ],
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria"
     },
     {
@@ -97,7 +126,7 @@
       ],
       "expurgo": true,
       "observacao": "Expurgo, em substituição ao BTN e ao INPC de fev./1991.",
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria"
     },
     {
@@ -110,7 +139,7 @@
       "engloba": [
         "correcao-monetaria"
       ],
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria",
       "correcao_adversarial": "A primeira extração gravou INPC. O PDF (pagina_pdf 66, e a gêmea 4.6.1.1 na 73) diz IPC/FGV — outro índice, de outra instituição. Era o único segmento errado dos 78, e o único índice exclusivo de uma cadeia em todo o capítulo 4."
     },
@@ -123,7 +152,7 @@
       "engloba": [
         "correcao-monetaria"
       ],
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria"
     },
     {
@@ -135,7 +164,7 @@
       "engloba": [
         "correcao-monetaria"
       ],
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria"
     },
     {
@@ -151,7 +180,7 @@
       ],
       "aplicacao": "mes-posterior-a-competencia",
       "fundamento": "Art. 3º da EC n. 113/2021",
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria"
     },
     {
@@ -164,17 +193,9 @@
         "correcao-monetaria"
       ],
       "fundamento": "ARE 1.557.312/SP (Tema 1.419 do STF), Art. 389, Parágrafo Único, da Lei n. 10.406/2002",
-      "pagina_pdf": 66,
+      "pagina_pdf": 73,
       "componente": "correcao-monetaria",
       "ponta_materializada": "fim — o manual escreve 'A partir de ...'"
     }
-  ],
-  "jurisdicao": "justica-federal",
-  "janela_de_analise": {
-    "inicio": "1964-01",
-    "fim": "2026-06",
-    "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
-    "marcador": "ponta_materializada"
-  },
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+  ]
 }

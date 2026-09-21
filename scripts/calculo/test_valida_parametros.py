@@ -17,6 +17,7 @@ import unittest
 from decimal import Decimal
 from pathlib import Path
 
+import caminhos_de_skill  # noqa: F401
 from valida_parametros import (
     COBERTURA_COM,
     COBERTURA_CONFLITO,
@@ -746,14 +747,15 @@ class TestAritmetica(unittest.TestCase):
         """R12 — nenhum literal float em caminho algum."""
         import ast
 
-        for nome in ("valida_parametros.py", "test_valida_parametros.py"):
-            caminho = Path(__file__).with_name(nome)
+        import valida_parametros as _mod
+        # BLOCO 25 — o módulo mora na skill; o teste, no pipeline.
+        for caminho in (Path(_mod.__file__), Path(__file__)):
             arvore = ast.parse(caminho.read_text(encoding="utf-8"))
             floats = [
                 no for no in ast.walk(arvore)
                 if isinstance(no, ast.Constant) and isinstance(no.value, float)
             ]
-            self.assertEqual(floats, [], f"{nome}: literal float encontrado")
+            self.assertEqual(floats, [], f"{caminho.name}: literal float encontrado")
 
     def test_float_em_clausula_e_rejeitado(self):
         dados = json.loads(SINTETICO.read_text(encoding="utf-8"))

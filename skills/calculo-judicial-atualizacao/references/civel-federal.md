@@ -8,7 +8,7 @@ CJF, Res. 990/2026** — **única fonte do corpus cuja edição está vigente**.
 `consolidado/02-atualizacao-detalhe.md` §§ 5.1, 5.2, 5.3 e 10;
 `docs/calculo/extracao/justica-federal/bloco-08-jf.md` §§ 4 e 5 e `bloco-08-jf-detalhe.md` § 4;
 `docs/calculo/00-base-normativa.md` §§ 4, 6 e 8;
-`docs/calculo/tabelas-normativas/cjf.condenatorias-gerais.correcao-monetaria.json` (15 segmentos)
+`skills/calculo-judicial-atualizacao/regras/cjf.condenatorias-gerais.correcao-monetaria.json` (15 segmentos)
 e `cjf.condenatorias-gerais.juros-mora.json` (11 segmentos).
 
 > **Cível FEDERAL, não cível estadual.** A cadeia do **Código Civil** — Tema 1368, Lei
@@ -348,7 +348,7 @@ em `references/tributario-federal.md`:
   a ponta **INPC** é **percentual**, também nomeado. **IPCA-E e IPCA-15 saíram de `P17-01` no
   bloco 19 e são `janela-deslocada`**, por fonte **externa ao corpus** (IBGE) — o item 4.1.2.4
   segue **sem nomear sequer "IPCA"**. **A classe de cada rótulo é a do catálogo**
-  (`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`), nunca a copiada para cá.
+  (`skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`), nunca a copiada para cá.
   **Cada virada entre classes exige ajuste de defasagem**, sob pena de deslocar o cálculo em um
   mês — e onde a ponta é `indeterminado` **não se sabe sequer se há virada**. **A régua do ajuste
   não existe no consolidado**: ver `10-literais-na-extracao.md` § 5.2;
@@ -405,8 +405,8 @@ em `references/tributario-federal.md`:
 
 ## 12. Ponteiros
 
-- `docs/calculo/tabelas-normativas/cjf.condenatorias-gerais.correcao-monetaria.json` — 15 segmentos
-- `docs/calculo/tabelas-normativas/cjf.condenatorias-gerais.juros-mora.json` — 11 segmentos
+- `skills/calculo-judicial-atualizacao/regras/cjf.condenatorias-gerais.correcao-monetaria.json` — 15 segmentos
+- `skills/calculo-judicial-atualizacao/regras/cjf.condenatorias-gerais.juros-mora.json` — 11 segmentos
 - `docs/calculo/consolidado/02-atualizacao-detalhe.md` §§ 5.1, 5.2, 5.3 e 10
 - `docs/calculo/extracao/justica-federal/bloco-08-jf.md` §§ 4, 5 e 6 — as sete cadeias, as quatro
   fórmulas de `aplicacao`, a consolidação

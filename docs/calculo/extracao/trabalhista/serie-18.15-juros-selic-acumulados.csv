@@ -12,7 +12,7 @@
 #   vive no campo 'engloba' das cadeias, que não mudou. O que mudou foi só a
 #   CLASSE DE R3 — 'englobante' ali era erro de categoria e deixava a Selic
 #   cega para a comparação de defasagem, embora ela tenha defasagem.
-# Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
+# Fonte de cada classificacao: skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json
 pagina_pdf,item,serie,chave,valor,quadro
 468,18.15,1995,Janeiro,"0,00%",taxa-selic-mensal
 468,18.15,1996,Janeiro,"2,58%",taxa-selic-mensal

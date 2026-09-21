@@ -1,7 +1,7 @@
 # OUT_OF_SCOPE — serie; manutencao separada (regra 4 de 01-plano-extracao.md)
 # documento=manual-de-calculo-trabalhista_2016-1.pdf item=9.2.11 tabela='TABELA PRATICA DE ACRESCIMOS LEGAIS - TABELA I' pagina_pdf=178-179
 # tipo do indexador (R3): coef_ufir -> Ufir=nominal; pct_juros -> nao-indexador.
-# Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
+# Fonte de cada classificacao: skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json
 competencia,competencia_original,coef_ufir,pct_juros_devido_ate_dez79,documento,item,pagina_pdf
 1964-08,ago/64,"0,10418756",185,manual-de-calculo-trabalhista_2016-1.pdf,9.2.11,178
 1964-09,set/64,"0,08785913",184,manual-de-calculo-trabalhista_2016-1.pdf,9.2.11,178

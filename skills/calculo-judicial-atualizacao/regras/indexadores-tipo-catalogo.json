@@ -538,7 +538,7 @@
       "ressalva": "serie-18.15-tabela-pratica-contribuicoes-em-atraso.csv consome acréscimos legais que dependem de Selic; o quadro extraído, porém, traz coeficientes prontos e não nomeia indexador. Não classificado — não se inventa o que o quadro não diz."
     }
   },
-  "ONDE_ISTO_E_CONSUMIDO": "scripts/calculo/valida_cobertura.py — campo 'tipo_indexador' do Segmento e invariante R3. Cadeias em cjf.*.json e trab.hist.*.json gravam 'tipo_indexador', 'tipo_indexador_fonte' e, quando indeterminado, OU 'tipo_indexador_pendencia' OU 'tipo_indexador_razao' — nunca os dois.",
+  "ONDE_ISTO_E_CONSUMIDO": "calculo-judicial-atualizacao/scripts/valida_cobertura.py — campo 'tipo_indexador' do Segmento e invariante R3. Cadeias em cjf.*.json e trab.hist.*.json gravam 'tipo_indexador', 'tipo_indexador_fonte' e, quando indeterminado, OU 'tipo_indexador_pendencia' OU 'tipo_indexador_razao' — nunca os dois.",
   "R3_NOVAS_DO_BLOCO_19": {
     "por_que_aparecem": "A SELIC era 'englobante' e por isso SALTAVA R3 — o validador tinha um desvio explícito para ela. Reclassificada a 'percentual', ela passa a ser comparável, e as viradas contra ela, que sempre existiram no manual, ficam VISÍVEIS. São ACHADO, não regressão: nenhuma cadeia mudou de conteúdo, só o campo que as descrevia parou de esconder o fato. O mesmo vale, em sentido oposto, para a taxa legal: rebaixada a 'indeterminado', ela passa a produzir R3-INDETERMINADO onde antes saltava.",
     "contagem": "NESTA TAREFA (a 2), o total de R3 vai de 46 para 51: são OITO violações NOVAS e TRÊS que FECHARAM, líquido +5. Aqui R1 (15) e R2 (1) NÃO se movem — nenhuma cadeia mudou de conteúdo, só o campo que as descrevia parou de esconder o fato. As listas 'novas' e 'fechadas' abaixo são desta tarefa.",

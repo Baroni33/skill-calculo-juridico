@@ -14,8 +14,8 @@ Invariantes sustentadas, todas verificadas em `test_valida_parametros.py`:
   R18 — Parâmetro com piso legal rejeita valor negociado inferior. Rejeita e reporta;
         não corrige para o piso.
 
-Contrato completo em `docs/calculo/tabelas-normativas/camada-norma-coletiva-schema.json`.
-Catálogo em `camada-norma-coletiva-catalogo.json`.
+Contrato completo em `../regras/camada-norma-coletiva-schema.json`.
+Catálogo em `../regras/camada-norma-coletiva-catalogo.json`.
 
 Aritmética decimal, nenhum float (R12). `encoding='utf-8'` explícito em toda leitura.
 
@@ -34,8 +34,10 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any, Iterable
 
-RAIZ = Path(__file__).resolve().parents[2]
-CATALOGO_PADRAO = RAIZ / "docs" / "calculo" / "tabelas-normativas" / "camada-norma-coletiva-catalogo.json"
+# BLOCO 25 — script DE SKILL. O catálogo viaja com ele, em `regras/`, irmão de
+# `scripts/`. Ver a nota gêmea em `calculo-judicial-core/scripts/valida_regimes.py`.
+SKILL = Path(__file__).resolve().parents[1]
+CATALOGO_PADRAO = SKILL / "regras" / "camada-norma-coletiva-catalogo.json"
 
 __all__ = [
     "Catalogo",

@@ -4,7 +4,7 @@ Companheiro de [`../SKILL.md`](../SKILL.md). **Movido da espinha no bloco 17, pe
 500 linhas** — nenhum índice foi removido.
 
 A classificação normativa vive em
-`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`, que é o que o validador lê.
+`calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`, que é o que o validador lê.
 **Este arquivo é a leitura humana dele. Divergiram, vale o JSON.**
 
 ---
@@ -62,7 +62,7 @@ Fontes: `02-atualizacao.md` §§ 5, 10 e 11; `02-atualizacao-detalhe.md` §§ 5.
 validador, sob `R3-INDETERMINADO`. Passar converteria *"não se sabe"* em *"está certo"* — e num
 validador cuja razão de existir é que o erro de R3 **não tem sintoma**, o silêncio é o pior
 resultado. Pendências **P17-01**, **P18-01** e **P19-01**. Catálogo:
-`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`.
+`calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`.
 
 > **Duas razões de `indeterminado`, e elas se fecham diferente (bloco 19).** *Sem fonte*, campo
 > `tipo_indexador_pendencia`, **fecha quando a fonte chegar**. *A fonte diz que não cabe*, campo

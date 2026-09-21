@@ -37,7 +37,7 @@ Divergência não se resolve, se registra (regra 6 do plano):
 
 ## 2. Taxa legal — ausência de par de validação IPCA-15
 
-**Status: aberta. Afeta a cobertura de teste de `scripts/calculo/valida_taxa_legal.py`.**
+**Status: aberta. Afeta a cobertura de teste de `skills/calculo-judicial-atualizacao/scripts/valida_taxa_legal.py`.**
 
 A fórmula é a mesma nos dois casos:
 
@@ -227,7 +227,7 @@ Não confundir com a conversão inversa, CR$ → URV, de março/1994 (MP 434/94 
 que se faz por divisão e média aritmética de quatro meses (p. 81).
 
 Detalhe em `extracao/trabalhista/bloco-02-criterios.md`, § 7.
-Registrado em `tabelas-normativas/trt3-18.10-urv-conversao.json`.
+Registrado em `../../skills/calculo-trabalhista-liquidacao/regras/trt3-18.10-urv-conversao.json`.
 
 ---
 
@@ -401,8 +401,8 @@ preset"**:
 | `TRAB-INTERTEMP-ULTRATIVO` | ultratividade da lei do contrato | regra da data de admissão por toda a duração do contrato |
 
 > **FECHADA pelo bloco 6.** A camada de presets de regime temporal existe:
-> `docs/calculo/presets-regime.md`, `tabelas-normativas/regimes-temporais-catalogo.json`
-> e `scripts/calculo/valida_regimes.py`. Os dois presets são as variantes de
+> `docs/calculo/presets-regime.md`, `../../skills/calculo-judicial-core/regras/regimes-temporais-catalogo.json`
+> e `skills/calculo-judicial-core/scripts/valida_regimes.py`. Os dois presets são as variantes de
 > `pr.intertemporal`, cada uma com o **eixo efetivo** declarado — `tempus regit
 > actum` lê a competência; a ultratividade lê a data de admissão. O regime tem
 > `sem_default: true`, de modo que a ausência de escolha bloqueia o cálculo em vez
@@ -802,8 +802,8 @@ anterior ao julgamento. Usar os **acórdãos publicados**.
 ## 23. Bloco 17 — o tipo do indexador (R3) sem fonte
 
 **Status: aberta.** O campo passou a existir: `tipo_indexador` em **97 segmentos** de **11
-cadeias**, catálogo único em `tabelas-normativas/indexadores-tipo-catalogo.json`, invariante
-R3 cobrada por `scripts/calculo/valida_cobertura.py`. O que não existe é **fonte para metade
+cadeias**, catálogo único em `../../skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`, invariante
+R3 cobrada por `skills/calculo-judicial-atualizacao/scripts/valida_cobertura.py`. O que não existe é **fonte para metade
 do catálogo**.
 
 **A fonte é estreita e exemplificativa.** O item 4.1.2.4 do Manual CJF (`pagina_pdf` 42)
@@ -949,7 +949,7 @@ discute** recebe os dois por padrão (NOTA 2).
 | **`TRD`** | ambas, 1991-02..1993-04 | **NÃO segue a TR** — a herança foi desfeita no bloco 19 (§ 25.3): a fonte do BCB nomeia TBF, Redutor-R e TR, **não** a TRD. As únicas ocorrências no corpus são o texto `nao-indexador` de segmentos de **juros**, que não classifica a TRD como índice de correção |
 | **`IPC`** (nu) | FGTS, duas janelas | `D8-C21` sustenta o **`IPC/IBGE`**, não o `IPC` sem emissor — e o manual usa **dois** IPC (IBGE e FGV, item 4.5.1.1). A poupança escreve `IPC/IBGE` nos **mesmos meses** |
 
-**Escopo da busca de ausência declarado** em `tabelas-normativas/indexadores-tipo-catalogo.json`,
+**Escopo da busca de ausência declarado** em `../../skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`,
 chave `ESCOPO_DA_BUSCA_DE_AUSENCIA_BLOCO_18`: árvores `docs/`, `skills/`, `scripts/`, `tests/`;
 extensões `.md`, `.json`, `.csv`, `.py`; critério = linha com o termo **e** vocabulário de tipo.
 Mais a releitura integral do PDF nas `pagina_pdf` **81–87** e **35–36**. **Zero ocorrências
@@ -1494,6 +1494,11 @@ existe no repositório para OUTRO uso**, e nenhuma delas tinha o caso nomeado. A
 
 ## 28. Bloco 24 — `RG10` tem tabela candidata, registrada e não extraída
 
+> **ATUALIZAÇÃO DO BLOCO 25 — `P24-01` LIDO E RESPONDIDO.** O PDF foi lido, as quatro páginas
+> inteiras. **A tabela é SÉRIE DE VALORES, não cadeia** — e por isso **não migrou, e não deve
+> migrar, para dentro da skill**. Veredito, escopo e as três respostas em **§ 28.2**. A § 28.1
+> abaixo fica **como estava**, por ser o registro de como a pendência nasceu.
+
 ### 28.1 `P24-01` — fatores ICGJ/TJMG: a série existe, e não foi lida
 
 **`RG10`** é a **tabela CGJ/TJMG** — correção monetária cível em Minas para períodos **anteriores
@@ -1540,3 +1545,125 @@ que o bloco 1 aplicou às 99 páginas de tabelas do TRT-3.
 
 **Registrada, não consumida.** Fecha quando alguém extrair as quatro páginas com proveniência, ou
 quando o projeto decidir que a cadeia cível regional está fora de escopo.
+
+---
+
+### 28.2 Bloco 25 — a leitura das quatro páginas: **é série, e fecha pelo outro lado**
+
+**Fonte lida:** `C:\Users\Rafaela\Downloads\Plataforma-SaaS-Jus\02 - PDF - Fatores de Atualizacao Monetaria - Agosto de 2026.pdf`,
+**4 de 4 páginas**, via PyMuPDF, texto e coordenadas (a página é **girada 90°** — linha do
+documento é coluna de `x`, e quem cluster por `y` lê zero linhas).
+
+#### Escopo, contado antes de declarado
+
+| | |
+|---|---|
+| Páginas lidas | **4 de 4** (páginas 1–3 = grade; página 4 = `NOTAS:`) |
+| Cabeçalho da grade | `ANO · JAN · FEV · MAR · ABR · MAI · JUN · JUL · AGO · SET · OUT · NOV · DEZ · ANO` |
+| Linhas-ano | **63** (1964 a 2026) |
+| Fatores mensais | **742**, todos com **7 casas** — `61 × 12 = 732`, mais **1964** com 3 (out, nov, dez) e **2026** com 7 (jan a jul). Conferem |
+| Células com rótulo de índice | **zero** — nenhuma célula da grade nomeia ORTN, OTN, BTN, TR, IPC-R ou INPC |
+| Marcos de corte datados dentro da grade | **zero** |
+
+> **Conferência sem povoamento:** os 742 fatores foram lidos e convertidos em `decimal.Decimal`
+> **apenas para contagem e validação de forma**. **Nenhum foi gravado.** Povoar série é o que
+> este bloco existe para impedir.
+
+#### O veredito, pelo teste de conteúdo
+
+**SÉRIE DE VALORES — categoria (B), `OUT_OF_SCOPE`. Não é cadeia.** A frase que decide está na
+**página 4**, e é operacional, não de título:
+
+> *"Para a conversão em reais, **multiplica-se o valor histórico pelo fator correspondente à data
+> de origem**"* — PDF, **página 4**, bloco `NOTAS:`.
+
+**Um número por mês, para multiplicar.** As quatro perguntas do teste, respondidas contra o
+documento:
+
+| Pergunta | Resposta do PDF | Onde |
+|---|---|---|
+| diz *"de tal período use tal índice"*? | **não** — a grade é só número | pp. 1–3 |
+| dá **um número por mês** para multiplicar? | **sim** | p. 4, nota da conversão |
+| há **corte declarado**, com data e fundamento? | **não**, para indexador | pp. 1–4 |
+| há **fundamento legal por faixa**? | **não** — os seis índices do subtítulo aparecem **sem uma única data de fronteira entre eles** | pp. 1–3 |
+
+#### O caso híbrido: existe, e **não é cadeia de indexador**
+
+A página 4 **tem** regra — mas **nenhuma** delas é encadeamento `período → indexador`:
+
+1. **Paridades de moeda, com datas.** *"Cr$ (cruzeiro) para datas anteriores a 28/02/86; Cz$
+   (cruzado) para as datas entre 01/03/1986 e 15/01/1989 (…); NCz$ (…) ou Cr$ (…) entre 16/01/89
+   e 31/07/93; CR$ (cruzeiro real) entre 01/08/93 e 30/06/94; R$ (real) a partir de 01/07/94"*,
+   mais *"retirada de três (3) zeros (…) em março de 1.986, janeiro de 1.989 e agosto de 1.993"*
+   e a divisão por 1.000 dos valores em cruzados de **1º a 15/01/89** — p. 4. Isso é
+   `padrao-monetario`, **não indexador**, e o repositório **já o tem** em
+   `trab.hist.moedas-e-paridades.json`. **Nada a migrar; nada que autorize migrar.**
+2. **Expurgos, sob condição de despacho.** *"Encontra-se expurgada da presente tabela a inflação
+   desconsiderada pelos planos econômicos"*, e *"Caso haja expressa determinação do MM Juiz da
+   Vara, os fatores a considerar são os seguintes: Junho de 1987 = 6,81%(1,0681); Janeiro de 1989
+   = 42,72%(1,4272); Março de 1990 = 30,46%(1,3046); Abril de 1990 = 44,80%(1,4480); Maio de 1990
+   = 2,36%(1,0236) e Fevereiro de 1991 = 13,90%(1,1390)"* — p. 4. São **seis valores** sob
+   gatilho processual: **(B) com condição**, não cadeia.
+3. **Exclusão de escopo, com fundamento legal.** *"Nos termos da Lei Federal nº. 9.494, de 10 de
+   setembro de 1997, com a redação da Lei Federal nº. 11.960, de 29 de junho de 2009, 'nas
+   condenações impostas à Fazenda Pública (…) haverá a incidência uma única vez (…) dos índices
+   oficiais de remuneração básica e juros aplicados à caderneta de poupança', **não se aplicando,
+   por conseguinte, a presente tabela**"* — p. 4. É regra **de não aplicação** — diz **onde a
+   série não vale**, não **qual índice rege cada trecho**.
+
+> **Conclusão do híbrido:** a nota traz **regra de moeda, regra de expurgo condicionado e regra de
+> exclusão** — e **nenhuma** delas é a cadeia `período → indexador` que faltaria a `RG10`. **Não
+> há nota extraível como cadeia. A tabela não migra.**
+
+#### As três perguntas de `P24-01`
+
+**1. `ICGJ` é índice ou nome da tabela? — RESPONDIDA NO QUE DECIDE, PENDENTE NO RESTO.**
+O PDF **não expande a sigla** e **não define ICGJ** em nenhuma das 4 páginas. O que ele decide é
+o que importava: os dois títulos convivem no **mesmo cabeçalho**, em **todas** as páginas —
+*"Fatores de Atualização Monetária Baseados em: **ICGJ (TJMG)**"* e *"Fatores de Atualização
+Monetária Baseados na Variação de: **ORTN/OTN/BTN/TR/IPC-R/INPC**"* (pp. 1, 2 e 3) — e **a
+sequência dos seis índices não vem acompanhada de uma única data**. **Sem fronteiras, não há
+encadeamento**: ICGJ opera aqui como **rótulo do fator acumulado da Corregedoria**, e os seis são
+**a história de composição, não uma cadeia declarada**. **A hipótese "composição de seis índices
+= cadeia" está descartada por ausência de datas, não por interpretação.**
+**Fica pendente**, com escopo: *quais períodos couberam a cada um dos seis* **não está neste
+documento** — varredura dos 742 números e de todo o texto das 4 páginas, zero ocorrência de
+fronteira datada por indexador. Responder exigiria **outra fonte** (ato da CGJ/TJMG que institui a
+tabela), **que não está no corpus**.
+
+**2. `tipo_indexador` de `ICGJ` → `indeterminado`. PERMANECE PENDENTE.**
+O PDF **não classifica** ICGJ como nominal, percentual ou janela-deslocada, e **não diz** qual mês
+de competência o fator reflete. Vale a `REGRA_DESTE_CATALOGO` de
+`indexadores-tipo-catalogo.json`: *"o valor SAI DA FONTE"*. **Herdar a classe dos seis do subtítulo
+é exatamente a dedução proibida dos blocos 17 e 19** — e aqui seria pior, porque os seis são de
+classes diferentes entre si (ORTN/OTN/BTN nominais, INPC percentual). **Não classificado.**
+*Consequência prática: nenhuma — não há cadeia com ponta ICGJ para `R3` comparar.*
+
+**3. A tabela é `RG10`, ou é a série que `RG10` consome? — RESPONDIDA: é a SÉRIE.**
+`RG10` é a **regra** — *"em Minas, correção cível anterior a jan/2003 vem da tabela da CGJ"*. Este
+PDF **é a tabela**. A nota da p. 4 fecha a questão ao dizer **como se usa**, não **quando se usa**:
+*"multiplica-se o valor histórico pelo fator correspondente à data de origem"*. **Camadas (A) e
+(B), como § 28.1 suspeitava.** `civel-regional-tjmg.md` § 5.1 já dizia o mesmo sem ter lido o
+documento: *"o corpus a nomeia e diz quando se aplica; não traz a série de valores mensais. Isso é
+dado de categoria (B)"*. **A leitura confirmou a suspeita registrada.**
+
+#### Como `P24-01` fecha
+
+**Fecha pelo outro lado: não há cadeia a extrair.**
+
+> **A regra de `RG10` já está enunciada — `civel-regional-tjmg.md` §§ 2 e 3, com as três hipóteses
+> de sobrevivência e a fronteira em jan/2003. O que falta a `RG10` é SÓ O VALOR.** E valor **não
+> entra na skill**: é `docs/calculo/extracao/`, `OUT_OF_SCOPE`, buscado pela integração do app.
+
+**O que faltaria para `RG10` "ter cadeia", e por que não falta:** faltaria uma fonte que declarasse
+`período → indexador` com datas de corte para o trecho anterior a jan/2003. **`RG10` não precisa
+dela** — a cadeia regional de Minas tem **uma linha só** (*até dez/2002: tabela CGJ/TJMG*), e essa
+linha **já está escrita**. Uma "cadeia ICGJ" gerada a partir destes 742 fatores **seria valor
+disfarçado de regra dentro da skill** — precisamente o que o bloco 25 proíbe.
+
+**Permanece aberto, e só isto:** (i) a **composição datada** dos seis índices, sem fonte no corpus;
+(ii) o **`tipo_indexador`** de ICGJ, `indeterminado` por falta de fonte. **Nenhum dos dois bloqueia
+cálculo**, porque nenhuma cadeia do repositório tem ponta `ICGJ`.
+
+**Nada foi gerado.** Nenhum arquivo em `regras/`, nenhuma linha em `cadeias-manifesto.json`,
+nenhuma série em `docs/calculo/extracao/`. **Isso é a entrega.**

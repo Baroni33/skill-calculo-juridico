@@ -8,6 +8,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import caminhos_de_skill  # noqa: F401  (registra os scripts/ de skill no path)
+import valida_cobertura as _mod_cobertura
 from valida_cadeias import confere_manifesto, descobre_cadeias, le_manifesto
 from valida_cobertura import (
     APLICACOES_QUE_AJUSTAM_DEFASAGEM,
@@ -28,8 +30,9 @@ JM = "juros-mora"
 PM = "padrao-monetario"
 
 RAIZ = Path(__file__).resolve().parents[2]
-TABELAS = RAIZ / "docs" / "calculo" / "tabelas-normativas"
-CATALOGO = TABELAS / "indexadores-tipo-catalogo.json"
+# BLOCO 25 — as cadeias e o catálogo migraram para dentro da skill.
+TABELAS = caminhos_de_skill.CADEIAS
+CATALOGO = caminhos_de_skill.CATALOGO_INDEXADORES
 
 
 def seg(inicio, fim, componente, engloba=(), condicao=None, id=None):
@@ -1129,9 +1132,9 @@ class TestAplicacaoEVocabularioFechado(unittest.TestCase):
 
     def test_nenhum_escape_por_truthiness_sobrou_no_codigo(self):
         """Guarda literal: o teste `if seguinte.aplicacao:` não pode voltar."""
-        fonte = (Path(__file__).resolve().parent / "valida_cobertura.py").read_text(
-            encoding="utf-8"
-        )
+        # BLOCO 25 — a fonte sai do MÓDULO, não de um irmão de diretório: o script
+        # virou script de skill e a guarda tinha de ir junto.
+        fonte = Path(_mod_cobertura.__file__).read_text(encoding="utf-8")
         self.assertNotIn("if seguinte.aplicacao:", fonte)
         self.assertIn("in APLICACOES_QUE_AJUSTAM_DEFASAGEM", fonte)
 

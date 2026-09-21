@@ -136,12 +136,14 @@
     "marcador": "ponta_materializada"
   },
   "tabela_juros_fazenda_jun12_ago13": {
-    "natureza": "série (B) — percentuais cravados, mês a mês",
+    "natureza": "CONJUNTO FECHADO POR NORMA, EXAURIDO — não é série (B). Quinze competências, jun/2012 a ago/2013, delimitadas pelo art. 12, II, 'b', da Lei 8177/91: o gatilho é a meta anual da Selic ficar igual ou inferior a 8,5%, e ele só ocorreu nesse intervalo. Não há portaria futura que acrescente, altere ou remova um mês daqui — o conjunto está encerrado desde set/2013.",
+    "DECISAO_BLOCO_25": "FICA NA SKILL, RECLASSIFICADO. Até o bloco 25 este campo dizia 'série (B)' e o arquivo morava em docs/calculo/tabelas-normativas/. A migração o levou para skills/**/regras/ e a validação adversarial apontou a contradição: o README da migração proclamava que NENHUMA série havia migrado. O rótulo estava errado, não o endereço. O teste que o projeto usa para separar (A) de (B) é 'série (B) muda quando o governo publica portaria'; estes quinze percentuais não mudam, porque o período é fechado e passado. E tirá-los deixaria a regra INCOMPLETA no motor instalado: o 'atalho_do_manual' abaixo só vale sob a condição de uso que ele próprio declara — data final de atualização posterior a 31/08/13 —, e não resolve cálculo que termine DENTRO da janela, onde os quinze percentuais são a única resposta. Registrado também em docs/calculo/tabelas-normativas/README.md e em docs/calculo/aceitacao/bloco-25-relatorio.md § 6.",
+    "chave_anterior": "O mapa abaixo chamava-se 'serie' até o bloco 25; passou a 'percentuais_por_competencia'. O nome antigo fica aqui para que a busca por 'serie' neste diretório continue encontrando o caso — e a razão dele.",
     "pagina_pdf": 92,
     "fundamento": "art. 12, II, alínea 'b', da Lei 8177/91, incluído pela MP 567/12",
     "por_que_existe_literal": "Desde que houve alteração nas regras do rendimento da caderneta de poupança, a meta anual da taxa Selic apenas ficou inferior ou igual a 8,5% no período de junho/12 a agosto/13. De setembro/13 até o mês de atualização deste manual (maio/16), a meta anual da taxa Selic é superior a 8,5% e os juros correspondem a 0,5% ao mês.",
     "pagina_pdf_por_que": 91,
-    "serie": {
+    "percentuais_por_competencia": {
       "2012-06": "0,4828%",
       "2012-07": "0,4828%",
       "2012-08": "0,4551%",
@@ -179,5 +181,5 @@
     "NAO_VIRA_SEGMENTO": "'grande parte da jurisprudência entende' é corrente, não regra assentada. Pela disciplina do projeto, divergência jurisprudencial não se resolve: fica como variante com fundamento. O ramo é declarado no dominio_condicoes e deliberadamente não tem segmento — o validador o reporta como lacuna, que é a leitura correta: o manual não fecha a questão.",
     "pendencia": "P9-01"
   },
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

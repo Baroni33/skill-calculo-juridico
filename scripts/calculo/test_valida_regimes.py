@@ -14,6 +14,7 @@ import json
 import unittest
 from pathlib import Path
 
+import caminhos_de_skill  # noqa: F401
 from valida_regimes import (
     EIXOS_DECLARADOS,
     MOTIVO_ATRAVESSA,
@@ -778,8 +779,7 @@ class TestSeparacaoDeCamadas(unittest.TestCase):
 
     def test_todo_parametro_citado_existe_no_catalogo_de_parametros(self):
         pn = json.loads(
-            (RAIZ / "docs/calculo/tabelas-normativas"
-                    "/camada-norma-coletiva-catalogo.json").read_text(encoding="utf-8"))
+            caminhos_de_skill.CATALOGO_NORMA_COLETIVA.read_text(encoding="utf-8"))
         ids = {p["id"] for p in pn["parametros"]}
         for r in catalogo().regimes.values():
             for p in r.afeta_parametros:
@@ -838,8 +838,9 @@ class TestHigiene(unittest.TestCase):
     def test_nenhum_float_nos_arquivos_deste_bloco(self):
         import ast
 
-        for caminho in (Path(__file__).with_name("valida_regimes.py"),
-                        Path(__file__)):
+        import valida_regimes as _mod
+        # BLOCO 25 — o módulo mora na skill; o teste, no pipeline.
+        for caminho in (Path(_mod.__file__), Path(__file__)):
             with self.subTest(arquivo=caminho.name):
                 arvore = ast.parse(caminho.read_text(encoding="utf-8"))
                 floats = [
@@ -860,8 +861,7 @@ class TestHigiene(unittest.TestCase):
                     varre(v, f"{caminho}[{i}]")
 
         varre(json.loads(
-            (RAIZ / "docs/calculo/tabelas-normativas"
-                    "/regimes-temporais-catalogo.json").read_text(encoding="utf-8")))
+            caminhos_de_skill.CATALOGO_REGIMES.read_text(encoding="utf-8")))
 
     def test_todo_regime_tem_id_estavel(self):
         for rid in catalogo().regimes:

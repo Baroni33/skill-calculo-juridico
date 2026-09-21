@@ -217,5 +217,5 @@
     "fev_1987": "O FGTS abre um segmento de UM mês (fev./1987, LBC); a poupança o funde no bloco fev./1987–jun./1987. É o único mês em que as duas concordam entre fev. e jun./1987."
   },
   "NAO_E_A_CADEIA_DO_ITEM_2_4_4_1": "O item 2.4.4.1 (pagina_pdf 35–36) trata do FGTS como DÍVIDA FISCAL — o débito do empregador PARA COM o Fundo — e usa outro critério: o 'coeficiente da remuneração das contas vinculadas (JCM)', com ORTN até set./1983, depois UPC e 'os índices básicos de atualização dos saldos da poupança'; conversão em BTNF em 1º/11/1989; multiplicação por 126,8621 em 1º/2/1991; TRD de fev./1991 a maio/2000; TR a partir de maio/2000. SÃO CADEIAS DISTINTAS: sujeito distinto (Fundo credor × titular da conta credor), sigla distinta (JCM × JAM), capítulo distinto, e até o corte da ORTN difere — set./1983 em 2.4.4.1, fev./1986 em 4.8.1.1, jun./1983 na poupança. O corte de maio/2000 (D8-C8: 'De fev./1991 a maio/2000' × 'A partir de maio/2000', sem regra de desempate) é do item 2.4.4.1 e NÃO alcança esta cadeia.",
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

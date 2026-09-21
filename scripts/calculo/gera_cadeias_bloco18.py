@@ -8,13 +8,25 @@ aqui. Toda escrita declara `encoding='utf-8'` (R12).
 Descoberta pelo validador: `valida_cadeias.py` reconhece cadeia por
 `tipo == "cadeia-temporal"`, logo estes quatro arquivos entram na contagem
 automaticamente.
+
+> **BLOCO 25 — este gerador NÃO sobrescreve artefato já curado.** O que ele
+> produz foi editado depois, à mão, por outros blocos; regerar por cima desfaz
+> a curadoria e, desde a migração, estraga o **artefato empacotado**. A guarda
+> está em `escrita_curada.grava_lote`: idêntico não escreve, inexistente
+> escreve, **divergente RECUSA o lote inteiro** e sai com código 2. `--forcar`
+> para o dia em que a intenção for mesmo regerar.
 """
 import json
 from pathlib import Path
 
-DEST = Path(__file__).resolve().parents[2] / "docs" / "calculo" / "tabelas-normativas"
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos_de_skill  # noqa: E402
+import escrita_curada  # noqa: E402
+RAIZ = caminhos_de_skill.RAIZ
+DEST = caminhos_de_skill.CADEIAS  # bloco 25
 
-CAT = ("tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; "
+CAT = ("regras/indexadores-tipo-catalogo.json — o valor sai da fonte; "
        "sem fonte, indeterminado (bloco 17, tarefa 1)")
 NAO_IND = ("segmentos cuja regra é percentual legal fixo (1% a.m., 6% a.a., TRD, "
            "poupança) ou percentual de juros compensatórios, e não índice. Sem índice, "
@@ -613,12 +625,19 @@ poup_jm["JUROS_REMUNERATORIOS_NAO_SAO_ESTA_CADEIA"] = {
 }
 
 
-def main() -> int:
-    for obj in (fgts_cm, fgts_jm, poup_cm, poup_jm):
-        destino = DEST / f"{obj['id']}.json"
-        destino.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n",
-                           encoding="utf-8")
-        print(f"escrito: {destino.name} — {len(obj['segmentos'])} segmentos")
+def main(argv: list[str] | None = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    cadeias = (fgts_cm, fgts_jm, poup_cm, poup_jm)
+    pares = [(DEST / f"{o['id']}.json",
+              json.dumps(o, ensure_ascii=False, indent=2) + "\n") for o in cadeias]
+    try:
+        estados = escrita_curada.grava_lote(
+            pares, forcar=escrita_curada.quer_forcar(argv))
+    except escrita_curada.ArtefatoCurado as erro:
+        print(escrita_curada.explica_recusa(erro, RAIZ, "gera_cadeias_bloco18.py"))
+        return escrita_curada.EXIT_RECUSA
+    for destino, _ in pares:
+        print(f"{estados[destino]}: {destino.name}")
     return 0
 
 

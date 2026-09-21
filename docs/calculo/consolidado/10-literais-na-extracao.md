@@ -192,7 +192,7 @@ lado, e **a divergência entre fontes não se harmoniza**.
 **Esse default não está declarado em lugar nenhum, e o repositório diz o contrário em dois
 lugares:**
 
-1. **`scripts/calculo/valida_cobertura.py` trata `aplicacao` ausente como VIOLAÇÃO**, não como
+1. **`skills/calculo-judicial-atualizacao/scripts/valida_cobertura.py` trata `aplicacao` ausente como VIOLAÇÃO**, não como
    default: *"Ausente o campo, não há ajuste declarado — e declarar é o requisito"*. A mensagem da
    violação é literalmente *"sem ajuste de defasagem declarado em `aplicacao`"*. Se a ausência
    significasse *"competência"*, R3 não teria o que acusar — e acusa;

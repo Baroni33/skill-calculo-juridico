@@ -40,24 +40,51 @@ skills/indices-judiciais/
 ```
 
 Para uso global, `~/.claude/skills/`; para um projeto só, `.claude/skills/` na raiz dele.
-**Copie a pasta inteira** — cada skill tem `references/` que o `SKILL.md` aponta.
+**Copie a pasta inteira, e é a pasta inteira que basta** — desde o **bloco 25** cada skill
+carrega as três camadas de que precisa, e nenhuma delas mora fora dela:
+
+| Subpasta | O que é | Quem lê |
+|---|---|---|
+| `references/` | **prosa** — o detalhe que o `SKILL.md` aponta | o **modelo** |
+| `regras/` | **dado normativo** — os `.json` de regra, com proveniência | **script**, por caminho |
+| `scripts/` | **os validadores da própria skill** | o **agente**, e a saída volta para o contexto |
+
+**As três só existem onde há o que pôr:** `indices-judiciais` tem `references/` e nada mais
+— ela **aponta** para o catálogo de tipos de indexador, que pertence a
+`calculo-judicial-atualizacao`. **Ponteiro, nunca cópia:** catálogo duplicado diverge, e a
+divergência entre skill e catálogo é justamente o que `test_classes_de_indice.py` existe
+para acusar.
 
 **O que NÃO copiar:**
 
 | | Por quê |
 |---|---|
-| **`docs/`** | é a **base de conhecimento**, não skill. As skills apontam para ela quando precisam; copiá-la para `.claude/skills/` não faz nada |
-| **`scripts/`** | são **ferramentas de pipeline** — validam o repositório, não o cálculo de ninguém |
-| **`tests/`** · **`skills/00-cobertura-casos.md`** | verificação e artefato de auditoria |
+| **`docs/`** | é a **base de conhecimento** — extração, consolidado, pendências, relatórios de bloco e as **séries de valor** (`extracao/trabalhista/serie-*.csv`, marcadas `OUT_OF_SCOPE`). **Nenhuma REGRA mora mais ali**; o que sobra é o registro de como ela foi levantada, e proveniência não se executa |
+| **`scripts/calculo/`** | **ferramentas de pipeline** — geram, extraem e conferem o REPOSITÓRIO: `valida_cadeias.py`, `valida_bloco_tabelas.py`, `gera_numeros.py`, os `gera_cadeias_*`, os extratores e **todos os `test_*.py`**. Não calculam a condenação de ninguém |
+| **`tests/`** · **`skills/00-cobertura-casos.md`** | fixtures e artefato de auditoria |
 
-> **Uma armadilha para a decisão seguinte, registrada aqui porque é fácil de
-> pisar.** O bloco 24 classificou os `.py` entre **ferramenta de pipeline** e
-> **script de skill**, e deixou a decisão de promover algum para depois.
-> **`valida_regimes.py` e `valida_parametros.py` leem o catálogo em
-> `docs/calculo/tabelas-normativas/`** — se forem promovidos, **a instrução
-> acima de não copiar `docs/` já os quebra**. Ou o catálogo viaja junto, ou o
-> caminho vira argumento obrigatório. **`valida_taxa_legal.py` não tem esse
-> problema:** é autocontido, e é por isso que é o caso declarado.
+> ### A armadilha do bloco 24 está DESARMADA — bloco 25
+>
+> O bloco 24 registrou aqui que **`valida_regimes.py` e `valida_parametros.py` liam o
+> catálogo em `docs/calculo/tabelas-normativas/`**, e que promovê-los a script de skill
+> colidiria com a instrução de não copiar `docs/`. A saída era *"ou o catálogo viaja junto,
+> ou o caminho vira argumento obrigatório"*. **Foi a primeira: o catálogo viaja junto.**
+>
+> Os dois foram promovidos e moram ao lado da regra que validam —
+> `calculo-judicial-core/scripts/valida_regimes.py` lê
+> `calculo-judicial-core/regras/regimes-temporais-catalogo.json`, e
+> `calculo-trabalhista-liquidacao/scripts/valida_parametros.py` lê
+> `calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-catalogo.json`. O caminho
+> deixou de atravessar o repositório: é irmão de diretório, resolvido a partir do
+> `__file__` do próprio script — e `de_arquivo()` segue aceitando um caminho explícito,
+> para quem quiser validar outro catálogo.
+>
+> **`valida_taxa_legal.py` e `valida_cobertura.py` nunca tiveram o problema** — são
+> autocontidos, não abrem arquivo nenhum de configuração, e por isso eram o caso declarado.
+> Foram para `calculo-judicial-atualizacao/scripts/`, junto das cadeias temporais que
+> `valida_cobertura.py` percorre, **e seguem autocontidos**.
+>
+> **Nada do motor depende de `docs/`.** Instalar as quatro pastas basta.
 
 
 ### A linguagem do motor e a do script não são a mesma
@@ -237,24 +264,39 @@ Trabalho.
 
 ## Validadores
 
+**Duas famílias, e o bloco 25 as separou por endereço.** Quem valida o **repositório** ficou em
+`scripts/calculo/`; quem valida a **regra** foi morar ao lado da regra, dentro da skill — e
+**viaja com ela na instalação**.
+
 ```
+# ferramentas de PIPELINE — só fazem sentido com o repositório na mão
 python -m unittest discover -s scripts/calculo -p "test_*.py"
 python scripts/calculo/gera_numeros.py             # regenera 00-numeros.md
 python scripts/calculo/gera_numeros.py --verifica  # falha se divergir do estado real
 python scripts/calculo/valida_cadeias.py           # R1, R2, R3 sobre as cadeias reais
 python scripts/calculo/valida_bloco_tabelas.py     # exit 0 = sem erro de extração
-python scripts/calculo/valida_parametros.py --catalogo-ok
+
+# scripts DE SKILL — rodam de dentro da skill instalada, sem o repositório
+python skills/calculo-judicial-core/scripts/valida_regimes.py
+python skills/calculo-trabalhista-liquidacao/scripts/valida_parametros.py --catalogo-ok
+python skills/calculo-judicial-atualizacao/scripts/valida_taxa_legal.py --validar
 ```
 
-| Script | Verifica |
-|---|---|
-| `valida_cobertura.py` | **R1** englobamento concorrente · **R2** lacuna e sobreposição · **R3** virada entre classes de indexador |
-| `valida_cadeias.py` | as cadeias reais, com **manifesto assimétrico** — cresce sozinho, **só encolhe por edição deliberada** |
-| `valida_taxa_legal.py` | **R6** piso zero · **R11** razão, não subtração · **R12** decimal e truncamento |
-| `valida_bloco_tabelas.py` | contagem contra o PDF, faixas, vigências, proveniência |
-| `valida_parametros.py` | camada de norma coletiva — **R14 a R18**, precedência, conflito, piso legal |
-| `test_ponteiros.py` | **ponteiro morto**, com ledger que distingue narrativa histórica |
-| `test_numeros.py` | **número de resultado digitado** fora de `00-numeros.md` |
+| Script | Onde mora | Verifica |
+|---|---|---|
+| `valida_cobertura.py` | skill *atualização* | **R1** englobamento concorrente · **R2** lacuna e sobreposição · **R3** virada entre classes de indexador |
+| `valida_taxa_legal.py` | skill *atualização* | **R6** piso zero · **R11** razão, não subtração · **R12** decimal e truncamento |
+| `valida_regimes.py` | skill *core* | presets de regime temporal — **catorze eixos**, default ausente, competência que atravessa o corte |
+| `valida_parametros.py` | skill *liquidação* | camada de norma coletiva — **R14 a R18**, precedência, conflito, piso legal |
+| `valida_cadeias.py` | pipeline | as cadeias reais, com **manifesto assimétrico** — cresce sozinho, **só encolhe por edição deliberada** |
+| `valida_bloco_tabelas.py` | pipeline | contagem contra o PDF, faixas, vigências, proveniência |
+| `test_ponteiros.py` | pipeline | **ponteiro morto**, o frontmatter das skills e o **teto de 1024 da `description`** |
+| `test_numeros.py` | pipeline | **número de resultado digitado** fora de `00-numeros.md` |
+
+> **`valida_cadeias.py` ficou no pipeline de propósito, embora leia as cadeias migradas.**
+> Ele **escreve**: grava no manifesto a cadeia nova que encontrar. Script que muta artefato
+> versionado é manutenção de repositório, não ferramenta de quem calcula — e quem calcula
+> já tem `valida_cobertura.py`, que faz a checagem sem escrever nada.
 
 **`valida_bloco_tabelas.py` separa erro de extração de divergência do original**, e só sai com
 código não-zero no primeiro. **Divergência é resultado esperado do trabalho:** o manual tem erros

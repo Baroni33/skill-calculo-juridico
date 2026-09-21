@@ -4,7 +4,7 @@
   "bloco": 6,
   "descricao": "Contrato da camada que decide QUAL REGRA se aplica a cada competência.",
   "catalogo": "regimes-temporais-catalogo.json",
-  "validador": "scripts/calculo/valida_regimes.py",
+  "validador": "calculo-judicial-core/scripts/valida_regimes.py",
   "a_distincao": {
     "regime_temporal": {
       "pergunta": "Qual regra vale nesta competência?",

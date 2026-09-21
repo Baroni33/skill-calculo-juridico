@@ -6,7 +6,7 @@ JSON/CSV e é validado por `valida_bloco_tabelas.py`, não por revisão de LLM
 
 Duas categorias, destinos diferentes:
 
-  (A) SEMÂNTICA → docs/calculo/tabelas-normativas/*.json
+  (A) SEMÂNTICA → skills/calculo-trabalhista-liquidacao/regras/*.json
       Regra estrutural que não muda com o tempo.
 
   (B) SÉRIE → docs/calculo/extracao/trabalhista/*.csv, marcada OUT_OF_SCOPE
@@ -18,6 +18,15 @@ vira campo `observacao` ou linha marcada, nunca conserto.
 Uso:
     python extrai_bloco_01.py [secao ...]      # default: todas
     python extrai_bloco_01.py --listar
+    python extrai_bloco_01.py --forcar         # regrava por cima da curadoria
+
+> **BLOCO 25 - ESTE EXTRATOR NAO APAGA MAIS PROVENIENCIA.** Reaplica-lo removia
+> **20 linhas** de 6 `serie-*.csv`, todas de proveniencia de R3 - o tipo do
+> indexador e a fonte de cada classificacao -, porque essas linhas foram
+> acrescentadas A MAO depois da geracao e o extrator nao as conhece. Nada
+> testava isso. Agora a escrita e em LOTE e conferida antes: identico nao
+> escreve, inexistente escreve, **divergente RECUSA o lote inteiro** e sai com
+> codigo 2. `--forcar` para o dia em que a intencao for mesmo regerar.
 
 Requer PyMuPDF. `pdftotext` não está instalado no ambiente de referência; a camada
 de texto é lida diretamente do PDF, sempre decodificada como UTF-8.
@@ -26,6 +35,7 @@ de texto é lida diretamente do PDF, sempre decodificada como UTF-8.
 from __future__ import annotations
 
 import csv
+import io
 import json
 import re
 import sys
@@ -50,7 +60,12 @@ EMISSOR = "TRT-3, Secretaria de Cálculos Judiciais, julho/2016"
 OFFSET_PAGINACAO = 0  # numero_impresso == pagina_pdf neste manual (docs/calculo/fontes.md)
 
 RAIZ = Path(__file__).resolve().parents[2]
-DIR_SEMANTICA = RAIZ / "docs" / "calculo" / "tabelas-normativas"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos_de_skill  # noqa: E402
+import escrita_curada  # noqa: E402
+# BLOCO 25 — (A) SEMÂNTICA passou a viver dentro da skill que a consome;
+# (B) SÉRIE continua em docs/, como dado externo.
+DIR_SEMANTICA = caminhos_de_skill.REGRAS_LIQUIDACAO
 DIR_SERIE = RAIZ / "docs" / "calculo" / "extracao" / "trabalhista"
 
 CABECALHO_SERIE = (
@@ -97,24 +112,33 @@ def sem_acento(s: str) -> str:
     ).lower()
 
 
+#: **BLOCO 25 — a escrita passou a ser em LOTE, e o lote é conferido antes.**
+#: `grava_json` e `grava_csv` escreviam direto, uma a uma. Reaplicar o extrator
+#: apagava **20 linhas de proveniência de R3** em 6 `serie-*.csv` — linhas
+#: acrescentadas à mão depois da geração — e o fazia **arquivo a arquivo**, de
+#: modo que uma interrupção deixava o diretório meio regerado. Agora as duas
+#: funções só ACUMULAM aqui; quem escreve é `main`, via
+#: `escrita_curada.grava_lote`, que confere o lote inteiro antes de tocar em
+#: disco e **recusa** o que divergir, salvo `--forcar`.
+_PENDENTES: list[tuple[Path, str]] = []
+
+
 def grava_json(nome: str, dados: dict) -> Path:
     destino = DIR_SEMANTICA / nome
-    destino.parent.mkdir(parents=True, exist_ok=True)
-    with open(destino, "w", encoding="utf-8", newline="\n") as fh:
-        json.dump(dados, fh, ensure_ascii=False, indent=2)
-        fh.write("\n")
+    conteudo = json.dumps(dados, ensure_ascii=False, indent=2) + "\n"
+    _PENDENTES.append((destino, conteudo))
     return destino
 
 
 def grava_csv(nome: str, colunas: list[str], linhas: list[dict], notas=()) -> Path:
     destino = DIR_SERIE / nome
-    destino.parent.mkdir(parents=True, exist_ok=True)
-    with open(destino, "w", encoding="utf-8", newline="") as fh:
-        for linha in (*CABECALHO_SERIE, *notas):
-            fh.write(linha.rstrip() + "\n")
-        w = csv.DictWriter(fh, fieldnames=colunas, extrasaction="raise")
-        w.writeheader()
-        w.writerows(linhas)
+    buf = io.StringIO(newline="")
+    for linha in (*CABECALHO_SERIE, *notas):
+        buf.write(linha.rstrip() + "\n")
+    w = csv.DictWriter(buf, fieldnames=colunas, extrasaction="raise")
+    w.writeheader()
+    w.writerows(linhas)
+    _PENDENTES.append((destino, buf.getvalue()))
     return destino
 
 
@@ -997,7 +1021,7 @@ def extrai_18_10(doc):
         "serie-18.10-urv.csv", _COLS_MATRIZ, saida,
         notas=("# 'serie' = mês, 'chave' = dia do mês, 'valor' = URV em CR$ naquele dia.",
                "# O método de conversão NÃO consta deste bloco — ver relatório e",
-               "# tabelas-normativas/trt3-18.10-urv-conversao.json."),
+               "# skills/calculo-trabalhista-liquidacao/regras/trt3-18.10-urv-conversao.json."),
     )
     return [f"{destino.relative_to(RAIZ)}: {len(saida)} cotações diárias"]
 
@@ -1074,7 +1098,7 @@ def extrai_18_13(doc):
         ["pagina_pdf", "item", "criterio", "competencia", "rsr", "dias_uteis", "percentual"],
         saida,
         notas=("# Quatro variantes, uma por página. O critério de contagem é o título da",
-               "# tabela e está isolado em tabelas-normativas/trt3-18.13-rsr-criterios.json.",
+               "# tabela e está isolado em skills/calculo-trabalhista-liquidacao/regras/trt3-18.13-rsr-criterios.json.",
                "# As contagens dependem do calendário e do rol de feriados — série."),
     )
 
@@ -1594,10 +1618,20 @@ def main(argv: list[str] | None = None) -> int:
     if desconhecidas:
         sys.exit(f"seção desconhecida: {', '.join(desconhecidas)} (use --listar)")
     doc = abre()
+    _PENDENTES.clear()
     for chave in alvos:
         print(f"== {chave} — {SECOES[chave]['titulo']}")
         for linha in SECOES[chave]["fn"](doc):
             print("   " + linha)
+    try:
+        estados = escrita_curada.grava_lote(
+            _PENDENTES, forcar=escrita_curada.quer_forcar(argv))
+    except escrita_curada.ArtefatoCurado as erro:
+        print(escrita_curada.explica_recusa(erro, RAIZ, "extrai_bloco_01.py"))
+        return escrita_curada.EXIT_RECUSA
+    print("== escrita")
+    for destino, _ in _PENDENTES:
+        print(f"   {estados[destino]}: {destino.name}")
     return 0
 
 

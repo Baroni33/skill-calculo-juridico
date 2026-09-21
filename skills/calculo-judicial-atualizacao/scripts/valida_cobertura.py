@@ -45,8 +45,7 @@ domínio de cada eixo é **declarável**, via `dominio_condicoes`:
   exaustiva; o remédio é declarar o domínio, não silenciar a checagem.
 
 **R3 — o tipo do indexador na virada.** Cada segmento declara `tipo_indexador`,
-com os valores do catálogo `docs/calculo/tabelas-normativas/
-indexadores-tipo-catalogo.json`:
+com os valores do catálogo `../regras/indexadores-tipo-catalogo.json`:
 
 * `nominal` e `percentual` — as duas letras do item 4.1.2.4. Medem meses
   diferentes: a virada entre elas exige ajuste de defasagem;
@@ -162,7 +161,7 @@ __all__ = [
 # Tipos de indexador (R3)
 # --------------------------------------------------------------------------
 # Domínio fechado, espelho de `valores_de_tipo` em
-# docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json.
+# ../regras/indexadores-tipo-catalogo.json (BLOCO 25: a regra viaja com a skill).
 TIPOS_DE_INDEXADOR: frozenset[str] = frozenset(
     {
         "nominal",

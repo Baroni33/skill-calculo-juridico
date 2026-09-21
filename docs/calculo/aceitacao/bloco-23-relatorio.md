@@ -71,7 +71,7 @@ A aceitação apontou **duas**. A varredura achou **sete a mais**, sobre **31 ar
 - a enumeração `indeterminado (17)` **omitia `JAM`** — o catálogo tem 18;
 - *"Catálogo completo — 28 indexadores"* — o catálogo tem **36 rótulos**;
 - o `README.md` da mesma skill **classificava `IPCA` como percentual por dedução**;
-- `atualizacao/SKILL.md` dava a **TR como `percentual`** — rebaixada no bloco 17;
+- `calculo-judicial-atualizacao/SKILL.md` dava a **TR como `percentual`** — rebaixada no bloco 17;
 - quatro arquivos escreviam `tipo: nominal | percentual` **como domínio de dois valores**.
 
 > **Onde a skill copiava, passou a apontar.** O catálogo é a fonte; **a skill aponta, não copia**.

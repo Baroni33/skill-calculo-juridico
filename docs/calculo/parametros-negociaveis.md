@@ -8,7 +8,7 @@ contratual podem alterar**. Sem este inventário o motor de verbas não pode ser
 escrito: cada fórmula extraída nos blocos 02 a 04 tem constantes que não são
 constantes.
 
-Fonte de verdade executável: [`tabelas-normativas/camada-norma-coletiva-catalogo.json`](tabelas-normativas/camada-norma-coletiva-catalogo.json).
+Fonte de verdade executável: [`../../skills/calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-catalogo.json`](../../skills/calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-catalogo.json).
 Este documento é a leitura humana dele. Divergiram, vale o JSON — é o que o
 validador lê.
 
@@ -435,9 +435,9 @@ Ambas registradas na própria fixture, em `divergencia_de_referencia` e
 
 ## 11. Ver também
 
-- [`tabelas-normativas/camada-norma-coletiva-schema.json`](tabelas-normativas/camada-norma-coletiva-schema.json) — schema v2.0: R14–R18, derivação, conflito × defeito, 611-B
-- [`tabelas-normativas/camada-norma-coletiva-catalogo.json`](tabelas-normativas/camada-norma-coletiva-catalogo.json) — os 32 parâmetros
+- [`../../skills/calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-schema.json`](../../skills/calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-schema.json) — schema v2.0: R14–R18, derivação, conflito × defeito, 611-B
+- [`../../skills/calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-catalogo.json`](../../skills/calculo-trabalhista-liquidacao/regras/camada-norma-coletiva-catalogo.json) — os 32 parâmetros
 - [`extracao/bloco-05-relatorio.md`](extracao/bloco-05-relatorio.md) — relatório do bloco
-- `scripts/calculo/valida_parametros.py` — validador e resolvedor
+- `../../skills/calculo-trabalhista-liquidacao/scripts/valida_parametros.py` — validador e resolvedor (**script de skill** desde o bloco 25)
 - `scripts/calculo/test_valida_parametros.py` — **nenhum skip**; a contagem por arquivo está em
   [`consolidado/00-numeros.md`](consolidado/00-numeros.md) § 5, gerado por script

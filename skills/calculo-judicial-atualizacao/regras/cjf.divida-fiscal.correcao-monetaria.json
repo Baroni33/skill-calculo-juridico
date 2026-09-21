@@ -114,5 +114,5 @@
     ]
   },
   "dominio_condicoes_nota": "Declara que os ramos abaixo ESGOTAM o eixo. Sem esta declaração o validador cobra o universo 'nenhuma condição se aplica', porque exaustividade não se presume.",
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

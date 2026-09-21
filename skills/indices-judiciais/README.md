@@ -16,7 +16,7 @@ Semântica de aplicação dos índices e **contrato** com a tabela de séries ma
   (metade de cada, desde o bloco 19), `indeterminado` e `nao-indexador`.
   Trocar entre classes sem ajustar a defasagem desloca o cálculo em um mês.
   **QUAL classe cabe a cada índice sai de
-  `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`, nunca de
+  `skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`, nunca de
   semelhança de nome** — e não se copia para cá.
 - Contrato de consumo da tabela de séries: formato, chave, granularidade,
   versionamento.
@@ -40,3 +40,17 @@ Ver `docs/calculo/pendencias.md` — o SaaS hoje não tem essa infraestrutura.
 ## Estado
 
 Vazio.
+
+## Esta skill NÃO tem `regras/` — BLOCO 25
+
+**E é deliberado.** O bloco 25 levou cada família de regra para dentro da skill que a
+consome, e `indexadores-tipo-catalogo.json` tinha três candidatos — este entre eles, por
+ser semântica de índice. **Ficou com `calculo-judicial-atualizacao`:** é lá que mora
+`valida_cobertura.py`, o validador de **R3** que lê o catálogo, e é lá que estão as
+cadeias que o citam no campo `tipo_indexador_catalogo`.
+
+**Um dono só, e ponteiro dos outros.** Esta skill aponta para
+`skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json` e **não guarda
+cópia** — a skill de menor conteúdo de dado não fica com o dado. Copiar produziria a
+divergência que `test_classes_de_indice.py` já pegou uma vez, quando IPCA-E e IPCA-15
+viraram `janela-deslocada` no catálogo e duas skills seguiram publicando `indeterminado`.

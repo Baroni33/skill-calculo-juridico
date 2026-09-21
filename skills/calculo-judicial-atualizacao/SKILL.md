@@ -460,7 +460,7 @@ original**, não da extração. O 5.218,27 é derivado, e o detalhado o produz. 
 | **Defeitos do original** | `docs/calculo/armadilhas-comparador.md` |
 | **Pendências** | `docs/calculo/pendencias.md` |
 | **Presets de regime temporal** (outra família) | `docs/calculo/presets-regime.md` |
-| **Cadeias em schema** | `docs/calculo/tabelas-normativas/cjf.*.json`, `trab.hist.*.json` |
+| **Cadeias em schema** | `skills/calculo-judicial-atualizacao/regras/cjf.*.json`, `trab.hist.*.json` |
 | **Séries mensais** (contrato) | `skills/indices-judiciais/` |
 | **Invariantes e aritmética** | `skills/calculo-judicial-core/` |
 

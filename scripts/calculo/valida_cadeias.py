@@ -36,15 +36,22 @@ if hasattr(sys.stdout, "buffer"):
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+# BLOCO 25 — `valida_cobertura.py` virou script DE SKILL e mora em
+# `skills/calculo-judicial-atualizacao/scripts/`. Importar `caminhos_de_skill`
+# registra esse diretório no `sys.path`; o `import` abaixo não mudou.
+import caminhos_de_skill  # noqa: E402,F401
+
 from valida_cobertura import Segmento, valida_cobertura  # noqa: E402
 
 RAIZ = Path(__file__).resolve().parents[2]
-TABELAS = RAIZ / "docs/calculo/tabelas-normativas"
+# As 20 cadeias migraram para dentro da skill que as consome (bloco 25).
+TABELAS = caminhos_de_skill.CADEIAS
 
 # --------------------------------------------------------------------------
 # Manifesto de cadeias
 # --------------------------------------------------------------------------
-# ONDE: sidecar em `docs/calculo/tabelas-normativas/`, ao lado do que descreve.
+# ONDE: sidecar em `skills/calculo-judicial-atualizacao/regras/`, ao lado do
+# que descreve — para lá foram as cadeias no bloco 25, e o manifesto foi junto.
 # É o mesmo lugar e o mesmo argumento de `indexadores-tipo-catalogo.json`
 # (bloco 17): um inventário do diretório mora com o diretório, e os dois
 # consumidores — este CLI e `test_valida_cobertura.py`, que vivem em

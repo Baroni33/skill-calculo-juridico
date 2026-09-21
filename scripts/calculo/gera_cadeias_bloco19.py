@@ -20,6 +20,18 @@ Disciplina desta tarefa, e ela é a mesma do bloco 18:
 Descoberta pelo validador: `valida_cadeias.py` reconhece cadeia por
 `tipo == "cadeia-temporal"`, logo estes arquivos entram na contagem e no
 manifesto automaticamente.
+
+> **BLOCO 25 — ESTE GERADOR NÃO SOBRESCREVE ARTEFATO JÁ CURADO.** Era ele o
+> caso mais caro: rodá-lo regravava **4 das 20 cadeias** e desfazia a
+> **tokenização de `aplicacao`** do bloco 23 — `cjf.condenatorias-gerais.
+> correcao-monetaria`, `cjf.divida-fiscal.juros-mora`, `cjf.fgts.juros-mora` e
+> `cjf.poupanca.juros-mora` —, derrubando três testes. Não era regressão do
+> bloco 25, mas o bloco 25 **agravou a consequência**: o que se estragava era
+> `docs/`, e passou a ser o artefato empacotado.
+>
+> A guarda está em `escrita_curada.grava_lote`: **idêntico não escreve,
+> inexistente escreve, divergente RECUSA o lote inteiro** e sai com código 2.
+> `--forcar` continua, para o dia em que a intenção for mesmo regerar.
 """
 from __future__ import annotations
 
@@ -31,9 +43,13 @@ from pathlib import Path
 if hasattr(sys.stdout, "buffer"):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
-DEST = Path(__file__).resolve().parents[2] / "docs" / "calculo" / "tabelas-normativas"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos_de_skill  # noqa: E402
+import escrita_curada  # noqa: E402
+RAIZ = caminhos_de_skill.RAIZ
+DEST = caminhos_de_skill.CADEIAS  # bloco 25
 
-CAT = ("tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; "
+CAT = ("regras/indexadores-tipo-catalogo.json — o valor sai da fonte; "
        "sem fonte, indeterminado (bloco 17, tarefa 1)")
 
 JANELA_FIM = "2026-06"
@@ -919,7 +935,8 @@ def declara_fundamento_ausente(cadeia: dict) -> dict:
     return cadeia
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
     cadeias = [
         cadeia_indireta_correcao(),
         declara_fundamento_ausente(cadeia_divida_fiscal_juros()),
@@ -927,11 +944,16 @@ def main() -> int:
         declara_fundamento_ausente(_cadeia_compensatorios("direta")),
         declara_fundamento_ausente(_cadeia_compensatorios("indireta")),
     ]
-    for obj in cadeias:
-        destino = DEST / f"{obj['id']}.json"
-        destino.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n",
-                           encoding="utf-8")
-        print(f"escrito: {destino.name} — {len(obj['segmentos'])} segmentos")
+    pares = [(DEST / f"{o['id']}.json",
+              json.dumps(o, ensure_ascii=False, indent=2) + "\n") for o in cadeias]
+    try:
+        estados = escrita_curada.grava_lote(
+            pares, forcar=escrita_curada.quer_forcar(argv))
+    except escrita_curada.ArtefatoCurado as erro:
+        print(escrita_curada.explica_recusa(erro, RAIZ, "gera_cadeias_bloco19.py"))
+        return escrita_curada.EXIT_RECUSA
+    for destino, _ in pares:
+        print(f"{estados[destino]}: {destino.name}")
 
     print("\nNÃO GERADAS (fonte insuficiente ou inexistente):")
     for chave, v in BLOQUEADAS.items():

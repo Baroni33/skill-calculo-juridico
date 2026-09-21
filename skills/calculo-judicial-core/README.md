@@ -50,3 +50,19 @@ explícito.
 ## Estado
 
 Vazio. A estrutura se escreve a partir do conteúdo consolidado, não antes.
+
+## `regras/` e `scripts/` — BLOCO 25
+
+**Os presets de regime temporal são regra, e regra mora na skill que a consome.**
+`regimes-temporais-catalogo.json` e `camada-regime-temporal-schema.json` vieram de
+`docs/calculo/tabelas-normativas/` para `regras/`, porque quem os lê é
+`scripts/valida_regimes.py` — e regime temporal decide **qual regra se aplica**, que é
+matéria de invariante, não de liquidação nem de atualização.
+
+`scripts/valida_regimes.py` resolve o catálogo a partir do **próprio `__file__`**:
+`regras/` é irmão de `scripts/`. Antes o caminho atravessava o repositório até `docs/`,
+e a instrução de instalação — *não copie `docs/`* — o quebrava no instante em que a skill
+saía daqui. **É essa a armadilha que o bloco 24 registrou e o 25 desarmou.**
+
+**O catálogo de tipos de indexador NÃO está aqui.** Esta skill o cita; o dono é
+`calculo-judicial-atualizacao`, e o que existe aqui é ponteiro.

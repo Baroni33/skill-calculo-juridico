@@ -7,7 +7,7 @@
 **Fonte:** `docs/calculo/consolidado/02-atualizacao.md` § 5;
 `02-atualizacao-detalhe.md` §§ 5.1 a 5.6 e 10; `00-base-normativa.md` §§ 5 e 6;
 `extracao/justica-federal/bloco-08-jf.md` e `bloco-08-jf-detalhe.md`;
-JSON em `docs/calculo/tabelas-normativas/cjf.*.json`.
+JSON em `skills/calculo-judicial-atualizacao/regras/cjf.*.json`.
 
 **Escopo deste arquivo:** **repetição de indébito** (§ 2) e **dívida fiscal** (§ 3) — as duas
 cadeias **tributárias** do Manual. Mais **três seções transversais** a todas as cadeias federais,
@@ -51,7 +51,7 @@ gerais, previdenciário, repetição de indébito e desapropriação.
 
 **Vale para todas as cadeias com indexador nominal.** E é a razão de `tipo` ser campo
 obrigatório — hoje com **cinco** valores, não dois, e **resolvido pelo catálogo**
-(`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`), nunca por esta página.
+(`skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`), nunca por esta página.
 
 **A ponta inicial é `ponta_materializada`:** o manual abre com *"De 1964"*, **sem mês**. `1964-01`
 é materialização para permitir a checagem de R1/R2 — **pendência `P8-07`**.
@@ -404,7 +404,7 @@ corrigido **R$ 2.275,96** e juros **R$ 55,75** — **ambas recebendo 5,05% de Se
 - `docs/calculo/consolidado/02-atualizacao-detalhe.md` §§ 5.1–5.6 e 10 — segmento a segmento
 - `docs/calculo/extracao/justica-federal/bloco-08-jf.md` e `bloco-08-jf-detalhe.md` — as sete
   cadeias linha a linha, notas × linhas, defeitos do original
-- `docs/calculo/tabelas-normativas/cjf.*.json` — as cadeias em schema `cadeia-temporal`
+- `skills/calculo-judicial-atualizacao/regras/cjf.*.json` — as cadeias em schema `cadeia-temporal`
 - **`references/civel-federal.md`** — **condenatórias em geral** (correção e juros autônomos),
   migrada no bloco 17
 - **`references/desapropriacao.md`** — **desapropriação direta e indireta**, com as **três

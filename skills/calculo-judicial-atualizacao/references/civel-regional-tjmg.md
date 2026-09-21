@@ -93,6 +93,18 @@ impedir.
 1. **A tabela em si não está no repositório.** O corpus a **nomeia** e diz **quando** se aplica;
    **não traz a série de valores mensais**. Isso é dado de categoria **(B)** e pertence ao
    contrato de `skills/indices-judiciais/`. Sem a série, a hipótese 1 da § 2 **não calcula**;
+
+   > **Bloco 25 — a série foi localizada, lida e NÃO migrada.** O PDF da **Contadoria Judicial da
+   > Comarca de Belo Horizonte** (*"Fatores de Atualização Monetária Baseados em: ICGJ (TJMG)"*,
+   > válido para agosto de 2026) foi lido nas **4 páginas**: **63 linhas-ano, 1964 a 2026, 742
+   > fatores mensais de 7 casas**, e **nenhuma célula nomeia índice ou declara corte**. A nota da
+   > p. 4 — *"multiplica-se o valor histórico pelo fator correspondente à data de origem"* —
+   > classifica o documento como **SÉRIE DE VALORES, categoria (B)**, não como cadeia.
+   > **Esta reference continua sendo a REGRA; aquele PDF é o VALOR que ela consome.** Veredito,
+   > escopo contado e as três perguntas respondidas em `docs/calculo/pendencias.md` § 28.2.
+   > **`ICGJ` fica `indeterminado`** — o PDF não classifica, e herdar a classe dos seis índices do
+   > subtítulo é a dedução proibida;
+
 2. **A tipologia não a comporta** — `D8`, § 1 acima. Não resolvido;
 3. **A cobertura regional cível é do TJMG e só.** Outras regiões exigem **cadastro**, não
    refatoração;

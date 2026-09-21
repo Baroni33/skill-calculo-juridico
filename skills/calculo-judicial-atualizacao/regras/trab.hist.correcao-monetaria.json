@@ -138,5 +138,5 @@
     "regra_literal": "A tabela de índices diários resulta da decomposição do índice mensal da TR, pro-ratizada pelos dias úteis do mês.",
     "observacao": "Por DIAS ÚTEIS, não por dias corridos — diverge do mês comercial de 30 dias usado nos juros. Correção e juros usam réguas diárias diferentes no mesmo manual."
   },
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

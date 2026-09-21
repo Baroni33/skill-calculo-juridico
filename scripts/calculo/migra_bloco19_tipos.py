@@ -2,7 +2,17 @@
 # -*- coding: utf-8 -*-
 """Bloco 19 — reescreve `tipo_indexador` nas cadeias, a partir do catálogo.
 
-Roda UMA VEZ e é idempotente: reaplicar não muda mais nada. Mantido no
+> **BLOCO 25 — A IDEMPOTÊNCIA QUE ESTE CABEÇALHO AFIRMAVA NÃO ERA VERDADE.**
+> Dizia-se *"reaplicar não muda mais nada"*; reaplicar **reescrevia**
+> `cjf.fgts-divida-fiscal.correcao-monetaria.json`, porque a curadoria posterior
+> ampliou `tipo_indexador_por_que` e `tipo_indexador_fechamento` e o gerador os
+> regravava na redação de origem — **sem trocar `tipo_indexador` de valor**, que
+> é o único campo que ele existe para mudar. A guarda agora é mecânica, e está
+> em `escrita_curada.grava_lote`: **divergente RECUSA o lote inteiro** e sai com
+> código 2. `--conferir` continua sendo a forma de olhar sem escrever, e
+> `--forcar` a de regravar de propósito.
+
+Roda UMA VEZ. Mantido no
 repositório porque a alteração que ele faz tem de ser auditável por quem vier
 depois — qual segmento mudou, de que valor para qual, e com que fonte.
 
@@ -28,7 +38,10 @@ import sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
-TABELAS = RAIZ / "docs" / "calculo" / "tabelas-normativas"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos_de_skill  # noqa: E402
+import escrita_curada  # noqa: E402
+TABELAS = caminhos_de_skill.REGRAS_ATUALIZACAO  # bloco 25
 
 SELIC_FONTE = (
     "FONTE EXTERNA AO CORPUS (tabela do bloco 19, verificada fora do agente) — "
@@ -181,6 +194,7 @@ def main(argv: list[str] | None = None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     so_conferir = "--conferir" in argv
     mudancas = 0
+    pares: list[tuple[Path, str]] = []
     for caminho in sorted(TABELAS.glob("*.json")):
         dados = json.loads(caminho.read_text(encoding="utf-8"))
         if dados.get("tipo") != "cadeia-temporal":
@@ -194,12 +208,17 @@ def main(argv: list[str] | None = None) -> int:
                 mudou_arquivo = True
                 print(f"{caminho.name}: {seg.get('indexador')} "
                       f"{seg.get('tipo_indexador')} -> {novo['tipo_indexador']}")
-        if mudou_arquivo and not so_conferir:
+        if mudou_arquivo:
             dados["segmentos"] = novos
-            caminho.write_text(
-                json.dumps(dados, ensure_ascii=False, indent=2) + "\n",
-                encoding="utf-8",
-            )
+            pares.append(
+                (caminho, json.dumps(dados, ensure_ascii=False, indent=2) + "\n"))
+    if pares and not so_conferir:
+        try:
+            escrita_curada.grava_lote(
+                pares, forcar=escrita_curada.quer_forcar(argv))
+        except escrita_curada.ArtefatoCurado as erro:
+            print(escrita_curada.explica_recusa(erro, RAIZ, "migra_bloco19_tipos.py"))
+            return escrita_curada.EXIT_RECUSA
     print(f"{mudancas} segmento(s) reescrito(s)")
     return 0
 

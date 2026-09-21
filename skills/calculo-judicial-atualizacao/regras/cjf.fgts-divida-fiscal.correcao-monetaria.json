@@ -28,7 +28,7 @@
     "por_que": "O item 2.4.4.1 é LISTA, não tabela, e NÃO declara início: a primeira regra datada é 'ORTN até set./1983'. 1964-01 é materialização de janela para permitir a checagem de R1/R2, no mesmo desenho de P8-07, e NÃO afirmação do manual. 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
     "marcador": "ponta_materializada"
   },
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)",
   "segmentos": [
     {
       "inicio": "1964-01",

@@ -7,19 +7,74 @@
 Validação **determinística**, por script, não por revisão de LLM (regra 2 do plano).
 Dado tabular e aritmética normativa se verificam com código.
 
+## BLOCO 25 — quatro validadores SAÍRAM daqui
+
+**A classificação do bloco 24 virou endereço.** O que valida **a regra** foi morar ao lado
+da regra, dentro da skill, e **viaja com ela na instalação**. O que valida **o repositório**
+ficou aqui.
+
+| Promovido a script de skill | Agora em | Lê |
+|---|---|---|
+| `valida_cobertura.py` | `skills/calculo-judicial-atualizacao/scripts/` | nada — é autocontido |
+| `valida_taxa_legal.py` | `skills/calculo-judicial-atualizacao/scripts/` | nada — é autocontido |
+| `valida_regimes.py` | `skills/calculo-judicial-core/scripts/` | `../regras/regimes-temporais-catalogo.json` |
+| `valida_parametros.py` | `skills/calculo-trabalhista-liquidacao/scripts/` | `../regras/camada-norma-coletiva-catalogo.json` |
+
+**`valida_regimes.py` e `valida_parametros.py` NÃO precisaram ser divididos.** A hipótese
+era que fossem híbridos — parte validando estrutura de regra, parte tocando série de valor.
+**A segunda parte não existe.** Nenhum dos dois abre `.csv`, nenhum resolve índice mensal:
+o `resolve_serie` de `valida_parametros.py` é a **sequência de competências** de um
+contrato, não série de valor, e o `MOTIVO_BLOQUEADO` de `valida_regimes.py` é um rótulo de
+recusa, não leitura de série. Os dois eram inteiros de estrutura de regra; migraram
+inteiros. **Dividir um script que não precisa ser dividido teria sido o defeito.**
+
+**Os `test_*.py` continuam AQUI**, inclusive os dos quatro promovidos: teste é ferramenta
+de pipeline. Eles importam o módulo pelo nome, e `caminhos_de_skill.py` põe os `scripts/`
+das skills no `sys.path` — **um lugar só** para o caminho novo, em vez de nove cópias dele.
+
 ## Conteúdo
 
 | Script | Verifica |
 |---|---|
-| `valida_cobertura.py` | R1 (englobamento concorrente), R2 (cobertura sem lacuna nem sobreposição) e **R3 (virada entre tipos de indexador sem ajuste de defasagem)** |
-| `valida_taxa_legal.py` | `TL = (Fator_Selic / Fator_Deflator - 1) × 100`, truncado a 6 decimais, piso zero |
 | `valida_bloco_tabelas.py` | Extração tabular do bloco 1 (Manual TRT-3): contagem contra o PDF, faixas, vigências, proveniência e calendários |
-| `valida_cadeias.py` | CLI de R1/R2/R3 sobre as cadeias, e o **manifesto de cadeias** |
-| `migra_bloco19_tipos.py` | **Não valida — reescreve.** Migração idempotente do bloco 19: `tipo_indexador` da SELIC, da taxa legal, do IPCA-E/IPCA-15 e da família TR. Mantido para que a alteração seja auditável segmento a segmento (`--conferir` só lista) |
+| `valida_cadeias.py` | CLI de R1/R2/R3 sobre as cadeias, e o **manifesto de cadeias**. **Ficou no pipeline porque ESCREVE:** grava no manifesto a cadeia nova que encontrar, e script que muta artefato versionado é manutenção de repositório |
+| `caminhos_de_skill.py` | **não valida** — é a tabela de caminhos das regras e dos scripts migrados no bloco 25, e o bootstrap de `sys.path` dos testes |
+| `migra_bloco19_tipos.py` | **Não valida — reescreve.** Migração one-shot do bloco 19: `tipo_indexador` da SELIC, da taxa legal, do IPCA-E/IPCA-15 e da família TR. Mantido para que a alteração seja auditável segmento a segmento (`--conferir` só lista) |
+| `escrita_curada.py` | **não valida** — é a guarda de escrita dos geradores *one-shot* (bloco 25). Ver abaixo |
 
 Testes em `test_valida_cobertura.py`, `test_valida_taxa_legal.py`,
-`test_valida_bloco_tabelas.py`, `test_ponteiros.py`, `test_aceite_nivel1.py` e
-`test_metodos.py`.
+`test_valida_regimes.py`, `test_valida_parametros.py`, `test_valida_bloco_tabelas.py`,
+`test_ponteiros.py`, `test_numeros.py`, `test_geradores.py`, `test_aceite_nivel1.py` e
+`test_metodos.py` — **todos aqui**, mesmo os dos quatro validadores que foram para as skills.
+
+## Gerador one-shot não sobrescreve curadoria — `escrita_curada.py` (bloco 25)
+
+**Quatro scripts deste diretório escrevem artefato: `gera_cadeias_bloco18.py`,
+`gera_cadeias_bloco19.py`, `migra_bloco19_tipos.py` e `extrai_bloco_01.py`.** Todos rodaram
+uma vez, no bloco que lhes dá nome, e **tiveram a saída curada depois, à mão, por outros
+blocos** — a tokenização de `aplicacao` do bloco 23, as linhas de proveniência de R3 nos
+`serie-*.csv`. **Nenhum deles sabia disso, e todos escreviam por cima em silêncio.**
+
+> **Rodar `gera_cadeias_bloco19.py` derrubava a suíte.** E, depois da migração do bloco 25,
+> o que se estragava deixou de ser `docs/` e passou a ser o **artefato empacotado**.
+
+A guarda é uma só, compartilhada: **`escrita_curada.grava_lote` confere o lote inteiro antes
+de tocar em disco.** Idêntico **não escreve**; inexistente **escreve**; divergente **RECUSA o
+lote inteiro** e sai com **código 2** — que não é `1`, porque `1` é *"o validador achou
+violação"*. `--forcar` para o dia em que a intenção for mesmo regerar.
+
+**`test_geradores.py` cobra as duas metades**: que rodar cada gerador **não mude byte nenhum**
+— `sha256` das árvores antes e depois — e que a guarda **detecte divergência plantada**, com
+recusa atômica. A primeira sozinha passaria por vacuidade se a guarda nunca recusasse.
+
+> **`migra_bloco19_tipos.py` afirmava idempotência no próprio cabeçalho, e não era verdade.**
+> Por isso a guarda é mecânica: afirmação de idempotência em prosa não é idempotência.
+
+> **A guarda de R12 seguiu os scripts.** `test_aceite_nivel1.py` varre por AST os `.py` de
+> `scripts/calculo/` **e dos `scripts/` das quatro skills**: sair daqui não podia tirar
+> ninguém da proibição de `float`. E as guardas que liam a fonte por
+> `Path(__file__).parent / "nome.py"` passaram a lê-la pelo `__file__` do **módulo
+> importado** — assim acompanham o script para onde ele for da próxima vez.
 
 ## `test_metodos.py` — o procedimento dos dois métodos, contra célula publicada
 
@@ -79,7 +134,7 @@ decide o que ler pelo prefixo ou sufixo do nome do arquivo:
   conferidos um a um) são **abertos direto**: se sumirem, o script morre com
   `FileNotFoundError`. Falha alta é aceitável; silêncio não é.
 
-## Manifesto de cadeias — `docs/calculo/tabelas-normativas/cadeias-manifesto.json`
+## Manifesto de cadeias — `skills/calculo-judicial-atualizacao/regras/cadeias-manifesto.json`
 
 **PISO, não retrato.** `valida_cadeias.py` sai com **exit 1** se encontrar **menos** cadeias
 do que o manifesto declara, ou cadeia com **menos** segmentos do que ele registra. A chave é
@@ -141,7 +196,7 @@ em série de outro bloco, e falso erro permanente treina quem lê a ignorar o re
 **R3 lê `tipo_indexador`**, de domínio fechado em seis valores — `nominal`, `percentual`,
 **`janela-deslocada`**, `nao-indexador`, `indeterminado`, e `englobante` **retirado**. O
 catálogo, com a fonte de cada classificação, é
-`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`. **Sem fonte o valor é
+`skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`. **Sem fonte o valor é
 `indeterminado`, e a virada BLOQUEIA sob a regra `R3-INDETERMINADO`** — passar converteria
 "não se sabe" em "está certo". Pendências em `docs/calculo/pendencias.md` §§ 23 e 25.
 

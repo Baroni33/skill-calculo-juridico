@@ -170,7 +170,7 @@ resolve — o catálogo vai de `A1` a `A15`. **É herdado do consolidado**, não
 ### O que a auditoria confirmou íntegro
 
 - **Todos os 32 vereditos `BIFURCADO` cobertos, sem sobreposição e sem perda** — 26 em
-  `liquidacao/references/cortes-e-bifurcacoes.md`, 6 em `atualizacao`. **Zero ocorrências** do
+  `calculo-trabalhista-liquidacao/references/cortes-e-bifurcacoes.md`, 6 em `atualizacao`. **Zero ocorrências** do
   padrão *"passou a ser X"* sem o lado antigo, de tabela de coluna única, ou de `SUPERADO` onde o
   veredito é `BIFURCADO`;
 - **nenhuma pendência virou regra** — `pr.imputacao`, os dois bloqueios, Fazenda Pública,

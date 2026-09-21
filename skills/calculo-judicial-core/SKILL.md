@@ -109,7 +109,7 @@ do **próprio**; **`janela-deslocada`**, metade de cada. **Trocar entre classes 
 o cálculo em um mês** — e **a régua desse ajuste não existe no corpus** (ver Limitações).
 
 > **A classe de cada índice NÃO se copia para cá:** a fonte é
-> `tabelas-normativas/indexadores-tipo-catalogo.json` (o que o validador lê). Classificar por
+> `calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json` (o que o validador lê). Classificar por
 > semelhança de nome (*"IPCA-E soa percentual"*) é a dedução que o bloco 17 removeu; sem fonte, a
 > classe é **`indeterminado`** e a virada **bloqueia** sob `R3-INDETERMINADO`.
 

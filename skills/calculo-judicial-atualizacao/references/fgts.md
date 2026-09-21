@@ -8,9 +8,9 @@ Justiça Federal, CJF, Res. 990/2026**.
 `consolidado/02-atualizacao-detalhe.md` **§ 5.0** (a varredura), **§ 5.3.2**, **§ 5.3.4** e
 **§ 5.3.5**;
 `docs/calculo/extracao/justica-federal/bloco-08-jf-detalhe.md` §§ 3.2 e 4 (`N-5`, `N-7`);
-`docs/calculo/tabelas-normativas/cjf.fgts.correcao-monetaria.json` (11 segmentos) e
+`skills/calculo-judicial-atualizacao/regras/cjf.fgts.correcao-monetaria.json` (11 segmentos) e
 `cjf.fgts.juros-mora.json` (3 segmentos);
-`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json` (`P18-01`).
+`skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json` (`P18-01`).
 
 ---
 
@@ -361,10 +361,10 @@ registrada, não silenciada** — e **não foi suprida aqui**.
 
 ## 10. Ponteiros
 
-- `docs/calculo/tabelas-normativas/cjf.fgts.correcao-monetaria.json` — 11 segmentos, os dois
+- `skills/calculo-judicial-atualizacao/regras/cjf.fgts.correcao-monetaria.json` — 11 segmentos, os dois
   escapes, as duas notas de expurgo e o contraste com 2.4.4.1
-- `docs/calculo/tabelas-normativas/cjf.fgts.juros-mora.json` — 3 segmentos e o achado do calendário
-- `docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json` — `P18-01` e o escopo da busca
+- `skills/calculo-judicial-atualizacao/regras/cjf.fgts.juros-mora.json` — 3 segmentos e o achado do calendário
+- `skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json` — `P18-01` e o escopo da busca
   de ausência
 - `docs/calculo/consolidado/02-atualizacao-detalhe.md` **§ 5.0** (a varredura item × JSON ×
   consolidado), **§ 5.3.2** (esta cadeia), **§ 5.3.4** (o que é comum à poupança) e **§ 5.3.5**

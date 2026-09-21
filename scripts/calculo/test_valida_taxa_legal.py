@@ -14,6 +14,7 @@ import tempfile
 import unittest
 from decimal import Decimal, ROUND_HALF_UP, localcontext
 
+import caminhos_de_skill  # noqa: F401
 from valida_taxa_legal import (
     PARES_VALIDACAO_INPC,
     SEIS_DECIMAIS,
@@ -157,18 +158,19 @@ class TestProibicaoDeFloat(unittest.TestCase):
 
     def test_codigo_fonte_nao_contem_literal_float(self):
         """Varre a AST dos dois validadores atrás de constantes float."""
-        base = pathlib.Path(__file__).parent
-        for nome in ("valida_taxa_legal.py", "valida_cobertura.py"):
-            caminho = base / nome
+        import valida_taxa_legal as _tl
+        import valida_cobertura as _cb
+        # BLOCO 25 — os dois viraram scripts de skill; a guarda os segue.
+        for caminho in (pathlib.Path(_tl.__file__), pathlib.Path(_cb.__file__)):
             with open(caminho, "r", encoding="utf-8") as fh:
                 arvore = ast.parse(fh.read(), filename=str(caminho))
             floats = [
                 no for no in ast.walk(arvore)
                 if isinstance(no, ast.Constant) and isinstance(no.value, float)
             ]
-            with self.subTest(arquivo=nome):
+            with self.subTest(arquivo=caminho.name):
                 self.assertEqual(
-                    floats, [], f"{nome} contém literal float na(s) linha(s) "
+                    floats, [], f"{caminho.name} contém literal float na(s) linha(s) "
                     f"{[n.lineno for n in floats]}"
                 )
 

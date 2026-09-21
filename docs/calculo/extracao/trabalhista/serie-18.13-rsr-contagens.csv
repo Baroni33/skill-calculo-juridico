@@ -3,7 +3,7 @@
 # evidência de conferência contra a tabela mantida à parte.
 # documento=manual-de-calculo-trabalhista_2016-1.pdf emissor=TRT-3, Secretaria de Cálculos Judiciais, julho/2016 offset_paginacao=0
 # Quatro variantes, uma por página. O critério de contagem é o título da
-# tabela e está isolado em tabelas-normativas/trt3-18.13-rsr-criterios.json.
+# tabela e está isolado em skills/calculo-trabalhista-liquidacao/regras/trt3-18.13-rsr-criterios.json.
 # As contagens dependem do calendário e do rol de feriados — série.
 pagina_pdf,item,criterio,competencia,rsr,dias_uteis,percentual
 456,18.13,"Tabela de RSR, considerando apenas os domingos como RSR, não abrangendo os feriados",jan/05,5,26,"19,23%"

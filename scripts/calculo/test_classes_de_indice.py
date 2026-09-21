@@ -16,7 +16,7 @@ histórica publicável numa skill: ou é a do catálogo, ou está errada.
 
 A FONTE É O CATÁLOGO, E A SKILL APONTA
 ---------------------------------------
-`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`, cuja própria
+`skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`, cuja própria
 `REGRA_DESTE_CATALOGO` diz *"o valor SAI DA FONTE … NUNCA classificado por
 dedução a partir do nome"*. Este teste não julga se a classe está **certa** —
 isso é matéria da fonte normativa. Ele julga se a skill **diz o mesmo que o
@@ -108,7 +108,10 @@ import unittest
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[2]
-CATALOGO = RAIZ / "docs" / "calculo" / "tabelas-normativas" / "indexadores-tipo-catalogo.json"
+# BLOCO 25 — o catálogo migrou para dentro de `calculo-judicial-atualizacao`.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos_de_skill  # noqa: E402
+CATALOGO = caminhos_de_skill.CATALOGO_INDEXADORES
 SKILLS = RAIZ / "skills"
 
 #: As cinco classes do vocabulário fechado de `tipo_indexador`. `englobante`
@@ -245,7 +248,7 @@ class TestSkillNaoDivergeDoCatalogo(unittest.TestCase):
             "classe de R3 divergente do catálogo. **Não conserte o catálogo "
             "para o texto passar**: o valor sai da fonte. Corrija a skill — e, "
             "de preferência, troque a lista copiada por um ponteiro para "
-            "`docs/calculo/tabelas-normativas/indexadores-tipo-catalogo.json`.",
+            "`skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json`.",
         )
 
     def test_a_varredura_enxerga_o_repositorio(self):

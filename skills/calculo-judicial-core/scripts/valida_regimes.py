@@ -33,8 +33,12 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-RAIZ = Path(__file__).resolve().parents[2]
-CATALOGO_PADRAO = RAIZ / "docs/calculo/tabelas-normativas/regimes-temporais-catalogo.json"
+# BLOCO 25 — script DE SKILL, e por isso o catálogo viaja com ele. `regras/` é
+# irmão de `scripts/` dentro da skill. O caminho anterior apontava para `docs/`,
+# que a instalação NÃO copia: o script quebrava no instante em que a skill saía
+# do repositório. Nada além do caminho mudou.
+SKILL = Path(__file__).resolve().parents[1]
+CATALOGO_PADRAO = SKILL / "regras" / "regimes-temporais-catalogo.json"
 
 
 class ErroDeDados(Exception):

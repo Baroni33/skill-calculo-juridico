@@ -2,6 +2,73 @@
 
 **Fase do pipeline:** Fase 2 (produção) e Fase 3 (consolidação).
 
+> ## BLOCO 25 — OS `.json` NÃO MORAM MAIS AQUI
+>
+> **A regra foi para dentro da skill que a consome.** Este diretório guarda
+> agora **só este README** — o contrato de campo, a proveniência e o histórico
+> das decisões, que são **base de conhecimento** e continuam no repositório.
+> **Os 32 arquivos de regra migraram**, por CONSUMO, e o `git` registra
+> renomeação, não reescrita:
+>
+> | O que | Para onde | Quem consome |
+> |---|---|---|
+> | as **cadeias temporais** `cjf.*` e `trab.hist.*`, **`cadeias-manifesto.json`** e **`indexadores-tipo-catalogo.json`** (a contagem vive em `../consolidado/00-numeros.md`) | `skills/calculo-judicial-atualizacao/regras/` | `valida_cobertura.py`, `valida_cadeias.py` e as `references/` de atualização |
+> | **`regimes-temporais-catalogo.json`** + **`camada-regime-temporal-schema.json`** | `skills/calculo-judicial-core/regras/` | `valida_regimes.py` — presets e invariantes |
+> | **`camada-norma-coletiva-catalogo.json`**, **`camada-norma-coletiva-schema.json`** e os **6 `trt3-18.*`** | `skills/calculo-trabalhista-liquidacao/regras/` | `valida_parametros.py` e as `references/` de liquidação |
+>
+> **`indexadores-tipo-catalogo.json` tem UM dono: `calculo-judicial-atualizacao`.**
+> É a skill que mais o cita, e é lá que mora `valida_cobertura.py`, o validador
+> de **R3** que lê o catálogo. `indices-judiciais` e `calculo-judicial-core`
+> **apontam** para ele pelo caminho novo; nenhuma das duas guarda cópia.
+>
+> **NENHUM `serie-*.csv` MIGROU.** Os 21 de `docs/calculo/extracao/trabalhista/`
+> continuam onde estão, marcados `OUT_OF_SCOPE` no cabeçalho.
+>
+> > **CORREÇÃO — o bloco 25 tinha publicado aqui um absoluto que não valia.**
+> > A frase era *"A SÉRIE DE VALOR NÃO MIGROU"*, e ela **não fora medida**: a
+> > varredura que a sustentaria não existia. Ela existe agora, e **achou dois
+> > casos** dentro das regras migradas. **Escopo, contado antes de declarado:**
+> > os **32 arquivos `.json`** de `skills/*/regras/` — os mesmos 32 que
+> > migraram —, lidos com `json.load` e `encoding='utf-8'`, percorridos em
+> > profundidade atrás de **qualquer objeto com duas ou mais chaves na forma
+> > `AAAA-MM`**. Três objetos casaram; **dois são valor por competência**, e o
+> > terceiro é prosa:
+> >
+> > | Onde | O quê | Veredito |
+> > |---|---|---|
+> > | `trab.hist.fazenda-publica.juros-mora.json` → `percentuais_por_competencia` | **15** percentuais de juros, jun/12 a ago/13 | **fica, reclassificado** — ver abaixo |
+> > | `cjf.previdenciario.correcao-monetaria.json` → `segmentos[8].valores_fixos_pct` | **4** percentuais de conversão em URV, mar a jun/94 | **fica, e a dúvida tem dono** — ver abaixo |
+> > | `cjf.fgts.correcao-monetaria.json` → `notas[1].contraste_com_o_capitulo_4_geral` | 3 chaves de competência cujo valor é **frase** (*"42,72% nos dois — mesmo percentual"*) | **não é série**: é o contraste narrado da pendência `N-5`, e nenhum consumidor o lê como dado |
+> >
+> > **O defeito não foi o arquivo ter viajado; foi proclamar o absoluto sem
+> > varrer.** Os dois primeiros ficam, e a razão é a mesma nos dois: **não são
+> > série (B), são conjunto fechado por norma e exaurido.** O teste que este
+> > projeto usa para separar as camadas é *"série (B) muda quando o governo
+> > publica portaria"* — e nenhum destes dezenove números pode mudar.
+> >
+> > * **os quinze da fazenda pública** existem porque a meta anual da Selic
+> >   ficou igual ou inferior a 8,5% (art. 12, II, `b`, da Lei 8.177/91), e isso
+> >   **só ocorreu de jun/12 a ago/13**. O conjunto fechou em set/13. O
+> >   `atalho_do_manual` do próprio arquivo **não os dispensa**: ele vale sob a
+> >   condição de uso que declara — data final de atualização **posterior a
+> >   31/08/13** —, e cálculo que termine **dentro** da janela não tem outra
+> >   resposta senão os quinze;
+> > * **os quatro da URV** não são índice, e o segmento já o dizia:
+> >   `tipo_indexador: "nao-indexador"`, porque conversão de padrão monetário é
+> >   **operação**, não medida de inflação. E o item 4.2.3.1 do Manual CJF
+> >   **não enuncia fórmula**: enumera os quatro. **Não há regra a extrair além
+> >   dos números.** Sem eles a cadeia diria *que* converte e não *como*.
+> >
+> > **A decisão está gravada nos dois arquivos**, em `DECISAO_BLOCO_25`, e o
+> > rótulo errado foi trocado: `natureza` dizia *"série (B) — percentuais
+> > cravados, mês a mês"* e passou a dizer o que o conjunto é. A chave `serie`
+> > virou `percentuais_por_competencia`, com o nome antigo registrado ao lado
+> > em `chave_anterior` para que a busca continue achando o caso.
+> >
+> > **Regra e valor continuam sendo coisas diferentes.** O que este bloco
+> > aprendeu é que *"conjunto fechado por norma"* é uma **terceira coisa**, e
+> > que ela pertence à regra.
+
 ## Propósito
 
 Artefato central do módulo. Representa **regra**, não série de valores.
@@ -96,9 +163,10 @@ que nenhum deles alcança carregam `fundamento_611b: "nao-mapeado"` e
 
 ## Manifesto: `cadeias-manifesto.json`
 
-Inventário **desta pasta**, e não conteúdo normativo — mora aqui pela mesma razão que
-`indexadores-tipo-catalogo.json`: um sidecar que descreve o diretório vive com o diretório,
-e os dois consumidores (`valida_cadeias.py` e `test_valida_cobertura.py`) leem UMA fonte.
+Inventário **das cadeias**, e não conteúdo normativo. **Bloco 25: migrou junto com elas**,
+para `skills/calculo-judicial-atualizacao/regras/` — o argumento não mudou, só o endereço:
+um sidecar que descreve um diretório vive **com** esse diretório, e os dois consumidores
+(`valida_cadeias.py` e `test_valida_cobertura.py`) leem UMA fonte.
 
 É **piso, não retrato**: declara o conjunto mínimo de cadeias, por `id`, e o mínimo de
 segmentos de cada uma. Cadeia a menos, ou cadeia que encolhe, é **regressão** e derruba o
@@ -111,14 +179,21 @@ que derrubou a descoberta de 11 cadeias para 7 em silêncio, no bloco 17.
 
 ## Validação
 
-- `scripts/calculo/valida_cadeias.py` — R1/R2/R3 sobre todas as cadeias e a conferência
-  contra `cadeias-manifesto.json`.
-- `scripts/calculo/valida_parametros.py` — R14 a R18, precedência, conflito e piso legal.
-  `--catalogo-ok` verifica a consistência interna do catálogo.
-- `scripts/calculo/valida_cobertura.py` — R1 e R2 sobre `segmentos`. Vale para a família
-  de cadeias período → indexador; toda tabela dessa família deve passar antes de entrar.
-- `scripts/calculo/valida_bloco_tabelas.py` — contagem, faixas, vigências e proveniência
-  do bloco 1.
+**Bloco 25 — os validadores também se dividiram, e por CONSUMO.** Quem valida
+regra de skill virou **script de skill** e mora ao lado da regra; quem afere o
+repositório continua em `scripts/calculo/`. A tabela abaixo dá o caminho de
+**hoje** — os antigos `scripts/calculo/valida_{regimes,parametros,cobertura,taxa_legal}.py`
+**não existem mais**, e o ponteiro único para eles é
+`scripts/calculo/caminhos_de_skill.py`.
+
+| Validador | Onde mora | O que cobra |
+|---|---|---|
+| `skills/calculo-judicial-atualizacao/scripts/valida_cobertura.py` | script de skill | R1 e R2 sobre `segmentos`, e R3. Vale para a família de cadeias período → indexador; toda tabela dessa família deve passar antes de entrar |
+| `skills/calculo-judicial-atualizacao/scripts/valida_taxa_legal.py` | script de skill | R11 — taxa legal sobre um par que o usuário passa |
+| `skills/calculo-judicial-core/scripts/valida_regimes.py` | script de skill | presets e invariantes da camada de regime temporal |
+| `skills/calculo-trabalhista-liquidacao/scripts/valida_parametros.py` | script de skill | R14 a R18, precedência, conflito e piso legal. `--catalogo-ok` verifica a consistência interna do catálogo |
+| `scripts/calculo/valida_cadeias.py` | ferramenta de pipeline | R1/R2/R3 sobre **todas** as cadeias deste repositório e a conferência contra `cadeias-manifesto.json` |
+| `scripts/calculo/valida_bloco_tabelas.py` | ferramenta de pipeline | contagem, faixas, vigências e proveniência do bloco 1 |
 
 ## Estado
 

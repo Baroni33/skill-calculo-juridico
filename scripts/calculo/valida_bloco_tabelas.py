@@ -38,7 +38,10 @@ except ImportError:  # pragma: no cover
 
 RAIZ = Path(__file__).resolve().parents[2]
 DIR_SERIE = RAIZ / "docs" / "calculo" / "extracao" / "trabalhista"
-DIR_SEMANTICA = RAIZ / "docs" / "calculo" / "tabelas-normativas"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import caminhos_de_skill  # noqa: E402
+# BLOCO 25 — a camada (A) migrou para `regras/` de calculo-trabalhista-liquidacao.
+DIR_SEMANTICA = caminhos_de_skill.REGRAS_LIQUIDACAO
 PDF = Path(
     r"C:\Users\Rafaela\Downloads\Plataforma-SaaS-Jus"
     r"\manual-de-calculo-trabalhista_2016-1.pdf"

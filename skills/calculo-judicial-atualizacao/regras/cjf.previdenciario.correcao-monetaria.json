@@ -143,6 +143,7 @@
         "1994-05": "44,1627",
         "1994-06": "44,0846"
       },
+      "DECISAO_BLOCO_25": "FICA NA SKILL, E A DÚVIDA TEM DONO. A validação adversarial do bloco 25 levantou a dúvida — quatro percentuais indexados por competência dentro de skills/**/regras/ parecem série de valor. NÃO SÃO, por dois fatos já gravados neste segmento: (a) 'tipo_indexador' é 'nao-indexador' porque a conversão em URV é OPERAÇÃO de mudança de padrão monetário, não índice que reflita inflação de mês algum; (b) a fonte NÃO TEM REGRA A EXTRAIR além destes quatro números — o item 4.2.3.1 do Manual CJF os enumera um a um, e não enuncia fórmula que os produza. Tirá-los deixaria o segmento com um rótulo de indexador e nada executável: a cadeia diria QUE converte e não COMO. Conjunto fechado e exaurido, como o de trab.hist.fazenda-publica.juros-mora: mar a jun/1994, quatro competências, encerradas pela própria implantação do real em 01/07/1994. Registrado em docs/calculo/tabelas-normativas/README.md e em docs/calculo/aceitacao/bloco-25-relatorio.md § 6.",
       "pagina_pdf": 58,
       "observacao": "PARÁFRASE, não citação. O manual enumera os quatro percentuais um a um (pagina_pdf 58); os valores literais estão em valores_fixos_pct. A primeira redação escrevia 'e assim para os demais meses', que não é texto do manual.",
       "componente": "correcao-monetaria"
@@ -264,5 +265,5 @@
     "por_que": "O manual abre a primeira linha com 'De 1964' (sem mês) e fecha a última com 'A partir de ...'. A janela materializa as pontas para permitir a checagem de R1/R2. 1964-01 é o ano declarado; 2026-06 é a data-base dos exemplos do próprio manual (item 4.2.1.1, pagina_pdf 52).",
     "marcador": "ponta_materializada"
   },
-  "tipo_indexador_catalogo": "tabelas-normativas/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
+  "tipo_indexador_catalogo": "regras/indexadores-tipo-catalogo.json — o valor sai da fonte; sem fonte, indeterminado (bloco 17, tarefa 1)"
 }

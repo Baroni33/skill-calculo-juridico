@@ -4,9 +4,9 @@
 # documento=manual-de-calculo-trabalhista_2016-1.pdf emissor=TRT-3, Secretaria de Cálculos Judiciais, julho/2016 offset_paginacao=0
 # 'serie' = mês, 'chave' = dia do mês, 'valor' = URV em CR$ naquele dia.
 # O método de conversão NÃO consta deste bloco — ver relatório e
-# tabelas-normativas/trt3-18.10-urv-conversao.json.
+# skills/calculo-trabalhista-liquidacao/regras/trt3-18.10-urv-conversao.json.
 # tipo do indexador (R3): URV=nao-indexador (unidade de conta, nao indice).
-# Fonte de cada classificacao: tabelas-normativas/indexadores-tipo-catalogo.json
+# Fonte de cada classificacao: skills/calculo-judicial-atualizacao/regras/indexadores-tipo-catalogo.json
 pagina_pdf,item,serie,chave,valor
 453,18.10,jan/93,1,"13,01"
 453,18.10,fev/93,1,"16,63"
