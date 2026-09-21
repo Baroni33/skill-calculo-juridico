@@ -60,6 +60,7 @@ faça este arquivo passar por vacuidade, achando zero ponteiros e aprovando tudo
 
 from __future__ import annotations
 
+import json
 import re
 import tempfile
 import unittest
@@ -433,6 +434,80 @@ class TestLedgerNaoEnvelhece(unittest.TestCase):
             else:
                 self.assertIsInstance(e["arquivos"], list)
                 self.assertTrue(e["arquivos"], e["alvo"])
+
+
+class TestManifestoDePlugin(unittest.TestCase):
+    """O manifesto de plugin aponta para o que existe — BLOCO 24.
+
+    Um manifesto é ponteiro como qualquer outro, e falha mais caro: quando o
+    caminho de `skills` não resolve, o plugin instala e **carrega zero skills**,
+    em silêncio. E a `description` dele carrega uma contagem em prosa — "Quatro
+    skills" — que é exatamente a espécie de número que envelhece sozinho.
+    """
+
+    MANIFESTO = RAIZ / ".claude-plugin"
+    NUMERAL = {1: "uma", 2: "duas", 3: "três", 4: "quatro",
+               5: "cinco", 6: "seis", 7: "sete", 8: "oito"}
+
+    def setUp(self):
+        if not self.MANIFESTO.is_dir():
+            self.skipTest("sem .claude-plugin/ — repositório não empacotado")
+        self.plugin = json.loads(
+            (self.MANIFESTO / "plugin.json").read_text(encoding="utf-8"))
+        self.market = json.loads(
+            (self.MANIFESTO / "marketplace.json").read_text(encoding="utf-8"))
+        self.skills = sorted(
+            d.name for d in (RAIZ / "skills").iterdir()
+            if d.is_dir() and (d / "SKILL.md").is_file())
+
+    def test_o_caminho_de_skills_resolve_e_tem_skill(self):
+        rel = self.plugin.get("skills")
+        self.assertTrue(rel, "plugin.json sem campo `skills`")
+        alvo = (RAIZ / rel.lstrip("./")).resolve()
+        self.assertTrue(alvo.is_dir(), f"`skills` não resolve: {rel}")
+        self.assertTrue(
+            self.skills,
+            f"{rel} existe e não tem nenhum <dir>/SKILL.md — o plugin "
+            "instalaria carregando zero skills, em silêncio.",
+        )
+
+    def test_a_contagem_em_prosa_bate_com_as_skills_que_existem(self):
+        """'Quatro skills' é contagem do repositório dentro do manifesto.
+
+        O manifesto está FORA da varredura de `test_numeros.py`, por decisão
+        declarada. Esta é a contrapartida dessa decisão: o número não fica sem
+        dono só porque o detector não o alcança.
+        """
+        esperado = self.NUMERAL.get(len(self.skills))
+        self.assertIsNotNone(esperado, f"{len(self.skills)} skills — amplie NUMERAL")
+        for nome, doc in (("plugin.json", self.plugin),
+                          ("marketplace.json", self.market)):
+            textos = [doc.get("description", "")]
+            textos += [p.get("description", "") for p in doc.get("plugins", [])]
+            for texto in textos:
+                achados = [n for n in self.NUMERAL.values()
+                           if f"{n} skills" in texto.lower()]
+                for achado in achados:
+                    self.assertEqual(
+                        achado, esperado,
+                        f"{nome} diz '{achado} skills' e existem "
+                        f"{len(self.skills)}: {self.skills}",
+                    )
+
+    def test_o_frontmatter_das_skills_so_usa_campos_aceitos(self):
+        """Campo fora dos seis aceitos dá ERRO DE CARREGAMENTO — a skill some."""
+        aceitos = {"name", "description", "allowed-tools",
+                   "compatibility", "license", "metadata"}
+        for nome in self.skills:
+            texto = (RAIZ / "skills" / nome / "SKILL.md").read_text(encoding="utf-8")
+            bloco = texto.split("---")[1]
+            chaves = {l.split(":", 1)[0].strip()
+                      for l in bloco.splitlines()
+                      if l and not l[0].isspace() and ":" in l}
+            self.assertLessEqual(
+                chaves, aceitos,
+                f"{nome}: campo fora dos seis aceitos: {chaves - aceitos}",
+            )
 
 
 if __name__ == "__main__":

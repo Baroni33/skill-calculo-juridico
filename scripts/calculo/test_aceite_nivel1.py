@@ -213,11 +213,32 @@ class TestR11TaxaLegalPorRazao(unittest.TestCase):
 
 
 # --------------------------------------------------------------------------
-# R12 por AST — zero literais float
+# R12 — ausência de ponto flutuante binário, verificada no código PYTHON
+# deste repositório. Ver a RESSALVA DE ALCANCE abaixo: não é o aceite de
+# uma implementação em outra linguagem.
 # --------------------------------------------------------------------------
-class TestR12ZeroFloatPorAST(unittest.TestCase):
-    """'Nenhum float. Em lugar nenhum.' — verificado por árvore sintática, não
-    por grep.
+class TestR12SemPontoFlutuanteBinarioNoCodigoDesteRepositorio(unittest.TestCase):
+    """R12 exige **aritmética decimal exata**, com ponto flutuante binário
+    proibido no caminho de cálculo. Aqui isso é verificado por árvore
+    sintática, porque o código deste repositório é Python.
+
+    RESSALVA DE ALCANCE — BLOCO 24, achada na validação adversarial.
+    ====================================================================
+    **Este teste NÃO é o aceite de R12 para um motor em outra linguagem.**
+    O `ARVORES` abaixo é fixo e aponta para código Python DESTE repositório.
+    Rodado ao lado de uma implementação em C#, ele passa sem olhar uma única
+    linha dela — e `linguagem-alvo-e-aritmetica.md` nomeia esse modo de
+    falha: *"varredura que passa porque não olha nada é o pior modo de
+    falha"*.
+
+    **O que R12 exige da implementação é a PROPRIEDADE:** ausência de ponto
+    flutuante binário no caminho de cálculo, **verificável pelo método que a
+    linguagem permitir** — analisador de código, regra de lint, revisão de
+    tipos. **AST é como se faz em Python, não o requisito.**
+
+    O aceite poliglota está registrado como requisito em
+    `skills/calculo-judicial-core/references/linguagem-alvo-e-aritmetica.md`
+    e **não foi implementado** — é trabalho de um bloco futuro.
 
     ESCOPO DECLARADO: todo `.py` de `scripts/calculo/` e de
     `docs/calculo/aceitacao/frente-a/`, EXCETO os `test_*.py`. A exceção é

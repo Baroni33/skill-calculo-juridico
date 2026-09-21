@@ -691,9 +691,31 @@ class TestEscopoContado(unittest.TestCase):
             ]
             self.assertTrue(alcancados, f"exclusão sem alvo: {prefixo}")
 
+    #: O que existe no repositório e esta suíte NÃO varre. Cada prefixo aqui é
+    #: uma decisão, não um esquecimento — e o teste abaixo falha quando aparece
+    #: árvore nova, o que obriga a decidir em vez de deixar passar.
+    #:
+    #: `tests/`        — fixtures e o README delas. São DADO: o `esperado` de
+    #:                   uma fixture é o gabarito, não contagem do repositório.
+    #: `.claude-plugin/` — BLOCO 24. Manifesto de plugin (`plugin.json`,
+    #:                   `marketplace.json`). O `version` é do PLUGIN, não
+    #:                   contagem de nada que este arquivo vigie.
+    #:
+    #:                   **RESSALVA, achada na validação adversarial do bloco
+    #:                   24 e escrita aqui porque a razão anterior era falsa:**
+    #:                   o manifesto NÃO é só metadado. O campo `description`
+    #:                   tem prosa, e a prosa diz *"Quatro skills"* — que É
+    #:                   contagem do repositório, duplicada nos dois arquivos.
+    #:                   Hoje confere; o risco é de amanhã. A exclusão continua
+    #:                   valendo porque o manifesto é o contrato de
+    #:                   empacotamento e não o lugar onde se consulta estado,
+    #:                   mas `test_manifesto_declara_as_skills_que_existem`
+    #:                   (em `test_ponteiros.py`) vigia esse número.
+    FORA_DAS_ARVORES = ("tests/", ".claude-plugin/")
+
     def test_o_que_o_repositorio_tem_e_esta_suite_NAO_varre(self):
-        """A terceira contagem, nomeada. Fora das árvores há `tests/` — fixtures
-        e o seu README. Declarar isso é o que impede que `111` volte."""
+        """A terceira contagem, nomeada. Declarar isso é o que impede que `111`
+        volte — e o que obriga a decidir quando nasce uma árvore nova."""
         das_arvores = {p.resolve() for p in arquivos_das_arvores(RAIZ)}
         fora = sorted(
             p.relative_to(RAIZ).as_posix()
@@ -705,10 +727,23 @@ class TestEscopoContado(unittest.TestCase):
             and ".pytest_cache" not in p.parts
             and p.resolve() not in das_arvores
         )
-        self.assertTrue(
-            all(x.startswith("tests/") for x in fora),
-            f"árvore nova no repositório, fora do escopo declarado: {fora}",
+        nao_declarados = [
+            x for x in fora
+            if not any(x.startswith(p) for p in self.FORA_DAS_ARVORES)
+        ]
+        self.assertEqual(
+            nao_declarados, [],
+            "árvore nova no repositório, fora do escopo declarado. Decida: "
+            "entra em ARVORES (e ganha ledger), ou entra em FORA_DAS_ARVORES "
+            "com a razão escrita. Passar em silêncio é o que este teste "
+            f"existe para impedir: {nao_declarados}",
         )
+        for prefixo in self.FORA_DAS_ARVORES:
+            self.assertTrue(
+                any(x.startswith(prefixo) for x in fora),
+                f"exclusão sem alvo: '{prefixo}' não corresponde a arquivo "
+                "nenhum. Exclusão órfã vira anistia silenciosa.",
+            )
 
 
 class TestLedgerNaoEnvelhece(unittest.TestCase):

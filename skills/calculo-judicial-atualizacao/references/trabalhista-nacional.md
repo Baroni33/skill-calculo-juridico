@@ -359,8 +359,8 @@ usar o índice do mês SEGUINTE**. Exemplo do manual: horas extras de **junho/14
 
 **Régua 4 — defeito do original registrado.** A regra imprime `0,0333%` e o exemplo, **duas linhas
 abaixo**, `0,03333%`. No exemplo do manual (11/05/00 a 30/04/04, 47 meses e 20 dias) ambos dão
-`47,67%`; **em contagens longas de dias, muda**. Por **R12**, o motor computa
-`Decimal(1)/Decimal(30)`, **nunca o truncamento impresso**.
+`47,67%`; **em contagens longas de dias, muda**. Por **R12**, o motor computa **1 dividido por 30
+em decimal exato**, **nunca o truncamento impresso**.
 
 **Contagem inclusiva do mês comercial:** `dias = 30 − dia_inicial + 1`. Testado em cinco períodos:
 **5 de 5 fecham pela regra inclusiva, 0 de 5 pela exclusiva**. A **fórmula** aparece nos exemplos;

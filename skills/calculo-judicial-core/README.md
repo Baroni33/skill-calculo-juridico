@@ -13,8 +13,9 @@ skills assentam.
 
 - Entidades e vocabulário mínimo do domínio.
 - As invariantes R1–R13 da seção 7 de `docs/calculo/00-base-normativa.md`.
-- Aritmética decimal: nenhum float, critério de truncamento definido e consistente
-  por etapa.
+- Aritmética decimal exata, ponto flutuante binário proibido no caminho de cálculo,
+  critério de truncamento definido e consistente por etapa. O tipo concreto é
+  escolha do implementador — `references/linguagem-alvo-e-aritmetica.md`.
 - **Comparador.** Fica aqui, não na skill trabalhista: "recalcular pelo critério
   correto e produzir o diff parcela a parcela" é a mesma operação nas três
   jurisdições.

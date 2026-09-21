@@ -1,19 +1,16 @@
 ---
 name: calculo-trabalhista-liquidacao
 description: >-
-  Use esta skill sempre que a pergunta for QUANTO SE DEVE em um cálculo trabalhista — apurar
-  verbas, reflexos, descontos legais e encargos processuais, antes de qualquer atualização
-  monetária. Gatilhos típicos: "confira este cálculo de liquidação", "revise a planilha do
-  perito", "o INSS está certo nesta conta?", "quanto dá a rescisão?", "o IRRF foi calculado
-  certo?", "conferir cálculo de horas extras", "qual o divisor desta jornada?", "reflexo de RSR
-  em férias e 13º", "aviso prévio proporcional", "férias em dobro", "adicional de insalubridade
-  ou periculosidade", "RRA / número de meses", "gross-up", "art. 12-A ou 12-B", "dedução de
-  valores já pagos", "amortização de depósito", "imputação de pagamento parcial", "honorários
-  sucumbenciais", "custas de execução", "contribuição sindical", "multa do art. 467 ou 477", "o
-  que muda depois da Reforma Trabalhista", "MP 808", "OJ 394", "Tema 9 do TST". NÃO use para
-  escolher índice de correção ou taxa de juros (é `calculo-judicial-atualizacao`), nem para obter
-  o valor mensal de um índice (é `indices-judiciais`), nem para invariantes e aritmética decimal
-  (é `calculo-judicial-core`).
+  Use quando a pergunta for QUANTO SE DEVE num cálculo trabalhista — verbas, reflexos, descontos
+  legais e encargos, ANTES de qualquer atualização monetária. Gatilhos: "confira este cálculo de
+  liquidação", "revise a planilha do perito", "o INSS está certo?", "quanto dá a rescisão?",
+  "horas extras", "qual o divisor desta jornada?", "reflexo de RSR em férias e 13º", "aviso
+  prévio proporcional", "insalubridade ou periculosidade", "RRA", "gross-up", "art. 12-A ou
+  12-B", "dedução de valores já pagos", "imputação de pagamento parcial", "honorários
+  sucumbenciais", "custas de execução", "contribuição sindical", "multa do art. 467 ou 477",
+  "o que muda depois da Reforma", "MP 808", "OJ 394". NÃO use para escolher índice ou taxa de
+  juros (calculo-judicial-atualizacao), nem para valor de índice (indices-judiciais), nem para
+  invariantes e aritmética (calculo-judicial-core).
 ---
 
 # Liquidação trabalhista — verbas, descontos e encargos
@@ -420,7 +417,7 @@ existe. **Precisa dos dois.**
 
 ## Fixtures de aceite
 
-Todos reproduzidos em `decimal.Decimal` no bloco de origem.
+**Entrada e saída esperada — o exemplo de aceite é esta tabela, não código.** Todos conferidos em aritmética decimal exata no bloco de origem.
 
 | # | Caso | Esperado |
 |---|---|---|

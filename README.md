@@ -12,6 +12,68 @@ extração normativa, as tabelas de regra e as skills; lá fica o produto.
 
 ---
 
+## Instalação
+
+**As skills são *model-invoked*: disparam pela `description` do frontmatter, lida no startup.**
+**Não há comando de invocação nem instalador** — o modelo decide carregar quando a conversa bate
+com o gatilho.
+
+### Via plugin — dois comandos
+
+```
+/plugin marketplace add Baroni33/skill-calculo-juridico
+/plugin install calculo-judicial-br
+```
+
+O manifesto vive em [`.claude-plugin/`](.claude-plugin/) — `marketplace.json` e `plugin.json`.
+
+> **O repositório é PRIVADO.** O acesso do marketplace a repositório privado depende da
+> credencial de git da máquina. **Não foi testado** — se falhar, use a instalação manual.
+
+### Manual — copiar quatro pastas
+
+```
+skills/calculo-judicial-core/           ->  .claude/skills/
+skills/calculo-judicial-atualizacao/
+skills/calculo-trabalhista-liquidacao/
+skills/indices-judiciais/
+```
+
+Para uso global, `~/.claude/skills/`; para um projeto só, `.claude/skills/` na raiz dele.
+**Copie a pasta inteira** — cada skill tem `references/` que o `SKILL.md` aponta.
+
+**O que NÃO copiar:**
+
+| | Por quê |
+|---|---|
+| **`docs/`** | é a **base de conhecimento**, não skill. As skills apontam para ela quando precisam; copiá-la para `.claude/skills/` não faz nada |
+| **`scripts/`** | são **ferramentas de pipeline** — validam o repositório, não o cálculo de ninguém |
+| **`tests/`** · **`skills/00-cobertura-casos.md`** | verificação e artefato de auditoria |
+
+> **Uma armadilha para a decisão seguinte, registrada aqui porque é fácil de
+> pisar.** O bloco 24 classificou os `.py` entre **ferramenta de pipeline** e
+> **script de skill**, e deixou a decisão de promover algum para depois.
+> **`valida_regimes.py` e `valida_parametros.py` leem o catálogo em
+> `docs/calculo/tabelas-normativas/`** — se forem promovidos, **a instrução
+> acima de não copiar `docs/` já os quebra**. Ou o catálogo viaja junto, ou o
+> caminho vira argumento obrigatório. **`valida_taxa_legal.py` não tem esse
+> problema:** é autocontido, e é por isso que é o caso declarado.
+
+
+### A linguagem do motor e a do script não são a mesma
+
+**O motor-alvo é C#** — backend do produto, com `System.Decimal` nativo. **A skill não pressupõe
+C#**: exige **aritmética decimal exata, com ponto flutuante binário proibido no caminho de
+cálculo**. O tipo concreto é escolha do implementador.
+
+> **Os scripts de skill permanecem em Python**, e isso é deliberado: eles rodam **no ambiente do
+> agente**, para verificar a implementação — **não no produto**. `valida_taxa_legal.py` é o caso
+> central, e implementa **R11**.
+
+**Script executado pela skill não entra no contexto — só a saída.**
+
+---
+
 ## As duas fontes primárias
 
 **Nenhum PDF é versionado aqui** — os dois vivem fora do repositório, referenciados por caminho

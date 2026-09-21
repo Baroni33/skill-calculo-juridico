@@ -137,24 +137,24 @@ não coletado, arquivo fora do padrão de descoberta, erro de importação.
 | `scripts/calculo/test_classes_de_indice.py` | 12 |
 | `scripts/calculo/test_metodos.py` | 32 |
 | `scripts/calculo/test_numeros.py` | 18 |
-| `scripts/calculo/test_ponteiros.py` | 7 |
+| `scripts/calculo/test_ponteiros.py` | 10 |
 | `scripts/calculo/test_valida_bloco_tabelas.py` | 10 |
 | `scripts/calculo/test_valida_cobertura.py` | 121 |
 | `scripts/calculo/test_valida_parametros.py` | 71 |
 | `scripts/calculo/test_valida_regimes.py` | 86 |
 | `scripts/calculo/test_valida_taxa_legal.py` | 29 |
-| **total escrito** | **406** |
+| **total escrito** | **409** |
 
-**Executados:** `python -m unittest discover -s scripts/calculo -p "test_*.py"` → **406 testes, OK**.
+**Executados:** `python -m unittest discover -s scripts/calculo -p "test_*.py"` → **409 testes, OK**.
 
 ## 6. Arquivos
 
 | o que se conta | quantos |
 |---|---|
 | `docs/calculo/consolidado/` — arquivos `.md` | **15** |
-| `skills/` — arquivos `.md`, em toda a árvore | **32** |
+| `skills/` — arquivos `.md`, em toda a árvore | **33** |
 | `skills/*/SKILL.md` — skills publicadas | **4** |
-| `skills/*/references/*.md` | **23** |
+| `skills/*/references/*.md` | **24** |
 | `docs/calculo/tabelas-normativas/*.json` — todos | **32** |
 
 ## 7. Linhas das `SKILL.md` — o limite de 500 é verificável
@@ -165,10 +165,10 @@ sem medi-lo seria promessa. Aqui ele é **medido**, e
 
 | `SKILL.md` | linhas | limite 500 |
 |---|---|---|
-| `skills/calculo-judicial-atualizacao/SKILL.md` | 499 | cabe, folga de 1 |
-| `skills/calculo-judicial-core/SKILL.md` | 499 | cabe, folga de 1 |
-| `skills/calculo-trabalhista-liquidacao/SKILL.md` | 499 | cabe, folga de 1 |
-| `skills/indices-judiciais/SKILL.md` | 497 | cabe, folga de 3 |
+| `skills/calculo-judicial-atualizacao/SKILL.md` | 496 | cabe, folga de 4 |
+| `skills/calculo-judicial-core/SKILL.md` | 495 | cabe, folga de 5 |
+| `skills/calculo-trabalhista-liquidacao/SKILL.md` | 496 | cabe, folga de 4 |
+| `skills/indices-judiciais/SKILL.md` | 499 | cabe, folga de 1 |
 
 ## 8. O que este arquivo NÃO conta, e por quê
 

@@ -156,7 +156,9 @@ ambígua. O que se implementa é R5.
 **A regra do NMP NÃO é half-up:** 2ª casa `<5` mantém, `>5` sobe, **`=5` manda olhar a 3ª casa**
 (0–4 mantém, 5–9 sobe). Difere de `ROUND_HALF_UP` na faixa `x,y50` a `x,y54`.
 
-**Nenhum float, em caminho algum.** `valida_bloco_tabelas.py` converte toda célula por `Decimal`
+**Aritmética decimal exata; ponto flutuante binário em caminho algum.** O tipo do motor é escolha
+do implementador — `calculo-judicial-core/references/linguagem-alvo-e-aritmetica.md`. O validador
+deste repositório, `valida_bloco_tabelas.py`, é Python e converte toda célula por `Decimal`
 (`para_decimal`): *"Aritmética decimal em toda parte, nenhum float (R12)"*.
 
 ### Precisão plena encadeada — e o que isso faz com o comparador
@@ -167,7 +169,7 @@ mesmo que parte dos exemplos do manual o faça. **Duas consequências operaciona
 colunas impressas do manual não somam os totais impressos**, por 0,01 a 0,02; (2) **o limiar de
 alarme do comparador não deve ser o centavo.**
 
-**`1/30` é dízima.** Usar `Decimal(1)/Decimal(30)`, **nunca** o truncamento impresso: o manual
+**`1/30` é dízima.** Dividir 1 por 30 em decimal exato, **nunca** o truncamento impresso: o manual
 grafa **`0,0333%`** na regra e **`0,03333%`** no exemplo **duas linhas abaixo**
 (`02-atualizacao.md` § 7, régua 4). Em contagens longas de dias, muda.
 

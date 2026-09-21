@@ -1,0 +1,20 @@
+{
+  "name": "calculo-judicial-br",
+  "description": "Cálculo judicial brasileiro — trabalhista e cível, com ramos tributário federal e previdenciário. Quatro skills: invariantes e aritmética decimal exata, cadeias período→indexador, liquidação trabalhista, e semântica dos índices. Extraído dos manuais do TRT-3 e do CJF (Res. 990/2026), com cada regra confrontada contra fonte primária e cada pendência declarada em vez de arbitrada.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Baroni33"
+  },
+  "homepage": "https://github.com/Baroni33/skill-calculo-juridico",
+  "repository": "https://github.com/Baroni33/skill-calculo-juridico",
+  "keywords": [
+    "calculo-judicial",
+    "trabalhista",
+    "civel",
+    "liquidacao",
+    "atualizacao-monetaria",
+    "juros-de-mora",
+    "direito-brasileiro"
+  ],
+  "skills": "./skills/"
+}

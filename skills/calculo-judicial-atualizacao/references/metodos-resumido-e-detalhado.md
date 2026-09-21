@@ -297,6 +297,7 @@ produz** — não uma conveniência para fechar a diferença declarada.
 | Detalhe — proveniência linha a linha, aritmética completa | `docs/calculo/consolidado/02-atualizacao-detalhe.md` §§ 10-A.0 a 10-A.9 |
 | Fixtures 1 a 3 — a cadeia | `references/civel-federal.md` § 8 |
 | Fixture 4 — precatório complementar | `references/tributario-federal.md` § 7 |
-| **O teste que confronta o procedimento** — células publicadas, **sem série** | `scripts/calculo/test_metodos.py` |
+| **O teste que confronta o procedimento** — células publicadas, **sem série**. Teste **do repositório**, em Python; confere o procedimento contra o número impresso e **não é modelo de implementação** | `scripts/calculo/test_metodos.py` |
 | `R12` e as cinco cadeias de arredondamento | `skills/calculo-judicial-core/SKILL.md` |
+| Linguagem-alvo, tipo decimal exato, e por que a implementação de referência não é exemplo de aceite | `skills/calculo-judicial-core/references/linguagem-alvo-e-aritmetica.md` |
 | Consolidação de dez/2021 | `docs/calculo/consolidado/02-atualizacao.md` § 10 |

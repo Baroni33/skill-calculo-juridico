@@ -1,19 +1,15 @@
 ---
 name: calculo-judicial-core
 description: >-
-  Base obrigatória de qualquer cálculo judicial brasileiro — cível, trabalhista,
-  tributário federal ou previdenciário. DISPARE ESTA SKILL SEMPRE que a tarefa
-  envolver conferir, refazer, auditar ou produzir conta de processo judicial,
-  ANTES de qualquer skill específica de jurisdição. Gatilhos: "confira este
-  cálculo", "refaça esta conta", "o perito errou?", "compare estas duas
-  planilhas", "quanto dá isso hoje?", "monte a memória de cálculo", "este
-  laudo está certo?", "qual a diferença entre os dois cálculos?". Também
-  dispare quando aparecerem as palavras liquidação, execução, atualização
-  monetária, juros de mora, correção monetária, memória de cálculo, impugnação
-  aos cálculos, planilha do perito ou embargos à execução. Contém o modelo de
-  domínio, as invariantes R1-R24 cuja violação produz ERRO MATERIAL, a
-  aritmética decimal obrigatória e o comparador. Sem ela as outras três skills
-  produzem número plausível e errado.
+  Base obrigatória de qualquer cálculo judicial brasileiro — cível, trabalhista, tributário
+  federal ou previdenciário. DISPARE SEMPRE que a tarefa envolver conferir, refazer, auditar ou
+  produzir conta de processo judicial, ANTES de qualquer skill de jurisdição. Gatilhos: "confira
+  este cálculo", "refaça esta conta", "o perito errou?", "compare estas duas planilhas", "quanto
+  dá isso hoje?", "monte a memória de cálculo", "este laudo está certo?". Também com as palavras
+  liquidação, execução, atualização monetária, juros de mora, correção monetária, impugnação aos
+  cálculos, planilha do perito ou embargos à execução. Traz o modelo de domínio, as invariantes
+  R1-R24 cuja violação produz ERRO MATERIAL, a aritmética decimal exata e o comparador. Sem ela
+  as outras três produzem número plausível e errado.
 ---
 
 # Cálculo judicial — núcleo
@@ -213,8 +209,9 @@ classificações distintas em processos distintos.**
 
 ### R12 — Aritmética decimal
 
-**Nenhum float.** E **o critério de arredondamento é POR ETAPA, não global** — ver a seção
-seguinte.
+**Aritmética decimal exata; ponto flutuante binário proibido no caminho de cálculo** — o tipo
+concreto é escolha do implementador (`references/linguagem-alvo-e-aritmetica.md`). E **o critério
+de arredondamento é POR ETAPA, não global** — ver a seção seguinte.
 
 ### R13 — Reprodutibilidade
 
@@ -296,15 +293,14 @@ verbete regional **mesmo dentro da região que o editou**.
 1. **Precisão plena encadeada.** Os números impressos com 2 casas **não são os operandos**. O
    truncamento é só na **emissão**, e **valor exibido nunca realimenta cálculo** — mesmo que
    parte dos exemplos do corpus o faça;
-2. **`1/30` é dízima.** Usar `Decimal(1)/Decimal(30)`, nunca o truncamento impresso — o corpus
-   grafa `0,0333%` na regra e `0,03333%` no exemplo **duas linhas abaixo**;
-3. **Nenhum float. Em lugar nenhum.**
-4. **`TRUNCAMENTO POR ETAPA` é MODO, não default — e é o que as fixtures 2 e 4 exigem.** Os
-   métodos **resumido** e **detalhado** do CJF **truncam a 2 casas a cada célula e realimentam o
-   valor truncado**. É a exceção declarada da regra 1: **rodar em precisão plena faz os dois
-   convergirem e zera as divergências de R$ 0,01 e R$ 0,03 que as fixtures asseveram.** O motor
-   precisa dos **dois modos**, e o procedimento de cada método está em
-   `skills/calculo-judicial-atualizacao/references/metodos-resumido-e-detalhado.md`.
+2. **`1/30` é dízima.** Dividir 1 por 30 em decimal exato, nunca o truncamento impresso — o
+   corpus grafa `0,0333%` na regra e `0,03333%` no exemplo **duas linhas abaixo**;
+3. **Ponto flutuante binário em lugar nenhum — e a ausência tem de ser VERIFICÁVEL.**
+4. **`TRUNCAMENTO POR ETAPA` é MODO, não default — e as fixtures 2 e 4 o exigem.** Os métodos
+   **resumido** e **detalhado** do CJF **truncam a 2 casas a cada célula e realimentam o valor
+   truncado**. Exceção declarada da regra 1: **rodar em precisão plena faz os dois convergirem
+   e zera as divergências de R$ 0,01 e R$ 0,03 que as fixtures asseveram.** O motor precisa dos
+   **dois modos**, descritos em `skills/calculo-judicial-atualizacao/references/metodos-resumido-e-detalhado.md`.
 
 > **Consequência que muda o comparador: as colunas impressas do corpus não somam os totais
 > impressos**, por 0,01 a 0,02. **O limiar de alarme não deve ser o centavo.**
@@ -331,7 +327,7 @@ O mínimo operacional desta skill:
                   -> pr.adc58-item-i ANTES de pr.imputacao: em i.1 nada se rateia
 2. PARÂMETRO      resolver (parâmetro, categoria, competência) (R14-R18)
                   -> e (regra, tribunal, competência) para o regional (R24)
-3. APURAR         a conta, em Decimal, precisão plena (R12)
+3. APURAR         a conta, em decimal exato, precisão plena (R12)
 4. ATUALIZAR      cadeia período->regra, sem lacuna (R1-R3)
                   -> se houve pagamento parcial, descarregar ANTES (R23)
                   -> a amortização PARTE a linha do tempo: tudo é trazido até o
@@ -438,7 +434,7 @@ amplitude_imputacao = min(abatimento, principal, juros)
 ## Fixtures de aceite — **dois níveis**
 
 **NÍVEL 1 — o aceite DA SKILL**, executável só com a skill: R11 pelos dois pares publicados, R12
-por AST (zero `float`), R1 na composição, as cinco cadeias de arredondamento e o NMP de três
+verificável — zero ponto flutuante binário —, R1 na composição, as cinco cadeias e o NMP de três
 ramos. **NÍVEL 2 — o aceite do SISTEMA**, não da skill: as **quatro** fixtures de
 `tests/fixtures/calculo/`, que **exigem a série de índices — camada (B) —, que esta skill não
 carrega por desenho**. Os dois níveis, fixture a fixture: `references/aceite-em-dois-niveis.md`.

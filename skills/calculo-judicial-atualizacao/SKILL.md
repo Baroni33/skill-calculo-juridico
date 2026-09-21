@@ -1,18 +1,15 @@
 ---
 name: calculo-judicial-atualizacao
 description: >-
-  Use esta skill sempre que for preciso decidir QUAL índice de correção monetária e QUAL
-  taxa de juros incidem sobre um débito judicial em cada mês, por jurisdição e por período.
-  Gatilhos típicos: "atualize este débito", "quanto vale esta condenação hoje", "qual índice
-  vale de 2015 a 2024", "o perito aplicou o índice certo?", "conferir cálculo de correção e
-  juros", "IPCA-E ou IPCA?", "SELIC engloba juros?", "taxa legal do art. 406 do CC",
-  "ADC 58", "Lei 14.905/2024", "Tema 1368 do STJ", "EC 113/2021", "EC 136/2025",
-  "precatório", "juros compensatórios de desapropriação", "TR até quando", "índice da
-  Fazenda Pública", "repetição de indébito", "dívida ativa", "benefício previdenciário
-  atrasado". Cobre trabalhista (nacional e verbetes regionais), cível (CC, Tema 1368,
-  tabela CGJ/TJMG), condenatórias em geral da Justiça Federal, desapropriação (direta e
-  indireta, com os juros compensatórios), tributário federal e previdenciário. NÃO use para apurar verbas
-  (horas extras, 13º, férias) nem para obter o valor mensal de um índice.
+  Use quando for preciso decidir QUAL índice de correção e QUAL taxa de juros incidem sobre um
+  débito judicial em cada mês, por jurisdição e por período. Gatilhos: "atualize este débito",
+  "quanto vale esta condenação hoje", "qual índice vale de 2015 a 2024", "o perito aplicou o
+  índice certo?", "IPCA-E ou IPCA?", "SELIC engloba juros?", "taxa legal do art. 406 do CC",
+  "ADC 58", "Lei 14.905/2024", "Tema 1368 do STJ", "EC 113/2021", "EC 136/2025", "precatório",
+  "juros compensatórios de desapropriação", "TR até quando", "índice da Fazenda Pública",
+  "repetição de indébito", "benefício previdenciário atrasado". Cobre trabalhista, cível,
+  condenatórias da Justiça Federal, desapropriação, tributário federal e previdenciário. NÃO use
+  para apurar verbas nem para obter o valor mensal de um índice.
 ---
 
 # Atualização monetária e juros — cadeias por jurisdição

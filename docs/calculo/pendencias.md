@@ -1489,3 +1489,54 @@ que as conteve foi sempre a mesma forma: **a conduta proibida está NOMEADA, nã
 com o caso concreto ao lado** segurou as três. As duas quase-invenções que a skill **não** cobria
 — taxa legal da variante errada e extensão de D1 — eram exatamente aquelas em que **o valor certo
 existe no repositório para OUTRO uso**, e nenhuma delas tinha o caso nomeado. Agora têm.
+
+---
+
+## 28. Bloco 24 — `RG10` tem tabela candidata, registrada e não extraída
+
+### 28.1 `P24-01` — fatores ICGJ/TJMG: a série existe, e não foi lida
+
+**`RG10`** é a **tabela CGJ/TJMG** — correção monetária cível em Minas para períodos **anteriores
+a jan/2003** (`regras-regionais.md`, linha 74). Está **classificada** como regra regional e
+**sem série**.
+
+**O bloco 23 encontrou uma tabela candidata**, no mesmo diretório dos dois manuais:
+
+| | |
+|---|---|
+| **Caminho** | `C:\Users\Rafaela\Downloads\Plataforma-SaaS-Jus\02 - PDF - Fatores de Atualizacao Monetaria - Agosto de 2026.pdf` |
+| **Emissor** | **Contadoria Judicial da Comarca de Belo Horizonte** — Poder Judiciário do Estado de Minas Gerais, Justiça de 1ª Instância |
+| **Título** | *"Fatores de Atualização Monetária Baseados em: **ICGJ (TJMG)**"*, e *"Baseados na Variação de: **ORTN/OTN/BTN/TR/IPC-R/INPC**"* |
+| **Validade declarada** | *"Tabela Válida para: **AGOSTO DE 2026**"* |
+| **Extensão** | **4 páginas**, cobertura de **1964 a 2026**, fatores mensais com **7 casas decimais** |
+
+### O que ela cobriria
+
+**A cadeia cível regional `RG10`**, que hoje existe como **regra sem série**. Os fatores são
+**acumulados até a data-base** — o formato que o **método resumido** consome (`(B)` da legenda de
+4.2.1.1, `pagina_pdf` 53).
+
+### O que ela NÃO cobre, e é o que importa
+
+> **Não destrava as quatro fixtures do CJF.** Elas consomem **IPCA-E** e **INPC** das cadeias
+> federais; esta é **ICGJ**, índice da Corregedoria mineira. **São séries de jurisdições
+> diferentes.**
+
+### Por que NÃO foi extraída
+
+**A regra do bloco 19 vale:** *cadeia sem tabela extraída linha a linha não se gera.* Extrair
+exigiria **leitura célula a célula das quatro páginas**, com a mesma disciplina de proveniência
+que o bloco 1 aplicou às 99 páginas de tabelas do TRT-3.
+
+**E há três perguntas abertas antes de extrair**, nenhuma respondível sem ler o documento:
+
+1. **`ICGJ` é um índice ou é o nome da tabela?** O título traz as duas leituras — *"Baseados em
+   ICGJ (TJMG)"* e *"Baseados na Variação de ORTN/OTN/BTN/TR/IPC-R/INPC"*. **Se for composição
+   de seis índices, é cadeia, não série** — e cai sob R2 e R3;
+2. **`tipo_indexador` de `ICGJ`**: não está no catálogo. **Sem fonte, é `indeterminado`** — e
+   classificá-lo por herança dos seis que o compõem é **a dedução proibida**;
+3. **a tabela é `RG10` ou é a série que `RG10` consome?** `RG10` é a **regra** *"em Minas, use a
+   tabela da CGJ"*; esta é **a tabela**. **São camadas diferentes — (A) e (B).**
+
+**Registrada, não consumida.** Fecha quando alguém extrair as quatro páginas com proveniência, ou
+quando o projeto decidir que a cadeia cível regional está fora de escopo.

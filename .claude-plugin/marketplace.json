@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "skill-calculo-juridico",
+  "description": "Marketplace do repositório skill-calculo-juridico — base de conhecimento e skills para cálculo judicial brasileiro.",
+  "owner": {
+    "name": "Baroni33"
+  },
+  "plugins": [
+    {
+      "name": "calculo-judicial-br",
+      "description": "Cálculo judicial brasileiro — trabalhista e cível, com ramos tributário federal e previdenciário. Quatro skills: invariantes e aritmética decimal exata, cadeias período→indexador, liquidação trabalhista, e semântica dos índices. Extraído dos manuais do TRT-3 e do CJF (Res. 990/2026), com cada regra confrontada contra fonte primária e cada pendência declarada em vez de arbitrada.",
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "Baroni33"
+      },
+      "homepage": "https://github.com/Baroni33/skill-calculo-juridico"
+    }
+  ]
+}

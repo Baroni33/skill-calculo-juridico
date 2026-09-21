@@ -24,12 +24,17 @@ por desenho; o que muda é **de quem** as fixtures são critério de aceite.
 
 | | O que é | Executável |
 |---|---|---|
-| **NÍVEL 1** | os **invariantes e a aritmética**: **R11** pelos dois pares publicados, **R12** por AST (zero `float`), **R1 na composição**, as **cinco cadeias de arredondamento** e o **NMP de três ramos** | **só com a skill** |
+| **NÍVEL 1** | os **invariantes e a aritmética**: **R11** pelos dois pares publicados, **R12 verificável** — zero ponto flutuante binário no caminho de cálculo, pelo método que a linguagem permitir (`linguagem-alvo-e-aritmetica.md` § 1.2) —, **R1 na composição**, as **cinco cadeias de arredondamento** e o **NMP de três ramos** | **só com a skill** |
 | **NÍVEL 2** | as **quatro fixtures do CJF** de `tests/fixtures/calculo/` | **exige série carregada** |
 
 **O NÍVEL 1 não é lista idealizada — é o que um implementador de fato acertou lendo só as skills,
-sem série nenhuma.** O inventário está em `docs/calculo/aceitacao/bloco-22-relatorio.md` § 1, e o
-código que o produziu em `docs/calculo/aceitacao/frente-a/`.
+sem série nenhuma.** O inventário está em `docs/calculo/aceitacao/bloco-22-relatorio.md` § 1.
+
+> **O código que o produziu — `docs/calculo/aceitacao/frente-a/` — é artefato datado do bloco 22 e
+> evidência da aceitação. NÃO é o exemplo de aceite, e não é modelo a seguir.** O exemplo é a
+> **tabela de entrada e saída esperada, em dado**: `tests/fixtures/calculo/`, mais o procedimento
+> em `metodos-resumido-e-detalhado.md`. Implementação de uma linguagem que vira modelo é âncora
+> para a próxima — ver `linguagem-alvo-e-aritmetica.md` § 3.
 
 ### 2.1 A consequência
 
@@ -42,6 +47,12 @@ código que o produziu em `docs/calculo/aceitacao/frente-a/`.
 
 **`scripts/calculo/test_aceite_nivel1.py`** — teste executável, no mesmo diretório da suíte que o
 repositório roda inteira (`python -m unittest discover -s scripts/calculo -p "test_*.py"`).
+
+> **Ele é Python, e permanece Python — mesmo que o motor não seja.** Script de skill roda no
+> ambiente do **AGENTE**, para verificar a implementação; **não roda no produto**. A linguagem do
+> script de verificação é **independente** da linguagem do motor. O mesmo vale para
+> `valida_taxa_legal.py`, que implementa **R11** e pode ser executado pela skill sem que exista
+> motor nenhum. Ver `linguagem-alvo-e-aritmetica.md` § 2.
 
 **Por que ali e não nos outros dois candidatos:**
 
@@ -77,6 +88,18 @@ R$ 0,03, com `divergencia_e_assercao: true`. **Não divergem do corpus.** Motor 
 número só **não passa**, e motor que produz **dois números iguais FALHA**. Os dois procedimentos
 estão em `skills/calculo-judicial-atualizacao/references/metodos-resumido-e-detalhado.md`.
 
+### 4.1 Requisito registrado, **não implementado**
+
+> **O bloco de aceitação deve poder rodar contra implementação em QUALQUER linguagem.**
+
+**O que o bloco 22 testou — composição e invariantes — já é agnóstico, e a aceitação não se
+refaz.** O que acopla hoje é **o modo de invocação**: `docs/calculo/aceitacao/frente-a/runner.py`
+importa os módulos Python diretamente. Um harness que atravesse uma fronteira neutra — processo,
+arquivo ou serviço — é **requisito do aceite futuro**, aqui **registrado e não implementado**.
+
+**A entrada e a saída esperada já estão em dado** (`tests/fixtures/calculo/`); é o suficiente para
+que o requisito seja cumprível sem reescrever critério nenhum.
+
 ---
 
 ## 5. Ponteiros
@@ -85,6 +108,8 @@ estão em `skills/calculo-judicial-atualizacao/references/metodos-resumido-e-det
 |---|---|
 | O que a skill entregou sem série — a definição do NÍVEL 1 | `docs/calculo/aceitacao/bloco-22-relatorio.md` § 1 |
 | O teste do NÍVEL 1 | `scripts/calculo/test_aceite_nivel1.py` |
-| O runner do NÍVEL 2, com o par asserido | `docs/calculo/aceitacao/frente-a/runner.py` |
+| **O par asserido das fixtures 2 e 4 — entrada e saída esperada, em dado** | `tests/fixtures/calculo/` (`divergencia_e_assercao: true`) |
+| Linguagem-alvo, verificabilidade de R12, e por que a implementação de referência não é modelo | `linguagem-alvo-e-aritmetica.md` |
+| Artefato datado do bloco 22 — **evidência, não modelo** (inclui `runner.py`) | `docs/calculo/aceitacao/frente-a/` |
 | Os dois métodos, procedimento executável | `metodos-resumido-e-detalhado.md` |
 | Contrato de série — a camada (B) | `skills/indices-judiciais/` |
